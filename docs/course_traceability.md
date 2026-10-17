@@ -6,6 +6,10 @@ This document separates requirements and taught concepts from the engineering
 choices used to make the experiment reproducible. Numerical findings belong in
 the generated results and report; they are not inferred from the lecture examples.
 
+## Revision following the methodological review
+
+The revised primary graph is produced by the unmodified instructor DependencyExtractor JAR. A supplemental ASM reader supplies the complete owned-class inventory, enclosing-class aliases, and resolved field/method evidence needed by UE. It does not add its annotation-application or declaring-owner edges to the instructor graph. The source ownership boundary includes Guava's public-suffix implementation. The revised sample represents 30 distinct major/minor families, and the k policy is calibrated on one middle-release inertia pilot. MoJoFM is reported as directed partition agreement; no reference is claimed to be the true intended architecture. The original results remain identifiable in Git history and the saved baseline.
+
 ## Reading inventory and reference convention
 
 The material review preceded implementation. All extracted text of the following
@@ -40,7 +44,7 @@ and download receipt preserved under `third_party/acdc`.
 | Recover with and without omnipresent classes | AS pp. 2–3 | Replacement paper-based detector; A2/A4 operate on the induced internal graph of retained classes. |
 | ACDC and a clustering algorithm, both graph conditions | AS p. 3 | A1=ACDC/full, A2=ACDC/filtered, A3=KMeans/full, A4=KMeans/filtered. Exactly one final output per condition per release. |
 | Inspect ACDC main/parameters and investigate supported patterns and maximum size | TUT pp. 7–8 | Original `ACDC.java`; a one-version pilot; explicit `+so` and `-l20` final configuration unless a documented global pilot revision is made. |
-| Document clustering library and k selection | AS p. 4; TUT pp. 10–12 | Sparse features and fixed heuristic below; fixed seed and explicit library parameters in execution metadata. |
+| Document clustering library and k selection | AS p. 4; TUT pp. 10–12 | Sparse features and one-pilot calibrated k rule below; fixed seed and explicit library parameters in execution metadata. |
 | Cohesion, coupling and MQ for each output | AS p. 3; L67 PDF pp. 15–17 | `src/evolution/metrics.py`, hand-derived tests and complete cluster/pair terms. |
 | AI recovery of latest version, including actual input/prompts/output | AS pp. 3–4 | Actual AI experiment record and latest-version comparison; no invented prompt history. |
 | Explain results using course concepts and discuss limitations | AS p. 4 | Report discussion supported by L12/L3/L4/L5 and observed results. |
@@ -98,19 +102,16 @@ feature, identity and normalization rules are our engineering choices, consisten
 with documenting the chosen representation; they are not a claim that the
 lectures prescribe this unique matrix.
 
-The final k rule is:
+The revised k rule is calibrated on one pilot release, chosen by the middle sample index before examining its scores. The declared candidate grid is `2, 5, 10, 15, 20, 25, 30, 40, 50, 60, 75, 90, 110, 130`, capped to valid cluster counts. Each candidate's inertia is measured under the same feature geometry. After normalizing k and inertia to the interval [0,1], choose the candidate with the greatest vertical distance below the line joining the two endpoint observations (the usual diminishing-returns elbow geometry; the implementation records its exact signed score and tie rule).
+
+The chosen pilot value `k_p` and pilot class count `n_p` define:
 
 \[
-k_{\mathrm{full}}=\max\left(1,\left\lceil\sqrt{n_{\mathrm{full}}/2}\right\rceil\right),
-\qquad
-k_{\mathrm{filtered}}=\min(k_{\mathrm{full}},n_{\mathrm{filtered}}).
+k_{\mathrm{full}}=\max(1,\lceil n_{\mathrm{full}} k_p/n_p\rceil),
+\qquad k_{\mathrm{filtered}}=\min(k_{\mathrm{full}},n_{\mathrm{filtered}}).
 \]
 
-An empty retained graph has k=0 by convention. The full-version size determines
-the value reused for A3/A4. This is a transparent granularity heuristic, not an
-estimated optimum or a theorem taught in class. It avoids selecting k by the
-same MQ later used for comparison. The pilot checks coverage and cluster-size
-distribution; it does not perform a k sweep over thirty versions.
+An empty retained graph uses k=0. This preserves the pilot's approximate target classes per cluster as the software grows. It is an empirical pilot choice followed by an explicit extrapolation assumption, not a lecture theorem or a guarantee of optimal architecture. There is no per-version sweep, and MQ is not the selection objective. A manual `--k` is available for clearly separate exploratory runs. See `docs/pilot_decision.md` for the actual measured candidate table, selected value, limitations and frozen configuration.
 
 The fitted configuration uses scikit-learn KMeans with k-means++ initialization,
 Lloyd iterations, `random_state=484`, `n_init=10`, `max_iter=300`, and `tol=1e-4`.
@@ -221,8 +222,8 @@ distinguishes drift from decisions violating the intended architecture. Calling 
 change erosion needs an intended design constraint and evidence of violation.
 MQ and coupling are structural measurements, not direct measurements of user
 satisfaction, performance or correctness. Choosing k independently is particularly
-useful because k=1 removes the inter-cluster coupling term and MQ can favor coarse
-partitions.
+useful because both coarse and fine granularities change the macro-density averages.
+A large MQ advantage must be interpreted alongside cluster counts, sizes and isolates.
 
 **Omnipresence is not the same as a hub smell.** L5 PDF pp. 27–30 / slides 28–31
 cover unstable, hub-like, cyclic and God-component smells. The replacement JNode
@@ -278,3 +279,9 @@ is background, not a requirement to add review mining to this structural study.
 13. Which findings are observed, which are interpretations, and which Lehman laws are not measurable here?
 14. What exact material did the latest-version AI experiment receive, what did it return and how was it checked?
 15. Which work and reviews did each student actually perform, and can each reproduce and explain the full chain?
+
+## Additional lecture agreement measure: MoJoFM
+
+The reconstruction lecture introduces comparison by move/join operations. The revised study adds MoJoFM in both directions for algorithm, filtering, temporal and AI comparisons. All such inputs use identical object sets, obtained by projection where needed. A directional score means agreement toward the specified reference partition, not proof that the reference is correct. ARI remains a supplementary symmetric agreement measure. The exact distance, target-dependent normalization, edge cases and tests are documented in `docs/mojofm.md`; the implementation and saved comparisons make the scores inspectable.
+
+This corrects the original reasoning: absence of an authoritative architecture prevents an accuracy claim, but does not prevent a MoJoFM agreement calculation.

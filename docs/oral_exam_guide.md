@@ -16,7 +16,7 @@ Guava is itself a collection of libraries. 'Exclude external libraries' means ex
 
 ## 3. How did you choose the versions?
 
-We used a deliberate longitudinal sample rather than 30 consecutive releases. The manifest lists the selected stable tags and intervening releases skipped. The JRE artifact is used after Guava introduced separate JRE and Android variants; earlier releases use the unsuffixed Java artifact. We did not count both flavors as two historical observations.
+We first grouped 70 eligible stable releases into 45 major/minor families and selected 30 family ranks across the history. Each family appears exactly once. We used its highest eligible stable patch, with an explicit oldest-boundary exception of 10.0. The rule is `round(i*44/29)` for i=0,...,29; it uses release metadata only. The manifest records every chosen rank, representative and skipped family. Some chosen families are adjacent: the sample is spaced over family rank, not uniform calendar time. The JRE artifact is used after Guava introduced separate JRE and Android variants; earlier releases use the unsuffixed Java artifact. We did not count both flavors as two historical observations.
 
 The release sample was chosen before evaluating clustering quality. We did not search for versions that made a detector or algorithm look better. The sample does not reveal every intermediate change or identify the exact commit responsible for a change between observations.
 
@@ -30,9 +30,9 @@ Commands and artifacts to inspect: `scripts/fetch_data.py`, `config/versions.jso
 
 ## 5. Why use bytecode? Did you execute Guava?
 
-The assignment permits source, class files or JARs. Published bytecode avoids having to rebuild decades of releases with different historical build systems, while preserving real member descriptors, inheritance and invocation instructions. ASM reads the class files; it does not load or execute the target Guava classes.
+The assignment permits source, class files or JARs. Published bytecode avoids having to rebuild decades of releases with different historical build systems, while preserving real member descriptors, inheritance and invocation instructions. The instructor extractor reads class files to produce the primary class graph. Our supplemental ASM reader supplies owned-class/enclosing metadata and resolved member-level evidence for UE. These tools inspect Guava bytecode as data; they do not execute the target Guava program.
 
-The Java process executes our extractor and ACDC, not Guava's application code. Java 17 is the analysis runtime. Older class files are read as data. We use source JARs for ownership, code size and interpretation.
+The Java process executes the instructor extractor, the supplemental reader and ACDC, not Guava's application code. Java 17 is the analysis runtime. Older class files are read as data. We use source JARs for ownership, code size and interpretation.
 
 ## 6. What is a class in your table?
 
@@ -44,7 +44,7 @@ The Java extractor uses enclosing metadata. A dollar sign alone is not a suffici
 
 ## 7. How did you remove external dependencies?
 
-Membership is defined before building the analysis graph: a retained class must have the `com.google.common` namespace and a matching owned source file. Both endpoints of every analysis edge must be retained. This removes JDK references, third-party annotation types, failureaccess and bundled third-party namespaces from all graph and UE counts.
+Membership is defined before building the analysis graph: a retained class must have a matching owned source file under `com.google.common` or `com.google.thirdparty.publicsuffix`. The latter is Guava's own Java implementation, despite its namespace name. Both endpoints of every analysis edge must be retained. This removes JDK references, external annotation libraries, failureaccess and genuinely external implementation types from all graph and UE counts.
 
 Check `excluded_classes.csv`, `extraction_counts.csv`, and `class_aliases.csv` for a release. 'An external reference was observed in bytecode' is an audit count; it is not an edge in the cleaned analysis graph. The source JAR and binary JAR remain original input artifacts, while the analysis uses only their scoped contents.
 
@@ -54,7 +54,7 @@ An `@Beta` annotation describes the stability of an API. It does not turn a clas
 
 ## 9. What does an edge mean?
 
-An edge `A -> B` means A depends on or uses B. A child points to its parent; an implementation points to its interface; a caller points to the used member's owner. All seven categories on tutorial slide 6 are retained and defined in `modeling_decisions.md`.
+An edge `A -> B` means A depends on or uses B. A child points to its parent; an implementation points to its interface; a caller points to the symbolic target class emitted by the instructor extractor. The separate UE evidence may resolve that symbol to a declaring member; those supplementary edges do not silently augment the primary graph. All seven categories on tutorial slide 6 are retained and defined in `modeling_decisions.md`.
 
 The typed CSV distinguishes categories. The graph used by ACDC and the lecture metrics is a binary directed union: repeated calls or multiple relation categories between the same ordered pair do not create extra edges. Otherwise a count of call sites divided by a maximum number of class pairs would not be a bounded density.
 
@@ -76,7 +76,7 @@ This distinction is crucial in the oral exam. Do not describe UE as PageRank, a 
 
 For a target class B, count each target member used by another retained class. Let `mx(B)` be the number of these distinct members. For a particular target member m, `xm_fanin(m)` is the number of distinct source members outside B that use m.
 
-For caller class A, collect the **set** of B's target members used by any member of A. Its dedication to A is:
+For caller class A, collect the **set** of B's target members used by any member of A. B's dedication to caller A is:
 
 `D(A,B) = sum_m 1 / (xm_fanin(m) * mx(B))`.
 
@@ -126,11 +126,13 @@ For a graph A -> B with union columns A,B,C, the outgoing part for A includes it
 
 In the filtered case, removed classes have no rows and their incident dependencies are absent from all remaining rows. Their coordinate positions may remain as zero columns, which do not influence Euclidean distances.
 
-## 19. How did you choose k without many experiments?
+## 19. How did you choose k without experiments on every version?
 
-We declared `k=ceil(sqrt(n_full/2))` and use the same requested k for a version's full and filtered graph, clamped only if fewer than k classes survive. It is a size-based granularity heuristic. It is not an inferred number of true architectural components.
+We ran one preselected middle-release pilot with a declared candidate grid of k values and the same fixed feature representation. We selected the diminishing-returns elbow from normalized inertia: the candidate furthest from the straight line between the grid endpoints. The full candidate measurements and tie rule are saved. Inertia measures squared-distance fit, not architecture quality; the chosen elbow is not guaranteed to be unique or optimal.
 
-The pilot checks whether this rule creates an unusable partition. It does not optimize k separately on each version's MQ. A fixed random seed and explicit initialization count make the final outcome reproducible within the pinned implementation. Identical feature rows can lead to fewer distinct clusters than requested; the metadata records actual k rather than inventing splits.
+Let the pilot have `n_p` classes and selected `k_p`. Every version uses `ceil(n_full*k_p/n_p)`, reusing its full-graph value after UE filtering and clamping only if fewer nodes remain. That extrapolation preserves an approximate target number of classes per cluster. It is a stated modeling assumption, not a formula taught as a theorem. It is materially better supported than the original square-root heuristic, but still needs interpretation alongside cluster sizes and MQ.
+
+The pilot is the only k sweep. Each final A3/A4 condition has one result under the frozen rule. The seed and ten internal initializations are fixed. A reviewer can also supply `--k` to the exploration command; those results belong in a separate directory, not mixed into the final series. Open `docs/pilot_decision.md` to quote the actual chosen pilot numbers.
 
 ## 20. Why four architectures if the note says one per version?
 
@@ -182,13 +184,35 @@ AI can give semantic names and explain relationships from evidence. It can also 
 
 Answer in terms of measured properties and the intended use. ACDC seeks familiar structural patterns; k-means groups similarity profiles; AI may offer comprehensible semantic modules. A method that scores better on one structural metric in Guava is not automatically best for another system or for every architectural view.
 
-Without an independently validated reference architecture, agreement with packages or another algorithm is not accuracy. This is why we do not invent a ground-truth MoJoFM result.
+Without an independently validated reference architecture, agreement with packages or another algorithm is not accuracy. We report MoJoFM as partition agreement in both directions, together with ARI. The absence of ground truth prevents calling these scores recovery accuracy; it does not prevent calculating agreement.
 
 ## 28. Can you reproduce everything?
 
 Start from the README commands. Explain which steps require network access (fetching exact artifacts/tools) and which run locally from the recorded data. Show the frozen manifest/configuration, tool checksums, software versions, test results, run manifest and output validation.
 
 If the examiner chooses a CSV cell, trace it back to a formula, partition, graph edge set and release artifact. If they choose a removed class, inspect its strongest caller and member counts. If they choose a graph jump, distinguish the measurement from your explanation and show the supporting source.
+
+## 29. Why did you revise the annotation policy?
+
+The original custom graph counted annotation applications as dependencies, making build/nullness marker types large hubs. UE depends on method/field member use, so it could not remove those hubs merely because many declarations carried an annotation. The revised primary graph is the instructor extractor's graph under documented normalization; supplemental annotation-application edges are not added. Every graph CSV identifies that source.
+
+Owned annotation types still appear in the complete class inventory, including isolates. This means class counts, singleton counts and MQ can still be affected by metadata types. We report annotation and isolate breakdowns explicitly. We do not delete Guava classes merely because they have `@Beta`, and we do not assume every annotation is behaviorally irrelevant: Guava's EventBus reads `Subscribe` and `AllowConcurrentEvents` through ordinary class references.
+
+## 30. What changed in the public-suffix decision?
+
+The earlier namespace-only boundary treated `com.google.thirdparty.publicsuffix` as external. Its Java files carry Guava Authors headers and are distributed as part of the main implementation. The revision therefore includes those project-owned types. Names such as “thirdparty” are clues to inspect ownership, not a sufficient exclusion test. JDK and separately supplied libraries remain excluded.
+
+This also improves interpretation of historical package moves: a type moving from `com.google.common.net` into Guava's public-suffix package remains within the owned scope. Its canonical name still changes, so a name-based churn metric may report removal/addition rather than recognizing a rename automatically.
+
+## 31. What does MoJoFM mean, and why two directions?
+
+MoJo compares partitions through element moves and cluster joins. MoJoFM normalizes the distance relative to the reference partition. Therefore reversing the inputs can change both the distance and its normalization. The recorded columns state which partition is source and which is target. The implementation convention for identical singleton/empty boundaries is documented and tested.
+
+For filtering comparisons, first project the original partition to the retained classes. For temporal comparisons, use the common class identities. A MoJoFM agreement value between two algorithmic partitions is valid even without ground truth, but it should not be called accuracy. The measure ignores whether a module name is semantically meaningful; inspecting actual responsibilities remains necessary.
+
+## 32. Do the revised results isolate the effect of each change?
+
+No. The revised whole study changes the graph baseline, source scope, release sample and k calibration together. The original run is preserved for transparency, but its aggregate MQ differences cannot be attributed to one factor. Controlled checks on a shared version can isolate individual graph differences; the report labels those separately. Do not claim that a new higher MQ proves any one revision improved the architecture.
 
 ## Useful vocabulary
 

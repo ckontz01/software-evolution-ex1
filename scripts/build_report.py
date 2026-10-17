@@ -16,6 +16,8 @@ import html
 import importlib.metadata
 import json
 import math
+import re
+import shutil
 from pathlib import Path
 import statistics
 
@@ -127,7 +129,7 @@ class StudyData:
 
     def __init__(self):
         required = ["sizes.csv", "metrics.csv", "same_graph_comparisons.csv",
-                    "evolution.csv", "runtimes.csv", "run_manifest.json"]
+                    "evolution.csv", "runtimes.csv", "run_manifest.json", "partition_comparisons.csv"]
         absent = [str(Path("results") / f) for f in required if not (ROOT / "results" / f).exists()]
         if absent:
             raise FileNotFoundError("Run the complete study before the report; missing: " + ", ".join(absent))
@@ -141,6 +143,9 @@ class StudyData:
         self.same_graph = read_csv(ROOT / "results/same_graph_comparisons.csv")
         self.evolution = read_csv(ROOT / "results/evolution.csv")
         self.runtimes = read_csv(ROOT / "results/runtimes.csv")
+        self.partition_comparisons = read_csv(ROOT / "results/partition_comparisons.csv")
+        if len(self.partition_comparisons) != 178:
+            raise ValueError("Expected 178 classical same-universe directional comparison pairs")
         if [r["version"] for r in self.sizes] != self.names or len(self.names) != 30:
             raise ValueError("The size table must match all 30 manifest releases in order")
         if len(self.metrics) != 120 or {(r["version"], r["condition"]) for r in self.metrics} != {
@@ -168,7 +173,26 @@ class StudyData:
         self.eligibility = read_json(ROOT / "data/provenance/project_eligibility.json")
         self.acquisition = read_json(ROOT / "data/provenance/acquisition.json")
         self.catalog = read_json(ROOT / "data/provenance/tag_inventory.json")
+        self.family_selection = read_json(ROOT / "data/provenance/family_selection.json")
+        self.baseline_sizes = read_csv(ROOT / "results/baseline_v1/sizes.csv")
+        self.baseline_metrics = read_csv(ROOT / "results/baseline_v1/metrics.csv")
+        self.graph_provenance = {v: read_json(ROOT / "data/graphs" / v / "provenance.json") for v in self.names}
+        if any("instructor" not in item.get("primary_extractor", "").lower() for item in self.graph_provenance.values()):
+            raise ValueError("The revised report requires instructor-derived graphs for all 30 releases")
+        self.class_breakdown = []
+        for v in self.names:
+            classes = read_csv(ROOT / "data/graphs" / v / "classes.csv")
+            edges = read_csv(ROOT / "data/graphs" / v / "dependencies.csv")
+            annotations = {r["class"] for r in classes if r["kind"] == "annotation"}
+            touched = {r[k] for r in edges for k in ("source", "target")}
+            isolates = {r["class"] for r in classes} - touched
+            self.class_breakdown.append({"version": v, "classes": len(classes),
+                "annotations": len(annotations), "non_annotations": len(classes) - len(annotations),
+                "isolates": len(isolates), "annotation_isolates": len(annotations & isolates)})
         self.pilot = read_json(ROOT / "results/pilot/pilot.json")
+        self.calibration = read_json(ROOT / "results/pilot/k_calibration.json")
+        if self.run["k_calibration_sha256"] != sha256(ROOT / "results/pilot/k_calibration.json"):
+            raise ValueError("The reported pilot calibration differs from the final run")
         self.benchmark = read_json(ROOT / "results/performance/ue_benchmark.json")
         self.ue_cases = read_json(ROOT / "results/performance/case_checks.json")
         if not self.ue_cases["all_checks_passed"]:
@@ -351,6 +375,44 @@ def make_figures(data):
     axes[1].set_ylim(bottom=0)
     save_figure(fig, "08_performance")
 
+    fig, axes = plt.subplots(2, 1, figsize=(7.6, 4.9), sharex=True, constrained_layout=True)
+    axes[0].plot(x, [r["annotations"] for r in data.class_breakdown], color=TEAL, marker="o", markersize=3)
+    axes[0].set_ylabel("Owned annotation types")
+    axes[0].set_ylim(bottom=0)
+    axes[1].plot(x, [r["isolates"] for r in data.class_breakdown], color=NAVY, marker="o", markersize=3, label="All isolates")
+    axes[1].plot(x, [r["annotation_isolates"] for r in data.class_breakdown], color=OCHRE, marker="s", markersize=3, linestyle="--", label="Annotation isolates")
+    axes[1].set_ylabel("Primary-graph isolated types")
+    axes[1].set_ylim(bottom=0)
+    axes[1].legend(fontsize=8)
+    sample_ticks(axes[1], data)
+    save_figure(fig, "09_metadata_isolates")
+
+    fig, axes = plt.subplots(1, 2, figsize=(7.6, 3.3), constrained_layout=True)
+    curve = data.calibration["selection"]["curve"]
+    chosen = data.calibration["pilot_k"]
+    axes[0].plot([r["k"] for r in curve], [r["inertia"] for r in curve], color=TEAL, marker="o", markersize=3)
+    axes[0].axvline(chosen, color=OCHRE, linestyle="--", label=f"Selected k={chosen}")
+    axes[0].set_xlabel("Candidate k on pilot only")
+    axes[0].set_ylabel("Within-cluster squared-distance inertia")
+    axes[0].legend(fontsize=8)
+    axes[1].plot([r["k"] for r in curve], [r["chord_gap"] for r in curve], color=NAVY, marker="o", markersize=3)
+    axes[1].axvline(chosen, color=OCHRE, linestyle="--")
+    axes[1].axhline(data.calibration["selection"]["minimum_gap"], color=MUTED, linewidth=.8, linestyle=":")
+    axes[1].set_xlabel("Candidate k")
+    axes[1].set_ylabel("Normalized gap below endpoint chord")
+    save_figure(fig, "10_k_pilot")
+
+    fig, axes = plt.subplots(2, 1, figsize=(7.6, 5.0), sharex=True, constrained_layout=True)
+    for ax, full, label, color in zip(axes, ("A1", "A3"), ("ACDC", "KMeans"), (TEAL, OCHRE)):
+        rows = data.comparison(full)
+        ax.plot(x, [number(r, "mojofm_full_to_filtered") for r in rows], color=color, marker="o", markersize=3, label="Projected full → filtered")
+        ax.plot(x, [number(r, "mojofm_filtered_to_full") for r in rows], color=color, marker="s", markersize=3, linestyle="--", label="Filtered → projected full")
+        ax.set_ylabel(label + " MoJoFM (0–100)")
+        ax.set_ylim(0, 105)
+        ax.legend(fontsize=8)
+    sample_ticks(axes[-1], data)
+    save_figure(fig, "11_mojofm")
+
 
 class ReportDoc(BaseDocTemplate):
     def __init__(self, path):
@@ -423,6 +485,8 @@ class ReportBuilder:
     def heading(self, title):
         if self.story:
             self.story.append(PageBreak())
+        if not title.startswith(("Appendix", "References")):
+            title = f"{len(self.sections) + 1}  " + re.sub(r"^\d+\s+", "", title)
         self.sections.append(title)
         self.paragraph(title, "section")
 
@@ -481,11 +545,12 @@ class ReportBuilder:
         self.paragraph("EPL484  /  SOFTWARE EVOLUTION  /  PROJECT 1", "eyebrow")
         self.paragraph("Guava<br/>Software evolution<br/>and architecture recovery", "cover")
         self.paragraph("A reproducible study of thirty sporadically selected stable Java releases, "
-                       "with a paper-based replacement for JNode and one frozen configuration for each recovery condition.")
+                       "revised with the instructor extractor, one release per major/minor family, a pilot-calibrated k rule, "
+                       "and the supplied paper’s Usage Equality method.")
         self.story.append(Spacer(1, 17))
         self.table(["HISTORY", "EXPERIMENT", "BOUNDARY"], [
             ["<b>30 stable releases</b><br/>10.0 → 33.7.2", "<b>120 final partitions</b><br/>ACDC and KMeans × full/filtered", "<b>Internal classes only</b><br/>Merged inner/anonymous types"],
-            ["26 major/minor families", "Exact lecture cohesion, coupling and MQ", "Guava JRE production artifact"],
+            ["30 distinct major/minor families", "Lecture MQ and MoJoFM agreement", "Instructor extractor; project-owned code"],
         ], [WIDTH / 3] * 3, padding=9)
         self.story.append(Spacer(1, 20))
         self.sub("Study boundary and evidence")
@@ -500,6 +565,42 @@ class ReportBuilder:
         self.paragraph("All measurements in this document are loaded from saved result files. Source code, "
                        "raw inputs, exact assignments and a machine-readable audit trail accompany the report. "
                        "Student names and contributions must be supplied truthfully by the submitting team.", "small")
+
+    def revision(self):
+        d = self.d
+        self.heading("Revision record and controlled interpretation")
+        self.paragraph("This report supersedes the original study published at commit d970305. The original "
+                       "configuration, measurements and full repository history remain identifiable; compact tables "
+                       "are preserved under results/baseline_v1. Revised observations are recomputed from the original "
+                       "release artifacts under the following declared changes. [D17]")
+        self.table(["Concern", "Revised decision"], [
+            ["Custom annotation-heavy class graph", "Use the unmodified instructor extractor as the sole primary edge source. Keep custom member extraction separate for UE."],
+            ["Public-suffix ownership", "Include Guava-owned com.google.thirdparty.publicsuffix implementation, alongside com.google.common."],
+            ["Repeated patch families", "Select 30 distinct major/minor families from 45; one stable representative per family."],
+            ["Weak square-root k heuristic", "Choose one middle-release inertia elbow, then freeze a size-calibrated k rule for the final series."],
+            ["Lecture evaluation alignment", "Add directional MoJoFM agreement; retain supplemental ARI and the lecture-supported loop-free MQ formula."],
+            ["UE versus older SIG detector", "Retain pure UE from the supplied paper; adding SIG would be a separately justified hybrid."],
+        ], [153, WIDTH - 153], small=True)
+        old_size = next(r for r in d.baseline_sizes if r["version"] == d.latest)
+        self.table(["Latest release measurement", "Original study", "Revised study"], [
+            ["Canonical classes", count(integer(old_size, "classes")), count(integer(d.last, "classes"))],
+            ["Primary directed edges", count(integer(old_size, "dependencies")), count(integer(d.last, "dependencies"))],
+            ["UE removals", count(integer(old_size, "omnipresent_classes")), count(integer(d.last, "omnipresent_classes"))],
+            ["ACDC/full clusters", count(integer(next(r for r in d.baseline_metrics if r["version"] == d.latest and r["condition"] == "A1"), "n_clusters")), count(integer(d.by_metric[d.latest, "A1"], "n_clusters"))],
+            ["KMeans/full clusters", count(integer(next(r for r in d.baseline_metrics if r["version"] == d.latest and r["condition"] == "A3"), "n_clusters")), count(integer(d.by_metric[d.latest, "A3"], "n_clusters"))],
+        ], [WIDTH - 175, 85, 90], small=True, numeric=(1, 2), padding=3.5)
+        comparison = d.graph_provenance[d.latest]
+        self.paragraph(f"At the same revised ownership scope, the instructor graph has "
+                       f"{count(comparison['dependencies'])} edges and the supplemental broad graph has "
+                       f"{count(comparison['supplemental_dependencies'])}. They share {count(comparison['shared_edges'])}; "
+                       f"{count(comparison['supplemental_only_edges'])} are supplemental-only, including "
+                       f"{count(comparison['supplemental_only_annotation_target_edges'])} targeting annotation types. "
+                       "The class CSV and comparison files preserve both models without mixing their edges. [D6]", "small")
+        self.paragraph("The whole-study revision changes sampling, scope, graph policy and k together. A difference "
+                       "between its aggregate scores and the original run cannot be attributed to a single change. "
+                       "The same-version extractor comparison above controls the class scope; it is distinct from "
+                       "the longitudinal before/after narrative. Better alignment and reproducibility do not prove "
+                       "that a recovered partition is the intended architecture. [D17]", "small")
 
     def executive(self):
         d = self.d
@@ -556,7 +657,7 @@ class ReportBuilder:
             ["GitHub repository created before 2024", esc(repo['created_at'][:10])],
             ["Not a fork; not archived", f"fork={str(repo['fork']).lower()}; archived={str(repo['archived']).lower()} at the recorded snapshot."],
             ["≥50 commits since 2024-01-01", "100 distinct qualifying commits retained as a lower-bound witness, rather than an inferred total."],
-            ["≥10 major/minor releases", "30 sampled stable releases covering 26 distinct major/minor families."],
+            ["≥10 major/minor releases", "30 stable releases covering exactly 30 distinct major/minor families."],
         ], [185, WIDTH - 185])
         self.paragraph(f"The eligibility SLOC count includes source-owned package descriptors. The narrower source-file "
                        f"population linked to canonical class nodes contains {count(integer(d.last, 'java_code_lines'))} "
@@ -568,12 +669,16 @@ class ReportBuilder:
                        "names; they are not all beta releases. Nine numeric releases before 10.0 are outside the defined "
                        "sampling window. The ambiguous 13.0 duplicate naming and two later backports to earlier lines "
                        "are also excluded, leaving 70 chronological mainline candidates. [D4]")
-        self.formula("Candidate index for sample i: <b>round(i × 69 / 29)</b>, &nbsp; i = 0,…,29")
-        self.paragraph("This endpoint-preserving rule selects 30 of the 70 eligible points and leaves 40 eligible "
-                       "points unsampled. Every neighboring sampled pair skips at least one actual stable tag; the exact "
-                       "intervening list is validated against the captured catalog. Early artifacts use plain versions, "
-                       "and the sample uses the JRE variant after Guava introduced the variant suffix. Android variants "
-                       "are not separate observations. [D4]")
+        self.formula("Family rank for sample i: <b>round(i × 44 / 29)</b>, &nbsp; i = 0,…,29")
+        self.paragraph("The 70 eligible releases form 45 major/minor families. The rule selects 30 distinct families, "
+                       "with one stable representative each. Use the highest eligible patch within a selected family, "
+                       "except that the earliest family anchors the study at 10.0; the newest ends at 33.7.2. This "
+                       "eliminates repeated observations from heavily patched families. [D4]")
+        self.paragraph("Spacing is uniform in family rank, not calendar time. Some selected families are adjacent; "
+                       "30 observations cannot all skip a family when only 45 families exist. A patch representative "
+                       "is permitted, but a family appears only once. No release is removed because its graph is "
+                       "identical or its MQ is inconvenient. Plain artifacts precede 23.1 and JRE artifacts follow "
+                       "the variant split; Android is not a separate historical observation. [D4]", "small")
         self.paragraph("Eligibility evidence does not establish instructor approval. No teacher approval is represented "
                        "as observed. The publication dates of old releases come from Guava's release-history pages; "
                        "later dates use GitHub Release publication timestamps. Git commit dates remain separate fields. "
@@ -614,44 +719,42 @@ class ReportBuilder:
                        "All paths are repository-relative.", "small")
 
     def structural_model(self):
-        self.heading("4  The structural graph")
-        self.paragraph("The extractor reads class files using ASM. A node is a source-owned outermost type in "
-                       "<font name='Mono'>com.google.common</font>. Genuine member, local and anonymous classes are "
-                       "merged with their enclosing class using class-file ownership metadata. Interfaces, enums, "
-                       "annotations and records follow the same node rule. A dollar sign alone is not proof of nesting. "
-                       "[L5 PDF pp.22–23; D6]")
-        rows = [
-            ["EXTENDS", "Subtype → parent type", "Declared superclass or parent interface"],
-            ["IMPLEMENTS", "Class → interface", "Declared implementation relationship"],
-            ["METHOD_CALL", "Caller → target owner", "Method invocation, with declaring-member resolution"],
-            ["METHOD_PARAMETER", "User → parameter type", "Reference types in declared/invoked method descriptors"],
-            ["FIELD_REFERENCE", "User → field owner", "Field access, with declaring-member resolution"],
-            ["TYPE_USAGE", "User → referenced type", "Field/return types, allocation, annotations and related type evidence"],
-            ["EXCEPTION_THROWS", "Declaring class → exception type", "Declared exception metadata"],
-        ]
-        self.table(["Relation", "Direction", "Evidence"], rows, [112, 181, WIDTH - 293], small=True)
-        self.paragraph("All seven categories are enabled with weight one. Repeated evidence is deduplicated per "
-                       "ordered pair and category; the evaluated graph is their <b>binary directed union</b>. Merged "
-                       "self-relations are removed. A class with no remaining edges remains a node. Category overlap "
-                       "does not multiply edge weight. Member-use records are separately preserved for Usage Equality. "
-                       "[TUT p.6; D6]")
         d = self.d
+        self.heading("4  Instructor graph and ownership model")
+        self.paragraph("<b>The unmodified instructor DependencyExtractor is the sole source of primary class edges.</b> "
+                       "A supplemental ASM pass supplies a complete owned-class inventory, enclosing aliases and "
+                       "resolved field/method evidence for UE. It does not augment the instructor graph with its "
+                       "broader annotation, type or declaring-owner relationships. [TUT p.6; D6]")
+        self.paragraph("The instructor receives a deterministic JAR containing owned base class entries copied "
+                       "byte for byte from the original Maven binary. Per-entry hashes establish that no retained "
+                       "class body was rewritten. The original full artifact remains preserved. An explicit classpath "
+                       "launches the original CompCalc.MainClass with its unchanged bundled libraries. [D6]")
+        self.table(["Evidence", "Role"], [
+            ["classes.csv; class_aliases.csv", "Source-owned common/publicsuffix types; all genuine nested/local/anonymous identities merged by enclosing metadata."],
+            ["instructor_raw.csv", "Original seven-category output, including occurrence counts retained for auditing."],
+            ["dependencies_typed.csv; dependencies.csv", "Normalized instructor relationships; one typed pair, then one directed pair; no self-loops or external endpoints."],
+            ["member_dependencies.csv", "Separate resolved method/field evidence for UE; original binary member identities remain distinct after class merging."],
+            ["supplemental_dependencies.csv", "Explicitly separate broad graph for sensitivity auditing; never added to the primary graph."],
+        ], [183, WIDTH - 183], small=True)
+        self.paragraph("All seven tutorial relations are selected: EXTENDS, IMPLEMENTS, METHOD_CALL, METHOD_PARAMETER, "
+                       "FIELD_REFERENCE, TYPE_USAGE and EXCEPTION_THROWS. The primary graph accepts the constructs "
+                       "actually recognized by the supplied executable; it does not claim complete Java or runtime "
+                       "coverage. Repeated occurrences and category overlap do not multiply edge weights. [TUT p.6]")
         self.table(["Class processing", d.names[0], d.latest], [
             ["Owned binary classes before merging", count(integer(d.first, "raw_binary_classes")), count(integer(d.last, "raw_binary_classes"))],
-            ["Nested/anonymous binary identities merged", count(integer(d.first, "merged_binary_classes")), count(integer(d.last, "merged_binary_classes"))],
-            ["Final canonical internal classes", count(integer(d.first, "classes")), count(integer(d.last, "classes"))],
-            ["Non-owned production binary classes excluded", count(integer(d.first, "excluded_binary_classes")), count(integer(d.last, "excluded_binary_classes"))],
+            ["Nested/anonymous identities merged", count(integer(d.first, "merged_binary_classes")), count(integer(d.last, "merged_binary_classes"))],
+            ["Canonical project-owned types", count(integer(d.first, "classes")), count(integer(d.last, "classes"))],
+            ["Owned annotation types", count(d.class_breakdown[0]["annotations"]), count(d.class_breakdown[-1]["annotations"])],
+            ["Primary-graph isolates", count(d.class_breakdown[0]["isolates"]), count(d.class_breakdown[-1]["isolates"])],
         ], [WIDTH - 150, 75, 75], small=True, numeric=(1, 2), padding=3.3)
-        self.sub("The internal boundary is enforced at both ends")
-        self.paragraph("Both endpoints must be in the owned node set. JDK, failureaccess and annotation dependency "
-                       "classes are excluded. The bundled <font name='Mono'>com.google.thirdparty.publicsuffix</font> "
-                       "namespace is outside the declared boundary even though it appears in Guava's own repository "
-                       "and JAR. Tests, testlib, GWT, Android and benchmark modules are not inputs. Stable-release APIs "
-                       "annotated <font name='Mono'>@Beta</font> remain internal; a beta API annotation is not a beta release. [D4; D6]")
-        self.paragraph("Multi-release JARs use base class entries only. Runtime reflection and configuration-created "
-                       "dependencies are not observed; virtual call expansion is not inferred. Missing or ambiguous "
-                       "declaring-member resolutions are recorded, not converted into invented member calls. These "
-                       "choices define a static view with known omissions. [L5 PDF pp.9,18–19; D6]", "small")
+        self.paragraph("Both com.google.common and Guava-owned com.google.thirdparty.publicsuffix sources are included. "
+                       "The public-suffix package carries Guava Authors headers; namespace naming alone was an "
+                       "insufficient exclusion rule in the original study. JDK, failureaccess and external libraries "
+                       "remain excluded at both edge endpoints. [D4; D6]", "small")
+        self.paragraph("Owned annotation types remain nodes, including isolates. Supplemental annotation-application "
+                       "edges are not added. A Guava API marked @Beta is still part of a stable release. Module/package "
+                       "descriptors and multi-release overrides are excluded. Static analysis omits arbitrary reflection, "
+                       "erased constants and full virtual-dispatch expansion. [D6]", "small")
 
     def ue_method(self):
         self.heading("5  Replacement JNode: Usage Equality")
@@ -702,17 +805,22 @@ class ReportBuilder:
         self.sub("KMeans: fixed structural coordinates")
         self.formula("U = sorted union of class identities across all 30 releases<br/>"
                      "X = row-L2-normalize([A + I, (A + I)<super>T</super>])<br/>"
-                     "k<sub>full</sub> = max(1, ceil(√(n<sub>full</sub>/2)))<br/>"
+                     "k<sub>full</sub> = max(1, ceil(n<sub>full</sub> × k<sub>pilot</sub> / n<sub>pilot</sub>))<br/>"
                      "k<sub>filtered</sub> = min(k<sub>full</sub>, n<sub>filtered</sub>)")
         self.paragraph(f"Each current class is a row in a sparse CSR matrix with <b>{count(d.run['feature_dimensions'])} "
                        f"fixed columns</b> (two directions × {count(d.run['feature_universe_size'])} union identities). "
                        "Absent or removed coordinates contain zero evidence. Identity entries encode self-similarity "
                        "only in features; they never enter the dependency graph or metric calculation. Package names "
                        "and AI cluster labels are not features. [D7]")
-        self.paragraph("The square-root k rule is a transparent engineering heuristic, not a lecture theorem or a "
-                       "guaranteed optimum. It avoids a k sweep and avoids choosing k by the same MQ used for evaluation. "
-                       "A3/A4 share the full-release-derived k, subject to the retained-node limit. Empty graphs use k=0. "
-                       "Different versions may therefore have different k while obeying the same rule. [D7]")
+        self.paragraph(f"The single middle-release inertia pilot selects k={d.calibration['pilot_k']} for "
+                       f"n={d.calibration['pilot_n']} classes, implying an approximate target of "
+                       f"{d.calibration['target_mean_class_count']:.2f} classes per cluster. Scaling that value with "
+                       "full-graph size is an explicit extrapolation assumption. It is not a lecture theorem, a "
+                       "guaranteed optimum, or a choice made by maximizing final MQ. [D7; D8]")
+        self.paragraph("A3/A4 share the full-release-derived k, subject to the retained-node limit. Empty graphs "
+                       "use k=0. A reviewer can choose --k for a separate exploratory run; the 120 final partitions "
+                       "continue to use one frozen policy. The matched-ACDC-k pilot diagnostic below examines "
+                       "granularity without using its quality result to select k. [D8]", "small")
         self.paragraph("KMeans uses k-means++ initialization, Lloyd updates, random_state=484, n_init=10, max_iter=300 "
                        "and tol=10<super>−4</super>; numerical thread pools are limited to one. Class order and output "
                        "labels are canonical. Actual k, convergence warnings, iterations, inertia and library versions "
@@ -720,49 +828,64 @@ class ReportBuilder:
 
     def pilot(self):
         d = self.d
+        pilot, calibration = d.pilot, d.calibration
         self.heading("7  Pilot and final parameter decision")
-        pilot = d.pilot
         self.paragraph(f"The pilot uses <b>Guava {esc(pilot['version'])}</b>, the middle selected release by sample "
-                       "index, chosen before examining its metrics. ACDC is inspected with maximum subgraph sizes "
-                       "10, 20 and 40. KMeans is inspected once using the same size-derived k rule planned for the full "
-                       "study. The pilot is recorded separately from the 120 final architectures. [TUT pp.7–8; D8]")
+                       "index, chosen before inspecting its quality. ACDC uses subgraph sizes 10, 20 and 40. "
+                       "KMeans uses one declared candidate grid on this release only; final versions are not tuned "
+                       "independently. The pilot outputs are separate from the 120 final A1–A4 architectures. [D8]")
         rows = []
         for trial in pilot["trials"]:
             m = trial["metrics"]
-            label = f"ACDC -l{trial['max_subgraph_size']}" if trial["algorithm"] == "ACDC" else "KMeans (fixed rule)"
+            label = f"ACDC -l{trial['max_subgraph_size']}" if trial["algorithm"] == "ACDC" else "KMeans (pilot elbow)"
             rows.append([label, count(m["n_clusters"]), count(m["max_cluster_size"]), count(m["singleton_clusters"]),
                          fmt(m["cohesion"]), fmt(m["coupling"]), fmt(m["mq"])])
+        diagnostic = pilot.get("matched_acdc_k_diagnostic")
+        if diagnostic:
+            m = diagnostic["metrics"]
+            rows.append(["KMeans (matched k diagnostic)", count(m["n_clusters"]), count(m["max_cluster_size"]),
+                         count(m["singleton_clusters"]), fmt(m["cohesion"]), fmt(m["coupling"]), fmt(m["mq"])])
         self.table(["Pilot configuration", "k", "Largest", "Singles", "Cohesion", "Coupling", "MQ"], rows,
                    [142, 35, 54, 46, 73, 73, WIDTH - 423], small=True, numeric=tuple(range(1, 7)))
         acdc_trials = [t for t in pilot["trials"] if t["algorithm"] == "ACDC"]
-        identical_terms = len({tuple(t["metrics"][k] for k in ("n_clusters", "cohesion", "coupling", "mq"))
-                               for t in acdc_trials}) == 1
-        if identical_terms:
-            self.paragraph("All three ACDC pilot settings produce the same cluster count and required quality "
-                           "metrics. This particular pilot provides no evidence that changing the subgraph limit "
-                           "improves the result; the documented middle setting is retained. Equal metrics alone "
-                           "should not be mistaken for a general parameter-insensitivity theorem.")
-        self.sub("What was frozen")
-        self.paragraph("The final study retains ACDC +so/-l20 and the predeclared KMeans rule. Coverage, emitted "
-                       "cluster sizes and output validity are checked explicitly. A larger MQ in one pilot trial would "
-                       "not establish a generally better architecture or justify tuning each release independently. "
-                       "The pilot demonstrates the consequences of the parameter, including ACDC's later orphan "
-                       "container, rather than treating -l as a hard global size cap. [D8; D7]")
-        self.sub("A representation problem found and repaired")
-        self.paragraph("The original file-oriented ACDC strips the final dotted suffix when deriving a basename. "
-                       "Bare Java names such as p.A and p.B would therefore share basename p and could collapse "
-                       "distinct output containers. The adapter now reversibly passes p.A.java and p.B.java, then "
-                       "decodes output membership back to the real class names. Every edge is mapped one-to-one, "
-                       "and node_id_map.csv records the translation. The original algorithm source is unchanged. "
-                       "The failed preliminary representation was rejected before the final study. [D8; D7]")
-        self.paragraph("There is <b>no per-release k search</b>, no threshold search and no collection of multiple "
-                       "candidate architectures from which the most favorable final MQ is reported. The same relation "
-                       "policy, normalization, UE thresholds, algorithms, seeds and evaluation formulas are used across "
-                       "the selected history. One configuration file and its hash bind those rules to the recorded run. [D8]")
-        self.formula("Frozen analysis configuration SHA-256:<br/><font name='Mono' size='8'>" + esc(d.run["config_sha256"]) + "</font>")
-        self.paragraph("Pilot evidence: results/pilot/pilot.json; acdc_l10.csv; acdc_l20.csv; acdc_l40.csv; "
-                       "kmeans.csv. The JSON stores all per-cluster metric terms and actual execution metadata, "
-                       "including any output warnings. Final run metadata are under results/versions/&lt;version&gt;/.", "small")
+        same = len({tuple(t["metrics"][k] for k in ("n_clusters", "cohesion", "coupling", "mq")) for t in acdc_trials}) == 1
+        self.paragraph("All three ACDC settings have identical required metrics on this pilot; retaining the documented "
+                       "middle setting has no measured disadvantage here. This is not a theorem of parameter "
+                       "insensitivity. [D8]" if same else
+                       "The ACDC pilot table exposes the actual parameter sensitivity. The final configuration retains "
+                       "the documented +so/-l20 rule globally; a larger single-pilot MQ does not establish a better "
+                       "architecture across the history. [D8]")
+        if diagnostic:
+            selected = next(t["metrics"] for t in pilot["trials"] if t["algorithm"] != "ACDC")
+            acdc = next(t["metrics"] for t in acdc_trials if t["max_subgraph_size"] == 20)
+            self.paragraph(f"At matched pilot k={diagnostic['k']}, ACDC MQ is {fmt(acdc['mq'], 4)} and KMeans MQ is "
+                           f"{fmt(diagnostic['metrics']['mq'], 4)}. The elbow-selected KMeans MQ is "
+                           f"{fmt(selected['mq'], 4)}. This diagnostic controls cluster count on this graph, not "
+                           "cluster-size distribution or semantic validity, and does not determine the final k. [D8]")
+        self.sub("ACDC identifier compatibility")
+        self.paragraph("The file-oriented upstream implementation strips a final dotted suffix to form a basename. "
+                       "The adapter reversibly maps p.A to p.A.java so distinct Java names cannot collapse to the "
+                       "same package basename. It preserves each edge, saves node_id_map.csv and decodes every "
+                       "membership before evaluation. The original ACDC source is unchanged. Real isolates are "
+                       "restored as singletons; -l20 is a SubGraph-stage limit, not a final global size cap. [D7]")
+        self.formula("Frozen configuration SHA-256:<br/><font name='Mono' size='8'>" + esc(d.run["config_sha256"]) + "</font>")
+        self.heading("The single-pilot inertia curve")
+        self.chart("10_k_pilot", caption="Figure 10. The fixed candidate grid's inertia and normalized elbow gap. "
+                   "The selected k uses inertia geometry, not MQ. Source: results/pilot/k_inertia_curve.csv.")
+        selection = calibration["selection"]
+        self.table(["Candidate k", "Inertia", "Normalized gap", "Decision"], [
+            [str(r["k"]), fmt(r["inertia"], 4), fmt(r["chord_gap"], 4), "Selected" if r["k"] == calibration["pilot_k"] else ""]
+            for r in selection["curve"]], [85, 133, 135, WIDTH - 353], small=True, numeric=(0, 1, 2), padding=3)
+        self.paragraph(f"Normalize x=(k−k_min)/(k_max−k_min) and y=(I−I_last)/(I_first−I_last); gap=1−x−y. "
+                       f"Choose the largest interior gap if it is at least {selection['minimum_gap']:.2f}; exact ties "
+                       "choose smaller k. Otherwise use the declared nearest candidate to k=30. "
+                       f"Observed decision: {esc(selection['reason'])}; selected k={calibration['pilot_k']}; "
+                       f"maximum gap={selection['maximum_interior_gap']:.4f}. [D8]", "small")
+        self.paragraph("An elbow depends on the candidate range, feature geometry and optimization fits. It estimates "
+                       "diminishing distance-fit returns on one graph, not the number of true components. The "
+                       "observed elbow is broad: neighboring k candidates have similar gaps. The subsequent size scaling "
+                       "preserves a target average granularity without another per-release "
+                       "sweep. This assumption is disclosed and actual output sizes are reported. [D8]", "small")
 
     def quality(self):
         self.heading("8  Exact lecture quality measures")
@@ -793,31 +916,54 @@ class ReportBuilder:
         self.paragraph("A1 and A3 share the full graph; A2 and A4 share the retained graph. Direct full-versus-filtered "
                        "MQ differences change both the grouping and the population. The same-graph comparison later "
                        "projects the full partition onto exactly the retained nodes and edges before evaluating it. "
-                       "Adjusted Rand agreement compares partitions without treating either as ground truth. [D3; D9]", "small")
+                       "MoJoFM and supplementary Adjusted Rand values compare partitions without treating either as ground truth. [D3; D9; D16]", "small")
 
     def growth(self):
         d = self.d
         self.heading("9  Classes and dependencies over time")
-        self.chart("01_classes_dependencies", caption="Figure 1. Canonical internal classes and directed binary dependencies. "
-                   "Both panels use the same release order and separate, labeled vertical scales. Source: results/sizes.csv.")
+        self.chart("01_classes_dependencies", caption="Figure 1. Canonical project-owned types and binary directed "
+                   "instructor dependencies for 30 distinct major/minor families. Source: results/sizes.csv.")
         self.paragraph(f"The first selected release contains {count(integer(d.first, 'classes'))} classes and "
                        f"{count(integer(d.first, 'dependencies'))} dependencies; the last contains "
                        f"{count(integer(d.last, 'classes'))} classes and {count(integer(d.last, 'dependencies'))} dependencies. "
-                       "These counts are taken after owner normalization and removal of external endpoints, so they "
-                       "are directly tied to the graph used for A1/A3. Raw class-file totals would overcount nested "
-                       "and anonymous implementation details. [D1]")
-        up, down = [v["counts"] for v in d.changes["change_points"]]
-        self.paragraph(f"<b>Annotation evidence explains much of the visible rise and fall.</b> From 30.1.1 to 31.1, "
-                       f"{up['added_edges_to_annotation_types']} of {up['added_edges']} added edges target annotation types. "
-                       f"From 33.3.1 to 33.4.1, {down['removed_edges_to_removed_annotation_types']} of "
-                       f"{down['removed_edges']} removed edges target {down['removed_annotation_classes']} removed internal "
-                       "annotation types. The pinned source example moves nullness marking to external JSpecify "
-                       "annotations and package metadata, both outside this class graph. This is evidence of a "
-                       "representation/boundary effect, not a measured reduction in functional coupling. [D15]", "small")
-        self.paragraph("The horizontal axis is a sequence of sampled releases. Equal visual spacing does not mean "
-                       "equal calendar duration: older major releases and newer patch releases have different time "
-                       "gaps. Counts alone cannot establish how much user-visible functionality was added. "
-                       "[L12 pp.43–44; D4]", "small")
+                       "Class counts include owned annotation types and isolates. The primary edge series no longer "
+                       "includes supplemental annotation-application edges. [D1; D6]")
+        self.paragraph("The equal horizontal spacing represents ordered observations, not equal elapsed time. The "
+                       "family-first sample deliberately reduces repeated patch observations but is not calendar-uniform. "
+                       "Different compiler output and static-analysis coverage can affect observed relations. A count "
+                       "increase alone does not establish feature growth or worsening design. [L12 pp.43–48; D4]", "small")
+        transitions = sorted(d.evolution, key=lambda r: abs(integer(d.by_version[r["version"]], "dependencies") -
+                             integer(d.by_version[r["previous_version"]], "dependencies")), reverse=True)[:2]
+        for transition in transitions:
+            before = d.by_version[transition["previous_version"]]
+            after = d.by_version[transition["version"]]
+            self.paragraph(f"Observed transition {esc(transition['previous_version'])} → {esc(transition['version'])}: "
+                           f"{count(integer(before, 'dependencies'))} → {count(integer(after, 'dependencies'))} primary edges. "
+                           "The change-point audit preserves the added/removed identities and edges for source inspection; "
+                           "sparse sampling does not identify the single causing commit. [D15]", "small")
+
+    def metadata_breakdown(self):
+        d = self.d
+        self.heading("Metadata types and graph isolates")
+        self.chart("09_metadata_isolates", caption="Figure 9. Owned annotation-type counts and graph isolates under the "
+                   "instructor baseline. Annotation types remain in the node inventory; annotation-application edges "
+                   "from the supplemental reader are not added. Source: classes.csv and dependencies.csv for each release.")
+        first, last = d.class_breakdown[0], d.class_breakdown[-1]
+        self.table(["Inventory category", d.names[0], d.latest], [
+            ["All canonical project-owned types", count(first["classes"]), count(last["classes"])],
+            ["Nonannotation types", count(first["non_annotations"]), count(last["non_annotations"])],
+            ["Annotation types", count(first["annotations"]), count(last["annotations"])],
+            ["All primary-graph isolates", count(first["isolates"]), count(last["isolates"])],
+            ["Annotation isolates", count(first["annotation_isolates"]), count(last["annotation_isolates"])],
+        ], [WIDTH - 160, 80, 80], small=True, numeric=(1, 2), padding=4)
+        self.paragraph("Keeping all owned nodes prevents an edge-only inventory from silently discarding types. "
+                       "It also has a measurable consequence: ACDC restores isolates as singletons, whose cohesion "
+                       "is zero under the declared metric convention. KMeans receives identity-based feature rows "
+                       "for isolates. Metadata types can therefore still affect node, cluster and MQ counts even "
+                       "though their annotation applications are absent from the primary edge graph. [D6; D9]")
+        self.paragraph("These categories overlap: an annotation isolate is both an annotation type and an isolate; "
+                       "the table rows must not be added together. An absence of observed member use does not make "
+                       "a type a UE removal. The detector retains the no-evidence case explicitly. [D2]", "small")
 
     def release_table(self):
         d = self.d
@@ -918,6 +1064,29 @@ class ReportBuilder:
                        "the difference attributable to the grouping produced under the declared recovery process. "
                        "It still does not supply an expert architecture or prove a general benefit of removal. [D3]", "small")
 
+    def agreement_results(self):
+        d = self.d
+        self.heading("Lecture agreement: directional MoJoFM")
+        self.chart("11_mojofm", caption="Figure 11. MoJoFM after projecting full and filtered architectures onto the "
+                   "same retained class universe. Forward and reverse scores use different reference partitions. "
+                   "Scores are agreement on a 0–100 scale, not recovery accuracy. [D16]")
+        rows = [r for r in d.partition_comparisons if r["version"] == d.latest and r["scope"] != "temporal_full_common"]
+        self.table(["Latest comparison", "Nodes", "Forward", "Reverse", "ARI"], [
+            [esc(r["source_condition"] + " → " + r["reference_condition"]), count(integer(r, "n_nodes")),
+             fmt(number(r, "mojofm"), 2), fmt(number(r, "reverse_mojofm"), 2), fmt(number(r, "adjusted_rand_agreement"), 4)]
+            for r in rows], [150, 65, 93, 93, WIDTH - 401], small=True, numeric=(1, 2, 3, 4))
+        self.formula("MoJoFM(P → Q) = 100 × [1 − MoJo(P,Q) / maxMoJo(Q)]")
+        self.paragraph("MoJo counts minimal moves and cluster joins toward a specified reference. Its normalizer "
+                       "depends on that reference, so reversing the inputs can change the result. The saved table "
+                       "contains distances, denominators, source/reference cluster counts, both directions and a "
+                       "hash of the exact object universe. Empty or one-object normalized boundaries are recorded "
+                       "as undefined rather than silently inventing a fraction. [L67; D16]", "small")
+        self.paragraph("An expert reference is necessary to interpret a score as architecture recovery accuracy. "
+                       "It is not necessary to calculate agreement between two stated partitions. This corrects the "
+                       "original overly restrictive rationale for omitting MoJoFM. ARI remains a supplementary "
+                       "symmetric agreement measure; neither measure assesses module names or intended responsibilities. "
+                       "Temporal and AI comparisons apply the same object-universe rule. [D16]", "small")
+
     def granularity(self):
         d = self.d
         self.heading("15  Granularity and metric sensitivity")
@@ -940,23 +1109,66 @@ class ReportBuilder:
     def temporal(self):
         d = self.d
         self.heading("16  Structural change between samples")
-        self.chart("07_temporal_change", caption="Figure 7. Added/removed canonical identities and structural agreement "
-                   "between adjacent selected samples. Agreement uses only class identities common to the pair.")
+        self.chart("07_temporal_change", caption="Figure 7. Canonical identity changes and structural agreement between "
+                   "adjacent selected samples. Agreement uses common class identities; dates remain irregular.")
         churn = max(d.evolution, key=lambda r: integer(r, "added_classes") + integer(r, "removed_classes"))
         self.paragraph(f"The largest sampled identity turnover is {esc(churn['previous_version'])} → {esc(churn['version'])}: "
                        f"{integer(churn, 'added_classes')} added and {integer(churn, 'removed_classes')} removed identities. "
-                       "An identity change may represent introduction, deletion, renaming, package migration or a boundary "
-                       "effect; it is not automatically a new or removed feature. [D10]")
-        self.paragraph("A concrete boundary example is TrieParser: its com.google.common.net identity is internal in "
-                       "15.0, while the later com.google.thirdparty.publicsuffix namespace falls outside this study. "
-                       "That difference must not be narrated as disappearance of its functionality. Sparse release "
-                       "sampling also cannot isolate the particular commit responsible for a transition. [D4; D6]", "small")
-        point = d.changes["change_points"][1]["counts"]
-        self.paragraph(f"At 33.3.1 → 33.4.1, common-node edge Jaccard is {fmt(point['common_node_edge_jaccard'], 4)} "
-                       "despite the large total edge decrease. Edges touching removed annotation nodes do not enter "
-                       "that common-node comparison. The identical graphs at 33.4.1/33.4.3 and 33.7.0/33.7.2 also "
-                       "produce identical final partitions under the fixed rules. Total size and agreement on "
-                       "surviving identities therefore answer different questions. [D10; D15]", "small")
+                       "An identity change can mean introduction, deletion, renaming, package migration or an observable "
+                       "compiler/model change. It is not automatically feature growth or loss. [D10]")
+        self.paragraph("The public-suffix implementation remains inside the revised project boundary. Its historical "
+                       "move from com.google.common.net to com.google.thirdparty.publicsuffix no longer excludes that "
+                       "functionality by namespace, although a name-based comparison can still count a rename as one "
+                       "removed and one added identity. [D4; D6]", "small")
+        self.paragraph("Common-node edge Jaccard evaluates only dependencies among surviving identities. It can remain "
+                       "high while total edge counts change through newly added or removed classes. Temporal MoJoFM "
+                       "and ARI compare the projected A1/A3 partitions on those same common identities. They are "
+                       "partition stability measures, not evidence of intended-architecture accuracy. [D10; D16]", "small")
+
+    def change_evidence(self):
+        d = self.d
+        self.heading("Source evidence for observed transitions")
+        points = {(p["before_version"], p["after_version"]): p for p in d.changes["change_points"]}
+        selected = [("13.0.1", "15.0"), ("19.0", "21.0"), ("33.2.1", "33.4.8"), ("33.4.8", "33.5.0")]
+        self.table(["Sample transition", "Classes", "Edges", "Edge change"], [
+            [esc(a + " → " + b), f"{points[a,b]['counts']['classes_before']} → {points[a,b]['counts']['classes_after']}",
+             f"{points[a,b]['counts']['edges_before']} → {points[a,b]['counts']['edges_after']}",
+             fmt(points[a,b]["counts"]["edge_change_percent"], 2) + "%"] for a, b in selected
+        ], [143, 107, 130, WIDTH - 380], small=True, padding=4)
+        point = points["13.0.1", "15.0"]
+        self.sub("Collections, escaping and I/O between 13.0.1 and 15.0")
+        self.paragraph(f"The audit observes {point['counts']['added_classes']} added and "
+                       f"{point['counts']['removed_classes']} removed canonical identities. Added groups include "
+                       f"{point['added_classes_by_package']['com.google.common.collect']} collection types, "
+                       f"{point['added_classes_by_package']['com.google.common.escape']} escaping types and "
+                       f"{point['added_classes_by_package']['com.google.common.io']} I/O types. Examples include "
+                       "ImmutableRangeMap and ImmutableRangeSet. Source-JAR entry hashes and exact edge differences "
+                       "support the inventory claim. They do not turn every implementation type into a new user feature. [D15]")
+        point = points["19.0", "21.0"]
+        self.sub("Graph package observed by the 21.0 sample")
+        self.paragraph(f"Of {point['counts']['added_classes']} added identities, "
+                       f"{point['added_classes_by_package']['com.google.common.graph']} are under com.google.common.graph. "
+                       f"The common-node edge Jaccard remains {fmt(point['counts']['common_node_edge_jaccard'], 4)}, "
+                       "so much of the increase accompanies added types while many surviving-node relationships "
+                       "remain stable. The interval also contains an unsampled release; this does not locate the "
+                       "first introduction commit. [D15]")
+        point = points["33.2.1", "33.4.8"]
+        self.sub("Nullness migration affects the inventory more than primary edges")
+        self.paragraph(f"The source audit finds the earlier internal ElementTypesAreNonnullByDefault declaration "
+                       "and its use in Lists.java, then the later package-level @NullMarked and JSpecify import. "
+                       f"There are {point['counts']['removed_annotation_classes']} removed and "
+                       f"{point['counts']['added_annotation_classes']} added annotation types, while primary edges "
+                       f"change by only {fmt(point['counts']['edge_change_percent'], 2)}%. The annotation applications "
+                       "are outside the primary instructor relation model, so the earlier metadata-driven edge "
+                       "spike/fall is not imported into this series. Metadata nodes still affect node and isolate counts. [D15]")
+        point = points["33.4.8", "33.5.0"]
+        self.sub("Collection support changes at 33.5.0")
+        self.paragraph(f"All {point['counts']['removed_classes']} removed identities are collection types; seven "
+                       "are nonannotation types and one is GwtTransient. The list includes GWT serialization "
+                       "dependency helpers, ForwardingImmutableCollection and ImmutableEntry. "
+                       f"The audit records {point['counts']['removed_edges']} removed and "
+                       f"{point['counts']['added_edges']} added edges. These are observed implementation changes, "
+                       "not by themselves proof of architectural repair or public-feature loss. [D15]", "small")
 
     def cluster_profiles(self):
         d = self.d
@@ -989,18 +1201,7 @@ class ReportBuilder:
         self.heading("18  Latest-release AI experiment")
         experiment = d.ai_dir / "experiment.json"
         if not experiment.exists():
-            self.paragraph("<b>The AI experiment is not present in this report build.</b> The required latest-release "
-                           "prompt, input and actual output must be recorded before this becomes the final submission. "
-                           "No model identity, prompt history, assignments or AI metric values are invented to fill this gap. "
-                           "[AS pp.3–4]")
-            self.paragraph("The generator reads the saved experiment under results/ai and can be rerun after the actual "
-                           "AI recovery is complete. The classical A1–A4 study remains fully reported above.")
-            self.heading("19  AI comparison: pending recorded output")
-            self.paragraph("No quantitative AI comparison is shown in this build because the actual experiment record "
-                           "is unavailable. The final comparison must evaluate an explicit, complete assignment on the "
-                           "same latest-release graph as its classical baseline, and report exact input scope and "
-                           "limitations. An AI partition is not an expert-verified ground truth.")
-            return
+            raise FileNotFoundError("The revised final report requires the actual new AI experiment record")
         record = read_json(experiment)
         d.inputs.append(experiment)
         self._ai_record(record)
@@ -1010,7 +1211,8 @@ class ReportBuilder:
         d = self.d
         required = [record["assignment_file"], record["output_file"], record["architecture_file"],
                     "results/ai/initial_hypothesis.md", "results/ai/activity.json", "results/ai/metrics.json",
-                    "results/ai/retained_metrics.json", "results/ai/comparisons.csv"]
+                    "results/ai/retained_metrics.json", "results/ai/comparisons.csv",
+                    "results/ai/evaluation.json", "results/ai/partition_comparisons.json"]
         missing = [p for p in required if not (ROOT / p).exists()]
         if missing:
             raise FileNotFoundError("Wait for the genuine AI experiment and coordinator evaluation: " + ", ".join(missing))
@@ -1051,6 +1253,12 @@ class ReportBuilder:
             raise ValueError("AI retained metrics use a different graph")
         if len(comparisons) != 4 or {r["condition"] for r in comparisons} != set(CONDITIONS):
             raise ValueError("Expected four same-graph AI/baseline comparisons")
+        evaluation = read_json(d.ai_dir / "evaluation.json")
+        if evaluation["status"] != "passed" or evaluation["classes_assigned_exactly_once"] != len(ai_classes):
+            raise ValueError("The recorded revised AI evaluation has not passed")
+        for filename, expected_hash in evaluation["output_sha256"].items():
+            if sha256(d.ai_dir / filename) != expected_hash:
+                raise ValueError("AI output changed after evaluation: " + filename)
         for row in comparisons:
             reference = metrics if row["condition"] in ("A1", "A3") else retained
             baseline = d.by_metric[d.latest, row["condition"]]
@@ -1080,14 +1288,11 @@ class ReportBuilder:
                        "and response.md. The following pages reproduce the actual prompt, enumerate the returned "
                        "modules, and evaluate that fixed output. Replaying the coordinator's calculations is "
                        "deterministic; rerunning a live model need not reproduce the same proposal. [D12]", "small")
-        self.paragraph("The original AI JSON is preserved: its top-level version field is “1.0”, while "
-                       "subject.release identifies Guava 33.7.2. The experiment record and pinned inputs define "
-                       "the analysed software release. [D12]", "small")
         if additional_prompts:
             self.sub("Additional user-visible messages, verbatim")
-            self.paragraph("The primary task prompt is reproduced on the next page. These are the exact launch "
-                           "instruction and the later completion/status follow-up; the latter refers to the model's "
-                           "already established proposal. Neither supplies a baseline quality result. [D12]", "tiny")
+            self.paragraph("The primary task prompt is reproduced on the next page. The exact additional recorded "
+                           "instruction is reproduced below. It supplies no baseline partition or quality result. "
+                           "The revision has no additional saved completion/status follow-up. [D12]", "tiny")
             for item in additional_prompts:
                 path = ROOT / item["path"]
                 label = "Launch instruction" if path.name == "launch_message.txt" else "Coordinator follow-up"
@@ -1131,26 +1336,32 @@ class ReportBuilder:
                        "without asking the model for another architecture. Cross-scope scores are not compared as "
                        "though they measured the same graph. Information supplied to the methods also differs: the "
                        "AI sees names and documentation, while KMeans receives structural features. [D12]")
-        self.table(["Compared baseline", "Matching graph", "Adjusted Rand agreement"], [
-            [r["condition"], esc(r["graph"]), fmt(number(r, "adjusted_rand_agreement"), 4)] for r in comparisons
-        ], [145, 146, WIDTH - 291], small=True, numeric=(2,), padding=3.5)
+        self.table(["Baseline", "Graph", "AI → baseline MoJoFM", "Baseline → AI MoJoFM", "ARI"], [
+            [r["condition"], esc(r["graph"]), fmt(number(r, "mojofm_ai_to_baseline"), 2),
+             fmt(number(r, "mojofm_baseline_to_ai"), 2), fmt(number(r, "adjusted_rand_agreement"), 4)] for r in comparisons
+        ], [58, 71, 137, 137, WIDTH - 403], small=True, numeric=(2, 3, 4), padding=3.5)
         self.sub("Three concrete refinements from the added evidence")
         changes = architecture.get("changes_from_initial_hypothesis", [])
         if isinstance(changes, str):
             changes = [changes]
         for change in changes[:3]:
             if isinstance(change, dict):
-                change = " ".join(str(change[k]) for k in ("final", "reason") if k in change)
+                change = " ".join(str(change[k]) for k in ("final_decision", "evidence_and_reason") if k in change)
             self.paragraph(esc(change), "small")
         self.sub("Interpretation and confidence")
         ai_vs_kmeans = next(r for r in comparisons if r["condition"] == "A3")
         self.paragraph(f"AI MQ is {fmt(metrics['mq'], 4)} on the full graph and {fmt(retained['mq'], 4)} after "
-                       f"projection. AI and A3 both use {metrics['n_clusters']} clusters, yet their adjusted Rand "
-                       f"agreement is only {fmt(number(ai_vs_kmeans, 'adjusted_rand_agreement'), 4)}. Similar aggregate "
-                       "MQ therefore does not imply the same grouping. ACDC's higher score also accompanies many "
-                       "more clusters. These results evaluate structural concentration, while the model proposes "
-                       "a semantic reading map with reciprocal cross-module dependencies. No acyclic build-module "
-                       "decomposition or intended-design accuracy was validated. [D9; D12]")
+                       f"projection. The AI uses {metrics['n_clusters']} modules and A3 uses "
+                       f"{integer(d.by_metric[d.latest, 'A3'], 'n_clusters')} clusters; their adjusted Rand agreement "
+                       f"is {fmt(number(ai_vs_kmeans, 'adjusted_rand_agreement'), 4)}. Aggregate MQ does not specify "
+                       "which classes are grouped together. Granularity and information differ: the AI sees names "
+                       "and source documentation, while the structural algorithms follow their own graph objectives. "
+                       "No acyclic build decomposition or intended-design accuracy is established. [D9; D12]")
+        ai_vs_acdc = next(r for r in comparisons if r["condition"] == "A1")
+        self.paragraph(f"Direction matters: AI → A1 MoJoFM is {fmt(number(ai_vs_acdc, 'mojofm_ai_to_baseline'), 2)} "
+                       f"but A1 → AI is {fmt(number(ai_vs_acdc, 'mojofm_baseline_to_ai'), 2)}. Moves can be necessary "
+                       "to subdivide coarse groups, whereas joins can merge fine groups; the target also determines "
+                       "normalization. Reporting one favorable direction would hide this asymmetry. [D12; D16]", "small")
         self.paragraph("Partition agreement and coordinator evaluation details: results/ai/comparisons.csv; "
                        "metrics.json; retained_metrics.json. The live model's complete limitations and "
                        "cross-module observations remain in architecture.json and response.md. [D12]", "small")
@@ -1209,7 +1420,7 @@ class ReportBuilder:
                        "analysis cannot observe every reflective or dynamically created dependency. Published bytecode "
                        "can reflect different compiler versions and inlining. The UE replacement depends on resolved "
                        "member usage and its fixed thresholds; it is not interchangeable with the older Noise method. "
-                       "ACDC granularity and KMeans' geometry/heuristic affect the recovered structure. [D2; D4; D6; D7]")
+                       "ACDC granularity and KMeans' geometry/pilot extrapolation affect the recovered structure. [D2; D4; D6; D7]")
         coverage = self.d.ue_cases["resolution_coverage"]
         self.paragraph(f"The latest extraction records {coverage['unresolved_event_rows']} unresolved member-use events "
                        f"({coverage['distinct_recorded_references']} distinct recorded references); "
@@ -1228,16 +1439,21 @@ class ReportBuilder:
                        "following sequence reconstructs the data-to-report chain; --offline verifies an existing artifact "
                        "cache. Exact flags and prerequisites are documented in the repository README and acquisition guide.")
         self.formula("<font name='Mono' size='8.3'>python scripts/unpack_data.py<br/>"
+                     "python scripts/select_versions.py --check<br/>"
                      "python scripts/fetch_data.py --offline<br/>"
                      "python scripts/fetch_tools.py<br/>"
                      "python scripts/build_java.py<br/>"
                      "python scripts/run_study.py --phase all<br/>"
+                     "python scripts/audit_change_points.py<br/>"
+                     "python scripts/audit_revision.py<br/>"
+                     "python scripts/evaluate_ai.py<br/>"
+                     "python scripts/validate_results.py<br/>"
                      "python scripts/build_report.py</font>")
         self.table(["Artifact path", "What to verify"], [
-            ["config/versions.json", "30 immutable release identities, URLs, hashes and actual skipped tags."],
-            ["data/graphs/&lt;version&gt;/", "Original/merged class aliases, seven typed relation categories, binary edges, member references, exclusions and unresolved evidence."],
+            ["config/versions.json", "30 distinct families with immutable representatives, URLs, hashes and catalog decisions."],
+            ["data/graphs/&lt;version&gt;/", "Original instructor input/raw output; normalization; typed and binary edges; aliases; separate supplemental member evidence and comparisons."],
             ["results/versions/&lt;version&gt;/", "UE scores, retained graph, exactly one A1–A4 assignment and its execution/quality details."],
-            ["results/*.csv", "30 size rows, 120 metric rows, 60 same-graph rows, 29 transitions, 180 stage timings."],
+            ["results/*.csv", "30 size rows, 120 metric rows, 60 same-graph rows, 29 transitions, 180 stage timings, 178 directional comparison pairs."],
             ["results/run_manifest.json", "Input/config hashes, algorithm-source hashes, Python, Java and package versions."],
             ["results/ai/", "Actual AI prompts, provided input, output, coverage audit and comparison."],
             ["report/report_manifest.json", "Hashes of files read by the report and generated PDF/figures; no recomputed partitions."],
@@ -1254,9 +1470,13 @@ class ReportBuilder:
                        "summaries, source code, figures and guides remain directly readable. No source artifact is "
                        "replaced by a derived summary.", "small")
         audit = read_json(ROOT / "results/validation.json")
-        self.paragraph(f"Independent audit status: <b>{esc(audit['status'])}</b>, {audit['failure_count']} failures. "
+        if audit["status"] != "passed" or audit["failure_count"]:
+            raise ValueError("The final report requires a passed independent result audit")
+        self.paragraph(f"Independent audit status: <b>{esc(audit['status'])}</b>, {count(audit['checks_performed'])} "
+                       f"evidence checks and {audit['failure_count']} failures. "
                        "A separate standard-library implementation recalculates exact-rational UE, lecture MQ and "
-                       "contingency-table ARI from stored evidence. It checks all 120 final partitions. This establishes "
+                       "contingency-table ARI and directional MoJoFM from stored evidence. It checks all 120 final "
+                       "partitions, all 14 pilot inertias and the fixed AI output. This establishes "
                        "internal consistency, not completeness of static analysis or intended-design accuracy. [D13]", "small")
 
     def metric_appendix(self):
@@ -1325,13 +1545,16 @@ class ReportBuilder:
             ("D12", "results/ai/experiment.json and its exact prompt/input/output/quality artifacts"),
             ("D13", "scripts/validate_results.py; results/validation.json, independent artifact audit"),
             ("D14", "docs/ue_case_study.md; results/performance/case_checks.json, exact-fraction source-backed UE cases"),
-            ("D15", "scripts/audit_change_points.py; results/change_points.json, source-backed annotation and graph-difference audit"),
+            ("D15", "scripts/audit_change_points.py; results/change_points.json, source and graph-difference audit"),
+            ("D16", "docs/mojofm.md; src/evolution/mojofm.py; saved directional partition agreement tables"),
+            ("D17", "results/baseline_v1; original full study at Git commit d970305; revised config and primary extractor comparison"),
         ]
         for key, value in evidence:
             self.paragraph(f"<b>[{key}]</b> {esc(value)}", "tiny")
 
     def build(self, path):
         self.cover()
+        self.revision()
         self.executive()
         self.selection()
         self.provenance()
@@ -1341,13 +1564,16 @@ class ReportBuilder:
         self.pilot()
         self.quality()
         self.growth()
+        self.metadata_breakdown()
         self.release_table()
         self.removals()
         self.mq_results()
         self.components()
         self.same_graph_results()
+        self.agreement_results()
         self.granularity()
         self.temporal()
+        self.change_evidence()
         self.cluster_profiles()
         self.ai_sections()
         self.performance()
@@ -1378,7 +1604,7 @@ def render_qa(pdf_path, qa_dir):
                 outside.append([round(v, 2) for v in block["bbox"]])
         pages.append({"page": i + 1, "text_characters": len(page.get_text()),
                       "render": str(image_path.relative_to(ROOT)), "out_of_page_text_blocks": outside})
-    result = {"pdf": str(pdf_path.relative_to(ROOT)), "page_count": len(doc), "pages": pages,
+    result = {"pdf": str(pdf_path.relative_to(ROOT)), "pdf_sha256": sha256(pdf_path), "page_count": len(doc), "pages": pages,
               "all_pages_rendered": True, "visual_inspection": "Render files must be visually reviewed; geometry checks alone do not establish layout quality."}
     (REPORT / "render_validation.json").write_text(json.dumps(result, indent=2) + "\n")
     return result
@@ -1386,7 +1612,7 @@ def render_qa(pdf_path, qa_dir):
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--output", type=Path, default=REPORT / "guava_evolution_report.pdf")
+    parser.add_argument("--output", type=Path, default=REPORT / "guava_evolution_report_revised.pdf")
     parser.add_argument("--render-qa", action="store_true", help="Render every PDF page using PyMuPDF")
     args = parser.parse_args()
     data = StudyData()
@@ -1397,6 +1623,9 @@ def main():
     make_figures(data)
     builder = ReportBuilder(data)
     builder.build(args.output)
+    canonical = REPORT / "guava_evolution_report.pdf"
+    if args.output.resolve() != canonical.resolve():
+        shutil.copyfile(args.output, canonical)
     figures = sorted(FIGURES.glob("*.png")) + sorted(FIGURES.glob("*.svg"))
     manifest = {
         "report": str(args.output.relative_to(ROOT)), "report_sha256": sha256(args.output),
@@ -1409,7 +1638,8 @@ def main():
         )},
         "figures": {str(p.relative_to(ROOT)): sha256(p) for p in figures},
         "sections": builder.sections,
-        "architecture_count": 120, "metric_appendix_rows": 120,
+        "study_revision": 2, "architecture_count": 120, "metric_appendix_rows": 120,
+        "canonical_copy": str(canonical.relative_to(ROOT)), "canonical_copy_sha256": sha256(canonical),
         "ai_experiment_present": (data.ai_dir / "experiment.json").exists(),
         "policy": "Read saved results only; fail on missing required classical results or stale config hashes; no new partitions generated.",
     }

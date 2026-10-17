@@ -1,319 +1,162 @@
-# Interpretation of the completed Guava study
+# Revised Guava results: measurements and interpretation
 
-The completed study contains **30 selected stable releases and 120 final
-architectures**: A1 (ACDC/full), A2 (ACDC/UE-filtered), A3 (KMeans/full) and
-A4 (KMeans/UE-filtered). The independent artifact audit in
-`results/validation.json` passes with no failures. This document explains the
-observed results and their limits; it does not turn a structural score into a
-claim about the intended architecture or users' experience.
+## Main conclusion
 
-The authoritative numerical tables are `results/sizes.csv`, `results/metrics.csv`,
-`results/same_graph_comparisons.csv`, `results/evolution.csv` and
-`results/runtimes.csv`. Each release directory also contains the complete class
-partitions, per-class UE decisions, every cluster and cluster-pair metric term,
-and execution metadata. Values below are rounded for reading.
+The instructor-based revision changes the substantive result. **UE removal followed by ACDC reclustering has lower MQ on the same retained graph in all 30 releases. K-means reclustering improves that measure in 29 of 30.** The result is algorithm- and model-dependent; the study does not force omnipresent filtering to look beneficial.
 
-## 1. Population, size and the meaning of the curves
+The primary class graph now comes solely from the instructor extractor. The revised cohort contains 30 distinct major/minor families, includes Guava-owned public-suffix code, calibrates k on one inertia pilot and adds directional MoJoFM agreement. The paper's pure UE detector and the lecture-supported loop-free MQ formula remain. The original configuration and summaries are in `results/baseline_v1`, with the complete original study at Git commit `d970305`.
 
-The sample runs from **10.0, released 28 September 2011, to 33.7.2, released
-29 September 2026**. Thirty observations were selected from the documented
-eligible release sequence before inspecting clustering outcomes. At least one
-stable release is skipped between every pair of observations. The sample covers
-26 major/minor families. It is spaced by eligible release index, so observations
-are not equally spaced in calendar time. These are repeated observations of one
-software system, not 30 independent projects.
+Source: `results/same_graph_comparisons.csv`, `results/run_manifest.json`, `config/analysis.json` and `config/versions.json`.
 
-Only Guava-owned `com.google.common` production classes present in the selected
-JRE artifact and its matching sources are nodes. Guava is itself a library, but
-it is the subject under study: the excluded libraries are its external
-dependencies and explicitly excluded bundled third-party code. Every release
-uses the same boundary. Nested, local and anonymous classes contribute to their
-outermost owner. Annotations, interfaces and enums are retained when they are
-owned project types. An internal annotation named `Beta` is different from a
-beta release; the latter is excluded by the version policy.
+## Structural scale and the class population
 
-| Indicator | 10.0 | 33.7.2 | Net change |
-|---|---:|---:|---:|
-| Canonical classes | 317 | 591 | +274; +86.4% |
-| Directed binary internal dependencies | 1,693 | 3,969 | +2,276; +134.4% |
-| Code lines in the owned source-file population | 48,821 | 95,800 | +46,979; +96.2% |
-| Directed graph density | 0.016901 | 0.011383 | Decreased |
+| Measurement | 10.0 | 33.7.2 |
+|---|---:|---:|
+| Owned canonical class/type nodes | 317 | 594 |
+| Instructor-derived directed internal edges | 1,289 | 2,750 |
+| Nonannotation types | 311 | 563 |
+| Owned annotation types | 6 | 31 |
+| Graph isolates | 15 | 45 |
+| Annotation isolates, a subset of both preceding categories | 5 | 31 |
+| Graph-owned source code lines | 48,821 | 96,546 |
 
-The largest class count is 608 in 33.3.1; the largest dependency count is 4,518
-in 33.2.0. Growth is therefore not strictly monotonic. Increasing edge counts
-and decreasing density are compatible: the number of possible directed pairs
-grows as n(n-1). These indicators describe the extracted graph's size and
-connectivity, rather than one universal measure of software complexity.
+Class nodes grow by **87.4%**, edges by **113.3%**. The possible number of directed class pairs grows quadratically, so increasing edge counts can accompany decreasing graph density. A type count includes classes, interfaces, enums and annotation declarations; it is not a count of user features. Source files, raw bytecode classes and merged graph nodes are different populations.
 
-The latest artifact contains 1,944 accepted binary classes, which become 591
-canonical nodes after merging. The 1,353 additional nested/anonymous binary
-classes are accounted for in `data/graphs/33.7.2/class_aliases.csv`; they have not
-been ignored. Four further base binary classes are explicitly excluded by the
-ownership policy. Three canonical nodes are graph isolates and appear in every
-appropriate partition. The latest source population contains 180,244 physical
-Java lines; the smaller code-line count excludes blank/comment-only lines.
+The latest source-ownership inventory counts 610 Java files and 96,622 nonblank, noncomment physical Java lines, including package descriptors. The graph-linked file count excludes descriptors and yields 96,546 code lines. Both measures exceed the assignment's 10,000-line requirement. The complete source JAR includes a module descriptor and totals 96,646 code lines.
 
-Source: the selected manifest, extraction provenance, class aliases and source
-size tables under `config/versions.json` and `data/graphs/<version>/`.
+Sources: `results/sizes.csv`, `data/provenance/source_inventory_33.7.2.json`, `data/graphs/33.7.2/provenance.json`.
 
-The two annotation transitions and the unchanged graph pairs below are
-independently reproducible with `python scripts/audit_change_points.py`.
-`results/change_points.json` preserves every added/removed edge with its input
-CSV row, all class changes, production class/edge hashes, and the exact source
-JAR entry hashes and line markers supporting the annotation-migration example.
+## The annotation correction is explicit, but metadata nodes remain
 
-### A visible rise largely reflects annotation changes
+The primary graph is the normalized output of the unmodified instructor JAR. The supplemental ASM pass supplies owner/member evidence and preserves a separate broad graph. It cannot add its annotation-application or declaring-owner edges to the instructor result.
 
-Between 30.1.1 and 31.1, classes increase from 568 to 600 and dependencies from
-3,620 to 4,354. There are 35 added and three removed canonical types, with 792
-added and 58 removed graph edges. **Thirty added types are annotations, and
-748 of the 792 added edges target annotation types.** The number of typed
-`TYPE_USAGE` edges rises from 2,485 to 3,190.
+On 33.7.2, under the same revised source scope:
 
-For example, 218 newly added graph edges target
-`com.google.common.collect.ElementTypesAreNonnullByDefault`, and 97 target
-`com.google.common.collect.ParametricNullness`. This is concrete evidence that
-the observed jump includes a change in how nullness information is represented.
-It does not establish that hundreds of new functional relationships appeared.
+| Edge comparison | Count |
+|---|---:|
+| Primary instructor edges | 2,750 |
+| Supplemental broad edges | 3,982 |
+| Shared edges | 2,750 |
+| Instructor-only edges | 0 |
+| Supplemental-only edges | 1,232 |
+| Supplemental-only edges targeting annotations | 1,145 |
+| Other supplemental-only edges | 87 |
 
-The UE detector correctly keeps these annotation types under its specified
-member-use definition. In 31.1, the first annotation has 218 class-graph callers
-but zero distinct caller classes in the member-use evidence. It has no
-outside-class method/field use from which UE can infer omnipresence. A graph hub
-and a UE omnipresent class are therefore different concepts.
+The public-suffix implementation adds three canonical types and eight instructor edges relative to the earlier common-namespace-only instructor audit. It carries Guava Authors headers, so excluding it solely by namespace was inappropriate for the stated whole-artifact scope.
 
-### A later fall largely reflects moving nullness annotations outside the boundary
+The latest 31 owned annotation types are all isolates in the primary graph, which contains zero edges targeting them. They still contribute to node, singleton and clustering-feature counts. The study does not hide this by constructing its inventory from edge endpoints. It also does not equate every annotation with irrelevant metadata: ordinary code references recognized by the instructor remain eligible, and stable-release classes marked `@Beta` remain owned types.
 
-Between 33.3.1 and 33.4.1, the class count falls from 608 to 596 and edges from
-4,513 to 3,930. Fifteen internal `ElementTypesAreNonnullByDefault` annotation
-types disappear while three other annotation types are added. There are 587
-removed and four added edges. **Of the 587 removed edges, 566 target the fifteen
-removed internal annotation types.** Typed `TYPE_USAGE` edges fall from 3,343
-to 2,762.
+Source: `data/graphs/33.7.2/extractor_comparison.json`, `classes.csv`, `dependencies.csv`, `instructor_raw.csv`, `supplemental_only_edges.csv`; scope rationale in `docs/modeling_decisions.md`.
 
-The pinned source archives support the interpretation directly. In 33.3.1,
-`com/google/common/collect/Lists.java` uses
-`@ElementTypesAreNonnullByDefault`, and its same-package annotation source exists.
-In 33.4.1 that annotation source is absent; the matching
-`com/google/common/collect/package-info.java` uses `@NullMarked` and imports
-`org.jspecify.annotations.NullMarked`. JSpecify is external to the study scope,
-and package metadata is excluded from the class-node population. The consistent
-boundary consequently exposes a large decrease in recorded internal annotation
-edges. This is not evidence, by itself, of a corresponding reduction in the
-program's functional coupling or proof of successful architectural repair.
+## Thirty families rather than repeated patch observations
 
-The class and dependency graphs for 33.4.1 and 33.4.3 are identical even though
-their measured source code-line counts differ. The same is true of the graphs
-for 33.7.0 and 33.7.2. Release identity, source text and this structural
-abstraction can change independently.
+The frozen catalog contains 70 eligible stable release points in 45 major/minor families. The rule selects family ranks `round(i*44/29)`, then chooses one stable representative per selected family. The first family uses the explicit oldest boundary 10.0; all other selected families use their highest eligible stable patch at the frozen cutoff. The last is 33.7.2.
 
-## 2. The pilot and the final configuration
+This removes repeated 33.4 and 33.7 observations from the original sample. Selecting 32.1.3 once is not the same as using several patches from the 32.1 family. Some selected families are adjacent because 30 observations from 45 families cannot all have an omitted family between them. The rule is uniform by family rank, not calendar time. No graph identity or metric outcome determined inclusion.
 
-Release 28.2 was chosen by the middle sample index before evaluating results.
-It has 555 canonical classes and 3,550 dependency edges. The pilot compared
-ACDC SubGraph size settings 10, 20 and 40 and fitted KMeans once using the
-predeclared k rule. No KMeans k sweep was performed.
+The revised selected graph series has **no byte-identical adjacent class-and-edge pairs**. That is an observed consequence, not a selection requirement. Had an identical pair remained, it would be reported as structural stability.
 
-The first adapter check exposed a real compatibility issue. Original ACDC's
-`Node.getBaseName()` treats the final dotted component as a file extension.
-Without an encoding, Java class IDs such as `p.A` and `p.B` can both produce
-the container name `p.ss`. That invalidates an interpretation of their combined
-output as one structurally discovered cluster. The rejected initial adapter
-produced only 14 apparent clusters, including one containing 222 classes.
+Sources: `data/provenance/family_selection.json`, `config/versions.json`, `scripts/select_versions.py`, `results/change_points.json`.
 
-The repaired adapter appends `.java` to class identifiers only while calling
-the unmodified original ACDC. The resulting basenames retain the complete class
-identity, and memberships are decoded before measurement. Every run has a
-`node_id_map.csv`, and an actual Java regression verifies that two disconnected
-cliques in the same package remain distinct. The rejected adapter results are
-not part of the 120 final architectures.
+## Quality at the last sampled release
 
-| Corrected pilot | Clusters | Largest cluster | Singleton clusters | Cohesion | Coupling | MQ |
+A1 is ACDC/full, A2 ACDC/UE-filtered, A3 k-means/full and A4 k-means/UE-filtered.
+
+| Condition | Nodes | Edges | Clusters | Cohesion | Coupling | MQ |
 |---|---:|---:|---:|---:|---:|---:|
-| ACDC, size 10 | 90 | 44 | 3 | 0.384626 | 0.006082 | 0.378544 |
-| ACDC, size 20 | 90 | 44 | 3 | 0.384626 | 0.006082 | 0.378544 |
-| ACDC, size 40 | 90 | 44 | 3 | 0.384626 | 0.006082 | 0.378544 |
-| KMeans, k=17 | 17 | 60 | 0 | 0.088695 | 0.011811 | 0.076884 |
+| A1 | 594 | 2750 | 135 | 0.257499570 | 0.002200767 | 0.255298803 |
+| A2 | 572 | 1724 | 149 | 0.243078638 | 0.001383960 | 0.241694679 |
+| A3 | 594 | 2750 | 43 | 0.185153984 | 0.006164924 | 0.178989060 |
+| A4 | 572 | 1724 | 43 | 0.205205260 | 0.003123447 | 0.202081813 |
 
-The three corrected ACDC partitions are byte-identical. Thus the pilot supplies
-no evidence for preferring 10 or 40 over the documented default 20. We retain
-`+so`, size 20 and fine flat output for every final release. This is a sensitivity
-observation on one predetermined release, not a claim that size never matters
-for any graph. The size setting applies to a stage of SubGraph recovery;
-subsequent adoption can enlarge clusters. It is not a strict final size cap.
+The MQ formula is the lecture's mean normalized cohesion minus mean normalized coupling. It uses `n_i(n_i-1)` for loop-free directed internal pairs and includes every unordered cluster pair, including pairs with zero cross edges. The lecture also permits `n_i^2`; values computed with that alternative cannot be compared numerically without controlling the graph and partition. We retain the form used by the lecture's worked example.
 
-KMeans uses the same 712-class union schema throughout, with 1,424 outgoing and
-incoming feature coordinates. Identity entries exist only in features, and each
-row is L2-normalized. k is ceil(sqrt(n_full/2)); the full-release value is reused
-for its filtered condition. Actual final k ranges from 13 to 18. All final fits
-reach the requested number of clusters. The heuristic is a transparent
-granularity choice and is not presented as an optimal-k theorem from the lectures.
+ACDC has higher raw MQ than k-means on all 30 full graphs and all 30 retained graphs. This is a statement about this metric and these outputs, not accuracy. At the latest release ACDC/full has 135 clusters, including 47 singletons; k-means/full has 43 clusters and no singleton. Forty-five primary-graph isolates contribute to the ACDC wrapper's singletons. Equal-weight macro averaging makes these details consequential.
 
-Source: `results/pilot/pilot.json`, `config/analysis.json`, the corresponding
-adapter/test sources and each final run's metadata. Metric equations are from
-Architecture Reconstruction PDF pp. 15–17; see `docs/course_traceability.md`.
+Sources: `results/metrics.csv` and each `results/versions/VERSION/A*_quality/per_cluster.csv` / `per_pair.csv`; lecture PDF pages 15-17; `docs/course_traceability.md`.
 
-## 3. Recovery quality across the 30 observations
+## Filtering evaluated on the same retained graph
 
-These are unweighted means across the selected releases; dense periods in the
-release history are not converted into longer durations by averaging.
+Comparing raw A1 and A2 MQ changes both the node/edge population and the partition. The supplementary fair comparison first projects A1 onto exactly the retained nodes, removes any empty projected clusters, and evaluates it on the same retained edges as A2. A3/A4 follows the same procedure. This evaluates existing partitions; it does not create another recovered architecture.
 
-| Condition | Mean clusters | Mean cohesion | Mean coupling | Mean MQ | Mean size-weighted cohesion |
-|---|---:|---:|---:|---:|---:|
-| A1: ACDC/full | 84.37 | 0.392085 | 0.006557 | 0.385528 | 0.243011 |
-| A2: ACDC/filtered | 84.20 | 0.391001 | 0.005212 | 0.385789 | 0.243417 |
-| A3: KMeans/full | 16.80 | 0.104287 | 0.010071 | 0.094216 | 0.073967 |
-| A4: KMeans/filtered | 16.80 | 0.122416 | 0.007840 | 0.114576 | 0.078456 |
+| Algorithm | Positive changes | Negative changes | Mean MQ change across 30 | Latest projected-full MQ | Latest filtered MQ | Latest change |
+|---|---:|---:|---:|---:|---:|---:|
+| ACDC | 0 | 30 | -0.023836891 | 0.246415886 | 0.241694679 | -0.004721208 |
+| k-means | 29 | 1 | +0.020552842 | 0.163768687 | 0.202081813 | +0.038313126 |
 
-ACDC has the higher lecture MQ in every corresponding release comparison, but
-it also produces many more, generally smaller clusters. The lecture MQ averages
-clusters equally and averages all unordered cluster pairs, including pairs with
-zero edges. Cluster size, singleton treatment and the number of cluster pairs
-therefore affect the interpretation. The result supports higher structural
-density under this particular score and granularity; it does not establish
-universal superiority or correctness against an intended architecture.
+The latest filter removes 22 nodes and 1,026 incident primary edges, leaving 572 nodes and 1,724 edges. The number of isolates increases from 45 to 58. ACDC's new partition has 149 clusters and 60 singletons; k-means retains its requested 43 clusters but its largest group grows from 85 to 119 nodes. A higher k-means MQ therefore does not imply every aspect of module shape improved.
 
-KMeans minimizes within-cluster squared Euclidean feature distance, rather than
-optimizing the lecture MQ directly. Both algorithms were applied with one
-documented representation/configuration. A different feature representation or
-granularity could change their scores. No such unperformed alternative is
-reported as a measured result.
+The comparison holds the evaluated population fixed and measures how the prescribed recovery process changes grouping. It does not establish a universal causal benefit of filtering, eliminate optimization sensitivity, or validate a semantic architecture. In particular, the uniformly negative ACDC result is reported without changing UE thresholds to seek a more favorable outcome.
 
-### Does removing omnipresent classes help?
+Source: `results/same_graph_comparisons.csv`, `results/versions/33.7.2/A1_projected_to_retained_metrics.json`, `A3_projected_to_retained_metrics.json`, and the four latest metric files.
 
-UE removes between 6 and 24 classes per release. On average, this is about
-3.21% of the class population but removes 24.35% of the graph's edges. That is
-consistent with targeting widely used types under the method's member-use
-definition. It also means a direct full-versus-filtered score comparison changes
-both the partition and the graph on which it is evaluated.
+## UE remains faithful to the requested paper
 
-For the main filtering comparison, the full partition is first restricted to
-the retained classes. Both that projected partition and the newly recovered
-filtered partition are then evaluated on **the same induced retained graph**.
+The method removes between **6 and 23 classes** per release; **31 distinct identities** are removed at least once. It remains standalone UE with thresholds 0.85 and 0.90, not UE intersected with the older SIG classifier. Adding SIG would change the detector and require a separate rationale.
 
-| Same-graph comparison | Positive MQ change | Negative change | Mean change | Median change |
+The last release's 22 removals include useful Guava APIs. “Omnipresent for clustering preprocessing” does not mean badly implemented, unnecessary or safe to delete from the actual library. The real member-evidence case study distinguishes `Preconditions` (remove: equality 0.927628, cardinality 0.996795) from `Iterators` (retain: equality 0.498035, cardinality 0.98). Many callers alone are insufficient because `Iterables` has a relatively specialized dedication to `Iterators`.
+
+The supplemental member graph has 659 unresolved events covering 494 distinct recorded references; 335 events cross merged class boundaries. The ratio to all 53,424 raw observed member-use events is about 1.23%. This is an evidence diagnostic, not a completeness or false-negative rate: its denominator includes external and intraclass uses. Unknown inherited library behavior is not invented as internal member use.
+
+Sources: `results/versions/*/ue.json`, `results/performance/case_checks.json`, `docs/ue_case_study.md`, and the supplied UE paper equations 1-3.
+
+## What the k pilot does and does not establish
+
+The 25.1 pilot has 554 nodes. A declared 14-candidate inertia grid selects **k=40**, with normalized chord gap 0.188513. Its target average is 13.85 classes per cluster. The final rule `ceil(n_full*40/554)` yields 23-45 clusters across the sampled full graphs and reuses a version's value after removal.
+
+The nearby k=30 and k=50 gaps are 0.185458 and 0.180934. This is a broad elbow. Selecting the maximum is reproducible, but it does not demonstrate that exactly 40 conceptual components exist. The calibration and its size extrapolation depend on the structural features and chosen candidate interval; MQ is not used to pick them.
+
+The pilot's matched-k diagnostic gives additional evidence about granularity. At 110 clusters, k-means MQ rises to 0.242393 from 0.160308 at its selected 40 clusters. ACDC at 110 clusters has MQ 0.319277. The gap narrows but remains. Thus granularity explains part of the pilot gap; matching k does not match cluster-size distributions, memberships or semantic responsibilities. The diagnostic is reported separately and does not choose the final configuration.
+
+Sources: `results/pilot/pilot.json`, `k_calibration.json`, `k_inertia_curve.csv`, `k_candidates/` and `docs/pilot_decision.md`.
+
+## MoJoFM and ARI are agreement measures
+
+MoJoFM normalizes the move/join distance relative to a specified target partition. Reversing the inputs may change the distance and normalization. The study therefore preserves both directions, distances, denominators, source/target cluster counts and the exact class-universe hash. The 178 classical comparison pairs cover full/filtered, algorithm and temporal comparisons.
+
+| Latest comparison | Shared nodes | Forward MoJoFM | Reverse MoJoFM | ARI |
 |---|---:|---:|---:|---:|
-| Projected A1 versus recovered A2 | 23/30 | 7/30 | +0.009776 | +0.009588 |
-| Projected A3 versus recovered A4 | 26/30 | 4/30 | +0.022902 | +0.019967 |
+| A1 → A2 | 572 | 81.4079 | 80.9783 | 0.602499 |
+| A3 → A4 | 572 | 62.7273 | 61.4545 | 0.429671 |
+| A1 → A3 | 594 | 43.7063 | 41.1150 | 0.187568 |
+| A2 → A4 | 572 | 45.0909 | 43.6823 | 0.141595 |
 
-The evidence supports a frequent improvement in this score, especially for the
-chosen KMeans representation, with explicit counterexamples. It does not support
-the statement that removing UE classes always improves architectural quality.
-For contrast, directly comparing A2 with A1 on their different graph populations
-would show positive differences in only 13 of 30 releases. The interpretation
-changes substantially when the population is held constant.
+For A1→A2 and A3→A4, the full partition is projected to retained nodes first. For temporal comparisons, both partitions use the intersection of class identities. MoJoFM is valid as agreement even without a validated expert reference. The absence of ground truth prevents an architecture-accuracy claim; it does not forbid calculation. ARI supplies a supplementary symmetric comparison.
 
-The latest release illustrates both outcomes. UE removes 22 of 591 classes,
-leaving 569 classes and 2,886 of 3,969 edges. The change removes 3.72% of nodes
-and 27.29% of edges.
+Sources: `results/partition_comparisons.csv`, each per-release `partition_comparisons.json`, `docs/mojofm.md`.
 
-| Latest condition | Clusters | Largest cluster | Cohesion | Coupling | MQ |
-|---|---:|---:|---:|---:|---:|
-| A1 | 95 | 69 | 0.407818 | 0.004596 | 0.403222 |
-| A2 | 98 | 97 | 0.391992 | 0.003950 | 0.388041 |
-| A3 | 18 | 96 | 0.110793 | 0.010189 | 0.100604 |
-| A4 | 18 | 93 | 0.127155 | 0.007951 | 0.119204 |
+## Source-backed changes worth discussing
 
-On the latest retained graph, projected A1 has MQ 0.391237 and recovered A2
-has 0.388041: **the same-graph change is -0.003196**. Projected A3 has 0.096592
-and recovered A4 has 0.119204: **the same-graph change is +0.022611**. These are
-more defensible statements than attributing every raw MQ difference to removal
-alone. The removal changes the analysis population, not Guava's actual source
-or behavior.
+**13.0.1→15.0:** classes increase from 382 to 441 and edges from 1,639 to 2,079 (+26.85%). There are 73 added and 14 removed class identities. The additions include 33 collection types, nine escaping types and nine I/O types. New observed collection identities include `ImmutableRangeMap` and `ImmutableRangeSet`. These are source-inventory observations, not a count of 73 new user features.
 
-For a precise oral example of why a class is removed or kept, use
-`docs/ue_case_study.md`: `Preconditions` is removed, while `Iterators` is kept
-despite many callers. The independent exact-fraction audit records all caller
-dedications and the underlying member-reference CSV rows.
+**19.0→21.0:** classes increase from 454 to 521 and edges from 2,113 to 2,509 (+18.74%). Of 76 added identities, 41 are under `com.google.common.graph`. The common-node edge Jaccard is 0.946362, indicating high persistence among surviving identities despite the additions. Because the interval contains an unsampled release, the graph comparison alone does not identify the first introduction commit.
 
-## 4. Stability and what it measures
+**33.2.1→33.4.8:** classes decrease from 610 to 598, while primary edges change only from 2,840 to 2,826 (-0.49%). Fifteen internal `ElementTypesAreNonnullByDefault` annotation types disappear and four annotations are added. The exact source evidence shows the earlier declaration/use and the later package `@NullMarked` / external JSpecify import. With annotation applications excluded from primary edges, the migration affects type and isolate counts without creating the old large edge-count fall. It is still not proof of improved architecture.
 
-Temporal comparisons use common canonical class identities. The edge Jaccard
-index is computed only between edges whose endpoints both survive in the two
-observations. Its mean is 0.972432. Mean adjusted Rand agreement of the recovered
-partitions on the common classes is 0.743497 for ACDC and 0.524593 for KMeans.
-These are descriptive stability indicators, not measures against a gold standard.
+**33.4.8→33.5.0:** classes decrease from 598 to 590 and edges from 2,826 to 2,744 (-2.90%), the largest relative primary-edge decline in the selected sequence. All eight removed identities belong to collections: seven nonannotation types and `GwtTransient`. The names include GWT serialization support, `ForwardingImmutableCollection` and `ImmutableEntry`. There are 87 removed and five added edges. The observations describe implementation support changes; a claim of removed public functionality requires separate API evidence.
 
-At 30.1.1 to 31.1, common-node edge Jaccard is 0.980457, while ACDC agreement
-is 0.713035 and KMeans agreement is 0.272115. The latter is the lowest KMeans
-agreement in the sample. Newly added annotation targets alter feature rows even
-when relations between old classes remain similar, and the size heuristic also
-changes k from 17 to 18 at this transition. Both are relevant changes; the
-observations do not isolate one as the sole cause.
+All 29 transitions preserve exact added/removed class and edge lists, package breakdowns, annotation counts and common-node Jaccard. Source entry paths and hashes connect selected examples to the original artifacts. Source: `results/change_points.json` and the exact matching source JARs.
 
-At 33.3.1 to 33.4.1, common-node edge Jaccard is 0.997459, despite the conspicuous
-fall in total edges. Many lost edges touch removed annotation nodes and therefore
-do not enter that common-node comparison. ACDC agreement is 0.795074 and KMeans
-agreement 0.366536. This illustrates why a graph statistic, total counts and
-partition stability answer different questions.
+## AI experiment and evidence limits
 
-Both algorithms have temporal agreement exactly 1 for the identical-graph
-transitions 33.4.1 to 33.4.3 and 33.7.0 to 33.7.2. Fixed seeds/configurations
-support reproducibility on the same data. They do not guarantee that a small
-input change leaves a fitted partition unchanged.
+The revised AI architecture recovery receives the latest **594-class, 2,750-edge** graph, class/package information and matching source documentation. The fresh session does not see old or new ACDC/k-means partitions, UE decisions or their scores. Its actual initial hypothesis, prompts, activity record, final assignment and module responsibilities are preserved under `results/ai`.
 
-Source: `results/evolution.csv`, complete graph diffs in the extracted CSVs and
-per-version run metadata. Adjusted Rand and same-node Jaccard are explicitly
-supplementary engineering measurements; they are not attributed to unverified
-lecture slides.
+The coordinator evaluates that fixed partition on the full graph and projects the same assignment to the retained graph. These are two evaluations of one AI architecture, not two separate generated architectures. The AI also receives semantic names and documentation that structural algorithms do not receive; a comparison cannot be interpreted as a controlled superiority test with identical information. `docs/ai_reflection.md` gives the actual module findings and numerical results.
 
-## 5. Performance and independent verification
+The fresh response has **18 modules covering all 594 classes exactly once**, including all isolates and annotation declarations. Its full-graph MQ is **0.094303**, and its retained-graph MQ is **0.089526**. The responsibilities include four collection groups, three concurrency groups, combined escaping across packages and network values with the owned public-suffix implementation. These are conceptual interpretations for review. AI → A1 MoJoFM is **28.57**, while A1 → AI is **61.63**; the directional difference reflects move/join asymmetry and normalization under substantially different granularities, not an accuracy advantage. [Evidence: `results/ai/evaluation.json`, `architecture.json`, `comparisons.csv`; `docs/mojofm.md`.]
 
-The recorded stage totals for all 30 releases are 14.14 seconds for extraction,
-1.79 seconds for UE including member-CSV reading, 13.50/9.78 seconds for A1/A2,
-and 1.69/1.47 seconds for A3/A4. These timings describe this environment and
-these inputs. They exclude downloads, tool provisioning, report generation and
-some result-serialization work, so their sum is not a claimed end-to-end runtime.
+## Course connections and limits
 
-The separate synthetic detector benchmark uses 20,000, 100,000 and 200,000
-distinct member references, with medians 0.0875, 0.5671 and 1.2360 seconds. Input
-construction and extraction are outside that timer; validation, aggregation,
-diagnostics and deterministic output ordering are included. The detector uses
-hashed distinct-reference aggregation and no shortest-path enumeration. The
-benchmark supplies measured scaling evidence, while the implementation explains
-why it avoids an expensive all-pairs path approach. Source:
-`results/performance/ue_benchmark.json` and `docs/omnipresent.md`.
+The recovered groups are an implementation view. The architecture-evolution lecture distinguishes intended, described and implemented architecture and different static/dynamic views. An erosion claim requires an intended constraint and evidence of a violation; MQ alone supplies neither.
 
-`scripts/validate_results.py` uses the standard library and imports no production
-metric, detector, clustering or extraction function. It recomputes lecture MQ
-from individual edge contributions, UE decisions with exact rational arithmetic,
-and adjusted Rand values from contingency tables. It checks every final
-partition's population, every cluster/pair table, the 90 pinned artifact hashes,
-binary/source ownership and outer-class aliases, internal graph boundaries,
-feature-coordinate identities, k policy, frozen implementation/configuration
-hashes, aggregate row inventories and identical retained-graph populations.
-The persisted result reports **3,362,762 checks and zero failures** for this run.
+The measured history is compatible with continuing change and structural growth, but does not verify all Lehman laws. Functional growth, user-perceived quality, invariant effort and organizational stability require data not measured here. The sparse family sample also has irregular time intervals. Counts are not rates unless the date denominator is used.
 
-Those checks establish consistency and reproducibility of the recorded structural
-experiment. They cannot establish that bytecode captures reflection, every
-possible runtime dispatch, design intent, feature usefulness or user-perceived
-quality. The bounded member resolver's actual limitations are recorded alongside
-extraction evidence rather than hidden by a complete-partition claim.
+The requirements lectures motivate explicit operational definitions and traceability. Each reported metric can be traced through its partition and graph to source/version identities and artifact hashes. That traceability improves auditability but does not prove complete static analysis or semantic correctness. The strongest defensible claims are the recorded measurements under the declared scope, algorithms and assumptions.
 
-## 6. Connections to the course and claims to avoid
+## Verification boundaries
 
-The architecture lectures distinguish intended, described and implemented
-architecture. This study reconstructs a static structural view of the implemented
-system. Drift or erosion requires a comparison with intended architectural
-constraints; a lower MQ alone does not demonstrate either. A shared utility, a
-hub smell and a paper-defined omnipresent module likewise need not be the same
-set of classes. See `docs/course_traceability.md` for verified source references.
+The revised implementation passes **60 focused tests**, including real compiled Java normalization/member fixtures, exact UE boundary cases, clustering/metric examples, elbow-selection rules and MoJoFM checks. The independent artifact audit recomputes saved scores and checks input/output consistency without recovering another architecture. The latest `results/validation.json` is authoritative for its pass count and status.
 
-The longer-term growth is consistent with the continuing-change and continuing-
-growth themes discussed with Lehman's laws. However, class/line growth is not a
-measurement of new functionality, and this one retrospectively sampled library
-cannot validate all eight laws. The annotation transitions are a practical
-counterexample to reading every jump as functional growth or declining quality.
+Synthetic UE timing for 10,000 classes and 200,000 references has a median **1.235303 seconds** across three detector-only repeats in the recorded environment. Input construction and extraction are outside that timing; process high-water RSS is not a per-call allocation measurement. No measured speedup against the old JNode tool is claimed.
 
-Requirements lectures motivate explicit definitions and traceability. Here the
-chain is: requirement and sampling rule → immutable artifacts → ownership and
-merge decisions → dependency/member evidence → detector decisions → partitions
-→ exact metric terms → qualified interpretation. Automated evaluation makes
-errors and comparisons reviewable; it does not remove the need to check whether
-the chosen measures answer the intended question.
-
-An oral defense should therefore be able to explain a single input edge, the
-canonical owner of an anonymous-class member, one exact UE decision, one
-hand-calculated MQ, the ACDC suffix repair, the fixed KMeans rule, and a concrete
-release transition. Those examples explain the full pipeline more convincingly
-than memorizing only the four latest scores.
+A reproducible implementation can still encode a debatable modeling choice. Source scope, instructor coverage, annotation inventory, isolates, feature geometry, the broad pilot elbow and macro metric weighting remain explicit limits of the revised study. The original and revised aggregate differences combine multiple changes and are not a single-factor causal experiment.

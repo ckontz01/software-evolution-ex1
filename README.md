@@ -1,39 +1,66 @@
-# Guava architecture evolution — EPL484 Project 1
+# Guava architecture evolution - EPL484 Project 1 (revised)
 
-A reproducible study of **30 deliberately spaced stable Guava releases**, from 10.0 (2011-09-28) to 33.7.2 JRE (2026-09-29). Each version has one frozen analysis configuration and the four conditions required by the assignment: A1 ACDC/full, A2 ACDC/without omnipresent classes, A3 k-means/full, A4 k-means/without omnipresent classes. There are **120 finalized partitions**, plus the separate latest-version AI recovery.
+A reproducible study of **30 distinct major/minor Guava families**, from **10.0 (2011-09-28) to 33.7.2 JRE (2026-09-29)**. Each family contributes exactly one stable representative. Each version has one finalized protocol and the assignment's four required conditions: A1 ACDC/full, A2 ACDC/UE-filtered, A3 k-means/full and A4 k-means/UE-filtered. The series contains **120 final partitions**.
 
-**Start with the [PDF report](report/guava_evolution_report.pdf), [results explanation](docs/results_interpretation.md), and [oral-exam guide](docs/oral_exam_guide.md).** The [two-person commit roadmap](docs/commit_roadmap.md) assigns balanced review and development work for 17–23 October. The initial preparation is AI-assisted; the roadmap describes real student work to perform, without invented authors or backdated commits.
+**Start with the [revised PDF report](report/guava_evolution_report_revised.pdf), [results explanation](docs/results_interpretation.md) and [oral-exam guide](docs/oral_exam_guide.md).** The [two-person roadmap](docs/commit_roadmap.md) assigns balanced review and development work. Preparation and revision are AI-assisted; students' contributions and dates must reflect work they actually perform.
 
-## Main findings
+## What changed after the methodological review
+
+| Concern | Revised decision |
+|---|---|
+| Custom annotation-heavy graph | The **unmodified instructor DependencyExtractor JAR** is the sole source of primary class relationships. Supplemental ASM extraction supplies ownership, enclosing aliases and UE member evidence separately. |
+| Repeated patch observations | Sample **30 distinct major/minor families** from 45, one stable representative each. |
+| Public-suffix code ownership | Include Guava-owned `com.google.thirdparty.publicsuffix` implementation alongside `com.google.common`; genuine external libraries remain excluded. |
+| Weak justification for k | A single middle-release inertia pilot selects k=40 for 554 classes; the final rule scales that calibrated granularity with graph size. |
+| Course agreement metric | Add **MoJoFM in both directions** for filtering, algorithm, temporal and AI comparisons; ARI remains supplementary. |
+| Detector and MQ criticism | Retain the paper's standalone **UE**, without adding SIG, and the lecture-supported loop-free MQ formula. Explain those choices explicitly. |
+
+The full original study is preserved at commit [`d970305`](https://github.com/ckontz01/software-evolution-ex1/tree/d970305d4c5c5302e4692ffc6ea8f0607de9ab82). Compact original tables/configurations are under [results/baseline_v1](results/baseline_v1). The revision changes several study choices together, so whole-study metric differences are not attributed to a single cause.
+
+## Main revised findings
 
 | Measurement | Guava 10.0 | Guava 33.7.2 |
 |---|---:|---:|
-| Canonical outer-class nodes | 317 | 591 |
-| Directed internal dependencies | 1,693 | 3,969 |
-| Code lines in graph-owned source files | 48,821 | 95,800 |
+| Canonical project-owned type nodes | 317 | 594 |
+| Primary directed internal dependencies | 1,289 | 2,750 |
+| Nonannotation types | 311 | 563 |
+| Owned annotation types | 6 | 31 |
+| Graph isolates, including annotation isolates | 15 | 45 |
+| Code lines in graph-owned source files | 48,821 | 96,546 |
 
-The endpoint increase is 86.4% in class nodes and 134.4% in dependencies. These are structural measurements, not a direct measure of functionality or architectural quality. Source-backed change-point checks show that annotation changes explain most of the pronounced jumps around 31.1 and 33.4.1. [change_points.json](results/change_points.json) preserves the exact added/removed edges and source lines.
+Class nodes increase by **87.4%** and primary dependencies by **113.3%**. These are measurements of a static implementation view, not direct measurements of functionality or design quality. The separate [source inventory](data/provenance/source_inventory_33.7.2.json) counts 610 owned Java files and 96,622 code lines including package descriptors; that population differs from the files linked to graph nodes.
 
-![Classes and dependencies across the thirty selected releases](results/figures/01_classes_dependencies.png)
+![Class and dependency evolution across thirty distinct Guava families](results/figures/01_classes_dependencies.png)
 
-For the latest release, JNode-UE removes 22 of 591 classes. It removes `Preconditions` because use is spread widely across callers; it retains `Iterators` because `Iterables` has a strong specialized dedication to it. The [exact case study](docs/ue_case_study.md) works through both decisions using real member dependencies. UE also removes important API types such as `ImmutableList`; this is a preprocessing classification, not a recommendation to delete those classes from Guava.
+At 33.7.2 the broader supplemental model contains 3,982 edges, while the normalized instructor graph contains 2,750. The 1,232 supplemental-only edges include 1,145 targeting annotation types. Those edges are preserved for comparison and **are not added to the primary graph**. All 31 owned annotation types remain as isolates in this latest graph. The [extractor comparison](data/graphs/33.7.2/extractor_comparison.json) makes these distinctions inspectable.
+
+UE removes **22 of 594 classes**, leaving **572 nodes and 1,724 edges**. The classification preprocesses an architecture graph; it does not recommend deleting useful classes such as `Preconditions` or `ImmutableList` from Guava. [Worked member-evidence cases](docs/ue_case_study.md) explain actual removal/retention decisions.
 
 | Latest condition | Nodes | Clusters | Cohesion | Coupling | Lecture MQ |
 |---|---:|---:|---:|---:|---:|
-| A1 — ACDC/full | 591 | 95 | 0.407818 | 0.004596 | 0.403222 |
-| A2 — ACDC/filtered | 569 | 98 | 0.391992 | 0.003950 | 0.388041 |
-| A3 — k-means/full | 591 | 18 | 0.110793 | 0.010189 | 0.100604 |
-| A4 — k-means/filtered | 569 | 18 | 0.127155 | 0.007951 | 0.119204 |
+| A1 - ACDC/full | 594 | 135 | 0.257500 | 0.002201 | 0.255299 |
+| A2 - ACDC/filtered | 572 | 149 | 0.243079 | 0.001384 | 0.241695 |
+| A3 - kmeans/full | 594 | 43 | 0.185154 | 0.006165 | 0.178989 |
+| A4 - kmeans/filtered | 572 | 43 | 0.205205 | 0.003123 | 0.202082 |
 
-The filtered conditions have a different graph. After projecting the full partition onto **the same retained graph**, filtering improves MQ in 23/30 ACDC cases and 26/30 k-means cases. It does not always help. The latest same-graph change is −0.003196 for ACDC and +0.022611 for k-means. The large difference in cluster granularity also prevents interpreting a higher ACDC MQ as proof that it recovered the intended design.
+**Filtering does not help every method under the declared metric.** After projecting each full partition onto exactly the retained graph, ACDC reclustering has lower MQ in **all 30 releases** (mean change **-0.023837**). K-means reclustering improves MQ in **29 of 30** (mean change **+0.020553**). The latest fair changes are **-0.004721** and **+0.038313**, respectively. These revised findings differ substantially from the original study. They are reported without adjusting the sample or detector to improve a result. [Same-graph comparisons](results/same_graph_comparisons.csv)
 
-The blind AI experiment produced one complete **18-module** conceptual architecture. Its full-graph MQ is 0.098655, close to the structural k-means value, with adjusted Rand agreement 0.188980 against A3. Its responsibility names help explain the library, but no intended-architecture ground truth establishes accuracy. The exact [prompt and evidence](results/ai/experiment.json), [response](results/ai/response.md), [assignment](results/ai/assignment.csv), and [comparisons](results/ai/comparisons.csv) are preserved.
+The primary graph has more isolates than the broader custom graph. ACDC restores isolates as singleton clusters, which have zero cohesion; its latest full partition has 135 clusters and 47 singletons. K-means has 43 clusters. Higher MQ therefore must be interpreted alongside granularity and the actual grouping, not as proof of intended-architecture accuracy.
 
-All 30 size rows are in [sizes.csv](results/sizes.csv), all 120 required metric rows in [metrics.csv](results/metrics.csv), and the fair scope comparisons in [same_graph_comparisons.csv](results/same_graph_comparisons.csv).
+### Directional agreement
 
-## Reproduce from a fresh clone
+| Latest comparison, identical retained universe | Forward MoJoFM | Reverse MoJoFM | ARI |
+|---|---:|---:|---:|
+| Projected A1 → A2 | 81.41 | 80.98 | 0.6025 |
+| Projected A3 → A4 | 62.73 | 61.45 | 0.4297 |
 
-The tested environment is Python 3.12 and Java 17. The Python dependency closure is pinned in `requirements.lock.txt`. Use a Java 17+ installation; `EVOLUTION_JAVA` may point to its `java` executable if it is not on PATH. The included, checksum-pinned Eclipse compiler means a separate `javac` installation is not required.
+MoJoFM scores are on a 0-100 scale; reversing the source/reference partitions can change the distance and normalization. An expert ground truth is necessary for an accuracy claim, but not for calculating agreement. All **178 classical comparison pairs** and their universes are saved in [partition_comparisons.csv](results/partition_comparisons.csv), with exact distance/normalizer details per release. [MoJoFM method](docs/mojofm.md)
+
+All 30 size rows are in [sizes.csv](results/sizes.csv); all 120 metric rows and complete cluster/pair terms are preserved. The fresh latest-version AI experiment assigns all **594 classes to 18 conceptual modules**, with full-graph MQ **0.094303** and retained-graph MQ **0.089526**. AI → A1 MoJoFM is **28.57**, while A1 → AI is **61.63**; both directions matter because granularity and allowed move/join operations differ. The exact revised inputs, prompt, response and evaluations are preserved under [results/ai](results/ai). See [AI reflection](docs/ai_reflection.md) for responsibilities, evidence and limits.
+
+## Reproduce the data and results
+
+Use Python 3.12 and Java 17+. `EVOLUTION_JAVA` may point to the Java executable if it is not on PATH. Python dependencies are pinned in `requirements.lock.txt`; the included Eclipse compiler means a separate `javac` installation is not required.
 
 ```bash
 git clone https://github.com/ckontz01/software-evolution-ex1.git
@@ -41,24 +68,25 @@ cd software-evolution-ex1
 python -m venv .venv
 source .venv/bin/activate
 python -m pip install -r requirements.lock.txt
+python scripts/select_versions.py --check
 python scripts/unpack_data.py
 python scripts/fetch_tools.py
-python scripts/run_checks.py
 python scripts/fetch_data.py --offline --verify-git
+python scripts/run_checks.py
 python scripts/validate_results.py
 ```
 
-`unpack_data.py` restores every raw/derived file and verifies SHA-256 at both archive and member level. It refuses to overwrite a differing local file. The 32 deterministic archives preserve **1,829 files**, including all 90 original Maven artifacts, the two endpoint Git archives, and the complete detailed results. The [archive manifest](archives/manifest.json) enumerates every stored member. Original Git/source comparisons are cached for the first and last releases only; intermediate source artifacts are hash-pinned, without claiming every release was compared file-for-file with Git.
+The deterministic archives preserve the original JAR/source/POM artifacts and complete detailed results. Unpacking verifies archive/member hashes and refuses to overwrite differing files. The [archive manifest](archives/manifest.json) enumerates the exact contents. The revised 90 Maven artifacts total **120.407 MiB**. Source-to-Git correspondence is checked at both endpoints (326 and 611 Java files); intermediate source artifacts have SHA-256 pins without a claim of complete per-file Git comparison.
 
-To repeat the computations into a separate output directory:
+To repeat the study into separate output directories:
 
 ```bash
 python scripts/run_study.py --phase all --graph-root data/recomputed_graphs --output results/rerun/recomputed
 ```
 
-This recompiles the Java tools, extracts the 30 graphs, builds the shared feature universe, repeats the pilot, and runs A1–A4. Wall times and environment metadata will change; the preserved submission data remains available in the archives. The strict independent validator audits the canonical restored study. To replace canonical results intentionally, use the default paths and regenerate dependent figures/report afterward.
+This compiles/prepares the tools, builds each normalized instructor graph and supplemental member evidence, constructs the fixed feature universe, repeats the one-release pilot and runs A1-A4. Wall times and environment metadata will change. The independent validator audits the canonical restored study; replacing canonical results intentionally requires regenerating dependent evidence and the report.
 
-Rebuild the supplementary evidence and report after restoring canonical data:
+After restoring or recomputing canonical results:
 
 ```bash
 python scripts/benchmark_ue.py
@@ -68,89 +96,90 @@ python scripts/evaluate_ai.py
 python scripts/build_report.py
 ```
 
-The AI prompt/response is a recorded experiment, not an API call silently repeated by these commands. `evaluate_ai.py` verifies frozen input hashes and scores the saved partition. A new AI session can produce a different proposal; preserve a separate record for that experiment. Fixed seeds and pinned numerical packages improve repeatability; cross-platform floating-point bit identity is not promised.
+The final command writes `report/guava_evolution_report_revised.pdf` and an identical canonical copy `report/guava_evolution_report.pdf`. It reads saved results and fails on missing data or inconsistent configuration hashes; it does not invent measurements or generate new partitions. The AI evaluation scores an already recorded partition, rather than silently repeating a live model call.
 
-## Choose k directly or inspect one version
+## Pilot-calibrated k and manual control
 
-The finalized study does not search for the best k. It uses the predeclared rule:
+The middle selected release is **25.1**, with **554 nodes and 2,681 edges**. The fixed candidate grid is `2, 5, 10, 15, 20, 25, 30, 40, 50, 60, 75, 90, 110, 130`. The normalized inertia chord-gap rule selects **k=40**, targeting about **13.85 classes per cluster**. The final rule is:
 
 $$
-k=\left\lceil\sqrt{n_{full}/2}\right\rceil.
+k_{full}=\left\lceil\frac{40n_{full}}{554}\right\rceil,
+\qquad k_{filtered}=\min(k_{full},n_{filtered}).
 $$
 
-The same k is used before/after removal, with a clamp only if fewer nodes remain. This is an engineering granularity heuristic, not a lecture theorem or proof of optimality. It produces k = 13–18 across the sample. The seed is 484, with 10 initializations and a 300-iteration limit. The pilot changes ACDC's size parameter on one middle release; it does not sweep k.
+It gives **k=23-45** across the selected full graphs. The elbow is broad: nearby candidates have similar normalized gaps. This is empirical pilot evidence plus an explicit scaling assumption, not a guarantee of the true component count. The declared fallback was not needed. MQ does not enter selection, and the final versions receive no separate k sweep.
 
-For an explicit reviewer-selected k or threshold change, use a new exploration directory:
+A matched-ACDC-k diagnostic on the pilot shows why granularity matters: k-means MQ rises from 0.160308 at 40 clusters to 0.242393 at 110 clusters, while ACDC's 110-cluster MQ is 0.319277. Equal k does not equal identical cluster-size distributions or semantic quality. The matched trial is not used to select k. [Complete pilot decisions and curve](docs/pilot_decision.md)
+
+To choose k yourself for a separate exploratory run:
 
 ```bash
-python scripts/explore_release.py --version 33.7.2 --k 12 --acdc-size 20 --usage-threshold 0.85 --cardinality-threshold 0.90 --output results/rerun/my_k12
+python scripts/explore_release.py --version 33.7.2 --k 40 --acdc-size 20 --usage-threshold 0.85 --cardinality-threshold 0.90 --output results/rerun/my_k40
 ```
 
-This uses the same extracted evidence and feature schema but does not change `config/analysis.json` or the 120 finalized results. A successful manual-k-12 smoke run was performed separately during tool verification.
+## Standalone JNode-UE
 
-## Standalone JNode-UE replacement
-
-The supplied JNode was not used. The new implementation follows **Yano and Matsuo, “Moderate Detection and Removal of Omnipresent Modules in Software Clustering” (2020)**, equations 1–3, PDF p. 2 / printed p. 663. It implements the paper's **UE** method. Historical JNode/Noise uses different ComponentRank/shortest-path logic; this repository does not mislabel UE as a faithful reimplementation of that earlier algorithm.
+The new detector implements Yano and Matsuo's **Usage Equality** method from the supplied *Moderate Detection and Removal of Omnipresent Modules in Software Clustering* paper. The paper compares UE against the older significance-based JNode. This implementation does not add the old SIG predicate; UE intersected with SIG would be a separate hybrid.
 
 ```bash
 python scripts/jnode_ue.py --classes data/graphs/33.7.2/classes.csv --members data/graphs/33.7.2/member_dependencies.csv --output results/rerun/ue_demo
 ```
 
-The output includes every class's dedication, usage equality, cardinality, strongest caller and decision reason. Only distinct, resolved internal method/field uses enter the paper's member-based counts. Inner/anonymous ownership is merged while original member identities remain distinct. Both thresholds must hold: usage equality ≥ 0.85 and cardinality ≥ 0.90. Removal is simultaneous in one pass; zero incoming evidence does not cause removal.
+The detector preserves original member identities through class merging, counts distinct source members separately from caller classes, and evaluates usage equality ≥0.85 and cardinality ≥0.90 inclusively. Classes without incoming member evidence are retained with an explicit reason. Removal is simultaneous, with no cascade. “External member” in the paper means outside the target class, inside the scoped project; external libraries remain excluded. [Equations and boundaries](docs/omnipresent.md)
 
-The detector uses set aggregation and indexed lookups. In the saved synthetic benchmark, 10,000 classes and 200,000 distinct member references take a median **1.236 s** over three detector-only runs. [Benchmark data](results/performance/ue_benchmark.json) records all measurements, input construction, environment and memory qualifications. This is not a measured speedup against the supplied JNode.
+Set aggregation and indexed lookups avoid all-pairs shortest paths. The [synthetic benchmark](results/performance/ue_benchmark.json) records actual times, expected-score checks and environment qualifications. Detector-only timing is distinct from extraction and CSV parsing; no speedup against the old JNode executable is claimed.
 
-## Scope, relations and features
+## Graph and feature policy
 
-Only source-owned `com.google.common` production classes in the selected main/JRE artifact become nodes. External JDK classes, Guava dependencies, annotations supplied by other libraries, bundled `com.google.thirdparty.publicsuffix`, Android variants, GWT artifacts, tests and benchmarks are excluded. Stable releases containing `@Beta` API annotations remain included; beta/RC/snapshot **releases** are excluded.
+The instructor extractor's seven tutorial categories are normalized through the supplemental enclosing-class alias map. The metric graph is a binary directed union, with one edge per ordered pair, no self-loops and both endpoints internal. Raw category/occurrence evidence is preserved. The instructor receives a deterministic subset JAR of unchanged owned base class bytes; the complete Maven input is retained separately.
 
-The extractor recognizes the seven tutorial relations: inheritance, interface implementation, method calls, method parameter types, field references, type usage and declared thrown exceptions. Every type is retained in the audit CSV; the metric graph is the binary directed union, with one edge per ordered class pair and no self-loops. Repeated calls and multiple relation types do not multiply a pair's weight. A pair legitimately has no edge when no included relation exists.
+Project-owned `com.google.common` and `com.google.thirdparty.publicsuffix` types remain nodes, including annotations and isolates. JDK, failureaccess and external libraries are excluded. Genuine inner/nested/local/anonymous types merge into their outermost owners using metadata rather than a blind `$` split. Base entries define the multi-release-JAR view. The tools inspect target bytecode without executing Guava, and do not claim to resolve every reflection or runtime-dispatch dependency.
 
-Inner, nested, local and anonymous classes are merged through class-file enclosing metadata, not by blindly cutting names at `$`. Legitimate top-level dollar names remain distinct. The extractor uses base entries for multi-release JARs. It never runs Guava application classes and does not claim complete runtime dispatch/reflection recovery.
+All releases use **715 union identities and 1,430 fixed outgoing/incoming feature columns**. K-means receives sparse `[A+I,(A+I)^T]` rows, L2-normalized. Identity terms never enter graph edge counts or metrics. Missing/removed coordinates stay as zeros. Seed 484, ten initializations, Lloyd updates and fixed iteration/tolerance settings apply throughout. Package labels and AI assignments are not structural features.
 
-All releases use the same **712-class union coordinate system**. K-means receives 1,424 sparse outgoing/incoming feature columns, constructed as `[A+I,(A+I)^T]` and row-L2 normalized. Removed/absent class coordinates remain present as zero evidence. Identity entries distinguish isolated rows and never enter the dependency graph used for metrics. Package names are identifiers, not k-means features.
-
-The original York **ACDC** source is preserved unmodified. A reversible `CLASS.java` adapter prevents the original filename-based container naming from collapsing same-package classes. True isolates are restored as singleton groups. The [28.2 pilot](docs/pilot_decision.md) produced identical valid partitions at sizes 10/20/40, so size 20 was retained globally. The limit applies to the SubGraph phase; later adoption can create larger final clusters.
+The original York ACDC source is unchanged. Its reversible `.java` input mapping avoids file-basename collisions. True isolates are restored as singletons. The pilot's size-10/20/40 partitions are identical, so 20 is retained globally; later orphan adoption can exceed that phase's size limit.
 
 ## Lecture metrics and interpretation
 
-The implementation uses the reconstruction lecture's loop-free density formulation (PDF pp. 15–17), including all unordered cluster pairs when averaging coupling:
+The reconstruction lecture permits both squared and loop-free cohesion denominators. We retain the loop-free form used in its worked example:
 
 $$
-A_i=\frac{\mu_i}{n_i(n_i-1)},\qquad
-E_{ij}=\frac{\epsilon_{ij}}{2n_in_j},\qquad
+A_i=\frac{\mu_i}{n_i(n_i-1)},\qquad E_{ij}=\frac{\epsilon_{ij}}{2n_in_j},\qquad
 MQ=\frac1k\sum_iA_i-\frac{2}{k(k-1)}\sum_{i<j}E_{ij}.
 $$
 
-`epsilon` counts both dependency directions. Singleton cohesion and the single-cluster coupling term are zero; empty graphs also return zero by documented convention. Per-cluster and per-pair CSVs preserve each term. Supplementary weighted cohesion and inter-edge fraction help explain granularity effects but do not replace the required lecture metrics.
+`epsilon` counts both directions. Singleton cohesion, the single-cluster coupling term and empty-graph metrics use explicit zero conventions. All unordered pairs, including zero-edge pairs, enter the coupling average. Per-cluster/pair CSVs preserve every term. Supplementary weighted cohesion and inter-edge fraction expose different aspects of granularity.
 
-Static partitions describe the analyzed implementation. They do not establish the intended architecture, functional completeness, requirements satisfaction or architectural erosion. The course's Lehman discussion is used with that empirical limitation. Adjusted Rand values measure agreement/stability, not accuracy without validated ground truth. The AI comparison additionally receives class names and documentation, so it uses an explicitly different information setting.
+Static partitions describe implemented structure. They do not establish intended design, requirements satisfaction, user-perceived quality or architectural erosion. Lehman's laws are discussed within the evidence available. MoJoFM/ARI are agreement measures here, and the AI experiment has a different information setting because it also sees names and documentation.
 
 ## Selected releases
 
 ```text
-10.0, 11.0, 12.0, 13.0.1, 15.0, 16.0.1, 18.0, 21.0,
-23.0, 23.2, 23.5, 24.0, 25.1, 27.0, 27.1, 28.2, 30.0,
-30.1.1, 31.1, 32.0.1, 32.1.2, 33.0.0, 33.2.0, 33.3.1,
-33.4.1, 33.4.3, 33.4.6, 33.4.8, 33.7.0, 33.7.2
+10.0, 12.0.1, 13.0.1, 15.0, 16.0.1, 18.0, 19.0, 21.0
+22.0, 23.1, 23.2, 23.4, 23.5, 24.0, 24.1, 25.1
+26.0, 27.1, 28.0, 28.2, 29.0, 30.1.1, 31.0.1, 32.0.1
+32.1.3, 33.1.0, 33.2.1, 33.4.8, 33.5.0, 33.7.2
 ```
 
-The sample covers 26 major/minor families and skips at least one eligible stable point between adjacent selections. The choice is rank-spaced over a documented 70-point eligible catalog, independent of clustering results. [Project selection](docs/project_selection.md), [data acquisition](docs/data_acquisition.md), and `config/versions.json` record exclusions, release dates, tags, commit identities, URLs and checksums.
+The selector reconstructs the 30 family ranks from the captured 45-family catalog, independent of graphs and quality. It uses the highest eligible stable patch per selected family, with the declared oldest-boundary 10.0 exception. Some selected families are adjacent; spacing is by family rank rather than uniform calendar gaps. The [selection guide](docs/project_selection.md), [acquisition guide](docs/data_acquisition.md) and [manifest](config/versions.json) record exact decisions and evidence.
 
 ## Evidence and navigation
 
 | Path | Contents |
 |---|---|
-| `java/DependencyExtractor.java` | Source/member-aware static extraction |
-| `src/evolution/` | Graph model, UE, clustering, lecture metrics and runner |
-| `tests/` | 42 focused tests including real compiled Java fixtures |
-| `archives/` | Complete raw artifacts and detailed per-release results |
-| `data/provenance/` | Acquisition receipts, inventories, Git/source checks and eligibility |
-| `results/*.csv` | All release sizes, 120 metrics, runtime and comparison tables |
-| `results/validation.json` | Independent audit: 3,362,762 evidence checks, zero failures |
-| `results/ai/` | Exact prompt, five hashed inputs, initial hypothesis, final assignment and evaluation |
-| `results/figures/` | Shareable PNG and SVG charts |
-| `docs/` | Methods, course traceability, worked cases, oral-exam and contribution guides |
-| `report/` | PDF, generation manifest and rendering checks |
+| `third_party/dependency_extractor/` | Exact supplied instructor JAR, hash and launcher provenance |
+| `java/DependencyExtractor.java` | Supplemental ownership, enclosing metadata, member evidence and separate sensitivity graph |
+| `src/evolution/` | Normalization, UE, clustering, k selection, lecture metrics, MoJoFM and runner |
+| `tests/` | Focused compiled Java, detector, clustering, metric and agreement tests |
+| `archives/` | Original artifacts and complete detailed evidence |
+| `data/provenance/` | Family selection, acquisition, inventory and Git/source checks |
+| `data/graphs/VERSION/` | Instructor inputs/raw output/normalization and separate supplemental data |
+| `results/*.csv` | Complete size, quality, runtime, temporal and agreement tables |
+| `results/validation.json` | Independent audit of the current recorded study |
+| `results/ai/` | Fresh revised-input AI prompt, response, partition and evaluation |
+| `results/baseline_v1/` | Original configuration and summary results for transparent comparison |
+| `results/figures/` | PNG and SVG figures generated from saved measurements |
+| `docs/` | Methods, course references, worked examples and oral/contribution guides |
+| `report/` | Revised PDF, generator-input hashes and render verification |
 
-The temporary repository is the requested preparation destination. The teacher-owned repository URL and teammate identity were not supplied; no teacher-repository import, Blackboard upload, student authorship or future commit is represented as already completed. The [roadmap](docs/commit_roadmap.md) gives both students concrete, balanced work to review and commit through their own accounts.
+The requested temporary repository is the preparation destination. The teacher-owned repository URL and teammate identity were not supplied; teacher import and Blackboard submission are separate administrative actions. The roadmap describes genuine future review/development commits by both students, without fabricated authors or backdated activity.
