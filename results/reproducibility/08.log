@@ -1,0 +1,44 @@
+{
+  "version": "33.7.2",
+  "modules": 18,
+  "full_mq": 0.09865499028752459,
+  "retained_mq": 0.09407707953512999,
+  "comparisons": [
+    {
+      "condition": "A1",
+      "graph": "full",
+      "n_nodes": 591,
+      "n_edges": 3969,
+      "baseline_mq": 0.40322176971492424,
+      "ai_mq": 0.09865499028752459,
+      "adjusted_rand_agreement": 0.20199263922962918
+    },
+    {
+      "condition": "A2",
+      "graph": "retained",
+      "n_nodes": 569,
+      "n_edges": 2886,
+      "baseline_mq": 0.38804127678146955,
+      "ai_mq": 0.09407707953512999,
+      "adjusted_rand_agreement": 0.18695741602259472
+    },
+    {
+      "condition": "A3",
+      "graph": "full",
+      "n_nodes": 591,
+      "n_edges": 3969,
+      "baseline_mq": 0.10060382441945273,
+      "ai_mq": 0.09865499028752459,
+      "adjusted_rand_agreement": 0.188980234825294
+    },
+    {
+      "condition": "A4",
+      "graph": "retained",
+      "n_nodes": 569,
+      "n_edges": 2886,
+      "baseline_mq": 0.11920375048999031,
+      "ai_mq": 0.09407707953512999,
+      "adjusted_rand_agreement": 0.19948788647890497
+    }
+  ]
+}
