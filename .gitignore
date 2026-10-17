@@ -1,0 +1,14 @@
+__pycache__/
+*.py[cod]
+.venv/
+build/
+config/*.local.json
+results/rerun/
+report/rendered/
+report/qa/
+data/raw/
+data/graphs/*/
+results/versions/
+results/pilot/
+third_party/acdc/acdc/*.class
+.DS_Store

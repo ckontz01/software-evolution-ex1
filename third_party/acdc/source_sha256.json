@@ -1,0 +1,21 @@
+{
+  "README": "2b0259c2688925cefafb78a12ffe48d846929025e709aa6a2176ef497275cf75",
+  "acdc/ACDC.java": "e9ace5e1db106745fcb30bb2475ab75d23910f9fbafd8487931b86dbed69bb27",
+  "acdc/BodyHeader.java": "bde4bfa03871c3d3202337d2f87263440aec45e35d8b3e1ff8e65d056f87eee3",
+  "acdc/ClusterLast.java": "81a38aa7824eb487d7aa6db4976f93344af1fe7fad9949dc8bc6f1c9d9aa333e",
+  "acdc/DownInducer.java": "53164fb1b1f74bf3a5fed589e47558b9129f1b96aea771a801a7732a3a2bed12",
+  "acdc/Edge.java": "5505c310f36fde96c83ab364b48e46749512a0f8a111b3a1ab25355a1ad423d2",
+  "acdc/FullOutput.java": "b35324f2e0bb164a3de6239b468d593d8ab041cdf664e2a00e85849ceb60d7a6",
+  "acdc/IO.java": "fa3e9b6302d71b1371411d07ecf12f8ba8478c8ae9c2044606000e499cbde620",
+  "acdc/Inducer.java": "cdd435e297172f68c095f6fe26900ff84564505d5250c8c6d66610f2b8076111",
+  "acdc/InputHandler.java": "b3d523642cdf7c201d40d24880434a67d2a0641df8d7bc9a717696c3c388e499",
+  "acdc/Node.java": "d15c76ef1d29bf72782ab48f6ccabdbf5eba73d725ebd7ab6400cbd3f7c4cd47",
+  "acdc/OrphanAdoption.java": "e6310410d6948d580295d6005bdaf31cc2ca84307e7c7992518af523fcb7d32c",
+  "acdc/OutputHandler.java": "e05f26491990a1fdc5a0c76ae344298ef8cfba9933ef83a24d4b03b29adfc0a0",
+  "acdc/Pattern.java": "bc97e84f414d8778c372edb92e0a7ccbe2aee4b8e740639a07e1d2f7b2bf9920",
+  "acdc/RSFOutput.java": "f38ee1c268b7c78cd7b5732ad3990cfe1afc11d8cc55eb5b83cd8af39d304fc0",
+  "acdc/Sortable.java": "49e1eaf0d25446af39b659b3388ebb0ff56a5a14a799a23990cef039107effbe",
+  "acdc/SubGraph.java": "cd12e4296c0b3e281742b8ef41c91f77db669f8ec3ed466968765c1f8201f2f7",
+  "acdc/TAInput.java": "40b2d1b6d3838b87f5522e082375877faf25d268b7833d8b85b6e7bc0e508229",
+  "acdc/UpInducer.java": "89e342ff9173e37fc0ec3db1d46767d4cc6a489b4fc9ab8d0011a9f7f119c9f2"
+}

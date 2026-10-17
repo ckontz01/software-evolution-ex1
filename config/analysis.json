@@ -1,0 +1,19 @@
+{
+  "schema_version": 1,
+  "subject": "google/guava",
+  "scope": "Published Guava JRE production artifact; source-owned com.google.common classes only",
+  "relation_types": ["EXTENDS", "IMPLEMENTS", "METHOD_CALL", "METHOD_PARAMETER", "FIELD_REFERENCE", "TYPE_USAGE", "EXCEPTION_THROWS"],
+  "relation_weight": 1,
+  "graph": "binary_directed_union_no_self_loops",
+  "merge_inner_and_anonymous": true,
+  "multi_release_policy": "base_class_entries_only",
+  "omnipresent": {"method": "UE", "usage_threshold": 0.85, "cardinality_threshold": 0.9, "passes": 1},
+  "features": "L2_rows([A+I,(A+I)^T])_fixed_union_coordinates",
+  "kmeans": {"k_rule": "ceil(sqrt(n_full/2))", "same_k_for_full_and_filtered": true, "random_state": 484, "n_init": 10, "max_iter": 300, "algorithm": "lloyd"},
+  "acdc": {"patterns": "+so", "max_subgraph_size": 20, "output": "default_fine_flat", "isolates": "explicit_singletons", "node_ids": "class_plus_java_suffix"},
+  "metric": "lecture_macro_cohesion_minus_mean_pair_coupling",
+  "singleton_cohesion": 0,
+  "empty_partition_metrics": 0,
+  "pilot": {"selection": "middle_selected_release", "acdc_max_subgraph_sizes": [10, 20, 40], "k_sweep": false},
+  "notes": "Frozen rules are shared across all releases. Identity entries are features only and never real graph edges. Beta API annotations in stable releases are retained; prerelease versions are excluded."
+}
