@@ -2,7 +2,7 @@
 
 ## What was actually done
 
-A fresh GPT-6 Astra Pro session recovered one conceptual responsibility partition of **Guava 33.7.2 JRE from the revised 594-class, 2,750-edge instructor-derived graph**. It received five fixed evidence files: the complete class inventory, directed internal dependencies, package counts, aggregate package dependencies, and unmodified package documentation from the matching source JAR. The exact task and launch instruction are preserved in `results/ai/prompt.txt` and `launch_message.txt`. The new `activity.json` records read order and the initial checkpoint; `experiment.json` records all supplied input hashes. This is a newly recorded experiment, with a different assignment and response from the original study. [Evidence: `results/ai/experiment.json`, `activity.json`, `evaluation.json`; original record at Git commit `d970305`.]
+During the preceding instructor-extractor study, a fresh GPT-6 Astra Pro session recovered one conceptual responsibility partition of **Guava 33.7.2 JRE from the 594-class, 2,750-edge graph**. It received five fixed evidence files: the complete class inventory, directed internal dependencies, package counts, aggregate package dependencies, and unmodified package documentation from the matching source JAR. The exact task and launch instruction are preserved in `results/ai/prompt.txt` and `launch_message.txt`; `activity.json` records read order, and `experiment.json` records the input hashes. The current sampling revision keeps this original response and assignment. The latest graph inputs are unchanged, so its scores are recalculated against the new A1–A4 baselines without another live AI call. [Evidence: `results/ai/experiment.json`, `activity.json`, `evaluation.json`; original first-study record at Git commit `d970305`.]
 
 The session first read class names, declaration kinds and package counts, then saved `initial_hypothesis.md` before reading dependencies or documentation. That checkpoint proposes qualitative responsibility areas without final class membership or a fixed module count. The session then produced **one final partition of 18 modules**, assigning all 594 classes exactly once, including all 45 isolates and all 31 annotation declarations. There are no invented or external classes. The coordinator calculated quality and agreement only after the fresh session completed. The retained-graph scores project this same partition; they are not a second AI recovery. [Evidence: `activity.json`, `assignment.csv`, `evaluation.json`.]
 
@@ -43,16 +43,16 @@ These are the module names and responsibilities returned by the fresh session. `
 
 ## Numerical comparison on matching graphs
 
-| Baseline | Graph | Baseline MQ | AI MQ | MoJoFM AI → baseline | MoJoFM baseline → AI | ARI |
-|---|---|---:|---:|---:|---:|---:|
-| A1 | full | 0.255299 | 0.094303 | 28.57 | 61.63 | 0.166571 |
-| A2 | retained | 0.241695 | 0.089526 | 32.85 | 63.18 | 0.200843 |
-| A3 | full | 0.178989 | 0.094303 | 32.52 | 61.63 | 0.170132 |
-| A4 | retained | 0.202082 | 0.089526 | 33.82 | 63.36 | 0.153464 |
+| Baseline | Graph | Baseline MQ | AI MQ | AI → baseline MoJoFM | Baseline → AI MoJoFM |
+| --- | --- | --- | --- | --- | --- |
+| A1 | full | 0.255299 | 0.094303 | 28.57 | 61.63 |
+| A2 | retained | 0.241695 | 0.089526 | 32.85 | 63.18 |
+| A3 | full | 0.178989 | 0.094303 | 32.52 | 61.63 |
+| A4 | retained | 0.184844 | 0.089526 | 36.12 | 66.25 |
 
 On the full **594-node, 2,750-edge** graph, AI cohesion is **0.096598**, coupling **0.002295**, and lecture MQ **0.094303**. Projection onto the **572 retained nodes and 1,724 edges** gives cohesion **0.090686**, coupling **0.001159**, and MQ **0.089526**. Both have 18 nonempty modules. The largest full AI module has 127 classes; A1 has 135 clusters and A3 has 43, so granularity differs substantially. [Evidence: `results/ai/metrics.json`, `retained_metrics.json`, `comparisons.csv`; `results/metrics.csv`.]
 
-MoJoFM is directional. Here **AI → A1 is 28.57**, while **A1 → AI is 61.63**. Transforming a coarse 18-module partition into a much finer partition often requires many class moves; in the reverse direction, joins can combine existing groups. The normalization also depends on the target partition. Reporting only the larger direction would hide a material part of the comparison. Neither direction is an accuracy score because neither partition is a validated intended architecture. ARI, which is symmetric, is retained as supplementary agreement evidence. [Evidence: `results/ai/partition_comparisons.json`; `docs/mojofm.md`; Lecture 6–7 reconstruction material.]
+MoJoFM is directional. Here **AI → A1 is 28.57**, while **A1 → AI is 61.63**. Transforming a coarse 18-module partition into a much finer partition often requires many class moves; in the reverse direction, joins can combine existing groups. The normalization also depends on the target partition. Reporting only the larger direction would hide a material part of the comparison. Neither direction is an accuracy score because neither partition is a validated intended architecture. [Evidence: `results/ai/partition_comparisons.json`; `docs/mojofm.md`; Lecture 6–7 reconstruction material.]
 
 The AI partition has lower lecture MQ than each baseline on the corresponding graph, but only **40.65%** of full-graph edges cross its module boundaries. A1's corresponding fraction is **63.93%**. These observations can coexist: the lecture MQ averages cluster densities and pairwise coupling, whereas the boundary-edge fraction counts edge mass. Large semantic modules often absorb more internal edges while having a lower internal density. Neither statistic alone proves a superior architecture. [Evidence: `results/ai/metrics.json`; `results/metrics.csv`; lecture MQ definitions in `docs/course_traceability.md`.]
 
@@ -70,6 +70,6 @@ A static binary graph with inner/anonymous classes merged does not establish run
 
 For longitudinal measurement, the structural pipeline is the more straightforward repeatable procedure: select releases before measuring outcomes, pin data, apply one explicit extractor model, execute fixed clustering policies and calculate documented metrics. A language model can complement it when given a bounded, verifiable evidence packet and required to produce complete membership and evidence-linked rationale. I would use disagreements to choose questions for maintainers, not let MQ or an AI label alone approve a refactoring or deletion.
 
-In an oral examination: “We gave a fresh session the corrected latest graph and matching package documentation. It saved an initial names-only hypothesis, then made one final 18-module assignment for all 594 classes. We scored that fixed output afterward using the same lecture MQ and bidirectional MoJoFM as the baselines. Its full MQ was 0.094303; the output is useful as a semantic explanation, but different information, cluster sizes and missing ground truth prevent an accuracy claim.”
+In an oral examination: “In the original recorded AI experiment, we gave a fresh session the corrected latest graph and matching package documentation. It saved an initial names-only hypothesis, then made one final 18-module assignment for all 594 classes. We scored that fixed output afterward using the same lecture MQ and bidirectional MoJoFM as the baselines. Its full MQ was 0.094303; the output is useful as a semantic explanation, but different information, cluster sizes and missing ground truth prevent an accuracy claim.”
 
 The complete original fresh response remains unedited in `results/ai/response.md`. This reflection summarizes and evaluates it; it does not rewrite its output to improve scores.

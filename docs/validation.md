@@ -10,6 +10,8 @@ python scripts/validate_results.py
 
 The result is `results/validation.json`. A successful run exits with status zero and records `status: passed`, the evidence-check count, per-category counts, no failures, per-release measurements, and the checked AI population. These are **evidence checks**, not millions of independently designed unit tests.
 
+For the current revision, the independent audit passed **7,949,858 checks with no failures**. The separate complete test suite passed **91 tests**: the existing 60 tests, 11 release-selection tests and 20 archive tests. The test total and the evidence-assertion total measure different kinds of verification.
+
 For a deliberately limited audit during development, before the AI response is available:
 
 ```bash
@@ -23,7 +25,7 @@ The output explicitly records that the AI experiment was excluded. A missing or 
 
 ### Release selection and input provenance
 
-The validator rebuilds the eligible family catalog from the frozen tag inventory. It checks the 30 distinct major/minor families, the family-rank selection, the declared boundary convention, and the stable-patch representatives. It checks dates, commit identities, JRE flavour, source prefixes, and checksums. The obsolete requirement to skip a release between every adjacent sample is not applied to the revised family-based selection.
+The validator rebuilds the eligible family catalog from the frozen tag inventory. It checks the 24 major-version anchors, latest endpoint, five optional minor releases, first-eligible representatives and stated exceptions. It reconstructs the calendar-gap decisions, the 60-day minimum and the cap of two optional additions per major. It also checks all 30 distinct families, dates, commit identities, JRE flavour, source prefixes and checksums. This rule concerns actual time between releases; it does not require every pair of version labels to skip a numeric minor.
 
 For every release, it verifies the binary JAR, source JAR, and POM hashes. Every binary class is accounted for as either owned or excluded. The aliases must reconcile with the retained outer-type inventory and matching source files. Both `com.google.common` and the Guava-owned public-suffix implementation are in scope.
 
@@ -61,7 +63,7 @@ All 178 main comparison rows and their detailed JSON terms are recomputed on the
 
 The validator uses a generic unit-capacity residual-network maximum flow for the tied-overlap problem. For the maximum-distance denominator, it builds a target-size Ferrers graph and computes a matching, rather than reusing the production implementation's sorted-size recurrence. This separate implementation was also checked against exhaustive shortest paths over actual Move/Join operations for all 2,960 ordered partition pairs with zero through five nodes. The four lecture examples are checked within every full audit.
 
-MoJoFM indicates agreement with the chosen reference. No reference partition is automatically treated as validated intended architecture. ARI remains an independently recomputed supplementary agreement measure.
+MoJoFM indicates agreement with the chosen reference. No reference partition is automatically treated as validated intended architecture.
 
 ### Recorded AI recovery
 
@@ -70,5 +72,7 @@ The default audit verifies the prompt and input hashes, confirms that the AI saw
 Those checks establish that the saved record and arithmetic are consistent. They cannot inspect private model knowledge or independently prove its declarations about what it consulted. The AI receives semantic information that structural algorithms do not receive; the report retains that information-asymmetry limitation.
 
 ## What passing means
+
+The separate archive tests check deterministic packing, lossless base64 decoding, stored and decoded checksums, whole-ZIP and multipart compatibility, member verification, safe paths and the refusal to overwrite differing files. Altered or missing data must be rejected before restoration. These storage checks complement the scientific result audit; changing the storage encoding does not regenerate any architecture.
 
 Passing establishes that the published measurements agree with the retained inputs and the declared revised protocol. It does not prove that a static extractor sees reflection or every dynamic dispatch target, that a high MQ identifies the intended architecture, or that every reasonable graph or sampling policy would produce the same scientific interpretation. The tests, independent audit, source-based interpretation, and explicit modeling choices address different questions and are all needed for a defensible oral explanation.

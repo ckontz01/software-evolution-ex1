@@ -69,7 +69,11 @@ The fixed thresholds are usage equality at least 0.85 and cardinality at least 0
 
 ## One pilot, then one frozen protocol
 
-The revised sample contains 30 distinct major/minor families, selected using release history alone. A pilot on the middle selected release examines ACDC subgraph sizes and a declared grid of k-means cluster counts. The final graph policy, UE thresholds, feature schema, algorithm options and calibrated k rule are fixed before the 30-release final run. The required A1–A4 outputs are one final partition per condition per release.
+The sample contains 30 distinct major/minor families. It covers the first eligible .0 release of every major version from 10 through 33, retains the latest endpoint, and fills five remaining places using a calendar-gap rule. The minimum allowed gap is 60 days; each major may receive at most two optional additions. The actual shortest gap is 74 days. Only release metadata enters this selection; the complete procedure and exceptions are in [project_selection.md](project_selection.md).
+
+A pilot on the middle selected release examines ACDC subgraph sizes and a declared grid of k-means cluster counts. The graph policy, UE thresholds, feature construction, algorithm options and k-selection policy remain unchanged from the preceding study. Changing the release cohort does, however, change the class-coordinate union and the middle release, so the pilot and final partitions are recomputed. The required A1–A4 outputs are one final partition per condition per release.
+
+Feature selection and cluster-count selection are separate decisions. The reconstruction lecture lists feature selection separately from the clustering algorithm (slide 8), and the assignment asks how the number of groups was chosen (p.4). Neither source prescribes a one-release elbow or size scaling. Those are declared choices of this study, not interpretations of a mandatory course rule.
 
 ACDC uses the original York implementation with `+so` and `-l20`. A reversible `.java` suffix on input IDs avoids its file-basename collision for bare Java names, then outputs are mapped back. Real graph isolates are restored as singletons because dependency-only RSF cannot name them. The subgraph-size setting is not a global bound on final cluster size; orphan adoption can produce larger groups.
 
@@ -85,7 +89,7 @@ The required lecture formula uses directed loop-free cohesion `mu_i/[n_i(n_i-1)]
 
 Macro metrics depend on cluster granularity and isolates. Results therefore include cluster counts, maximum sizes, singleton counts, weighted cohesion and edge retention. ACDC and k-means need not produce matching numbers of clusters even after empirical k calibration. Higher MQ alone does not establish the intended architecture.
 
-Full-versus-filtered agreement is evaluated on the same retained class universe: project the full partition before comparing it with the newly recovered filtered partition. Temporal comparisons use common class identities. MoJoFM is reported in both directions with a declared reference partition; ARI is supplemental symmetric agreement. These are valid agreement calculations without ground truth. Calling them recovery accuracy would require a validated reference architecture. See [mojofm.md](mojofm.md).
+Full-versus-filtered agreement is evaluated on the same retained class universe: project the full partition before comparing it with the newly recovered filtered partition. Temporal comparisons use common class identities. MoJoFM is reported in both directions with a declared reference partition. These are valid agreement calculations without ground truth. Calling them recovery accuracy would require a validated reference architecture. See [mojofm.md](mojofm.md).
 
 Static extraction does not recover arbitrary reflection, dynamic class loading, every runtime dispatch target or dependencies erased by constant inlining. Compiler changes can affect observable evidence. Member resolution has explicit missing/ambiguous diagnostics. The revised graph, scope, sampling and k policies change together, so a whole-study difference from the original run cannot identify the causal contribution of one change.
 

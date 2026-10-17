@@ -10,7 +10,7 @@ python scripts/unpack_data.py
 python scripts/fetch_data.py --offline --verify-git
 ```
 
-The selector checks the exact 30-family sample against the frozen tag catalog. Unpacking restores the committed archives and verifies their hashes. The offline acquisition command verifies all pinned artifacts and repeats the endpoint source comparison without network requests. It fails on missing or changed files.
+The selector checks the exact 30-family sample against the frozen tag catalog. Unpacking verifies the stored files, decoded ZIPs and member hashes before restoring the files. The offline acquisition command verifies all pinned artifacts and repeats the endpoint source comparison without network requests. It fails on missing or changed files.
 
 To fetch any missing original Maven artifacts instead:
 
@@ -24,9 +24,9 @@ The revised collection used `python scripts/fetch_data.py --bootstrap --verify-g
 
 The [manifest](../config/versions.json) declares one binary JAR, one matching source JAR, and one POM for each of 30 stable releases from 30 distinct major/minor families. Each row records the full immutable Git commit, original tag, Maven coordinates, exact JRE/plain artifact version, URLs, relative paths, SHA-256 values, and published Maven SHA-1 values.
 
-The revised sample contains **90 Maven artifacts totaling 126,255,554 bytes (120.407 MiB)**. Sixteen release selections reuse the original pinned bytes; fourteen newly selected releases required 42 new artifacts. All artifacts were acquired and passed identity and integrity checks; no version was dropped because downloading it failed. The authoritative run record is [acquisition.json](../data/provenance/acquisition.json), and [SHA256SUMS](../data/provenance/SHA256SUMS) lists all 90 current artifact digests.
+The current sample contains **90 Maven artifacts totaling 121,898,763 bytes (116.252 MiB)**. All selected artifacts are pinned and checked; the calendar revision does not drop a version because of its analysis result. The authoritative run record is [acquisition.json](../data/provenance/acquisition.json), and [SHA256SUMS](../data/provenance/SHA256SUMS) lists all 90 current artifact digests.
 
-The original artifacts are unmodified inputs. Extraction, filtering, clustering, and evaluation write separate derived outputs. Committed per-version archives restore the `data/raw/VERSION` paths; caches for an older study may remain on a working machine but are not additional observations in the current manifest.
+The original artifacts are unmodified inputs. Extraction, filtering, clustering, and evaluation write separate derived outputs. Committed per-version archives restore the `data/raw/VERSION` paths; caches for an older study may remain on a working machine but are not additional observations in the current manifest. Version and pilot ZIPs are stored as `.zip.b64` text, decoded automatically by the same unpack command. The stored-text and decoded-ZIP checksums establish that the original ZIP bytes are preserved. [Archive format](../archives/README.md)
 
 Example for the last sampled release:
 
@@ -78,6 +78,6 @@ All external endpoints remain excluded: JDK, failureaccess, external annotation 
 
 A concise account is:
 
-> We selected 30 distinct Guava major/minor families from a frozen public tag catalog. We sampled the family ranks across the historical period and chose one stable representative per family. We recorded each tag's commit SHA and downloaded its released binary JAR, source JAR, and POM from Maven Central. We checked the published SHA-1 values, pinned SHA-256 values, and compared every Java source file at the oldest and latest endpoints with the immutable Git commits. Source ownership includes Guava's common packages and its own public-suffix implementation. We then used the instructor's dependency extractor and a documented cleanup policy, removed external endpoints, merged inner classes into their outer owners, and analyzed the internal graph. The member-level extractor supplies the separate evidence required by the UE equations.
+> We selected 30 distinct Guava major/minor families from a frozen public tag catalog. We covered all 24 major versions, retained the latest endpoint and selected five additional minor releases to reduce long calendar gaps, subject to minimum spacing and a cap on additions per major. Each family contributed one release. We recorded each tag's commit SHA and downloaded its released binary JAR, source JAR, and POM from Maven Central. We checked the published SHA-1 values, pinned SHA-256 values, and compared every Java source file at the oldest and latest endpoints with the immutable Git commits. Source ownership includes Guava's common packages and its own public-suffix implementation. We then used the instructor's dependency extractor and a documented cleanup policy, removed external endpoints, merged inner classes into their outer owners, and analyzed the internal graph. The member-level extractor supplies the separate evidence required by the UE equations.
 
 Be ready to distinguish a family representative from repeated patch observations, a release from a JRE/Android flavor, a source file from a bytecode class entry, a tag name from a commit SHA, checksum verification from signature verification, and acquisition evidence from architectural interpretation.

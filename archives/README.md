@@ -12,10 +12,18 @@ Restore from the repository root:
 python scripts/unpack_data.py
 ```
 
-This checks each archive and member SHA-256 before restoring `data/raw`, `data/graphs`, `data/upstream_git`, `results/versions` and `results/pilot`. Existing matching files remain; a differing local file causes an error. Use `--version 33.7.2` to restore one release, or `--verify-only` to audit stored bytes without writing.
+This checks every selected archive and member before restoring `data/raw`, `data/graphs`, `data/upstream_git`, `results/versions` and `results/pilot`. Existing matching files remain; a differing local file causes an error before restoration begins. Use `--version 33.7.2` to restore one release, or `--verify-only` to audit stored bytes without writing.
 
-`manifest.json` lists every original member and its digest. Fixed ZIP timestamps and sorted paths allow `python scripts/package_data.py` to recreate deterministic bundles from unchanged input files. It writes a temporary archive before replacing the prior one, so an interrupted packaging run does not erase a valid existing bundle.
+## Base64 storage
 
-The source code, summary tables, figures, configurations, acquisition provenance, report and documentation remain ordinary repository files. The fresh AI prompt/input/output and evaluations are also directly readable under `results/ai`; a saved response is a real recorded experiment, not a summary standing in for model output. `scripts/prepare_ai_inputs.py` can prepare a separate new experiment, while `scripts/evaluate_ai.py` recomputes the canonical saved response's quality and agreement scores.
+The schema-3 `manifest.json` describes **32 logical standard ZIP files**. The 30 release ZIPs and the pilot ZIP are each stored as one ASCII text file, such as `versions/guava-10.0.zip.b64`. This is ordinary padded RFC4648 base64 with no whitespace or line wrapping. Decoding it reconstructs the exact ZIP bytes; encoding does not recompress, alter or discard any evidence. Base64 text is approximately one third larger than its decoded bytes and supports reliable transfer of these complete bundles. `upstream_git.zip` remains a single unchanged binary ZIP file.
+
+Every bundle retains its logical ZIP `path`, `bytes`, `sha256`, `member_count` and complete `members` list. A base64 bundle declares `storage: "base64"` and a separate `encoded_file` record with the stored text's `path`, `bytes`, `sha256` and `text_encoding: "ascii"`. Thus the stored text checksum and decoded ZIP checksum identify different byte sequences explicitly. Every original member still has its own path, byte count and SHA-256.
+
+The normal restore command handles decoding automatically. It verifies the encoded text's size and checksum, performs strict canonical base64 decoding, verifies the decoded ZIP's size and checksum, and validates all original member paths, inventories and hashes. It checks all selected bundles and existing destinations before restoring any member. Missing or altered files, invalid base64, whitespace, noncanonical padding, absolute paths, traversal and symlink destinations are rejected. The same command still reads the earlier whole-ZIP and ordered 512 KiB multipart formats.
+
+Fixed ZIP timestamps and sorted input paths allow `python scripts/package_data.py` to recreate deterministic bundles from unchanged files. It completes each ZIP before encoding it and replaces each encoded file atomically. The final manifest is also replaced atomically; superseded whole ZIPs and multipart storage are removed afterward. Superseded release detection includes whole ZIPs, encoded ZIPs and parts so an older cohort cannot silently enter the current sample.
+
+The source code, summary tables, figures, configurations, acquisition provenance, report and documentation remain ordinary repository files. The recorded AI prompt/input/output and evaluations are also directly readable under `results/ai`; a saved response is a real recorded experiment, not a summary standing in for model output. `scripts/prepare_ai_inputs.py` can prepare a separate new experiment, while `scripts/evaluate_ai.py` recomputes the canonical saved response's quality and agreement scores.
 
 See [reproducibility.md](../docs/reproducibility.md) for the distinction between restoring/validating data, recomputing classical results and performing a new live AI recovery.

@@ -30,11 +30,13 @@ python scripts/validate_results.py
 python scripts/evaluate_ai.py
 ```
 
-The selector reconstructs the exact 30-family sample from the frozen 45-family catalog. It does not query new tags or inspect outcomes. The unpacker verifies archive and member hashes before restoration and refuses to overwrite differing local files. Offline acquisition verifies all 90 Maven artifacts and repeats the two endpoint Git/source checks.
+The selector reconstructs the exact 30-release sample from the frozen 45-family catalog: 24 major-version anchors, the latest endpoint and five optional minor releases chosen by the calendar-gap rule. It verifies the minimum spacing and per-major addition cap. It does not query new tags or inspect outcomes. The unpacker verifies archive and member hashes before restoration and refuses to overwrite differing local files. Offline acquisition verifies all 90 Maven artifacts and repeats the two endpoint Git/source checks.
 
-The focused checks exercise real Java extraction/normalization, UE boundaries, ACDC and k-means adapters, pilot elbow rules, lecture metrics and MoJoFM. The independent result audit checks the saved population, instructor raw-to-normalized edge identity, source ownership, member/UE evidence, final partitions, quality terms, pilot selection, all comparisons and hashes. It is not a set of millions of unit tests: its total counts individual evidence assertions.
+The schema-3 archive manifest stores each version and pilot ZIP as a base64 `.zip.b64` text file, with separate byte counts and SHA-256 checksums for the stored text and decoded ZIP. `upstream_git.zip` remains a whole ZIP. `unpack_data.py` decodes the text automatically, verifies both representations and all member paths and hashes, then restores the normal directory hierarchy. No manual decoding is needed. The reader also accepts the earlier whole-ZIP and multipart formats. [Storage details](../archives/README.md)
 
-`evaluate_ai.py` verifies the actual recorded prompt/input hashes and complete saved partition, then computes the lecture metrics and both-direction MoJoFM/ARI on matching full and retained graphs. This command does not call an AI model or recover another architecture.
+The focused checks exercise real Java extraction/normalization, UE boundaries, ACDC and k-means adapters, pilot elbow rules, release selection, lecture metrics, MoJoFM and archive restoration. The independent result audit checks the saved population, instructor raw-to-normalized edge identity, source ownership, member/UE evidence, final partitions, quality terms, pilot selection, all comparisons and hashes. It is not a set of millions of unit tests: its total counts individual evidence assertions.
+
+`evaluate_ai.py` verifies the recorded prompt/input hashes and complete saved partition, then computes the lecture metrics and both-direction MoJoFM on matching full and retained graphs. The AI response is the preserved experiment from the preceding instructor-extractor study; its latest-version graph inputs are unchanged. Only the derived comparisons against the current A1–A4 results are refreshed. This command does not call an AI model or recover another architecture.
 
 ## 3. Recompute the complete classical study
 
@@ -108,6 +110,6 @@ Recomputing the saved canonical AI scores is deterministic. Replaying a live mod
 
 ## 7. Read a verification record correctly
 
-`results/validation.json` describes the current canonical independent audit. `results/reproducibility/` records the exact commit and environment tested by an independent checkout. Check its commit and configuration hashes before using it as evidence for a different revision. The original study is preserved at commit `d970305` and under `results/baseline_v1`; its previous fresh-clone receipt is evidence about that original version only.
+`results/validation.json` describes the current canonical independent audit. `results/reproducibility/` records the exact commit and environment tested by an independent checkout. Check its commit and configuration hashes before using it as evidence for a different revision. The original study is preserved at commit `d970305` and under `results/baseline_v1`. Any earlier checkout receipt applies to its recorded commit; a new report does not extend that receipt to the current study.
 
 A byte-identical rerun establishes repeatability of the implemented method under the tested conditions. It does not prove completeness of static extraction, optimal k, correct semantic architecture or universal benefit from removing omnipresent classes.

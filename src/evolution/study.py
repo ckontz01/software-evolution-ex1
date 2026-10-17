@@ -2,6 +2,7 @@
 from __future__ import annotations
 
 from dataclasses import asdict
+from datetime import date
 import hashlib
 import importlib.metadata
 import json
@@ -11,8 +12,6 @@ from pathlib import Path
 import platform
 import sys
 import time
-
-from sklearn.metrics import adjusted_rand_score
 
 from .extraction import extract_release
 from .graph import Graph, read_csv, read_graph, sha256, write_csv, write_json
@@ -30,6 +29,13 @@ def manifest() -> dict:
         raise ValueError("Expected exactly 30 unique selected releases")
     if len({tuple(v["version"].split(".")[:2]) for v in versions}) != 30:
         raise ValueError("Revised study requires 30 distinct major/minor families")
+    if result.get("selection_method") != "major_anchors_calendar_greedy_v3":
+        raise ValueError("Expected the frozen major-anchor and calendar-spacing selection rule")
+    if {int(v["version"].split(".")[0]) for v in versions} != set(range(10, 34)):
+        raise ValueError("The selected history must cover every major release from 10 through 33")
+    days = [date.fromisoformat(v["release_date"][:10]).toordinal() for v in versions]
+    if any(later - earlier < 60 for earlier, later in zip(days, days[1:])):
+        raise ValueError("Selected releases must be ordered at least 60 UTC calendar days apart")
     for row in versions:
         if any(token in row["version"].lower() for token in ("alpha", "beta", "rc", "snapshot", "android")):
             raise ValueError(f"Excluded release variant: {row['version']}")
@@ -50,12 +56,6 @@ def load_partition(path: Path) -> dict[str, str]:
     if len(rows) != len({r["class"] for r in rows}):
         raise ValueError(f"Duplicate assignments: {path}")
     return {row["class"]: row["cluster"] for row in rows}
-
-
-def compare_partitions(a: dict, b: dict, nodes: tuple[str, ...]) -> float | None:
-    if len(nodes) < 2:
-        return None
-    return float(adjusted_rand_score([a[n] for n in nodes], [b[n] for n in nodes]))
 
 
 def extract_all(output_root: Path = ROOT / "data/graphs", *, java: str | None = None) -> list[dict]:
@@ -220,7 +220,6 @@ def analyse_all(graph_root: Path = ROOT / "data/graphs", output_root: Path = ROO
                           "source_clusters": forward["source_clusters"], "reference_clusters": forward["target_clusters"],
                           "mojo_distance": forward["distance"], "mojo_max_distance": forward["max_distance"], "mojofm": forward["score"],
                           "reverse_mojo_distance": reverse["distance"], "reverse_mojo_max_distance": reverse["max_distance"], "reverse_mojofm": reverse["score"],
-                          "adjusted_rand_agreement": compare_partitions(projected_a, projected_b, nodes),
                           "node_universe_sha256": hashlib.sha256(("\n".join(sorted(nodes)) + "\n").encode()).hexdigest(),
                           "interpretation": "directional partition agreement; reference is not validated ground truth"}
             comparison_rows.append(comparison)
@@ -236,7 +235,6 @@ def analyse_all(graph_root: Path = ROOT / "data/graphs", output_root: Path = ROO
                                 "common_classes": len(filtered.nodes), "common_edges": len(filtered.edges),
                                 "projected_full_mq": baseline["mq"], "recovered_filtered_mq": recovered["mq"],
                                 "mq_change_same_graph": recovered["mq"] - baseline["mq"] if baseline["mq"] is not None else None,
-                                "adjusted_rand_agreement": comparison["adjusted_rand_agreement"],
                                 "mojofm_full_to_filtered": comparison["mojofm"], "mojofm_filtered_to_full": comparison["reverse_mojofm"],
                                 "mojo_distance_full_to_filtered": comparison["mojo_distance"],
                                 "mojo_distance_filtered_to_full": comparison["reverse_mojo_distance"]})
@@ -255,8 +253,6 @@ def analyse_all(graph_root: Path = ROOT / "data/graphs", output_root: Path = ROO
                                   "common_classes": len(common), "added_classes": len(set(graph.nodes) - set(old_graph.nodes)),
                                   "removed_classes": len(set(old_graph.nodes) - set(graph.nodes)),
                                   "common_node_edge_jaccard": len(old_edges & new_edges) / len(union) if union else 1.0,
-                                  "acdc_adjusted_rand": compare_partitions(old_architectures["A1"], architectures["A1"], common),
-                                  "kmeans_adjusted_rand": compare_partitions(old_architectures["A3"], architectures["A3"], common),
                                   "acdc_mojofm_previous_to_current": acdc_comparison["mojofm"],
                                   "acdc_mojofm_current_to_previous": acdc_comparison["reverse_mojofm"],
                                   "kmeans_mojofm_previous_to_current": kmeans_comparison["mojofm"],

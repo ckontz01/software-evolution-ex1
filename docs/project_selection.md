@@ -22,74 +22,75 @@ The assignment asks students to obtain instructor approval for the project. No s
 
 ## Why the selection rule changed
 
-The first study sampled evenly by individual release rank. That gave the frequently patched 33.4 family four observations and the 33.7 family two, leaving only 26 distinct families among 30 releases. The revised rule samples **families first**, eliminating that overrepresentation. A patch such as 32.1.3 is the sole representative of its family, rather than one of several 32.1 observations.
+The original release-rank sample gave several observations to heavily patched families. The second sample avoided repeated families, but family spacing still placed four 23.x releases within 56 days. Distinct version labels therefore did not guarantee useful separation in time.
 
-The revised selection was frozen before revised graphs or quality scores were calculated. It does not discard releases because they have identical graphs or inconvenient results. Structural stability is a valid measured outcome, not a selection failure.
+The current sample covers every major version and uses elapsed time to place its additional minor releases. This is a response to the requested sporadic sampling. It does not choose or discard releases by their class counts, graph differences, clustering results or MQ. Identical graphs, if observed, remain valid evidence of structural stability.
 
 ## Reproducible selection rule
 
-[scripts/select_versions.py](../scripts/select_versions.py) uses only the captured release catalog. It reads no source changes, dependency graphs, clusters, or quality scores.
+[scripts/select_versions.py](../scripts/select_versions.py) reads the captured release catalog only.
 
-1. Begin with the public tag snapshot captured on **2026-10-17**: 124 tag references, of which 82 match plain numeric main-project tags of the form `vMAJOR.MINOR[.PATCH]`. The remaining 42 include prereleases, auxiliary-component tags, backports, and alternate tag names; they are not all beta releases.
-2. Retain the numeric Maven era beginning at 10.0. Nine earlier numeric tags are outside the declared period. Retain the three previously documented mainline exclusions: ambiguous `v13.0`/`v13.0-final`, and the 23.6.1/24.1.1 maintenance releases published after the newer 25.0 line. This leaves **70 eligible mainline releases**.
-3. Group eligible releases by `MAJOR.MINOR`. Order the resulting **45 families** by their first eligible release date, with numeric family order as a deterministic tie-break.
-4. Choose zero-based family ranks `round(i * 44 / 29)` for `i = 0, ..., 29`. The implementation uses exact rational arithmetic. The 30 chosen ranks are `0, 2, 3, 5, 6, 8, 9, 11, 12, 14, 15, 17, 18, 20, 21, 23, 24, 26, 27, 29, 30, 32, 33, 35, 36, 38, 39, 41, 42, 44`.
-5. Select the highest eligible stable patch in each chosen family. Declare one fixed endpoint exception: the first family uses **10.0**, its oldest release, to anchor the beginning of the study period. The last family uses **33.7.2**, its latest eligible stable release. This exception is explicit in the manifest and selector; it is not based on a structural result.
-6. Use the plain Maven Guava artifact before 23.1 and the `-jre` artifact from 23.1 onward. The `-android` flavor is a platform variant, not a separate release observation.
-7. Verify the exact version sequence, 30 distinct families, captured tag/commit identities, increasing release dates, and the actual intervening stable-release names. No chosen family may appear twice.
+1. Start with the tag snapshot captured on **2026-10-17**: 124 tag references, of which 82 match numeric stable-release names. The other 42 include prereleases, auxiliary-component tags and alternative names; they are not all beta releases.
+2. Begin the sampling window at 10.0, excluding nine earlier numeric tags. Retain the documented exclusions for the ambiguous `v13.0`/`v13.0-final` naming and the later 23.6.1/24.1.1 backports to older lines. There are **70 eligible mainline releases in 45 major/minor families**.
+3. Select the first eligible `.0` release of every major version from 10 through 33. These **24 anchors** cover all major lines. Major 13 uses **13.0.1** because the 13.0 tags are excluded.
+4. Add the latest eligible release, **33.7.2**, as the endpoint. This is the sole latest-patch exception to using first-eligible representatives.
+5. Fill the remaining **five places** from the first eligible releases of unused minor families. For each candidate, let L and R be its distances in days from the nearest selected releases before and after it. Adding it reduces the sum of squared calendar gaps by `(L+R)^2-L^2-R^2 = 2LR`. Choose the candidate with the largest reduction, provided every resulting interval is at least **60 days** and no major receives more than **two optional additions**. Resolve ties by earlier publication date, then lower numeric version. Repeat until 30 releases are selected.
+6. Use the plain Guava artifact before 23.1 and the JRE artifact after the platform split. Android variants do not add observations. Verify the exact cohort, distinct families, tag/commit identities, release dates, minimum gap and per-major addition cap.
 
-The rule is spaced in **family rank**, not uniform in calendar time. Some selected families are adjacent. With 30 observations from 45 families, it is impossible to omit at least one family between every pair: that would require at least 59 available families. The study therefore does not claim that every neighboring selected family is separated by an omitted family, or that every pair of observations has the same elapsed duration. It does ensure broad coverage of the full eligible history without repeatedly sampling patch families.
+The five optional additions, in selection order, are **33.5.0, 33.4.0, 31.1, 28.2 and 27.1**. The final chronological gaps range from **74 to 471 days**, with median **141 days**. All 24 majors are represented; all 30 families are distinct. The cap applies to the five optional additions: major 33 has its anchor, the fixed latest endpoint and two optional minors, for four observations in total.
 
-Fifteen eligible families are unselected. The chosen families contribute 30 releases, leaving 40 eligible individual releases unsampled. Every family, candidate patch, selected rank, and representative decision is recorded in [family_selection.json](../data/provenance/family_selection.json).
+This is not uniform calendar sampling, and it does not ban adjacent numeric minor labels. For example, **33.4.0 and 33.5.0 are 275 days apart**. The major anchors guarantee historical coverage, while the additional minors reduce long gaps without concentrating every remaining place in the latest major. The 60-day threshold, per-major cap and squared-gap objective are declared study choices; the course does not prescribe this exact algorithm.
 
-To verify the frozen selection without changing it:
+The full candidate catalog, chosen roles, intermediate gap reductions and skipped releases are recorded in [family_selection.json](../data/provenance/family_selection.json) and [config/versions.json](../config/versions.json). Fifteen of the 45 families are unselected, and 40 eligible individual releases are outside the final sample.
+
+To verify the saved cohort without changing it:
 
 ```bash
 python scripts/select_versions.py --check
 ```
 
-To regenerate the same manifest from the same catalog while preserving existing artifact checksum pins:
+To recreate it from the same catalog while preserving existing artifact checksum pins:
 
 ```bash
 python scripts/select_versions.py --write
 ```
 
-The generation command does not refresh the catalog from the internet. A future cutoff or a changed sample is a new study configuration, not a transparent replacement for these results.
+These commands do not refresh the public catalog. A later cutoff or a different sampling policy defines a new study configuration.
 
 ## The selected sample
 
-| # | Guava release | Major/minor family | Maven artifact version | Release date | Family rank (zero-based) |
-|---:|---|---|---|---|---:|
-| 1 | 10.0 | 10.0 | 10.0 | 2011-09-28 | 0 |
-| 2 | 12.0.1 | 12.0 | 12.0.1 | 2012-07-10 | 2 |
-| 3 | 13.0.1 | 13.0 | 13.0.1 | 2012-08-28 | 3 |
-| 4 | 15.0 | 15.0 | 15.0 | 2013-09-06 | 5 |
-| 5 | 16.0.1 | 16.0 | 16.0.1 | 2014-02-03 | 6 |
-| 6 | 18.0 | 18.0 | 18.0 | 2014-08-25 | 8 |
-| 7 | 19.0 | 19.0 | 19.0 | 2015-12-09 | 9 |
-| 8 | 21.0 | 21.0 | 21.0 | 2017-01-12 | 11 |
-| 9 | 22.0 | 22.0 | 22.0 | 2017-05-22 | 12 |
-| 10 | 23.1 | 23.1 | 23.1-jre | 2017-09-27 | 14 |
-| 11 | 23.2 | 23.2 | 23.2-jre | 2017-10-11 | 15 |
-| 12 | 23.4 | 23.4 | 23.4-jre | 2017-11-09 | 17 |
-| 13 | 23.5 | 23.5 | 23.5-jre | 2017-11-22 | 18 |
-| 14 | 24.0 | 24.0 | 24.0-jre | 2018-02-01 | 20 |
-| 15 | 24.1 | 24.1 | 24.1-jre | 2018-03-15 | 21 |
-| 16 | 25.1 | 25.1 | 25.1-jre | 2018-05-31 | 23 |
-| 17 | 26.0 | 26.0 | 26.0-jre | 2018-08-01 | 24 |
-| 18 | 27.1 | 27.1 | 27.1-jre | 2019-03-08 | 26 |
-| 19 | 28.0 | 28.0 | 28.0-jre | 2019-06-12 | 27 |
-| 20 | 28.2 | 28.2 | 28.2-jre | 2019-12-27 | 29 |
-| 21 | 29.0 | 29.0 | 29.0-jre | 2020-04-13 | 30 |
-| 22 | 30.1.1 | 30.1 | 30.1.1-jre | 2021-03-19 | 32 |
-| 23 | 31.0.1 | 31.0 | 31.0.1-jre | 2021-09-27 | 33 |
-| 24 | 32.0.1 | 32.0 | 32.0.1-jre | 2023-06-09 | 35 |
-| 25 | 32.1.3 | 32.1 | 32.1.3-jre | 2023-10-10 | 36 |
-| 26 | 33.1.0 | 33.1 | 33.1.0-jre | 2024-03-13 | 38 |
-| 27 | 33.2.1 | 33.2 | 33.2.1-jre | 2024-05-31 | 39 |
-| 28 | 33.4.8 | 33.4 | 33.4.8-jre | 2025-04-14 | 41 |
-| 29 | 33.5.0 | 33.5 | 33.5.0-jre | 2025-09-17 | 42 |
-| 30 | 33.7.2 | 33.7 | 33.7.2-jre | 2026-09-29 | 44 |
+| # | Release | Family | Maven artifact | Published | Selection role |
+|---:|---|---|---|---|---|
+| 1 | 10.0 | 10.0 | 10.0 | 2011-09-28 | Major anchor |
+| 2 | 11.0 | 11.0 | 11.0 | 2011-12-18 | Major anchor |
+| 3 | 12.0 | 12.0 | 12.0 | 2012-04-30 | Major anchor |
+| 4 | 13.0.1 | 13.0 | 13.0.1 | 2012-08-28 | Major anchor |
+| 5 | 14.0 | 14.0 | 14.0 | 2013-02-25 | Major anchor |
+| 6 | 15.0 | 15.0 | 15.0 | 2013-09-06 | Major anchor |
+| 7 | 16.0 | 16.0 | 16.0 | 2014-01-17 | Major anchor |
+| 8 | 17.0 | 17.0 | 17.0 | 2014-04-22 | Major anchor |
+| 9 | 18.0 | 18.0 | 18.0 | 2014-08-25 | Major anchor |
+| 10 | 19.0 | 19.0 | 19.0 | 2015-12-09 | Major anchor |
+| 11 | 20.0 | 20.0 | 20.0 | 2016-10-28 | Major anchor |
+| 12 | 21.0 | 21.0 | 21.0 | 2017-01-12 | Major anchor |
+| 13 | 22.0 | 22.0 | 22.0 | 2017-05-22 | Major anchor |
+| 14 | 23.0 | 23.0 | 23.0 | 2017-08-04 | Major anchor |
+| 15 | 24.0 | 24.0 | 24.0-jre | 2018-02-01 | Major anchor |
+| 16 | 25.0 | 25.0 | 25.0-jre | 2018-04-25 | Major anchor |
+| 17 | 26.0 | 26.0 | 26.0-jre | 2018-08-01 | Major anchor |
+| 18 | 27.0 | 27.0 | 27.0-jre | 2018-10-18 | Major anchor |
+| 19 | 27.1 | 27.1 | 27.1-jre | 2019-03-08 | Minor gap fill |
+| 20 | 28.0 | 28.0 | 28.0-jre | 2019-06-12 | Major anchor |
+| 21 | 28.2 | 28.2 | 28.2-jre | 2019-12-27 | Minor gap fill |
+| 22 | 29.0 | 29.0 | 29.0-jre | 2020-04-13 | Major anchor |
+| 23 | 30.0 | 30.0 | 30.0-jre | 2020-10-16 | Major anchor |
+| 24 | 31.0 | 31.0 | 31.0-jre | 2021-09-24 | Major anchor |
+| 25 | 31.1 | 31.1 | 31.1-jre | 2022-02-28 | Minor gap fill |
+| 26 | 32.0.0 | 32.0 | 32.0.0-jre | 2023-05-29 | Major anchor |
+| 27 | 33.0.0 | 33.0 | 33.0.0-jre | 2023-12-18 | Major anchor |
+| 28 | 33.4.0 | 33.4 | 33.4.0-jre | 2024-12-16 | Minor gap fill |
+| 29 | 33.5.0 | 33.5 | 33.5.0-jre | 2025-09-17 | Minor gap fill |
+| 30 | 33.7.2 | 33.7 | 33.7.2-jre | 2026-09-29 | Latest endpoint |
 
 The manifest stores the full commit SHA, tag, artifact URLs, SHA-256 and Maven SHA-1 pins, skipped stable release names, and omitted family names. Dates through 23.0 are calendar dates from the project's [ReleaseHistory](https://github.com/google/guava/wiki/ReleaseHistory) and individual release notes; later dates use `GitHub Release.published_at`. Git commit timestamps are retained separately. A lightweight tag has no independent tagger timestamp.
 

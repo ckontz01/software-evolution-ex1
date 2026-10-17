@@ -125,7 +125,7 @@ def reproduce_latest(output, expected_commit):
     from evolution.metrics import evaluate_partition, write_metric_tables
     from evolution.mojofm import compare_mojofm
     from evolution.omnipresent import detect_omnipresent
-    from evolution.study import _run_acdc, _run_kmeans, compare_partitions, load_partition, save_partition
+    from evolution.study import _run_acdc, _run_kmeans, load_partition, save_partition
     from evolution.toolchain import java_path
 
     manifest = read_json(ROOT / "config/versions.json")
@@ -180,7 +180,6 @@ def reproduce_latest(output, expected_commit):
                  "source_clusters": forward["source_clusters"], "reference_clusters": forward["target_clusters"],
                  "mojo_distance": forward["distance"], "mojo_max_distance": forward["max_distance"], "mojofm": forward["score"],
                  "reverse_mojo_distance": reverse["distance"], "reverse_mojo_max_distance": reverse["max_distance"], "reverse_mojofm": reverse["score"],
-                 "adjusted_rand_agreement": compare_partitions(a, b, nodes),
                  "node_universe_sha256": hashlib.sha256(("\n".join(sorted(nodes)) + "\n").encode()).hexdigest(),
                  "interpretation": "directional partition agreement; reference is not validated ground truth"}
         details.append({"comparison": value, "forward": forward, "reverse": reverse})
@@ -197,7 +196,6 @@ def reproduce_latest(output, expected_commit):
                             "common_classes": len(filtered.nodes), "common_edges": len(filtered.edges),
                             "projected_full_mq": baseline["mq"], "recovered_filtered_mq": recovered["mq"],
                             "mq_change_same_graph": recovered["mq"] - baseline["mq"] if baseline["mq"] is not None else None,
-                            "adjusted_rand_agreement": value["adjusted_rand_agreement"],
                             "mojofm_full_to_filtered": value["mojofm"], "mojofm_filtered_to_full": value["reverse_mojofm"],
                             "mojo_distance_full_to_filtered": value["mojo_distance"],
                             "mojo_distance_filtered_to_full": value["reverse_mojo_distance"]})
@@ -219,8 +217,6 @@ def reproduce_latest(output, expected_commit):
                 "added_classes": len(set(graph.nodes) - set(old_graph.nodes)),
                 "removed_classes": len(set(old_graph.nodes) - set(graph.nodes)),
                 "common_node_edge_jaccard": len(old_edges & new_edges) / len(edge_union) if edge_union else 1.0,
-                "acdc_adjusted_rand": compare_partitions(old_partitions["A1"], architectures["A1"], common),
-                "kmeans_adjusted_rand": compare_partitions(old_partitions["A3"], architectures["A3"], common),
                 "acdc_mojofm_previous_to_current": acdc["mojofm"], "acdc_mojofm_current_to_previous": acdc["reverse_mojofm"],
                 "kmeans_mojofm_previous_to_current": kmeans["mojofm"], "kmeans_mojofm_current_to_previous": kmeans["reverse_mojofm"]}
 

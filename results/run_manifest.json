@@ -1,7 +1,7 @@
 {
   "architecture_count": 120,
   "comparison_count": 178,
-  "config_sha256": "c2d715ba45c0ee9445e8d07bfba238c3a38d1dcf656aab909f828a7617ccb35f",
+  "config_sha256": "d13a902f38da8e0e921eec0d5ae152ea4a8cac84d8de91546240b865bf07c069",
   "feature_dimensions": 1430,
   "feature_universe_size": 715,
   "java_toolchain": {
@@ -33,8 +33,8 @@
     "primary_extractor": "unmodified instructor CompCalc.MainClass",
     "supplemental_extractor": "java/DependencyExtractor.java (ownership, member evidence and sensitivity graph)"
   },
-  "k_calibration_sha256": "f773c7f42c78c0aa77cb800306d22f21b8370243d5aada2509a2856816c96be9",
-  "manifest_sha256": "733cfefe8582f23ee0dba1349773ceeaf67e746cf8892f7e21fe014cb3e62410",
+  "k_calibration_sha256": "61cf143f52f4b17f18f0c2470f25ad848872f008f3a99c82fa8698162777556c",
+  "manifest_sha256": "4b3328c198aeb11fd03a071231c707e1ab170e587f1d58f7a376ed49fc944854",
   "packages": {
     "matplotlib": "3.10.8",
     "numpy": "2.3.5",
@@ -56,10 +56,10 @@
     "src/evolution/metrics.py": "a5d2c105e70445e9218d7df9f877b731349b03c3d62938562586a6ea8e73164d",
     "src/evolution/mojofm.py": "d0b519341b632f867d8e8e0fdfc544b14724a3022f2aed9c7f508fee3bc91192",
     "src/evolution/omnipresent.py": "b8dea8f90a2c7c48757e87ac388c43ff97bc228450f99836a12c473dc107ac17",
-    "src/evolution/study.py": "0fe1f97d9740cc4c3ddfc4aca57e3c4ad1778650810cb27e77b6ad33871743ab",
+    "src/evolution/study.py": "5edf6f28626e4818ac62476c7dfea48640029eedf52112a4240cdb3daefd6e9d",
     "src/evolution/toolchain.py": "b8d3deb08001980302651b71e51ab668425714a73ed3458865057e5aea1f7af8"
   },
-  "study_revision": "v2_instructor_graph_distinct_families",
+  "study_revision": "v3_spaced_releases_no_ari",
   "subject": "google/guava",
   "time_measurement": "perf_counter wall seconds; extraction includes JVM startup and IO; UE excludes member-CSV parsing only when explicitly benchmarked separately"
 }

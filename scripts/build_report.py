@@ -11,6 +11,7 @@ from __future__ import annotations
 import argparse
 from collections import Counter, defaultdict
 import csv
+from datetime import date
 import hashlib
 import html
 import importlib.metadata
@@ -320,19 +321,15 @@ def make_figures(data):
     sample_ticks(axes[1], data)
     save_figure(fig, "04_cohesion_coupling")
 
-    fig, axes = plt.subplots(2, 1, figsize=(7.6, 5.3), sharex=True, constrained_layout=True)
+    fig, ax = plt.subplots(figsize=(7.6, 3.4), constrained_layout=True)
     for full, color, shift, label in [("A1", "#222222", -.19, "ACDC: A2 − projected A1"),
                                       ("A3", LIGHT_GRAY, .19, "KMeans: A4 − projected A3")]:
         rows = data.comparison(full)
-        axes[0].bar(x + shift, [number(r, "mq_change_same_graph") for r in rows], width=.36, color=color, label=label)
-        axes[1].plot(x, [number(r, "adjusted_rand_agreement") for r in rows],
-                     color=color, marker="o", markersize=3, linewidth=1.4, label=label.split(":")[0])
-    axes[0].set_ylabel("MQ change on retained graph")
-    axes[0].axhline(0, color=MUTED, linewidth=.7)
-    axes[0].legend(fontsize=8, loc="best")
-    axes[1].set_ylabel("Adjusted Rand agreement")
-    axes[1].set_ylim(-.05, 1.05)
-    sample_ticks(axes[1], data)
+        ax.bar(x + shift, [number(r, "mq_change_same_graph") for r in rows], width=.36, color=color, label=label)
+    ax.set_ylabel("MQ change on retained graph")
+    ax.axhline(0, color=MUTED, linewidth=.7)
+    ax.legend(fontsize=8, loc="best")
+    sample_ticks(ax, data)
     save_figure(fig, "05_same_graph")
 
     fig, axes = plt.subplots(2, 1, figsize=(7.6, 5.2), sharex=True, constrained_layout=True)
@@ -355,13 +352,13 @@ def make_figures(data):
     axes[0].set_ylabel("Class identity changes")
     axes[0].axhline(0, color=MUTED, linewidth=.7)
     axes[0].legend(ncol=2, fontsize=8)
-    for key, label, color, style in [("common_node_edge_jaccard", "Edge Jaccard", MID_GRAY, "-"),
-                                    ("acdc_adjusted_rand", "ACDC partition ARI", "#222222", "--"),
-                                    ("kmeans_adjusted_rand", "KMeans partition ARI", LIGHT_GRAY, "-.")]:
-        axes[1].plot(tx, [number(r, key) for r in data.evolution], label=label, color=color,
+    for key, label, color, style, scale in [("common_node_edge_jaccard", "Edge overlap (%)", MID_GRAY, "-", 100),
+                                    ("acdc_mojofm_previous_to_current", "ACDC MoJoFM", "#222222", "--", 1),
+                                    ("kmeans_mojofm_previous_to_current", "KMeans MoJoFM", LIGHT_GRAY, "-.", 1)]:
+        axes[1].plot(tx, [scale * number(r, key) for r in data.evolution], label=label, color=color,
                      linestyle=style, marker="o", markersize=3, linewidth=1.3)
-    axes[1].set_ylabel("Agreement on common identities")
-    axes[1].set_ylim(-.05, 1.05)
+    axes[1].set_ylabel("Edge overlap / MoJoFM (0–100)")
+    axes[1].set_ylim(-5, 105)
     axes[1].legend(ncol=3, fontsize=7.5)
     sample_ticks(axes[1], data)
     save_figure(fig, "07_temporal_change")
@@ -639,7 +636,7 @@ class ReportBuilder:
         self.paragraph("EPL484 · Software Evolution · Project 1", "small")
         self.story.append(Spacer(1, 15))
         self.paragraph("Guava: software evolution<br/>and architecture recovery", "cover")
-        self.paragraph("A study of 30 stable releases, from 10.0 to 33.7.2")
+        self.paragraph(f"A study of 30 stable releases, from {esc(d.names[0])} to {esc(d.latest)}")
         self.story.append(Spacer(1, 27))
         self.sub("Abstract")
         self.paragraph("This study examines how Guava's internal class structure changes over time and how two "
@@ -648,12 +645,14 @@ class ReportBuilder:
                        "external libraries are excluded, and inner and anonymous classes are merged with their "
                        "enclosing classes. ACDC and k-means are each run before and after removing classes identified "
                        "by the supplied paper's Usage Equality method.")
+        acdc_declines = sum(number(r, "mq_change_same_graph") < -1e-12 for r in d.comparison("A1"))
+        kmeans_improvements = sum(number(r, "mq_change_same_graph") > 1e-12 for r in d.comparison("A3"))
         self.paragraph(f"The sampled graph grows from {count(integer(d.first, 'classes'))} to "
                        f"{count(integer(d.last, 'classes'))} classes and from "
                        f"{count(integer(d.first, 'dependencies'))} to {count(integer(d.last, 'dependencies'))} "
                        "dependencies. Removing widely used classes affects the recovery methods differently: "
                        "on the same retained graph, the lecture's modularization-quality score improves for k-means "
-                       "in 29 of 30 releases and decreases for ACDC in all 30. These results describe the extracted "
+                       f"in {kmeans_improvements} of 30 releases and decreases for ACDC in {acdc_declines} of 30. These results describe the extracted "
                        "structure; they do not establish Guava's intended architecture. The report explains the "
                        "data, parameter choices and evaluation, and includes every final measurement. [D1; D3]")
         self.story.append(Spacer(1, 24))
@@ -664,16 +663,19 @@ class ReportBuilder:
     def revision(self):
         d = self.d
         self.heading("What changed in the revised analysis")
-        self.paragraph("The revised analysis replaces the study at commit d970305. Its main change is to use the "
-                       "instructor's extractor for the dependency graph. The table below records the other changes "
-                       "so that the new results can be compared with the earlier ones. The original measurements "
-                       "remain in results/baseline_v1 and in the repository history. [D17]")
+        self.paragraph("This report records the third study configuration. The first revision replaced the "
+                       "custom dependency graph with the instructor's extractor. The present revision spreads "
+                       "the 30 releases through calendar time and uses MoJoFM as the partition-agreement "
+                       "measure. It retains the graph boundary, Usage Equality rules, isolate handling, feature "
+                       "construction and k-selection policy. The changed cohort requires a new feature union, "
+                       "middle-release pilot and final run. Earlier measurements remain identifiable in Git "
+                       "history; the first study is also summarized in results/baseline_v1. [D4; D17]")
         self.table(["Concern", "Revised decision"], [
             ["Dependency extraction", "Use the unmodified instructor extractor for the class graph. Keep the additional member extraction separate for Usage Equality."],
             ["Public-suffix ownership", "Include Guava-owned com.google.thirdparty.publicsuffix implementation, alongside com.google.common."],
-            ["Repeated patch families", "Select 30 distinct major/minor families from 45; one stable representative per family."],
+            ["Closely spaced releases", "Cover all 24 major versions, retain the latest endpoint, and add five minor releases by a fixed calendar-gap rule. The shortest resulting interval is 74 days."],
             ["Choosing k for k-means", "Choose k from an inertia elbow on one middle release, then scale it with class count using the same rule for every release."],
-            ["Evaluation", "Add the lecture's directional MoJoFM measure; retain ARI as a supplementary measure and use the lecture's MQ formula without self-loops."],
+            ["Evaluation", "Use the lecture's directional MoJoFM for partition agreement and its cohesion, coupling and MQ formulas for structural quality."],
             ["UE versus older SIG detector", "Retain pure UE from the supplied paper; adding SIG would be a separately justified hybrid."],
         ], [153, WIDTH - 153], small=True)
         old_size = next(r for r in d.baseline_sizes if r["version"] == d.latest)
@@ -691,10 +693,18 @@ class ReportBuilder:
                        f"{count(comparison['supplemental_only_edges'])} are supplemental-only, including "
                        f"{count(comparison['supplemental_only_annotation_target_edges'])} targeting annotation types. "
                        "The class CSV and comparison files preserve both models without mixing their edges. [D6]", "small")
-        self.paragraph("Sampling, class scope, extraction and the k rule changed together. A difference between "
-                       "the two studies' overall scores therefore cannot be attributed to one of those choices. "
+        self.paragraph("Relative to the original study, sampling, class scope, extraction and the k rule have "
+                       "all changed. A difference between the overall scores therefore cannot be attributed "
+                       "to one of those choices. "
                        "The extractor comparison above is narrower: it holds the release and class scope fixed "
                        "and compares the recorded edges. [D17]", "small")
+        self.paragraph("The latest graph is also identical to the preceding instructor-extractor study, "
+                       f"but the rerun gives A4 a different k-means partition. The feature union still has "
+                       f"{d.run['feature_universe_size']} class coordinates; it now includes hash.Sink in place "
+                       "of base.Java8Usage. The changed "
+                       "coordinate identities and order may affect numerical ties during fitting, although "
+                       "this mechanism was not isolated experimentally. The A4 difference is therefore not "
+                       "evidence that the unchanged release itself evolved. [D7; D8; D11]", "small")
 
     def executive(self):
         d = self.d
@@ -779,18 +789,32 @@ class ReportBuilder:
                        "as beta releases. Excluding nine numeric releases before 10.0, the ambiguous duplicate naming "
                        "of 13.0, and two later backports to earlier release lines leaves 70 mainline candidates in "
                        "chronological order. [D4]")
-        self.formula("Family rank for sample i: <b>round(i × 44 / 29)</b>, &nbsp; i = 0,…,29")
-        self.paragraph("These candidates belong to 45 major/minor families. The formula above selects 30 family "
-                       "positions, counting from zero, and each selected family contributes one stable release. "
-                       "The representative is its highest eligible patch, except that the first family starts at "
-                       "10.0. The last observation is 33.7.2. A heavily patched family therefore receives the same "
-                       "weight as any other selected family. [D4]")
-        self.paragraph("The sample is spread through the ordered families, rather than through equal intervals of "
-                       "calendar time. Some selected families are adjacent because 30 observations cannot all skip "
-                       "a family when only 45 are available. Patch releases can serve as representatives, but no "
-                       "family appears twice. A release stays in the sample even if its graph matches another release "
-                       "or its quality score is unexpected. Before 23.1 the study uses the plain artifact; after the "
-                       "variant split it follows the JRE artifact. Android variants do not add observations. [D4]", "small")
+        self.paragraph("The sample starts with the first eligible .0 release from each of the 24 major versions "
+                       "10 through 33. Version 13.0.1 represents major 13 because the ambiguous 13.0 tags are "
+                       "excluded. The latest release, 33.7.2, supplies the final endpoint. This leaves five "
+                       "places to fill with minor releases from the history. Each major/minor family contributes "
+                       "its first eligible release, except for the explicit latest endpoint. [D4]")
+        self.formula("Calendar-gap reduction from adding a release:<br/>"
+                     "(L + R)<super>2</super> − L<super>2</super> − R<super>2</super> = <b>2LR</b>")
+        self.paragraph("For each remaining place, the selector chooses the candidate that most reduces the sum "
+                       "of squared time gaps. L and R are the days from that candidate to its nearest selected "
+                       "releases on either side. Every resulting interval must span at least 60 days, and each "
+                       "major version may receive at most two of these five optional additions. Ties choose "
+                       "the earlier date, then the lower numeric version. The rule uses release dates only; "
+                       "it never reads class counts, dependency graphs or quality scores. [D4]")
+        gaps = [(date.fromisoformat(b["release_date"][:10]) - date.fromisoformat(a["release_date"][:10])).days
+                for a, b in zip(d.versions, d.versions[1:])]
+        self.paragraph(f"The resulting 30 observations are between {min(gaps)} and {max(gaps)} days apart, "
+                       f"with a median gap of {statistics.median(gaps):g} days. All 24 major versions are "
+                       "represented and no major/minor family repeats. The five additions are 27.1, 28.2, "
+                       "31.1, 33.4.0 and 33.5.0. Although 33.4 and 33.5 are numerically adjacent minor versions, "
+                       "their publication dates are 275 days apart. Appendix A lists the complete sample. [D4]", "small")
+        self.paragraph("The preceding sample used evenly spaced family ranks. It still placed four 23.x "
+                       "observations within 56 days, so it did not spread the observations through calendar "
+                       "time as intended. The new rule addresses that concentration. It does not require "
+                       "the graphs to differ: an unchanged graph remains a valid result. Plain artifacts "
+                       "precede 23.1; the JRE artifact is used after the variant split. Android variants "
+                       "do not add observations. [D4]", "small")
         self.paragraph("Dates for older releases come from Guava's release-history pages; later dates use GitHub "
                        "Release publication timestamps. Git commit dates are stored separately. The repository "
                        "evidence establishes the eligibility criteria above; instructor approval is not recorded "
@@ -840,17 +864,15 @@ class ReportBuilder:
     def structural_model(self):
         d = self.d
         self.heading("From Java classes to a dependency graph")
-        self.paragraph("In the graph, a node represents a Guava-owned class or type, and a directed edge A→B means "
-                       "that class A depends on class B. All edges used for architecture recovery come from the "
-                       "instructor's unmodified DependencyExtractor. A separate pass using ASM, a Java bytecode "
-                       "reader, identifies owned classes, links nested classes to their enclosing classes, and "
-                       "resolves method and field references for the Usage Equality calculation. Its additional "
-                       "annotation, type and declaring-owner relationships are kept out of the main graph. [TUT p.6; D6]")
-        self.paragraph("The input to the instructor's extractor is a deterministically assembled JAR containing "
-                       "Guava-owned base class entries. Each entry is copied byte for byte from the Maven binary, "
-                       "and its checksum confirms that the class body has not changed. The original JAR is also "
-                       "kept. The tool runs through its original CompCalc.MainClass with an explicit classpath "
-                       "and its unchanged bundled libraries. [D6]")
+        self.paragraph("A node represents a Guava-owned type; A→B means A depends on B. The instructor's "
+                       "unmodified DependencyExtractor supplies every primary edge. A separate ASM bytecode "
+                       "pass identifies owned classes, links nested classes to their enclosing types and resolves "
+                       "the member references used by Usage Equality. Its extra annotation, type and "
+                       "declaring-owner relationships remain outside the primary graph. [TUT p.6; D6]")
+        self.paragraph("The instructor receives a deterministic JAR of owned base classes, copied unchanged "
+                       "from the Maven binary. Per-entry checksums verify the copies, and the original JAR is "
+                       "preserved. Its original CompCalc.MainClass runs with an explicit classpath and "
+                       "unchanged bundled libraries. [D6]")
         self.table(["Evidence", "Role"], [
             ["classes.csv; class_aliases.csv", "Owned common/publicsuffix types, with genuine nested, local and anonymous classes merged using enclosing-class metadata."],
             ["instructor_raw.csv", "Original seven-category output, including occurrence counts retained for auditing."],
@@ -858,11 +880,10 @@ class ReportBuilder:
             ["member_dependencies.csv", "Resolved method and field references for Usage Equality. Binary member identities remain distinct when their owning classes are merged."],
             ["supplemental_dependencies.csv", "The broader graph from ASM, saved separately to examine extraction differences."],
         ], [183, WIDTH - 183], small=True)
-        self.paragraph("The analysis selects all seven relations in the tutorial: EXTENDS, IMPLEMENTS, METHOD_CALL, "
-                       "METHOD_PARAMETER, FIELD_REFERENCE, TYPE_USAGE and EXCEPTION_THROWS. If several occurrences "
-                       "or relation types connect the same ordered pair of classes, they produce one unweighted "
-                       "edge. The graph is therefore limited to the Java constructs recognized by the supplied "
-                       "executable; it is not a complete account of every possible runtime interaction. [TUT p.6]")
+        self.paragraph("All seven tutorial relations are selected: EXTENDS, IMPLEMENTS, METHOD_CALL, "
+                       "METHOD_PARAMETER, FIELD_REFERENCE, TYPE_USAGE and EXCEPTION_THROWS. Repeated occurrences "
+                       "and relation types become one unweighted edge per ordered class pair. Coverage is limited "
+                       "to constructs recognized by the supplied executable. [TUT p.6]")
         self.table(["Class processing", d.names[0], d.latest], [
             ["Owned binary classes before merging", count(integer(d.first, "raw_binary_classes")), count(integer(d.last, "raw_binary_classes"))],
             ["Nested/anonymous identities merged", count(integer(d.first, "merged_binary_classes")), count(integer(d.last, "merged_binary_classes"))],
@@ -875,12 +896,11 @@ class ReportBuilder:
                        "so the word 'thirdparty' in the package name is not a sufficient reason to exclude them. "
                        "JDK classes, failureaccess and external libraries are excluded from both ends of every edge. "
                        "[D4; D6]", "small")
-        self.paragraph("Owned annotation types are retained as nodes, even when they have no edges. Applying an "
-                       "annotation does not add an edge through the supplemental pass. Likewise, an API marked "
-                       "@Beta still belongs to the stable release that ships it. Module and package descriptors "
-                       "and multi-release overrides are excluded. As with the rest of this static analysis, "
-                       "arbitrary reflection, erased constants and full virtual-dispatch expansion are outside "
-                       "its coverage. [D6]", "small")
+        self.paragraph("Owned annotation types remain nodes, including isolates; supplemental annotation "
+                       "applications never add primary edges. An @Beta API remains part of the stable release "
+                       "that contains it. Module/package descriptors and multi-release overrides are excluded. "
+                       "Arbitrary reflection, erased constants and full virtual-dispatch expansion are outside "
+                       "this static model. [D6]", "small")
 
 
     def ue_method(self):
@@ -969,6 +989,10 @@ class ReportBuilder:
                        "average group size is useful across the history. It is a study design choice, rather than "
                        "a lecture theorem or a guarantee of the best architecture, and it is not chosen by "
                        "maximizing the final MQ scores. [D7; D8]")
+        self.paragraph("Selecting the seven dependency relationship types is a separate choice from selecting "
+                       "k. The course asks for the cluster-count choice to be explained, but does not prescribe "
+                       "a single-release elbow or this size-scaling rule. The one-pilot policy is a decision "
+                       "of this study and remains unchanged in the sampling revision. [AS p.4; L67 p.8; D8]", "small")
         self.paragraph("A3 and A4 use the same k for a release, except that k cannot exceed the number of retained "
                        "classes. An empty graph uses k=0. The command-line option --k allows a separate exploratory "
                        "run, while all 120 final partitions follow the rule above. The pilot also compares the "
@@ -1081,7 +1105,7 @@ class ReportBuilder:
                        "removal. Comparing a full-graph score directly with a filtered score changes both the "
                        "groups and the classes being assessed. A further comparison addresses this by removing "
                        "the same classes from the full partition and scoring both partitions on exactly the "
-                       "retained nodes and edges. MoJoFM and the supplementary Adjusted Rand measure compare "
+                       "retained nodes and edges. MoJoFM compares "
                        "the memberships of partitions; neither partition is assumed to be ground truth. "
                        "[D3; D9; D16]", "small")
 
@@ -1253,16 +1277,15 @@ class ReportBuilder:
                        "clustered filtered partition are then scored on exactly the same retained edges. [D3]")
         self.chart("05_same_graph", caption="Figure 5. MQ difference between clustering the filtered graph "
                    "again and keeping the original grouping of retained classes. Positive values favour "
-                   "reclustering. ARI records partition agreement. Source: results/same_graph_comparisons.csv.")
+                   "reclustering. Source: results/same_graph_comparisons.csv.")
         rows = []
         for full, name in (("A1", "ACDC"), ("A3", "k-means")):
             comp = d.comparison(full)
             vals = [number(r, "mq_change_same_graph") for r in comp]
             rows.append([name, fmt(statistics.median(vals), 4), fmt(vals[-1], 4),
-                         fmt(number(comp[-1], "adjusted_rand_agreement")),
                          str(sum(v > 1e-12 for v in vals)), str(sum(v < -1e-12 for v in vals))])
-        self.table(["Algorithm", "Median ΔMQ", "Latest ΔMQ", "Latest ARI", "Δ > 0", "Δ < 0"], rows,
-                   [85, 95, 93, 83, 68, WIDTH - 424], small=True, numeric=(1, 2, 3, 4, 5))
+        self.table(["Algorithm", "Median ΔMQ", "Latest ΔMQ", "Δ > 0", "Δ < 0"], rows,
+                   [105, 115, 115, 80, WIDTH - 415], small=True, numeric=(1, 2, 3, 4))
         self.paragraph("Here, ΔMQ is the score after reclustering minus the score for the original grouping "
                        "of retained classes. Holding the graph fixed makes this a comparison of the groupings "
                        "produced by the stated recovery procedure. It does not establish that filtering helps "
@@ -1279,10 +1302,10 @@ class ReportBuilder:
         self.chart("11_mojofm", caption="Figure 11. MoJoFM agreement on the retained class set, on a 0–100 "
                    "scale. Forward and reverse comparisons use different reference partitions. [D16]")
         rows = [r for r in d.partition_comparisons if r["version"] == d.latest and r["scope"] != "temporal_full_common"]
-        self.table(["Latest comparison", "Nodes", "Forward", "Reverse", "ARI"], [
+        self.table(["Latest comparison", "Nodes", "Forward MoJoFM", "Reverse MoJoFM"], [
             [esc(r["source_condition"] + " → " + r["reference_condition"]), count(integer(r, "n_nodes")),
-             fmt(number(r, "mojofm"), 2), fmt(number(r, "reverse_mojofm"), 2), fmt(number(r, "adjusted_rand_agreement"), 4)]
-            for r in rows], [150, 65, 93, 93, WIDTH - 401], small=True, numeric=(1, 2, 3, 4))
+             fmt(number(r, "mojofm"), 2), fmt(number(r, "reverse_mojofm"), 2)]
+            for r in rows], [155, 75, 135, WIDTH - 365], small=True, numeric=(1, 2, 3))
         self.formula("MoJoFM(P → Q) = 100 × [1 − MoJo(P,Q) / maxMoJo(Q)]")
         self.paragraph("MoJo counts the fewest object moves and cluster joins needed to transform partition "
                        "P into reference partition Q. The normalizer depends on Q, so reversing the comparison "
@@ -1290,9 +1313,7 @@ class ReportBuilder:
                        "cluster counts and a hash of the exact class set. Normalized scores for empty or "
                        "one-class sets are recorded as undefined. [L67; D16]")
         self.paragraph("An expert reference is needed to interpret this score as recovery accuracy, but not "
-                       "to measure agreement between two stated partitions. This corrects the earlier reason "
-                       "for omitting MoJoFM. The Adjusted Rand Index (ARI) remains a supplementary measure whose "
-                       "value is unchanged when the inputs are reversed. Neither measure assesses module names "
+                       "to measure agreement between two stated partitions. MoJoFM does not assess module names "
                        "or responsibilities. Temporal and AI comparisons use the same common-class rule. [D16]")
 
 
@@ -1326,7 +1347,8 @@ class ReportBuilder:
                        "others. The next figure separates additions and removals and compares the dependencies and "
                        "partitions of classes present in both adjacent samples. [D10; D16]")
         self.chart("07_temporal_change", caption="Figure 7. Class-name changes and structural agreement "
-                   "between adjacent samples. Agreement uses shared class names. Sample intervals vary in length.")
+                   "between adjacent samples. Edge overlap is Jaccard similarity multiplied by 100. MoJoFM "
+                   "compares the previous partition with the current one on shared classes. The intervals vary in length.")
         churn = max(d.evolution, key=lambda r: integer(r, "added_classes") + integer(r, "removed_classes"))
         self.paragraph(f"The largest turnover is between {esc(churn['previous_version'])} and "
                        f"{esc(churn['version'])}, with {integer(churn, 'added_classes')} class names added "
@@ -1339,60 +1361,55 @@ class ReportBuilder:
                        "com.google.thirdparty.publicsuffix, although a renamed class can still count as one "
                        "removal and one addition. [D4; D6]")
         self.paragraph("Edge Jaccard compares dependencies among shared classes. It can remain high while "
-                       "new or removed classes cause large changes in total edges. Temporal MoJoFM and ARI "
-                       "compare A1/A3 partitions restricted to those same shared classes. These measures "
+                       "new or removed classes cause large changes in total edges. Temporal MoJoFM "
+                       "compares A1/A3 partitions restricted to those same shared classes. These measures "
                        "describe stability between samples, rather than correctness against an intended architecture. [D10; D16]")
 
 
     def change_evidence(self):
         d = self.d
         self.heading("Relating graph changes to the source")
-        self.paragraph("Four intervals illustrate how changes in the graph relate to identifiable source "
-                       "changes. The audit stores added and removed classes, exact edge differences and hashes "
-                       "of source-JAR entries so these observations can be checked against the artifacts. [D15]")
-        points = {(p["before_version"], p["after_version"]): p for p in d.changes["change_points"]}
-        selected = [("13.0.1", "15.0"), ("19.0", "21.0"), ("33.2.1", "33.4.8"), ("33.4.8", "33.5.0")]
+        points = sorted(d.changes["change_points"],
+                        key=lambda p: (-abs(p["counts"]["edge_change_percent"]), p["before_version"]))[:4]
+        order = {v: i for i, v in enumerate(d.names)}
+        points.sort(key=lambda p: order[p["before_version"]])
+        self.paragraph("The four intervals below have the largest absolute percentage changes in dependency "
+                       "count. They were chosen for closer inspection after the release sample and measurements "
+                       "were fixed. The audit records every changed class and edge, together with source-JAR "
+                       "paths and hashes, so the observations can be traced to the published files. [D15]")
         self.table(["Sample transition", "Classes", "Edges", "Edge change"], [
-            [esc(a + " → " + b), f"{points[a,b]['counts']['classes_before']} → {points[a,b]['counts']['classes_after']}",
-             f"{points[a,b]['counts']['edges_before']} → {points[a,b]['counts']['edges_after']}",
-             fmt(points[a,b]["counts"]["edge_change_percent"], 2) + "%"] for a, b in selected
+            [esc(p["before_version"] + " → " + p["after_version"]),
+             f"{p['counts']['classes_before']} → {p['counts']['classes_after']}",
+             f"{p['counts']['edges_before']} → {p['counts']['edges_after']}",
+             fmt(p["counts"]["edge_change_percent"], 2) + "%"] for p in points
         ], [143, 107, 130, WIDTH - 380], small=True, padding=4)
-        point = points["13.0.1", "15.0"]
-        self.sub("13.0.1 to 15.0: collections, escaping and I/O")
-        self.paragraph(f"This interval adds {point['counts']['added_classes']} class names and removes "
-                       f"{point['counts']['removed_classes']}. Additions include "
-                       f"{point['added_classes_by_package']['com.google.common.collect']} collection types, "
-                       f"{point['added_classes_by_package']['com.google.common.escape']} escaping types and "
-                       f"{point['added_classes_by_package']['com.google.common.io']} I/O types. "
-                       "ImmutableRangeMap and ImmutableRangeSet are examples. This establishes growth in the "
-                       "implementation inventory, although each new class need not be a separate user-facing feature. [D15]")
-        point = points["19.0", "21.0"]
-        self.sub("19.0 to 21.0: the graph package")
-        self.paragraph(f"Of {point['counts']['added_classes']} added class names, "
-                       f"{point['added_classes_by_package']['com.google.common.graph']} belong to "
-                       "com.google.common.graph. Edge Jaccard among shared classes is "
-                       f"{fmt(point['counts']['common_node_edge_jaccard'], 4)}, showing that many existing "
-                       "relationships remain stable as new types account for much of the growth. There is an "
-                       "unsampled release in this interval, so the comparison does not locate the first "
-                       "introduction commit. [D15]")
-        point = points["33.2.1", "33.4.8"]
-        self.sub("33.2.1 to 33.4.8: nullness annotations")
-        self.paragraph("The earlier source declares ElementTypesAreNonnullByDefault internally and uses "
-                       "it in Lists.java. The later source contains package-level @NullMarked and a JSpecify "
-                       f"import. Across the interval, {point['counts']['removed_annotation_classes']} annotation "
-                       f"types disappear and {point['counts']['added_annotation_classes']} appear, while edges "
-                       f"change by only {fmt(point['counts']['edge_change_percent'], 2)}%. Excluding annotation "
-                       "applications from the instructor's graph avoids the large metadata-driven edge "
-                       "fluctuations seen in the earlier report. Annotation declarations still contribute "
-                       "to class and isolate counts. [D15]")
-        point = points["33.4.8", "33.5.0"]
-        self.sub("33.4.8 to 33.5.0: collection support classes")
-        self.paragraph(f"All {point['counts']['removed_classes']} removed class names belong to collections: "
-                       "seven nonannotation types and GwtTransient. They include GWT serialization dependency "
-                       "helpers, ForwardingImmutableCollection and ImmutableEntry. The graph loses "
-                       f"{point['counts']['removed_edges']} edges and gains {point['counts']['added_edges']}. "
-                       "These are identifiable implementation changes, without being sufficient evidence of "
-                       "architectural improvement or loss of public functionality. [D15]")
+        for point in points:
+            counts = point["counts"]
+            self.sub(point["before_version"] + " to " + point["after_version"])
+            additions = sorted(point["added_classes_by_package"].items(), key=lambda item: (-item[1], item[0]))[:3]
+            removals = sorted(point["removed_classes_by_package"].items(), key=lambda item: (-item[1], item[0]))[:3]
+            added_summary = ", ".join(f"{esc(package.removeprefix('com.google.common.'))} ({n})" for package, n in additions)
+            removed_summary = ", ".join(f"{esc(package.removeprefix('com.google.common.'))} ({n})" for package, n in removals)
+            text = (f"The inventory gains {counts['added_classes']} class names and loses "
+                    f"{counts['removed_classes']}. ")
+            if added_summary:
+                text += "The largest additions are in " + added_summary + ". "
+            if removed_summary:
+                text += "The largest removals are in " + removed_summary + ". "
+            text += (f"The graph gains {count(counts['added_edges'])} edges and loses "
+                     f"{count(counts['removed_edges'])}. Among the classes present at both endpoints, "
+                     f"edge Jaccard similarity is {fmt(counts['common_node_edge_jaccard'], 4)}. [D15]")
+            self.paragraph(text)
+            examples = point["added_classes"][:3] or point["removed_classes"][:3]
+            if examples:
+                action = "Added" if point["added_classes"] else "Removed"
+                self.paragraph(action + " examples: " + ", ".join(esc(short_class(row["class"])) for row in examples)
+                               + ". Their exact source entries are listed in the change-point audit. [D15]", "small")
+        self.paragraph("Renames can appear as both a removal and an addition; added classes may support "
+                       "existing features. Annotation declarations can alter class and isolate counts without "
+                       "adding application edges. These counts alone do not show architectural improvement. "
+                       "[D6; D15]", "small")
+
 
 
     def cluster_profiles(self):
@@ -1425,12 +1442,18 @@ class ReportBuilder:
     def ai_sections(self):
         """Read the saved AI experiment and present its inputs and results."""
         d = self.d
-        self.heading("18  An AI interpretation of Guava 33.7.2")
+        self.heading(f"An AI interpretation of Guava {esc(d.latest)}")
         experiment = d.ai_dir / "experiment.json"
         if not experiment.exists():
-            raise FileNotFoundError("The revised final report requires the actual new AI experiment record")
+            raise FileNotFoundError("The final report requires the recorded AI experiment")
         record = read_json(experiment)
         d.inputs.append(experiment)
+        self.paragraph("The AI proposal below is the response recorded during the earlier instructor-extractor "
+                       "study. The latest release's class and dependency inputs are unchanged, so the same "
+                       "proposal is evaluated against the current A1–A4 results. Its original prompts and "
+                       "response are preserved as the experiment record; their historical requests do not "
+                       "change the evaluation reported here. No new AI architecture was generated for the "
+                       "sampling revision. [D12]")
         self._ai_record(record)
 
 
@@ -1571,12 +1594,12 @@ class ReportBuilder:
         self.table(["Partition", "Graph", "k", "Cohesion", "Coupling", "MQ", "Inter-edge %"], rows,
                    [84, 62, 29, 80, 80, 75, WIDTH - 410], small=True, numeric=(2, 3, 4, 5, 6))
         self.paragraph("Scores should be compared within the same graph: the full-graph rows form one comparison "
-                       "and the retained-graph rows form another. MoJoFM and ARI then show how closely the class "
+                       "and the retained-graph rows form another. MoJoFM then shows how closely the class "
                        "groupings agree. The two MoJoFM columns report each direction separately. [D12]")
-        self.table(["Baseline", "Graph", "AI → baseline MoJoFM", "Baseline → AI MoJoFM", "ARI"], [
+        self.table(["Baseline", "Graph", "AI → baseline MoJoFM", "Baseline → AI MoJoFM"], [
             [r["condition"], esc(r["graph"]), fmt(number(r, "mojofm_ai_to_baseline"), 2),
-             fmt(number(r, "mojofm_baseline_to_ai"), 2), fmt(number(r, "adjusted_rand_agreement"), 4)] for r in comparisons
-        ], [58, 71, 137, 137, WIDTH - 403], small=True, numeric=(2, 3, 4), padding=3.5)
+             fmt(number(r, "mojofm_baseline_to_ai"), 2)] for r in comparisons
+        ], [75, 85, 170, WIDTH - 330], small=True, numeric=(2, 3), padding=3.5)
         self.sub("How the proposal changed after inspecting the evidence")
         self.paragraph("The following three examples are taken from the model's saved explanation. They show "
                        "how the graph and documentation affected its initial outline. [D12]", "small")
@@ -1592,7 +1615,8 @@ class ReportBuilder:
         self.paragraph(f"The AI proposal has MQ {fmt(metrics['mq'], 4)} on the full graph and "
                        f"{fmt(retained['mq'], 4)} on the retained graph. It uses {metrics['n_clusters']} modules, "
                        f"compared with {integer(d.by_metric[d.latest, 'A3'], 'n_clusters')} clusters for A3. "
-                       f"Their adjusted Rand agreement is {fmt(number(ai_vs_kmeans, 'adjusted_rand_agreement'), 4)}. "
+                       f"AI → A3 MoJoFM is {fmt(number(ai_vs_kmeans, 'mojofm_ai_to_baseline'), 2)}, "
+                       f"and A3 → AI is {fmt(number(ai_vs_kmeans, 'mojofm_baseline_to_ai'), 2)}. "
                        "These measurements describe different aspects of the output: MQ summarises the pattern "
                        "of dependencies within and between groups, while agreement measures compare the actual "
                        "class assignments. [D9; D12]")
@@ -1736,9 +1760,11 @@ class ReportBuilder:
                        "details and execution time. [D11]", "small")
         self.paragraph("Selection SHA-256: " + esc(d.run["manifest_sha256"]) + "<br/>"
                        "Configuration SHA-256: " + esc(d.run["config_sha256"]), "mono")
-        self.paragraph("The larger input and per-release files are stored in ZIP archives under archives/versions. "
-                       "The unpack command restores their paths. Summary tables, source code, figures and guides "
-                       "can be read directly in the repository.", "small")
+        self.paragraph("Version and pilot ZIPs are stored as .zip.b64 text; the endpoint Git-source bundle "
+                       "remains one ZIP. The same unpack command decodes the text and verifies the stored file, "
+                       "decoded ZIP and every member before restoring the normal paths. Encoding changes "
+                       "storage only; all input and scientific file bytes are preserved. Tables, code and guides "
+                       "remain directly readable. See archives/README.md.", "small")
         audit = read_json(ROOT / "results/validation.json")
         if audit["status"] != "passed" or audit["failure_count"]:
             raise ValueError("The final report requires a passed independent result audit")
@@ -1749,10 +1775,14 @@ class ReportBuilder:
                        "before evaluation. Every edge is preserved, and node_id_map.csv records the mapping. "
                        "The original ACDC source is unchanged. [D7]")
         self.sub("Checking the calculations independently")
+        self.paragraph("The complete test suite passed 91 tests: 60 existing tests, 11 release-selection tests "
+                       "and 20 archive tests. They exercise extraction, class merging, Usage Equality, clustering, "
+                       "metrics, sampling and restoration. The larger count below refers to individual "
+                       "assertions over the saved evidence, not to millions of separate unit tests. [D9; D13]", "small")
         self.paragraph(f"The independent audit {esc(audit['status'])}: it performed "
                        f"{count(audit['checks_performed'])} checks with {audit['failure_count']} failures. "
                        "A separate implementation, using Python's standard library, recalculates Usage Equality "
-                       "with exact fractions, lecture MQ, ARI and directional MoJoFM from the saved files. It checks "
+                       "with exact fractions, lecture MQ and directional MoJoFM from the saved files. It checks "
                        "all 120 final partitions, the 14 pilot inertia values and the AI output. These checks show "
                        "that the calculations agree; they cannot establish that static extraction finds every "
                        "dependency or that a recovered grouping matches the intended design. [D13]", "small")
@@ -1942,11 +1972,11 @@ def main():
         )},
         "figures": {str(p.relative_to(ROOT)): sha256(p) for p in figures},
         "sections": builder.sections,
-        "study_revision": 2, "architecture_count": 120, "metric_appendix_rows": 120,
+        "study_revision": data.run["study_revision"], "architecture_count": 120, "metric_appendix_rows": 120,
         "presentation": {
             "style": "Plain academic typography; black and gray throughout",
             "navigation": "Linked contents and numbered sections; complete data tables in appendices",
-            "prose": "Revised explanations, introductions and transitions; scientific results unchanged",
+            "prose": "Natural-language explanations of the current cohort, saved results and declared method choices",
             "figures": "Vector PDF charts for sharp printing and smaller file size",
         },
         "canonical_copy": str(canonical.relative_to(ROOT)), "canonical_copy_sha256": sha256(canonical),

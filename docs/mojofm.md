@@ -85,7 +85,7 @@ PYTHONPATH=src python -m unittest discover -s tests -p test_mojofm.py -v
 
 The tests check the four lecture diagrams: distances **5, 0, 2, 3**, normalizer **5**, and scores **0%, 100%, 60%, 40%**. They also check the sixteen-object worked example from [1], direction, target normalization, label invariance, missing classes, and degenerate cases.
 
-The strongest independent check enumerates **all 2,960 ordered partition pairs across n=0 through n=5**. It builds every actual Move/Join transition and finds minimum costs by breadth-first search. This oracle does not use overlap maxima, bipartite matching, or the normalization recurrence. The maximum of its observed distances to each target independently verifies the production denominator as well as the numerator. ARI is not used as an oracle, and no equivalence to an unexecuted third-party program is claimed.
+The strongest independent check enumerates **all 2,960 ordered partition pairs across n=0 through n=5**. It builds every actual Move/Join transition and finds minimum costs by breadth-first search. This oracle does not use overlap maxima, bipartite matching, or the normalization recurrence. The maximum of its observed distances to each target independently verifies the production denominator as well as the numerator. No equivalence to an unexecuted third-party program is claimed.
 
 ## Sources
 

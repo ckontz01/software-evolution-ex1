@@ -102,7 +102,9 @@ feature, identity and normalization rules are our engineering choices, consisten
 with documenting the chosen representation; they are not a claim that the
 lectures prescribe this unique matrix.
 
-The revised k rule is calibrated on one pilot release, chosen by the middle sample index before examining its scores. The declared candidate grid is `2, 5, 10, 15, 20, 25, 30, 40, 50, 60, 75, 90, 110, 130`, capped to valid cluster counts. Each candidate's inertia is measured under the same feature geometry. After normalizing k and inertia to the interval [0,1], choose the candidate with the greatest vertical distance below the line joining the two endpoint observations (the usual diminishing-returns elbow geometry; the implementation records its exact signed score and tie rule).
+Feature selection and choosing k are separate decisions. Lecture 6–7 slide 8 lists “Επιλογή χαρακτηριστικών” separately from the clustering algorithm. The assignment asks “Πως επιλέξατε τον αριθμό των ομάδων” (p.4), but does not require a one-release k pilot or the scaling formula below. The oral note about using the same features therefore does not itself prescribe how k should vary. This study retains its declared one-pilot k policy as an implementation choice.
+
+The k rule is calibrated on the middle selected release. With the revised calendar sample, that is 25.0; the old 25.1 pilot belongs to the preceding cohort and its calibration is not carried over. The declared candidate grid is `2, 5, 10, 15, 20, 25, 30, 40, 50, 60, 75, 90, 110, 130`, capped to valid cluster counts. Each candidate's inertia is measured under the same feature geometry. After normalizing k and inertia to the interval [0,1], choose the candidate with the greatest vertical distance below the line joining the two endpoint observations. The implementation records the signed score and tie rule.
 
 The chosen pilot value `k_p` and pilot class count `n_p` define:
 
@@ -282,6 +284,6 @@ is background, not a requirement to add review mining to this structural study.
 
 ## Additional lecture agreement measure: MoJoFM
 
-The reconstruction lecture introduces comparison by move/join operations. The revised study adds MoJoFM in both directions for algorithm, filtering, temporal and AI comparisons. All such inputs use identical object sets, obtained by projection where needed. A directional score means agreement toward the specified reference partition, not proof that the reference is correct. ARI remains a supplementary symmetric agreement measure. The exact distance, target-dependent normalization, edge cases and tests are documented in `docs/mojofm.md`; the implementation and saved comparisons make the scores inspectable.
+The reconstruction lecture introduces comparison by move/join operations. The revised study adds MoJoFM in both directions for algorithm, filtering, temporal and AI comparisons. All such inputs use identical object sets, obtained by projection where needed. A directional score means agreement toward the specified reference partition, not proof that the reference is correct. The exact distance, target-dependent normalization, edge cases and tests are documented in `docs/mojofm.md`; the implementation and saved comparisons make the scores inspectable.
 
 This corrects the original reasoning: absence of an authoritative architecture prevents an accuracy claim, but does not prevent a MoJoFM agreement calculation.

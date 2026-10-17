@@ -12,7 +12,7 @@ from __future__ import annotations
 import argparse
 from collections import Counter, defaultdict, deque
 import csv
-from datetime import datetime, timezone
+from datetime import date, datetime, timezone
 from fractions import Fraction
 import hashlib
 from itertools import combinations
@@ -108,23 +108,6 @@ def independent_quality(nodes, edges, assignment) -> dict:
     }
 
 
-def independent_ari(a, b, nodes) -> float | None:
-    """Adjusted Rand index directly from the contingency-table definition."""
-    if len(nodes) < 2:
-        return None
-    choose2 = lambda x: x * (x - 1) // 2
-    cells = Counter((a[n], b[n]) for n in nodes)
-    left = Counter(a[n] for n in nodes)
-    right = Counter(b[n] for n in nodes)
-    observed = sum(choose2(v) for v in cells.values())
-    total_pairs = choose2(len(nodes))
-    left_pairs = sum(choose2(v) for v in left.values())
-    right_pairs = sum(choose2(v) for v in right.values())
-    expected = Fraction(left_pairs * right_pairs, total_pairs)
-    maximum = Fraction(left_pairs + right_pairs, 2)
-    return float((observed - expected) / (maximum - expected)) if maximum != expected else 1.0
-
-
 def independent_matching(options, right_count):
     """Unit-capacity max flow, separate from production's matching implementation."""
     left_count = len(options)
@@ -168,7 +151,7 @@ def independent_mojofm(a, b, nodes) -> dict:
     For the denominator, build the target-size Ferrers graph directly: a target
     cluster of size s connects to the first s artificial groups. Its maximum
     matching gives the worst-case group count. This does not reuse production's
-    sorted-size recurrence. No production module or ARI is used in this check.
+    sorted-size recurrence. No production module is used in this check.
     """
     nodes = tuple(nodes)
     left = {label: i for i, label in enumerate(sorted({a[n] for n in nodes}))}
@@ -329,8 +312,62 @@ def read_partition(path: Path, expected_nodes, audit: Audit):
     return assignment
 
 
+def independent_calendar_selection(groups, count):
+    """Reconstruct calendar selection by explicitly comparing squared-gap sums.
+
+    The selector scores an insertion by its local product formula. This audit
+    instead inserts every eligible candidate and subtracts the complete sums of
+    squared calendar gaps. Only frozen release metadata enters either method.
+    """
+    key = lambda version: tuple(map(int, (version + ".0.0").split(".")[:3]))
+    day = lambda row: date.fromisoformat(row["release_date"][:10]).toordinal()
+    order = lambda row: (day(row), key(row["version"]))
+    family = lambda row: ".".join(row["version"].split(".")[:2])
+    representatives = {name: min(candidates, key=order) for name, candidates in groups.items()}
+    endpoint = max((row for candidates in groups.values() for row in candidates), key=order)
+    representatives[family(endpoint)] = endpoint
+    anchors = [representatives[f"{major}.0"] for major in range(10, 34)]
+    anchors.append(endpoint)
+    selected = {family(row): row for row in anchors}
+    optional_per_major = Counter()
+    steps = []
+
+    def gaps(ordered):
+        return [day(b) - day(a) for a, b in zip(ordered, ordered[1:])]
+
+    while len(selected) < count:
+        current = sorted(selected.values(), key=order)
+        before = sum(gap * gap for gap in gaps(current))
+        candidates = []
+        for name, row in representatives.items():
+            major = key(row["version"])[0]
+            if name in selected or optional_per_major[major] >= 2:
+                continue
+            with_candidate = sorted([*current, row], key=order)
+            current_gaps = gaps(with_candidate)
+            if min(current_gaps) < 60:
+                continue
+            position = with_candidate.index(row)
+            if position == 0 or position == len(with_candidate) - 1:
+                continue
+            gain = before - sum(gap * gap for gap in current_gaps)
+            candidates.append((gain, row, with_candidate[position - 1], with_candidate[position + 1]))
+        if not candidates:
+            raise ValueError("Frozen calendar-selection constraints cannot supply 30 releases")
+        gain, chosen, left, right = min(candidates, key=lambda item: (-item[0], *order(item[1])))
+        selected[family(chosen)] = chosen
+        optional_per_major[key(chosen["version"])[0]] += 1
+        steps.append({"version": chosen["version"], "family": family(chosen), "gain": gain,
+                      "left": left["version"], "right": right["version"],
+                      "left_gap_days": day(chosen) - day(left),
+                      "right_gap_days": day(right) - day(chosen),
+                      "optional_count_for_major_after_selection": optional_per_major[key(chosen["version"])[0]],
+                      "feasible_candidate_count": len(candidates)})
+    return sorted(selected.values(), key=order), representatives, sorted(anchors, key=order), steps
+
+
 def audit_family_selection(root, manifest, report):
-    """Rebuild family eligibility and representatives from the frozen tag catalog."""
+    """Rebuild anchors, calendar spacing and release identity from the tag catalog."""
     inventory_path = root / "data/provenance/tag_inventory.json"
     inventory = data(inventory_path)
     stable = inventory["stable_tags_in_date_order"]
@@ -346,13 +383,47 @@ def audit_family_selection(root, manifest, report):
     report.equal(len(eligible), 70, "family_selection_catalog", "eligible releases")
     report.equal(len(family_order), 45, "family_selection_catalog", "eligible major/minor families")
     count = len(manifest["versions"])
-    # Independent exact nearest-integer arithmetic. Denominator 29 has no half ties.
-    ranks = [(2 * i * (len(family_order) - 1) + count - 1) // (2 * (count - 1))
-             for i in range(count)]
-    representatives = [max(groups[f], key=lambda r: key(r["version"])) for f in family_order]
-    representatives[0] = min(groups[family_order[0]], key=lambda r: r["release_date"])
-    chosen = [representatives[i] for i in ranks]
-    selected_families = [family_order[i] for i in ranks]
+    chosen, representatives, anchors, optional_steps = independent_calendar_selection(groups, count)
+    selected_families = [".".join(row["version"].split(".")[:2]) for row in chosen]
+    ranks = [family_order.index(family) for family in selected_families]
+    report.equal(manifest["schema_version"], 4, "selection_schema", "manifest")
+    report.equal(manifest["study_revision"], 3, "selection_revision", "manifest")
+    report.equal(manifest["selection_method"], "major_anchors_calendar_greedy_v3", "selection_method", "manifest")
+    report.equal(cutoff, "2026-10-17", "selection_frozen_cutoff", "manifest")
+    parameters = {
+        "requested_count": 30, "first_major": 10, "last_major": 33,
+        "oldest_endpoint_version": "10.0", "latest_endpoint_version": "33.7.2",
+        "representative_rule": "first_eligible_stable_release_per_family", "optional_count": 5,
+        "minimum_calendar_gap_days": 60, "max_optional_families_per_major": 2,
+        "objective": "greedy_reduction_in_sum_squared_calendar_gaps",
+        "tie_break": ["earlier_utc_calendar_date", "numeric_version"],
+        "latest_endpoint_counts_as_optional": False,
+    }
+    report.equal(manifest["selection_parameters"], parameters, "frozen_selection_parameters", "manifest")
+    report.equal(manifest["selected_count"], count, "selected_count_metadata", "manifest")
+    majors = sorted({key(row["version"])[0] for row in chosen})
+    report.equal(majors, list(range(10, 34)), "complete_major_release_coverage", "selection")
+    report.equal(manifest["selected_major_numbers"], majors, "selected_major_metadata", "manifest")
+    roles = {row["version"]: "major_anchor" for row in anchors}
+    roles[chosen[-1]["version"]] = "latest_endpoint"
+    roles.update({step["version"]: "gap_filling_minor" for step in optional_steps})
+
+    def gap_rows(sequence):
+        return [{"from_version": a["version"], "to_version": b["version"],
+                 "from_date": a["release_date"][:10], "to_date": b["release_date"][:10],
+                 "gap_days": (date.fromisoformat(b["release_date"][:10]) -
+                              date.fromisoformat(a["release_date"][:10])).days}
+                for a, b in zip(sequence, sequence[1:])]
+
+    calendar_gaps = gap_rows(chosen)
+    day_gaps = [item["gap_days"] for item in calendar_gaps]
+    ordered_gaps = sorted(day_gaps)
+    gap_statistics = {"count": len(day_gaps), "minimum_days": min(day_gaps),
+                      "median_days": ordered_gaps[len(ordered_gaps) // 2], "maximum_days": max(day_gaps),
+                      "mean_days": sum(day_gaps) / len(day_gaps), "total_span_days": sum(day_gaps),
+                      "below_declared_minimum_count": sum(gap < 60 for gap in day_gaps)}
+    report.equal(gap_statistics["below_declared_minimum_count"], 0, "minimum_calendar_spacing", "all selected gaps")
+    report.equal(manifest["calendar_gap_statistics"], gap_statistics, "calendar_gap_statistics", "manifest")
     report.equal([r["version"] for r in manifest["versions"]], [r["version"] for r in chosen],
                  "independent_family_selection", "selected representative versions")
     report.equal(len(set(selected_families)), 30, "distinct_selected_families", "manifest")
@@ -366,6 +437,11 @@ def audit_family_selection(root, manifest, report):
         report.equal(recorded["family"], selected_families[i], "family_selection_provenance", recorded["version"])
         report.equal(recorded["family_rank_zero_based"], ranks[i], "family_selection_provenance", recorded["version"] + "/rank")
         report.equal(recorded["index"], i + 1, "sequential_sample_index", recorded["version"])
+        report.equal(recorded["selection_role"], roles[recorded["version"]], "selection_role", recorded["version"])
+        expected_rule = "latest_history_endpoint" if roles[recorded["version"]] == "latest_endpoint" else "first_eligible_stable_release"
+        report.equal(recorded["representative_rule"], expected_rule, "representative_release_rule", recorded["version"])
+        report.equal(recorded["calendar_gap_days_since_previous"], day_gaps[i - 1] if i else None,
+                     "selected_calendar_gap", recorded["version"])
         report.equal(recorded["source_prefixes"], list(SOURCE_PREFIXES), "owned_source_prefixes", recorded["version"])
         between = [] if i == 0 else family_order[ranks[i - 1] + 1:ranks[i]]
         report.equal(recorded["skipped_families_since_previous"], between, "skipped_family_provenance", recorded["version"])
@@ -374,20 +450,54 @@ def audit_family_selection(root, manifest, report):
         expected_flavour = recorded["version"] + ("-jre" if key(recorded["version"]) >= (23, 1, 0) else "")
         report.equal(recorded["artifact_version"], expected_flavour, "one_jre_variant", recorded["version"])
     evidence = data(root / "data/provenance/family_selection.json")
-    for field, expected in {"catalog_sha256": digest(inventory_path), "eligible_releases": len(eligible),
+    for field, expected in {"schema_version": 2, "study_revision": 3,
+                             "frozen_cutoff_utc": cutoff, "catalog_path": "data/provenance/tag_inventory.json",
+                             "catalog_sha256": digest(inventory_path), "eligible_releases": len(eligible),
                              "eligible_families": len(family_order), "selected_count": count,
                              "selected_family_ranks_zero_based": ranks,
                              "selected_versions": [r["version"] for r in chosen],
                              "selected_unique_families": len(set(selected_families)),
-                             "unselected_families": len(family_order) - count}.items():
+                             "unselected_families": len(family_order) - count,
+                             "selection_method": "major_anchors_calendar_greedy_v3",
+                             "selection_parameters": parameters, "selected_major_numbers": majors,
+                             "calendar_gaps": calendar_gaps, "calendar_gap_statistics": gap_statistics,
+                             "calendar_date_basis": manifest["calendar_date_basis"],
+                             "rule": manifest["selection_policy"]}.items():
         report.equal(evidence[field], expected, "family_selection_evidence", field)
+    expected_anchors = [{"version": row["version"], "family": ".".join(row["version"].split(".")[:2]),
+                         "release_date": row["release_date"], "calendar_date": row["release_date"][:10],
+                         "selection_role": roles[row["version"]],
+                         "rationale": "Fixed latest stable endpoint; not charged to the optional-major budget."
+                         if roles[row["version"]] == "latest_endpoint"
+                         else "Cover this major's MAJOR.0 milestone with its first eligible stable release."}
+                        for row in anchors]
+    report.equal(evidence["mandatory_anchors"], expected_anchors, "independent_mandatory_anchors", "major milestones and latest boundary")
+    captured_by_version = {row["version"]: row for row in eligible}
+    expected_steps = [{"step": i + 1, "version": item["version"], "family": item["family"],
+                       "calendar_date": captured_by_version[item["version"]]["release_date"][:10],
+                       "between_versions": [item["left"], item["right"]],
+                       "original_gap_days": item["left_gap_days"] + item["right_gap_days"],
+                       "left_gap_days": item["left_gap_days"], "right_gap_days": item["right_gap_days"],
+                       "squared_gap_reduction_days2": item["gain"],
+                       "optional_count_for_major_after_selection": item["optional_count_for_major_after_selection"],
+                       "feasible_candidate_count": item["feasible_candidate_count"]}
+                      for i, item in enumerate(optional_steps)]
+    report.equal(evidence["optional_selection_steps"], expected_steps, "independent_calendar_selection_steps", "all candidate gains and constraints")
+    anchor_gaps = gap_rows(anchors)
+    anchor_minimum = min(item["gap_days"] for item in anchor_gaps)
+    for field, expected in {"mandatory_anchor_minimum_gap_days": anchor_minimum,
+                             "limiting_anchor_pairs": [item for item in anchor_gaps if item["gap_days"] == anchor_minimum],
+                             "ninety_day_floor_feasible_with_fixed_anchors": anchor_minimum >= 90}.items():
+        report.equal(evidence["spacing_feasibility"][field], expected, "independent_spacing_feasibility", field)
     expected_catalog = [{
         "family_rank_zero_based": i, "family": family,
         "eligible_versions": [r["version"] for r in groups[family]],
         "first_release_date": min(r["release_date"] for r in groups[family]),
-        "representative": representatives[i]["version"],
-        "representative_rule": "oldest_history_boundary" if i == 0 else "highest_eligible_stable_patch",
+        "representative": representatives[family]["version"],
+        "representative_calendar_date": representatives[family]["release_date"][:10],
+        "representative_rule": "latest_history_endpoint" if representatives[family]["version"] == "33.7.2" else "first_eligible_stable_release",
         "selected": i in ranks,
+        "selection_role": roles.get(representatives[family]["version"]),
     } for i, family in enumerate(family_order)]
     report.equal(evidence["family_catalog"], expected_catalog, "independent_family_catalog", "all eligible families")
     return stable
@@ -629,7 +739,7 @@ def audit_ai(root, result_root, graph_root, versions, config, report):
     version = selected["version"]
     graph = graph_root / version
     report.equal(record["version"], version, "ai_latest_selected_version", "experiment")
-    report.equal(record["study_revision"], config["study_revision"], "ai_revision_identity", "experiment")
+    report.equal(record["study_revision"], "v2_instructor_graph_distinct_families", "ai_preserved_experiment_revision", "experiment")
     report.equal(record["schema_version"], 2, "ai_revision_schema", "experiment")
 
     def repo_file(relative):
@@ -649,10 +759,17 @@ def audit_ai(root, result_root, graph_root, versions, config, report):
         report.equal(path.stat().st_size, item["bytes"], "ai_input_size", item["path"])
     for item in record["additional_prompt_files"]:
         report.equal(digest(repo_file(item["path"])), item["sha256"], "ai_additional_prompt_checksum", item["path"])
-    report.equal(record["input_provenance"]["graph_provenance_sha256"], digest(graph / "provenance.json"), "ai_graph_provenance_checksum", version)
+    source_provenance_path = directory / "source_graph_provenance.json"
+    report.equal(record["input_provenance"]["graph_provenance_sha256"], digest(source_provenance_path),
+                 "ai_preserved_source_graph_provenance_checksum", version)
+    source_provenance = data(source_provenance_path)
+    report.equal(source_provenance["version"], version, "ai_preserved_source_graph_version", version)
     report.equal(record["input_provenance"]["sources_jar_sha256"], selected["sources_sha256"], "ai_source_provenance_checksum", version)
     for filename in ("classes.csv", "dependencies.csv"):
         report.equal(digest(directory / "inputs" / filename), digest(graph / filename), "ai_uses_same_primary_graph_evidence", filename)
+        provenance_key = "classes_sha256" if filename == "classes.csv" else "graph_sha256"
+        report.equal(source_provenance[provenance_key], digest(directory / "inputs" / filename),
+                     "ai_preserved_source_provenance_matches_original_input", filename)
     class_rows = rows(graph / "classes.csv")
     nodes = {r["class"] for r in class_rows}
     edges = read_edges(graph / "dependencies.csv")
@@ -685,6 +802,17 @@ def audit_ai(root, result_root, graph_root, versions, config, report):
     report.equal(declared, dict(Counter(assignment.values())), "ai_declared_module_counts_match_membership", version)
     evaluation = data(directory / "evaluation.json")
     report.equal(evaluation["version"], version, "ai_evaluation_version", version)
+    report.equal(evaluation["study_revision"], config["study_revision"], "ai_current_evaluation_revision", version)
+    report.equal(evaluation["source_experiment_revision"], record["study_revision"], "ai_evaluation_preserves_source_revision", version)
+    report.equal(evaluation["evaluation_of_preserved_assignment"], True, "ai_reuse_declared", version)
+    report.equal(evaluation["config_sha256"], digest(root / "config/analysis.json"), "ai_evaluation_config_checksum", version)
+    report.equal(evaluation["manifest_sha256"], digest(root / "config/versions.json"), "ai_evaluation_sample_checksum", version)
+    report.equal(repo_file(evaluation["source_graph_provenance_file"]).resolve(), source_provenance_path.resolve(),
+                 "ai_source_graph_provenance_path_identity", version)
+    report.equal(evaluation["source_graph_provenance_sha256"], digest(source_provenance_path),
+                 "ai_evaluation_source_provenance_checksum", version)
+    report.equal(evaluation["current_graph_provenance_sha256"], digest(graph / "provenance.json"),
+                 "ai_evaluation_current_provenance_checksum", version)
     report.equal(evaluation["status"], "passed", "ai_evaluation_completed", version)
     report.equal(evaluation["classes_assigned_exactly_once"], len(nodes), "ai_evaluation_coverage", version)
     report.equal(evaluation["modules"], len(declared), "ai_evaluation_module_count", version)
@@ -729,12 +857,13 @@ def audit_ai(root, result_root, graph_root, versions, config, report):
             "condition": condition, "graph": scope, "n_nodes": len(current_nodes), "n_edges": len(current_edges),
             "baseline_mq": independent_quality(current_nodes, current_edges, baseline)["mq"],
             "ai_mq": quality_by_scope[scope]["mq"],
-            "adjusted_rand_agreement": independent_ari(assignment, baseline, current_nodes),
             "mojofm_ai_to_baseline": forward["score"], "mojofm_baseline_to_ai": reverse["score"],
             "mojo_distance_ai_to_baseline": forward["distance"], "mojo_distance_baseline_to_ai": reverse["distance"],
             "mojo_max_distance_ai_to_baseline": forward["max_distance"], "mojo_max_distance_baseline_to_ai": reverse["max_distance"],
             "node_universe_sha256": hashlib.sha256(("\n".join(sorted(current_nodes)) + "\n").encode()).hexdigest(),
         }
+        report.equal(set(comparison_index[condition]), set(expected), "ai_comparison_exact_schema", f"{condition}/CSV")
+        report.equal(set(detail_index[condition]["comparison"]), set(expected), "ai_comparison_exact_schema", f"{condition}/JSON")
         for field, value in expected.items():
             for got, label in ((comparison_index[condition], "CSV"), (detail_index[condition]["comparison"], "JSON")):
                 context = f"ai/{condition}/{field}/{label}"
@@ -793,11 +922,13 @@ def audit(root: Path, result_root: Path, graph_root: Path, *, include_ai: bool =
         else:
             report.equal(row["skipped_stable_since_previous"], [], "skipped_release_provenance", version)
     report.equal(set(config["relation_types"]), RELATIONS, "frozen_policy", "seven relations")
+    report.equal(config["comparison_metrics"], ["MoJoFM_source_to_reference", "MoJoFM_reverse"],
+                 "frozen_policy", "directional partition comparison metrics")
     for key, expected in {"subject": "google/guava", "relation_weight": 1,
                           "graph": "binary_directed_union_no_self_loops", "merge_inner_and_anonymous": True,
                           "multi_release_policy": "base_class_entries_only", "singleton_cohesion": 0,
-                          "empty_partition_metrics": 0, "schema_version": 2,
-                          "study_revision": "v2_instructor_graph_distinct_families"}.items():
+                          "empty_partition_metrics": 0, "schema_version": 3,
+                          "study_revision": "v3_spaced_releases_no_ari"}.items():
         report.equal(config[key], expected, "frozen_policy", key)
     instructor_path = root / "third_party/dependency_extractor/DependencyExtractor.jar"
     instructor_source = data(root / "third_party/dependency_extractor/source.json")
@@ -1031,10 +1162,12 @@ def audit(root: Path, result_root: Path, graph_root: Path, *, include_ai: bool =
                 "source_clusters": forward["source_clusters"], "reference_clusters": forward["target_clusters"],
                 "mojo_distance": forward["distance"], "mojo_max_distance": forward["max_distance"], "mojofm": forward["score"],
                 "reverse_mojo_distance": reverse["distance"], "reverse_mojo_max_distance": reverse["max_distance"],
-                "reverse_mojofm": reverse["score"], "adjusted_rand_agreement": independent_ari(a, b, comparison_nodes),
+                "reverse_mojofm": reverse["score"],
                 "node_universe_sha256": hashlib.sha256(("\n".join(sorted(comparison_nodes)) + "\n").encode()).hexdigest(),
                 "interpretation": "directional partition agreement; reference is not validated ground truth",
             }
+            report.equal(set(recorded_csv), set(expected_row), "comparison_exact_schema", str(key) + "/CSV")
+            report.equal(set(recorded_json["comparison"]), set(expected_row), "comparison_exact_schema", str(key) + "/JSON")
             for field, expected in expected_row.items():
                 context = f"{version}/{scope}/{source_label}_to_{target_label}/{field}"
                 for observed, label in ((recorded_csv, "CSV"), (recorded_json["comparison"], "JSON")):
@@ -1062,10 +1195,11 @@ def audit(root: Path, result_root: Path, graph_root: Path, *, include_ai: bool =
             expected = {"common_classes": len(retained), "common_edges": len(filtered_edges),
                         "projected_full_mq": baseline["mq"], "recovered_filtered_mq": recovered["mq"],
                         "mq_change_same_graph": recovered["mq"] - baseline["mq"],
-                        "adjusted_rand_agreement": independent_ari(partitions[full], partitions[filtered], retained),
                         "mojofm_full_to_filtered": forward["score"], "mojofm_filtered_to_full": reverse["score"],
                         "mojo_distance_full_to_filtered": forward["distance"],
                         "mojo_distance_filtered_to_full": reverse["distance"]}
+            report.equal(set(observed), set(expected) | {"version", "full_condition", "filtered_condition"},
+                         "same_graph_exact_schema", version + "/" + full)
             for key, value in expected.items():
                 report.numeric(observed[key], value, "same_graph_recalculation", f"{version}/{full}/{key}")
             report.flat_metrics(data(output / f"{full}_projected_to_retained_metrics.json"), baseline, f"{version}/{full}/projected")
@@ -1080,14 +1214,14 @@ def audit(root: Path, result_root: Path, graph_root: Path, *, include_ai: bool =
             report.equal((observed["previous_version"], observed["version"]), (old_version, version), "temporal_pair_identity", version)
             expected = {"common_classes": len(common), "added_classes": len(node_set - old_nodes),
                         "removed_classes": len(old_nodes - node_set),
-                        "common_node_edge_jaccard": len(left & right) / len(left | right) if left | right else 1.0,
-                        "acdc_adjusted_rand": independent_ari(old_partitions["A1"], partitions["A1"], common),
-                        "kmeans_adjusted_rand": independent_ari(old_partitions["A3"], partitions["A3"], common)}
+                        "common_node_edge_jaccard": len(left & right) / len(left | right) if left | right else 1.0}
             for condition, label in (("A1", "acdc"), ("A3", "kmeans")):
                 forward, reverse = check_comparison("temporal_full_common", condition, condition,
                                                     old_partitions[condition], partitions[condition], common, old_version=old_version)
                 expected[label + "_mojofm_previous_to_current"] = forward["score"]
                 expected[label + "_mojofm_current_to_previous"] = reverse["score"]
+            report.equal(set(observed), set(expected) | {"previous_version", "version"},
+                         "temporal_exact_schema", version)
             for key, value in expected.items():
                 report.numeric(observed[key], value, "temporal_recalculation", version + "/" + key)
         report.equal(set(detail_index), expected_local_keys, "detailed_comparison_inventory", version)
@@ -1141,7 +1275,7 @@ def main() -> int:
                   "ai": report.ai_evidence if report.ai_evidence is not None else {"status": "skipped_by_explicit_flag"}}
     result.update({"validated_at_utc": datetime.now(timezone.utc).isoformat(),
                    "validator_sha256": digest(Path(__file__)),
-                   "method": "stdlib-only independent artifact audit; exact instructor-row normalization and original-byte input check; edge-contribution lecture MQ; exact-rational UE; residual-network max-flow MoJo with Ferrers-graph normalization; centroid-identity pilot inertia; contingency-table ARI",
+                   "method": "stdlib-only independent artifact audit; exact instructor-row normalization and original-byte input check; edge-contribution lecture MQ; exact-rational UE; residual-network max-flow MoJo with Ferrers-graph normalization; centroid-identity pilot inertia",
                    "scope": "30 source-owned Guava graphs,120 finalized A1-A4 partitions,178 bidirectional partition comparisons,60 retained-graph MQ comparisons,29 temporal transitions,all predeclared pilot fits" + ("; completed AI evidence and four comparisons" if not args.skip_ai else "; AI explicitly excluded by --skip-ai"),
                    "limitations": ["Provenance/membership checks do not prove a static extractor sees runtime reflection or all dynamic dispatch.",
                                    "Passing structural checks does not prove the recovered clusters match intended architecture.",

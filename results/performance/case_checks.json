@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "version": "33.7.2",
-  "checked_at_utc": "2026-10-17T19:19:51.017251+00:00",
+  "checked_at_utc": "2026-10-17T21:57:30.405156+00:00",
   "method": "independent per-class set definitions and exact Fraction arithmetic; production UE is not imported",
   "source_row_numbering": "CSV row number including the header as row 1",
   "input_sha256": {
@@ -10,7 +10,7 @@
     "data/graphs/33.7.2/class_aliases.csv": "621e25f17e92ff37c9cecc8a8523f0734bd0e15bb719ea5e4622681025e38590",
     "data/graphs/33.7.2/unresolved_member_uses.csv": "e98046e6af91a5aacb5f84bb12bcea12d678afe5ff696ee1936946c53c9bf74b",
     "data/graphs/33.7.2/extraction_counts.csv": "c7afcb69e3f3b8d51849b0e68de069181df4dd4de87fe868d03f819451546514",
-    "data/graphs/33.7.2/provenance.json": "3b7ffb7b4087a0f4fb2bee211ea0b7a97552c76beb1dcd24a570c7bf1e0d9088",
+    "data/graphs/33.7.2/provenance.json": "19434f11a259595e9ecefd0e0612afa6cdae200e557031f3632f44a202cea47a",
     "results/versions/33.7.2/ue.json": "cbade07765db29278470196fb3a0d9c9c9e77efd74aef5c6a56038e59993b0db",
     "scripts/audit_ue_cases.py": "7768571e47942c9c4bd15a92ea1e062c4d5135791884c335638e99dd563812eb",
     "data/raw/33.7.2/guava-33.7.2-jre-sources.jar": "ab6a8934d352629e6d87087a79808b827b64ed18cff6c6b551be99cd8e03244c"
@@ -41,11 +41,11 @@
     "date_basis": "GitHub Release.published_at",
     "dependencies": 2750,
     "excluded_binary_classes": 0,
-    "extraction_seconds": 7.397766185000364,
+    "extraction_seconds": 7.580891056000837,
     "extractor_sha256": "c59e60ce2e713deb4eae0547b6d4a61ad3af281d9f31a7cf2b47eaa3bbb14b94",
     "extractor_sha256_role": "supplemental Java source; primary relationships come solely from instructor_jar_sha256",
     "graph_sha256": "2ec951b2d59152233aa73d293bd3b971a11d656f964fdad30e3da8624abe2a88",
-    "instructor_extraction_seconds": 6.371742292001727,
+    "instructor_extraction_seconds": 6.518972476002091,
     "instructor_input": {
       "class_bytes": 6789014,
       "class_entries": 1948,
@@ -110,7 +110,7 @@
     "stdout_log": "instructor.log",
     "supplemental_annotation_target_edges": 1145,
     "supplemental_dependencies": 3982,
-    "supplemental_extraction_seconds": 0.5323387549979088,
+    "supplemental_extraction_seconds": 0.601228611998522,
     "supplemental_extractor_sha256": "c59e60ce2e713deb4eae0547b6d4a61ad3af281d9f31a7cf2b47eaa3bbb14b94",
     "supplemental_only_annotation_target_edges": 1145,
     "supplemental_only_edges": 1232,

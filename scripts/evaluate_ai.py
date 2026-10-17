@@ -11,13 +11,17 @@ sys.path.insert(0, str(ROOT / 'src'))
 from evolution.graph import read_csv, read_graph, write_csv, write_json, sha256
 from evolution.metrics import evaluate_partition, write_metric_tables
 from evolution.mojofm import compare_mojofm
-from evolution.study import compare_partitions, load_partition
+from evolution.study import load_partition
 
 
 def main() -> None:
     directory = ROOT / 'results/ai'
     record = json.loads((directory / 'experiment.json').read_text())
+    config = json.loads((ROOT / 'config/analysis.json').read_text())
+    manifest = json.loads((ROOT / 'config/versions.json').read_text())
     version = record['version']
+    if version != manifest['versions'][-1]['version']:
+        raise ValueError('Recorded AI response does not target the last selected release')
     if sha256(ROOT / record['prompt_file']) != record['prompt_sha256']:
         raise ValueError('Recorded prompt changed')
     for item in record['input_files']:
@@ -26,6 +30,12 @@ def main() -> None:
     for item in record.get('additional_prompt_files', []):
         if sha256(ROOT / item['path']) != item['sha256']:
             raise ValueError(f'Additional prompt changed: {item["path"]}')
+    source_provenance = directory / 'source_graph_provenance.json'
+    if sha256(source_provenance) != record['input_provenance']['graph_provenance_sha256']:
+        raise ValueError('Recorded source graph provenance changed')
+    for filename in ('classes.csv', 'dependencies.csv'):
+        if sha256(directory / 'inputs' / filename) != sha256(ROOT / 'data/graphs' / version / filename):
+            raise ValueError(f'Current graph no longer matches the recorded AI input: {filename}')
     graph = read_graph(ROOT / 'data/graphs' / version)
     assignment = load_partition(directory / 'assignment.csv')
     metrics = evaluate_partition(graph.nodes, graph.edges, assignment)
@@ -54,7 +64,6 @@ def main() -> None:
         comparisons.append({'condition': condition, 'graph': 'retained' if current is filtered else 'full',
                             'n_nodes': len(current.nodes), 'n_edges': len(current.edges),
                             'baseline_mq': base_metrics['mq'], 'ai_mq': ai_metrics['mq'],
-                            'adjusted_rand_agreement': compare_partitions(baseline, ai, current.nodes),
                             'mojofm_ai_to_baseline': forward['score'],
                             'mojofm_baseline_to_ai': reverse['score'],
                             'mojo_distance_ai_to_baseline': forward['distance'],
@@ -69,11 +78,19 @@ def main() -> None:
     if not all((directory / name).is_file() for name in outputs):
         raise ValueError('Incomplete recorded AI response')
     write_json(directory / 'evaluation.json', {'version': version, 'status': 'passed',
+               'study_revision': config['study_revision'],
+               'source_experiment_revision': record['study_revision'],
+               'evaluation_of_preserved_assignment': True,
+               'config_sha256': sha256(ROOT / 'config/analysis.json'),
+               'manifest_sha256': sha256(ROOT / 'config/versions.json'),
+               'source_graph_provenance_file': str(source_provenance.relative_to(ROOT)),
+               'source_graph_provenance_sha256': sha256(source_provenance),
+               'current_graph_provenance_sha256': sha256(ROOT / 'data/graphs' / version / 'provenance.json'),
                'classes_assigned_exactly_once': len(assignment), 'modules': len(declared),
                'external_or_invented_classes': 0, 'input_hashes_verified': True,
                'output_sha256': {name: sha256(directory / name) for name in outputs},
                'metric_scope': 'Every comparison uses identical class and edge sets; retained AI assignment is a projection, not a new AI recovery.',
-               'quality_claim': 'MoJoFM in both directions measures partition agreement, not accuracy; ARI is supplementary. No validated intended-architecture ground truth is available.'})
+               'quality_claim': 'MoJoFM in both directions measures partition agreement, not accuracy. No validated intended-architecture ground truth is available.'})
     print(json.dumps({'version': version, 'modules': len(declared), 'full_mq': metrics['mq'], 'retained_mq': retained_metrics['mq'], 'comparisons': comparisons}, indent=2))
 
 

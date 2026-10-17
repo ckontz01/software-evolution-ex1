@@ -1,7 +1,11 @@
 {
   "classes_assigned_exactly_once": 594,
+  "config_sha256": "d13a902f38da8e0e921eec0d5ae152ea4a8cac84d8de91546240b865bf07c069",
+  "current_graph_provenance_sha256": "19434f11a259595e9ecefd0e0612afa6cdae200e557031f3632f44a202cea47a",
+  "evaluation_of_preserved_assignment": true,
   "external_or_invented_classes": 0,
   "input_hashes_verified": true,
+  "manifest_sha256": "4b3328c198aeb11fd03a071231c707e1ab170e587f1d58f7a376ed49fc944854",
   "metric_scope": "Every comparison uses identical class and edge sets; retained AI assignment is a projection, not a new AI recovery.",
   "modules": 18,
   "output_sha256": {
@@ -11,7 +15,11 @@
     "initial_hypothesis.md": "19b25208f53ed4083b54695bdb6cc6415d922e94fe5f96d7315a8571137df4ad",
     "response.md": "673c65bb9209da9c50184d8ea68bec063631202afce6ab5bc1cf47baf1df212d"
   },
-  "quality_claim": "MoJoFM in both directions measures partition agreement, not accuracy; ARI is supplementary. No validated intended-architecture ground truth is available.",
+  "quality_claim": "MoJoFM in both directions measures partition agreement, not accuracy. No validated intended-architecture ground truth is available.",
+  "source_experiment_revision": "v2_instructor_graph_distinct_families",
+  "source_graph_provenance_file": "results/ai/source_graph_provenance.json",
+  "source_graph_provenance_sha256": "3b7ffb7b4087a0f4fb2bee211ea0b7a97552c76beb1dcd24a570c7bf1e0d9088",
   "status": "passed",
+  "study_revision": "v3_spaced_releases_no_ari",
   "version": "33.7.2"
 }

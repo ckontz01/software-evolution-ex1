@@ -16,7 +16,7 @@ Guava is itself a collection of libraries. 'Exclude external libraries' means ex
 
 ## 3. How did you choose the versions?
 
-We first grouped 70 eligible stable releases into 45 major/minor families and selected 30 family ranks across the history. Each family appears exactly once. We used its highest eligible stable patch, with an explicit oldest-boundary exception of 10.0. The rule is `round(i*44/29)` for i=0,...,29; it uses release metadata only. The manifest records every chosen rank, representative and skipped family. Some chosen families are adjacent: the sample is spaced over family rank, not uniform calendar time. The JRE artifact is used after Guava introduced separate JRE and Android variants; earlier releases use the unsuffixed Java artifact. We did not count both flavors as two historical observations.
+The current sample covers all 24 major versions from 10 to 33, using each major's first eligible .0 release. Version 13.0.1 is the exception because the 13.0 tags are ambiguous. The latest release, 33.7.2, fixes the other endpoint. Five additional minor releases fill the largest gaps in time, using a deterministic rule: choose the candidate that most reduces the sum of squared calendar gaps, require at least 60 days between observations, and allow at most two optional additions per major. Each family appears once. The actual gaps range from 74 to 471 days, with median 141. This replaced the earlier family-rank sample, which still put four 23.x releases within 56 days. The JRE artifact is used after the platform split; Android is not counted as a second historical observation. The selector reads release metadata only, never the results.
 
 The release sample was chosen before evaluating clustering quality. We did not search for versions that made a detector or algorithm look better. The sample does not reveal every intermediate change or identify the exact commit responsible for a change between observations.
 
@@ -126,11 +126,13 @@ For a graph A -> B with union columns A,B,C, the outgoing part for A includes it
 
 In the filtered case, removed classes have no rows and their incident dependencies are absent from all remaining rows. Their coordinate positions may remain as zero columns, which do not influence Euclidean distances.
 
-## 19. How did you choose k without experiments on every version?
+## 19. How did you choose k, and which parts were your own decisions?
 
 We ran one preselected middle-release pilot with a declared candidate grid of k values and the same fixed feature representation. We selected the diminishing-returns elbow from normalized inertia: the candidate furthest from the straight line between the grid endpoints. The full candidate measurements and tie rule are saved. Inertia measures squared-distance fit, not architecture quality; the chosen elbow is not guaranteed to be unique or optimal.
 
-Let the pilot have `n_p` classes and selected `k_p`. Every version uses `ceil(n_full*k_p/n_p)`, reusing its full-graph value after UE filtering and clamping only if fewer nodes remain. That extrapolation preserves an approximate target number of classes per cluster. It is a stated modeling assumption, not a formula taught as a theorem. It is materially better supported than the original square-root heuristic, but still needs interpretation alongside cluster sizes and MQ.
+Let the pilot have `n_p` classes and selected `k_p`. Every version uses `ceil(n_full*k_p/n_p)`, reusing its full-graph value after UE filtering and clamping only if fewer nodes remain. That extrapolation preserves an approximate target number of classes per cluster. The assignment asks us to explain k, but neither it nor the lecture requires this one-pilot strategy or scaling formula. Keeping the same seven dependency types is a separate choice about the input features. These are stated modeling decisions and still need interpretation alongside cluster sizes and MQ.
+
+The sampling revision keeps that strategy. It changes the middle release to 25.0 and the set of class coordinates, so the pilot and final results are recalculated. The old 25.1 calibration is not automatically reused. It would be inaccurate to say that no parameter experiment was performed: there is one pilot sweep, followed by a fixed rule for the final runs.
 
 The pilot is the only k sweep. Each final A3/A4 condition has one result under the frozen rule. The seed and ten internal initializations are fixed. A reviewer can also supply `--k` to the exploration command; those results belong in a separate directory, not mixed into the final series. Open `docs/pilot_decision.md` to quote the actual chosen pilot numbers.
 
@@ -184,7 +186,7 @@ AI can give semantic names and explain relationships from evidence. It can also 
 
 Answer in terms of measured properties and the intended use. ACDC seeks familiar structural patterns; k-means groups similarity profiles; AI may offer comprehensible semantic modules. A method that scores better on one structural metric in Guava is not automatically best for another system or for every architectural view.
 
-Without an independently validated reference architecture, agreement with packages or another algorithm is not accuracy. We report MoJoFM as partition agreement in both directions, together with ARI. The absence of ground truth prevents calling these scores recovery accuracy; it does not prevent calculating agreement.
+Without an independently validated reference architecture, agreement with packages or another algorithm is not accuracy. We report MoJoFM as partition agreement in both directions. The absence of ground truth prevents calling these scores recovery accuracy; it does not prevent calculating agreement.
 
 ## 28. Can you reproduce everything?
 

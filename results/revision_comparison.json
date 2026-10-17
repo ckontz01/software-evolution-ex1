@@ -11,6 +11,24 @@
       "version": "10.0"
     },
     {
+      "original_classes": 355,
+      "original_edges": 1932,
+      "original_ue_removals": 9,
+      "revised_classes": 355,
+      "revised_edges": 1469,
+      "revised_ue_removals": 9,
+      "version": "11.0"
+    },
+    {
+      "original_classes": 373,
+      "original_edges": 2096,
+      "original_ue_removals": 8,
+      "revised_classes": 373,
+      "revised_edges": 1597,
+      "revised_ue_removals": 8,
+      "version": "12.0"
+    },
+    {
       "original_classes": 382,
       "original_edges": 2152,
       "original_ue_removals": 8,
@@ -27,15 +45,6 @@
       "revised_edges": 2079,
       "revised_ue_removals": 11,
       "version": "15.0"
-    },
-    {
-      "original_classes": 445,
-      "original_edges": 2726,
-      "original_ue_removals": 10,
-      "revised_classes": 448,
-      "revised_edges": 2122,
-      "revised_ue_removals": 10,
-      "version": "16.0.1"
     },
     {
       "original_classes": 451,
@@ -56,22 +65,13 @@
       "version": "21.0"
     },
     {
-      "original_classes": 539,
-      "original_edges": 3417,
+      "original_classes": 538,
+      "original_edges": 3400,
       "original_ue_removals": 17,
-      "revised_classes": 542,
-      "revised_edges": 2601,
+      "revised_classes": 541,
+      "revised_edges": 2580,
       "revised_ue_removals": 17,
-      "version": "23.2"
-    },
-    {
-      "original_classes": 541,
-      "original_edges": 3419,
-      "original_ue_removals": 16,
-      "revised_classes": 544,
-      "revised_edges": 2609,
-      "revised_ue_removals": 16,
-      "version": "23.5"
+      "version": "23.0"
     },
     {
       "original_classes": 546,
@@ -83,13 +83,13 @@
       "version": "24.0"
     },
     {
-      "original_classes": 551,
-      "original_edges": 3507,
-      "original_ue_removals": 17,
-      "revised_classes": 554,
-      "revised_edges": 2681,
-      "revised_ue_removals": 17,
-      "version": "25.1"
+      "original_classes": 554,
+      "original_edges": 3518,
+      "original_ue_removals": 18,
+      "revised_classes": 557,
+      "revised_edges": 2687,
+      "revised_ue_removals": 18,
+      "version": "27.0"
     },
     {
       "original_classes": 553,
@@ -110,31 +110,31 @@
       "version": "28.2"
     },
     {
-      "original_classes": 568,
-      "original_edges": 3620,
-      "original_ue_removals": 20,
-      "revised_classes": 571,
-      "revised_edges": 2783,
-      "revised_ue_removals": 20,
-      "version": "30.1.1"
+      "original_classes": 566,
+      "original_edges": 3603,
+      "original_ue_removals": 19,
+      "revised_classes": 569,
+      "revised_edges": 2769,
+      "revised_ue_removals": 19,
+      "version": "30.0"
     },
     {
-      "original_classes": 604,
-      "original_edges": 4460,
+      "original_classes": 600,
+      "original_edges": 4354,
       "original_ue_removals": 22,
-      "revised_classes": 607,
-      "revised_edges": 2822,
+      "revised_classes": 603,
+      "revised_edges": 2811,
       "revised_ue_removals": 22,
-      "version": "32.0.1"
+      "version": "31.1"
     },
     {
-      "original_classes": 595,
-      "original_edges": 4041,
+      "original_classes": 602,
+      "original_edges": 4504,
       "original_ue_removals": 23,
-      "revised_classes": 598,
+      "revised_classes": 605,
       "revised_edges": 2826,
       "revised_ue_removals": 23,
-      "version": "33.4.8"
+      "version": "33.0.0"
     },
     {
       "original_classes": 591,
@@ -146,8 +146,8 @@
       "version": "33.7.2"
     }
   ],
-  "current_config_sha256": "c2d715ba45c0ee9445e8d07bfba238c3a38d1dcf656aab909f828a7617ccb35f",
-  "current_manifest_sha256": "733cfefe8582f23ee0dba1349773ceeaf67e746cf8892f7e21fe014cb3e62410",
+  "current_config_sha256": "d13a902f38da8e0e921eec0d5ae152ea4a8cac84d8de91546240b865bf07c069",
+  "current_manifest_sha256": "4b3328c198aeb11fd03a071231c707e1ab170e587f1d58f7a376ed49fc944854",
   "input_sha256": {
     "data/graphs/33.7.2/classes.csv": "4351db3d545cd19437f6e15140a74d2c280d697890a183d2fa54c8e2c6ef60d6",
     "data/graphs/33.7.2/dependencies.csv": "2ec951b2d59152233aa73d293bd3b971a11d656f964fdad30e3da8624abe2a88",

@@ -1,80 +1,66 @@
-# Revised pilot decision: Guava 25.1
+# Pilot decision: Guava 25.0
 
-**Decision:** use the original ACDC implementation with `+so`, SubGraph size 20 and its default fine, flat output. For k-means, select **k=40** from the one-release inertia pilot, then freeze `ceil(n_full*40/554)` across the final study. A version's full and UE-filtered conditions reuse the same requested k, except a clamp if fewer nodes survive.
+The current cohort's middle release is **25.0**, the 16th observation (zero-based index 15). Its graph has **554 canonical types**. The previous 25.1 pilot belongs to the preceding cohort; it is not reused as this run's calibration. The feature and k-selection policies are unchanged, but their inputs are recomputed for the new sample.
 
-## Pilot input was selected before quality inspection
+## What the course requires and what this study chooses
 
-The pilot is **25.1**, index 16 of the 30 selected releases (zero-based index 15). Its instructor-derived internal graph has **554 canonical types and 2,681 directed edges**. All project-owned types are present, including isolates and the public-suffix implementation. The shared feature universe, identity terms, normalization and seed are the same as the final protocol.
+The assignment asks how the number of groups was chosen (p.4). Lecture 6–7 slide 8 separates feature selection from the clustering algorithm. Neither specifies a single-release elbow or a size-extrapolation formula. This study uses one middle-release pilot, then applies one fixed rule to the final runs. The fixed seven dependency categories are a separate choice about the data representation.
 
-ACDC is checked at size settings 10, 20 and 40. K-means is checked on the single declared grid below. This is the only k sweep: the final 30 versions do not each receive a search for favorable parameters. The grid and selection rule were frozen in `config/analysis.json` before the pilot, and the resulting calibration is pinned in `results/pilot/k_calibration.json`.
+## Exact k-selection rule
 
-## Exact k-selection method
+The pilot fits the candidates `2, 5, 10, 15, 20, 25, 30, 40, 50, 60, 75, 90, 110, 130` using the same normalized incoming/outgoing features, `random_state=484`, `n_init=10` and Lloyd updates. Inertia is the sum of squared distances to the fitted cluster centers. Normalize:
 
-For every candidate k, record fitted inertia `I(k)` using the same sparse normalized features, `random_state=484`, `n_init=10`, Lloyd updates and the pinned numerical environment. Normalize:
-
-```
+```text
 x = (k - k_min) / (k_max - k_min)
 y = (I(k) - I(k_max)) / (I(k_min) - I(k_max))
 gap = 1 - x - y
 ```
 
-Choose the interior candidate with maximum gap below the normalized endpoint chord; smaller k wins exact ties. If the maximum gap is below 0.02, or the curve is flat/nondecreasing, use the nearest tested candidate to the predeclared fallback k=30. No MQ value enters this decision. The raw curve is preserved without smoothing.
+Choose the interior candidate with the largest gap if it is at least **0.02**. Exact ties choose smaller k. If there is no usable interior candidate, the endpoint inertia drop is nonpositive, or the best gap is too small, choose the tested candidate nearest to the predeclared fallback **30**; ties again choose smaller k. The raw curve is not smoothed. Individual increasing-inertia steps are recorded, not automatically discarded or treated as a fallback trigger.
 
-| Candidate k | Inertia | Normalized chord gap | Decision |
-|---:|---:|---:|---|
-| 2 | 510.124764 | 0.000000 |  |
-| 5 | 489.042741 | 0.066670 |  |
-| 10 | 465.722319 | 0.127282 |  |
-| 15 | 449.478981 | 0.157646 |  |
-| 20 | 438.058963 | 0.167394 |  |
-| 25 | 426.446376 | 0.177965 |  |
-| 30 | 415.554072 | 0.185458 |  |
-| 40 | 396.560709 | 0.188513 | Selected |
-| 50 | 380.055361 | 0.180934 |  |
-| 60 | 365.947251 | 0.163109 |  |
-| 75 | 342.956121 | 0.144189 |  |
-| 90 | 322.556561 | 0.114192 |  |
-| 110 | 298.564109 | 0.060489 |  |
-| 130 | 276.159382 | 0.000000 |  |
+| k | Inertia | Normalized gap | Decision |
+| --- | --- | --- | --- |
+| 2 | 509.883145 | 0.000000 |  |
+| 5 | 488.780931 | 0.066267 |  |
+| 10 | 465.341761 | 0.126844 |  |
+| 15 | 448.772054 | 0.158218 |  |
+| 20 | 437.496292 | 0.167089 |  |
+| 25 | 426.460345 | 0.174939 |  |
+| 30 | 415.280126 | 0.183404 |  |
+| 40 | 395.561358 | 0.189102 | Selected |
+| 50 | 379.583274 | 0.178899 |  |
+| 60 | 364.786559 | 0.163675 |  |
+| 75 | 341.933385 | 0.143635 |  |
+| 90 | 323.345275 | 0.105465 |  |
+| 110 | 297.278265 | 0.060025 |  |
+| 130 | 274.642098 | 0.000000 |  |
 
-The selected value is **40**, with gap **0.188513**. The fallback was not used, and there are no increasing-inertia steps in the observed curve. The calibration targets an average **554/40 = 13.85 classes per cluster**, extrapolated through `ceil(n_full*40/554)`.
+The selected value is **40**, with gap **0.189102**. The decision record is `maximum_normalized_chord_gap` and the observed curve has **0 increasing-inertia steps**. The candidate range, feature geometry and fitted optimization all influence the result. Nearby gaps should be inspected before describing the elbow as sharp or unique. This selection does not establish the number of true architectural modules.
 
-The elbow is **broad**: k=30 has gap 0.185458 and k=50 has gap 0.180934. The deterministic maximum makes the decision reproducible, but this small separation does not establish a uniquely correct architectural granularity. The candidate range, graph and feature geometry influence the answer. The size-scaling rule is an explicit extrapolation assumption; it does not rerun the elbow calculation on every release.
+## Applying the calibration
 
-## Observed pilot partitions and granularity diagnostic
+The pilot has **554/40 = 13.85 classes per cluster** on average. The final rule is `ceil(n_full*40/554)`. Each release's full and UE-filtered conditions request the same k, except that k is capped if fewer classes remain. An empty graph uses k=0. The final full-graph partitions contain **23–45 clusters**. Actual counts and warnings are saved for every fit.
+
+Scaling by full class count is an explicit extrapolation assumption. No MQ value determines k, and final releases do not each receive another candidate sweep. An optional `--k` run belongs in a separate exploration directory.
+
+## ACDC and the granularity comparison
 
 | Method | Clusters | Largest | Singletons | Cohesion | Coupling | MQ |
-|---|---:|---:|---:|---:|---:|---:|
-| ACDC -l10 | 110 | 49 | 23 | 0.322771999 | 0.003494876 | 0.319277123 |
-| ACDC -l20 | 110 | 49 | 23 | 0.322771999 | 0.003494876 | 0.319277123 |
-| ACDC -l40 | 110 | 49 | 23 | 0.322771999 | 0.003494876 | 0.319277123 |
-| KMeans elbow k=40 | 40 | 58 | 0 | 0.165473854 | 0.005165747 | 0.160308107 |
-| KMeans matched ACDC k=110 | 110 | 23 | 9 | 0.246856351 | 0.004463248 | 0.242393103 |
+| --- | --- | --- | --- | --- | --- | --- |
+| ACDC -l10 | 110 | 49 | 23 | 0.323668029 | 0.003484828 | 0.320183201 |
+| ACDC -l20 | 110 | 49 | 23 | 0.323668029 | 0.003484828 | 0.320183201 |
+| ACDC -l40 | 110 | 49 | 23 | 0.323668029 | 0.003484828 | 0.320183201 |
+| K-means selected k=40 | 40 | 69 | 0 | 0.164879222 | 0.005953027 | 0.158926195 |
+| K-means matched k=110 | 110 | 28 | 4 | 0.268297258 | 0.004724264 | 0.263572994 |
 
-The three ACDC assignment CSVs are byte-identical, with SHA-256:
+The final ACDC configuration is the original York implementation with `+so -l20` and its default fine, flat output. The pilot checks sizes 10, 20 and 40; the table gives the measured differences. The size limit applies to the SubGraph stage, so later orphan adoption can create larger groups. A reversible `.java` suffix prevents the file-oriented tool from collapsing distinct Java names to the same basename. Genuine graph isolates are restored as singleton groups by the adapter.
 
-`97a6039d957c004d38d6c0624a573b5750e448cd60d427cbc5c28564652a59ab`
+The matched-k trial uses ACDC's cluster count to examine how granularity affects MQ on this one graph. It is a separate diagnostic and does not choose the final k. Equal cluster counts do not imply equal size distributions or meaningful responsibilities.
 
-This pilot gives no evidence that size 10 or 40 improves on 20. It does not show that the parameter is irrelevant on every graph. Later adoption can create a 49-class final group; `-l20` constrains a recovery stage, not every final cluster.
+## Evidence
 
-The **matched-k diagnostic** compares ACDC and k-means at 110 clusters on the same pilot graph. Raising k-means from its elbow-selected 40 clusters to 110 increases its MQ from 0.160308 to 0.242393; ACDC's MQ is 0.319277. This confirms that granularity affects the metric and explains part of the original gap on this pilot. A residual difference remains even at matched k, and matching k does not match the whole cluster-size distribution. The matched result was not used to select k and is not an additional official final architecture.
+The full record is in `results/pilot/pilot.json`, `k_inertia_curve.csv`, `k_calibration.json` and `k_candidates/`. Each candidate has saved assignments and execution metadata. `quality_scores_used_for_selection=false` records the selection boundary. The final run pins the calibration hash.
 
-## ACDC representation fix carried into the revised study
+Configuration SHA-256: `d13a902f38da8e0e921eec0d5ae152ea4a8cac84d8de91546240b865bf07c069`.
 
-The original file-oriented ACDC derives a basename by removing the last dotted suffix. Passing bare Java names `p.A` and `p.B` can therefore give both the basename `p`. The earlier adapter check identified this problem. The unchanged upstream tool now receives reversible `CLASS.java` IDs, yielding distinct basenames. `node_id_map.csv` records the mapping, and every membership is decoded to its canonical class name before evaluation.
-
-A real-Java regression with two disconnected cliques in one package checks that their clusters remain distinct. Original ACDC source is unchanged; the wrapper also restores genuine graph isolates as singletons because dependency-only RSF cannot encode them.
-
-## Evidence and reproduction
-
-- `results/pilot/pilot.json`: actual pilot inputs, all final pilot metrics and matched-k diagnostic.
-- `results/pilot/k_inertia_curve.csv`: candidate k, inertia, normalized coordinates/gap, iterations and runtime.
-- `results/pilot/k_candidates/`: all 14 actual candidate assignments and fit metadata.
-- `results/pilot/k_calibration.json`: selected value, explicit fallback logic, target mean, graph/class/feature/config/manifest hashes, and `quality_scores_used_for_selection=false`.
-- `results/pilot/acdc_l10.csv`, `acdc_l20.csv`, `acdc_l40.csv`, `kmeans.csv`, and `kmeans_matched_acdc_k.csv`: actual memberships.
-
-The frozen analysis configuration SHA-256 is:
-
-`c2d715ba45c0ee9445e8d07bfba238c3a38d1dcf656aab909f828a7617ccb35f`
-
-The matching calibration hash is included in `results/run_manifest.json`. The final study has exactly one A1/A2/A3/A4 partition per release under that calibration. User-selected `--k` runs use separate exploration directories. Tutorial pages 7–8 motivate checking original ACDC parameters; the reconstruction lecture pages 15–17 define the reported MQ. The inertia grid/elbow and size extrapolation are our declared implementation choices, not a lecture-prescribed theorem.
+Calibration SHA-256: `61cf143f52f4b17f18f0c2470f25ad848872f008f3a99c82fa8698162777556c`.
