@@ -27,18 +27,20 @@ from .metrics import validate_graph, validate_partition
 from .toolchain import ROOT, java_env, java_path
 
 
-def choose_k(n_full: int, n_remaining: int | None = None) -> int:
-    """Predeclared granularity heuristic; no metric optimization or k sweep.
+def choose_k(n_full: int, n_remaining: int | None = None, *, pilot_n: int, pilot_k: int) -> int:
+    """Transfer one pilot's empirically selected granularity to every version.
 
-    Use full-version n for BOTH conditions, then clamp only if removals leave
-    fewer nodes than k. The heuristic is our choice, not a lecture theorem.
+    Exact integer ceil(n_full * pilot_k / pilot_n), reused for full/filtered
+    conditions. This is an explicit extrapolation, not a per-version optimum.
     """
     if n_full < 0 or (n_remaining is not None and not 0 <= n_remaining <= n_full):
         raise ValueError("Invalid full/remaining node counts")
+    if not isinstance(pilot_n, int) or not isinstance(pilot_k, int) or not 1 <= pilot_k <= pilot_n:
+        raise ValueError("Pilot calibration must have 1 <= pilot_k <= pilot_n")
     remaining = n_full if n_remaining is None else n_remaining
     if remaining == 0:
         return 0
-    return min(remaining, max(1, math.ceil(math.sqrt(n_full / 2))))
+    return min(remaining, max(1, (n_full * pilot_k + pilot_n - 1) // pilot_n))
 
 
 def build_features(nodes: Iterable[str], edges: Iterable[tuple[str, str]], universe: Iterable[str]) -> tuple[tuple[str, ...], csr_matrix]:

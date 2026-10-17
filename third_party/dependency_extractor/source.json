@@ -1,0 +1,28 @@
+{
+  "bundled_libraries": {
+    "ant-1.6.5.jar": {
+      "bytes": 1034049,
+      "sha256": "f06a601c718a7c9262d74b7ec3baad14c82584e89235089b4f821d6a44d9e1e4"
+    },
+    "ant.jar": {
+      "bytes": 1289806,
+      "sha256": "92f72307e7440f1e352c916f2438d2bbab3ffd2cf730c71316117ad04abadea8"
+    },
+    "asm-9.7.1.jar": {
+      "bytes": 126093,
+      "sha256": "8cadd43ac5eb6d09de05faecca38b917a040bb9139c7edeb4cc81c740b713281"
+    },
+    "javaparser-1.0.8.jar": {
+      "bytes": 256349,
+      "sha256": "186e3a0c99954c4ddcc103aaae97fc85dce254bb0494e675b1e3901fbc7bce3b"
+    }
+  },
+  "jar_bytes": 2671409,
+  "jar_sha256": "8e4e857222dba569cc48ddf2bc58d3ac206d4ee1c0d5228b7b69517016450e9c",
+  "launcher": "Original CompCalc.MainClass launched with an explicit classpath containing unchanged nested libraries to avoid the original Eclipse jar-in-jar loader failure under the recorded Java 17 runtime.",
+  "main_class": "CompCalc.MainClass",
+  "modifications": "None. The original JAR and nested libraries are byte-identical to the supplied attachment.",
+  "original_filename": "DependencyExtractor (1).jar",
+  "source": "User-supplied EPL484 Project 1 attachment; no upstream public URL supplied",
+  "tool": "Instructor-provided DependencyExtractor"
+}

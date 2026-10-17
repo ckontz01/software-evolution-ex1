@@ -18,8 +18,6 @@ from zipfile import ZipFile
 
 
 ROOT = Path(__file__).resolve().parents[1]
-CHANGES = (("30.1.1", "31.1"), ("33.3.1", "33.4.1"))
-UNCHANGED = (("33.4.1", "33.4.3"), ("33.7.0", "33.7.2"))
 
 
 def csv_rows(path):
@@ -96,6 +94,12 @@ def difference(before_version, after_version, snapshots):
             "edges_before": len(old_edges), "edges_after": len(new_edges),
             "added_edges": len(added_edges), "removed_edges": len(removed_edges),
             "net_edge_change": len(new_edges) - len(old_edges),
+            "edge_change_percent": 100 * (len(new_edges) / len(old_edges) - 1) if old_edges else None,
+            "class_change_percent": 100 * (len(new_nodes) / len(old_nodes) - 1) if old_nodes else None,
+            "annotation_classes_before": sum(r['kind'] == 'annotation' for r in old_classes.values()),
+            "annotation_classes_after": sum(r['kind'] == 'annotation' for r in new_classes.values()),
+            "non_annotation_classes_before": sum(r['kind'] != 'annotation' for r in old_classes.values()),
+            "non_annotation_classes_after": sum(r['kind'] != 'annotation' for r in new_classes.values()),
             "added_edges_to_annotation_types": len(added_to_annotations),
             "removed_edges_to_removed_annotation_types": len(removed_to_removed_annotations),
             "common_classes": len(common),
@@ -105,6 +109,8 @@ def difference(before_version, after_version, snapshots):
         "removed_classes": [old_classes[n] for n in sorted(removed_nodes)],
         "added_annotation_classes": sorted(added_annotations),
         "removed_annotation_classes": sorted(removed_annotations),
+        "added_classes_by_package": dict(sorted(Counter(new_classes[n]['package'] for n in added_nodes).items())),
+        "removed_classes_by_package": dict(sorted(Counter(old_classes[n]['package'] for n in removed_nodes).items())),
         "typed_edge_counts_before": dict(sorted(before["typed_counts"].items())),
         "typed_edge_counts_after": dict(sorted(after["typed_counts"].items())),
         "added_edges_by_target": top(added_edges), "removed_edges_by_target": top(removed_edges),
@@ -154,47 +160,65 @@ def run(root):
     manifest = json.loads(manifest_path.read_text())
     require(manifest["repository"] == "google/guava", "Wrong study subject")
     releases = {r["version"]: r for r in manifest["versions"]}
-    selected = sorted({v for pair in CHANGES + UNCHANGED for v in pair})
+    selected = [r['version'] for r in manifest['versions']]
     snapshots = {v: snapshot(root, releases[v]) for v in selected}
-    changes = [difference(a, b, snapshots) for a, b in CHANGES]
-    expected = (
-        {"classes_before": 568, "classes_after": 600, "added_classes": 35, "removed_classes": 3,
-         "added_annotation_classes": 30, "edges_before": 3620, "edges_after": 4354,
-         "added_edges": 792, "removed_edges": 58, "added_edges_to_annotation_types": 748},
-        {"classes_before": 608, "classes_after": 596, "added_classes": 3, "removed_classes": 15,
-         "removed_annotation_classes": 15, "edges_before": 4513, "edges_after": 3930,
-         "added_edges": 4, "removed_edges": 587, "removed_edges_to_removed_annotation_types": 566},
-    )
-    for result, claims in zip(changes, expected):
-        for key, value in claims.items():
-            require(result["counts"][key] == value, f"Stale reported claim: {result['after_version']}/{key}")
-        result["reported_count_claims_verified"] = claims
+    pairs = list(zip(selected, selected[1:]))
+    changes = [difference(a, b, snapshots) for a, b in pairs]
+    size_rows = {r['version']: r for r in csv_rows(root / 'results/sizes.csv')}
+    for v in selected:
+        require(len(snapshots[v]['classes']) == int(size_rows[v]['classes']), f'Size summary disagrees for {v}')
+        require(len(snapshots[v]['edges']) == int(size_rows[v]['dependencies']), f'Edge summary disagrees for {v}')
     unchanged = []
-    for a, b in UNCHANGED:
+    for a, b in pairs:
         left, right = snapshots[a], snapshots[b]
         same_nodes, same_edges = set(left["classes"]) == set(right["classes"]), left["edges"] == right["edges"]
-        require(same_nodes and same_edges, f"Reported unchanged graph differs: {a} to {b}")
-        unchanged.append({"before_version": a, "after_version": b,
+        if same_nodes and same_edges:
+            unchanged.append({"before_version": a, "after_version": b,
                           "same_canonical_class_identities": same_nodes, "same_directed_binary_edges": same_edges,
                           "class_count": len(left["classes"]), "edge_count": len(left["edges"]),
                           "classes_csv_byte_identical": left["provenance"]["production_file_sha256"]["classes.csv"] == right["provenance"]["production_file_sha256"]["classes.csv"],
                           "dependencies_csv_byte_identical": left["provenance"]["production_file_sha256"]["dependencies.csv"] == right["provenance"]["production_file_sha256"]["dependencies.csv"]})
-    sources = [source_markers(root, releases[v]) for v in ("33.3.1", "33.4.1")]
-    old, new = sources
-    require(old["files"][2]["present"] and not new["files"][2]["present"], "Expected annotation-source removal absent")
-    require(any("@ElementTypesAreNonnullByDefault" in line["matched_markers"] for line in old["files"][0]["matching_lines"]), "Old Lists annotation marker absent")
-    require(not new["files"][0]["matching_lines"], "New Lists unexpectedly retains an annotation marker")
-    new_markers = {marker for line in new["files"][1]["matching_lines"] for marker in line["matched_markers"]}
-    require({"@NullMarked", "import org.jspecify.annotations.NullMarked;"} <= new_markers, "New package-info migration markers absent")
+    annotation_change = max(changes, key=lambda r: r['counts']['removed_annotation_classes'])
+    sources = [source_markers(root, releases[v]) for v in
+               (annotation_change['before_version'], annotation_change['after_version'])]
+    # For every observed class addition/removal, preserve the exact source-entry
+    # hash. These are observations of selected snapshots, not claims about the
+    # first historical introduction/removal of a feature.
+    needed = {v: set() for v in selected}
+    for change in changes:
+        for key, version_key in [('added_classes', 'after_version'), ('removed_classes', 'before_version')]:
+            needed[change[version_key]].update(r['source_file'] for r in change[key])
+    source_entries = []
+    for v in selected:
+        path = root / releases[v]['sources_path']
+        require(sha256(path) == releases[v]['sources_sha256'], f'Wrong source artifact for {v}')
+        with ZipFile(path) as archive:
+            names = set(archive.namelist())
+            entries = []
+            for name in sorted(needed[v]):
+                require(name in names, f'Missing owned source {v}: {name}')
+                content = archive.read(name)
+                entries.append({'source_path_within_jar': name, 'bytes': len(content),
+                                'sha256': hashlib.sha256(content).hexdigest()})
+        source_entries.append({'version': v, 'sources_jar_path': releases[v]['sources_path'],
+                               'sources_jar_sha256': releases[v]['sources_sha256'], 'files': entries})
+    ranked = sorted(changes, key=lambda r: (-abs(r['counts']['edge_change_percent']), r['after_version']))
     return {
-        "schema_version": 1, "status": "passed", "audited_at_utc": datetime.now(timezone.utc).isoformat(),
+        "schema_version": 2, "status": "passed", "audited_at_utc": datetime.now(timezone.utc).isoformat(),
         "audit_script_sha256": sha256(Path(__file__)), "versions_manifest_sha256": sha256(manifest_path),
         "method": "Independent set differences over finalized owned-class binary graphs; annotation kinds from class inventory; exact pinned source-JAR entry search",
         "inputs": [snapshots[v]["provenance"] for v in selected], "change_points": changes,
+        "transition_count": len(changes),
+        "largest_absolute_percentage_edge_changes": [
+            {'before_version': r['before_version'], 'after_version': r['after_version'], 'counts': r['counts']}
+            for r in ranked[:5]],
+        "source_entries_for_observed_class_changes": source_entries,
         "source_evidence": sources, "unchanged_graph_pairs": unchanged,
         "interpretation_limits": [
             "Typed relation counts can overlap within one directed binary class edge and must not be summed as the binary edge count.",
-            "The source example supports the annotation-migration interpretation; the graph decrease alone does not prove architectural repair or decreased functional coupling.",
+            "Annotation migrations can change the owned-type inventory even when annotation applications are excluded from primary edges. The source markers document metadata changes, not architectural repair.",
+            "Largest transitions are ranked for descriptive discussion only after executing the fixed cohort; they do not determine release selection or parameter choices.",
+            "Different-length release intervals and bytecode/compiler effects limit causal interpretation; dependency count alone is not semantic complexity.",
             "Equal class/dependency graphs do not imply identical source text or release artifacts.",
             "This audit creates no new architecture and modifies no finalized per-version input/output file.",
         ],

@@ -24,6 +24,8 @@ import urllib.request
 import zipfile
 import xml.etree.ElementTree as ET
 
+from select_versions import validate_manifest
+
 ROOT = Path(__file__).resolve().parents[1]
 USER_AGENT = "EPL484-Software-Evolution-Reproducible-Research/1.0"
 JAVA_COMMENTS = re.compile(
@@ -67,41 +69,8 @@ def download(url, timeout=40):
 
 
 def validate_selection(manifest):
-    versions = manifest["versions"]
     inventory = json.loads((ROOT / "data/provenance/tag_inventory.json").read_text())
-    stable_rows = inventory["stable_tags_in_date_order"]
-    stable_versions = [row["version"] for row in stable_rows]
-    stable_positions = {version: i for i, version in enumerate(stable_versions)}
-    if len(stable_positions) != len(stable_versions):
-        raise ValueError("Duplicate stable release in the source tag inventory.")
-    if len(versions) != 30:
-        raise ValueError("This study must contain exactly 30 releases.")
-    if len({v["version"] for v in versions}) != 30:
-        raise ValueError("Repeated release in the selected sample.")
-    for i, row in enumerate(versions):
-        if not re.fullmatch(r"\d+\.\d+(?:\.\d+)?", row["version"]):
-            raise ValueError(f"Nonstable version: {row['version']}")
-        if not re.fullmatch(r"[a-f0-9]{40}", row["commit_sha"]):
-            raise ValueError("Missing immutable Git commit SHA.")
-        if row["version"] not in stable_positions:
-            raise ValueError(f"Release absent from captured stable inventory: {row['version']}")
-        position = stable_positions[row["version"]]
-        captured = stable_rows[position]
-        if (row["tag"], row["commit_sha"]) != (captured["tag"], captured["commit_sha"]):
-            raise ValueError(f"Tag identity differs from captured inventory: {row['version']}")
-        if i:
-            previous_position = stable_positions[versions[i - 1]["version"]]
-            if position <= previous_position + 1:
-                raise ValueError(f"Consecutive or reversed stable release at {row['version']}")
-            expected_skipped = stable_versions[previous_position + 1:position]
-        else:
-            expected_skipped = []
-        if row["skipped_stable_since_previous"] != expected_skipped:
-            raise ValueError(f"Incorrect intervening stable release metadata at {row['version']}")
-        if i and versions[i - 1]["release_date"] >= row["release_date"]:
-            raise ValueError("Release dates must increase.")
-    if len({tuple(r["version"].split(".")[:2]) for r in versions}) < 10:
-        raise ValueError("Fewer than 10 major/minor families.")
+    validate_manifest(manifest, inventory)
 
 
 def artifact_file(row, kind):
@@ -169,6 +138,7 @@ def fetch_artifact(row, kind, offline, bootstrap):
 def source_inventory(row):
     """Source SLOC, raw bytecode counts, and source-to-binary ownership evidence."""
     records = []
+    prefixes = tuple(row.get("source_prefixes", [row["source_prefix"]]))
     with zipfile.ZipFile(artifact_file(row, "sources")) as archive:
         for name in sorted(archive.namelist()):
             if not name.endswith(".java"):
@@ -186,7 +156,7 @@ def source_inventory(row):
                 "nonblank_noncomment_lines": sum(bool(s.strip()) for s in clean.splitlines()),
             })
     owned_sources = {r["path"][:-5] for r in records
-                     if r["path"].startswith(row["source_prefix"])
+                     if r["path"].startswith(prefixes)
                      and not r["path"].endswith("package-info.java")}
     with zipfile.ZipFile(artifact_file(row, "jar")) as archive:
         all_classes = [s for s in archive.namelist() if s.endswith(".class")]
@@ -201,8 +171,9 @@ def source_inventory(row):
                 unsupported.append(name)
     return {
         "version": row["version"], "source_java_files": len(records),
-        "source_owned_java_files": sum(r["path"].startswith(row["source_prefix"]) for r in records),
-        "source_owned_java_nonblank_noncomment_lines": sum(r["nonblank_noncomment_lines"] for r in records if r["path"].startswith(row["source_prefix"])),
+        "source_ownership_prefixes": list(prefixes),
+        "source_owned_java_files": sum(r["path"].startswith(prefixes) for r in records),
+        "source_owned_java_nonblank_noncomment_lines": sum(r["nonblank_noncomment_lines"] for r in records if r["path"].startswith(prefixes)),
         "java_physical_lines": sum(r["physical_lines"] for r in records),
         "java_nonblank_noncomment_lines": sum(r["nonblank_noncomment_lines"] for r in records),
         "raw_class_entries_including_multi_release": len(all_classes),
@@ -293,6 +264,11 @@ def main():
             row[f"{kind}_maven_sha1"] = result["maven_sha1"]
     if args.bootstrap:
         write_json(args.manifest, manifest)
+    checksum_lines = [f"{row[f'{kind}_sha256']}  {row[f'{kind}_path']}"
+                      for row in manifest["versions"] for kind in ("jar", "sources", "pom")]
+    checksum_path = ROOT / "data/provenance/SHA256SUMS"
+    checksum_path.parent.mkdir(parents=True, exist_ok=True)
+    checksum_path.write_text("\n".join(checksum_lines) + "\n")
     inventories = []
     for row in manifest["versions"]:
         info = source_inventory(row)
@@ -310,6 +286,11 @@ def main():
         "started_at_utc": started, "completed_at_utc": utc_now(),
         "mode": "offline_verify" if args.offline else "download_or_verify",
         "repository": manifest["repository"], "versions": len(manifest["versions"]),
+        "study_revision": manifest.get("study_revision", 1),
+        "selected_versions": [row["version"] for row in manifest["versions"]],
+        "selected_unique_families": len({row.get("family", ".".join(row["version"].split(".")[:2]))
+                                          for row in manifest["versions"]}),
+        "selection_manifest_sha256": digest(args.manifest.read_bytes()),
         "artifact_count": len(artifacts), "total_artifact_bytes": sum(r["bytes"] for r in artifacts),
         "all_pinned_sha256_verified": True, "artifacts": artifacts,
         "source_inventories": inventories,

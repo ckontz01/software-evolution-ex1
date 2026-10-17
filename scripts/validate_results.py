@@ -10,7 +10,7 @@ Run after scripts/run_study.py: python scripts/validate_results.py
 from __future__ import annotations
 
 import argparse
-from collections import Counter, defaultdict
+from collections import Counter, defaultdict, deque
 import csv
 from datetime import datetime, timezone
 from fractions import Fraction
@@ -27,6 +27,9 @@ import zipfile
 ROOT = Path(__file__).resolve().parents[1]
 RELATIONS = {"EXTENDS", "IMPLEMENTS", "METHOD_CALL", "METHOD_PARAMETER",
              "FIELD_REFERENCE", "TYPE_USAGE", "EXCEPTION_THROWS"}
+OWNED_PREFIXES = ("com.google.common.", "com.google.thirdparty.publicsuffix.")
+SOURCE_PREFIXES = ("com/google/common/", "com/google/thirdparty/publicsuffix/")
+INSTRUCTOR_SHA256 = "8e4e857222dba569cc48ddf2bc58d3ac206d4ee1c0d5228b7b69517016450e9c"
 
 
 def rows(path: Path) -> list[dict[str, str]]:
@@ -44,6 +47,8 @@ def digest(path: Path) -> str:
 
 
 def close(a, b) -> bool:
+    a = None if a == "" else a
+    b = None if b == "" else b
     if a is None or b is None:
         return a is b
     try:
@@ -120,6 +125,95 @@ def independent_ari(a, b, nodes) -> float | None:
     return float((observed - expected) / (maximum - expected)) if maximum != expected else 1.0
 
 
+def independent_matching(options, right_count):
+    """Unit-capacity max flow, separate from production's matching implementation."""
+    left_count = len(options)
+    sink = left_count + right_count + 1
+    capacity = [dict() for _ in range(sink + 1)]
+
+    def connect(a, b):
+        capacity[a][b], capacity[b][a] = 1, 0
+
+    for i, targets in enumerate(options, 1):
+        connect(0, i)
+        for j in targets:
+            connect(i, 1 + left_count + j)
+    for j in range(right_count):
+        connect(1 + left_count + j, sink)
+    flow = 0
+    while True:
+        predecessors = {0: -1}
+        queue = deque([0])
+        while queue and sink not in predecessors:
+            vertex = queue.popleft()
+            for neighbor, available in capacity[vertex].items():
+                if available and neighbor not in predecessors:
+                    predecessors[neighbor] = vertex
+                    queue.append(neighbor)
+        if sink not in predecessors:
+            return flow
+        vertex = sink
+        while vertex:
+            predecessor = predecessors[vertex]
+            capacity[predecessor][vertex] -= 1
+            capacity[vertex][predecessor] += 1
+            vertex = predecessor
+        flow += 1
+
+
+def independent_mojofm(a, b, nodes) -> dict:
+    """Recompute both MoJo terms with flow; use a different denominator algorithm.
+
+    A maximum flow on the tied intersection maxima gives occupied target groups.
+    For the denominator, build the target-size Ferrers graph directly: a target
+    cluster of size s connects to the first s artificial groups. Its maximum
+    matching gives the worst-case group count. This does not reuse production's
+    sorted-size recurrence. No production module or ARI is used in this check.
+    """
+    nodes = tuple(nodes)
+    left = {label: i for i, label in enumerate(sorted({a[n] for n in nodes}))}
+    right = {label: i for i, label in enumerate(sorted({b[n] for n in nodes}))}
+    matrix = [[0] * len(right) for _ in left]
+    for node in nodes:
+        matrix[left[a[node]]][right[b[node]]] += 1
+    maxima = [max(row) for row in matrix]
+    options = [[j for j, value in enumerate(row) if value == maximum]
+               for row, maximum in zip(matrix, maxima)]
+    groups = independent_matching(options, len(right))
+    moves, joins = len(nodes) - sum(maxima), len(left) - groups
+    target_sizes = list(Counter(b[n] for n in nodes).values())
+    normalizer_groups = independent_matching([range(size) for size in target_sizes],
+                                             max(target_sizes, default=0))
+    maximum = len(nodes) - normalizer_groups
+    distance = moves + joins
+    return {
+        "direction": "source_to_target", "n_nodes": len(nodes),
+        "source_clusters": len(left), "target_clusters": len(right),
+        "move_operations": moves, "join_operations": joins,
+        "matched_target_clusters": groups, "normalizer_groups": normalizer_groups,
+        "distance": distance, "max_distance": maximum,
+        "score": float(Fraction(100 * (maximum - distance), maximum)) if maximum else None,
+        "defined": maximum > 0,
+        "reason": None if maximum else ("empty_universe" if not nodes else "single_node_universe"),
+    }
+
+
+def independent_inertia(nodes, edges, assignment):
+    """Compute normalized [A+I,(A+I)^T] SSE using the centroid sum identity."""
+    coordinates = {n: {(0, n), (1, n)} for n in nodes}
+    for source, target in edges:
+        coordinates[source].add((0, target))
+        coordinates[target].add((1, source))
+    sizes = Counter(assignment.values())
+    sums = defaultdict(lambda: defaultdict(float))
+    for node in nodes:
+        value = 1 / math.sqrt(len(coordinates[node]))
+        for coordinate in sorted(coordinates[node]):
+            sums[assignment[node]][coordinate] += value
+    return len(nodes) - math.fsum(value * value / sizes[group]
+                                 for group, vector in sums.items() for value in vector.values())
+
+
 def independent_ue(nodes, member_rows, usage, cardinality) -> dict:
     """Re-evaluate paper decisions with exact fractions for every target class."""
     sources, callers, targets = defaultdict(set), defaultdict(set), defaultdict(set)
@@ -150,18 +244,34 @@ def independent_ue(nodes, member_rows, usage, cardinality) -> dict:
     return answer
 
 
+def failure_value(value):
+    """Keep failures JSON-readable even for paths, bytes, sets and tuple keys."""
+    if isinstance(value, dict):
+        return {str(key): failure_value(item) for key, item in value.items()}
+    if isinstance(value, (set, frozenset)):
+        return [failure_value(item) for item in sorted(value, key=str)]
+    if isinstance(value, (list, tuple)):
+        return [failure_value(item) for item in value]
+    if isinstance(value, Path):
+        return str(value)
+    if isinstance(value, bytes):
+        return {"bytes": len(value), "sha256": hashlib.sha256(value).hexdigest()}
+    return value
+
+
 class Audit:
     def __init__(self):
         self.counts = Counter()
         self.failures = []
         self.warnings = []
         self.release_evidence = []
+        self.ai_evidence = None
 
     def check(self, condition, name, context, actual=None, expected=None):
         self.counts[name] += 1
         if not condition:
             self.failures.append({"check": name, "context": context,
-                                  "actual": actual, "expected": expected})
+                                  "actual": failure_value(actual), "expected": failure_value(expected)})
 
     def equal(self, actual, expected, name, context):
         self.check(actual == expected, name, context, actual, expected)
@@ -219,20 +329,454 @@ def read_partition(path: Path, expected_nodes, audit: Audit):
     return assignment
 
 
-def audit(root: Path, result_root: Path, graph_root: Path) -> Audit:
+def audit_family_selection(root, manifest, report):
+    """Rebuild family eligibility and representatives from the frozen tag catalog."""
+    inventory_path = root / "data/provenance/tag_inventory.json"
+    inventory = data(inventory_path)
+    stable = inventory["stable_tags_in_date_order"]
+    excluded = {row["version"] for row in inventory["additional_exclusions"]}
+    cutoff = manifest["selection_date_utc"]
+    key = lambda version: tuple(map(int, (version + ".0.0").split(".")[:3]))
+    eligible = [row for row in stable if key(row["version"])[0] >= 10
+                and row["version"] not in excluded and row["release_date"][:10] <= cutoff]
+    groups = defaultdict(list)
+    for row in eligible:
+        groups[".".join(row["version"].split(".")[:2])].append(row)
+    family_order = sorted(groups, key=lambda f: (min(r["release_date"] for r in groups[f]), key(f)))
+    report.equal(len(eligible), 70, "family_selection_catalog", "eligible releases")
+    report.equal(len(family_order), 45, "family_selection_catalog", "eligible major/minor families")
+    count = len(manifest["versions"])
+    # Independent exact nearest-integer arithmetic. Denominator 29 has no half ties.
+    ranks = [(2 * i * (len(family_order) - 1) + count - 1) // (2 * (count - 1))
+             for i in range(count)]
+    representatives = [max(groups[f], key=lambda r: key(r["version"])) for f in family_order]
+    representatives[0] = min(groups[family_order[0]], key=lambda r: r["release_date"])
+    chosen = [representatives[i] for i in ranks]
+    selected_families = [family_order[i] for i in ranks]
+    report.equal([r["version"] for r in manifest["versions"]], [r["version"] for r in chosen],
+                 "independent_family_selection", "selected representative versions")
+    report.equal(len(set(selected_families)), 30, "distinct_selected_families", "manifest")
+    report.equal(manifest["major_minor_families"], selected_families, "family_selection_provenance", "families")
+    report.equal(manifest["selected_family_ranks_zero_based"], ranks, "family_selection_provenance", "ranks")
+    report.equal(manifest["eligible_major_minor_families"], len(family_order), "family_selection_provenance", "family count")
+    report.equal(manifest["selection_catalog_sha256"], digest(inventory_path), "selection_catalog_checksum", "manifest")
+    for i, (recorded, original) in enumerate(zip(manifest["versions"], chosen)):
+        for field in ("tag", "commit_sha", "release_date", "date_basis"):
+            report.equal(recorded[field], original[field], "immutable_release_identity", recorded["version"] + "/" + field)
+        report.equal(recorded["family"], selected_families[i], "family_selection_provenance", recorded["version"])
+        report.equal(recorded["family_rank_zero_based"], ranks[i], "family_selection_provenance", recorded["version"] + "/rank")
+        report.equal(recorded["index"], i + 1, "sequential_sample_index", recorded["version"])
+        report.equal(recorded["source_prefixes"], list(SOURCE_PREFIXES), "owned_source_prefixes", recorded["version"])
+        between = [] if i == 0 else family_order[ranks[i - 1] + 1:ranks[i]]
+        report.equal(recorded["skipped_families_since_previous"], between, "skipped_family_provenance", recorded["version"])
+        report.check(re.fullmatch(r"[0-9a-f]{40}", recorded["commit_sha"]) is not None,
+                     "immutable_commit_pin", recorded["version"])
+        expected_flavour = recorded["version"] + ("-jre" if key(recorded["version"]) >= (23, 1, 0) else "")
+        report.equal(recorded["artifact_version"], expected_flavour, "one_jre_variant", recorded["version"])
+    evidence = data(root / "data/provenance/family_selection.json")
+    for field, expected in {"catalog_sha256": digest(inventory_path), "eligible_releases": len(eligible),
+                             "eligible_families": len(family_order), "selected_count": count,
+                             "selected_family_ranks_zero_based": ranks,
+                             "selected_versions": [r["version"] for r in chosen],
+                             "selected_unique_families": len(set(selected_families)),
+                             "unselected_families": len(family_order) - count}.items():
+        report.equal(evidence[field], expected, "family_selection_evidence", field)
+    expected_catalog = [{
+        "family_rank_zero_based": i, "family": family,
+        "eligible_versions": [r["version"] for r in groups[family]],
+        "first_release_date": min(r["release_date"] for r in groups[family]),
+        "representative": representatives[i]["version"],
+        "representative_rule": "oldest_history_boundary" if i == 0 else "highest_eligible_stable_patch",
+        "selected": i in ranks,
+    } for i, family in enumerate(family_order)]
+    report.equal(evidence["family_catalog"], expected_catalog, "independent_family_catalog", "all eligible families")
+    return stable
+
+
+def audit_instructor_input(root, row, directory, alias_map, provenance, report):
+    """Check the scoped input JAR against unchanged bytes in the original artifact."""
+    version = row["version"]
+    record = data(directory / "instructor_input.json")
+    inventory_rows = rows(directory / "instructor_input_classes.csv")
+    inventory = {r["binary_class"]: r for r in inventory_rows}
+    report.equal(len(inventory_rows), len(inventory), "instructor_input_unique_inventory", version)
+    report.equal(set(inventory), set(alias_map), "instructor_input_exact_ownership", version)
+    report.equal(record, provenance["instructor_input"], "instructor_input_provenance", version)
+    report.equal(record["sha256"], digest(directory / "instructor_input.jar"), "instructor_input_checksum", version)
+    report.equal(record["inventory_sha256"], digest(directory / "instructor_input_classes.csv"), "instructor_input_inventory_checksum", version)
+    report.equal(record["source_binary_sha256"], row["jar_sha256"], "instructor_input_original_binary", version)
+    total_bytes = 0
+    with zipfile.ZipFile(root / row["jar_path"]) as original, zipfile.ZipFile(directory / "instructor_input.jar") as scoped:
+        expected_entries = {binary.replace(".", "/") + ".class" for binary in alias_map}
+        report.equal(set(scoped.namelist()), expected_entries, "instructor_scans_owned_base_entries_only", version)
+        report.equal(len(scoped.namelist()), len(expected_entries), "no_duplicate_instructor_jar_entries", version)
+        original_counts = Counter(original.namelist())
+        for binary in sorted(alias_map):
+            name = binary.replace(".", "/") + ".class"
+            got = inventory[binary]
+            report.equal(original_counts[name], 1, "unique_original_owned_class_entry", version + "/" + binary)
+            content, scoped_content = original.read(name), scoped.read(name)
+            report.check(scoped_content == content, "instructor_class_bytes_unchanged", version + "/" + binary,
+                         hashlib.sha256(scoped_content).hexdigest(), hashlib.sha256(content).hexdigest())
+            report.equal(got["class"], alias_map[binary], "instructor_input_alias_identity", version + "/" + binary)
+            report.equal(got["jar_entry"], name, "instructor_input_entry_identity", version + "/" + binary)
+            report.equal(int(got["bytes"]), len(content), "instructor_input_class_size", version + "/" + binary)
+            report.equal(got["class_sha256"], hashlib.sha256(content).hexdigest(), "instructor_input_class_checksum", version + "/" + binary)
+            report.equal(scoped.getinfo(name).date_time, (1980, 1, 1, 0, 0, 0), "deterministic_instructor_jar_metadata", version + "/" + binary)
+            total_bytes += len(content)
+    report.equal(record["class_entries"], len(alias_map), "instructor_input_totals", version + "/classes")
+    report.equal(record["class_bytes"], total_bytes, "instructor_input_totals", version + "/bytes")
+    command = data(directory / "instructor_command.json")
+    for field, value in {"exit_code": 0, "main_class": "CompCalc.MainClass", "instructor_sha256": INSTRUCTOR_SHA256,
+                         "input_sha256": record["sha256"]}.items():
+        report.equal(command[field], value, "instructor_execution_record", version + "/" + field)
+    argv = command["argv"]
+    report.check("CompCalc.MainClass" in argv and "-cp" in argv, "original_instructor_main_executed", version)
+    executable_classpath = argv[argv.index("-cp") + 1]
+    report.check(Path(row["jar_path"]).name not in executable_classpath and "instructor_input.jar" not in executable_classpath,
+                 "target_classes_not_on_executable_classpath", version)
+    report.equal(data(directory / "supplemental_command.json")["exit_code"], 0, "supplemental_execution_succeeded", version)
+
+
+def audit_instructor_normalization(directory, nodes, aliases, class_rows, provenance, report):
+    """Normalize raw upstream rows independently; do not trust supplemental edges."""
+    version = provenance["version"]
+    expected_typed, excluded = set(), []
+    counts, relation_counts = Counter(), Counter()
+    for record in rows(directory / "instructor_raw.csv"):
+        relation = record["DependencyType"]
+        report.check(relation in RELATIONS, "instructor_raw_relation_allowed", version)
+        report.check(int(record["Times"]) > 0, "positive_instructor_occurrence_count", version)
+        relation_counts[relation] += 1
+        source, target = aliases.get(record["dependeeClass"]), aliases.get(record["dependencyClass"])
+        if source is not None and target is not None and source != target:
+            expected_typed.add((source, target, relation))
+            counts["accepted_raw_typed_rows"] += 1
+        else:
+            reason = ("both_endpoints_outside_owned_scope" if source is None and target is None
+                      else "source_outside_owned_scope" if source is None
+                      else "target_outside_owned_scope" if target is None else "self_after_outer_merge")
+            counts[reason] += 1
+            excluded.append({**record, "reason": reason})
+    expected_edges = {(a, b) for a, b, _ in expected_typed}
+    observed_typed = {(r["source"], r["target"], r["relation"]) for r in rows(directory / "dependencies_typed.csv")}
+    report.equal(observed_typed, expected_typed, "primary_typed_graph_exact_instructor_normalization", version)
+    report.equal(set(read_edges(directory / "dependencies.csv")), expected_edges, "primary_graph_exact_instructor_union", version)
+    counts.update({"raw_typed_rows": sum(relation_counts.values()), "excluded_raw_typed_rows": len(excluded),
+                   "unique_typed_edges": len(expected_typed), "unique_directed_edges": len(expected_edges),
+                   "duplicate_normalized_typed_rows": counts["accepted_raw_typed_rows"] - len(expected_typed)})
+    observed_counts = {r["metric"]: int(r["value"]) for r in rows(directory / "instructor_normalization_counts.csv")}
+    report.equal(observed_counts, dict(counts), "instructor_normalization_counts", version)
+    sort_key = lambda r: (r["dependeeClass"], r["dependencyClass"], r["DependencyType"], r["DependencySubtype"], int(r["Times"]))
+    report.equal(rows(directory / "instructor_excluded_rows.csv"), sorted(excluded, key=sort_key), "instructor_excluded_rows_accounted", version)
+    supplemental_rows = rows(directory / "supplemental_dependencies_typed.csv")
+    supplemental_typed = {(r["source"], r["target"], r["relation"]) for r in supplemental_rows}
+    supplemental = {(a, b) for a, b, _ in supplemental_typed}
+    report.equal(len(supplemental_rows), len(supplemental_typed), "unique_supplemental_typed_edges", version)
+    report.check(all(a in nodes and b in nodes and a != b and relation in RELATIONS
+                     for a, b, relation in supplemental_typed), "supplemental_graph_internal_scope", version)
+    report.equal(set(read_edges(directory / "supplemental_dependencies.csv")), supplemental, "supplemental_typed_union", version)
+    annotations = {r["class"] for r in class_rows if r["kind"] == "annotation"}
+    isolates = set(nodes) - {n for edge in expected_edges for n in edge}
+    expected_comparison = {
+        "normalization_counts": dict(counts), "raw_relation_counts": dict(relation_counts),
+        "relation_counts": dict(Counter(r for _, _, r in expected_typed)),
+        "annotation_classes": len(annotations), "annotation_isolated_classes": len(annotations & isolates),
+        "annotation_target_edges": sum(b in annotations for a, b in expected_edges),
+        "annotation_source_edges": sum(a in annotations for a, b in expected_edges),
+        "supplemental_dependencies": len(supplemental),
+        "supplemental_annotation_target_edges": sum(b in annotations for a, b in supplemental),
+        "supplemental_only_edges": len(supplemental - expected_edges),
+        "supplemental_only_annotation_target_edges": sum(b in annotations for a, b in supplemental - expected_edges),
+        "instructor_only_edges": len(expected_edges - supplemental), "shared_edges": len(expected_edges & supplemental),
+    }
+    comparison = data(directory / "extractor_comparison.json")
+    for field, value in expected_comparison.items():
+        report.equal(comparison[field], value, "independent_extractor_comparison", version + "/" + field)
+        report.equal(provenance[field], value, "extractor_comparison_provenance", version + "/" + field)
+    supplemental_relations = defaultdict(set)
+    for a, b, relation in supplemental_typed:
+        supplemental_relations[a, b].add(relation)
+    for name, difference in (("supplemental_only_edges.csv", supplemental - expected_edges),
+                             ("instructor_only_edges.csv", expected_edges - supplemental)):
+        expected_rows = [{"source": a, "target": b, "target_is_annotation": str(b in annotations),
+                          "supplemental_relations": ";".join(sorted(supplemental_relations[a, b]))}
+                         for a, b in sorted(difference)]
+        report.equal(rows(directory / name), expected_rows, "extractor_difference_edges", version + "/" + name)
+    return supplemental_typed
+
+
+def audit_pilot(root, result_root, graph_root, versions, config, run, calibration, report):
+    """Recalculate every stored pilot SSE and the predeclared elbow decision."""
+    pilot_root = result_root / "pilot"
+    pilot = data(pilot_root / "pilot.json")
+    selected_version = versions[len(versions) // 2]["version"]
+    directory = graph_root / selected_version
+    nodes = [r["class"] for r in rows(directory / "classes.csv")]
+    edges = read_edges(directory / "dependencies.csv")
+    feature_universe = data(graph_root / "feature_universe.json")
+    coordinate_hash = hashlib.sha256(("\n".join(feature_universe) + "\n").encode()).hexdigest()
+    report.equal(pilot["version"], selected_version, "pilot_preselected_middle_release", "pilot")
+    report.equal(pilot["k_sweep"], "one_pilot_only", "one_pilot_k_calibration_only", "pilot")
+    report.equal(config["kmeans"]["k_rule"], "ceil(n_full * pilot_k / pilot_n)", "frozen_k_rule", "configuration")
+    report.equal(pilot["frozen_configuration_sha256"], run["config_sha256"], "pilot_and_final_same_policy", "pilot")
+    for field, expected in {
+        "schema_version": 2, "pilot_version": selected_version, "pilot_n": len(nodes),
+        "rule": config["kmeans"]["k_rule"], "quality_scores_used_for_selection": False,
+        "config_sha256": digest(root / "config/analysis.json"),
+        "manifest_sha256": digest(root / "config/versions.json"),
+        "graph_sha256": digest(directory / "dependencies.csv"),
+        "classes_sha256": digest(directory / "classes.csv"),
+        "feature_universe_sha256": digest(graph_root / "feature_universe.json"),
+    }.items():
+        report.equal(calibration[field], expected, "pilot_calibration_provenance", field)
+    report.equal(pilot["k_calibration"], calibration, "pilot_embedded_calibration", "pilot")
+    report.equal(run["k_calibration_sha256"], digest(pilot_root / "k_calibration.json"), "final_run_calibration_checksum", "run")
+    report.equal(run["pilot_n"], calibration["pilot_n"], "final_run_calibration_identity", "pilot_n")
+    report.equal(run["pilot_k"], calibration["pilot_k"], "final_run_calibration_identity", "pilot_k")
+    candidates = sorted({min(int(k), len(nodes)) for k in config["pilot"]["k_candidates"]})
+    curve = rows(pilot_root / "k_inertia_curve.csv")
+    curve_index = {int(r["k"]): r for r in curve}
+    report.equal(len(curve), len(candidates), "pilot_candidate_count", "curve")
+    report.equal(sorted(curve_index), candidates, "predeclared_pilot_candidates", "curve")
+    report.equal({p.stem for p in (pilot_root / "k_candidates").glob("k*.csv")},
+                 {f"k{k}" for k in candidates}, "complete_pilot_candidate_partition_inventory", "candidate files")
+    fits = {}
+    for k in candidates:
+        assignment = read_partition(pilot_root / f"k_candidates/k{k}.csv", nodes, report)
+        metadata = data(pilot_root / f"k_candidates/k{k}_run.json")
+        fits[k] = assignment
+        context = f"pilot/k={k}"
+        inertia = independent_inertia(nodes, edges, assignment)
+        report.numeric(metadata["inertia"], inertia, "independent_pilot_candidate_inertia", context + "/run")
+        report.numeric(curve_index[k]["inertia"], inertia, "independent_pilot_candidate_inertia", context + "/curve")
+        report.equal(metadata["requested_k"], k, "pilot_requested_k", context)
+        report.equal(metadata["actual_k"], len(set(assignment.values())), "pilot_actual_k", context)
+        report.numeric(curve_index[k]["actual_k"], metadata["actual_k"], "pilot_curve_fit_metadata", context + "/actual_k")
+        report.numeric(curve_index[k]["iterations"], metadata["iterations"], "pilot_curve_fit_metadata", context + "/iterations")
+        for field in ("random_state", "n_init", "max_iter", "algorithm"):
+            report.equal(metadata[field], config["kmeans"][field], "frozen_pilot_kmeans_parameters", context + "/" + field)
+        report.equal(metadata["feature_rows"], len(nodes), "pilot_features", context + "/rows")
+        report.equal(metadata["feature_columns"], 2 * len(feature_universe), "pilot_features", context + "/columns")
+        report.equal(metadata["feature_universe_sha256"], coordinate_hash, "pilot_features", context + "/coordinate identities")
+        report.equal(metadata["feature_nonzeros"], 2 * (len(nodes) + len(edges)), "pilot_features", context + "/nonzeros")
+    first, last = curve_index[candidates[0]], curve_index[candidates[-1]]
+    span_k = candidates[-1] - candidates[0]
+    span_inertia = float(first["inertia"]) - float(last["inertia"])
+    points = []
+    for k in candidates:
+        inertia = float(curve_index[k]["inertia"])
+        x = (k - candidates[0]) / span_k if span_k else 0.0
+        y = (inertia - float(last["inertia"])) / span_inertia if span_inertia > 0 else None
+        gap = 1 - x - y if span_k and span_inertia > 0 else 0.0
+        points.append({"k": k, "inertia": inertia, "normalized_k": x,
+                       "normalized_inertia": y, "chord_gap": gap})
+        for field in ("normalized_k", "normalized_inertia", "chord_gap"):
+            report.numeric(curve_index[k][field], points[-1][field], "independent_elbow_geometry", f"k={k}/{field}")
+    interior = points[1:-1]
+    best = sorted(interior, key=lambda p: (-p["chord_gap"], p["k"]))[0] if interior else None
+    minimum = config["pilot"]["minimum_elbow_gap"]
+    fallback = config["pilot"]["fallback_k_if_no_clear_elbow"]
+    clear = bool(best and best["chord_gap"] >= minimum and span_inertia > 0)
+    chosen_k = best["k"] if clear else sorted(candidates, key=lambda k: (abs(k - fallback), k))[0]
+    expected_selection = {
+        "selected_k": chosen_k, "clear_elbow": clear,
+        "reason": "maximum_normalized_chord_gap" if clear else "predeclared_fallback_no_clear_elbow",
+        "maximum_interior_gap": best["chord_gap"] if best else 0.0,
+        "minimum_gap": minimum, "fallback_requested_k": fallback,
+        "nonmonotone_steps": sum(b["inertia"] > a["inertia"] for a, b in zip(points, points[1:])),
+    }
+    selection = calibration["selection"]
+    for field, expected in expected_selection.items():
+        if isinstance(expected, (str, bool)):
+            report.equal(selection[field], expected, "independent_elbow_decision", field)
+        else:
+            report.numeric(selection[field], expected, "independent_elbow_decision", field)
+    report.terms(selection["curve"], points, "pilot/calibration_curve")
+    report.equal(calibration["pilot_k"], chosen_k, "independent_calibrated_k", "pilot")
+    report.numeric(calibration["target_mean_class_count"], len(nodes) / chosen_k, "pilot_target_granularity", "pilot")
+    report.equal(read_partition(pilot_root / "kmeans.csv", nodes, report), fits[chosen_k], "selected_pilot_partition_is_chosen_fit", "pilot")
+    acdc_trials = [r for r in pilot["trials"] if r["algorithm"] == "ACDC"]
+    report.equal([r["max_subgraph_size"] for r in acdc_trials], config["pilot"]["acdc_max_subgraph_sizes"], "pilot_acdc_inventory", "pilot")
+    report.equal([r["algorithm"] for r in pilot["trials"]].count("kmeans"), 1, "one_selected_k_pilot_summary", "pilot")
+    default_acdc_k = None
+    for trial in pilot["trials"]:
+        filename = f"acdc_l{trial['max_subgraph_size']}.csv" if trial["algorithm"] == "ACDC" else "kmeans.csv"
+        assignment = read_partition(pilot_root / filename, nodes, report)
+        quality = independent_quality(nodes, edges, assignment)
+        report.flat_metrics(trial["metrics"], quality, "pilot/" + filename)
+        if trial["algorithm"] == "ACDC" and trial["max_subgraph_size"] == config["acdc"]["max_subgraph_size"]:
+            default_acdc_k = len(set(assignment.values()))
+    diagnostic = pilot["matched_acdc_k_diagnostic"]
+    if config["pilot"]["matched_acdc_k_diagnostic"]:
+        report.equal(diagnostic["used_for_k_selection"], False, "matched_k_is_diagnostic_only", "pilot")
+        report.equal(diagnostic["k"], default_acdc_k, "matched_k_acdc_granularity", "pilot")
+        assignment = read_partition(pilot_root / "kmeans_matched_acdc_k.csv", nodes, report)
+        report.equal(diagnostic["run"]["requested_k"], default_acdc_k, "matched_k_fit_identity", "pilot")
+        report.numeric(diagnostic["run"]["inertia"], independent_inertia(nodes, edges, assignment), "independent_matched_k_inertia", "pilot")
+        report.flat_metrics(diagnostic["metrics"], independent_quality(nodes, edges, assignment), "pilot/matched_acdc_k")
+
+
+def audit_ai(root, result_root, graph_root, versions, config, report):
+    """Independently check the completed recorded AI assignment and evaluation.
+
+    Content hashes attest to preserved evidence. They cannot establish what the
+    model privately knew or prove its process declarations independently.
+    """
+    directory = result_root / "ai"
+    record = data(directory / "experiment.json")
+    selected = versions[-1]
+    version = selected["version"]
+    graph = graph_root / version
+    report.equal(record["version"], version, "ai_latest_selected_version", "experiment")
+    report.equal(record["study_revision"], config["study_revision"], "ai_revision_identity", "experiment")
+    report.equal(record["schema_version"], 2, "ai_revision_schema", "experiment")
+
+    def repo_file(relative):
+        value = Path(relative)
+        if value.is_absolute() or ".." in value.parts:
+            raise ValueError("AI provenance files must be relative paths within the repository")
+        return root / value
+
+    report.equal(digest(repo_file(record["prompt_file"])), record["prompt_sha256"], "ai_preserved_prompt_checksum", "primary prompt")
+    expected_names = {"classes.csv", "dependencies.csv", "package_counts.json", "package_dependencies.csv", "package_documentation.txt"}
+    report.equal({Path(item["path"]).name for item in record["input_files"]}, expected_names, "ai_exact_input_inventory", "experiment")
+    report.equal(len(record["input_files"]), len(expected_names), "ai_unique_input_inventory", "experiment")
+    for item in record["input_files"]:
+        path = repo_file(item["path"])
+        report.equal(path.resolve(), (directory / "inputs" / path.name).resolve(), "ai_evidence_path_identity", path.name)
+        report.equal(digest(path), item["sha256"], "ai_input_checksum", item["path"])
+        report.equal(path.stat().st_size, item["bytes"], "ai_input_size", item["path"])
+    for item in record["additional_prompt_files"]:
+        report.equal(digest(repo_file(item["path"])), item["sha256"], "ai_additional_prompt_checksum", item["path"])
+    report.equal(record["input_provenance"]["graph_provenance_sha256"], digest(graph / "provenance.json"), "ai_graph_provenance_checksum", version)
+    report.equal(record["input_provenance"]["sources_jar_sha256"], selected["sources_sha256"], "ai_source_provenance_checksum", version)
+    for filename in ("classes.csv", "dependencies.csv"):
+        report.equal(digest(directory / "inputs" / filename), digest(graph / filename), "ai_uses_same_primary_graph_evidence", filename)
+    class_rows = rows(graph / "classes.csv")
+    nodes = {r["class"] for r in class_rows}
+    edges = read_edges(graph / "dependencies.csv")
+    packages = {r["class"]: r["package"] for r in class_rows}
+    report.equal(data(directory / "inputs/package_counts.json"), dict(Counter(packages.values())), "independent_ai_package_counts", version)
+    expected_package_edges = Counter((packages[a], packages[b]) for a, b in edges)
+    package_rows = rows(directory / "inputs/package_dependencies.csv")
+    observed_package_edges = {(r["source_package"], r["target_package"]): int(r["dependencies"]) for r in package_rows}
+    report.equal(len(package_rows), len(observed_package_edges), "ai_unique_package_dependency_rows", version)
+    report.equal(observed_package_edges, dict(expected_package_edges), "independent_ai_package_dependencies", version)
+    with zipfile.ZipFile(root / selected["sources_path"]) as archive:
+        available = set(archive.namelist())
+        documentation = []
+        for package in sorted(set(packages.values())):
+            filename = package.replace(".", "/") + "/package-info.java"
+            if filename in available:
+                documentation.append(f"===== {filename} =====\n" + archive.read(filename).decode("utf-8") + "\n")
+    report.equal((directory / "inputs/package_documentation.txt").read_text(encoding="utf-8"), "\n".join(documentation),
+                 "ai_package_documentation_from_matching_source_archive", version)
+    report.equal(repo_file(record["assignment_file"]).resolve(), (directory / "assignment.csv").resolve(), "ai_assignment_path_identity", version)
+    assignment_rows = rows(directory / "assignment.csv")
+    assignment = {r["class"]: r["cluster"] for r in assignment_rows}
+    report.equal(len(assignment_rows), len(assignment), "ai_unique_class_membership", version)
+    report.equal(set(assignment), nodes, "ai_complete_internal_class_coverage", version)
+    report.check(all(assignment.values()), "ai_nonempty_cluster_labels", version)
+    architecture = data(directory / "architecture.json")
+    report.equal(architecture["subject"]["release"], version, "ai_architecture_target_release", version)
+    declared = {r["id"]: r["class_count"] for r in architecture["modules"]}
+    report.equal(len(architecture["modules"]), len(declared), "ai_unique_module_identifiers", version)
+    report.equal(declared, dict(Counter(assignment.values())), "ai_declared_module_counts_match_membership", version)
+    evaluation = data(directory / "evaluation.json")
+    report.equal(evaluation["version"], version, "ai_evaluation_version", version)
+    report.equal(evaluation["status"], "passed", "ai_evaluation_completed", version)
+    report.equal(evaluation["classes_assigned_exactly_once"], len(nodes), "ai_evaluation_coverage", version)
+    report.equal(evaluation["modules"], len(declared), "ai_evaluation_module_count", version)
+    report.equal(evaluation["external_or_invented_classes"], len(set(assignment) - nodes), "ai_external_class_count", version)
+    output_names = {"initial_hypothesis.md", "assignment.csv", "architecture.json", "response.md", "activity.json"}
+    report.equal(set(evaluation["output_sha256"]), output_names, "ai_output_checksum_inventory", version)
+    for filename, expected in evaluation["output_sha256"].items():
+        report.equal(digest(directory / filename), expected, "ai_preserved_output_checksum", filename)
+    retained = {r["class"] for r in rows(result_root / "versions" / version / "retained_classes.csv")}
+    retained_edges = [(a, b) for a, b in edges if a in retained and b in retained]
+    quality_by_scope = {}
+    for scope, scope_nodes, scope_edges, metric_file in (("full", nodes, edges, "metrics.json"),
+                                                       ("retained", retained, retained_edges, "retained_metrics.json")):
+        projected = {n: assignment[n] for n in scope_nodes}
+        quality = independent_quality(scope_nodes, scope_edges, projected)
+        quality_by_scope[scope] = quality
+        observed = data(directory / metric_file)
+        report.flat_metrics(observed, quality, f"ai/{scope}/JSON")
+        summaries = rows(directory / f"quality_{scope}/metrics_summary.csv")
+        report.equal(len(summaries), 1, "ai_quality_summary_count", scope)
+        report.flat_metrics(summaries[0], quality, f"ai/{scope}/summary")
+        for table in ("per_cluster", "per_pair"):
+            report.terms(observed[table], quality[table], f"ai/{scope}/JSON/{table}")
+            report.terms(rows(directory / f"quality_{scope}/{table}.csv"), quality[table], f"ai/{scope}/CSV/{table}")
+    comparisons = rows(directory / "comparisons.csv")
+    details = data(directory / "partition_comparisons.json")
+    comparison_index = {r["condition"]: r for r in comparisons}
+    detail_index = {r["comparison"]["condition"]: r for r in details["comparisons"]}
+    report.equal(details["version"], version, "ai_comparison_version", version)
+    report.equal(set(comparison_index), {"A1", "A2", "A3", "A4"}, "ai_comparison_inventory", version)
+    report.equal(set(detail_index), set(comparison_index), "ai_detailed_comparison_inventory", version)
+    report.equal(len(comparisons), 4, "unique_ai_comparisons", "CSV")
+    report.equal(len(details["comparisons"]), 4, "unique_ai_comparisons", "JSON")
+    for condition in ("A1", "A2", "A3", "A4"):
+        filtered = condition in ("A2", "A4")
+        scope = "retained" if filtered else "full"
+        current_nodes, current_edges = (retained, retained_edges) if filtered else (nodes, edges)
+        baseline = read_partition(result_root / "versions" / version / f"{condition}.csv", current_nodes, report)
+        forward = independent_mojofm(assignment, baseline, current_nodes)
+        reverse = independent_mojofm(baseline, assignment, current_nodes)
+        expected = {
+            "condition": condition, "graph": scope, "n_nodes": len(current_nodes), "n_edges": len(current_edges),
+            "baseline_mq": independent_quality(current_nodes, current_edges, baseline)["mq"],
+            "ai_mq": quality_by_scope[scope]["mq"],
+            "adjusted_rand_agreement": independent_ari(assignment, baseline, current_nodes),
+            "mojofm_ai_to_baseline": forward["score"], "mojofm_baseline_to_ai": reverse["score"],
+            "mojo_distance_ai_to_baseline": forward["distance"], "mojo_distance_baseline_to_ai": reverse["distance"],
+            "mojo_max_distance_ai_to_baseline": forward["max_distance"], "mojo_max_distance_baseline_to_ai": reverse["max_distance"],
+            "node_universe_sha256": hashlib.sha256(("\n".join(sorted(current_nodes)) + "\n").encode()).hexdigest(),
+        }
+        for field, value in expected.items():
+            for got, label in ((comparison_index[condition], "CSV"), (detail_index[condition]["comparison"], "JSON")):
+                context = f"ai/{condition}/{field}/{label}"
+                if isinstance(value, str):
+                    report.equal(got[field], value, "ai_comparison_scope_and_identity", context)
+                else:
+                    report.numeric(got[field], value, "independent_ai_comparison", context)
+        for direction, want in (("ai_to_baseline", forward), ("baseline_to_ai", reverse)):
+            got = detail_index[condition][direction]
+            for field, value in want.items():
+                context = f"ai/{condition}/{direction}/{field}"
+                if isinstance(value, (str, bool)):
+                    report.equal(got[field], value, "independent_ai_mojofm_terms", context)
+                else:
+                    report.numeric(got[field], value, "independent_ai_mojofm_terms", context)
+    report.ai_evidence = {"version": version, "classes": len(nodes), "modules": len(declared),
+                          "comparison_conditions": sorted(comparison_index),
+                          "scope": "preserved inputs/outputs, coverage, lecture metrics and bidirectional partition agreement"}
+
+
+def audit(root: Path, result_root: Path, graph_root: Path, *, include_ai: bool = True) -> Audit:
     report = Audit()
     # A hand-derived identity guards the independent audit's own arithmetic.
     example = independent_quality("abcd", [("a", "b"), ("b", "a"), ("c", "d"),
                                           ("d", "c"), ("b", "c")],
                                   {"a": "x", "b": "x", "c": "y", "d": "y"})
     report.numeric(example["mq"], 7 / 8, "independent_hand_example", "two complete directed pairs and one cross edge")
+    reference = {n: str(i) for i, group in enumerate(("abc", "def", "gh")) for n in group}
+    for groups, distance, score in [([*"abcdefgh"], 5, 0), (["abc", "def", "gh"], 0, 100),
+                                     (["abc", "defgh"], 2, 60), (["a", "bcg", "defh"], 3, 40)]:
+        source = {n: str(i) for i, group in enumerate(groups) for n in group}
+        check = independent_mojofm(source, reference, reference)
+        report.equal(check["distance"], distance, "independent_mojo_lecture_example", str(groups))
+        report.equal(check["max_distance"], 5, "independent_mojo_lecture_normalizer", str(groups))
+        report.numeric(check["score"], score, "independent_mojo_lecture_score", str(groups))
     manifest, config = data(root / "config/versions.json"), data(root / "config/analysis.json")
     versions = manifest["versions"]
     version_ids = [r["version"] for r in versions]
     report.equal(manifest["repository"], "google/guava", "subject", "manifest")
     report.equal(len(versions), 30, "release_count", "manifest")
     report.equal(len(set(version_ids)), 30, "unique_release_count", "manifest")
-    stable = data(root / "data/provenance/tag_inventory.json")["stable_tags_in_date_order"]
+    stable = audit_family_selection(root, manifest, report)
     stable_ids = [r["version"] for r in stable]
     for i, row in enumerate(versions):
         version = row["version"]
@@ -245,7 +789,6 @@ def audit(root: Path, result_root: Path, graph_root: Path) -> Audit:
             report.check(previous["release_date"] < row["release_date"], "chronological_sampling", version)
             start, stop = stable_ids.index(previous["version"]), stable_ids.index(version)
             skipped = stable_ids[start + 1:stop]
-            report.check(len(skipped) > 0, "sporadic_sampling", version, skipped)
             report.equal(row["skipped_stable_since_previous"], skipped, "skipped_release_provenance", version)
         else:
             report.equal(row["skipped_stable_since_previous"], [], "skipped_release_provenance", version)
@@ -253,16 +796,30 @@ def audit(root: Path, result_root: Path, graph_root: Path) -> Audit:
     for key, expected in {"subject": "google/guava", "relation_weight": 1,
                           "graph": "binary_directed_union_no_self_loops", "merge_inner_and_anonymous": True,
                           "multi_release_policy": "base_class_entries_only", "singleton_cohesion": 0,
-                          "empty_partition_metrics": 0}.items():
+                          "empty_partition_metrics": 0, "schema_version": 2,
+                          "study_revision": "v2_instructor_graph_distinct_families"}.items():
         report.equal(config[key], expected, "frozen_policy", key)
+    instructor_path = root / "third_party/dependency_extractor/DependencyExtractor.jar"
+    instructor_source = data(root / "third_party/dependency_extractor/source.json")
+    report.equal(digest(instructor_path), INSTRUCTOR_SHA256, "unmodified_instructor_tool", "supplied JAR")
+    report.equal(instructor_source["jar_sha256"], INSTRUCTOR_SHA256, "instructor_tool_provenance", "supplied JAR")
+    with zipfile.ZipFile(instructor_path) as instructor_archive:
+        for filename, expected in instructor_source["bundled_libraries"].items():
+            content = instructor_archive.read(filename)
+            report.equal(hashlib.sha256(content).hexdigest(), expected["sha256"], "unmodified_instructor_nested_library", filename)
+            report.equal(len(content), expected["bytes"], "instructor_library_size", filename)
+    calibration = data(result_root / "pilot/k_calibration.json")
     metric_rows = rows(result_root / "metrics.csv")
     size_rows = rows(result_root / "sizes.csv")
     common_rows = rows(result_root / "same_graph_comparisons.csv")
     temporal_rows = rows(result_root / "evolution.csv")
     runtime_rows = rows(result_root / "runtimes.csv")
+    comparison_rows = rows(result_root / "partition_comparisons.csv")
+    expected_comparison_count = 4 * len(versions) + 2 * (len(versions) - 1)
     for filename, actual, expected in [("metrics.csv", metric_rows, 120), ("sizes.csv", size_rows, 30),
                                        ("same_graph_comparisons.csv", common_rows, 60),
-                                       ("evolution.csv", temporal_rows, 29), ("runtimes.csv", runtime_rows, 180)]:
+                                       ("evolution.csv", temporal_rows, 29), ("runtimes.csv", runtime_rows, 180),
+                                       ("partition_comparisons.csv", comparison_rows, expected_comparison_count)]:
         report.equal(len(actual), expected, "aggregate_row_count", filename)
     metric_index = {(r["version"], r["condition"]): r for r in metric_rows}
     report.equal(len(metric_index), 120, "one_final_architecture_per_condition", "metrics.csv")
@@ -271,6 +828,10 @@ def audit(root: Path, result_root: Path, graph_root: Path) -> Audit:
     size_index = {r["version"]: r for r in size_rows}
     common_index = {(r["version"], r["full_condition"]): r for r in common_rows}
     runtime_index = {(r["version"], r["stage"]): r for r in runtime_rows}
+    comparison_key = lambda r: (r["version"], r["scope"], r["source_condition"], r["reference_condition"], r["previous_version"])
+    comparison_index = {comparison_key(r): r for r in comparison_rows}
+    report.equal(len(comparison_index), expected_comparison_count, "unique_partition_comparisons", "partition_comparisons.csv")
+    expected_comparison_keys = set()
     report.equal(set(size_index), set(version_ids), "size_inventory", "sizes.csv")
     report.equal(set(common_index), {(v, c) for v in version_ids for c in ("A1", "A3")},
                  "same_graph_inventory", "same_graph_comparisons.csv")
@@ -300,7 +861,7 @@ def audit(root: Path, result_root: Path, graph_root: Path) -> Audit:
         report.equal(len(edges), len(edge_set), "binary_edges", version)
         report.check(all(a in node_set and b in node_set and a != b for a, b in edges),
                      "internal_only_loop_free_edges", version)
-        report.check(all(n.startswith("com.google.common.") and "$" not in n for n in nodes),
+        report.check(all(n.startswith(OWNED_PREFIXES) for n in nodes),
                      "owned_outermost_class_scope", version)
         report.equal(read_rsf(directory / "full.rsf", "call"), edges, "graph_rsf_matches_csv", version)
         typed = rows(directory / "dependencies_typed.csv")
@@ -308,12 +869,24 @@ def audit(root: Path, result_root: Path, graph_root: Path) -> Audit:
         report.check({r["relation"] for r in typed} <= RELATIONS, "only_seven_allowed_relations", version)
         report.equal(len(typed), len({tuple(r.values()) for r in typed}), "unique_typed_edges", version)
         provenance = data(directory / "provenance.json")
+        report.equal(provenance["schema_version"], 2, "instructor_graph_schema", version)
+        report.equal(provenance["primary_extractor"], "instructor DependencyExtractor (unmodified CompCalc.MainClass)",
+                     "single_primary_extractor_policy", version)
+        report.equal(provenance["instructor_jar_sha256"], INSTRUCTOR_SHA256, "single_primary_extractor_policy", version + "/JAR")
+        report.equal(provenance["adapter_sha256"], digest(root / "src/evolution/extraction.py"), "single_adapter_policy", version)
+        report.equal(provenance["toolchain_sha256"], digest(root / "src/evolution/toolchain.py"), "single_toolchain_policy", version)
+        report.equal(provenance["supplemental_extractor_sha256"], digest(root / "java/DependencyExtractor.java"),
+                     "single_supplemental_extractor_policy", version)
+        report.equal(provenance["owned_namespace_prefixes"], [p[:-1] for p in OWNED_PREFIXES], "owned_namespace_policy", version)
         report.equal(provenance["classes_sha256"], digest(directory / "classes.csv"), "graph_checksum", version + "/classes")
         report.equal(provenance["graph_sha256"], digest(directory / "dependencies.csv"), "graph_checksum", version + "/dependencies")
         report.equal(provenance["extractor_sha256"], digest(root / "java/DependencyExtractor.java"), "single_extractor_policy", version)
+        for field, filename in (("typed_graph_sha256", "dependencies_typed.csv"), ("instructor_raw_sha256", "instructor_raw.csv"),
+                                ("member_graph_sha256", "member_dependencies.csv")):
+            report.equal(provenance[field], digest(directory / filename), "graph_checksum", version + "/" + filename)
         for key, value in (("version", version), ("tag", row["tag"]), ("commit_sha", row["commit_sha"]),
                            ("date", row["release_date"]), ("binary_sha256", row["jar_sha256"]),
-                           ("sources_sha256", row["sources_sha256"])):
+                           ("sources_sha256", row["sources_sha256"]), ("pom_sha256", row["pom_sha256"])):
             report.equal(provenance[key], value, "extraction_provenance", version + "/" + key)
         for kind in ("jar", "sources", "pom"):
             report.equal(digest(root / row[f"{kind}_path"]), row[f"{kind}_sha256"], "artifact_sha256", f"{version}/{kind}")
@@ -321,13 +894,15 @@ def audit(root: Path, result_root: Path, graph_root: Path) -> Audit:
         alias_map = {r["binary_class"]: r["class"] for r in aliases}
         report.equal(len(aliases), len(alias_map), "unique_binary_alias", version)
         report.equal(set(alias_map.values()), node_set, "every_binary_merged_to_owned_node", version)
-        report.check(all(r["binary_class"].split("$")[0] == r["class"] for r in aliases), "guava_nested_alias_reconciliation", version)
+        report.check(all(r["binary_class"] == r["class"] or r["binary_class"].startswith(r["class"] + "$")
+                         for r in aliases), "guava_nested_alias_reconciliation", version)
+        report.check(all(alias_map.get(n) == n for n in nodes), "canonical_outer_aliases_are_fixed_points", version)
         alias_counts = Counter(alias_map.values())
         for r in class_rows:
             report.equal(int(r["raw_binary_classes"]), alias_counts[r["class"]], "merged_class_member_counts", version + "/" + r["class"])
         with zipfile.ZipFile(root / row["sources_path"]) as source_archive:
             source_names = set(source_archive.namelist())
-        report.check(all(r["source_file"] in source_names and r["source_file"].startswith("com/google/common/") for r in aliases),
+        report.check(all(r["source_file"] in source_names and r["source_file"].startswith(SOURCE_PREFIXES) for r in aliases),
                      "source_ownership_in_same_version", version)
         excluded = rows(directory / "excluded_classes.csv")
         excluded_names = {r["binary_class"] for r in excluded}
@@ -338,9 +913,19 @@ def audit(root: Path, result_root: Path, graph_root: Path) -> Audit:
         report.equal(set(alias_map) | excluded_names, base_classes, "all_jar_classes_accounted_for", version)
         report.check(not set(alias_map) & excluded_names, "excluded_classes_never_analyzed", version)
         report.equal(len(aliases) - len(nodes), provenance["merged_binary_classes"], "merged_count_provenance", version)
+        audit_instructor_input(root, row, directory, alias_map, provenance, report)
+        supplemental_typed = audit_instructor_normalization(directory, node_set, alias_map, class_rows, provenance, report)
         member_rows = rows(directory / "member_dependencies.csv")
         report.equal(len(member_rows), len({(r["source_member"], r["target_member"]) for r in member_rows}), "unique_member_references", version)
-        report.check(all((r["source_class"], r["target_class"]) in edge_set for r in member_rows), "member_edges_within_class_graph", version)
+        supplemental_edges = {(a, b) for a, b, _ in supplemental_typed}
+        report.check(all((r["source_class"], r["target_class"]) in supplemental_edges for r in member_rows),
+                     "member_edges_within_supplemental_graph", version)
+        report.check(all(r["source_class"] in node_set and r["target_class"] in node_set
+                         and r["source_class"] != r["target_class"] for r in member_rows),
+                     "ue_member_evidence_internal_and_interclass", version)
+        report.check(all((r["source_class"], r["target_class"],
+                          "METHOD_CALL" if r["target_member"].split("#", 1)[1].startswith("M:") else "FIELD_REFERENCE")
+                         in supplemental_typed for r in member_rows), "ue_member_relation_evidence", version)
         report.check(all(alias_map.get(r[side + "_member"].split("#")[0]) == r[side + "_class"]
                          for r in member_rows for side in ("source", "target")), "member_identity_survives_outer_merge", version)
         ue = data(output / "ue.json")
@@ -416,7 +1001,7 @@ def audit(root: Path, result_root: Path, graph_root: Path) -> Audit:
                 sizes = Counter(assignment.values())
                 report.check(all(sizes[assignment[n]] == 1 for n in isolates), "acdc_isolate_singletons", context)
             else:
-                requested = min(len(current_nodes), math.ceil(math.sqrt(len(nodes) / 2))) if current_nodes else 0
+                requested = min(len(current_nodes), math.ceil(Fraction(len(nodes) * calibration["pilot_k"], calibration["pilot_n"]))) if current_nodes else 0
                 report.equal(metadata["requested_k"], requested, "predeclared_k_from_full_n", context)
                 report.equal(metadata["feature_rows"], len(current_nodes), "fixed_feature_schema", context + "/rows")
                 report.equal(metadata["feature_columns"], 2 * len(universe), "fixed_feature_schema", context + "/columns")
@@ -427,18 +1012,65 @@ def audit(root: Path, result_root: Path, graph_root: Path) -> Audit:
                 if metadata["actual_k"] != requested:
                     report.warnings.append({"context": context, "message": "Actual KMeans clusters differ from requested k", "metadata": metadata})
             condition_evidence[condition] = {key: quality[key] for key in ("n_nodes", "n_edges", "n_clusters", "mq", "max_cluster_size", "singleton_clusters")}
+        comparison_file = data(output / "partition_comparisons.json")
+        report.equal(comparison_file["version"], version, "detailed_comparison_version", version)
+        detail_index = {comparison_key(item["comparison"]): item for item in comparison_file["comparisons"]}
+        expected_local_keys = set()
+
+        def check_comparison(scope, source_label, target_label, a, b, comparison_nodes, old_version="", n_edges=None):
+            key = (version, scope, source_label, target_label, old_version)
+            expected_comparison_keys.add(key)
+            expected_local_keys.add(key)
+            recorded_csv, recorded_json = comparison_index[key], detail_index[key]
+            forward = independent_mojofm(a, b, comparison_nodes)
+            reverse = independent_mojofm(b, a, comparison_nodes)
+            expected_row = {
+                "version": version, "previous_version": old_version, "scope": scope,
+                "source_condition": source_label, "reference_condition": target_label,
+                "n_nodes": len(comparison_nodes), "n_edges": n_edges,
+                "source_clusters": forward["source_clusters"], "reference_clusters": forward["target_clusters"],
+                "mojo_distance": forward["distance"], "mojo_max_distance": forward["max_distance"], "mojofm": forward["score"],
+                "reverse_mojo_distance": reverse["distance"], "reverse_mojo_max_distance": reverse["max_distance"],
+                "reverse_mojofm": reverse["score"], "adjusted_rand_agreement": independent_ari(a, b, comparison_nodes),
+                "node_universe_sha256": hashlib.sha256(("\n".join(sorted(comparison_nodes)) + "\n").encode()).hexdigest(),
+                "interpretation": "directional partition agreement; reference is not validated ground truth",
+            }
+            for field, expected in expected_row.items():
+                context = f"{version}/{scope}/{source_label}_to_{target_label}/{field}"
+                for observed, label in ((recorded_csv, "CSV"), (recorded_json["comparison"], "JSON")):
+                    if isinstance(expected, str):
+                        report.equal(observed[field], expected, "comparison_identity_and_population", context + "/" + label)
+                    else:
+                        report.numeric(observed[field], expected, "independent_partition_comparison", context + "/" + label)
+            for direction, expected_result in (("forward", forward), ("reverse", reverse)):
+                for field, expected in expected_result.items():
+                    context = f"{version}/{scope}/{source_label}_to_{target_label}/{direction}/{field}"
+                    if isinstance(expected, (str, bool)):
+                        report.equal(recorded_json[direction][field], expected, "independent_mojofm_terms", context)
+                    else:
+                        report.numeric(recorded_json[direction][field], expected, "independent_mojofm_terms", context)
+                report.check(0 <= expected_result["distance"] <= expected_result["max_distance"], "mojo_target_distance_bounds", context)
+            return forward, reverse
+
         for full, filtered in (("A1", "A2"), ("A3", "A4")):
             baseline = independent_quality(retained, filtered_edges, {n: partitions[full][n] for n in retained})
             recovered = independent_quality(retained, filtered_edges, partitions[filtered])
             observed = common_index[version, full]
             report.equal(observed["filtered_condition"], filtered, "same_graph_condition_pair", version)
+            forward, reverse = check_comparison("full_vs_filtered_retained", full, filtered,
+                                                partitions[full], partitions[filtered], retained, n_edges=len(filtered_edges))
             expected = {"common_classes": len(retained), "common_edges": len(filtered_edges),
                         "projected_full_mq": baseline["mq"], "recovered_filtered_mq": recovered["mq"],
                         "mq_change_same_graph": recovered["mq"] - baseline["mq"],
-                        "adjusted_rand_agreement": independent_ari(partitions[full], partitions[filtered], retained)}
+                        "adjusted_rand_agreement": independent_ari(partitions[full], partitions[filtered], retained),
+                        "mojofm_full_to_filtered": forward["score"], "mojofm_filtered_to_full": reverse["score"],
+                        "mojo_distance_full_to_filtered": forward["distance"],
+                        "mojo_distance_filtered_to_full": reverse["distance"]}
             for key, value in expected.items():
                 report.numeric(observed[key], value, "same_graph_recalculation", f"{version}/{full}/{key}")
             report.flat_metrics(data(output / f"{full}_projected_to_retained_metrics.json"), baseline, f"{version}/{full}/projected")
+        check_comparison("algorithms_full", "A1", "A3", partitions["A1"], partitions["A3"], node_set, n_edges=len(edges))
+        check_comparison("algorithms_retained", "A2", "A4", partitions["A2"], partitions["A4"], retained, n_edges=len(filtered_edges))
         if previous is not None:
             old_nodes, old_edges, old_partitions, old_version = previous
             common = node_set & old_nodes
@@ -451,24 +1083,33 @@ def audit(root: Path, result_root: Path, graph_root: Path) -> Audit:
                         "common_node_edge_jaccard": len(left & right) / len(left | right) if left | right else 1.0,
                         "acdc_adjusted_rand": independent_ari(old_partitions["A1"], partitions["A1"], common),
                         "kmeans_adjusted_rand": independent_ari(old_partitions["A3"], partitions["A3"], common)}
+            for condition, label in (("A1", "acdc"), ("A3", "kmeans")):
+                forward, reverse = check_comparison("temporal_full_common", condition, condition,
+                                                    old_partitions[condition], partitions[condition], common, old_version=old_version)
+                expected[label + "_mojofm_previous_to_current"] = forward["score"]
+                expected[label + "_mojofm_current_to_previous"] = reverse["score"]
             for key, value in expected.items():
                 report.numeric(observed[key], value, "temporal_recalculation", version + "/" + key)
+        report.equal(set(detail_index), expected_local_keys, "detailed_comparison_inventory", version)
+        report.equal(len(comparison_file["comparisons"]), len(expected_local_keys), "unique_detailed_comparisons", version)
         previous = (node_set, edges, partitions, version)
         report.release_evidence.append({"version": version, **expected_sizes, "conditions": condition_evidence})
     report.equal(set(universe), observed_universe, "fixed_feature_schema", "union across all30 releases")
+    report.equal(set(comparison_index), expected_comparison_keys, "exact_partition_comparison_inventory", "all versions")
     run = data(result_root / "run_manifest.json")
     report.equal(run["release_count"], 30, "run_manifest_totals", "releases")
     report.equal(run["architecture_count"], 120, "run_manifest_totals", "architectures")
+    report.equal(run["comparison_count"], expected_comparison_count, "run_manifest_totals", "partition comparisons")
+    report.equal(run["study_revision"], config["study_revision"], "run_revision_identity", "run")
     report.equal(run["manifest_sha256"], digest(root / "config/versions.json"), "frozen_manifest_checksum", "run")
     report.equal(run["config_sha256"], digest(root / "config/analysis.json"), "frozen_config_checksum", "run")
+    report.equal(set(run["source_sha256"]), {str(p.relative_to(root)) for p in (root / "src/evolution").glob("*.py")},
+                 "complete_core_implementation_hash_inventory", "run")
     for path, expected in run["source_sha256"].items():
         report.equal(digest(root / path), expected, "frozen_implementation_checksum", path)
-    pilot = data(result_root / "pilot/pilot.json")
-    report.equal(pilot["version"], versions[len(versions) // 2]["version"], "pilot_preselected_middle_release", "pilot")
-    report.equal(pilot["k_sweep"], False, "no_k_sweep", "pilot")
-    report.equal(pilot["frozen_configuration_sha256"], run["config_sha256"], "pilot_and_final_same_policy", "pilot")
-    report.equal([r["max_subgraph_size"] for r in pilot["trials"] if r["algorithm"] == "ACDC"],
-                 config["pilot"]["acdc_max_subgraph_sizes"], "pilot_acdc_inventory", "pilot")
+    audit_pilot(root, result_root, graph_root, versions, config, run, calibration, report)
+    if include_ai:
+        audit_ai(root, result_root, graph_root, versions, config, report)
     return report
 
 
@@ -484,25 +1125,28 @@ def main() -> int:
     parser.add_argument("--results", type=Path)
     parser.add_argument("--graphs", type=Path)
     parser.add_argument("--output", type=Path)
+    parser.add_argument("--skip-ai", action="store_true", help="Explicitly audit the core study only; record that AI was not checked")
     args = parser.parse_args()
     result_root = args.results or args.root / "results"
     output = args.output or result_root / "validation.json"
     try:
-        report = audit(args.root, result_root, args.graphs or args.root / "data/graphs")
+        report = audit(args.root, result_root, args.graphs or args.root / "data/graphs", include_ai=not args.skip_ai)
     except Exception as error:
         result = {"status": "incomplete", "error_type": type(error).__name__, "error": str(error)}
     else:
         result = {"status": "passed" if not report.failures else "failed",
                   "checks_performed": sum(report.counts.values()), "check_categories": dict(sorted(report.counts.items())),
                   "failure_count": len(report.failures), "failures": report.failures,
-                  "warnings": report.warnings, "releases": report.release_evidence}
+                  "warnings": report.warnings, "releases": report.release_evidence,
+                  "ai": report.ai_evidence if report.ai_evidence is not None else {"status": "skipped_by_explicit_flag"}}
     result.update({"validated_at_utc": datetime.now(timezone.utc).isoformat(),
                    "validator_sha256": digest(Path(__file__)),
-                   "method": "stdlib-only independent artifact audit; edge-contribution lecture MQ; exact-rational UE; contingency-table ARI",
-                   "scope": "30 source-owned Guava graphs,120 finalized A1-A4 partitions,60 retained-graph comparisons,29 temporal transitions; pilot inventory checked separately",
+                   "method": "stdlib-only independent artifact audit; exact instructor-row normalization and original-byte input check; edge-contribution lecture MQ; exact-rational UE; residual-network max-flow MoJo with Ferrers-graph normalization; centroid-identity pilot inertia; contingency-table ARI",
+                   "scope": "30 source-owned Guava graphs,120 finalized A1-A4 partitions,178 bidirectional partition comparisons,60 retained-graph MQ comparisons,29 temporal transitions,all predeclared pilot fits" + ("; completed AI evidence and four comparisons" if not args.skip_ai else "; AI explicitly excluded by --skip-ai"),
                    "limitations": ["Provenance/membership checks do not prove a static extractor sees runtime reflection or all dynamic dispatch.",
                                    "Passing structural checks does not prove the recovered clusters match intended architecture.",
-                                   "No new architecture is created by this validation."]})
+                                   "No new architecture is created by this validation.",
+                                   "AI input/output hashes preserve its record; they do not independently prove private model knowledge or process declarations."]})
     output.parent.mkdir(parents=True, exist_ok=True)
     output.write_text(json.dumps(result, indent=2, sort_keys=True, default=json_safe, allow_nan=False) + "\n")
     print(json.dumps({key: result[key] for key in ("status", "checks_performed", "failure_count", "error") if key in result}))

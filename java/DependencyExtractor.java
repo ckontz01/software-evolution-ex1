@@ -7,9 +7,12 @@ import java.util.zip.*;
 import org.objectweb.asm.*;
 import org.objectweb.asm.signature.*;
 
-/** Static bytecode evidence extractor. Never loads or executes target classes.
- * Dependencies are caller -> used class. Member identities keep the original
- * declaring binary owner even when class nodes are merged to the outer class.
+/** Supplemental static bytecode evidence extractor. Never executes targets.
+ * Supplies class ownership/enclosing metadata and member identities for UE.
+ * Its broad relationship model is saved only as supplemental_dependencies*;
+ * the course instructor's unmodified JAR supplies the primary graph.
+ * Member identities preserve their original declaring binary owners even when
+ * canonical class nodes are merged to their outermost owned class.
  */
 public final class DependencyExtractor {
     static final int API = Opcodes.ASM9;
@@ -304,11 +307,16 @@ public final class DependencyExtractor {
     }
     public static void main(String[] args) throws Exception {
         if (args.length != 4) {
-            System.err.println("Usage: DependencyExtractor binary.jar sources.jar output-directory package.prefix");
+            System.err.println("Usage: DependencyExtractor binary.jar sources.jar output-directory package.prefix[,package.prefix...]");
             System.exit(2);
         }
         Path output = Paths.get(args[2]); Files.createDirectories(output);
-        String prefix = args[3].replace('.', '/') + "/";
+        List<String> prefixes = new ArrayList<>();
+        for (String value : args[3].split(",", -1)) {
+            String valueTrimmed = value.trim();
+            if (valueTrimmed.isEmpty()) throw new IllegalArgumentException("Empty owned namespace");
+            prefixes.add(valueTrimmed.replace('.', '/') + "/");
+        }
         try (ZipFile z = new ZipFile(args[1])) {
             Enumeration<? extends ZipEntry> entries = z.entries();
             while (entries.hasMoreElements()) {
@@ -350,7 +358,9 @@ public final class DependencyExtractor {
         for (Info i : infos.values()) {
             String file = i.source == null ? outer(i.name).substring(outer(i.name).lastIndexOf('/')+1)+".java" : i.source;
             String path = i.name.substring(0,i.name.lastIndexOf('/')+1)+file;
-            if (!i.name.startsWith(prefix)) i.exclusion="outside_project_namespace";
+            boolean ownedNamespace = false;
+            for (String prefix : prefixes) if (i.name.startsWith(prefix)) ownedNamespace = true;
+            if (!ownedNamespace) i.exclusion="outside_project_namespace";
             else if (i.name.contains("/internal/shaded/") || i.name.contains("/io/doubleparser/")) i.exclusion="shaded_third_party";
             else if (!sourcePaths.contains(path)) i.exclusion="no_owned_source_file";
             else { i.included=true; i.source=path; }
@@ -379,12 +389,12 @@ public final class DependencyExtractor {
         csv(output.resolve("classes.csv"),new String[]{"class","package","source_file","kind","raw_binary_classes"},classes);
         csv(output.resolve("class_aliases.csv"),new String[]{"binary_class","class","source_file"},aliases);
         csv(output.resolve("excluded_classes.csv"),new String[]{"binary_class","reason"},rejected);
-        csv(output.resolve("dependencies_typed.csv"),new String[]{"source","target","relation"},splitRows(typed));
+        csv(output.resolve("supplemental_dependencies_typed.csv"),new String[]{"source","target","relation"},splitRows(typed));
         csv(output.resolve("member_dependencies.csv"),new String[]{"source_class","source_member","target_class","target_member"},splitRows(members));
         csv(output.resolve("unresolved_member_uses.csv"),new String[]{"source_class","source_member","symbolic_target","member","relation"},unresolved);
         Set<String> edges=new TreeSet<>();
         for (String row:typed) { String[] cols=row.split("\t");edges.add(cols[0]+"\t"+cols[1]); }
-        csv(output.resolve("dependencies.csv"),new String[]{"source","target"},splitRows(edges));
+        csv(output.resolve("supplemental_dependencies.csv"),new String[]{"source","target"},splitRows(edges));
         List<String[]> stats=new ArrayList<>();
         stats.add(new String[]{"canonical_classes",Integer.toString(classes.size())});
         stats.add(new String[]{"owned_binary_classes",Integer.toString(aliases.size())});
@@ -400,7 +410,7 @@ public final class DependencyExtractor {
         stats.add(new String[]{"member_resolution_cache_hits",Long.toString(resolutionCacheHits)});
         stats.add(new String[]{"interface_resolution_ties",Long.toString(interfaceResolutionTies)});
         for (Map.Entry<String,Integer> e:excludedEdges.entrySet())stats.add(new String[]{e.getKey(),e.getValue().toString()});
-        csv(output.resolve("extraction_counts.csv"),new String[]{"metric","value"},stats);
-        System.out.println("classes="+classes.size()+" dependencies="+edges.size()+" member_edges="+members.size());
+        csv(output.resolve("supplemental_extraction_counts.csv"),new String[]{"metric","value"},stats);
+        System.out.println("classes="+classes.size()+" supplemental_dependencies="+edges.size()+" member_edges="+members.size());
     }
 }

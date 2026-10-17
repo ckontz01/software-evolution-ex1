@@ -20,7 +20,7 @@ def pack(name: str, paths: list[Path]) -> dict:
     members = []
     with zipfile.ZipFile(temporary, 'w', compression=zipfile.ZIP_DEFLATED, compresslevel=6) as archive:
         for path in sorted(paths):
-            if not path.is_file() or '__pycache__' in path.parts:
+            if not path.is_file() or '__pycache__' in path.parts or path.name.endswith('.part'):
                 continue
             relative = path.relative_to(ROOT).as_posix()
             info = zipfile.ZipInfo(relative, date_time=(2026, 10, 17, 0, 0, 0))
@@ -35,6 +35,10 @@ def pack(name: str, paths: list[Path]) -> dict:
 
 def main() -> None:
     manifest = json.loads((ROOT / 'config/versions.json').read_text())
+    expected_names = {f"guava-{r['version']}.zip" for r in manifest['versions']}
+    obsolete = [p.name for p in (ROOT / 'archives/versions').glob('guava-*.zip') if p.name not in expected_names]
+    if obsolete:
+        raise ValueError(f'Archive superseded release bundles before packaging the revised cohort: {obsolete}')
     bundles = []
     for release in manifest['versions']:
         version = release['version']
@@ -54,7 +58,7 @@ def main() -> None:
         raise ValueError('Expected the first and last immutable Git source archives')
     bundles.append(pack('upstream_git.zip', git_archives))
     payload = {'format': 'ZIP/deflate; fixed timestamps; complete original file bytes',
-               'purpose': 'All 90 acquired artifacts and every per-release computed file, including raw algorithm logs, are preserved. Unpack to restore the documented working hierarchy.',
+               'purpose': 'All 90 pinned acquired artifacts and every finalized per-release computed file are preserved, including instructor raw output, unchanged scoped input JARs, supplementary member evidence, algorithm logs and directional MoJoFM details. The pilot bundle includes every k candidate assignment. Unfinished .part files are excluded. Unpack to restore the documented working hierarchy.',
                'version_manifest_sha256': digest(ROOT / 'config/versions.json'),
                'bundles': bundles}
     (ROOT / 'archives/manifest.json').write_text(json.dumps(payload, indent=2) + '\n')

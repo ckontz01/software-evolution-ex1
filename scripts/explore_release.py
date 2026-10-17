@@ -37,7 +37,8 @@ if __name__ == '__main__':
     noise = detect_omnipresent(graph.nodes, read_csv(source / 'member_dependencies.csv'),
                                usage_threshold=args.usage_threshold, cardinality_threshold=args.cardinality_threshold)
     filtered = graph.without(noise.removed_classes)
-    k = args.k if args.k is not None else choose_k(len(graph.nodes))
+    calibration = json.loads((ROOT / 'results/pilot/k_calibration.json').read_text())
+    k = args.k if args.k is not None else choose_k(len(graph.nodes), pilot_n=calibration['pilot_n'], pilot_k=calibration['pilot_k'])
     if k < 1 or args.acdc_size < 1:
         parser.error('k and acdc-size must be positive')
     build_java()

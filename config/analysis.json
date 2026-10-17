@@ -1,7 +1,11 @@
 {
-  "schema_version": 1,
+  "schema_version": 2,
+  "study_revision": "v2_instructor_graph_distinct_families",
   "subject": "google/guava",
-  "scope": "Published Guava JRE production artifact; source-owned com.google.common classes only",
+  "scope": "Published Guava JRE production artifact; source-owned com.google.common and com.google.thirdparty.publicsuffix types, including isolates",
+  "primary_extractor": "Unmodified instructor DependencyExtractor.jar; normalized class relationships only",
+  "supplemental_extractor": "ASM source ownership, class aliases, and resolved field/method member evidence for UE",
+  "annotation_policy": "Keep owned annotation types in the inventory; do not add annotation-application edges absent from the instructor output; report metadata types and isolates separately",
   "relation_types": ["EXTENDS", "IMPLEMENTS", "METHOD_CALL", "METHOD_PARAMETER", "FIELD_REFERENCE", "TYPE_USAGE", "EXCEPTION_THROWS"],
   "relation_weight": 1,
   "graph": "binary_directed_union_no_self_loops",
@@ -9,11 +13,12 @@
   "multi_release_policy": "base_class_entries_only",
   "omnipresent": {"method": "UE", "usage_threshold": 0.85, "cardinality_threshold": 0.9, "passes": 1},
   "features": "L2_rows([A+I,(A+I)^T])_fixed_union_coordinates",
-  "kmeans": {"k_rule": "ceil(sqrt(n_full/2))", "same_k_for_full_and_filtered": true, "random_state": 484, "n_init": 10, "max_iter": 300, "algorithm": "lloyd"},
+  "kmeans": {"k_rule": "ceil(n_full * pilot_k / pilot_n)", "calibration": "single_middle_release_inertia_elbow", "same_k_for_full_and_filtered": true, "random_state": 484, "n_init": 10, "max_iter": 300, "algorithm": "lloyd"},
   "acdc": {"patterns": "+so", "max_subgraph_size": 20, "output": "default_fine_flat", "isolates": "explicit_singletons", "node_ids": "class_plus_java_suffix"},
   "metric": "lecture_macro_cohesion_minus_mean_pair_coupling",
   "singleton_cohesion": 0,
   "empty_partition_metrics": 0,
-  "pilot": {"selection": "middle_selected_release", "acdc_max_subgraph_sizes": [10, 20, 40], "k_sweep": false},
-  "notes": "Frozen rules are shared across all releases. Identity entries are features only and never real graph edges. Beta API annotations in stable releases are retained; prerelease versions are excluded."
+  "comparison_metrics": ["MoJoFM_source_to_reference", "MoJoFM_reverse", "ARI_supplementary"],
+  "pilot": {"selection": "middle_selected_release", "acdc_max_subgraph_sizes": [10, 20, 40], "k_sweep": "one_pilot_only", "k_candidates": [2, 5, 10, 15, 20, 25, 30, 40, 50, 60, 75, 90, 110, 130], "elbow_rule": "maximum_positive_vertical_gap_below_normalized_endpoint_chord; ties_choose_smaller_k", "minimum_elbow_gap": 0.02, "fallback_k_if_no_clear_elbow": 30, "matched_acdc_k_diagnostic": true},
+  "notes": "Freeze the pilot selection rule before observing quality scores. The pilot inertia curve determines one class-per-cluster calibration; no per-release k sweep and no MQ optimization. Identity entries are features only. All owned types and true isolates remain in the declared universe. Source-owned public-suffix helpers are internal. Beta/RC/snapshot releases are excluded; annotated production APIs remain. MoJoFM denotes directional partition agreement, not recovery accuracy."
 }

@@ -33,13 +33,17 @@ class StructuralFeatureTests(unittest.TestCase):
         np.testing.assert_allclose(matrix.toarray(), [[1 / np.sqrt(2), 0, 1 / np.sqrt(2), 0]])
 
     def test_fixed_full_graph_k_is_reused_then_only_clamped(self):
-        self.assertEqual(choose_k(800), 20)
-        self.assertEqual(choose_k(800, 750), 20)
-        self.assertEqual(choose_k(800, 5), 5)
-        self.assertEqual(choose_k(0), 0)
-        self.assertEqual(choose_k(1), 1)
+        calibration = {"pilot_n": 400, "pilot_k": 30}
+        self.assertEqual(choose_k(800, **calibration), 60)
+        self.assertEqual(choose_k(800, 750, **calibration), 60)
+        self.assertEqual(choose_k(801, **calibration), 61)
+        self.assertEqual(choose_k(800, 5, **calibration), 5)
+        self.assertEqual(choose_k(0, **calibration), 0)
+        self.assertEqual(choose_k(1, **calibration), 1)
         with self.assertRaises(ValueError):
-            choose_k(10, 11)
+            choose_k(10, 11, **calibration)
+        with self.assertRaises(ValueError):
+            choose_k(10, pilot_n=0, pilot_k=1)
 
     def test_kmeans_is_repeatable_after_input_reordering(self):
         nodes = list("abcdef")

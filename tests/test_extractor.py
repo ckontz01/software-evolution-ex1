@@ -9,6 +9,7 @@ rule even though Java source rejects the corresponding ambiguous field syntax.
 """
 
 import csv
+import json
 import os
 from pathlib import Path
 import subprocess
@@ -17,6 +18,7 @@ import unittest
 from zipfile import ZipFile
 
 from evolution.omnipresent import detect_omnipresent
+from evolution.extraction import extract_artifacts
 from evolution.toolchain import ROOT, java_env, java_path, verify_tools
 
 
@@ -124,11 +126,32 @@ class TestBytecodeExtraction(unittest.TestCase):
         source = cls.work / "src"
         (source / "fixture").mkdir(parents=True)
         (source / "external").mkdir()
+        (source / "com/google/common").mkdir(parents=True)
+        (source / "com/google/thirdparty/publicsuffix").mkdir(parents=True)
         (source / "fixture/Sample.java").write_text(SAMPLE_SOURCE)
         (source / "fixture/MissingSource.java").write_text("package fixture; public class MissingSource {}\n")
         (source / "external/Library.java").write_text(
             "package external; public class Library { public static Object convert() { return null; } }\n"
         )
+        extra_sources = {
+            "com/google/common/PublicApi.java": """package com.google.common;
+                @CompatibilityMarker public class PublicApi {
+                    public com.google.thirdparty.publicsuffix.PublicSuffixType suffix() {
+                        return com.google.thirdparty.publicsuffix.PublicSuffixType.parse();
+                    }
+                    public Class<SemanticMarker> semanticMarker() { return SemanticMarker.class; }
+                }""",
+            "com/google/common/CompatibilityMarker.java": "package com.google.common; public @interface CompatibilityMarker {}",
+            "com/google/common/SemanticMarker.java": "package com.google.common; public @interface SemanticMarker {}",
+            "com/google/common/Isolated.java": "package com.google.common; public class Isolated {}",
+            "com/google/thirdparty/publicsuffix/PublicSuffixType.java": """package com.google.thirdparty.publicsuffix;
+                public class PublicSuffixType {
+                    public static PublicSuffixType parse() { return new PublicSuffixType(); }
+                    public static class Nested {}
+                }""",
+        }
+        for name, content in extra_sources.items():
+            (source / name).write_text(content)
         helper = cls.work / "SymbolicOwnerRewriter.java"
         helper.write_text(SYMBOLIC_OWNER_REWRITER)
         cls.binary = cls.work / "binary"
@@ -158,13 +181,15 @@ class TestBytecodeExtraction(unittest.TestCase):
         with ZipFile(cls.sources_jar, "w") as archive:
             archive.write(source / "fixture/Sample.java", "fixture/Sample.java")
             archive.write(source / "external/Library.java", "external/Library.java")
+            for name in sorted(extra_sources):
+                archive.write(source / name, name)
         cls.output = cls.work / "out"
         cls.run_extractor(cls.output)
         cls.classes = cls.read_csv("classes.csv")
         cls.aliases = cls.read_csv("class_aliases.csv")
-        cls.relations = cls.read_csv("dependencies_typed.csv")
+        cls.relations = cls.read_csv("supplemental_dependencies_typed.csv")
         cls.members = cls.read_csv("member_dependencies.csv")
-        cls.counts = {r["metric"]: int(r["value"]) for r in cls.read_csv("extraction_counts.csv")}
+        cls.counts = {r["metric"]: int(r["value"]) for r in cls.read_csv("supplemental_extraction_counts.csv")}
         cls.class_names = {r["class"] for r in cls.classes}
 
     @classmethod
@@ -180,10 +205,9 @@ class TestBytecodeExtraction(unittest.TestCase):
 
     @classmethod
     def run_extractor(cls, output):
-        return cls.run_command([
-            cls.java, "-cp", os.pathsep.join((str(cls.extractor), str(cls.asm))),
-            "DependencyExtractor", str(cls.jar), str(cls.sources_jar), str(output), "fixture",
-        ])
+        return extract_artifacts(cls.jar, cls.sources_jar, output, java=cls.java,
+                                 owned_prefixes=("fixture", "com.google.common", "com.google.thirdparty.publicsuffix"),
+                                 supplemental_classes=cls.extractor)
 
     @classmethod
     def read_csv(cls, name):
@@ -271,6 +295,49 @@ class TestBytecodeExtraction(unittest.TestCase):
         self.run_extractor(second)
         for first in self.output.glob("*.csv"):
             self.assertEqual(first.read_bytes(), (second / first.name).read_bytes(), first.name)
+
+    def test_primary_edges_are_exactly_normalized_unmodified_instructor_rows(self):
+        aliases = {r["binary_class"]: r["class"] for r in self.aliases}
+        expected = set()
+        for row in self.read_csv("instructor_raw.csv"):
+            source, target = aliases.get(row["dependeeClass"]), aliases.get(row["dependencyClass"])
+            if source and target and source != target:
+                expected.add((source, target, row["DependencyType"]))
+        actual = {(r["source"], r["target"], r["relation"]) for r in self.read_csv("dependencies_typed.csv")}
+        self.assertEqual(actual, expected)
+        pairs = {(r["source"], r["target"]) for r in self.read_csv("dependencies.csv")}
+        self.assertEqual(pairs, {(a, b) for a, b, _ in expected})
+        self.assertTrue(all(a in self.class_names and b in self.class_names and a != b for a, b in pairs))
+
+    def test_publicsuffix_is_owned_inner_merged_and_instructor_input_is_scoped(self):
+        publicsuffix = "com.google.thirdparty.publicsuffix.PublicSuffixType"
+        self.assertIn(publicsuffix, self.class_names)
+        aliases = {r["binary_class"]: r["class"] for r in self.aliases}
+        self.assertEqual(aliases[publicsuffix + "$Nested"], publicsuffix)
+        pairs = {(r["source"], r["target"]) for r in self.read_csv("dependencies.csv")}
+        self.assertIn(("com.google.common.PublicApi", publicsuffix), pairs)
+        with ZipFile(self.output / "instructor_input.jar") as derived, ZipFile(self.jar) as original:
+            self.assertEqual(set(derived.namelist()), {n.replace(".", "/") + ".class" for n in aliases})
+            self.assertTrue(all(not n.startswith(("META-INF/", "external/")) for n in derived.namelist()))
+            self.assertNotIn("fixture/MissingSource.class", derived.namelist())
+            for name in derived.namelist():
+                self.assertEqual(derived.read(name), original.read(name))
+
+    def test_annotation_applications_are_only_supplemental_but_nodes_and_code_references_remain(self):
+        primary = {(r["source"], r["target"]) for r in self.read_csv("dependencies.csv")}
+        supplementary = {(r["source"], r["target"]) for r in self.read_csv("supplemental_dependencies.csv")}
+        compatibility = ("com.google.common.PublicApi", "com.google.common.CompatibilityMarker")
+        semantic = ("com.google.common.PublicApi", "com.google.common.SemanticMarker")
+        self.assertIn(compatibility, supplementary)
+        self.assertNotIn(compatibility, primary)
+        self.assertIn(semantic, primary)
+        self.assertIn("com.google.common.CompatibilityMarker", self.class_names)
+        self.assertIn("com.google.common.Isolated", self.class_names)
+        incident = {name for edge in primary for name in edge}
+        self.assertNotIn("com.google.common.CompatibilityMarker", incident)
+        self.assertNotIn("com.google.common.Isolated", incident)
+        comparison = json.loads((self.output / "extractor_comparison.json").read_text())
+        self.assertGreater(comparison["supplemental_only_annotation_target_edges"], 0)
 
 
 if __name__ == "__main__":
