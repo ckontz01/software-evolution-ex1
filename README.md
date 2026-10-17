@@ -1,6 +1,6 @@
 # EPL484 — Software Architecture Evolution
 
-A reproducible, AI-assisted study of **30 spaced stable Jackson Core releases**, prepared for the Software Evolution course.
+A reproducible, AI-assisted study of **30 spaced stable Guava releases**, prepared for the Software Evolution course.
 
 ## Study contract
 
@@ -17,6 +17,6 @@ A reproducible, AI-assisted study of **30 spaced stable Jackson Core releases**,
 
 This repository is a temporary **AI-assisted preparation workspace**. Present-day commits are made through the authenticated account. The two students must review, understand, validate, and document their own contributions before transferring work to the teacher-owned repository. No teammate authorship or historical activity is implied.
 
-Project approval by the instructor is not established by this repository. The sample uses Jackson Core because the earlier Spring AI candidate cannot meet the requested release coverage.
+The study subject is [google/guava](https://github.com/google/guava), explicitly selected by the team. JRE releases are sampled; Android variants and release candidates are excluded.
 
 Implementation, executed results, and the final report are added in subsequent commits.
