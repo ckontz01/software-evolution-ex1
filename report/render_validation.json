@@ -1,0 +1,218 @@
+{
+  "pdf": "report/guava_evolution_report.pdf",
+  "page_count": 29,
+  "pages": [
+    {
+      "page": 1,
+      "text_characters": 1232,
+      "render": "report/qa/page_01.png",
+      "out_of_page_text_blocks": []
+    },
+    {
+      "page": 2,
+      "text_characters": 2355,
+      "render": "report/qa/page_02.png",
+      "out_of_page_text_blocks": []
+    },
+    {
+      "page": 3,
+      "text_characters": 2522,
+      "render": "report/qa/page_03.png",
+      "out_of_page_text_blocks": []
+    },
+    {
+      "page": 4,
+      "text_characters": 2265,
+      "render": "report/qa/page_04.png",
+      "out_of_page_text_blocks": []
+    },
+    {
+      "page": 5,
+      "text_characters": 2538,
+      "render": "report/qa/page_05.png",
+      "out_of_page_text_blocks": []
+    },
+    {
+      "page": 6,
+      "text_characters": 2442,
+      "render": "report/qa/page_06.png",
+      "out_of_page_text_blocks": []
+    },
+    {
+      "page": 7,
+      "text_characters": 2224,
+      "render": "report/qa/page_07.png",
+      "out_of_page_text_blocks": []
+    },
+    {
+      "page": 8,
+      "text_characters": 2795,
+      "render": "report/qa/page_08.png",
+      "out_of_page_text_blocks": []
+    },
+    {
+      "page": 9,
+      "text_characters": 2374,
+      "render": "report/qa/page_09.png",
+      "out_of_page_text_blocks": []
+    },
+    {
+      "page": 10,
+      "text_characters": 1437,
+      "render": "report/qa/page_10.png",
+      "out_of_page_text_blocks": []
+    },
+    {
+      "page": 11,
+      "text_characters": 1721,
+      "render": "report/qa/page_11.png",
+      "out_of_page_text_blocks": []
+    },
+    {
+      "page": 12,
+      "text_characters": 1522,
+      "render": "report/qa/page_12.png",
+      "out_of_page_text_blocks": []
+    },
+    {
+      "page": 13,
+      "text_characters": 904,
+      "render": "report/qa/page_13.png",
+      "out_of_page_text_blocks": []
+    },
+    {
+      "page": 14,
+      "text_characters": 1032,
+      "render": "report/qa/page_14.png",
+      "out_of_page_text_blocks": []
+    },
+    {
+      "page": 15,
+      "text_characters": 995,
+      "render": "report/qa/page_15.png",
+      "out_of_page_text_blocks": []
+    },
+    {
+      "page": 16,
+      "text_characters": 870,
+      "render": "report/qa/page_16.png",
+      "out_of_page_text_blocks": []
+    },
+    {
+      "page": 17,
+      "text_characters": 1330,
+      "render": "report/qa/page_17.png",
+      "out_of_page_text_blocks": []
+    },
+    {
+      "page": 18,
+      "text_characters": 2083,
+      "render": "report/qa/page_18.png",
+      "out_of_page_text_blocks": []
+    },
+    {
+      "page": 19,
+      "text_characters": 3709,
+      "render": "report/qa/page_19.png",
+      "out_of_page_text_blocks": []
+    },
+    {
+      "page": 20,
+      "text_characters": 3733,
+      "render": "report/qa/page_20.png",
+      "out_of_page_text_blocks": []
+    },
+    {
+      "page": 21,
+      "text_characters": 3636,
+      "render": "report/qa/page_21.png",
+      "out_of_page_text_blocks": []
+    },
+    {
+      "page": 22,
+      "text_characters": 2831,
+      "render": "report/qa/page_22.png",
+      "out_of_page_text_blocks": []
+    },
+    {
+      "page": 23,
+      "text_characters": 1419,
+      "render": "report/qa/page_23.png",
+      "out_of_page_text_blocks": []
+    },
+    {
+      "page": 24,
+      "text_characters": 3147,
+      "render": "report/qa/page_24.png",
+      "out_of_page_text_blocks": []
+    },
+    {
+      "page": 25,
+      "text_characters": 2610,
+      "render": "report/qa/page_25.png",
+      "out_of_page_text_blocks": []
+    },
+    {
+      "page": 26,
+      "text_characters": 2437,
+      "render": "report/qa/page_26.png",
+      "out_of_page_text_blocks": []
+    },
+    {
+      "page": 27,
+      "text_characters": 2441,
+      "render": "report/qa/page_27.png",
+      "out_of_page_text_blocks": []
+    },
+    {
+      "page": 28,
+      "text_characters": 2506,
+      "render": "report/qa/page_28.png",
+      "out_of_page_text_blocks": []
+    },
+    {
+      "page": 29,
+      "text_characters": 3563,
+      "render": "report/qa/page_29.png",
+      "out_of_page_text_blocks": []
+    }
+  ],
+  "all_pages_rendered": true,
+  "visual_inspection": {
+    "status": "passed",
+    "pages_reviewed": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      17,
+      18,
+      19,
+      20,
+      21,
+      22,
+      23,
+      24,
+      25,
+      26,
+      27,
+      28,
+      29
+    ],
+    "method": "All 29 pages rendered with PyMuPDF and visually inspected, including exact prompts, charts, formulas, module tables and the complete 120-row appendix.",
+    "findings": "No clipping, overlapping text or cells, missing glyphs, illegible axes, unintended blank pages or incomplete AI placeholders."
+  },
+  "pdf_sha256": "b60ef4483b957aa8cfc5d3d24d220d6ecf5a2e3cc479d63f82f03fa9b099801f"
+}
