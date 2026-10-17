@@ -16,8 +16,9 @@ def digest(path: Path) -> str:
 def pack(name: str, paths: list[Path]) -> dict:
     target = ROOT / 'archives' / name
     target.parent.mkdir(parents=True, exist_ok=True)
+    temporary = target.with_suffix(target.suffix + '.part')
     members = []
-    with zipfile.ZipFile(target, 'w', compression=zipfile.ZIP_DEFLATED, compresslevel=6) as archive:
+    with zipfile.ZipFile(temporary, 'w', compression=zipfile.ZIP_DEFLATED, compresslevel=6) as archive:
         for path in sorted(paths):
             if not path.is_file() or '__pycache__' in path.parts:
                 continue
@@ -27,6 +28,7 @@ def pack(name: str, paths: list[Path]) -> dict:
             info.external_attr = 0o100644 << 16
             archive.writestr(info, path.read_bytes(), compress_type=zipfile.ZIP_DEFLATED, compresslevel=6)
             members.append({'path': relative, 'bytes': path.stat().st_size, 'sha256': digest(path)})
+    temporary.replace(target)
     return {'path': target.relative_to(ROOT).as_posix(), 'bytes': target.stat().st_size,
             'sha256': digest(target), 'member_count': len(members), 'members': members}
 
