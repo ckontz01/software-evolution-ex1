@@ -1,11 +1,11 @@
 {
   "versions": 30,
   "verified_artifacts": 90,
-  "total_mib": 122.018,
+  "total_mib": 120.407,
   "latest": "33.7.2",
   "latest_source_java_files": 611,
   "latest_java_nonblank_noncomment_lines": 96646,
-  "latest_source_owned_java_sloc": 95876,
+  "latest_source_owned_java_sloc": 96622,
   "git_endpoint_source_checks": [
     {
       "version": "10.0",
