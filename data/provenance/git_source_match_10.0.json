@@ -1,0 +1,2293 @@
+{
+  "version": "10.0",
+  "commit_sha": "baf008c5a3de60e8399852f23979bf69f2660023",
+  "git_archive_url": "https://codeload.github.com/google/guava/zip/baf008c5a3de60e8399852f23979bf69f2660023",
+  "git_archive_sha256": "7d63405c776049641c24b4bf09b779c8753c21f5c9ae1c41e6e9d75745a61414",
+  "source_jar_sha256": "39b5111fa42866be47f376164824213ee06b6ebe410262aa2e36d00a88296226",
+  "compared_java_files": 326,
+  "all_sources_match": true,
+  "records": [
+    {
+      "source_path": "com/google/common/annotations/Beta.java",
+      "git_path": "guava/src/com/google/common/annotations/Beta.java",
+      "status": "byte_identical",
+      "source_sha256": "113acabe4f952504f571890c9c9fe282ab29b26c1b99cc9335afad3c1ccfb07a",
+      "git_sha256": "113acabe4f952504f571890c9c9fe282ab29b26c1b99cc9335afad3c1ccfb07a"
+    },
+    {
+      "source_path": "com/google/common/annotations/GwtCompatible.java",
+      "git_path": "guava/src/com/google/common/annotations/GwtCompatible.java",
+      "status": "byte_identical",
+      "source_sha256": "4a9b4096b9c61d653297fd4b6bdc33325ed52adf3b55d502a49ddc3e289f5bac",
+      "git_sha256": "4a9b4096b9c61d653297fd4b6bdc33325ed52adf3b55d502a49ddc3e289f5bac"
+    },
+    {
+      "source_path": "com/google/common/annotations/GwtIncompatible.java",
+      "git_path": "guava/src/com/google/common/annotations/GwtIncompatible.java",
+      "status": "byte_identical",
+      "source_sha256": "8d887e8c5387bd4e4d6fdcf770c1bbee5fd71a004a8770adf89c5fc1e831c1c2",
+      "git_sha256": "8d887e8c5387bd4e4d6fdcf770c1bbee5fd71a004a8770adf89c5fc1e831c1c2"
+    },
+    {
+      "source_path": "com/google/common/annotations/VisibleForTesting.java",
+      "git_path": "guava/src/com/google/common/annotations/VisibleForTesting.java",
+      "status": "byte_identical",
+      "source_sha256": "cac2a0b175c4224be4052fb393cd5f53d1ddc85ca1099103e8bc1cd521c26b30",
+      "git_sha256": "cac2a0b175c4224be4052fb393cd5f53d1ddc85ca1099103e8bc1cd521c26b30"
+    },
+    {
+      "source_path": "com/google/common/annotations/package-info.java",
+      "git_path": "guava/src/com/google/common/annotations/package-info.java",
+      "status": "byte_identical",
+      "source_sha256": "43ec5d148fc90331868a500404edaf4c81d9262e50a1d53a8a07e754843f9c64",
+      "git_sha256": "43ec5d148fc90331868a500404edaf4c81d9262e50a1d53a8a07e754843f9c64"
+    },
+    {
+      "source_path": "com/google/common/base/Ascii.java",
+      "git_path": "guava/src/com/google/common/base/Ascii.java",
+      "status": "byte_identical",
+      "source_sha256": "52c5901fbce0ead34c7ada4747ef0d6e366c1e00b76b9bb4ca3cb04a56fceab2",
+      "git_sha256": "52c5901fbce0ead34c7ada4747ef0d6e366c1e00b76b9bb4ca3cb04a56fceab2"
+    },
+    {
+      "source_path": "com/google/common/base/CaseFormat.java",
+      "git_path": "guava/src/com/google/common/base/CaseFormat.java",
+      "status": "byte_identical",
+      "source_sha256": "f6f701ec9bba24abc98459fdd19a0086116486698c7a1a7541e76ea6b6d12676",
+      "git_sha256": "f6f701ec9bba24abc98459fdd19a0086116486698c7a1a7541e76ea6b6d12676"
+    },
+    {
+      "source_path": "com/google/common/base/CharMatcher.java",
+      "git_path": "guava/src/com/google/common/base/CharMatcher.java",
+      "status": "byte_identical",
+      "source_sha256": "9feca37f423a6547981a413bb883f22186d91669df8c00388cf4e993c8c628ac",
+      "git_sha256": "9feca37f423a6547981a413bb883f22186d91669df8c00388cf4e993c8c628ac"
+    },
+    {
+      "source_path": "com/google/common/base/Charsets.java",
+      "git_path": "guava/src/com/google/common/base/Charsets.java",
+      "status": "byte_identical",
+      "source_sha256": "9fdd5e834403f8a152c9a4adb3a305a043afd10046cc2c058f2c55a6cb606098",
+      "git_sha256": "9fdd5e834403f8a152c9a4adb3a305a043afd10046cc2c058f2c55a6cb606098"
+    },
+    {
+      "source_path": "com/google/common/base/Defaults.java",
+      "git_path": "guava/src/com/google/common/base/Defaults.java",
+      "status": "byte_identical",
+      "source_sha256": "44058211220f59b028c769f0f64e83f3929cc8e31d84ee3be7f82eda89b3f218",
+      "git_sha256": "44058211220f59b028c769f0f64e83f3929cc8e31d84ee3be7f82eda89b3f218"
+    },
+    {
+      "source_path": "com/google/common/base/Enums.java",
+      "git_path": "guava/src/com/google/common/base/Enums.java",
+      "status": "byte_identical",
+      "source_sha256": "f48818ca5118641ee938312e61132e9c01bae8d6ae1cec09cabccb1fbc26bb68",
+      "git_sha256": "f48818ca5118641ee938312e61132e9c01bae8d6ae1cec09cabccb1fbc26bb68"
+    },
+    {
+      "source_path": "com/google/common/base/Equivalence.java",
+      "git_path": "guava/src/com/google/common/base/Equivalence.java",
+      "status": "byte_identical",
+      "source_sha256": "3a43584b9749e5d96c90dc2a83041ff223a940301d22c1a14f6e87cb9f3369a8",
+      "git_sha256": "3a43584b9749e5d96c90dc2a83041ff223a940301d22c1a14f6e87cb9f3369a8"
+    },
+    {
+      "source_path": "com/google/common/base/Equivalences.java",
+      "git_path": "guava/src/com/google/common/base/Equivalences.java",
+      "status": "byte_identical",
+      "source_sha256": "21c7ad3527573c96ecb102265336ee682311c040663418cfd2e449b25d4211e5",
+      "git_sha256": "21c7ad3527573c96ecb102265336ee682311c040663418cfd2e449b25d4211e5"
+    },
+    {
+      "source_path": "com/google/common/base/FinalizablePhantomReference.java",
+      "git_path": "guava/src/com/google/common/base/FinalizablePhantomReference.java",
+      "status": "byte_identical",
+      "source_sha256": "4f5d4f6d0978f5cb127a4d3962b7f94220b3d1c0cf73566bacf94f133543be39",
+      "git_sha256": "4f5d4f6d0978f5cb127a4d3962b7f94220b3d1c0cf73566bacf94f133543be39"
+    },
+    {
+      "source_path": "com/google/common/base/FinalizableReference.java",
+      "git_path": "guava/src/com/google/common/base/FinalizableReference.java",
+      "status": "byte_identical",
+      "source_sha256": "03341a504a874ca2d522d818565f7656a83cade69415ffae307ce73a8e2f31ef",
+      "git_sha256": "03341a504a874ca2d522d818565f7656a83cade69415ffae307ce73a8e2f31ef"
+    },
+    {
+      "source_path": "com/google/common/base/FinalizableReferenceQueue.java",
+      "git_path": "guava/src/com/google/common/base/FinalizableReferenceQueue.java",
+      "status": "byte_identical",
+      "source_sha256": "3ddb39cdca663b18e046b53b15a95e6eeb41563de3118ca6054a51d2f4d8c113",
+      "git_sha256": "3ddb39cdca663b18e046b53b15a95e6eeb41563de3118ca6054a51d2f4d8c113"
+    },
+    {
+      "source_path": "com/google/common/base/FinalizableSoftReference.java",
+      "git_path": "guava/src/com/google/common/base/FinalizableSoftReference.java",
+      "status": "byte_identical",
+      "source_sha256": "fcb703ce609e66c03b7416bb510c083b53b2eb4af9d843754ccb4e407e86743e",
+      "git_sha256": "fcb703ce609e66c03b7416bb510c083b53b2eb4af9d843754ccb4e407e86743e"
+    },
+    {
+      "source_path": "com/google/common/base/FinalizableWeakReference.java",
+      "git_path": "guava/src/com/google/common/base/FinalizableWeakReference.java",
+      "status": "byte_identical",
+      "source_sha256": "d4af1575220d194b58bfd8c597bce1b26304dc0585ed30832d9dcff06b80045d",
+      "git_sha256": "d4af1575220d194b58bfd8c597bce1b26304dc0585ed30832d9dcff06b80045d"
+    },
+    {
+      "source_path": "com/google/common/base/Function.java",
+      "git_path": "guava/src/com/google/common/base/Function.java",
+      "status": "byte_identical",
+      "source_sha256": "b2c13a94f5e22ddf6170b6465c6cfec77a89b64387932cf71343631db11f6f19",
+      "git_sha256": "b2c13a94f5e22ddf6170b6465c6cfec77a89b64387932cf71343631db11f6f19"
+    },
+    {
+      "source_path": "com/google/common/base/FunctionalEquivalence.java",
+      "git_path": "guava/src/com/google/common/base/FunctionalEquivalence.java",
+      "status": "byte_identical",
+      "source_sha256": "92064d232fae34099a98e2aef9d2d745bce473dae8b008f3373e86e8da3c4bb3",
+      "git_sha256": "92064d232fae34099a98e2aef9d2d745bce473dae8b008f3373e86e8da3c4bb3"
+    },
+    {
+      "source_path": "com/google/common/base/Functions.java",
+      "git_path": "guava/src/com/google/common/base/Functions.java",
+      "status": "byte_identical",
+      "source_sha256": "97d4d3c2e2b5485ce36b4425334109e6a83c6b94ebf34a73e6f6130b899902e3",
+      "git_sha256": "97d4d3c2e2b5485ce36b4425334109e6a83c6b94ebf34a73e6f6130b899902e3"
+    },
+    {
+      "source_path": "com/google/common/base/Joiner.java",
+      "git_path": "guava/src/com/google/common/base/Joiner.java",
+      "status": "byte_identical",
+      "source_sha256": "a1e4aef0d7a63f2852165c0079043463822276687588d93be5967d2815ac97a2",
+      "git_sha256": "a1e4aef0d7a63f2852165c0079043463822276687588d93be5967d2815ac97a2"
+    },
+    {
+      "source_path": "com/google/common/base/Objects.java",
+      "git_path": "guava/src/com/google/common/base/Objects.java",
+      "status": "byte_identical",
+      "source_sha256": "288d9a99e55e5d7a159347d2612f7fb881a80fa25f76e8047e39380996e83dee",
+      "git_sha256": "288d9a99e55e5d7a159347d2612f7fb881a80fa25f76e8047e39380996e83dee"
+    },
+    {
+      "source_path": "com/google/common/base/Optional.java",
+      "git_path": "guava/src/com/google/common/base/Optional.java",
+      "status": "byte_identical",
+      "source_sha256": "97144e49d5622f4161c954d36471fffa05d25065fbdd2db7a98bdc87a2cbd587",
+      "git_sha256": "97144e49d5622f4161c954d36471fffa05d25065fbdd2db7a98bdc87a2cbd587"
+    },
+    {
+      "source_path": "com/google/common/base/PairwiseEquivalence.java",
+      "git_path": "guava/src/com/google/common/base/PairwiseEquivalence.java",
+      "status": "byte_identical",
+      "source_sha256": "e68c6eae691dd296771b145dc6a548dbf45b1f64b20e61424f677185de31d042",
+      "git_sha256": "e68c6eae691dd296771b145dc6a548dbf45b1f64b20e61424f677185de31d042"
+    },
+    {
+      "source_path": "com/google/common/base/Platform.java",
+      "git_path": "guava/src/com/google/common/base/Platform.java",
+      "status": "byte_identical",
+      "source_sha256": "6e4d8fe00be026fe2fb8e31ddeb5200e388e9808aa76e6ef94ce0ee821ddedc5",
+      "git_sha256": "6e4d8fe00be026fe2fb8e31ddeb5200e388e9808aa76e6ef94ce0ee821ddedc5"
+    },
+    {
+      "source_path": "com/google/common/base/Preconditions.java",
+      "git_path": "guava/src/com/google/common/base/Preconditions.java",
+      "status": "byte_identical",
+      "source_sha256": "820db51033a79a35c76b1f14c061f8e3e0e1f8a9315aa54e9428ea565688ff95",
+      "git_sha256": "820db51033a79a35c76b1f14c061f8e3e0e1f8a9315aa54e9428ea565688ff95"
+    },
+    {
+      "source_path": "com/google/common/base/Predicate.java",
+      "git_path": "guava/src/com/google/common/base/Predicate.java",
+      "status": "byte_identical",
+      "source_sha256": "9667a121425273029cc37f0ad2c1d31fb93a328b97c9c476e66e975d8c311108",
+      "git_sha256": "9667a121425273029cc37f0ad2c1d31fb93a328b97c9c476e66e975d8c311108"
+    },
+    {
+      "source_path": "com/google/common/base/Predicates.java",
+      "git_path": "guava/src/com/google/common/base/Predicates.java",
+      "status": "byte_identical",
+      "source_sha256": "f36332fe6e7636af3c7e173705cf3b2048aa81461112e660fce62d3facc698a9",
+      "git_sha256": "f36332fe6e7636af3c7e173705cf3b2048aa81461112e660fce62d3facc698a9"
+    },
+    {
+      "source_path": "com/google/common/base/Splitter.java",
+      "git_path": "guava/src/com/google/common/base/Splitter.java",
+      "status": "byte_identical",
+      "source_sha256": "ff5cf62e015afa4b27730ddf7b071c591f991f7461296ef9f6ac9f4f55a652c8",
+      "git_sha256": "ff5cf62e015afa4b27730ddf7b071c591f991f7461296ef9f6ac9f4f55a652c8"
+    },
+    {
+      "source_path": "com/google/common/base/Stopwatch.java",
+      "git_path": "guava/src/com/google/common/base/Stopwatch.java",
+      "status": "byte_identical",
+      "source_sha256": "97efe3fd5585fdcdb0f41cb43cb8fe711d519a6e84fd7f7478a97ff72011c439",
+      "git_sha256": "97efe3fd5585fdcdb0f41cb43cb8fe711d519a6e84fd7f7478a97ff72011c439"
+    },
+    {
+      "source_path": "com/google/common/base/Strings.java",
+      "git_path": "guava/src/com/google/common/base/Strings.java",
+      "status": "byte_identical",
+      "source_sha256": "c118d8cc8055765fd654764082d003619ee74f2db887187421ce96af9e169a4b",
+      "git_sha256": "c118d8cc8055765fd654764082d003619ee74f2db887187421ce96af9e169a4b"
+    },
+    {
+      "source_path": "com/google/common/base/Supplier.java",
+      "git_path": "guava/src/com/google/common/base/Supplier.java",
+      "status": "byte_identical",
+      "source_sha256": "fa11a8cf2e93c7352a6771a21bb2225a9b0618aff8bddb57df11018624b797b5",
+      "git_sha256": "fa11a8cf2e93c7352a6771a21bb2225a9b0618aff8bddb57df11018624b797b5"
+    },
+    {
+      "source_path": "com/google/common/base/Suppliers.java",
+      "git_path": "guava/src/com/google/common/base/Suppliers.java",
+      "status": "byte_identical",
+      "source_sha256": "96f2fced060eda1916fd4eed3ce4cde6e9c9c2c8eccce1eb3d3cae9a72114a50",
+      "git_sha256": "96f2fced060eda1916fd4eed3ce4cde6e9c9c2c8eccce1eb3d3cae9a72114a50"
+    },
+    {
+      "source_path": "com/google/common/base/Throwables.java",
+      "git_path": "guava/src/com/google/common/base/Throwables.java",
+      "status": "byte_identical",
+      "source_sha256": "971a4d408ce1e05febc76c52e705d7849e7a826c54ff632f62133148fb0f57e2",
+      "git_sha256": "971a4d408ce1e05febc76c52e705d7849e7a826c54ff632f62133148fb0f57e2"
+    },
+    {
+      "source_path": "com/google/common/base/Ticker.java",
+      "git_path": "guava/src/com/google/common/base/Ticker.java",
+      "status": "byte_identical",
+      "source_sha256": "d41326fb6b1603a5d3aa64b0d3edf4fca81bf8b84fb29e26b980a90be0440d7e",
+      "git_sha256": "d41326fb6b1603a5d3aa64b0d3edf4fca81bf8b84fb29e26b980a90be0440d7e"
+    },
+    {
+      "source_path": "com/google/common/base/internal/Finalizer.java",
+      "git_path": "guava/src/com/google/common/base/internal/Finalizer.java",
+      "status": "byte_identical",
+      "source_sha256": "ae287ee9fab0cd5ddbcea2cf40aacb0f3e2c01b098e1e1f6cdda9677ee60ea00",
+      "git_sha256": "ae287ee9fab0cd5ddbcea2cf40aacb0f3e2c01b098e1e1f6cdda9677ee60ea00"
+    },
+    {
+      "source_path": "com/google/common/base/package-info.java",
+      "git_path": "guava/src/com/google/common/base/package-info.java",
+      "status": "byte_identical",
+      "source_sha256": "bcce7367471c64fa099b171e5e3a67d0e0879df78d432b544b2e306aa635bbdb",
+      "git_sha256": "bcce7367471c64fa099b171e5e3a67d0e0879df78d432b544b2e306aa635bbdb"
+    },
+    {
+      "source_path": "com/google/common/cache/AbstractCache.java",
+      "git_path": "guava/src/com/google/common/cache/AbstractCache.java",
+      "status": "byte_identical",
+      "source_sha256": "32db659688a5735bbd8275b79a06e2ba5aab5acc22feb6ac6ff5b21ee2faf7b1",
+      "git_sha256": "32db659688a5735bbd8275b79a06e2ba5aab5acc22feb6ac6ff5b21ee2faf7b1"
+    },
+    {
+      "source_path": "com/google/common/cache/Cache.java",
+      "git_path": "guava/src/com/google/common/cache/Cache.java",
+      "status": "byte_identical",
+      "source_sha256": "1b756576748b7b727cc3b9473e31016eccccac5ab2ced156485c74435e4ad7f2",
+      "git_sha256": "1b756576748b7b727cc3b9473e31016eccccac5ab2ced156485c74435e4ad7f2"
+    },
+    {
+      "source_path": "com/google/common/cache/CacheBuilder.java",
+      "git_path": "guava/src/com/google/common/cache/CacheBuilder.java",
+      "status": "byte_identical",
+      "source_sha256": "1933d03027db2a0ffaeac91df2fe05616cb28dcda704dfa852d02f74ac443716",
+      "git_sha256": "1933d03027db2a0ffaeac91df2fe05616cb28dcda704dfa852d02f74ac443716"
+    },
+    {
+      "source_path": "com/google/common/cache/CacheLoader.java",
+      "git_path": "guava/src/com/google/common/cache/CacheLoader.java",
+      "status": "byte_identical",
+      "source_sha256": "82333efaa071524f775f38aa34fe0fc4d484f5949054c72b29642d96edd470cc",
+      "git_sha256": "82333efaa071524f775f38aa34fe0fc4d484f5949054c72b29642d96edd470cc"
+    },
+    {
+      "source_path": "com/google/common/cache/CacheStats.java",
+      "git_path": "guava/src/com/google/common/cache/CacheStats.java",
+      "status": "byte_identical",
+      "source_sha256": "44fde27de99b976c999550c2f08abc946e7e9e0cc01c51a50bcd7dfa81764e2e",
+      "git_sha256": "44fde27de99b976c999550c2f08abc946e7e9e0cc01c51a50bcd7dfa81764e2e"
+    },
+    {
+      "source_path": "com/google/common/cache/ComputingCache.java",
+      "git_path": "guava/src/com/google/common/cache/ComputingCache.java",
+      "status": "byte_identical",
+      "source_sha256": "f226a316aec5fd773771bff8d79d5a710f76d30dede0b363201db4b92e823de9",
+      "git_sha256": "f226a316aec5fd773771bff8d79d5a710f76d30dede0b363201db4b92e823de9"
+    },
+    {
+      "source_path": "com/google/common/cache/CustomConcurrentHashMap.java",
+      "git_path": "guava/src/com/google/common/cache/CustomConcurrentHashMap.java",
+      "status": "byte_identical",
+      "source_sha256": "dd871963a9237da2f183302af1ed85040425504f049407a52fb83f190e1c4e0a",
+      "git_sha256": "dd871963a9237da2f183302af1ed85040425504f049407a52fb83f190e1c4e0a"
+    },
+    {
+      "source_path": "com/google/common/cache/ForwardingCache.java",
+      "git_path": "guava/src/com/google/common/cache/ForwardingCache.java",
+      "status": "byte_identical",
+      "source_sha256": "2484e55186da6876fb146f38b52dcc04e445a62c0819969316159018adcf3bdd",
+      "git_sha256": "2484e55186da6876fb146f38b52dcc04e445a62c0819969316159018adcf3bdd"
+    },
+    {
+      "source_path": "com/google/common/cache/RemovalCause.java",
+      "git_path": "guava/src/com/google/common/cache/RemovalCause.java",
+      "status": "byte_identical",
+      "source_sha256": "d684eae1023c8cf36e953f2011fd615805a3e0d3432ad4622e9fd196986bf23e",
+      "git_sha256": "d684eae1023c8cf36e953f2011fd615805a3e0d3432ad4622e9fd196986bf23e"
+    },
+    {
+      "source_path": "com/google/common/cache/RemovalListener.java",
+      "git_path": "guava/src/com/google/common/cache/RemovalListener.java",
+      "status": "byte_identical",
+      "source_sha256": "72fd99187e94465c30c8a8c279117456cbc195fbc4e2a8b5205325890cb7d972",
+      "git_sha256": "72fd99187e94465c30c8a8c279117456cbc195fbc4e2a8b5205325890cb7d972"
+    },
+    {
+      "source_path": "com/google/common/cache/RemovalListeners.java",
+      "git_path": "guava/src/com/google/common/cache/RemovalListeners.java",
+      "status": "byte_identical",
+      "source_sha256": "8fd56f4b9bbb8195579582de0c7f76ccca071e097d7b79a527219f58bee0df93",
+      "git_sha256": "8fd56f4b9bbb8195579582de0c7f76ccca071e097d7b79a527219f58bee0df93"
+    },
+    {
+      "source_path": "com/google/common/cache/RemovalNotification.java",
+      "git_path": "guava/src/com/google/common/cache/RemovalNotification.java",
+      "status": "byte_identical",
+      "source_sha256": "523a0bfcebb3018202c9e2975e839c78baf3fe78503fd680846b374acd1dac2a",
+      "git_sha256": "523a0bfcebb3018202c9e2975e839c78baf3fe78503fd680846b374acd1dac2a"
+    },
+    {
+      "source_path": "com/google/common/cache/package-info.java",
+      "git_path": "guava/src/com/google/common/cache/package-info.java",
+      "status": "byte_identical",
+      "source_sha256": "a7c0c5ab6af86d778277ddb6f5244a0a88c02204d0dca89fd273908083d38205",
+      "git_sha256": "a7c0c5ab6af86d778277ddb6f5244a0a88c02204d0dca89fd273908083d38205"
+    },
+    {
+      "source_path": "com/google/common/collect/AbstractBiMap.java",
+      "git_path": "guava/src/com/google/common/collect/AbstractBiMap.java",
+      "status": "byte_identical",
+      "source_sha256": "a045e620b0496a71ab16750a12c4f37d6869260ef738e3055ca16c74c915bec9",
+      "git_sha256": "a045e620b0496a71ab16750a12c4f37d6869260ef738e3055ca16c74c915bec9"
+    },
+    {
+      "source_path": "com/google/common/collect/AbstractIndexedListIterator.java",
+      "git_path": "guava/src/com/google/common/collect/AbstractIndexedListIterator.java",
+      "status": "byte_identical",
+      "source_sha256": "b39a0b7721ee727f90bbbdf90bd6afc14fa642991ae5ab40d5d3882dd0670231",
+      "git_sha256": "b39a0b7721ee727f90bbbdf90bd6afc14fa642991ae5ab40d5d3882dd0670231"
+    },
+    {
+      "source_path": "com/google/common/collect/AbstractIterator.java",
+      "git_path": "guava/src/com/google/common/collect/AbstractIterator.java",
+      "status": "byte_identical",
+      "source_sha256": "bd85bc9ce839026013e43ca7679e502e566d4098990823e8045df3503b8c31e7",
+      "git_sha256": "bd85bc9ce839026013e43ca7679e502e566d4098990823e8045df3503b8c31e7"
+    },
+    {
+      "source_path": "com/google/common/collect/AbstractLinkedIterator.java",
+      "git_path": "guava/src/com/google/common/collect/AbstractLinkedIterator.java",
+      "status": "byte_identical",
+      "source_sha256": "7fa6d8d41890c97b5df07e2a60f6bbcc79ba924b214819d9f6958655d05841f4",
+      "git_sha256": "7fa6d8d41890c97b5df07e2a60f6bbcc79ba924b214819d9f6958655d05841f4"
+    },
+    {
+      "source_path": "com/google/common/collect/AbstractListMultimap.java",
+      "git_path": "guava/src/com/google/common/collect/AbstractListMultimap.java",
+      "status": "byte_identical",
+      "source_sha256": "013adbadf58e593919aeaf371f4161909c0fbc2a9b687ebfd750229ceb6513f4",
+      "git_sha256": "013adbadf58e593919aeaf371f4161909c0fbc2a9b687ebfd750229ceb6513f4"
+    },
+    {
+      "source_path": "com/google/common/collect/AbstractMapBasedMultiset.java",
+      "git_path": "guava/src/com/google/common/collect/AbstractMapBasedMultiset.java",
+      "status": "byte_identical",
+      "source_sha256": "ba9bbc6f558782db327f2e686f1b4eff4fb03d732a527cbc0fe994aac4168982",
+      "git_sha256": "ba9bbc6f558782db327f2e686f1b4eff4fb03d732a527cbc0fe994aac4168982"
+    },
+    {
+      "source_path": "com/google/common/collect/AbstractMapEntry.java",
+      "git_path": "guava/src/com/google/common/collect/AbstractMapEntry.java",
+      "status": "byte_identical",
+      "source_sha256": "0dc6836a9a76c04416e31eb88c225ac5ebdefb1b453e68c12d30e21d7d633d0c",
+      "git_sha256": "0dc6836a9a76c04416e31eb88c225ac5ebdefb1b453e68c12d30e21d7d633d0c"
+    },
+    {
+      "source_path": "com/google/common/collect/AbstractMultimap.java",
+      "git_path": "guava/src/com/google/common/collect/AbstractMultimap.java",
+      "status": "byte_identical",
+      "source_sha256": "ebbae61c53f7745ea8f51ebdcc62d6b8db6faf29299af28b298fa665f683e1c1",
+      "git_sha256": "ebbae61c53f7745ea8f51ebdcc62d6b8db6faf29299af28b298fa665f683e1c1"
+    },
+    {
+      "source_path": "com/google/common/collect/AbstractMultiset.java",
+      "git_path": "guava/src/com/google/common/collect/AbstractMultiset.java",
+      "status": "byte_identical",
+      "source_sha256": "354467390e151a05940b6212e240097b13ac7a477d15343a96c8c64fc91bc7e2",
+      "git_sha256": "354467390e151a05940b6212e240097b13ac7a477d15343a96c8c64fc91bc7e2"
+    },
+    {
+      "source_path": "com/google/common/collect/AbstractSetMultimap.java",
+      "git_path": "guava/src/com/google/common/collect/AbstractSetMultimap.java",
+      "status": "byte_identical",
+      "source_sha256": "4d6364b0036714e0ce32faa63e32c002c0d326aaa881e8681aca8c03df7cb0af",
+      "git_sha256": "4d6364b0036714e0ce32faa63e32c002c0d326aaa881e8681aca8c03df7cb0af"
+    },
+    {
+      "source_path": "com/google/common/collect/AbstractSortedMultiset.java",
+      "git_path": "guava/src/com/google/common/collect/AbstractSortedMultiset.java",
+      "status": "byte_identical",
+      "source_sha256": "6d7dd8ef85a2afb8d1d433b2a53b05000cad2a721f3196088ce977989ef97519",
+      "git_sha256": "6d7dd8ef85a2afb8d1d433b2a53b05000cad2a721f3196088ce977989ef97519"
+    },
+    {
+      "source_path": "com/google/common/collect/AbstractSortedSetMultimap.java",
+      "git_path": "guava/src/com/google/common/collect/AbstractSortedSetMultimap.java",
+      "status": "byte_identical",
+      "source_sha256": "350e339b2f867e368a6f865269d88bb8c38d125016b7845f6b3626435d2b25dd",
+      "git_sha256": "350e339b2f867e368a6f865269d88bb8c38d125016b7845f6b3626435d2b25dd"
+    },
+    {
+      "source_path": "com/google/common/collect/ArrayListMultimap.java",
+      "git_path": "guava/src/com/google/common/collect/ArrayListMultimap.java",
+      "status": "byte_identical",
+      "source_sha256": "705c1f95c3671403fb3c73acdca2e844f8faa8f80998bcb026d16bf99ac03eed",
+      "git_sha256": "705c1f95c3671403fb3c73acdca2e844f8faa8f80998bcb026d16bf99ac03eed"
+    },
+    {
+      "source_path": "com/google/common/collect/ArrayTable.java",
+      "git_path": "guava/src/com/google/common/collect/ArrayTable.java",
+      "status": "byte_identical",
+      "source_sha256": "6f82ab8bcf01620a3d03ab73eb91503839611739dc9ba793b809b23ac353d9ca",
+      "git_sha256": "6f82ab8bcf01620a3d03ab73eb91503839611739dc9ba793b809b23ac353d9ca"
+    },
+    {
+      "source_path": "com/google/common/collect/AsynchronousComputationException.java",
+      "git_path": "guava/src/com/google/common/collect/AsynchronousComputationException.java",
+      "status": "byte_identical",
+      "source_sha256": "0d5f3b11c25c6e2248aa847d0755f3c48319e2dea3698bef13eb1e3bd15b37c8",
+      "git_sha256": "0d5f3b11c25c6e2248aa847d0755f3c48319e2dea3698bef13eb1e3bd15b37c8"
+    },
+    {
+      "source_path": "com/google/common/collect/BiMap.java",
+      "git_path": "guava/src/com/google/common/collect/BiMap.java",
+      "status": "byte_identical",
+      "source_sha256": "f4a9fea1d7814d94a5d69c84d67421c809077c35636de39fa667e5f17673478d",
+      "git_sha256": "f4a9fea1d7814d94a5d69c84d67421c809077c35636de39fa667e5f17673478d"
+    },
+    {
+      "source_path": "com/google/common/collect/BoundType.java",
+      "git_path": "guava/src/com/google/common/collect/BoundType.java",
+      "status": "byte_identical",
+      "source_sha256": "4697aff28b0359cf7373f61f8ffa97f8a3ba3336c1ff82dd9ee66ef2688b6d51",
+      "git_sha256": "4697aff28b0359cf7373f61f8ffa97f8a3ba3336c1ff82dd9ee66ef2688b6d51"
+    },
+    {
+      "source_path": "com/google/common/collect/BstAggregate.java",
+      "git_path": "guava/src/com/google/common/collect/BstAggregate.java",
+      "status": "byte_identical",
+      "source_sha256": "1bf3959f0901c96d316771ce6077eecbc190f1bd0ad335750bcf38efa15bb0d8",
+      "git_sha256": "1bf3959f0901c96d316771ce6077eecbc190f1bd0ad335750bcf38efa15bb0d8"
+    },
+    {
+      "source_path": "com/google/common/collect/BstBalancePolicy.java",
+      "git_path": "guava/src/com/google/common/collect/BstBalancePolicy.java",
+      "status": "byte_identical",
+      "source_sha256": "e8e3b381ab6e50456053a95a1fb11970469f9304cda67a0080df2201015512f3",
+      "git_sha256": "e8e3b381ab6e50456053a95a1fb11970469f9304cda67a0080df2201015512f3"
+    },
+    {
+      "source_path": "com/google/common/collect/BstCountBasedBalancePolicies.java",
+      "git_path": "guava/src/com/google/common/collect/BstCountBasedBalancePolicies.java",
+      "status": "byte_identical",
+      "source_sha256": "20d0ddead42773707e7b5a1f7f062aa0e7832294808ffa44793dc82a81c415c8",
+      "git_sha256": "20d0ddead42773707e7b5a1f7f062aa0e7832294808ffa44793dc82a81c415c8"
+    },
+    {
+      "source_path": "com/google/common/collect/BstInOrderPath.java",
+      "git_path": "guava/src/com/google/common/collect/BstInOrderPath.java",
+      "status": "byte_identical",
+      "source_sha256": "7d848a9d352d3612d5c68ef0b00ca727c7e14d756ea34fbb3862a85ed5033439",
+      "git_sha256": "7d848a9d352d3612d5c68ef0b00ca727c7e14d756ea34fbb3862a85ed5033439"
+    },
+    {
+      "source_path": "com/google/common/collect/BstModificationResult.java",
+      "git_path": "guava/src/com/google/common/collect/BstModificationResult.java",
+      "status": "byte_identical",
+      "source_sha256": "fcd3ef0e56d9f69e6cd15f5cb09e213d01535066255a1e91c215752d884d4ba9",
+      "git_sha256": "fcd3ef0e56d9f69e6cd15f5cb09e213d01535066255a1e91c215752d884d4ba9"
+    },
+    {
+      "source_path": "com/google/common/collect/BstModifier.java",
+      "git_path": "guava/src/com/google/common/collect/BstModifier.java",
+      "status": "byte_identical",
+      "source_sha256": "f7e94e1c5b43839c9db5df30c9d411eacc96730139ab0d937affce7672cfddf5",
+      "git_sha256": "f7e94e1c5b43839c9db5df30c9d411eacc96730139ab0d937affce7672cfddf5"
+    },
+    {
+      "source_path": "com/google/common/collect/BstMutationResult.java",
+      "git_path": "guava/src/com/google/common/collect/BstMutationResult.java",
+      "status": "byte_identical",
+      "source_sha256": "121461f838056442199215f77dbd5837145b223f3a9518a4db1fab93de1fe524",
+      "git_sha256": "121461f838056442199215f77dbd5837145b223f3a9518a4db1fab93de1fe524"
+    },
+    {
+      "source_path": "com/google/common/collect/BstMutationRule.java",
+      "git_path": "guava/src/com/google/common/collect/BstMutationRule.java",
+      "status": "byte_identical",
+      "source_sha256": "cf896086786adc522a125e2801b94675a9bef371c728b2e8ee7724671ac7070e",
+      "git_sha256": "cf896086786adc522a125e2801b94675a9bef371c728b2e8ee7724671ac7070e"
+    },
+    {
+      "source_path": "com/google/common/collect/BstNode.java",
+      "git_path": "guava/src/com/google/common/collect/BstNode.java",
+      "status": "byte_identical",
+      "source_sha256": "c1fca4837904791f8b1fc536fcc47ded727f8626a101d5e3c680867abd9b55ed",
+      "git_sha256": "c1fca4837904791f8b1fc536fcc47ded727f8626a101d5e3c680867abd9b55ed"
+    },
+    {
+      "source_path": "com/google/common/collect/BstNodeFactory.java",
+      "git_path": "guava/src/com/google/common/collect/BstNodeFactory.java",
+      "status": "byte_identical",
+      "source_sha256": "1b29b0babed2848748734e84c99c076c6a89157fda2a5a164babaafe096e3cb9",
+      "git_sha256": "1b29b0babed2848748734e84c99c076c6a89157fda2a5a164babaafe096e3cb9"
+    },
+    {
+      "source_path": "com/google/common/collect/BstOperations.java",
+      "git_path": "guava/src/com/google/common/collect/BstOperations.java",
+      "status": "byte_identical",
+      "source_sha256": "50e0a9b0fea3155528f457285060f2e1509e5859de342900c868fddc2b811390",
+      "git_sha256": "50e0a9b0fea3155528f457285060f2e1509e5859de342900c868fddc2b811390"
+    },
+    {
+      "source_path": "com/google/common/collect/BstPath.java",
+      "git_path": "guava/src/com/google/common/collect/BstPath.java",
+      "status": "byte_identical",
+      "source_sha256": "63218f93ce02d682492cb769f8dbb17f3248694db3c0537cd312acc49e6ec690",
+      "git_sha256": "63218f93ce02d682492cb769f8dbb17f3248694db3c0537cd312acc49e6ec690"
+    },
+    {
+      "source_path": "com/google/common/collect/BstPathFactory.java",
+      "git_path": "guava/src/com/google/common/collect/BstPathFactory.java",
+      "status": "byte_identical",
+      "source_sha256": "834288c4283133a268dfef68cf4105c7ee5d303f119c3dac84b15cb84ac706a2",
+      "git_sha256": "834288c4283133a268dfef68cf4105c7ee5d303f119c3dac84b15cb84ac706a2"
+    },
+    {
+      "source_path": "com/google/common/collect/BstRangeOps.java",
+      "git_path": "guava/src/com/google/common/collect/BstRangeOps.java",
+      "status": "byte_identical",
+      "source_sha256": "2c63ce77516fc544078ccb922f27a419f045f02c6314fe89c9aee3bf2859a7fe",
+      "git_sha256": "2c63ce77516fc544078ccb922f27a419f045f02c6314fe89c9aee3bf2859a7fe"
+    },
+    {
+      "source_path": "com/google/common/collect/BstSide.java",
+      "git_path": "guava/src/com/google/common/collect/BstSide.java",
+      "status": "byte_identical",
+      "source_sha256": "4385863e0f3ee947e4395595f4bc58e716f9d9f04b4e8c2026df1b462f4dcca2",
+      "git_sha256": "4385863e0f3ee947e4395595f4bc58e716f9d9f04b4e8c2026df1b462f4dcca2"
+    },
+    {
+      "source_path": "com/google/common/collect/ByFunctionOrdering.java",
+      "git_path": "guava/src/com/google/common/collect/ByFunctionOrdering.java",
+      "status": "byte_identical",
+      "source_sha256": "d31912366aa2b73aaf15aa800c5b6059c0553ce267c7a921abdd70b264be46a8",
+      "git_sha256": "d31912366aa2b73aaf15aa800c5b6059c0553ce267c7a921abdd70b264be46a8"
+    },
+    {
+      "source_path": "com/google/common/collect/ClassToInstanceMap.java",
+      "git_path": "guava/src/com/google/common/collect/ClassToInstanceMap.java",
+      "status": "byte_identical",
+      "source_sha256": "575539dbd2f106e9c8987e25bc6834fad6b1dad59b72e57446bf26a3ef25f10b",
+      "git_sha256": "575539dbd2f106e9c8987e25bc6834fad6b1dad59b72e57446bf26a3ef25f10b"
+    },
+    {
+      "source_path": "com/google/common/collect/Collections2.java",
+      "git_path": "guava/src/com/google/common/collect/Collections2.java",
+      "status": "byte_identical",
+      "source_sha256": "07ec3aaad6696b3d251b2a95dcd359b2111345152fbbe1f3de71b8a1d4e77269",
+      "git_sha256": "07ec3aaad6696b3d251b2a95dcd359b2111345152fbbe1f3de71b8a1d4e77269"
+    },
+    {
+      "source_path": "com/google/common/collect/ComparatorOrdering.java",
+      "git_path": "guava/src/com/google/common/collect/ComparatorOrdering.java",
+      "status": "byte_identical",
+      "source_sha256": "8fd6e948d3fe03fedb5ac66ad32c5778e9252f27357967785bb8ef2da7058b48",
+      "git_sha256": "8fd6e948d3fe03fedb5ac66ad32c5778e9252f27357967785bb8ef2da7058b48"
+    },
+    {
+      "source_path": "com/google/common/collect/ComparisonChain.java",
+      "git_path": "guava/src/com/google/common/collect/ComparisonChain.java",
+      "status": "byte_identical",
+      "source_sha256": "1ba6bd46f835f41f4f6dc758d699ac9146840c094d6133afa6ad2ddc1d2613b4",
+      "git_sha256": "1ba6bd46f835f41f4f6dc758d699ac9146840c094d6133afa6ad2ddc1d2613b4"
+    },
+    {
+      "source_path": "com/google/common/collect/CompoundOrdering.java",
+      "git_path": "guava/src/com/google/common/collect/CompoundOrdering.java",
+      "status": "byte_identical",
+      "source_sha256": "b67aca5c2cc5e2db31cf962c3f6957c0a325de6dec7e0f1ae0888e9a8dbdbcba",
+      "git_sha256": "b67aca5c2cc5e2db31cf962c3f6957c0a325de6dec7e0f1ae0888e9a8dbdbcba"
+    },
+    {
+      "source_path": "com/google/common/collect/ComputationException.java",
+      "git_path": "guava/src/com/google/common/collect/ComputationException.java",
+      "status": "byte_identical",
+      "source_sha256": "4cbf9cfb432da7c902965db0cf92f4524f1b9a72d2025916218bc5fbe11de9a4",
+      "git_sha256": "4cbf9cfb432da7c902965db0cf92f4524f1b9a72d2025916218bc5fbe11de9a4"
+    },
+    {
+      "source_path": "com/google/common/collect/ComputingConcurrentHashMap.java",
+      "git_path": "guava/src/com/google/common/collect/ComputingConcurrentHashMap.java",
+      "status": "byte_identical",
+      "source_sha256": "7659745bd453ed95f347a25eee50fecd3e227a68d216bbc2e973be7bae556901",
+      "git_sha256": "7659745bd453ed95f347a25eee50fecd3e227a68d216bbc2e973be7bae556901"
+    },
+    {
+      "source_path": "com/google/common/collect/ConcurrentHashMultiset.java",
+      "git_path": "guava/src/com/google/common/collect/ConcurrentHashMultiset.java",
+      "status": "byte_identical",
+      "source_sha256": "4af98f1365b809644b3868d3d7cd327e64a10ec14a6270a7846471d4810f5c25",
+      "git_sha256": "4af98f1365b809644b3868d3d7cd327e64a10ec14a6270a7846471d4810f5c25"
+    },
+    {
+      "source_path": "com/google/common/collect/Constraint.java",
+      "git_path": "guava/src/com/google/common/collect/Constraint.java",
+      "status": "byte_identical",
+      "source_sha256": "360a387a8e808fe93ddc030635159ad07cfec2f1641c38882547eb2ba3b3cb8c",
+      "git_sha256": "360a387a8e808fe93ddc030635159ad07cfec2f1641c38882547eb2ba3b3cb8c"
+    },
+    {
+      "source_path": "com/google/common/collect/Constraints.java",
+      "git_path": "guava/src/com/google/common/collect/Constraints.java",
+      "status": "byte_identical",
+      "source_sha256": "ee515faa0db61370023c91b7bbbf6207d7a3f0cb4e7ecb4c6787fa73d92d15b6",
+      "git_sha256": "ee515faa0db61370023c91b7bbbf6207d7a3f0cb4e7ecb4c6787fa73d92d15b6"
+    },
+    {
+      "source_path": "com/google/common/collect/ContiguousSet.java",
+      "git_path": "guava/src/com/google/common/collect/ContiguousSet.java",
+      "status": "byte_identical",
+      "source_sha256": "0bd03ea2fe52e028a5db6358bcac2b3991daeb322a6ee070ddb32e35a5fcc8b1",
+      "git_sha256": "0bd03ea2fe52e028a5db6358bcac2b3991daeb322a6ee070ddb32e35a5fcc8b1"
+    },
+    {
+      "source_path": "com/google/common/collect/Count.java",
+      "git_path": "guava/src/com/google/common/collect/Count.java",
+      "status": "byte_identical",
+      "source_sha256": "6574dba282e0273714c803fb5bcbf7f86eb851ef3a55dd1d6b7e233ed27a027c",
+      "git_sha256": "6574dba282e0273714c803fb5bcbf7f86eb851ef3a55dd1d6b7e233ed27a027c"
+    },
+    {
+      "source_path": "com/google/common/collect/CustomConcurrentHashMap.java",
+      "git_path": "guava/src/com/google/common/collect/CustomConcurrentHashMap.java",
+      "status": "byte_identical",
+      "source_sha256": "41813db38bb1c719f1bec365319b365ab41a5592a7fda659a6343e04c9133e94",
+      "git_sha256": "41813db38bb1c719f1bec365319b365ab41a5592a7fda659a6343e04c9133e94"
+    },
+    {
+      "source_path": "com/google/common/collect/Cut.java",
+      "git_path": "guava/src/com/google/common/collect/Cut.java",
+      "status": "byte_identical",
+      "source_sha256": "840cc2af3a119222ef0e35a43e7467b89a5538c75762e0aa78c58707eefd0ee7",
+      "git_sha256": "840cc2af3a119222ef0e35a43e7467b89a5538c75762e0aa78c58707eefd0ee7"
+    },
+    {
+      "source_path": "com/google/common/collect/DescendingImmutableSortedMultiset.java",
+      "git_path": "guava/src/com/google/common/collect/DescendingImmutableSortedMultiset.java",
+      "status": "byte_identical",
+      "source_sha256": "b2e9000b43eeeab749346d22220a154c9f4526735dfa275b21a9f34fc3c11166",
+      "git_sha256": "b2e9000b43eeeab749346d22220a154c9f4526735dfa275b21a9f34fc3c11166"
+    },
+    {
+      "source_path": "com/google/common/collect/DiscreteDomain.java",
+      "git_path": "guava/src/com/google/common/collect/DiscreteDomain.java",
+      "status": "byte_identical",
+      "source_sha256": "7d6d0f1949edd747d15d69be09b2522eb79de1f9f0b0a474117aa60ba793d175",
+      "git_sha256": "7d6d0f1949edd747d15d69be09b2522eb79de1f9f0b0a474117aa60ba793d175"
+    },
+    {
+      "source_path": "com/google/common/collect/DiscreteDomains.java",
+      "git_path": "guava/src/com/google/common/collect/DiscreteDomains.java",
+      "status": "byte_identical",
+      "source_sha256": "c0357e0262cf4805613910e67c1a01425962a8d5ea62b8c4bb1346ec4474b4e0",
+      "git_sha256": "c0357e0262cf4805613910e67c1a01425962a8d5ea62b8c4bb1346ec4474b4e0"
+    },
+    {
+      "source_path": "com/google/common/collect/EmptyContiguousSet.java",
+      "git_path": "guava/src/com/google/common/collect/EmptyContiguousSet.java",
+      "status": "byte_identical",
+      "source_sha256": "c10729a30ec9a5cfcdfd8d69dd672bccf19053e54ad730beb47b15ab1d29509b",
+      "git_sha256": "c10729a30ec9a5cfcdfd8d69dd672bccf19053e54ad730beb47b15ab1d29509b"
+    },
+    {
+      "source_path": "com/google/common/collect/EmptyImmutableList.java",
+      "git_path": "guava/src/com/google/common/collect/EmptyImmutableList.java",
+      "status": "byte_identical",
+      "source_sha256": "6925c9d72d28de55a42fd120c130d7b28b1cf788f939e0b0e15ec5c138ce1854",
+      "git_sha256": "6925c9d72d28de55a42fd120c130d7b28b1cf788f939e0b0e15ec5c138ce1854"
+    },
+    {
+      "source_path": "com/google/common/collect/EmptyImmutableListMultimap.java",
+      "git_path": "guava/src/com/google/common/collect/EmptyImmutableListMultimap.java",
+      "status": "byte_identical",
+      "source_sha256": "606fea74e51a3bf93e2a003fdab4ce983359d4f47f188dd8b6bc8209ace738a4",
+      "git_sha256": "606fea74e51a3bf93e2a003fdab4ce983359d4f47f188dd8b6bc8209ace738a4"
+    },
+    {
+      "source_path": "com/google/common/collect/EmptyImmutableMap.java",
+      "git_path": "guava/src/com/google/common/collect/EmptyImmutableMap.java",
+      "status": "byte_identical",
+      "source_sha256": "7ed6f0dde31db9006f4c43d137beb9a3c3f77020bfc7a14f7e10cc4528f7e7c0",
+      "git_sha256": "7ed6f0dde31db9006f4c43d137beb9a3c3f77020bfc7a14f7e10cc4528f7e7c0"
+    },
+    {
+      "source_path": "com/google/common/collect/EmptyImmutableMultiset.java",
+      "git_path": "guava/src/com/google/common/collect/EmptyImmutableMultiset.java",
+      "status": "byte_identical",
+      "source_sha256": "5454f8496d0861baf9b7c2fcfdfa471781599289d113877182c0cbe0e5747225",
+      "git_sha256": "5454f8496d0861baf9b7c2fcfdfa471781599289d113877182c0cbe0e5747225"
+    },
+    {
+      "source_path": "com/google/common/collect/EmptyImmutableSet.java",
+      "git_path": "guava/src/com/google/common/collect/EmptyImmutableSet.java",
+      "status": "byte_identical",
+      "source_sha256": "535dee2cc27b3f36ea683e9966e24a63b2df2046d6e9b084e26f21a62d39554a",
+      "git_sha256": "535dee2cc27b3f36ea683e9966e24a63b2df2046d6e9b084e26f21a62d39554a"
+    },
+    {
+      "source_path": "com/google/common/collect/EmptyImmutableSetMultimap.java",
+      "git_path": "guava/src/com/google/common/collect/EmptyImmutableSetMultimap.java",
+      "status": "byte_identical",
+      "source_sha256": "009ef886d59bf20043ba027b6823dc8eddbda1a783fc6659b4c78ff85b500d05",
+      "git_sha256": "009ef886d59bf20043ba027b6823dc8eddbda1a783fc6659b4c78ff85b500d05"
+    },
+    {
+      "source_path": "com/google/common/collect/EmptyImmutableSortedMultiset.java",
+      "git_path": "guava/src/com/google/common/collect/EmptyImmutableSortedMultiset.java",
+      "status": "byte_identical",
+      "source_sha256": "a5c814775d1c00e7eb60a124f31b359c73cb3f31d3949f8d2dbe75519b8a6740",
+      "git_sha256": "a5c814775d1c00e7eb60a124f31b359c73cb3f31d3949f8d2dbe75519b8a6740"
+    },
+    {
+      "source_path": "com/google/common/collect/EmptyImmutableSortedSet.java",
+      "git_path": "guava/src/com/google/common/collect/EmptyImmutableSortedSet.java",
+      "status": "byte_identical",
+      "source_sha256": "99be9b6a6ad0ec820cc35b0c7c80cada80d11ae88ae642be47296ef8699dac33",
+      "git_sha256": "99be9b6a6ad0ec820cc35b0c7c80cada80d11ae88ae642be47296ef8699dac33"
+    },
+    {
+      "source_path": "com/google/common/collect/EnumBiMap.java",
+      "git_path": "guava/src/com/google/common/collect/EnumBiMap.java",
+      "status": "byte_identical",
+      "source_sha256": "07aee71279f0463721d764788b532ac098135a541ed11e04c5b378240de9f3a3",
+      "git_sha256": "07aee71279f0463721d764788b532ac098135a541ed11e04c5b378240de9f3a3"
+    },
+    {
+      "source_path": "com/google/common/collect/EnumHashBiMap.java",
+      "git_path": "guava/src/com/google/common/collect/EnumHashBiMap.java",
+      "status": "byte_identical",
+      "source_sha256": "01de92b8ccc260272ec51161a80e06f403a356ee0a099d3fd057eafee13cf758",
+      "git_sha256": "01de92b8ccc260272ec51161a80e06f403a356ee0a099d3fd057eafee13cf758"
+    },
+    {
+      "source_path": "com/google/common/collect/EnumMultiset.java",
+      "git_path": "guava/src/com/google/common/collect/EnumMultiset.java",
+      "status": "byte_identical",
+      "source_sha256": "cea2f04b27b20b68e72838f06dec92aadd80872870309c51f1f1685e1d646881",
+      "git_sha256": "cea2f04b27b20b68e72838f06dec92aadd80872870309c51f1f1685e1d646881"
+    },
+    {
+      "source_path": "com/google/common/collect/EvictionListeners.java",
+      "git_path": "guava/src/com/google/common/collect/EvictionListeners.java",
+      "status": "byte_identical",
+      "source_sha256": "cf3b46c6a07738c1ac67d730a524a7b33969dcf8764bc4b0cbc83aac46cfc72d",
+      "git_sha256": "cf3b46c6a07738c1ac67d730a524a7b33969dcf8764bc4b0cbc83aac46cfc72d"
+    },
+    {
+      "source_path": "com/google/common/collect/ExplicitOrdering.java",
+      "git_path": "guava/src/com/google/common/collect/ExplicitOrdering.java",
+      "status": "byte_identical",
+      "source_sha256": "b19761f5faeb935e53f0435790c19be147551e6f7f5b9136e69768f79efceb33",
+      "git_sha256": "b19761f5faeb935e53f0435790c19be147551e6f7f5b9136e69768f79efceb33"
+    },
+    {
+      "source_path": "com/google/common/collect/ForwardingCollection.java",
+      "git_path": "guava/src/com/google/common/collect/ForwardingCollection.java",
+      "status": "byte_identical",
+      "source_sha256": "7f81a473a1f1105a519944c44bef80f8b92a56c515ed90f05e04b385055c6e87",
+      "git_sha256": "7f81a473a1f1105a519944c44bef80f8b92a56c515ed90f05e04b385055c6e87"
+    },
+    {
+      "source_path": "com/google/common/collect/ForwardingConcurrentMap.java",
+      "git_path": "guava/src/com/google/common/collect/ForwardingConcurrentMap.java",
+      "status": "byte_identical",
+      "source_sha256": "4a585cfb06aa7ba205131369e705a6e671574368a0545089104314640a27fb14",
+      "git_sha256": "4a585cfb06aa7ba205131369e705a6e671574368a0545089104314640a27fb14"
+    },
+    {
+      "source_path": "com/google/common/collect/ForwardingIterator.java",
+      "git_path": "guava/src/com/google/common/collect/ForwardingIterator.java",
+      "status": "byte_identical",
+      "source_sha256": "a5a724b123a44c9bc4365c5231d658d5ae5d6e6eaf6adbb769f2f76e24591650",
+      "git_sha256": "a5a724b123a44c9bc4365c5231d658d5ae5d6e6eaf6adbb769f2f76e24591650"
+    },
+    {
+      "source_path": "com/google/common/collect/ForwardingList.java",
+      "git_path": "guava/src/com/google/common/collect/ForwardingList.java",
+      "status": "byte_identical",
+      "source_sha256": "f99d85be72ebe67f2574b2c2bf75fd0a38a73635eaa6eb961bfbb22b4d5e1afb",
+      "git_sha256": "f99d85be72ebe67f2574b2c2bf75fd0a38a73635eaa6eb961bfbb22b4d5e1afb"
+    },
+    {
+      "source_path": "com/google/common/collect/ForwardingListIterator.java",
+      "git_path": "guava/src/com/google/common/collect/ForwardingListIterator.java",
+      "status": "byte_identical",
+      "source_sha256": "45112a6fc165dd304f72bc176a770c52392fbdb73df301cee86c8a81f12a71b5",
+      "git_sha256": "45112a6fc165dd304f72bc176a770c52392fbdb73df301cee86c8a81f12a71b5"
+    },
+    {
+      "source_path": "com/google/common/collect/ForwardingListMultimap.java",
+      "git_path": "guava/src/com/google/common/collect/ForwardingListMultimap.java",
+      "status": "byte_identical",
+      "source_sha256": "6f4a9c5cbaa7c4fa75033570235a87faacf46e0358d9f3bb3c9c3aa98a704811",
+      "git_sha256": "6f4a9c5cbaa7c4fa75033570235a87faacf46e0358d9f3bb3c9c3aa98a704811"
+    },
+    {
+      "source_path": "com/google/common/collect/ForwardingMap.java",
+      "git_path": "guava/src/com/google/common/collect/ForwardingMap.java",
+      "status": "byte_identical",
+      "source_sha256": "958fb1f1329c325cd3f4fa1d9f1672339767a26f450113f7090adf1f10b02332",
+      "git_sha256": "958fb1f1329c325cd3f4fa1d9f1672339767a26f450113f7090adf1f10b02332"
+    },
+    {
+      "source_path": "com/google/common/collect/ForwardingMapEntry.java",
+      "git_path": "guava/src/com/google/common/collect/ForwardingMapEntry.java",
+      "status": "byte_identical",
+      "source_sha256": "20dacdba66ea9ba86a1de89d1cb7d940a39175f531ce56c4a38687601b85a1a1",
+      "git_sha256": "20dacdba66ea9ba86a1de89d1cb7d940a39175f531ce56c4a38687601b85a1a1"
+    },
+    {
+      "source_path": "com/google/common/collect/ForwardingMultimap.java",
+      "git_path": "guava/src/com/google/common/collect/ForwardingMultimap.java",
+      "status": "byte_identical",
+      "source_sha256": "5c9d9df6ccef0272f06fd23f1c1100b217dd36238ee5993ba2748ba308fe86b3",
+      "git_sha256": "5c9d9df6ccef0272f06fd23f1c1100b217dd36238ee5993ba2748ba308fe86b3"
+    },
+    {
+      "source_path": "com/google/common/collect/ForwardingMultiset.java",
+      "git_path": "guava/src/com/google/common/collect/ForwardingMultiset.java",
+      "status": "byte_identical",
+      "source_sha256": "ef50e547316fda8cd068b206f0f30028a9de11b572c30d96c84ac0b8d4a3348c",
+      "git_sha256": "ef50e547316fda8cd068b206f0f30028a9de11b572c30d96c84ac0b8d4a3348c"
+    },
+    {
+      "source_path": "com/google/common/collect/ForwardingObject.java",
+      "git_path": "guava/src/com/google/common/collect/ForwardingObject.java",
+      "status": "byte_identical",
+      "source_sha256": "0f8f3433510b7dd1415929c590458a71e2c6ba02fb91e53b20616abd9ec5f418",
+      "git_sha256": "0f8f3433510b7dd1415929c590458a71e2c6ba02fb91e53b20616abd9ec5f418"
+    },
+    {
+      "source_path": "com/google/common/collect/ForwardingQueue.java",
+      "git_path": "guava/src/com/google/common/collect/ForwardingQueue.java",
+      "status": "byte_identical",
+      "source_sha256": "49c1c28b69fe83d7b2fa1a0be01bb50b9e7011c60d1435be04e580d7ffb56ece",
+      "git_sha256": "49c1c28b69fe83d7b2fa1a0be01bb50b9e7011c60d1435be04e580d7ffb56ece"
+    },
+    {
+      "source_path": "com/google/common/collect/ForwardingSet.java",
+      "git_path": "guava/src/com/google/common/collect/ForwardingSet.java",
+      "status": "byte_identical",
+      "source_sha256": "2012806384044baa5a41d518254be56b33ad1ee3b29ddd293418afc36853ed53",
+      "git_sha256": "2012806384044baa5a41d518254be56b33ad1ee3b29ddd293418afc36853ed53"
+    },
+    {
+      "source_path": "com/google/common/collect/ForwardingSetMultimap.java",
+      "git_path": "guava/src/com/google/common/collect/ForwardingSetMultimap.java",
+      "status": "byte_identical",
+      "source_sha256": "697055e7cbb37d2187b2d71740ac48b864aaadd751b83062dc323c87de2f1154",
+      "git_sha256": "697055e7cbb37d2187b2d71740ac48b864aaadd751b83062dc323c87de2f1154"
+    },
+    {
+      "source_path": "com/google/common/collect/ForwardingSortedMap.java",
+      "git_path": "guava/src/com/google/common/collect/ForwardingSortedMap.java",
+      "status": "byte_identical",
+      "source_sha256": "907285a432eb1ce2f69b883e9c82603ad58fde4ec389b30204b373e78c87cd53",
+      "git_sha256": "907285a432eb1ce2f69b883e9c82603ad58fde4ec389b30204b373e78c87cd53"
+    },
+    {
+      "source_path": "com/google/common/collect/ForwardingSortedSet.java",
+      "git_path": "guava/src/com/google/common/collect/ForwardingSortedSet.java",
+      "status": "byte_identical",
+      "source_sha256": "71d02825e1270d08d6b390888ec35ae4e5a8682a14bd169cf6b42ee8a2218084",
+      "git_sha256": "71d02825e1270d08d6b390888ec35ae4e5a8682a14bd169cf6b42ee8a2218084"
+    },
+    {
+      "source_path": "com/google/common/collect/ForwardingSortedSetMultimap.java",
+      "git_path": "guava/src/com/google/common/collect/ForwardingSortedSetMultimap.java",
+      "status": "byte_identical",
+      "source_sha256": "7be6f02f33f79d07158c5819ec2d3328ed22cb44beccc5d1bdd17675905494c3",
+      "git_sha256": "7be6f02f33f79d07158c5819ec2d3328ed22cb44beccc5d1bdd17675905494c3"
+    },
+    {
+      "source_path": "com/google/common/collect/ForwardingTable.java",
+      "git_path": "guava/src/com/google/common/collect/ForwardingTable.java",
+      "status": "byte_identical",
+      "source_sha256": "b6b460d961b840c28e4c38510bfa9115715f6e60125a80242c50127b7b82de7c",
+      "git_sha256": "b6b460d961b840c28e4c38510bfa9115715f6e60125a80242c50127b7b82de7c"
+    },
+    {
+      "source_path": "com/google/common/collect/GeneralRange.java",
+      "git_path": "guava/src/com/google/common/collect/GeneralRange.java",
+      "status": "byte_identical",
+      "source_sha256": "817bc07c74de53eea144e0f3f09d537d2eb905778f461e35b032257130bc4d23",
+      "git_sha256": "817bc07c74de53eea144e0f3f09d537d2eb905778f461e35b032257130bc4d23"
+    },
+    {
+      "source_path": "com/google/common/collect/GenericMapMaker.java",
+      "git_path": "guava/src/com/google/common/collect/GenericMapMaker.java",
+      "status": "byte_identical",
+      "source_sha256": "9933ace094786e6fed44f9685065cd11a57e60c74248a6ae194203c1a5ce1ea1",
+      "git_sha256": "9933ace094786e6fed44f9685065cd11a57e60c74248a6ae194203c1a5ce1ea1"
+    },
+    {
+      "source_path": "com/google/common/collect/HashBasedTable.java",
+      "git_path": "guava/src/com/google/common/collect/HashBasedTable.java",
+      "status": "byte_identical",
+      "source_sha256": "b537d8f4abde94fe0c23c08d3a3440ea39afe5940d8e24f245a0f56c5940e024",
+      "git_sha256": "b537d8f4abde94fe0c23c08d3a3440ea39afe5940d8e24f245a0f56c5940e024"
+    },
+    {
+      "source_path": "com/google/common/collect/HashBiMap.java",
+      "git_path": "guava/src/com/google/common/collect/HashBiMap.java",
+      "status": "byte_identical",
+      "source_sha256": "dec48380f4e42f4c61e7965f1854448220b6c6241784934f1c73c80870892ff0",
+      "git_sha256": "dec48380f4e42f4c61e7965f1854448220b6c6241784934f1c73c80870892ff0"
+    },
+    {
+      "source_path": "com/google/common/collect/HashMultimap.java",
+      "git_path": "guava/src/com/google/common/collect/HashMultimap.java",
+      "status": "byte_identical",
+      "source_sha256": "f5b1b6037e442a1fe719ee211c70397b80f933b3b35136b7c292942226dbd980",
+      "git_sha256": "f5b1b6037e442a1fe719ee211c70397b80f933b3b35136b7c292942226dbd980"
+    },
+    {
+      "source_path": "com/google/common/collect/HashMultiset.java",
+      "git_path": "guava/src/com/google/common/collect/HashMultiset.java",
+      "status": "byte_identical",
+      "source_sha256": "352b534f4cce5e5ca6efbe3a0d208fccd4d49e1056f37dfbfc82f51d5f6e2d5b",
+      "git_sha256": "352b534f4cce5e5ca6efbe3a0d208fccd4d49e1056f37dfbfc82f51d5f6e2d5b"
+    },
+    {
+      "source_path": "com/google/common/collect/Hashing.java",
+      "git_path": "guava/src/com/google/common/collect/Hashing.java",
+      "status": "byte_identical",
+      "source_sha256": "f10ff3a135a2ffb2c96ff2fbc596333547ee625eda43be3d9f5062bb4e3e76e0",
+      "git_sha256": "f10ff3a135a2ffb2c96ff2fbc596333547ee625eda43be3d9f5062bb4e3e76e0"
+    },
+    {
+      "source_path": "com/google/common/collect/ImmutableAsList.java",
+      "git_path": "guava/src/com/google/common/collect/ImmutableAsList.java",
+      "status": "byte_identical",
+      "source_sha256": "cb58886af1e5d8a41909f818e27f18dda2907f625634a77d7df7ba85d80bf24b",
+      "git_sha256": "cb58886af1e5d8a41909f818e27f18dda2907f625634a77d7df7ba85d80bf24b"
+    },
+    {
+      "source_path": "com/google/common/collect/ImmutableBiMap.java",
+      "git_path": "guava/src/com/google/common/collect/ImmutableBiMap.java",
+      "status": "byte_identical",
+      "source_sha256": "b5e80fe0203f6e1077e725335cddd446c098be3877df4d827dfc815273f3a9ef",
+      "git_sha256": "b5e80fe0203f6e1077e725335cddd446c098be3877df4d827dfc815273f3a9ef"
+    },
+    {
+      "source_path": "com/google/common/collect/ImmutableClassToInstanceMap.java",
+      "git_path": "guava/src/com/google/common/collect/ImmutableClassToInstanceMap.java",
+      "status": "byte_identical",
+      "source_sha256": "fc8604333188d358344bbc7173e7de8f6d888f46ba926b827d65225bce2eec81",
+      "git_sha256": "fc8604333188d358344bbc7173e7de8f6d888f46ba926b827d65225bce2eec81"
+    },
+    {
+      "source_path": "com/google/common/collect/ImmutableCollection.java",
+      "git_path": "guava/src/com/google/common/collect/ImmutableCollection.java",
+      "status": "byte_identical",
+      "source_sha256": "dcd0fd9463a9e9ee7c67dfa5f63946e5000e1b795f95e55dd12d7cbb90a48ff5",
+      "git_sha256": "dcd0fd9463a9e9ee7c67dfa5f63946e5000e1b795f95e55dd12d7cbb90a48ff5"
+    },
+    {
+      "source_path": "com/google/common/collect/ImmutableEntry.java",
+      "git_path": "guava/src/com/google/common/collect/ImmutableEntry.java",
+      "status": "byte_identical",
+      "source_sha256": "974b324362dcdd626392acfa4da258397c7e2db5cdb06bd43b28ece751afeab0",
+      "git_sha256": "974b324362dcdd626392acfa4da258397c7e2db5cdb06bd43b28ece751afeab0"
+    },
+    {
+      "source_path": "com/google/common/collect/ImmutableEnumSet.java",
+      "git_path": "guava/src/com/google/common/collect/ImmutableEnumSet.java",
+      "status": "byte_identical",
+      "source_sha256": "c8712cac5a15928ccec2058d48d50e05fb6401de3829d7f6ab3a8d4b1339b364",
+      "git_sha256": "c8712cac5a15928ccec2058d48d50e05fb6401de3829d7f6ab3a8d4b1339b364"
+    },
+    {
+      "source_path": "com/google/common/collect/ImmutableList.java",
+      "git_path": "guava/src/com/google/common/collect/ImmutableList.java",
+      "status": "byte_identical",
+      "source_sha256": "134f20ca27a8d4d15389744fb4900b1e286a804794c62c89c29ab469cf577f14",
+      "git_sha256": "134f20ca27a8d4d15389744fb4900b1e286a804794c62c89c29ab469cf577f14"
+    },
+    {
+      "source_path": "com/google/common/collect/ImmutableListMultimap.java",
+      "git_path": "guava/src/com/google/common/collect/ImmutableListMultimap.java",
+      "status": "byte_identical",
+      "source_sha256": "936e5119e04d3fe7eb00d7104c99e815c888074cc6dc45dc44f70f76322a0bdd",
+      "git_sha256": "936e5119e04d3fe7eb00d7104c99e815c888074cc6dc45dc44f70f76322a0bdd"
+    },
+    {
+      "source_path": "com/google/common/collect/ImmutableMap.java",
+      "git_path": "guava/src/com/google/common/collect/ImmutableMap.java",
+      "status": "byte_identical",
+      "source_sha256": "3a08d1b83f0de99090d32415c020f99c323000e9444af2f2b554cf745af3112c",
+      "git_sha256": "3a08d1b83f0de99090d32415c020f99c323000e9444af2f2b554cf745af3112c"
+    },
+    {
+      "source_path": "com/google/common/collect/ImmutableMultimap.java",
+      "git_path": "guava/src/com/google/common/collect/ImmutableMultimap.java",
+      "status": "byte_identical",
+      "source_sha256": "c916bc073489a8eb80c440d56c8c1d51ee1cd413581e5408801ec62ec5dc74c2",
+      "git_sha256": "c916bc073489a8eb80c440d56c8c1d51ee1cd413581e5408801ec62ec5dc74c2"
+    },
+    {
+      "source_path": "com/google/common/collect/ImmutableMultiset.java",
+      "git_path": "guava/src/com/google/common/collect/ImmutableMultiset.java",
+      "status": "byte_identical",
+      "source_sha256": "b010c2a07c8a85cc9c138d892600843c01b7bdff9bcd1028ca085c9d0904eb5f",
+      "git_sha256": "b010c2a07c8a85cc9c138d892600843c01b7bdff9bcd1028ca085c9d0904eb5f"
+    },
+    {
+      "source_path": "com/google/common/collect/ImmutableSet.java",
+      "git_path": "guava/src/com/google/common/collect/ImmutableSet.java",
+      "status": "byte_identical",
+      "source_sha256": "501ce3baa5488125fef59502052f18853fbc08dfb5a5020abc3d46ea723976ab",
+      "git_sha256": "501ce3baa5488125fef59502052f18853fbc08dfb5a5020abc3d46ea723976ab"
+    },
+    {
+      "source_path": "com/google/common/collect/ImmutableSetMultimap.java",
+      "git_path": "guava/src/com/google/common/collect/ImmutableSetMultimap.java",
+      "status": "byte_identical",
+      "source_sha256": "b7588dff0cff0726ab63efe0e3c4f4a17b753e8a33565315ee2a4bf4009b9cb1",
+      "git_sha256": "b7588dff0cff0726ab63efe0e3c4f4a17b753e8a33565315ee2a4bf4009b9cb1"
+    },
+    {
+      "source_path": "com/google/common/collect/ImmutableSortedAsList.java",
+      "git_path": "guava/src/com/google/common/collect/ImmutableSortedAsList.java",
+      "status": "byte_identical",
+      "source_sha256": "b7775424e53c86b5802b690cd69d3674da374a7ee3a1a27c47d8cd95a17c84e5",
+      "git_sha256": "b7775424e53c86b5802b690cd69d3674da374a7ee3a1a27c47d8cd95a17c84e5"
+    },
+    {
+      "source_path": "com/google/common/collect/ImmutableSortedMap.java",
+      "git_path": "guava/src/com/google/common/collect/ImmutableSortedMap.java",
+      "status": "byte_identical",
+      "source_sha256": "127fc2f5cf00629ffbdcaec000f93c7a09e969bb070a46cae7ecacfc1c1fb1c4",
+      "git_sha256": "127fc2f5cf00629ffbdcaec000f93c7a09e969bb070a46cae7ecacfc1c1fb1c4"
+    },
+    {
+      "source_path": "com/google/common/collect/ImmutableSortedMapFauxverideShim.java",
+      "git_path": "guava/src/com/google/common/collect/ImmutableSortedMapFauxverideShim.java",
+      "status": "byte_identical",
+      "source_sha256": "8ec9d0174d18b6daa8af39227641a496f0aa35cb4c945d00b583ad18d24b4f1d",
+      "git_sha256": "8ec9d0174d18b6daa8af39227641a496f0aa35cb4c945d00b583ad18d24b4f1d"
+    },
+    {
+      "source_path": "com/google/common/collect/ImmutableSortedMultiset.java",
+      "git_path": "guava/src/com/google/common/collect/ImmutableSortedMultiset.java",
+      "status": "byte_identical",
+      "source_sha256": "d1e19d519c81b1d4afa9afe0c239df138b1156e54bd415b52ac699cdc789fe9d",
+      "git_sha256": "d1e19d519c81b1d4afa9afe0c239df138b1156e54bd415b52ac699cdc789fe9d"
+    },
+    {
+      "source_path": "com/google/common/collect/ImmutableSortedMultisetFauxverideShim.java",
+      "git_path": "guava/src/com/google/common/collect/ImmutableSortedMultisetFauxverideShim.java",
+      "status": "byte_identical",
+      "source_sha256": "882c3b68f536385d9fcc53bd2c2b1d7a3b6d5cd4b6bc8366b94768a719832069",
+      "git_sha256": "882c3b68f536385d9fcc53bd2c2b1d7a3b6d5cd4b6bc8366b94768a719832069"
+    },
+    {
+      "source_path": "com/google/common/collect/ImmutableSortedSet.java",
+      "git_path": "guava/src/com/google/common/collect/ImmutableSortedSet.java",
+      "status": "byte_identical",
+      "source_sha256": "4bf05d3a15dd9d1cecbd528df9c6a71baaab3da8ecfc9f200abf671dfdede942",
+      "git_sha256": "4bf05d3a15dd9d1cecbd528df9c6a71baaab3da8ecfc9f200abf671dfdede942"
+    },
+    {
+      "source_path": "com/google/common/collect/ImmutableSortedSetFauxverideShim.java",
+      "git_path": "guava/src/com/google/common/collect/ImmutableSortedSetFauxverideShim.java",
+      "status": "byte_identical",
+      "source_sha256": "560358f4717a4a249a90204fb3b493e1fc12faab2e6d109708447844c8f434fa",
+      "git_sha256": "560358f4717a4a249a90204fb3b493e1fc12faab2e6d109708447844c8f434fa"
+    },
+    {
+      "source_path": "com/google/common/collect/Interner.java",
+      "git_path": "guava/src/com/google/common/collect/Interner.java",
+      "status": "byte_identical",
+      "source_sha256": "53ed4f49a6bde41a4701e335c60ae375423faeb2630015becbc44eaa6fe42a39",
+      "git_sha256": "53ed4f49a6bde41a4701e335c60ae375423faeb2630015becbc44eaa6fe42a39"
+    },
+    {
+      "source_path": "com/google/common/collect/Interners.java",
+      "git_path": "guava/src/com/google/common/collect/Interners.java",
+      "status": "byte_identical",
+      "source_sha256": "e0778bf919056bbbe32b73cfef7e7263e24aded40d9f5b769932ae35f6557407",
+      "git_sha256": "e0778bf919056bbbe32b73cfef7e7263e24aded40d9f5b769932ae35f6557407"
+    },
+    {
+      "source_path": "com/google/common/collect/Iterables.java",
+      "git_path": "guava/src/com/google/common/collect/Iterables.java",
+      "status": "byte_identical",
+      "source_sha256": "da85f38e362d7e0e8f54134dee1d8d28f74401836e4ca3042b39b8a1db28cfa4",
+      "git_sha256": "da85f38e362d7e0e8f54134dee1d8d28f74401836e4ca3042b39b8a1db28cfa4"
+    },
+    {
+      "source_path": "com/google/common/collect/Iterators.java",
+      "git_path": "guava/src/com/google/common/collect/Iterators.java",
+      "status": "byte_identical",
+      "source_sha256": "5f0f7268378df69a49375dba51b73262007d827d302cd1758a24a858015fe719",
+      "git_sha256": "5f0f7268378df69a49375dba51b73262007d827d302cd1758a24a858015fe719"
+    },
+    {
+      "source_path": "com/google/common/collect/LexicographicalOrdering.java",
+      "git_path": "guava/src/com/google/common/collect/LexicographicalOrdering.java",
+      "status": "byte_identical",
+      "source_sha256": "91472cb664548c931d0362adff3774462b7cc6540547e392341f467e050e14b4",
+      "git_sha256": "91472cb664548c931d0362adff3774462b7cc6540547e392341f467e050e14b4"
+    },
+    {
+      "source_path": "com/google/common/collect/LinkedHashMultimap.java",
+      "git_path": "guava/src/com/google/common/collect/LinkedHashMultimap.java",
+      "status": "byte_identical",
+      "source_sha256": "47ee9f42ac6f0c3855efdc15694749fb04468b57d1f124742b5067d5293d0091",
+      "git_sha256": "47ee9f42ac6f0c3855efdc15694749fb04468b57d1f124742b5067d5293d0091"
+    },
+    {
+      "source_path": "com/google/common/collect/LinkedHashMultiset.java",
+      "git_path": "guava/src/com/google/common/collect/LinkedHashMultiset.java",
+      "status": "byte_identical",
+      "source_sha256": "e19d24df283cae98b47fbcad0047e659e09482b426c5fced8bc84c00810afe94",
+      "git_sha256": "e19d24df283cae98b47fbcad0047e659e09482b426c5fced8bc84c00810afe94"
+    },
+    {
+      "source_path": "com/google/common/collect/LinkedListMultimap.java",
+      "git_path": "guava/src/com/google/common/collect/LinkedListMultimap.java",
+      "status": "byte_identical",
+      "source_sha256": "3c03f2bd493fb4f20427c50d379efb6d436675c21f532d39b9028b0f19d4852c",
+      "git_sha256": "3c03f2bd493fb4f20427c50d379efb6d436675c21f532d39b9028b0f19d4852c"
+    },
+    {
+      "source_path": "com/google/common/collect/ListMultimap.java",
+      "git_path": "guava/src/com/google/common/collect/ListMultimap.java",
+      "status": "byte_identical",
+      "source_sha256": "0de00c66a7bfd26b3b4509ca387b710ec295d520bcd944f17a1be91f54745f73",
+      "git_sha256": "0de00c66a7bfd26b3b4509ca387b710ec295d520bcd944f17a1be91f54745f73"
+    },
+    {
+      "source_path": "com/google/common/collect/Lists.java",
+      "git_path": "guava/src/com/google/common/collect/Lists.java",
+      "status": "byte_identical",
+      "source_sha256": "4563e165d9dbfdb4d1da765584dbc3a85748709f70765040fbd4dddb0622f21f",
+      "git_sha256": "4563e165d9dbfdb4d1da765584dbc3a85748709f70765040fbd4dddb0622f21f"
+    },
+    {
+      "source_path": "com/google/common/collect/MapConstraint.java",
+      "git_path": "guava/src/com/google/common/collect/MapConstraint.java",
+      "status": "byte_identical",
+      "source_sha256": "6851c28786a69feb17f89181c576d4e0a9772be727fd4b3fa18650a78be4448a",
+      "git_sha256": "6851c28786a69feb17f89181c576d4e0a9772be727fd4b3fa18650a78be4448a"
+    },
+    {
+      "source_path": "com/google/common/collect/MapConstraints.java",
+      "git_path": "guava/src/com/google/common/collect/MapConstraints.java",
+      "status": "byte_identical",
+      "source_sha256": "90ddcc2a70c6b5659f7badda3e98d1081d90d2b1654e72b06d41d0dc1f90101d",
+      "git_sha256": "90ddcc2a70c6b5659f7badda3e98d1081d90d2b1654e72b06d41d0dc1f90101d"
+    },
+    {
+      "source_path": "com/google/common/collect/MapDifference.java",
+      "git_path": "guava/src/com/google/common/collect/MapDifference.java",
+      "status": "byte_identical",
+      "source_sha256": "b79caac6310c389578552859e91e618e445c6f81661c113025ff77c3bcb56ba7",
+      "git_sha256": "b79caac6310c389578552859e91e618e445c6f81661c113025ff77c3bcb56ba7"
+    },
+    {
+      "source_path": "com/google/common/collect/MapEvictionListener.java",
+      "git_path": "guava/src/com/google/common/collect/MapEvictionListener.java",
+      "status": "byte_identical",
+      "source_sha256": "e17b2e85db1d5c756cdd4ea0c084415de2a2dfcf2ad00b4b4b3e404555ccd668",
+      "git_sha256": "e17b2e85db1d5c756cdd4ea0c084415de2a2dfcf2ad00b4b4b3e404555ccd668"
+    },
+    {
+      "source_path": "com/google/common/collect/MapMaker.java",
+      "git_path": "guava/src/com/google/common/collect/MapMaker.java",
+      "status": "byte_identical",
+      "source_sha256": "19fe687b00e74ac359a35447667c1152e061cb6f3cdbd0ee02e1d5138ac60894",
+      "git_sha256": "19fe687b00e74ac359a35447667c1152e061cb6f3cdbd0ee02e1d5138ac60894"
+    },
+    {
+      "source_path": "com/google/common/collect/Maps.java",
+      "git_path": "guava/src/com/google/common/collect/Maps.java",
+      "status": "byte_identical",
+      "source_sha256": "f023f95055bdf0bf8ad4081492309526d84af8e1fd39a682d86d929c934bdf53",
+      "git_sha256": "f023f95055bdf0bf8ad4081492309526d84af8e1fd39a682d86d929c934bdf53"
+    },
+    {
+      "source_path": "com/google/common/collect/MinMaxPriorityQueue.java",
+      "git_path": "guava/src/com/google/common/collect/MinMaxPriorityQueue.java",
+      "status": "byte_identical",
+      "source_sha256": "40b57dd284846e1df0e99b760910d2e5478f62972d72778ec83eae403ce2c272",
+      "git_sha256": "40b57dd284846e1df0e99b760910d2e5478f62972d72778ec83eae403ce2c272"
+    },
+    {
+      "source_path": "com/google/common/collect/Multimap.java",
+      "git_path": "guava/src/com/google/common/collect/Multimap.java",
+      "status": "byte_identical",
+      "source_sha256": "0e77fb62ef800f931f87a21a5db15e3a4a3fdcb99ec6ca57a33c360c1176dd4b",
+      "git_sha256": "0e77fb62ef800f931f87a21a5db15e3a4a3fdcb99ec6ca57a33c360c1176dd4b"
+    },
+    {
+      "source_path": "com/google/common/collect/Multimaps.java",
+      "git_path": "guava/src/com/google/common/collect/Multimaps.java",
+      "status": "byte_identical",
+      "source_sha256": "a3de2aafa6de7b7fd6d1b289e5eab78eac1a90a0ef8f1558dde171b266329204",
+      "git_sha256": "a3de2aafa6de7b7fd6d1b289e5eab78eac1a90a0ef8f1558dde171b266329204"
+    },
+    {
+      "source_path": "com/google/common/collect/Multiset.java",
+      "git_path": "guava/src/com/google/common/collect/Multiset.java",
+      "status": "byte_identical",
+      "source_sha256": "df7786b705d7c4bc063ab473b534470ef85b623d4c968739816ec6a1108c622a",
+      "git_sha256": "df7786b705d7c4bc063ab473b534470ef85b623d4c968739816ec6a1108c622a"
+    },
+    {
+      "source_path": "com/google/common/collect/Multisets.java",
+      "git_path": "guava/src/com/google/common/collect/Multisets.java",
+      "status": "byte_identical",
+      "source_sha256": "c179e551cc8622c79064c48b43b78f467161a1b58a46b1ba2eec69e041b90098",
+      "git_sha256": "c179e551cc8622c79064c48b43b78f467161a1b58a46b1ba2eec69e041b90098"
+    },
+    {
+      "source_path": "com/google/common/collect/MutableClassToInstanceMap.java",
+      "git_path": "guava/src/com/google/common/collect/MutableClassToInstanceMap.java",
+      "status": "byte_identical",
+      "source_sha256": "51a14542dbaefe6104ed17bb313dce3ec137f02c93743ff69dcdfacd9c1d5d44",
+      "git_sha256": "51a14542dbaefe6104ed17bb313dce3ec137f02c93743ff69dcdfacd9c1d5d44"
+    },
+    {
+      "source_path": "com/google/common/collect/NaturalOrdering.java",
+      "git_path": "guava/src/com/google/common/collect/NaturalOrdering.java",
+      "status": "byte_identical",
+      "source_sha256": "6812b501924bb22a3188a250056eaaf208ee773845aff16b2660390647ee14e6",
+      "git_sha256": "6812b501924bb22a3188a250056eaaf208ee773845aff16b2660390647ee14e6"
+    },
+    {
+      "source_path": "com/google/common/collect/NullsFirstOrdering.java",
+      "git_path": "guava/src/com/google/common/collect/NullsFirstOrdering.java",
+      "status": "byte_identical",
+      "source_sha256": "fea0e834a0f02c42452ac9c95fd88eaa4a281c29648aaa55753f6d28cc257271",
+      "git_sha256": "fea0e834a0f02c42452ac9c95fd88eaa4a281c29648aaa55753f6d28cc257271"
+    },
+    {
+      "source_path": "com/google/common/collect/NullsLastOrdering.java",
+      "git_path": "guava/src/com/google/common/collect/NullsLastOrdering.java",
+      "status": "byte_identical",
+      "source_sha256": "c96fbc3c00b6939cef177ae09cbf2882dad3a937baf084c8ebe75b6eba7ec184",
+      "git_sha256": "c96fbc3c00b6939cef177ae09cbf2882dad3a937baf084c8ebe75b6eba7ec184"
+    },
+    {
+      "source_path": "com/google/common/collect/ObjectArrays.java",
+      "git_path": "guava/src/com/google/common/collect/ObjectArrays.java",
+      "status": "byte_identical",
+      "source_sha256": "dc309dc8c162d195e8e5262684e8d382da340f98505155794230244d510a5173",
+      "git_sha256": "dc309dc8c162d195e8e5262684e8d382da340f98505155794230244d510a5173"
+    },
+    {
+      "source_path": "com/google/common/collect/Ordering.java",
+      "git_path": "guava/src/com/google/common/collect/Ordering.java",
+      "status": "byte_identical",
+      "source_sha256": "0654fcea39d482be1ad8d75e3b126e695f59f3814c37d59bbe9168a72e26250d",
+      "git_sha256": "0654fcea39d482be1ad8d75e3b126e695f59f3814c37d59bbe9168a72e26250d"
+    },
+    {
+      "source_path": "com/google/common/collect/PeekingIterator.java",
+      "git_path": "guava/src/com/google/common/collect/PeekingIterator.java",
+      "status": "byte_identical",
+      "source_sha256": "18550cda32adf2f7c2c9551ee05f43264bab6ad2cf7b2df9f876bd7c14231f8e",
+      "git_sha256": "18550cda32adf2f7c2c9551ee05f43264bab6ad2cf7b2df9f876bd7c14231f8e"
+    },
+    {
+      "source_path": "com/google/common/collect/Platform.java",
+      "git_path": "guava/src/com/google/common/collect/Platform.java",
+      "status": "byte_identical",
+      "source_sha256": "4aa0977ddf24d996796b3a70180994ecadda18d674404b7026d4fd805e76fae1",
+      "git_sha256": "4aa0977ddf24d996796b3a70180994ecadda18d674404b7026d4fd805e76fae1"
+    },
+    {
+      "source_path": "com/google/common/collect/Range.java",
+      "git_path": "guava/src/com/google/common/collect/Range.java",
+      "status": "byte_identical",
+      "source_sha256": "e081cdea23e70da8a0b2008ea27b4d708b9c82fe5edf32ea00506bfeaab99764",
+      "git_sha256": "e081cdea23e70da8a0b2008ea27b4d708b9c82fe5edf32ea00506bfeaab99764"
+    },
+    {
+      "source_path": "com/google/common/collect/Ranges.java",
+      "git_path": "guava/src/com/google/common/collect/Ranges.java",
+      "status": "byte_identical",
+      "source_sha256": "97f6747ae627168ef9565bf9770da2105fcc1e2bf108e370ebec06e6f105563d",
+      "git_sha256": "97f6747ae627168ef9565bf9770da2105fcc1e2bf108e370ebec06e6f105563d"
+    },
+    {
+      "source_path": "com/google/common/collect/RegularContiguousSet.java",
+      "git_path": "guava/src/com/google/common/collect/RegularContiguousSet.java",
+      "status": "byte_identical",
+      "source_sha256": "36531b923f7a7e72b0b197e1a99dd52d44379ede8a371f7b5e9c55c74df9a0f6",
+      "git_sha256": "36531b923f7a7e72b0b197e1a99dd52d44379ede8a371f7b5e9c55c74df9a0f6"
+    },
+    {
+      "source_path": "com/google/common/collect/RegularImmutableBiMap.java",
+      "git_path": "guava/src/com/google/common/collect/RegularImmutableBiMap.java",
+      "status": "byte_identical",
+      "source_sha256": "bc6d43d8b97e122f71ee23483a0ceac3fe849c64e9c82e0b4d93e4f8fc20b162",
+      "git_sha256": "bc6d43d8b97e122f71ee23483a0ceac3fe849c64e9c82e0b4d93e4f8fc20b162"
+    },
+    {
+      "source_path": "com/google/common/collect/RegularImmutableList.java",
+      "git_path": "guava/src/com/google/common/collect/RegularImmutableList.java",
+      "status": "byte_identical",
+      "source_sha256": "f7ce2e0b910ded60d7e520606c8db43ab78a8c00e25c3d80ff77c2f52d364a28",
+      "git_sha256": "f7ce2e0b910ded60d7e520606c8db43ab78a8c00e25c3d80ff77c2f52d364a28"
+    },
+    {
+      "source_path": "com/google/common/collect/RegularImmutableMap.java",
+      "git_path": "guava/src/com/google/common/collect/RegularImmutableMap.java",
+      "status": "byte_identical",
+      "source_sha256": "508e92e6d00aaee87f259df0b21ec7bb6c163fa7f41a9d9cafa423a33543b990",
+      "git_sha256": "508e92e6d00aaee87f259df0b21ec7bb6c163fa7f41a9d9cafa423a33543b990"
+    },
+    {
+      "source_path": "com/google/common/collect/RegularImmutableMultiset.java",
+      "git_path": "guava/src/com/google/common/collect/RegularImmutableMultiset.java",
+      "status": "byte_identical",
+      "source_sha256": "bbf9a8dffdddcfdce407bcb5b4ec4008ee98e7c25cbe08a3aae3ebe44be98766",
+      "git_sha256": "bbf9a8dffdddcfdce407bcb5b4ec4008ee98e7c25cbe08a3aae3ebe44be98766"
+    },
+    {
+      "source_path": "com/google/common/collect/RegularImmutableSet.java",
+      "git_path": "guava/src/com/google/common/collect/RegularImmutableSet.java",
+      "status": "byte_identical",
+      "source_sha256": "070ea2614d559b2435f82d72c6bdb10d8d7a97ba67b17356c64ab88dc76391af",
+      "git_sha256": "070ea2614d559b2435f82d72c6bdb10d8d7a97ba67b17356c64ab88dc76391af"
+    },
+    {
+      "source_path": "com/google/common/collect/RegularImmutableSortedMultiset.java",
+      "git_path": "guava/src/com/google/common/collect/RegularImmutableSortedMultiset.java",
+      "status": "byte_identical",
+      "source_sha256": "c50345b98b20db9043083baf272c2833548eae3a46fa3c1b3e15def334b3b68b",
+      "git_sha256": "c50345b98b20db9043083baf272c2833548eae3a46fa3c1b3e15def334b3b68b"
+    },
+    {
+      "source_path": "com/google/common/collect/RegularImmutableSortedSet.java",
+      "git_path": "guava/src/com/google/common/collect/RegularImmutableSortedSet.java",
+      "status": "byte_identical",
+      "source_sha256": "2ffae47f57a1f49b0d6b548d1aad3fbf7545aa3d3a869ff59db3b7ed4a8ffe4b",
+      "git_sha256": "2ffae47f57a1f49b0d6b548d1aad3fbf7545aa3d3a869ff59db3b7ed4a8ffe4b"
+    },
+    {
+      "source_path": "com/google/common/collect/ReverseNaturalOrdering.java",
+      "git_path": "guava/src/com/google/common/collect/ReverseNaturalOrdering.java",
+      "status": "byte_identical",
+      "source_sha256": "8a2ec10cd1fa386b60a6854beed9f3d21926401a7b2c0acab19332cb53b90ae8",
+      "git_sha256": "8a2ec10cd1fa386b60a6854beed9f3d21926401a7b2c0acab19332cb53b90ae8"
+    },
+    {
+      "source_path": "com/google/common/collect/ReverseOrdering.java",
+      "git_path": "guava/src/com/google/common/collect/ReverseOrdering.java",
+      "status": "byte_identical",
+      "source_sha256": "2527905ea9f8916ba347f8bd14432580a2464ab718fd9a831e29109d9301f5c6",
+      "git_sha256": "2527905ea9f8916ba347f8bd14432580a2464ab718fd9a831e29109d9301f5c6"
+    },
+    {
+      "source_path": "com/google/common/collect/RowSortedTable.java",
+      "git_path": "guava/src/com/google/common/collect/RowSortedTable.java",
+      "status": "byte_identical",
+      "source_sha256": "973bbfa0758c8b2b90cd2235bba8a7a02e3e84ba2d98a42aff34c641846cda2c",
+      "git_sha256": "973bbfa0758c8b2b90cd2235bba8a7a02e3e84ba2d98a42aff34c641846cda2c"
+    },
+    {
+      "source_path": "com/google/common/collect/Serialization.java",
+      "git_path": "guava/src/com/google/common/collect/Serialization.java",
+      "status": "byte_identical",
+      "source_sha256": "23fc3f3136a94d9fe23d675170fa70447711ba1e2cf9f4eb63c64592af3a4beb",
+      "git_sha256": "23fc3f3136a94d9fe23d675170fa70447711ba1e2cf9f4eb63c64592af3a4beb"
+    },
+    {
+      "source_path": "com/google/common/collect/SetMultimap.java",
+      "git_path": "guava/src/com/google/common/collect/SetMultimap.java",
+      "status": "byte_identical",
+      "source_sha256": "61703ee59c34a409416f2169bc7ebd99fce4d4c7a11ca63ba4cc1a82ce3048c4",
+      "git_sha256": "61703ee59c34a409416f2169bc7ebd99fce4d4c7a11ca63ba4cc1a82ce3048c4"
+    },
+    {
+      "source_path": "com/google/common/collect/Sets.java",
+      "git_path": "guava/src/com/google/common/collect/Sets.java",
+      "status": "byte_identical",
+      "source_sha256": "42f717f60e286c11706d8287f1e9733c03f79e1b4f45fef5424759296d53b022",
+      "git_sha256": "42f717f60e286c11706d8287f1e9733c03f79e1b4f45fef5424759296d53b022"
+    },
+    {
+      "source_path": "com/google/common/collect/SingletonImmutableList.java",
+      "git_path": "guava/src/com/google/common/collect/SingletonImmutableList.java",
+      "status": "byte_identical",
+      "source_sha256": "670bd3c6eb3415ceb564cbe23fa4f92368eb57a2c12a7ef18f4c4b9a66ab0584",
+      "git_sha256": "670bd3c6eb3415ceb564cbe23fa4f92368eb57a2c12a7ef18f4c4b9a66ab0584"
+    },
+    {
+      "source_path": "com/google/common/collect/SingletonImmutableMap.java",
+      "git_path": "guava/src/com/google/common/collect/SingletonImmutableMap.java",
+      "status": "byte_identical",
+      "source_sha256": "5857ff34847dbd96dab685ff571922e98d203f2f80fc73c599e38f992cfab8b8",
+      "git_sha256": "5857ff34847dbd96dab685ff571922e98d203f2f80fc73c599e38f992cfab8b8"
+    },
+    {
+      "source_path": "com/google/common/collect/SingletonImmutableSet.java",
+      "git_path": "guava/src/com/google/common/collect/SingletonImmutableSet.java",
+      "status": "byte_identical",
+      "source_sha256": "615e4937e74643c573d4e2d1cd3069836485e6dc44517580b5bbf05e77897dcd",
+      "git_sha256": "615e4937e74643c573d4e2d1cd3069836485e6dc44517580b5bbf05e77897dcd"
+    },
+    {
+      "source_path": "com/google/common/collect/SortedIterable.java",
+      "git_path": "guava/src/com/google/common/collect/SortedIterable.java",
+      "status": "byte_identical",
+      "source_sha256": "e0736707df21e751800c26752e0264ce4aa5a041dbb018fd6ec767f66551958b",
+      "git_sha256": "e0736707df21e751800c26752e0264ce4aa5a041dbb018fd6ec767f66551958b"
+    },
+    {
+      "source_path": "com/google/common/collect/SortedIterables.java",
+      "git_path": "guava/src/com/google/common/collect/SortedIterables.java",
+      "status": "byte_identical",
+      "source_sha256": "1a1fd87190734627d6bf095494438d22a43a091ae8bdc0039e907d96dc143a83",
+      "git_sha256": "1a1fd87190734627d6bf095494438d22a43a091ae8bdc0039e907d96dc143a83"
+    },
+    {
+      "source_path": "com/google/common/collect/SortedLists.java",
+      "git_path": "guava/src/com/google/common/collect/SortedLists.java",
+      "status": "byte_identical",
+      "source_sha256": "e15f6b70d1af4ed1905e45aa326154c2af34c1d0af65242fd00f9065e8c22b26",
+      "git_sha256": "e15f6b70d1af4ed1905e45aa326154c2af34c1d0af65242fd00f9065e8c22b26"
+    },
+    {
+      "source_path": "com/google/common/collect/SortedMapDifference.java",
+      "git_path": "guava/src/com/google/common/collect/SortedMapDifference.java",
+      "status": "byte_identical",
+      "source_sha256": "da60b74ae26bff32c9bd78a42b218894e940d86713b7e59795f1d79cbee5b171",
+      "git_sha256": "da60b74ae26bff32c9bd78a42b218894e940d86713b7e59795f1d79cbee5b171"
+    },
+    {
+      "source_path": "com/google/common/collect/SortedMaps.java",
+      "git_path": "guava/src/com/google/common/collect/SortedMaps.java",
+      "status": "byte_identical",
+      "source_sha256": "4b688d3f9a415587f6b045acda2216ca0ff6fdbc13b380ab48950dd8a26d5c66",
+      "git_sha256": "4b688d3f9a415587f6b045acda2216ca0ff6fdbc13b380ab48950dd8a26d5c66"
+    },
+    {
+      "source_path": "com/google/common/collect/SortedMultiset.java",
+      "git_path": "guava/src/com/google/common/collect/SortedMultiset.java",
+      "status": "byte_identical",
+      "source_sha256": "29d68bea68f1deed6eea17d1a662b3c7435a7720ab684541db5c0b5ea84cf327",
+      "git_sha256": "29d68bea68f1deed6eea17d1a662b3c7435a7720ab684541db5c0b5ea84cf327"
+    },
+    {
+      "source_path": "com/google/common/collect/SortedMultisets.java",
+      "git_path": "guava/src/com/google/common/collect/SortedMultisets.java",
+      "status": "byte_identical",
+      "source_sha256": "d998094c40a07542640f2c5c37945c5ee8392f7fe299649bcec3ff5715cdd974",
+      "git_sha256": "d998094c40a07542640f2c5c37945c5ee8392f7fe299649bcec3ff5715cdd974"
+    },
+    {
+      "source_path": "com/google/common/collect/SortedSetMultimap.java",
+      "git_path": "guava/src/com/google/common/collect/SortedSetMultimap.java",
+      "status": "byte_identical",
+      "source_sha256": "3d5fdbf9db7f71d5147820516fedf120c0ba5af4c9425092a2c3b62b5170de28",
+      "git_sha256": "3d5fdbf9db7f71d5147820516fedf120c0ba5af4c9425092a2c3b62b5170de28"
+    },
+    {
+      "source_path": "com/google/common/collect/SortedTreeMultiset.java",
+      "git_path": "guava/src/com/google/common/collect/SortedTreeMultiset.java",
+      "status": "byte_identical",
+      "source_sha256": "5b5420c7836565cf7b74ab744741b019aa5e2c21112bd4737c8569752add5c9c",
+      "git_sha256": "5b5420c7836565cf7b74ab744741b019aa5e2c21112bd4737c8569752add5c9c"
+    },
+    {
+      "source_path": "com/google/common/collect/StandardRowSortedTable.java",
+      "git_path": "guava/src/com/google/common/collect/StandardRowSortedTable.java",
+      "status": "byte_identical",
+      "source_sha256": "12755c0a397b77db2e9cc57a93878d19eafa2a4400bc79bb242bc72065cc6fd6",
+      "git_sha256": "12755c0a397b77db2e9cc57a93878d19eafa2a4400bc79bb242bc72065cc6fd6"
+    },
+    {
+      "source_path": "com/google/common/collect/StandardTable.java",
+      "git_path": "guava/src/com/google/common/collect/StandardTable.java",
+      "status": "byte_identical",
+      "source_sha256": "d13cc2cf939b29d1eb9cbf5e7411467bae9e8fa36a5625c2bb481aa7c85d8fe3",
+      "git_sha256": "d13cc2cf939b29d1eb9cbf5e7411467bae9e8fa36a5625c2bb481aa7c85d8fe3"
+    },
+    {
+      "source_path": "com/google/common/collect/Synchronized.java",
+      "git_path": "guava/src/com/google/common/collect/Synchronized.java",
+      "status": "byte_identical",
+      "source_sha256": "ca160e909ba96f98180ac0e1cc3c2acac2d3671e081b0cbb4a4c1851ff0b81dd",
+      "git_sha256": "ca160e909ba96f98180ac0e1cc3c2acac2d3671e081b0cbb4a4c1851ff0b81dd"
+    },
+    {
+      "source_path": "com/google/common/collect/Table.java",
+      "git_path": "guava/src/com/google/common/collect/Table.java",
+      "status": "byte_identical",
+      "source_sha256": "a0c5ea531cb06497ede5dfd080cdba491f87e2c3510b26dc29fbb4e37a737250",
+      "git_sha256": "a0c5ea531cb06497ede5dfd080cdba491f87e2c3510b26dc29fbb4e37a737250"
+    },
+    {
+      "source_path": "com/google/common/collect/Tables.java",
+      "git_path": "guava/src/com/google/common/collect/Tables.java",
+      "status": "byte_identical",
+      "source_sha256": "a2a6d589221cf7d686e4d565945701ada6db7454a7ef26700917b73358c7c803",
+      "git_sha256": "a2a6d589221cf7d686e4d565945701ada6db7454a7ef26700917b73358c7c803"
+    },
+    {
+      "source_path": "com/google/common/collect/TransformedImmutableList.java",
+      "git_path": "guava/src/com/google/common/collect/TransformedImmutableList.java",
+      "status": "byte_identical",
+      "source_sha256": "be2188306cf751f62af7d16aa19f1dec0485f649f0de2682449a748722ce9391",
+      "git_sha256": "be2188306cf751f62af7d16aa19f1dec0485f649f0de2682449a748722ce9391"
+    },
+    {
+      "source_path": "com/google/common/collect/TreeBasedTable.java",
+      "git_path": "guava/src/com/google/common/collect/TreeBasedTable.java",
+      "status": "byte_identical",
+      "source_sha256": "d3a9f667cd963a6343818719ccf494c5e68c91db65901a8fbb7830025a3a0297",
+      "git_sha256": "d3a9f667cd963a6343818719ccf494c5e68c91db65901a8fbb7830025a3a0297"
+    },
+    {
+      "source_path": "com/google/common/collect/TreeMultimap.java",
+      "git_path": "guava/src/com/google/common/collect/TreeMultimap.java",
+      "status": "byte_identical",
+      "source_sha256": "b87e734a99e7f2cf82a34fd0473d385cb0323298f1767303c2104e536ab95dfa",
+      "git_sha256": "b87e734a99e7f2cf82a34fd0473d385cb0323298f1767303c2104e536ab95dfa"
+    },
+    {
+      "source_path": "com/google/common/collect/TreeMultiset.java",
+      "git_path": "guava/src/com/google/common/collect/TreeMultiset.java",
+      "status": "byte_identical",
+      "source_sha256": "75d383190eca343b4760540282bab09f8ae488de94a0184c336d5206553e140d",
+      "git_sha256": "75d383190eca343b4760540282bab09f8ae488de94a0184c336d5206553e140d"
+    },
+    {
+      "source_path": "com/google/common/collect/UnmodifiableIterator.java",
+      "git_path": "guava/src/com/google/common/collect/UnmodifiableIterator.java",
+      "status": "byte_identical",
+      "source_sha256": "52aa5a415f2b1de0e58e5fcb6ebf0e1e454cf2a8aa6fa61f1548b2288aa0b159",
+      "git_sha256": "52aa5a415f2b1de0e58e5fcb6ebf0e1e454cf2a8aa6fa61f1548b2288aa0b159"
+    },
+    {
+      "source_path": "com/google/common/collect/UnmodifiableListIterator.java",
+      "git_path": "guava/src/com/google/common/collect/UnmodifiableListIterator.java",
+      "status": "byte_identical",
+      "source_sha256": "3bed8218918b672426c1ad33ef7b39b205916eecd504810708d4b99afa7b5120",
+      "git_sha256": "3bed8218918b672426c1ad33ef7b39b205916eecd504810708d4b99afa7b5120"
+    },
+    {
+      "source_path": "com/google/common/collect/UsingToStringOrdering.java",
+      "git_path": "guava/src/com/google/common/collect/UsingToStringOrdering.java",
+      "status": "byte_identical",
+      "source_sha256": "d596d233e24ced645cb31d06550be76af4d460c01a0745586456d72ba078025e",
+      "git_sha256": "d596d233e24ced645cb31d06550be76af4d460c01a0745586456d72ba078025e"
+    },
+    {
+      "source_path": "com/google/common/collect/WellBehavedMap.java",
+      "git_path": "guava/src/com/google/common/collect/WellBehavedMap.java",
+      "status": "byte_identical",
+      "source_sha256": "949bc28fb3dd4e5537a5f05dddeeed668c74cc08649f33266ceb522385f0e754",
+      "git_sha256": "949bc28fb3dd4e5537a5f05dddeeed668c74cc08649f33266ceb522385f0e754"
+    },
+    {
+      "source_path": "com/google/common/collect/package-info.java",
+      "git_path": "guava/src/com/google/common/collect/package-info.java",
+      "status": "byte_identical",
+      "source_sha256": "944ca232920907f5b13788dbc196441cad9ef54e1d9723e5aa4b0715c2837e76",
+      "git_sha256": "944ca232920907f5b13788dbc196441cad9ef54e1d9723e5aa4b0715c2837e76"
+    },
+    {
+      "source_path": "com/google/common/eventbus/AllowConcurrentEvents.java",
+      "git_path": "guava/src/com/google/common/eventbus/AllowConcurrentEvents.java",
+      "status": "byte_identical",
+      "source_sha256": "605590b0fa750660942b34afebdc09f15a8eb6485bf684ebd4d3828c6a7caf1f",
+      "git_sha256": "605590b0fa750660942b34afebdc09f15a8eb6485bf684ebd4d3828c6a7caf1f"
+    },
+    {
+      "source_path": "com/google/common/eventbus/AnnotatedHandlerFinder.java",
+      "git_path": "guava/src/com/google/common/eventbus/AnnotatedHandlerFinder.java",
+      "status": "byte_identical",
+      "source_sha256": "38e303b98de3c25c20c7a8105f4149c035f9305f825ce95ae36a57d806f4e5c6",
+      "git_sha256": "38e303b98de3c25c20c7a8105f4149c035f9305f825ce95ae36a57d806f4e5c6"
+    },
+    {
+      "source_path": "com/google/common/eventbus/AsyncEventBus.java",
+      "git_path": "guava/src/com/google/common/eventbus/AsyncEventBus.java",
+      "status": "byte_identical",
+      "source_sha256": "dec7944079f3df7411feaeae3f4781977927c747f1a1d988beed2ed67f68defe",
+      "git_sha256": "dec7944079f3df7411feaeae3f4781977927c747f1a1d988beed2ed67f68defe"
+    },
+    {
+      "source_path": "com/google/common/eventbus/DeadEvent.java",
+      "git_path": "guava/src/com/google/common/eventbus/DeadEvent.java",
+      "status": "byte_identical",
+      "source_sha256": "00469d104e8ff340282ef6d25dd158137c2b5ddbfecd492bf7ab43bee7f6eae8",
+      "git_sha256": "00469d104e8ff340282ef6d25dd158137c2b5ddbfecd492bf7ab43bee7f6eae8"
+    },
+    {
+      "source_path": "com/google/common/eventbus/EventBus.java",
+      "git_path": "guava/src/com/google/common/eventbus/EventBus.java",
+      "status": "byte_identical",
+      "source_sha256": "a022125582dd4101a6540b885b0d0a6668fc3c63bc86bb2fe40ff86713686878",
+      "git_sha256": "a022125582dd4101a6540b885b0d0a6668fc3c63bc86bb2fe40ff86713686878"
+    },
+    {
+      "source_path": "com/google/common/eventbus/EventHandler.java",
+      "git_path": "guava/src/com/google/common/eventbus/EventHandler.java",
+      "status": "byte_identical",
+      "source_sha256": "b0f7ca0a0fea7e86e62012c37d9528197c173941823fe1f838682840f05ad719",
+      "git_sha256": "b0f7ca0a0fea7e86e62012c37d9528197c173941823fe1f838682840f05ad719"
+    },
+    {
+      "source_path": "com/google/common/eventbus/HandlerFindingStrategy.java",
+      "git_path": "guava/src/com/google/common/eventbus/HandlerFindingStrategy.java",
+      "status": "byte_identical",
+      "source_sha256": "6afdb644fb88ae40bd87a802c5df352e0cda7b86ec9a41c30e0c47d0a87b47c4",
+      "git_sha256": "6afdb644fb88ae40bd87a802c5df352e0cda7b86ec9a41c30e0c47d0a87b47c4"
+    },
+    {
+      "source_path": "com/google/common/eventbus/Subscribe.java",
+      "git_path": "guava/src/com/google/common/eventbus/Subscribe.java",
+      "status": "byte_identical",
+      "source_sha256": "95eed77a4818428a84baab3a38343f6b2233144414e2f12bb5105629bc03156f",
+      "git_sha256": "95eed77a4818428a84baab3a38343f6b2233144414e2f12bb5105629bc03156f"
+    },
+    {
+      "source_path": "com/google/common/eventbus/SynchronizedEventHandler.java",
+      "git_path": "guava/src/com/google/common/eventbus/SynchronizedEventHandler.java",
+      "status": "byte_identical",
+      "source_sha256": "2231964cb83fa5a8479067e1d629622236c39caaadd0e36c5441046382f7d052",
+      "git_sha256": "2231964cb83fa5a8479067e1d629622236c39caaadd0e36c5441046382f7d052"
+    },
+    {
+      "source_path": "com/google/common/eventbus/package-info.java",
+      "git_path": "guava/src/com/google/common/eventbus/package-info.java",
+      "status": "byte_identical",
+      "source_sha256": "ccecd875529a070cd0a4c8796835fc404d142e54bd40f03bb0f150128c14eca3",
+      "git_sha256": "ccecd875529a070cd0a4c8796835fc404d142e54bd40f03bb0f150128c14eca3"
+    },
+    {
+      "source_path": "com/google/common/io/AppendableWriter.java",
+      "git_path": "guava/src/com/google/common/io/AppendableWriter.java",
+      "status": "byte_identical",
+      "source_sha256": "713bf821e8bd4d338839cc3e01b4f7a91f624912a2814200f2237dea3cbae474",
+      "git_sha256": "713bf821e8bd4d338839cc3e01b4f7a91f624912a2814200f2237dea3cbae474"
+    },
+    {
+      "source_path": "com/google/common/io/ByteArrayDataInput.java",
+      "git_path": "guava/src/com/google/common/io/ByteArrayDataInput.java",
+      "status": "byte_identical",
+      "source_sha256": "098fb7e4827402af1383bf46b55fd398f2c17fff2a2294ee861633be8e6ea90f",
+      "git_sha256": "098fb7e4827402af1383bf46b55fd398f2c17fff2a2294ee861633be8e6ea90f"
+    },
+    {
+      "source_path": "com/google/common/io/ByteArrayDataOutput.java",
+      "git_path": "guava/src/com/google/common/io/ByteArrayDataOutput.java",
+      "status": "byte_identical",
+      "source_sha256": "79e777d62dcd9465b94965323043ad899c1edb3bd9caf2f1b3db9f7f713be36b",
+      "git_sha256": "79e777d62dcd9465b94965323043ad899c1edb3bd9caf2f1b3db9f7f713be36b"
+    },
+    {
+      "source_path": "com/google/common/io/ByteProcessor.java",
+      "git_path": "guava/src/com/google/common/io/ByteProcessor.java",
+      "status": "byte_identical",
+      "source_sha256": "ece3e16469fe1e7e0eaf954e92f6a49d0acab47f316cded62efd3355c44c2f55",
+      "git_sha256": "ece3e16469fe1e7e0eaf954e92f6a49d0acab47f316cded62efd3355c44c2f55"
+    },
+    {
+      "source_path": "com/google/common/io/ByteStreams.java",
+      "git_path": "guava/src/com/google/common/io/ByteStreams.java",
+      "status": "byte_identical",
+      "source_sha256": "589fb999c042e9aa38e950bc6d043bcae3cc1da2b3fa30be60d264163461f999",
+      "git_sha256": "589fb999c042e9aa38e950bc6d043bcae3cc1da2b3fa30be60d264163461f999"
+    },
+    {
+      "source_path": "com/google/common/io/CharStreams.java",
+      "git_path": "guava/src/com/google/common/io/CharStreams.java",
+      "status": "byte_identical",
+      "source_sha256": "5eb2072daf69c8a903fc0e1233a2b2043b5168212c0a0977f643888f6aa3f2a3",
+      "git_sha256": "5eb2072daf69c8a903fc0e1233a2b2043b5168212c0a0977f643888f6aa3f2a3"
+    },
+    {
+      "source_path": "com/google/common/io/Closeables.java",
+      "git_path": "guava/src/com/google/common/io/Closeables.java",
+      "status": "byte_identical",
+      "source_sha256": "d9e10ab610edca475a4a7a47726ae7b25bcd9b5ba9e950c91707380647b9af13",
+      "git_sha256": "d9e10ab610edca475a4a7a47726ae7b25bcd9b5ba9e950c91707380647b9af13"
+    },
+    {
+      "source_path": "com/google/common/io/CountingInputStream.java",
+      "git_path": "guava/src/com/google/common/io/CountingInputStream.java",
+      "status": "byte_identical",
+      "source_sha256": "12a5c551742b6ebdc76a8ebe0308e6b98ceb1ddcb0afe41ccb39f4abcb4eeaf7",
+      "git_sha256": "12a5c551742b6ebdc76a8ebe0308e6b98ceb1ddcb0afe41ccb39f4abcb4eeaf7"
+    },
+    {
+      "source_path": "com/google/common/io/CountingOutputStream.java",
+      "git_path": "guava/src/com/google/common/io/CountingOutputStream.java",
+      "status": "byte_identical",
+      "source_sha256": "17b606861974808c5c5e6068e5da26e5cbbeb8744e5683a9365a7859f4ac5b9d",
+      "git_sha256": "17b606861974808c5c5e6068e5da26e5cbbeb8744e5683a9365a7859f4ac5b9d"
+    },
+    {
+      "source_path": "com/google/common/io/FileBackedOutputStream.java",
+      "git_path": "guava/src/com/google/common/io/FileBackedOutputStream.java",
+      "status": "byte_identical",
+      "source_sha256": "99807e0271340024b83ea47f0a69b08818c80c874dee133314a72c9579abaaef",
+      "git_sha256": "99807e0271340024b83ea47f0a69b08818c80c874dee133314a72c9579abaaef"
+    },
+    {
+      "source_path": "com/google/common/io/Files.java",
+      "git_path": "guava/src/com/google/common/io/Files.java",
+      "status": "byte_identical",
+      "source_sha256": "8c6ae657ced187c00c9e5dc2881153a1ecc381aeb3674cf022b13aa31329ecfd",
+      "git_sha256": "8c6ae657ced187c00c9e5dc2881153a1ecc381aeb3674cf022b13aa31329ecfd"
+    },
+    {
+      "source_path": "com/google/common/io/Flushables.java",
+      "git_path": "guava/src/com/google/common/io/Flushables.java",
+      "status": "byte_identical",
+      "source_sha256": "13f5d96dc64dc8e12bb0177307bfe3c76a0c68e5e9e81f80eff078f624c13fe6",
+      "git_sha256": "13f5d96dc64dc8e12bb0177307bfe3c76a0c68e5e9e81f80eff078f624c13fe6"
+    },
+    {
+      "source_path": "com/google/common/io/InputSupplier.java",
+      "git_path": "guava/src/com/google/common/io/InputSupplier.java",
+      "status": "byte_identical",
+      "source_sha256": "f8e39c0b763d76683ecd4f0d2a9f0136617eeac8b54dfa27930dbf33226d0f89",
+      "git_sha256": "f8e39c0b763d76683ecd4f0d2a9f0136617eeac8b54dfa27930dbf33226d0f89"
+    },
+    {
+      "source_path": "com/google/common/io/LimitInputStream.java",
+      "git_path": "guava/src/com/google/common/io/LimitInputStream.java",
+      "status": "byte_identical",
+      "source_sha256": "f1a950b62695db70c9365ac64780180ce50b49e42eb932d7c93cee864fbf2c88",
+      "git_sha256": "f1a950b62695db70c9365ac64780180ce50b49e42eb932d7c93cee864fbf2c88"
+    },
+    {
+      "source_path": "com/google/common/io/LineBuffer.java",
+      "git_path": "guava/src/com/google/common/io/LineBuffer.java",
+      "status": "byte_identical",
+      "source_sha256": "2ca6fe5ae521340f17e43ba3166d1dad84a5580b00253eb6f2a9028ba0bc7284",
+      "git_sha256": "2ca6fe5ae521340f17e43ba3166d1dad84a5580b00253eb6f2a9028ba0bc7284"
+    },
+    {
+      "source_path": "com/google/common/io/LineProcessor.java",
+      "git_path": "guava/src/com/google/common/io/LineProcessor.java",
+      "status": "byte_identical",
+      "source_sha256": "3ea8506f709e4f94dcadc60ea993a4c48fdab41fda85e63870af013b376d21df",
+      "git_sha256": "3ea8506f709e4f94dcadc60ea993a4c48fdab41fda85e63870af013b376d21df"
+    },
+    {
+      "source_path": "com/google/common/io/LineReader.java",
+      "git_path": "guava/src/com/google/common/io/LineReader.java",
+      "status": "byte_identical",
+      "source_sha256": "67a209809639c84ec646a2c1a78799aafdd3d25d15095eb7bf311eb68ec40646",
+      "git_sha256": "67a209809639c84ec646a2c1a78799aafdd3d25d15095eb7bf311eb68ec40646"
+    },
+    {
+      "source_path": "com/google/common/io/LittleEndianDataInputStream.java",
+      "git_path": "guava/src/com/google/common/io/LittleEndianDataInputStream.java",
+      "status": "byte_identical",
+      "source_sha256": "a03dda6e3703df48ce2e286b1092b9d49e466aef0608ca3a2724eeb3dd138693",
+      "git_sha256": "a03dda6e3703df48ce2e286b1092b9d49e466aef0608ca3a2724eeb3dd138693"
+    },
+    {
+      "source_path": "com/google/common/io/LittleEndianDataOutputStream.java",
+      "git_path": "guava/src/com/google/common/io/LittleEndianDataOutputStream.java",
+      "status": "byte_identical",
+      "source_sha256": "55b116b7148c6b660a37b24b4cdff8387cc8c57381f32e0b13feaea6767529d8",
+      "git_sha256": "55b116b7148c6b660a37b24b4cdff8387cc8c57381f32e0b13feaea6767529d8"
+    },
+    {
+      "source_path": "com/google/common/io/MultiInputStream.java",
+      "git_path": "guava/src/com/google/common/io/MultiInputStream.java",
+      "status": "byte_identical",
+      "source_sha256": "7ea76ed0f415e7176fa16c13cc33ef93021e4c3f2a0499fc632ad027768001d5",
+      "git_sha256": "7ea76ed0f415e7176fa16c13cc33ef93021e4c3f2a0499fc632ad027768001d5"
+    },
+    {
+      "source_path": "com/google/common/io/MultiReader.java",
+      "git_path": "guava/src/com/google/common/io/MultiReader.java",
+      "status": "byte_identical",
+      "source_sha256": "87000e171e6406933d6c678a9bf525be1313e5ffc9dc12db3c24cd08aef08a4c",
+      "git_sha256": "87000e171e6406933d6c678a9bf525be1313e5ffc9dc12db3c24cd08aef08a4c"
+    },
+    {
+      "source_path": "com/google/common/io/NullOutputStream.java",
+      "git_path": "guava/src/com/google/common/io/NullOutputStream.java",
+      "status": "byte_identical",
+      "source_sha256": "2b735c3d5fd21dc8c607b0de64652ab6ae861638089a850c800c401849d9a3a3",
+      "git_sha256": "2b735c3d5fd21dc8c607b0de64652ab6ae861638089a850c800c401849d9a3a3"
+    },
+    {
+      "source_path": "com/google/common/io/OutputSupplier.java",
+      "git_path": "guava/src/com/google/common/io/OutputSupplier.java",
+      "status": "byte_identical",
+      "source_sha256": "a29b434382497b8bc3598ebd1607eb90be2c1ceead6185bbdf59579ff0efc543",
+      "git_sha256": "a29b434382497b8bc3598ebd1607eb90be2c1ceead6185bbdf59579ff0efc543"
+    },
+    {
+      "source_path": "com/google/common/io/PatternFilenameFilter.java",
+      "git_path": "guava/src/com/google/common/io/PatternFilenameFilter.java",
+      "status": "byte_identical",
+      "source_sha256": "0f6ee852d1caa47f5588d3724c4e118b50c5211d17f829d7f3b94a8038e9ec54",
+      "git_sha256": "0f6ee852d1caa47f5588d3724c4e118b50c5211d17f829d7f3b94a8038e9ec54"
+    },
+    {
+      "source_path": "com/google/common/io/Resources.java",
+      "git_path": "guava/src/com/google/common/io/Resources.java",
+      "status": "byte_identical",
+      "source_sha256": "f8749f4d7f9263ca811fb7a7cc378eee3ab9e8f446fe665320367bb865217c05",
+      "git_sha256": "f8749f4d7f9263ca811fb7a7cc378eee3ab9e8f446fe665320367bb865217c05"
+    },
+    {
+      "source_path": "com/google/common/io/package-info.java",
+      "git_path": "guava/src/com/google/common/io/package-info.java",
+      "status": "byte_identical",
+      "source_sha256": "fb8e0c1743c23bc2f1e443a0ea4482e68b8fe79489f4b70e4dc348903999c5a6",
+      "git_sha256": "fb8e0c1743c23bc2f1e443a0ea4482e68b8fe79489f4b70e4dc348903999c5a6"
+    },
+    {
+      "source_path": "com/google/common/net/HostAndPort.java",
+      "git_path": "guava/src/com/google/common/net/HostAndPort.java",
+      "status": "byte_identical",
+      "source_sha256": "47d811e0ceba62213eeae3fa11863eb2111c290acbfe773514cafd0938e63a04",
+      "git_sha256": "47d811e0ceba62213eeae3fa11863eb2111c290acbfe773514cafd0938e63a04"
+    },
+    {
+      "source_path": "com/google/common/net/HostSpecifier.java",
+      "git_path": "guava/src/com/google/common/net/HostSpecifier.java",
+      "status": "byte_identical",
+      "source_sha256": "c14cfbc2199439997038e331b26acf718b25b6e437b84df26ddf0d915b5a594e",
+      "git_sha256": "c14cfbc2199439997038e331b26acf718b25b6e437b84df26ddf0d915b5a594e"
+    },
+    {
+      "source_path": "com/google/common/net/InetAddresses.java",
+      "git_path": "guava/src/com/google/common/net/InetAddresses.java",
+      "status": "byte_identical",
+      "source_sha256": "25c76b425d741f236737276520d1b2df0958da4cc67034d95a84ae23a8fbefea",
+      "git_sha256": "25c76b425d741f236737276520d1b2df0958da4cc67034d95a84ae23a8fbefea"
+    },
+    {
+      "source_path": "com/google/common/net/InternetDomainName.java",
+      "git_path": "guava/src/com/google/common/net/InternetDomainName.java",
+      "status": "byte_identical",
+      "source_sha256": "4bdea9d023bb345fe945acfc51e8f2d8678b5d47c7f0555a98fe9cac081f5aa1",
+      "git_sha256": "4bdea9d023bb345fe945acfc51e8f2d8678b5d47c7f0555a98fe9cac081f5aa1"
+    },
+    {
+      "source_path": "com/google/common/net/TldPatterns.java",
+      "git_path": "guava/src/com/google/common/net/TldPatterns.java",
+      "status": "byte_identical",
+      "source_sha256": "6249b20b700e2bde2ba05b09214debeb446967c5e32485d764d627a0016f0940",
+      "git_sha256": "6249b20b700e2bde2ba05b09214debeb446967c5e32485d764d627a0016f0940"
+    },
+    {
+      "source_path": "com/google/common/net/package-info.java",
+      "git_path": "guava/src/com/google/common/net/package-info.java",
+      "status": "byte_identical",
+      "source_sha256": "2d275ddca320767820474eb796bcd488dee48d79699ce74e538e3f04b9711d96",
+      "git_sha256": "2d275ddca320767820474eb796bcd488dee48d79699ce74e538e3f04b9711d96"
+    },
+    {
+      "source_path": "com/google/common/primitives/Booleans.java",
+      "git_path": "guava/src/com/google/common/primitives/Booleans.java",
+      "status": "byte_identical",
+      "source_sha256": "f41348bf0f25cf866f855478d7c136f0c9b2988f2f72ed2377637db5921829b8",
+      "git_sha256": "f41348bf0f25cf866f855478d7c136f0c9b2988f2f72ed2377637db5921829b8"
+    },
+    {
+      "source_path": "com/google/common/primitives/Bytes.java",
+      "git_path": "guava/src/com/google/common/primitives/Bytes.java",
+      "status": "byte_identical",
+      "source_sha256": "4bcb5fee915b3e415a316511661557a8eec6fb036076065c92b6bcd7a27e8e13",
+      "git_sha256": "4bcb5fee915b3e415a316511661557a8eec6fb036076065c92b6bcd7a27e8e13"
+    },
+    {
+      "source_path": "com/google/common/primitives/Chars.java",
+      "git_path": "guava/src/com/google/common/primitives/Chars.java",
+      "status": "byte_identical",
+      "source_sha256": "841a7ce6a674f42d2e3a4231955d9a08531b864b10db2e74b2530e29f23efc59",
+      "git_sha256": "841a7ce6a674f42d2e3a4231955d9a08531b864b10db2e74b2530e29f23efc59"
+    },
+    {
+      "source_path": "com/google/common/primitives/Doubles.java",
+      "git_path": "guava/src/com/google/common/primitives/Doubles.java",
+      "status": "byte_identical",
+      "source_sha256": "d5bbd22e960cb33b12baeebbb7b58e8fbf4873e14dd2d1cc0141e97a76013bb5",
+      "git_sha256": "d5bbd22e960cb33b12baeebbb7b58e8fbf4873e14dd2d1cc0141e97a76013bb5"
+    },
+    {
+      "source_path": "com/google/common/primitives/Floats.java",
+      "git_path": "guava/src/com/google/common/primitives/Floats.java",
+      "status": "byte_identical",
+      "source_sha256": "1eb24ae9414cd054a0e10f37549a4ffdb5373e7e4d0735aea0fede2f4cd9fee8",
+      "git_sha256": "1eb24ae9414cd054a0e10f37549a4ffdb5373e7e4d0735aea0fede2f4cd9fee8"
+    },
+    {
+      "source_path": "com/google/common/primitives/Ints.java",
+      "git_path": "guava/src/com/google/common/primitives/Ints.java",
+      "status": "byte_identical",
+      "source_sha256": "011cff778fc24568d572f8e5cf7d9f84385f6d8faf24973d61e27ac81dafc94f",
+      "git_sha256": "011cff778fc24568d572f8e5cf7d9f84385f6d8faf24973d61e27ac81dafc94f"
+    },
+    {
+      "source_path": "com/google/common/primitives/Longs.java",
+      "git_path": "guava/src/com/google/common/primitives/Longs.java",
+      "status": "byte_identical",
+      "source_sha256": "9bff2e6096f227d36c541903255bbe9e2e06f67b322c38b1dae869c0c21c6255",
+      "git_sha256": "9bff2e6096f227d36c541903255bbe9e2e06f67b322c38b1dae869c0c21c6255"
+    },
+    {
+      "source_path": "com/google/common/primitives/Primitives.java",
+      "git_path": "guava/src/com/google/common/primitives/Primitives.java",
+      "status": "byte_identical",
+      "source_sha256": "c58613481561647d1054f54df454ce1fd04226feaafc1beecac1df8d12bdb6df",
+      "git_sha256": "c58613481561647d1054f54df454ce1fd04226feaafc1beecac1df8d12bdb6df"
+    },
+    {
+      "source_path": "com/google/common/primitives/Shorts.java",
+      "git_path": "guava/src/com/google/common/primitives/Shorts.java",
+      "status": "byte_identical",
+      "source_sha256": "7d7415191568f131471e79adeedcf077456cbf6507bf2f7091ad9f90b95f2c5a",
+      "git_sha256": "7d7415191568f131471e79adeedcf077456cbf6507bf2f7091ad9f90b95f2c5a"
+    },
+    {
+      "source_path": "com/google/common/primitives/SignedBytes.java",
+      "git_path": "guava/src/com/google/common/primitives/SignedBytes.java",
+      "status": "byte_identical",
+      "source_sha256": "d81ecb7c6d912649538e576d1899e59e253495f1e7dea64b5d5327f232e0552c",
+      "git_sha256": "d81ecb7c6d912649538e576d1899e59e253495f1e7dea64b5d5327f232e0552c"
+    },
+    {
+      "source_path": "com/google/common/primitives/UnsignedBytes.java",
+      "git_path": "guava/src/com/google/common/primitives/UnsignedBytes.java",
+      "status": "byte_identical",
+      "source_sha256": "df6dfe0b1568d62453fb696ffebed4c904122ab6228770d96cd665ae2d9dc5ee",
+      "git_sha256": "df6dfe0b1568d62453fb696ffebed4c904122ab6228770d96cd665ae2d9dc5ee"
+    },
+    {
+      "source_path": "com/google/common/primitives/UnsignedLongs.java",
+      "git_path": "guava/src/com/google/common/primitives/UnsignedLongs.java",
+      "status": "byte_identical",
+      "source_sha256": "ebfb5bb8acbc0bc61c21cfeb4e47f53d15c214af840536c57f450e6d0c206e8d",
+      "git_sha256": "ebfb5bb8acbc0bc61c21cfeb4e47f53d15c214af840536c57f450e6d0c206e8d"
+    },
+    {
+      "source_path": "com/google/common/primitives/package-info.java",
+      "git_path": "guava/src/com/google/common/primitives/package-info.java",
+      "status": "byte_identical",
+      "source_sha256": "c9e7da812f0ba6f25789209423a09d14584a8eb64f11ee062e6083cb776e07fb",
+      "git_sha256": "c9e7da812f0ba6f25789209423a09d14584a8eb64f11ee062e6083cb776e07fb"
+    },
+    {
+      "source_path": "com/google/common/util/concurrent/AbstractCheckedFuture.java",
+      "git_path": "guava/src/com/google/common/util/concurrent/AbstractCheckedFuture.java",
+      "status": "byte_identical",
+      "source_sha256": "49610a90c63c108682d4a6b05185b2d01ad8cbe6bf0e7811a62f1317eb083a62",
+      "git_sha256": "49610a90c63c108682d4a6b05185b2d01ad8cbe6bf0e7811a62f1317eb083a62"
+    },
+    {
+      "source_path": "com/google/common/util/concurrent/AbstractExecutionThreadService.java",
+      "git_path": "guava/src/com/google/common/util/concurrent/AbstractExecutionThreadService.java",
+      "status": "byte_identical",
+      "source_sha256": "b5149deb1c5fa1d95f461200d2cc171c47e442ebc89cc3681444a1a4dbbbdcdf",
+      "git_sha256": "b5149deb1c5fa1d95f461200d2cc171c47e442ebc89cc3681444a1a4dbbbdcdf"
+    },
+    {
+      "source_path": "com/google/common/util/concurrent/AbstractFuture.java",
+      "git_path": "guava/src/com/google/common/util/concurrent/AbstractFuture.java",
+      "status": "byte_identical",
+      "source_sha256": "bbff3531e9437f39500152b86a7b8f34fcbbabc74d3a8932870ca56a0ac10f03",
+      "git_sha256": "bbff3531e9437f39500152b86a7b8f34fcbbabc74d3a8932870ca56a0ac10f03"
+    },
+    {
+      "source_path": "com/google/common/util/concurrent/AbstractIdleService.java",
+      "git_path": "guava/src/com/google/common/util/concurrent/AbstractIdleService.java",
+      "status": "byte_identical",
+      "source_sha256": "18361673f839eb31e2f6fd8fd2319d9d01d5ffc035562896d56289139cc566ea",
+      "git_sha256": "18361673f839eb31e2f6fd8fd2319d9d01d5ffc035562896d56289139cc566ea"
+    },
+    {
+      "source_path": "com/google/common/util/concurrent/AbstractListenableFuture.java",
+      "git_path": "guava/src/com/google/common/util/concurrent/AbstractListenableFuture.java",
+      "status": "byte_identical",
+      "source_sha256": "a4ff04747b51dc111576f61db682e07d88146b20daf537608d607fee444a2c8a",
+      "git_sha256": "a4ff04747b51dc111576f61db682e07d88146b20daf537608d607fee444a2c8a"
+    },
+    {
+      "source_path": "com/google/common/util/concurrent/AbstractListeningExecutorService.java",
+      "git_path": "guava/src/com/google/common/util/concurrent/AbstractListeningExecutorService.java",
+      "status": "byte_identical",
+      "source_sha256": "365c78ed2776043ddf5b8950abd9978372e7f6ba8e847971e9530e437906fae8",
+      "git_sha256": "365c78ed2776043ddf5b8950abd9978372e7f6ba8e847971e9530e437906fae8"
+    },
+    {
+      "source_path": "com/google/common/util/concurrent/AbstractService.java",
+      "git_path": "guava/src/com/google/common/util/concurrent/AbstractService.java",
+      "status": "byte_identical",
+      "source_sha256": "42c7eafa418c0f49710f9101301fc7a63170713490343b7642c8211f7eafb027",
+      "git_sha256": "42c7eafa418c0f49710f9101301fc7a63170713490343b7642c8211f7eafb027"
+    },
+    {
+      "source_path": "com/google/common/util/concurrent/Atomics.java",
+      "git_path": "guava/src/com/google/common/util/concurrent/Atomics.java",
+      "status": "byte_identical",
+      "source_sha256": "dfb4f4867571720949b01a8c3abe7e69d3d069ddc25582ee52d39b84d9e7fa76",
+      "git_sha256": "dfb4f4867571720949b01a8c3abe7e69d3d069ddc25582ee52d39b84d9e7fa76"
+    },
+    {
+      "source_path": "com/google/common/util/concurrent/Callables.java",
+      "git_path": "guava/src/com/google/common/util/concurrent/Callables.java",
+      "status": "byte_identical",
+      "source_sha256": "aeb39b1aa149365b5b75ed7c3daaeaa612b916b66ae3cb042acad1c275bd6309",
+      "git_sha256": "aeb39b1aa149365b5b75ed7c3daaeaa612b916b66ae3cb042acad1c275bd6309"
+    },
+    {
+      "source_path": "com/google/common/util/concurrent/CheckedFuture.java",
+      "git_path": "guava/src/com/google/common/util/concurrent/CheckedFuture.java",
+      "status": "byte_identical",
+      "source_sha256": "35d791756e08fa8449dac0ae38271c32232dcb3b4a7149f26083cb2766cc5edf",
+      "git_sha256": "35d791756e08fa8449dac0ae38271c32232dcb3b4a7149f26083cb2766cc5edf"
+    },
+    {
+      "source_path": "com/google/common/util/concurrent/ExecutionError.java",
+      "git_path": "guava/src/com/google/common/util/concurrent/ExecutionError.java",
+      "status": "byte_identical",
+      "source_sha256": "4064850ceecb717e1bd2fa0acecc129d1d09561c6ffe0f381490c03dfb4f8f18",
+      "git_sha256": "4064850ceecb717e1bd2fa0acecc129d1d09561c6ffe0f381490c03dfb4f8f18"
+    },
+    {
+      "source_path": "com/google/common/util/concurrent/ExecutionList.java",
+      "git_path": "guava/src/com/google/common/util/concurrent/ExecutionList.java",
+      "status": "byte_identical",
+      "source_sha256": "315c17e9d26c4bdb45cd40384fef858826cd3fd6fd30aff3029bda73c7adeec1",
+      "git_sha256": "315c17e9d26c4bdb45cd40384fef858826cd3fd6fd30aff3029bda73c7adeec1"
+    },
+    {
+      "source_path": "com/google/common/util/concurrent/FakeTimeLimiter.java",
+      "git_path": "guava/src/com/google/common/util/concurrent/FakeTimeLimiter.java",
+      "status": "byte_identical",
+      "source_sha256": "acb7d66a0769e876084da84a864282d2389ce10fb5ff2d02a0596b32d6df7bab",
+      "git_sha256": "acb7d66a0769e876084da84a864282d2389ce10fb5ff2d02a0596b32d6df7bab"
+    },
+    {
+      "source_path": "com/google/common/util/concurrent/ForwardingBlockingQueue.java",
+      "git_path": "guava/src/com/google/common/util/concurrent/ForwardingBlockingQueue.java",
+      "status": "byte_identical",
+      "source_sha256": "13a409b1c2f0bf276994ff46a0c0d4bf9982011c29c62bf55a21109f15e9bb53",
+      "git_sha256": "13a409b1c2f0bf276994ff46a0c0d4bf9982011c29c62bf55a21109f15e9bb53"
+    },
+    {
+      "source_path": "com/google/common/util/concurrent/ForwardingCheckedFuture.java",
+      "git_path": "guava/src/com/google/common/util/concurrent/ForwardingCheckedFuture.java",
+      "status": "byte_identical",
+      "source_sha256": "a78f1fecf2bb9e51d8abca35f32cdd0d91722ac47df57365456c3b0306e47312",
+      "git_sha256": "a78f1fecf2bb9e51d8abca35f32cdd0d91722ac47df57365456c3b0306e47312"
+    },
+    {
+      "source_path": "com/google/common/util/concurrent/ForwardingExecutorService.java",
+      "git_path": "guava/src/com/google/common/util/concurrent/ForwardingExecutorService.java",
+      "status": "byte_identical",
+      "source_sha256": "a5df23fb90f2712985ca852f23aab385da435ebbd99c41094deadbc519aa7a7e",
+      "git_sha256": "a5df23fb90f2712985ca852f23aab385da435ebbd99c41094deadbc519aa7a7e"
+    },
+    {
+      "source_path": "com/google/common/util/concurrent/ForwardingFuture.java",
+      "git_path": "guava/src/com/google/common/util/concurrent/ForwardingFuture.java",
+      "status": "byte_identical",
+      "source_sha256": "5a833973dc2cfc45d84f5cdf3b478f6edfe7547fb91b93f44a9d2e7b38059ce6",
+      "git_sha256": "5a833973dc2cfc45d84f5cdf3b478f6edfe7547fb91b93f44a9d2e7b38059ce6"
+    },
+    {
+      "source_path": "com/google/common/util/concurrent/ForwardingListenableFuture.java",
+      "git_path": "guava/src/com/google/common/util/concurrent/ForwardingListenableFuture.java",
+      "status": "byte_identical",
+      "source_sha256": "6c79a101d4ac7bbf4836f2f91bf6603fdc83bc39ef0dabff9f4ea0018315fe63",
+      "git_sha256": "6c79a101d4ac7bbf4836f2f91bf6603fdc83bc39ef0dabff9f4ea0018315fe63"
+    },
+    {
+      "source_path": "com/google/common/util/concurrent/ForwardingListeningExecutorService.java",
+      "git_path": "guava/src/com/google/common/util/concurrent/ForwardingListeningExecutorService.java",
+      "status": "byte_identical",
+      "source_sha256": "aac2a64cf13e8e9ee849458a7c4e57daa3e384a54429a216002ee5989de4e755",
+      "git_sha256": "aac2a64cf13e8e9ee849458a7c4e57daa3e384a54429a216002ee5989de4e755"
+    },
+    {
+      "source_path": "com/google/common/util/concurrent/ForwardingService.java",
+      "git_path": "guava/src/com/google/common/util/concurrent/ForwardingService.java",
+      "status": "byte_identical",
+      "source_sha256": "c2bbc7ee18b2ff7f34bc0ceea605749715ab0cddf7a0b021c49f3bf7bd056566",
+      "git_sha256": "c2bbc7ee18b2ff7f34bc0ceea605749715ab0cddf7a0b021c49f3bf7bd056566"
+    },
+    {
+      "source_path": "com/google/common/util/concurrent/FutureCallback.java",
+      "git_path": "guava/src/com/google/common/util/concurrent/FutureCallback.java",
+      "status": "byte_identical",
+      "source_sha256": "9489bfd291ffaad955b4bbf0e14c354b85580e0f708e2dc614332e34adc6e0a5",
+      "git_sha256": "9489bfd291ffaad955b4bbf0e14c354b85580e0f708e2dc614332e34adc6e0a5"
+    },
+    {
+      "source_path": "com/google/common/util/concurrent/Futures.java",
+      "git_path": "guava/src/com/google/common/util/concurrent/Futures.java",
+      "status": "byte_identical",
+      "source_sha256": "94afbd45c4127fb893184f803cc13cf70d99bd6e4876e98ddc378a5d21d57135",
+      "git_sha256": "94afbd45c4127fb893184f803cc13cf70d99bd6e4876e98ddc378a5d21d57135"
+    },
+    {
+      "source_path": "com/google/common/util/concurrent/JdkFutureAdapters.java",
+      "git_path": "guava/src/com/google/common/util/concurrent/JdkFutureAdapters.java",
+      "status": "byte_identical",
+      "source_sha256": "a0a4e82a18731d71e1b262e7bea7642639c0aadf8eed904ade2fdd68e90b678f",
+      "git_sha256": "a0a4e82a18731d71e1b262e7bea7642639c0aadf8eed904ade2fdd68e90b678f"
+    },
+    {
+      "source_path": "com/google/common/util/concurrent/ListenableFuture.java",
+      "git_path": "guava/src/com/google/common/util/concurrent/ListenableFuture.java",
+      "status": "byte_identical",
+      "source_sha256": "e400b265bdfd966de47ae7edb5b4babc63bbefe64b0624cbbce91a0b7b110cbc",
+      "git_sha256": "e400b265bdfd966de47ae7edb5b4babc63bbefe64b0624cbbce91a0b7b110cbc"
+    },
+    {
+      "source_path": "com/google/common/util/concurrent/ListenableFutureTask.java",
+      "git_path": "guava/src/com/google/common/util/concurrent/ListenableFutureTask.java",
+      "status": "byte_identical",
+      "source_sha256": "3243732d29a5232c2dad5305adb8b5480614079637d9cc1cefe7d9d0bcaa85fe",
+      "git_sha256": "3243732d29a5232c2dad5305adb8b5480614079637d9cc1cefe7d9d0bcaa85fe"
+    },
+    {
+      "source_path": "com/google/common/util/concurrent/ListeningExecutorService.java",
+      "git_path": "guava/src/com/google/common/util/concurrent/ListeningExecutorService.java",
+      "status": "byte_identical",
+      "source_sha256": "d7af3eb41e4e43d9247732e38280e1dd2cf5b6a6de161bf344c8655fc1742886",
+      "git_sha256": "d7af3eb41e4e43d9247732e38280e1dd2cf5b6a6de161bf344c8655fc1742886"
+    },
+    {
+      "source_path": "com/google/common/util/concurrent/ListeningScheduledExecutorService.java",
+      "git_path": "guava/src/com/google/common/util/concurrent/ListeningScheduledExecutorService.java",
+      "status": "byte_identical",
+      "source_sha256": "694c9ea1a8b886e64fa3224b23c573c80867ff153e24491ac3a90fc025bdcf6b",
+      "git_sha256": "694c9ea1a8b886e64fa3224b23c573c80867ff153e24491ac3a90fc025bdcf6b"
+    },
+    {
+      "source_path": "com/google/common/util/concurrent/Monitor.java",
+      "git_path": "guava/src/com/google/common/util/concurrent/Monitor.java",
+      "status": "byte_identical",
+      "source_sha256": "aae8a38ad6e17e792e486272c12201419a2823b6cbc14fdadca3bf8ea101e730",
+      "git_sha256": "aae8a38ad6e17e792e486272c12201419a2823b6cbc14fdadca3bf8ea101e730"
+    },
+    {
+      "source_path": "com/google/common/util/concurrent/MoreExecutors.java",
+      "git_path": "guava/src/com/google/common/util/concurrent/MoreExecutors.java",
+      "status": "byte_identical",
+      "source_sha256": "f49c0a29ff6ea67ef02afac128e1267b58c9370ea6ea103ca0c67f3bb0a0b22d",
+      "git_sha256": "f49c0a29ff6ea67ef02afac128e1267b58c9370ea6ea103ca0c67f3bb0a0b22d"
+    },
+    {
+      "source_path": "com/google/common/util/concurrent/Service.java",
+      "git_path": "guava/src/com/google/common/util/concurrent/Service.java",
+      "status": "byte_identical",
+      "source_sha256": "4705e31fcbf964e113976c6933a3003f72b9a3148457a0dcfde27081e630e460",
+      "git_sha256": "4705e31fcbf964e113976c6933a3003f72b9a3148457a0dcfde27081e630e460"
+    },
+    {
+      "source_path": "com/google/common/util/concurrent/SettableFuture.java",
+      "git_path": "guava/src/com/google/common/util/concurrent/SettableFuture.java",
+      "status": "byte_identical",
+      "source_sha256": "1898a07f54bcb952fe455f42cff06df6f7a54386fdf2578ffc3772d0b81a2da6",
+      "git_sha256": "1898a07f54bcb952fe455f42cff06df6f7a54386fdf2578ffc3772d0b81a2da6"
+    },
+    {
+      "source_path": "com/google/common/util/concurrent/SimpleTimeLimiter.java",
+      "git_path": "guava/src/com/google/common/util/concurrent/SimpleTimeLimiter.java",
+      "status": "byte_identical",
+      "source_sha256": "423868b3213238c2b8603e3b9fc846525b700bd56adb1ef033f69378cd27bd1d",
+      "git_sha256": "423868b3213238c2b8603e3b9fc846525b700bd56adb1ef033f69378cd27bd1d"
+    },
+    {
+      "source_path": "com/google/common/util/concurrent/ThreadFactoryBuilder.java",
+      "git_path": "guava/src/com/google/common/util/concurrent/ThreadFactoryBuilder.java",
+      "status": "byte_identical",
+      "source_sha256": "605c211cdd9eba5262f5e12605680697dc34dd7fb8de0882e3e41c7a7d0b479d",
+      "git_sha256": "605c211cdd9eba5262f5e12605680697dc34dd7fb8de0882e3e41c7a7d0b479d"
+    },
+    {
+      "source_path": "com/google/common/util/concurrent/TimeLimiter.java",
+      "git_path": "guava/src/com/google/common/util/concurrent/TimeLimiter.java",
+      "status": "byte_identical",
+      "source_sha256": "1471d757ab7ee1c32af4b6ad76d572a17cbd9258ea4eb4f01e1dabaa791b3a9b",
+      "git_sha256": "1471d757ab7ee1c32af4b6ad76d572a17cbd9258ea4eb4f01e1dabaa791b3a9b"
+    },
+    {
+      "source_path": "com/google/common/util/concurrent/UncaughtExceptionHandlers.java",
+      "git_path": "guava/src/com/google/common/util/concurrent/UncaughtExceptionHandlers.java",
+      "status": "byte_identical",
+      "source_sha256": "5c18ddcdf515434f73fe32810a4247a09c6b0b3d53f056306f490f63bc356446",
+      "git_sha256": "5c18ddcdf515434f73fe32810a4247a09c6b0b3d53f056306f490f63bc356446"
+    },
+    {
+      "source_path": "com/google/common/util/concurrent/UncheckedExecutionException.java",
+      "git_path": "guava/src/com/google/common/util/concurrent/UncheckedExecutionException.java",
+      "status": "byte_identical",
+      "source_sha256": "be171280779f749d94a15b78e988d4c1c043f4ada3f6a57f2de8677c854c5f77",
+      "git_sha256": "be171280779f749d94a15b78e988d4c1c043f4ada3f6a57f2de8677c854c5f77"
+    },
+    {
+      "source_path": "com/google/common/util/concurrent/UncheckedTimeoutException.java",
+      "git_path": "guava/src/com/google/common/util/concurrent/UncheckedTimeoutException.java",
+      "status": "byte_identical",
+      "source_sha256": "87e1be6ca1524a3a1df00771ffc259e253ef598012941d798fc13b0463462cfe",
+      "git_sha256": "87e1be6ca1524a3a1df00771ffc259e253ef598012941d798fc13b0463462cfe"
+    },
+    {
+      "source_path": "com/google/common/util/concurrent/UninterruptibleFuture.java",
+      "git_path": "guava/src/com/google/common/util/concurrent/UninterruptibleFuture.java",
+      "status": "byte_identical",
+      "source_sha256": "636bd3aaf9c86473979c85263bb6e092c3b00f679f31d3169367fee6e645c77f",
+      "git_sha256": "636bd3aaf9c86473979c85263bb6e092c3b00f679f31d3169367fee6e645c77f"
+    },
+    {
+      "source_path": "com/google/common/util/concurrent/Uninterruptibles.java",
+      "git_path": "guava/src/com/google/common/util/concurrent/Uninterruptibles.java",
+      "status": "byte_identical",
+      "source_sha256": "4431d1d197d9c27d5d07e2654b885aff85ace5b940228cdd60252197f5beebe3",
+      "git_sha256": "4431d1d197d9c27d5d07e2654b885aff85ace5b940228cdd60252197f5beebe3"
+    },
+    {
+      "source_path": "com/google/common/util/concurrent/package-info.java",
+      "git_path": "guava/src/com/google/common/util/concurrent/package-info.java",
+      "status": "byte_identical",
+      "source_sha256": "e1b846574a54b6bdf436e68929f3ee776b78814aa16a453e2be311da89a691b6",
+      "git_sha256": "e1b846574a54b6bdf436e68929f3ee776b78814aa16a453e2be311da89a691b6"
+    }
+  ]
+}

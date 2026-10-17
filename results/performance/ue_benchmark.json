@@ -1,0 +1,98 @@
+{
+  "schema_version": 1,
+  "algorithm": "JNode-UE (Yano and Matsuo, 2020)",
+  "measured_at_utc": "2026-10-17T14:41:43.143325+00:00",
+  "environment": {
+    "python": "3.12.14",
+    "platform": "Linux-6.18.55-x86_64-with-glibc2.39"
+  },
+  "construction": {
+    "name": "directed indexed ring with fixed outgoing offsets",
+    "edge_rule": "C_i#run()V -> C_((i+j) mod N)#accept()V, j=1..degree",
+    "degree": 20,
+    "randomness": "none",
+    "thresholds": {
+      "usage_equality": 0.85,
+      "cardinality": 0.9
+    }
+  },
+  "measurement_protocol": {
+    "repeats": 3,
+    "summary": "median",
+    "timed_region": "detect_omnipresent only, including input validation, diagnostics and output ordering",
+    "excluded_from_timing": [
+      "input creation",
+      "garbage collection",
+      "expected-output checks"
+    ],
+    "memory": "process high-water RSS, cumulative across cases, including input and result objects",
+    "previous_result_retained_until_next_call_completes": true,
+    "limitations": "synthetic scaling evidence; excludes downloads, extraction and clustering; environment-dependent timing"
+  },
+  "code_sha256": {
+    "src/evolution/omnipresent.py": "b8dea8f90a2c7c48757e87ac388c43ff97bc228450f99836a12c473dc107ac17",
+    "scripts/benchmark_ue.py": "671c93da02ef2aa3eba839a33201b9bd82c751d9dee6b35ef95fd3e21bd490d3"
+  },
+  "cases": [
+    {
+      "classes": 1000,
+      "distinct_member_references": 20000,
+      "class_pairs": 20000,
+      "runs_seconds": [
+        0.0898648359998333,
+        0.08752285700029461,
+        0.08699127599993517
+      ],
+      "median_seconds": 0.08752285700029461,
+      "process_high_water_rss_mib": 33.98828125,
+      "expected_fanin": 20,
+      "expected_referenced_members_per_target": 1,
+      "expected_max_dedication": 0.05,
+      "expected_usage_equality": 0.95,
+      "expected_cardinality": 0.95,
+      "expected_removed_classes": 1000,
+      "observed_removed_classes": 1000,
+      "all_expected_outputs_checked": true
+    },
+    {
+      "classes": 5000,
+      "distinct_member_references": 100000,
+      "class_pairs": 100000,
+      "runs_seconds": [
+        0.5415185630008637,
+        0.5732403299998623,
+        0.5670562240002255
+      ],
+      "median_seconds": 0.5670562240002255,
+      "process_high_water_rss_mib": 117.6640625,
+      "expected_fanin": 20,
+      "expected_referenced_members_per_target": 1,
+      "expected_max_dedication": 0.05,
+      "expected_usage_equality": 0.95,
+      "expected_cardinality": 0.95,
+      "expected_removed_classes": 5000,
+      "observed_removed_classes": 5000,
+      "all_expected_outputs_checked": true
+    },
+    {
+      "classes": 10000,
+      "distinct_member_references": 200000,
+      "class_pairs": 200000,
+      "runs_seconds": [
+        1.2585962829998607,
+        1.2360354370002824,
+        1.218807543999901
+      ],
+      "median_seconds": 1.2360354370002824,
+      "process_high_water_rss_mib": 221.8671875,
+      "expected_fanin": 20,
+      "expected_referenced_members_per_target": 1,
+      "expected_max_dedication": 0.05,
+      "expected_usage_equality": 0.95,
+      "expected_cardinality": 0.95,
+      "expected_removed_classes": 10000,
+      "observed_removed_classes": 10000,
+      "all_expected_outputs_checked": true
+    }
+  ]
+}

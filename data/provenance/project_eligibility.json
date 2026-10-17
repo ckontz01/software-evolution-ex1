@@ -1,0 +1,658 @@
+{
+  "snapshot_date_utc": "2026-10-17",
+  "repository_metadata": {
+    "id": 20300177,
+    "node_id": "MDEwOlJlcG9zaXRvcnkyMDMwMDE3Nw==",
+    "name": "guava",
+    "full_name": "google/guava",
+    "private": false,
+    "owner": {
+      "login": "google",
+      "id": 1342004,
+      "node_id": "MDEyOk9yZ2FuaXphdGlvbjEzNDIwMDQ=",
+      "avatar_url": "https://avatars.githubusercontent.com/u/1342004?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/google",
+      "html_url": "https://github.com/google",
+      "followers_url": "https://api.github.com/users/google/followers",
+      "following_url": "https://api.github.com/users/google/following{/other_user}",
+      "gists_url": "https://api.github.com/users/google/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/google/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/google/subscriptions",
+      "organizations_url": "https://api.github.com/users/google/orgs",
+      "repos_url": "https://api.github.com/users/google/repos",
+      "events_url": "https://api.github.com/users/google/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/google/received_events",
+      "type": "Organization",
+      "user_view_type": "public",
+      "site_admin": false
+    },
+    "html_url": "https://github.com/google/guava",
+    "description": "Google core libraries for Java",
+    "fork": false,
+    "url": "https://api.github.com/repos/google/guava",
+    "forks_url": "https://api.github.com/repos/google/guava/forks",
+    "keys_url": "https://api.github.com/repos/google/guava/keys{/key_id}",
+    "collaborators_url": "https://api.github.com/repos/google/guava/collaborators{/collaborator}",
+    "teams_url": "https://api.github.com/repos/google/guava/teams",
+    "hooks_url": "https://api.github.com/repos/google/guava/hooks",
+    "issue_events_url": "https://api.github.com/repos/google/guava/issues/events{/number}",
+    "events_url": "https://api.github.com/repos/google/guava/events",
+    "assignees_url": "https://api.github.com/repos/google/guava/assignees{/user}",
+    "branches_url": "https://api.github.com/repos/google/guava/branches{/branch}",
+    "tags_url": "https://api.github.com/repos/google/guava/tags",
+    "blobs_url": "https://api.github.com/repos/google/guava/git/blobs{/sha}",
+    "git_tags_url": "https://api.github.com/repos/google/guava/git/tags{/sha}",
+    "git_refs_url": "https://api.github.com/repos/google/guava/git/refs{/sha}",
+    "trees_url": "https://api.github.com/repos/google/guava/git/trees{/sha}",
+    "statuses_url": "https://api.github.com/repos/google/guava/statuses/{sha}",
+    "languages_url": "https://api.github.com/repos/google/guava/languages",
+    "stargazers_url": "https://api.github.com/repos/google/guava/stargazers",
+    "contributors_url": "https://api.github.com/repos/google/guava/contributors",
+    "subscribers_url": "https://api.github.com/repos/google/guava/subscribers",
+    "subscription_url": "https://api.github.com/repos/google/guava/subscription",
+    "commits_url": "https://api.github.com/repos/google/guava/commits{/sha}",
+    "git_commits_url": "https://api.github.com/repos/google/guava/git/commits{/sha}",
+    "comments_url": "https://api.github.com/repos/google/guava/comments{/number}",
+    "issue_comment_url": "https://api.github.com/repos/google/guava/issues/comments{/number}",
+    "contents_url": "https://api.github.com/repos/google/guava/contents/{+path}",
+    "compare_url": "https://api.github.com/repos/google/guava/compare/{base}...{head}",
+    "merges_url": "https://api.github.com/repos/google/guava/merges",
+    "archive_url": "https://api.github.com/repos/google/guava/{archive_format}{/ref}",
+    "downloads_url": "https://api.github.com/repos/google/guava/downloads",
+    "issues_url": "https://api.github.com/repos/google/guava/issues{/number}",
+    "pulls_url": "https://api.github.com/repos/google/guava/pulls{/number}",
+    "milestones_url": "https://api.github.com/repos/google/guava/milestones{/number}",
+    "notifications_url": "https://api.github.com/repos/google/guava/notifications{?since,all,participating}",
+    "labels_url": "https://api.github.com/repos/google/guava/labels{/name}",
+    "releases_url": "https://api.github.com/repos/google/guava/releases{/id}",
+    "deployments_url": "https://api.github.com/repos/google/guava/deployments",
+    "created_at": "2014-05-29T16:23:17Z",
+    "updated_at": "2026-10-17T14:22:31Z",
+    "pushed_at": "2026-10-17T14:22:28Z",
+    "git_url": "git://github.com/google/guava.git",
+    "ssh_url": "git@github.com:google/guava.git",
+    "clone_url": "https://github.com/google/guava.git",
+    "svn_url": "https://github.com/google/guava",
+    "homepage": "https://guava.dev/",
+    "size": 1430575,
+    "stargazers_count": 51922,
+    "watchers_count": 51922,
+    "language": "Java",
+    "has_issues": true,
+    "has_projects": true,
+    "has_downloads": false,
+    "has_wiki": true,
+    "has_pages": true,
+    "has_discussions": false,
+    "forks_count": 11211,
+    "mirror_url": null,
+    "archived": false,
+    "disabled": false,
+    "open_issues_count": 758,
+    "license": {
+      "key": "apache-2.0",
+      "name": "Apache License 2.0",
+      "spdx_id": "Apache-2.0",
+      "url": "https://api.github.com/licenses/apache-2.0",
+      "node_id": "MDc6TGljZW5zZTI="
+    },
+    "allow_forking": true,
+    "is_template": false,
+    "web_commit_signoff_required": false,
+    "has_pull_requests": true,
+    "pull_request_creation_policy": "all",
+    "topics": [
+      "guava",
+      "java"
+    ],
+    "visibility": "public",
+    "forks": 11211,
+    "open_issues": 758,
+    "watchers": 51922,
+    "default_branch": "master",
+    "permissions": {
+      "admin": false,
+      "maintain": false,
+      "push": false,
+      "triage": false,
+      "pull": true
+    },
+    "custom_properties": {
+      "ai_agent_config_bypass": "false",
+      "ghss-action-scanning-disabled": "false",
+      "ghss-action-scanning-optin": "false",
+      "requires_action_scanning": "true",
+      "requires_two_party_review": "false"
+    },
+    "organization": {
+      "login": "google",
+      "id": 1342004,
+      "node_id": "MDEyOk9yZ2FuaXphdGlvbjEzNDIwMDQ=",
+      "avatar_url": "https://avatars.githubusercontent.com/u/1342004?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/google",
+      "html_url": "https://github.com/google",
+      "followers_url": "https://api.github.com/users/google/followers",
+      "following_url": "https://api.github.com/users/google/following{/other_user}",
+      "gists_url": "https://api.github.com/users/google/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/google/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/google/subscriptions",
+      "organizations_url": "https://api.github.com/users/google/orgs",
+      "repos_url": "https://api.github.com/users/google/repos",
+      "events_url": "https://api.github.com/users/google/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/google/received_events",
+      "type": "Organization",
+      "user_view_type": "public",
+      "site_admin": false
+    },
+    "network_count": 11211,
+    "subscribers_count": 2325
+  },
+  "commits_since_2024_lower_bound_sample": [
+    {
+      "sha": "9247d70e1638aa88103f727d2c47c66c4f93fd16",
+      "committed_at": "2026-10-17T14:22:15Z",
+      "url": "https://github.com/google/guava/commit/9247d70e1638aa88103f727d2c47c66c4f93fd16"
+    },
+    {
+      "sha": "5e82f2f528fbbd970e00748025b48e3eb42ed702",
+      "committed_at": "2026-10-16T16:31:15Z",
+      "url": "https://github.com/google/guava/commit/5e82f2f528fbbd970e00748025b48e3eb42ed702"
+    },
+    {
+      "sha": "dea4984457cdce41842d3bec8d04fb469e776981",
+      "committed_at": "2026-10-14T19:33:21Z",
+      "url": "https://github.com/google/guava/commit/dea4984457cdce41842d3bec8d04fb469e776981"
+    },
+    {
+      "sha": "2b86a8216627a807ce8520abc6ae55437dbb85fb",
+      "committed_at": "2026-10-13T20:32:37Z",
+      "url": "https://github.com/google/guava/commit/2b86a8216627a807ce8520abc6ae55437dbb85fb"
+    },
+    {
+      "sha": "6b3a8d7498a7fde122967ba37a023ba3dcb47792",
+      "committed_at": "2026-10-09T21:19:13Z",
+      "url": "https://github.com/google/guava/commit/6b3a8d7498a7fde122967ba37a023ba3dcb47792"
+    },
+    {
+      "sha": "1485e0093c313e12662bc78d80336c982a9dfd26",
+      "committed_at": "2026-10-09T20:20:57Z",
+      "url": "https://github.com/google/guava/commit/1485e0093c313e12662bc78d80336c982a9dfd26"
+    },
+    {
+      "sha": "1da08c4d381abf3613ad956d3aec9fa77dfc94b2",
+      "committed_at": "2026-10-08T16:48:57Z",
+      "url": "https://github.com/google/guava/commit/1da08c4d381abf3613ad956d3aec9fa77dfc94b2"
+    },
+    {
+      "sha": "49300093df01df7d7bea5f1d657ecf58fbc4f596",
+      "committed_at": "2026-10-07T21:11:46Z",
+      "url": "https://github.com/google/guava/commit/49300093df01df7d7bea5f1d657ecf58fbc4f596"
+    },
+    {
+      "sha": "7573b12d80cf78d4509655c6ab0829c0556ac71c",
+      "committed_at": "2026-10-07T20:07:06Z",
+      "url": "https://github.com/google/guava/commit/7573b12d80cf78d4509655c6ab0829c0556ac71c"
+    },
+    {
+      "sha": "cbc66934d128a2b97247459b48a1eefd21e861a5",
+      "committed_at": "2026-10-07T20:06:01Z",
+      "url": "https://github.com/google/guava/commit/cbc66934d128a2b97247459b48a1eefd21e861a5"
+    },
+    {
+      "sha": "a24e79ef3e60ce56150795e87356a7fc9c7860f6",
+      "committed_at": "2026-10-07T20:03:35Z",
+      "url": "https://github.com/google/guava/commit/a24e79ef3e60ce56150795e87356a7fc9c7860f6"
+    },
+    {
+      "sha": "99dfa90a138b9d833a9b144dab22991dbaab0288",
+      "committed_at": "2026-10-07T17:24:03Z",
+      "url": "https://github.com/google/guava/commit/99dfa90a138b9d833a9b144dab22991dbaab0288"
+    },
+    {
+      "sha": "994a2fe5be5ae3721afb520902f60af15f57e405",
+      "committed_at": "2026-10-07T15:48:44Z",
+      "url": "https://github.com/google/guava/commit/994a2fe5be5ae3721afb520902f60af15f57e405"
+    },
+    {
+      "sha": "c05d28807a6f0fbcb0379349884632c07180a4bd",
+      "committed_at": "2026-10-07T12:57:46Z",
+      "url": "https://github.com/google/guava/commit/c05d28807a6f0fbcb0379349884632c07180a4bd"
+    },
+    {
+      "sha": "3dab0e877359da2fcf72039b149fa758fa077df6",
+      "committed_at": "2026-10-07T02:51:23Z",
+      "url": "https://github.com/google/guava/commit/3dab0e877359da2fcf72039b149fa758fa077df6"
+    },
+    {
+      "sha": "82786379da1e60505d9898f5d50f1c8ac9dc0b74",
+      "committed_at": "2026-10-07T00:19:52Z",
+      "url": "https://github.com/google/guava/commit/82786379da1e60505d9898f5d50f1c8ac9dc0b74"
+    },
+    {
+      "sha": "90a2a9dda8452cf6ef253a82ecd27fa5b09f5f0d",
+      "committed_at": "2026-10-06T22:09:15Z",
+      "url": "https://github.com/google/guava/commit/90a2a9dda8452cf6ef253a82ecd27fa5b09f5f0d"
+    },
+    {
+      "sha": "786bb1a9b44685875ebe7b83f1404a1f07ac653c",
+      "committed_at": "2026-10-06T16:48:06Z",
+      "url": "https://github.com/google/guava/commit/786bb1a9b44685875ebe7b83f1404a1f07ac653c"
+    },
+    {
+      "sha": "52d12e4aa2fe8bd1e09811daa4ced7cc99697f45",
+      "committed_at": "2026-10-05T20:43:13Z",
+      "url": "https://github.com/google/guava/commit/52d12e4aa2fe8bd1e09811daa4ced7cc99697f45"
+    },
+    {
+      "sha": "81c7d030f8f144a4885ccf8efdc72c92605b4eec",
+      "committed_at": "2026-10-05T16:58:26Z",
+      "url": "https://github.com/google/guava/commit/81c7d030f8f144a4885ccf8efdc72c92605b4eec"
+    },
+    {
+      "sha": "51246d06bb85ccc182a0aeb6a7adcbd55f759ae5",
+      "committed_at": "2026-10-05T12:58:04Z",
+      "url": "https://github.com/google/guava/commit/51246d06bb85ccc182a0aeb6a7adcbd55f759ae5"
+    },
+    {
+      "sha": "74fb73b20e17e1b3fa072d7754af493217f86781",
+      "committed_at": "2026-10-03T02:59:00Z",
+      "url": "https://github.com/google/guava/commit/74fb73b20e17e1b3fa072d7754af493217f86781"
+    },
+    {
+      "sha": "72dd370d951967fe97756ecaaa938c7cb5bcbc28",
+      "committed_at": "2026-10-02T17:59:30Z",
+      "url": "https://github.com/google/guava/commit/72dd370d951967fe97756ecaaa938c7cb5bcbc28"
+    },
+    {
+      "sha": "5dc4cd1ad452811629cb2ebe72c2c21142c22c1b",
+      "committed_at": "2026-10-01T17:41:16Z",
+      "url": "https://github.com/google/guava/commit/5dc4cd1ad452811629cb2ebe72c2c21142c22c1b"
+    },
+    {
+      "sha": "d860752657047435096cff155fa4c04267014122",
+      "committed_at": "2026-09-29T21:59:05Z",
+      "url": "https://github.com/google/guava/commit/d860752657047435096cff155fa4c04267014122"
+    },
+    {
+      "sha": "b931fe9d6d5cf00bc55714ad3308d086f71850fe",
+      "committed_at": "2026-09-29T13:50:03Z",
+      "url": "https://github.com/google/guava/commit/b931fe9d6d5cf00bc55714ad3308d086f71850fe"
+    },
+    {
+      "sha": "b0ab782522cbc48dbd73d1fe6d8bf0aa9c1fe52f",
+      "committed_at": "2026-09-28T21:04:26Z",
+      "url": "https://github.com/google/guava/commit/b0ab782522cbc48dbd73d1fe6d8bf0aa9c1fe52f"
+    },
+    {
+      "sha": "4ecac71e56c51a53ba4190e8560cba57fcfa37c9",
+      "committed_at": "2026-09-28T17:40:48Z",
+      "url": "https://github.com/google/guava/commit/4ecac71e56c51a53ba4190e8560cba57fcfa37c9"
+    },
+    {
+      "sha": "67b6ad17dbf93460967b475408cecabfe2ca2c9e",
+      "committed_at": "2026-09-28T17:27:47Z",
+      "url": "https://github.com/google/guava/commit/67b6ad17dbf93460967b475408cecabfe2ca2c9e"
+    },
+    {
+      "sha": "a279b884fe9890a3869142919352156f2a67a705",
+      "committed_at": "2026-09-26T23:44:25Z",
+      "url": "https://github.com/google/guava/commit/a279b884fe9890a3869142919352156f2a67a705"
+    },
+    {
+      "sha": "4d41665af1b05bad09039b82cb2a1a474a7bceaf",
+      "committed_at": "2026-09-24T21:58:02Z",
+      "url": "https://github.com/google/guava/commit/4d41665af1b05bad09039b82cb2a1a474a7bceaf"
+    },
+    {
+      "sha": "17f7000f49969e90e4b010a9ed5b170b9c80c25a",
+      "committed_at": "2026-09-24T19:36:12Z",
+      "url": "https://github.com/google/guava/commit/17f7000f49969e90e4b010a9ed5b170b9c80c25a"
+    },
+    {
+      "sha": "88583e2ecbd6c9c0643afee6e66163a0f5d2ded9",
+      "committed_at": "2026-09-24T16:27:10Z",
+      "url": "https://github.com/google/guava/commit/88583e2ecbd6c9c0643afee6e66163a0f5d2ded9"
+    },
+    {
+      "sha": "39979d08bc4b1dbcb20abeef5905192b225c8647",
+      "committed_at": "2026-09-24T13:33:34Z",
+      "url": "https://github.com/google/guava/commit/39979d08bc4b1dbcb20abeef5905192b225c8647"
+    },
+    {
+      "sha": "79152348ece2de85559eb2eb18133862d492c892",
+      "committed_at": "2026-09-23T19:26:11Z",
+      "url": "https://github.com/google/guava/commit/79152348ece2de85559eb2eb18133862d492c892"
+    },
+    {
+      "sha": "73acb67fe948ea24ec4787f43748b46176e40e53",
+      "committed_at": "2026-09-23T17:35:36Z",
+      "url": "https://github.com/google/guava/commit/73acb67fe948ea24ec4787f43748b46176e40e53"
+    },
+    {
+      "sha": "1278ad9c2257f48dc82fb7b7c625ab563605aa24",
+      "committed_at": "2026-09-23T15:19:42Z",
+      "url": "https://github.com/google/guava/commit/1278ad9c2257f48dc82fb7b7c625ab563605aa24"
+    },
+    {
+      "sha": "16fda8017316d48a63d99bfc85375f3037b3a6c7",
+      "committed_at": "2026-09-22T13:07:05Z",
+      "url": "https://github.com/google/guava/commit/16fda8017316d48a63d99bfc85375f3037b3a6c7"
+    },
+    {
+      "sha": "2a11c2a311cfa400ceda7b847b20f0742bf6748f",
+      "committed_at": "2026-09-21T18:19:17Z",
+      "url": "https://github.com/google/guava/commit/2a11c2a311cfa400ceda7b847b20f0742bf6748f"
+    },
+    {
+      "sha": "77b2cf6b922f4646154f9d2940f5aa1f5c11129a",
+      "committed_at": "2026-09-18T21:05:11Z",
+      "url": "https://github.com/google/guava/commit/77b2cf6b922f4646154f9d2940f5aa1f5c11129a"
+    },
+    {
+      "sha": "794fa736c90e9a1bb283eb2309f4e0cddd18f4bd",
+      "committed_at": "2026-09-18T19:49:35Z",
+      "url": "https://github.com/google/guava/commit/794fa736c90e9a1bb283eb2309f4e0cddd18f4bd"
+    },
+    {
+      "sha": "d7433962fdc49fb6e5bac8537bec5dcfef1e1070",
+      "committed_at": "2026-09-18T19:46:28Z",
+      "url": "https://github.com/google/guava/commit/d7433962fdc49fb6e5bac8537bec5dcfef1e1070"
+    },
+    {
+      "sha": "ce2511debdba0b14d5aaa25ffc9d4c26561ce5ab",
+      "committed_at": "2026-09-18T19:34:17Z",
+      "url": "https://github.com/google/guava/commit/ce2511debdba0b14d5aaa25ffc9d4c26561ce5ab"
+    },
+    {
+      "sha": "77920a18b8e44fc580401d576a5222c287990d22",
+      "committed_at": "2026-09-18T19:04:56Z",
+      "url": "https://github.com/google/guava/commit/77920a18b8e44fc580401d576a5222c287990d22"
+    },
+    {
+      "sha": "48a4d3c111faba28a1dc8309273a1af646cd0760",
+      "committed_at": "2026-09-18T18:57:36Z",
+      "url": "https://github.com/google/guava/commit/48a4d3c111faba28a1dc8309273a1af646cd0760"
+    },
+    {
+      "sha": "5a7407d8f0bcccdf36c919b77991809c1bced828",
+      "committed_at": "2026-09-17T17:31:55Z",
+      "url": "https://github.com/google/guava/commit/5a7407d8f0bcccdf36c919b77991809c1bced828"
+    },
+    {
+      "sha": "11ef04e81003ec3b4bd245918e6f9ef7ed90ebe8",
+      "committed_at": "2026-09-15T21:12:21Z",
+      "url": "https://github.com/google/guava/commit/11ef04e81003ec3b4bd245918e6f9ef7ed90ebe8"
+    },
+    {
+      "sha": "b30262d1bca73a10ca5095cfff41b201a47c1bdd",
+      "committed_at": "2026-09-11T02:19:40Z",
+      "url": "https://github.com/google/guava/commit/b30262d1bca73a10ca5095cfff41b201a47c1bdd"
+    },
+    {
+      "sha": "5f97cde6cf5fa517258ba598a4c56448f83478ac",
+      "committed_at": "2026-09-10T20:29:34Z",
+      "url": "https://github.com/google/guava/commit/5f97cde6cf5fa517258ba598a4c56448f83478ac"
+    },
+    {
+      "sha": "0bfee017f6146c3e09b14c08e1634d51b5a6c791",
+      "committed_at": "2026-09-09T19:48:46Z",
+      "url": "https://github.com/google/guava/commit/0bfee017f6146c3e09b14c08e1634d51b5a6c791"
+    },
+    {
+      "sha": "3cffad12e0bb79b5221359ad783747ef5b2bb938",
+      "committed_at": "2026-09-09T17:08:46Z",
+      "url": "https://github.com/google/guava/commit/3cffad12e0bb79b5221359ad783747ef5b2bb938"
+    },
+    {
+      "sha": "4afb1e04a4246c261be4742e1f2e2c39ebaf6266",
+      "committed_at": "2026-09-08T21:13:15Z",
+      "url": "https://github.com/google/guava/commit/4afb1e04a4246c261be4742e1f2e2c39ebaf6266"
+    },
+    {
+      "sha": "12b08072aeed8023cbdddf029b23b675ed416485",
+      "committed_at": "2026-09-08T16:30:03Z",
+      "url": "https://github.com/google/guava/commit/12b08072aeed8023cbdddf029b23b675ed416485"
+    },
+    {
+      "sha": "e5c81f97e2ff79255ffdb691a0291b69194efacf",
+      "committed_at": "2026-09-08T13:10:31Z",
+      "url": "https://github.com/google/guava/commit/e5c81f97e2ff79255ffdb691a0291b69194efacf"
+    },
+    {
+      "sha": "5fb424c43ae38bad86b18841954337af791b6685",
+      "committed_at": "2026-09-04T20:10:36Z",
+      "url": "https://github.com/google/guava/commit/5fb424c43ae38bad86b18841954337af791b6685"
+    },
+    {
+      "sha": "14c81e523a4bae39b4329d6476e293867f3169c6",
+      "committed_at": "2026-09-02T22:40:02Z",
+      "url": "https://github.com/google/guava/commit/14c81e523a4bae39b4329d6476e293867f3169c6"
+    },
+    {
+      "sha": "f744cde9f5203f0690756f1e78957f55c11c3bcc",
+      "committed_at": "2026-09-02T17:19:37Z",
+      "url": "https://github.com/google/guava/commit/f744cde9f5203f0690756f1e78957f55c11c3bcc"
+    },
+    {
+      "sha": "936fd96f77875f93f71ba1996804000e5c84816f",
+      "committed_at": "2026-09-02T16:18:13Z",
+      "url": "https://github.com/google/guava/commit/936fd96f77875f93f71ba1996804000e5c84816f"
+    },
+    {
+      "sha": "25e291479ae9b5fdd84e4d2df3d4669c5c0fcba1",
+      "committed_at": "2026-09-02T00:42:21Z",
+      "url": "https://github.com/google/guava/commit/25e291479ae9b5fdd84e4d2df3d4669c5c0fcba1"
+    },
+    {
+      "sha": "0678c0c7a3690ff110612584e9aa78e186dbd85f",
+      "committed_at": "2026-09-01T20:38:26Z",
+      "url": "https://github.com/google/guava/commit/0678c0c7a3690ff110612584e9aa78e186dbd85f"
+    },
+    {
+      "sha": "b274e74ff2822225d10b90d755a2a10fe21932a6",
+      "committed_at": "2026-09-01T16:40:33Z",
+      "url": "https://github.com/google/guava/commit/b274e74ff2822225d10b90d755a2a10fe21932a6"
+    },
+    {
+      "sha": "bc982e8596e29814c2390a88f8e0faa9930a4fca",
+      "committed_at": "2026-09-01T13:18:52Z",
+      "url": "https://github.com/google/guava/commit/bc982e8596e29814c2390a88f8e0faa9930a4fca"
+    },
+    {
+      "sha": "b3346e38957442d3e2a6a1e4715d4d30e09917b4",
+      "committed_at": "2026-08-31T22:13:21Z",
+      "url": "https://github.com/google/guava/commit/b3346e38957442d3e2a6a1e4715d4d30e09917b4"
+    },
+    {
+      "sha": "743176354e2b63b817fbee09fc0aca174362f4d7",
+      "committed_at": "2026-08-31T20:53:46Z",
+      "url": "https://github.com/google/guava/commit/743176354e2b63b817fbee09fc0aca174362f4d7"
+    },
+    {
+      "sha": "32ba16fcdd7072e2ffb7f860ae9773365a99dcf1",
+      "committed_at": "2026-08-31T15:07:10Z",
+      "url": "https://github.com/google/guava/commit/32ba16fcdd7072e2ffb7f860ae9773365a99dcf1"
+    },
+    {
+      "sha": "f516e7587dd92720f61a56a3a1c0998c62806788",
+      "committed_at": "2026-08-30T17:52:22Z",
+      "url": "https://github.com/google/guava/commit/f516e7587dd92720f61a56a3a1c0998c62806788"
+    },
+    {
+      "sha": "7a23c72cd926dfaa79dd13a49aecf0aeb6551bec",
+      "committed_at": "2026-08-30T15:21:48Z",
+      "url": "https://github.com/google/guava/commit/7a23c72cd926dfaa79dd13a49aecf0aeb6551bec"
+    },
+    {
+      "sha": "d5cc108ede2f3fc4a0c512c90920000fcdcbc4a0",
+      "committed_at": "2026-08-28T19:41:15Z",
+      "url": "https://github.com/google/guava/commit/d5cc108ede2f3fc4a0c512c90920000fcdcbc4a0"
+    },
+    {
+      "sha": "7547675aeb0b9617672e2409d005fec406ecd330",
+      "committed_at": "2026-08-28T18:38:20Z",
+      "url": "https://github.com/google/guava/commit/7547675aeb0b9617672e2409d005fec406ecd330"
+    },
+    {
+      "sha": "a3bde340e4c569be38f84408bed6794c78cd7fd5",
+      "committed_at": "2026-08-28T14:18:23Z",
+      "url": "https://github.com/google/guava/commit/a3bde340e4c569be38f84408bed6794c78cd7fd5"
+    },
+    {
+      "sha": "1f5d40726a38b11174e0e13da78ecb9f7630cc6e",
+      "committed_at": "2026-08-27T01:03:19Z",
+      "url": "https://github.com/google/guava/commit/1f5d40726a38b11174e0e13da78ecb9f7630cc6e"
+    },
+    {
+      "sha": "3353f79bb915c4c8cea4ab30feef24799a33decf",
+      "committed_at": "2026-08-26T21:46:54Z",
+      "url": "https://github.com/google/guava/commit/3353f79bb915c4c8cea4ab30feef24799a33decf"
+    },
+    {
+      "sha": "80fd5c114d4b7e7943b5a8e9baa8dcc919f8f219",
+      "committed_at": "2026-08-26T21:33:55Z",
+      "url": "https://github.com/google/guava/commit/80fd5c114d4b7e7943b5a8e9baa8dcc919f8f219"
+    },
+    {
+      "sha": "5195255413ee7eac23a012484c9d0236c1826363",
+      "committed_at": "2026-08-26T20:23:28Z",
+      "url": "https://github.com/google/guava/commit/5195255413ee7eac23a012484c9d0236c1826363"
+    },
+    {
+      "sha": "6331603dfb64e098873d28c669411986f0dba7fa",
+      "committed_at": "2026-08-25T22:58:24Z",
+      "url": "https://github.com/google/guava/commit/6331603dfb64e098873d28c669411986f0dba7fa"
+    },
+    {
+      "sha": "d21bbc24c8bfb8538c42978c8259279ad39b74af",
+      "committed_at": "2026-08-25T20:12:58Z",
+      "url": "https://github.com/google/guava/commit/d21bbc24c8bfb8538c42978c8259279ad39b74af"
+    },
+    {
+      "sha": "3121e272c44ee942446db987f0902d1934aa7182",
+      "committed_at": "2026-08-25T18:16:55Z",
+      "url": "https://github.com/google/guava/commit/3121e272c44ee942446db987f0902d1934aa7182"
+    },
+    {
+      "sha": "96e9d22dbdd251d6bd9631a1ed7366fa421808db",
+      "committed_at": "2026-08-25T15:05:18Z",
+      "url": "https://github.com/google/guava/commit/96e9d22dbdd251d6bd9631a1ed7366fa421808db"
+    },
+    {
+      "sha": "ad1aebcf6df97a3e7b1965e8b58746228f150233",
+      "committed_at": "2026-08-24T21:31:16Z",
+      "url": "https://github.com/google/guava/commit/ad1aebcf6df97a3e7b1965e8b58746228f150233"
+    },
+    {
+      "sha": "6393ebbdb62f05edc2d320a7bc44b86a046642a8",
+      "committed_at": "2026-08-24T18:43:30Z",
+      "url": "https://github.com/google/guava/commit/6393ebbdb62f05edc2d320a7bc44b86a046642a8"
+    },
+    {
+      "sha": "d161969db31b9b2f25e4556303697cb097816fb1",
+      "committed_at": "2026-08-24T18:38:29Z",
+      "url": "https://github.com/google/guava/commit/d161969db31b9b2f25e4556303697cb097816fb1"
+    },
+    {
+      "sha": "e9832f5e65142757b6e78b23f20f50c9df6a1adb",
+      "committed_at": "2026-08-21T16:00:19Z",
+      "url": "https://github.com/google/guava/commit/e9832f5e65142757b6e78b23f20f50c9df6a1adb"
+    },
+    {
+      "sha": "bdac84ba080b0f758b5ad8c51ada84f6973c414b",
+      "committed_at": "2026-08-21T13:57:05Z",
+      "url": "https://github.com/google/guava/commit/bdac84ba080b0f758b5ad8c51ada84f6973c414b"
+    },
+    {
+      "sha": "4f0f411ffe351d99476672184cf8634ecbe3e9ac",
+      "committed_at": "2026-08-20T16:28:05Z",
+      "url": "https://github.com/google/guava/commit/4f0f411ffe351d99476672184cf8634ecbe3e9ac"
+    },
+    {
+      "sha": "e8619d4dcf061b430f049a804d6290b68e8fae0e",
+      "committed_at": "2026-08-19T22:08:48Z",
+      "url": "https://github.com/google/guava/commit/e8619d4dcf061b430f049a804d6290b68e8fae0e"
+    },
+    {
+      "sha": "f1ad7da4942e8658a27ce20e0c1082c063650db8",
+      "committed_at": "2026-08-18T19:01:45Z",
+      "url": "https://github.com/google/guava/commit/f1ad7da4942e8658a27ce20e0c1082c063650db8"
+    },
+    {
+      "sha": "a69fa3f58587b64d660128a818d88c078d6ac396",
+      "committed_at": "2026-08-18T15:48:15Z",
+      "url": "https://github.com/google/guava/commit/a69fa3f58587b64d660128a818d88c078d6ac396"
+    },
+    {
+      "sha": "40e7de083329969a54a0b8a84d01c6f0614447d2",
+      "committed_at": "2026-08-17T13:12:50Z",
+      "url": "https://github.com/google/guava/commit/40e7de083329969a54a0b8a84d01c6f0614447d2"
+    },
+    {
+      "sha": "080807c2692a4a49e5d2beb491b344168885b530",
+      "committed_at": "2026-08-15T16:48:47Z",
+      "url": "https://github.com/google/guava/commit/080807c2692a4a49e5d2beb491b344168885b530"
+    },
+    {
+      "sha": "2daf2db9cb3e909fecd2dbedc4caf90eb25e1df1",
+      "committed_at": "2026-08-15T16:06:14Z",
+      "url": "https://github.com/google/guava/commit/2daf2db9cb3e909fecd2dbedc4caf90eb25e1df1"
+    },
+    {
+      "sha": "a8adf77c0eddafde7e3646c6fa0083d72a6b6f64",
+      "committed_at": "2026-08-14T17:20:13Z",
+      "url": "https://github.com/google/guava/commit/a8adf77c0eddafde7e3646c6fa0083d72a6b6f64"
+    },
+    {
+      "sha": "94f39958baf7ad51ddf9c70e406ed6b188194daa",
+      "committed_at": "2026-08-12T03:40:42Z",
+      "url": "https://github.com/google/guava/commit/94f39958baf7ad51ddf9c70e406ed6b188194daa"
+    },
+    {
+      "sha": "e9d6b503975ed6bb7a67cc4edce8a3bf653c6f32",
+      "committed_at": "2026-08-11T17:07:39Z",
+      "url": "https://github.com/google/guava/commit/e9d6b503975ed6bb7a67cc4edce8a3bf653c6f32"
+    },
+    {
+      "sha": "4429f5ca11eca38ad0e99a68fab7faa8b29cbae7",
+      "committed_at": "2026-08-11T16:36:43Z",
+      "url": "https://github.com/google/guava/commit/4429f5ca11eca38ad0e99a68fab7faa8b29cbae7"
+    },
+    {
+      "sha": "8410194eed75b78c4742bfc1375c7ca2807fe60e",
+      "committed_at": "2026-08-11T07:42:19Z",
+      "url": "https://github.com/google/guava/commit/8410194eed75b78c4742bfc1375c7ca2807fe60e"
+    },
+    {
+      "sha": "f232c3888e84831ab93748dcd4abf1a5b28c1f00",
+      "committed_at": "2026-08-10T22:28:42Z",
+      "url": "https://github.com/google/guava/commit/f232c3888e84831ab93748dcd4abf1a5b28c1f00"
+    },
+    {
+      "sha": "98fce51d48cd8e94597e3d1f34a5f342ca9a0fcc",
+      "committed_at": "2026-08-10T20:41:35Z",
+      "url": "https://github.com/google/guava/commit/98fce51d48cd8e94597e3d1f34a5f342ca9a0fcc"
+    },
+    {
+      "sha": "b811c77925fc72a7803bb1dcfaac2b887d703e0f",
+      "committed_at": "2026-08-10T14:57:41Z",
+      "url": "https://github.com/google/guava/commit/b811c77925fc72a7803bb1dcfaac2b887d703e0f"
+    },
+    {
+      "sha": "0a8e1ec55afe1d9361ebbd0c4149adfbb32ccf9a",
+      "committed_at": "2026-08-07T21:42:48Z",
+      "url": "https://github.com/google/guava/commit/0a8e1ec55afe1d9361ebbd0c4149adfbb32ccf9a"
+    },
+    {
+      "sha": "230019b31e71cb318b8f47c5a8883de25994e362",
+      "committed_at": "2026-08-07T01:04:33Z",
+      "url": "https://github.com/google/guava/commit/230019b31e71cb318b8f47c5a8883de25994e362"
+    }
+  ],
+  "sample_commit_endpoint": "https://api.github.com/repos/google/guava/commits?since=2024-01-01T00:00:00Z&per_page=100",
+  "instructor_approval_observed": false,
+  "user_selected_project": true,
+  "superseded_selection": "Jackson Core was replaced when the user explicitly selected google/guava; provisional data is outside this repository."
+}

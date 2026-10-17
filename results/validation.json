@@ -1,0 +1,1548 @@
+{
+  "check_categories": {
+    "acdc_input_preserves_exact_graph": 60,
+    "acdc_isolate_singletons": 60,
+    "acdc_isolates_preserved": 60,
+    "acdc_reversible_id_map": 60,
+    "acdc_unique_filename_basenames": 60,
+    "aggregate_row_count": 5,
+    "all_jar_classes_accounted_for": 30,
+    "artifact_sha256": 90,
+    "binary_edges": 30,
+    "chronological_sampling": 29,
+    "complete_membership": 120,
+    "complete_ue_score_population": 30,
+    "condition_algorithm_identity": 120,
+    "condition_population_identity": 120,
+    "counted_source_population": 30,
+    "date_provenance": 30,
+    "every_binary_merged_to_owned_node": 30,
+    "exact_condition_inventory": 1,
+    "exact_rational_ue_decisions": 30,
+    "excluded_classes_never_analyzed": 30,
+    "extraction_provenance": 180,
+    "feature_identity_plus_edges_only": 60,
+    "filtered_graph_is_induced": 30,
+    "final_partition_file_inventory": 1,
+    "finite_nonnegative_runtime": 180,
+    "fixed_feature_schema": 182,
+    "frozen_acdc_policy": 180,
+    "frozen_config_checksum": 1,
+    "frozen_implementation_checksum": 8,
+    "frozen_kmeans_parameters": 240,
+    "frozen_manifest_checksum": 1,
+    "frozen_policy": 8,
+    "frozen_ue_thresholds": 60,
+    "graph_checksum": 60,
+    "graph_rsf_matches_csv": 30,
+    "guava_nested_alias_reconciliation": 30,
+    "independent_hand_example": 1,
+    "independent_metric_recalculation": 7140,
+    "independent_ue_score": 95892,
+    "internal_only_loop_free_edges": 30,
+    "latest_code_size_eligibility": 1,
+    "member_edges_within_class_graph": 30,
+    "member_identity_survives_outer_merge": 30,
+    "merged_class_member_counts": 15982,
+    "merged_count_provenance": 30,
+    "metric_bounds": 2940,
+    "mq_identity": 420,
+    "no_k_sweep": 1,
+    "nonempty_cluster_labels": 120,
+    "one_final_architecture_per_condition": 1,
+    "one_jre_variant": 30,
+    "only_seven_allowed_relations": 30,
+    "owned_outermost_class_scope": 30,
+    "partition_rsf_matches_csv": 120,
+    "pilot_acdc_inventory": 1,
+    "pilot_and_final_same_policy": 1,
+    "pilot_preselected_middle_release": 1,
+    "predeclared_k_from_full_n": 60,
+    "quality_summary_row_count": 120,
+    "relation_union_equals_graph": 30,
+    "release_count": 1,
+    "reported_actual_k": 120,
+    "retained_class_population": 30,
+    "run_manifest_totals": 2,
+    "runtime_inventory": 2,
+    "same_graph_condition_pair": 60,
+    "same_graph_inventory": 1,
+    "same_graph_recalculation": 360,
+    "single_extractor_policy": 30,
+    "size_aggregate_matches_evidence": 330,
+    "size_inventory": 1,
+    "skipped_release_provenance": 30,
+    "source_ownership_in_same_version": 30,
+    "source_size_reconciliation": 120,
+    "sporadic_sampling": 29,
+    "stable_release_only": 30,
+    "subject": 1,
+    "temporal_pair_identity": 29,
+    "temporal_recalculation": 174,
+    "term_identity": 912254,
+    "term_table_row_counts": 480,
+    "term_value": 2323090,
+    "unique_binary_alias": 30,
+    "unique_graph_nodes": 30,
+    "unique_member_references": 30,
+    "unique_membership": 120,
+    "unique_release_count": 1,
+    "unique_typed_edges": 30
+  },
+  "checks_performed": 3362762,
+  "failure_count": 0,
+  "failures": [],
+  "limitations": [
+    "Provenance/membership checks do not prove a static extractor sees runtime reflection or all dynamic dispatch.",
+    "Passing structural checks does not prove the recovered clusters match intended architecture.",
+    "No new architecture is created by this validation."
+  ],
+  "method": "stdlib-only independent artifact audit; edge-contribution lecture MQ; exact-rational UE; contingency-table ARI",
+  "releases": [
+    {
+      "classes": 317,
+      "conditions": {
+        "A1": {
+          "max_cluster_size": 40,
+          "mq": 0.32171492954126546,
+          "n_clusters": 45,
+          "n_edges": 1693,
+          "n_nodes": 317,
+          "singleton_clusters": 4
+        },
+        "A2": {
+          "max_cluster_size": 49,
+          "mq": 0.35393286611444635,
+          "n_clusters": 45,
+          "n_edges": 1433,
+          "n_nodes": 311,
+          "singleton_clusters": 4
+        },
+        "A3": {
+          "max_cluster_size": 48,
+          "mq": 0.12212152517098515,
+          "n_clusters": 13,
+          "n_edges": 1693,
+          "n_nodes": 317,
+          "singleton_clusters": 0
+        },
+        "A4": {
+          "max_cluster_size": 54,
+          "mq": 0.14127254765272218,
+          "n_clusters": 13,
+          "n_edges": 1433,
+          "n_nodes": 311,
+          "singleton_clusters": 0
+        }
+      },
+      "dependencies": 1693,
+      "edge_retention_fraction": 0.8464264619019493,
+      "excluded_binary_classes": 0,
+      "isolated_classes": 4,
+      "merged_binary_classes": 840,
+      "omnipresent_classes": 6,
+      "raw_binary_classes": 1157,
+      "retained_classes": 311,
+      "retained_dependencies": 1433,
+      "unique_member_edges": 4232,
+      "version": "10.0"
+    },
+    {
+      "classes": 355,
+      "conditions": {
+        "A1": {
+          "max_cluster_size": 45,
+          "mq": 0.34424915301691533,
+          "n_clusters": 51,
+          "n_edges": 1932,
+          "n_nodes": 355,
+          "singleton_clusters": 3
+        },
+        "A2": {
+          "max_cluster_size": 43,
+          "mq": 0.37073857819322253,
+          "n_clusters": 51,
+          "n_edges": 1580,
+          "n_nodes": 346,
+          "singleton_clusters": 3
+        },
+        "A3": {
+          "max_cluster_size": 53,
+          "mq": 0.13573902562594553,
+          "n_clusters": 14,
+          "n_edges": 1932,
+          "n_nodes": 355,
+          "singleton_clusters": 0
+        },
+        "A4": {
+          "max_cluster_size": 40,
+          "mq": 0.12021985865104792,
+          "n_clusters": 14,
+          "n_edges": 1580,
+          "n_nodes": 346,
+          "singleton_clusters": 0
+        }
+      },
+      "dependencies": 1932,
+      "edge_retention_fraction": 0.8178053830227743,
+      "excluded_binary_classes": 0,
+      "isolated_classes": 3,
+      "merged_binary_classes": 903,
+      "omnipresent_classes": 9,
+      "raw_binary_classes": 1258,
+      "retained_classes": 346,
+      "retained_dependencies": 1580,
+      "unique_member_edges": 4829,
+      "version": "11.0"
+    },
+    {
+      "classes": 373,
+      "conditions": {
+        "A1": {
+          "max_cluster_size": 46,
+          "mq": 0.3853420136745024,
+          "n_clusters": 53,
+          "n_edges": 2096,
+          "n_nodes": 373,
+          "singleton_clusters": 3
+        },
+        "A2": {
+          "max_cluster_size": 59,
+          "mq": 0.40442731468652093,
+          "n_clusters": 52,
+          "n_edges": 1746,
+          "n_nodes": 365,
+          "singleton_clusters": 3
+        },
+        "A3": {
+          "max_cluster_size": 64,
+          "mq": 0.11329273350429431,
+          "n_clusters": 14,
+          "n_edges": 2096,
+          "n_nodes": 373,
+          "singleton_clusters": 0
+        },
+        "A4": {
+          "max_cluster_size": 50,
+          "mq": 0.12486381413123351,
+          "n_clusters": 14,
+          "n_edges": 1746,
+          "n_nodes": 365,
+          "singleton_clusters": 0
+        }
+      },
+      "dependencies": 2096,
+      "edge_retention_fraction": 0.8330152671755725,
+      "excluded_binary_classes": 0,
+      "isolated_classes": 3,
+      "merged_binary_classes": 959,
+      "omnipresent_classes": 8,
+      "raw_binary_classes": 1332,
+      "retained_classes": 365,
+      "retained_dependencies": 1746,
+      "unique_member_edges": 5238,
+      "version": "12.0"
+    },
+    {
+      "classes": 382,
+      "conditions": {
+        "A1": {
+          "max_cluster_size": 45,
+          "mq": 0.36940344701963496,
+          "n_clusters": 59,
+          "n_edges": 2152,
+          "n_nodes": 382,
+          "singleton_clusters": 4
+        },
+        "A2": {
+          "max_cluster_size": 58,
+          "mq": 0.3697407419097434,
+          "n_clusters": 58,
+          "n_edges": 1795,
+          "n_nodes": 374,
+          "singleton_clusters": 4
+        },
+        "A3": {
+          "max_cluster_size": 70,
+          "mq": 0.0966007665975235,
+          "n_clusters": 14,
+          "n_edges": 2152,
+          "n_nodes": 382,
+          "singleton_clusters": 0
+        },
+        "A4": {
+          "max_cluster_size": 60,
+          "mq": 0.11904816671859572,
+          "n_clusters": 14,
+          "n_edges": 1795,
+          "n_nodes": 374,
+          "singleton_clusters": 0
+        }
+      },
+      "dependencies": 2152,
+      "edge_retention_fraction": 0.8341078066914498,
+      "excluded_binary_classes": 0,
+      "isolated_classes": 3,
+      "merged_binary_classes": 1020,
+      "omnipresent_classes": 8,
+      "raw_binary_classes": 1402,
+      "retained_classes": 374,
+      "retained_dependencies": 1795,
+      "unique_member_edges": 5270,
+      "version": "13.0.1"
+    },
+    {
+      "classes": 441,
+      "conditions": {
+        "A1": {
+          "max_cluster_size": 37,
+          "mq": 0.38781278265535535,
+          "n_clusters": 73,
+          "n_edges": 2684,
+          "n_nodes": 441,
+          "singleton_clusters": 5
+        },
+        "A2": {
+          "max_cluster_size": 40,
+          "mq": 0.387419042677773,
+          "n_clusters": 74,
+          "n_edges": 2099,
+          "n_nodes": 430,
+          "singleton_clusters": 5
+        },
+        "A3": {
+          "max_cluster_size": 91,
+          "mq": 0.11262074982394896,
+          "n_clusters": 15,
+          "n_edges": 2684,
+          "n_nodes": 441,
+          "singleton_clusters": 0
+        },
+        "A4": {
+          "max_cluster_size": 81,
+          "mq": 0.10272800237386666,
+          "n_clusters": 15,
+          "n_edges": 2099,
+          "n_nodes": 430,
+          "singleton_clusters": 0
+        }
+      },
+      "dependencies": 2684,
+      "edge_retention_fraction": 0.7820417287630402,
+      "excluded_binary_classes": 0,
+      "isolated_classes": 4,
+      "merged_binary_classes": 1169,
+      "omnipresent_classes": 11,
+      "raw_binary_classes": 1610,
+      "retained_classes": 430,
+      "retained_dependencies": 2099,
+      "unique_member_edges": 6924,
+      "version": "15.0"
+    },
+    {
+      "classes": 445,
+      "conditions": {
+        "A1": {
+          "max_cluster_size": 49,
+          "mq": 0.38099520275092186,
+          "n_clusters": 73,
+          "n_edges": 2726,
+          "n_nodes": 445,
+          "singleton_clusters": 5
+        },
+        "A2": {
+          "max_cluster_size": 51,
+          "mq": 0.3764118800509921,
+          "n_clusters": 76,
+          "n_edges": 2138,
+          "n_nodes": 435,
+          "singleton_clusters": 6
+        },
+        "A3": {
+          "max_cluster_size": 83,
+          "mq": 0.09435009691766261,
+          "n_clusters": 15,
+          "n_edges": 2726,
+          "n_nodes": 445,
+          "singleton_clusters": 0
+        },
+        "A4": {
+          "max_cluster_size": 72,
+          "mq": 0.11298333575949647,
+          "n_clusters": 15,
+          "n_edges": 2138,
+          "n_nodes": 435,
+          "singleton_clusters": 0
+        }
+      },
+      "dependencies": 2726,
+      "edge_retention_fraction": 0.7842993396918562,
+      "excluded_binary_classes": 3,
+      "isolated_classes": 4,
+      "merged_binary_classes": 1217,
+      "omnipresent_classes": 10,
+      "raw_binary_classes": 1662,
+      "retained_classes": 435,
+      "retained_dependencies": 2138,
+      "unique_member_edges": 7013,
+      "version": "16.0.1"
+    },
+    {
+      "classes": 451,
+      "conditions": {
+        "A1": {
+          "max_cluster_size": 49,
+          "mq": 0.3879044523524204,
+          "n_clusters": 77,
+          "n_edges": 2724,
+          "n_nodes": 451,
+          "singleton_clusters": 7
+        },
+        "A2": {
+          "max_cluster_size": 39,
+          "mq": 0.3876044996519327,
+          "n_clusters": 79,
+          "n_edges": 2136,
+          "n_nodes": 441,
+          "singleton_clusters": 7
+        },
+        "A3": {
+          "max_cluster_size": 57,
+          "mq": 0.07426431806955092,
+          "n_clusters": 16,
+          "n_edges": 2724,
+          "n_nodes": 451,
+          "singleton_clusters": 0
+        },
+        "A4": {
+          "max_cluster_size": 64,
+          "mq": 0.1179353014302542,
+          "n_clusters": 16,
+          "n_edges": 2136,
+          "n_nodes": 441,
+          "singleton_clusters": 0
+        }
+      },
+      "dependencies": 2724,
+      "edge_retention_fraction": 0.7841409691629956,
+      "excluded_binary_classes": 3,
+      "isolated_classes": 6,
+      "merged_binary_classes": 1223,
+      "omnipresent_classes": 10,
+      "raw_binary_classes": 1674,
+      "retained_classes": 441,
+      "retained_dependencies": 2136,
+      "unique_member_edges": 7010,
+      "version": "18.0"
+    },
+    {
+      "classes": 518,
+      "conditions": {
+        "A1": {
+          "max_cluster_size": 48,
+          "mq": 0.40607130037716227,
+          "n_clusters": 78,
+          "n_edges": 3295,
+          "n_nodes": 518,
+          "singleton_clusters": 2
+        },
+        "A2": {
+          "max_cluster_size": 42,
+          "mq": 0.39655721919107356,
+          "n_clusters": 78,
+          "n_edges": 2454,
+          "n_nodes": 502,
+          "singleton_clusters": 2
+        },
+        "A3": {
+          "max_cluster_size": 61,
+          "mq": 0.09960194534836149,
+          "n_clusters": 17,
+          "n_edges": 3295,
+          "n_nodes": 518,
+          "singleton_clusters": 0
+        },
+        "A4": {
+          "max_cluster_size": 91,
+          "mq": 0.1148191406548495,
+          "n_clusters": 17,
+          "n_edges": 2454,
+          "n_nodes": 502,
+          "singleton_clusters": 0
+        }
+      },
+      "dependencies": 3295,
+      "edge_retention_fraction": 0.7447647951441578,
+      "excluded_binary_classes": 3,
+      "isolated_classes": 1,
+      "merged_binary_classes": 1301,
+      "omnipresent_classes": 16,
+      "raw_binary_classes": 1819,
+      "retained_classes": 502,
+      "retained_dependencies": 2454,
+      "unique_member_edges": 8222,
+      "version": "21.0"
+    },
+    {
+      "classes": 538,
+      "conditions": {
+        "A1": {
+          "max_cluster_size": 72,
+          "mq": 0.39086049011007246,
+          "n_clusters": 81,
+          "n_edges": 3400,
+          "n_nodes": 538,
+          "singleton_clusters": 3
+        },
+        "A2": {
+          "max_cluster_size": 75,
+          "mq": 0.38586530509047795,
+          "n_clusters": 80,
+          "n_edges": 2515,
+          "n_nodes": 521,
+          "singleton_clusters": 3
+        },
+        "A3": {
+          "max_cluster_size": 60,
+          "mq": 0.0723461044109224,
+          "n_clusters": 17,
+          "n_edges": 3400,
+          "n_nodes": 538,
+          "singleton_clusters": 0
+        },
+        "A4": {
+          "max_cluster_size": 82,
+          "mq": 0.11893119482571464,
+          "n_clusters": 17,
+          "n_edges": 2515,
+          "n_nodes": 521,
+          "singleton_clusters": 0
+        }
+      },
+      "dependencies": 3400,
+      "edge_retention_fraction": 0.7397058823529412,
+      "excluded_binary_classes": 3,
+      "isolated_classes": 1,
+      "merged_binary_classes": 1327,
+      "omnipresent_classes": 17,
+      "raw_binary_classes": 1865,
+      "retained_classes": 521,
+      "retained_dependencies": 2515,
+      "unique_member_edges": 8424,
+      "version": "23.0"
+    },
+    {
+      "classes": 539,
+      "conditions": {
+        "A1": {
+          "max_cluster_size": 49,
+          "mq": 0.3804689621383918,
+          "n_clusters": 83,
+          "n_edges": 3417,
+          "n_nodes": 539,
+          "singleton_clusters": 3
+        },
+        "A2": {
+          "max_cluster_size": 75,
+          "mq": 0.3803626480849097,
+          "n_clusters": 82,
+          "n_edges": 2524,
+          "n_nodes": 522,
+          "singleton_clusters": 2
+        },
+        "A3": {
+          "max_cluster_size": 102,
+          "mq": 0.0982896562491295,
+          "n_clusters": 17,
+          "n_edges": 3417,
+          "n_nodes": 539,
+          "singleton_clusters": 0
+        },
+        "A4": {
+          "max_cluster_size": 82,
+          "mq": 0.09746298498006005,
+          "n_clusters": 17,
+          "n_edges": 2524,
+          "n_nodes": 522,
+          "singleton_clusters": 0
+        }
+      },
+      "dependencies": 3417,
+      "edge_retention_fraction": 0.7386596429616623,
+      "excluded_binary_classes": 3,
+      "isolated_classes": 1,
+      "merged_binary_classes": 1351,
+      "omnipresent_classes": 17,
+      "raw_binary_classes": 1890,
+      "retained_classes": 522,
+      "retained_dependencies": 2524,
+      "unique_member_edges": 8569,
+      "version": "23.2"
+    },
+    {
+      "classes": 541,
+      "conditions": {
+        "A1": {
+          "max_cluster_size": 60,
+          "mq": 0.3989180344211712,
+          "n_clusters": 84,
+          "n_edges": 3419,
+          "n_nodes": 541,
+          "singleton_clusters": 3
+        },
+        "A2": {
+          "max_cluster_size": 38,
+          "mq": 0.3937473660355771,
+          "n_clusters": 82,
+          "n_edges": 2553,
+          "n_nodes": 525,
+          "singleton_clusters": 1
+        },
+        "A3": {
+          "max_cluster_size": 94,
+          "mq": 0.11347650769142467,
+          "n_clusters": 17,
+          "n_edges": 3419,
+          "n_nodes": 541,
+          "singleton_clusters": 0
+        },
+        "A4": {
+          "max_cluster_size": 123,
+          "mq": 0.12535630968057623,
+          "n_clusters": 17,
+          "n_edges": 2553,
+          "n_nodes": 525,
+          "singleton_clusters": 0
+        }
+      },
+      "dependencies": 3419,
+      "edge_retention_fraction": 0.7467095642000585,
+      "excluded_binary_classes": 3,
+      "isolated_classes": 1,
+      "merged_binary_classes": 1359,
+      "omnipresent_classes": 16,
+      "raw_binary_classes": 1900,
+      "retained_classes": 525,
+      "retained_dependencies": 2553,
+      "unique_member_edges": 8594,
+      "version": "23.5"
+    },
+    {
+      "classes": 546,
+      "conditions": {
+        "A1": {
+          "max_cluster_size": 47,
+          "mq": 0.383876079368124,
+          "n_clusters": 87,
+          "n_edges": 3448,
+          "n_nodes": 546,
+          "singleton_clusters": 3
+        },
+        "A2": {
+          "max_cluster_size": 40,
+          "mq": 0.3867127701243483,
+          "n_clusters": 85,
+          "n_edges": 2563,
+          "n_nodes": 529,
+          "singleton_clusters": 1
+        },
+        "A3": {
+          "max_cluster_size": 62,
+          "mq": 0.09733748753095198,
+          "n_clusters": 17,
+          "n_edges": 3448,
+          "n_nodes": 546,
+          "singleton_clusters": 0
+        },
+        "A4": {
+          "max_cluster_size": 77,
+          "mq": 0.0981580602012056,
+          "n_clusters": 17,
+          "n_edges": 2563,
+          "n_nodes": 529,
+          "singleton_clusters": 0
+        }
+      },
+      "dependencies": 3448,
+      "edge_retention_fraction": 0.7433294663573086,
+      "excluded_binary_classes": 3,
+      "isolated_classes": 1,
+      "merged_binary_classes": 1373,
+      "omnipresent_classes": 17,
+      "raw_binary_classes": 1919,
+      "retained_classes": 529,
+      "retained_dependencies": 2563,
+      "unique_member_edges": 8807,
+      "version": "24.0"
+    },
+    {
+      "classes": 551,
+      "conditions": {
+        "A1": {
+          "max_cluster_size": 76,
+          "mq": 0.39124570025693006,
+          "n_clusters": 88,
+          "n_edges": 3507,
+          "n_nodes": 551,
+          "singleton_clusters": 3
+        },
+        "A2": {
+          "max_cluster_size": 59,
+          "mq": 0.3978914520530968,
+          "n_clusters": 87,
+          "n_edges": 2611,
+          "n_nodes": 534,
+          "singleton_clusters": 1
+        },
+        "A3": {
+          "max_cluster_size": 86,
+          "mq": 0.07777375796800742,
+          "n_clusters": 17,
+          "n_edges": 3507,
+          "n_nodes": 551,
+          "singleton_clusters": 0
+        },
+        "A4": {
+          "max_cluster_size": 84,
+          "mq": 0.11172479628134699,
+          "n_clusters": 17,
+          "n_edges": 2611,
+          "n_nodes": 534,
+          "singleton_clusters": 0
+        }
+      },
+      "dependencies": 3507,
+      "edge_retention_fraction": 0.7445109780439122,
+      "excluded_binary_classes": 3,
+      "isolated_classes": 1,
+      "merged_binary_classes": 1375,
+      "omnipresent_classes": 17,
+      "raw_binary_classes": 1926,
+      "retained_classes": 534,
+      "retained_dependencies": 2611,
+      "unique_member_edges": 8982,
+      "version": "25.1"
+    },
+    {
+      "classes": 554,
+      "conditions": {
+        "A1": {
+          "max_cluster_size": 44,
+          "mq": 0.3807513491687382,
+          "n_clusters": 88,
+          "n_edges": 3518,
+          "n_nodes": 554,
+          "singleton_clusters": 3
+        },
+        "A2": {
+          "max_cluster_size": 42,
+          "mq": 0.3754214078595354,
+          "n_clusters": 87,
+          "n_edges": 2577,
+          "n_nodes": 536,
+          "singleton_clusters": 1
+        },
+        "A3": {
+          "max_cluster_size": 76,
+          "mq": 0.08001833404030365,
+          "n_clusters": 17,
+          "n_edges": 3518,
+          "n_nodes": 554,
+          "singleton_clusters": 0
+        },
+        "A4": {
+          "max_cluster_size": 88,
+          "mq": 0.1078451110795327,
+          "n_clusters": 17,
+          "n_edges": 2577,
+          "n_nodes": 536,
+          "singleton_clusters": 0
+        }
+      },
+      "dependencies": 3518,
+      "edge_retention_fraction": 0.7325184764070495,
+      "excluded_binary_classes": 5,
+      "isolated_classes": 1,
+      "merged_binary_classes": 1383,
+      "omnipresent_classes": 18,
+      "raw_binary_classes": 1937,
+      "retained_classes": 536,
+      "retained_dependencies": 2577,
+      "unique_member_edges": 8993,
+      "version": "27.0"
+    },
+    {
+      "classes": 553,
+      "conditions": {
+        "A1": {
+          "max_cluster_size": 47,
+          "mq": 0.38486824345342563,
+          "n_clusters": 88,
+          "n_edges": 3517,
+          "n_nodes": 553,
+          "singleton_clusters": 3
+        },
+        "A2": {
+          "max_cluster_size": 45,
+          "mq": 0.38174778271721954,
+          "n_clusters": 88,
+          "n_edges": 2578,
+          "n_nodes": 535,
+          "singleton_clusters": 2
+        },
+        "A3": {
+          "max_cluster_size": 105,
+          "mq": 0.10096300470612825,
+          "n_clusters": 17,
+          "n_edges": 3517,
+          "n_nodes": 553,
+          "singleton_clusters": 0
+        },
+        "A4": {
+          "max_cluster_size": 100,
+          "mq": 0.1418032287868728,
+          "n_clusters": 17,
+          "n_edges": 2578,
+          "n_nodes": 535,
+          "singleton_clusters": 0
+        }
+      },
+      "dependencies": 3517,
+      "edge_retention_fraction": 0.7330110889963036,
+      "excluded_binary_classes": 3,
+      "isolated_classes": 1,
+      "merged_binary_classes": 1379,
+      "omnipresent_classes": 18,
+      "raw_binary_classes": 1932,
+      "retained_classes": 535,
+      "retained_dependencies": 2578,
+      "unique_member_edges": 9052,
+      "version": "27.1"
+    },
+    {
+      "classes": 555,
+      "conditions": {
+        "A1": {
+          "max_cluster_size": 44,
+          "mq": 0.3785436195600637,
+          "n_clusters": 90,
+          "n_edges": 3550,
+          "n_nodes": 555,
+          "singleton_clusters": 3
+        },
+        "A2": {
+          "max_cluster_size": 42,
+          "mq": 0.38823162740442263,
+          "n_clusters": 89,
+          "n_edges": 2601,
+          "n_nodes": 536,
+          "singleton_clusters": 1
+        },
+        "A3": {
+          "max_cluster_size": 60,
+          "mq": 0.07688398092451339,
+          "n_clusters": 17,
+          "n_edges": 3550,
+          "n_nodes": 555,
+          "singleton_clusters": 0
+        },
+        "A4": {
+          "max_cluster_size": 84,
+          "mq": 0.12118714887259925,
+          "n_clusters": 17,
+          "n_edges": 2601,
+          "n_nodes": 536,
+          "singleton_clusters": 0
+        }
+      },
+      "dependencies": 3550,
+      "edge_retention_fraction": 0.7326760563380281,
+      "excluded_binary_classes": 3,
+      "isolated_classes": 1,
+      "merged_binary_classes": 1395,
+      "omnipresent_classes": 19,
+      "raw_binary_classes": 1950,
+      "retained_classes": 536,
+      "retained_dependencies": 2601,
+      "unique_member_edges": 9278,
+      "version": "28.2"
+    },
+    {
+      "classes": 566,
+      "conditions": {
+        "A1": {
+          "max_cluster_size": 48,
+          "mq": 0.40073554369789466,
+          "n_clusters": 96,
+          "n_edges": 3603,
+          "n_nodes": 566,
+          "singleton_clusters": 4
+        },
+        "A2": {
+          "max_cluster_size": 46,
+          "mq": 0.4069143493944532,
+          "n_clusters": 96,
+          "n_edges": 2703,
+          "n_nodes": 547,
+          "singleton_clusters": 2
+        },
+        "A3": {
+          "max_cluster_size": 75,
+          "mq": 0.096639590899914,
+          "n_clusters": 17,
+          "n_edges": 3603,
+          "n_nodes": 566,
+          "singleton_clusters": 0
+        },
+        "A4": {
+          "max_cluster_size": 96,
+          "mq": 0.10679260555393764,
+          "n_clusters": 17,
+          "n_edges": 2703,
+          "n_nodes": 547,
+          "singleton_clusters": 0
+        }
+      },
+      "dependencies": 3603,
+      "edge_retention_fraction": 0.7502081598667777,
+      "excluded_binary_classes": 3,
+      "isolated_classes": 1,
+      "merged_binary_classes": 1441,
+      "omnipresent_classes": 19,
+      "raw_binary_classes": 2007,
+      "retained_classes": 547,
+      "retained_dependencies": 2703,
+      "unique_member_edges": 9398,
+      "version": "30.0"
+    },
+    {
+      "classes": 568,
+      "conditions": {
+        "A1": {
+          "max_cluster_size": 42,
+          "mq": 0.39094281096700434,
+          "n_clusters": 98,
+          "n_edges": 3620,
+          "n_nodes": 568,
+          "singleton_clusters": 4
+        },
+        "A2": {
+          "max_cluster_size": 44,
+          "mq": 0.39672401960782555,
+          "n_clusters": 96,
+          "n_edges": 2681,
+          "n_nodes": 548,
+          "singleton_clusters": 3
+        },
+        "A3": {
+          "max_cluster_size": 73,
+          "mq": 0.07595704285027553,
+          "n_clusters": 17,
+          "n_edges": 3620,
+          "n_nodes": 568,
+          "singleton_clusters": 1
+        },
+        "A4": {
+          "max_cluster_size": 101,
+          "mq": 0.0987802985919853,
+          "n_clusters": 17,
+          "n_edges": 2681,
+          "n_nodes": 548,
+          "singleton_clusters": 0
+        }
+      },
+      "dependencies": 3620,
+      "edge_retention_fraction": 0.7406077348066298,
+      "excluded_binary_classes": 3,
+      "isolated_classes": 1,
+      "merged_binary_classes": 1444,
+      "omnipresent_classes": 20,
+      "raw_binary_classes": 2012,
+      "retained_classes": 548,
+      "retained_dependencies": 2681,
+      "unique_member_edges": 9441,
+      "version": "30.1.1"
+    },
+    {
+      "classes": 600,
+      "conditions": {
+        "A1": {
+          "max_cluster_size": 47,
+          "mq": 0.40465438996368425,
+          "n_clusters": 96,
+          "n_edges": 4354,
+          "n_nodes": 600,
+          "singleton_clusters": 4
+        },
+        "A2": {
+          "max_cluster_size": 70,
+          "mq": 0.39487608567072185,
+          "n_clusters": 96,
+          "n_edges": 3302,
+          "n_nodes": 578,
+          "singleton_clusters": 4
+        },
+        "A3": {
+          "max_cluster_size": 83,
+          "mq": 0.08701466026100692,
+          "n_clusters": 18,
+          "n_edges": 4354,
+          "n_nodes": 600,
+          "singleton_clusters": 0
+        },
+        "A4": {
+          "max_cluster_size": 46,
+          "mq": 0.08971068757252239,
+          "n_clusters": 18,
+          "n_edges": 3302,
+          "n_nodes": 578,
+          "singleton_clusters": 0
+        }
+      },
+      "dependencies": 4354,
+      "edge_retention_fraction": 0.7583830960036748,
+      "excluded_binary_classes": 3,
+      "isolated_classes": 1,
+      "merged_binary_classes": 1405,
+      "omnipresent_classes": 22,
+      "raw_binary_classes": 2005,
+      "retained_classes": 578,
+      "retained_dependencies": 3302,
+      "unique_member_edges": 9530,
+      "version": "31.1"
+    },
+    {
+      "classes": 604,
+      "conditions": {
+        "A1": {
+          "max_cluster_size": 44,
+          "mq": 0.4090199609974437,
+          "n_clusters": 96,
+          "n_edges": 4460,
+          "n_nodes": 604,
+          "singleton_clusters": 4
+        },
+        "A2": {
+          "max_cluster_size": 65,
+          "mq": 0.39597615546917464,
+          "n_clusters": 96,
+          "n_edges": 3402,
+          "n_nodes": 582,
+          "singleton_clusters": 4
+        },
+        "A3": {
+          "max_cluster_size": 68,
+          "mq": 0.0884078055432162,
+          "n_clusters": 18,
+          "n_edges": 4460,
+          "n_nodes": 604,
+          "singleton_clusters": 0
+        },
+        "A4": {
+          "max_cluster_size": 71,
+          "mq": 0.09913827025352207,
+          "n_clusters": 18,
+          "n_edges": 3402,
+          "n_nodes": 582,
+          "singleton_clusters": 0
+        }
+      },
+      "dependencies": 4460,
+      "edge_retention_fraction": 0.762780269058296,
+      "excluded_binary_classes": 3,
+      "isolated_classes": 1,
+      "merged_binary_classes": 1392,
+      "omnipresent_classes": 22,
+      "raw_binary_classes": 1996,
+      "retained_classes": 582,
+      "retained_dependencies": 3402,
+      "unique_member_edges": 9574,
+      "version": "32.0.1"
+    },
+    {
+      "classes": 605,
+      "conditions": {
+        "A1": {
+          "max_cluster_size": 48,
+          "mq": 0.41334987163194453,
+          "n_clusters": 96,
+          "n_edges": 4461,
+          "n_nodes": 605,
+          "singleton_clusters": 4
+        },
+        "A2": {
+          "max_cluster_size": 67,
+          "mq": 0.40617726096750667,
+          "n_clusters": 96,
+          "n_edges": 3403,
+          "n_nodes": 583,
+          "singleton_clusters": 3
+        },
+        "A3": {
+          "max_cluster_size": 68,
+          "mq": 0.09822643875366428,
+          "n_clusters": 18,
+          "n_edges": 4461,
+          "n_nodes": 605,
+          "singleton_clusters": 0
+        },
+        "A4": {
+          "max_cluster_size": 57,
+          "mq": 0.09893176714406844,
+          "n_clusters": 18,
+          "n_edges": 3403,
+          "n_nodes": 583,
+          "singleton_clusters": 0
+        }
+      },
+      "dependencies": 4461,
+      "edge_retention_fraction": 0.7628334454158261,
+      "excluded_binary_classes": 3,
+      "isolated_classes": 1,
+      "merged_binary_classes": 1397,
+      "omnipresent_classes": 22,
+      "raw_binary_classes": 2002,
+      "retained_classes": 583,
+      "retained_dependencies": 3403,
+      "unique_member_edges": 9572,
+      "version": "32.1.2"
+    },
+    {
+      "classes": 602,
+      "conditions": {
+        "A1": {
+          "max_cluster_size": 44,
+          "mq": 0.3955326253985272,
+          "n_clusters": 93,
+          "n_edges": 4504,
+          "n_nodes": 602,
+          "singleton_clusters": 4
+        },
+        "A2": {
+          "max_cluster_size": 60,
+          "mq": 0.38854853201396494,
+          "n_clusters": 92,
+          "n_edges": 3429,
+          "n_nodes": 579,
+          "singleton_clusters": 3
+        },
+        "A3": {
+          "max_cluster_size": 66,
+          "mq": 0.10637277378814984,
+          "n_clusters": 18,
+          "n_edges": 4504,
+          "n_nodes": 602,
+          "singleton_clusters": 0
+        },
+        "A4": {
+          "max_cluster_size": 82,
+          "mq": 0.09925436851946229,
+          "n_clusters": 18,
+          "n_edges": 3429,
+          "n_nodes": 579,
+          "singleton_clusters": 0
+        }
+      },
+      "dependencies": 4504,
+      "edge_retention_fraction": 0.7613232682060391,
+      "excluded_binary_classes": 3,
+      "isolated_classes": 1,
+      "merged_binary_classes": 1398,
+      "omnipresent_classes": 23,
+      "raw_binary_classes": 2000,
+      "retained_classes": 579,
+      "retained_dependencies": 3429,
+      "unique_member_edges": 9656,
+      "version": "33.0.0"
+    },
+    {
+      "classes": 606,
+      "conditions": {
+        "A1": {
+          "max_cluster_size": 46,
+          "mq": 0.400146759282401,
+          "n_clusters": 94,
+          "n_edges": 4518,
+          "n_nodes": 606,
+          "singleton_clusters": 4
+        },
+        "A2": {
+          "max_cluster_size": 56,
+          "mq": 0.38962038910800256,
+          "n_clusters": 95,
+          "n_edges": 3440,
+          "n_nodes": 583,
+          "singleton_clusters": 4
+        },
+        "A3": {
+          "max_cluster_size": 64,
+          "mq": 0.07232624818068932,
+          "n_clusters": 18,
+          "n_edges": 4518,
+          "n_nodes": 606,
+          "singleton_clusters": 0
+        },
+        "A4": {
+          "max_cluster_size": 84,
+          "mq": 0.08781999670521382,
+          "n_clusters": 18,
+          "n_edges": 3440,
+          "n_nodes": 583,
+          "singleton_clusters": 0
+        }
+      },
+      "dependencies": 4518,
+      "edge_retention_fraction": 0.7613988490482514,
+      "excluded_binary_classes": 3,
+      "isolated_classes": 1,
+      "merged_binary_classes": 1398,
+      "omnipresent_classes": 23,
+      "raw_binary_classes": 2004,
+      "retained_classes": 583,
+      "retained_dependencies": 3440,
+      "unique_member_edges": 9691,
+      "version": "33.2.0"
+    },
+    {
+      "classes": 608,
+      "conditions": {
+        "A1": {
+          "max_cluster_size": 46,
+          "mq": 0.3901666002563904,
+          "n_clusters": 94,
+          "n_edges": 4513,
+          "n_nodes": 608,
+          "singleton_clusters": 4
+        },
+        "A2": {
+          "max_cluster_size": 68,
+          "mq": 0.39588572713245446,
+          "n_clusters": 92,
+          "n_edges": 3304,
+          "n_nodes": 584,
+          "singleton_clusters": 3
+        },
+        "A3": {
+          "max_cluster_size": 74,
+          "mq": 0.09271808037606051,
+          "n_clusters": 18,
+          "n_edges": 4513,
+          "n_nodes": 608,
+          "singleton_clusters": 0
+        },
+        "A4": {
+          "max_cluster_size": 75,
+          "mq": 0.09472480073854829,
+          "n_clusters": 18,
+          "n_edges": 3304,
+          "n_nodes": 584,
+          "singleton_clusters": 0
+        }
+      },
+      "dependencies": 4513,
+      "edge_retention_fraction": 0.7321072457345447,
+      "excluded_binary_classes": 3,
+      "isolated_classes": 1,
+      "merged_binary_classes": 1390,
+      "omnipresent_classes": 24,
+      "raw_binary_classes": 1998,
+      "retained_classes": 584,
+      "retained_dependencies": 3304,
+      "unique_member_edges": 9705,
+      "version": "33.3.1"
+    },
+    {
+      "classes": 596,
+      "conditions": {
+        "A1": {
+          "max_cluster_size": 52,
+          "mq": 0.3624702196052635,
+          "n_clusters": 97,
+          "n_edges": 3930,
+          "n_nodes": 596,
+          "singleton_clusters": 10
+        },
+        "A2": {
+          "max_cluster_size": 62,
+          "mq": 0.3652349015617553,
+          "n_clusters": 96,
+          "n_edges": 2810,
+          "n_nodes": 573,
+          "singleton_clusters": 10
+        },
+        "A3": {
+          "max_cluster_size": 63,
+          "mq": 0.08260251313747953,
+          "n_clusters": 18,
+          "n_edges": 3930,
+          "n_nodes": 596,
+          "singleton_clusters": 0
+        },
+        "A4": {
+          "max_cluster_size": 113,
+          "mq": 0.12561870642458256,
+          "n_clusters": 18,
+          "n_edges": 2810,
+          "n_nodes": 573,
+          "singleton_clusters": 0
+        }
+      },
+      "dependencies": 3930,
+      "edge_retention_fraction": 0.7150127226463104,
+      "excluded_binary_classes": 3,
+      "isolated_classes": 7,
+      "merged_binary_classes": 1388,
+      "omnipresent_classes": 23,
+      "raw_binary_classes": 1984,
+      "retained_classes": 573,
+      "retained_dependencies": 2810,
+      "unique_member_edges": 9685,
+      "version": "33.4.1"
+    },
+    {
+      "classes": 596,
+      "conditions": {
+        "A1": {
+          "max_cluster_size": 52,
+          "mq": 0.3624702196052635,
+          "n_clusters": 97,
+          "n_edges": 3930,
+          "n_nodes": 596,
+          "singleton_clusters": 10
+        },
+        "A2": {
+          "max_cluster_size": 62,
+          "mq": 0.3652349015617553,
+          "n_clusters": 96,
+          "n_edges": 2810,
+          "n_nodes": 573,
+          "singleton_clusters": 10
+        },
+        "A3": {
+          "max_cluster_size": 63,
+          "mq": 0.08260251313747953,
+          "n_clusters": 18,
+          "n_edges": 3930,
+          "n_nodes": 596,
+          "singleton_clusters": 0
+        },
+        "A4": {
+          "max_cluster_size": 113,
+          "mq": 0.12561870642458256,
+          "n_clusters": 18,
+          "n_edges": 2810,
+          "n_nodes": 573,
+          "singleton_clusters": 0
+        }
+      },
+      "dependencies": 3930,
+      "edge_retention_fraction": 0.7150127226463104,
+      "excluded_binary_classes": 3,
+      "isolated_classes": 7,
+      "merged_binary_classes": 1388,
+      "omnipresent_classes": 23,
+      "raw_binary_classes": 1984,
+      "retained_classes": 573,
+      "retained_dependencies": 2810,
+      "unique_member_edges": 9685,
+      "version": "33.4.3"
+    },
+    {
+      "classes": 595,
+      "conditions": {
+        "A1": {
+          "max_cluster_size": 76,
+          "mq": 0.380158887311826,
+          "n_clusters": 93,
+          "n_edges": 4039,
+          "n_nodes": 595,
+          "singleton_clusters": 6
+        },
+        "A2": {
+          "max_cluster_size": 104,
+          "mq": 0.3773305248431793,
+          "n_clusters": 93,
+          "n_edges": 2917,
+          "n_nodes": 572,
+          "singleton_clusters": 6
+        },
+        "A3": {
+          "max_cluster_size": 97,
+          "mq": 0.08836570968765077,
+          "n_clusters": 18,
+          "n_edges": 4039,
+          "n_nodes": 595,
+          "singleton_clusters": 0
+        },
+        "A4": {
+          "max_cluster_size": 101,
+          "mq": 0.1473165017408991,
+          "n_clusters": 18,
+          "n_edges": 2917,
+          "n_nodes": 572,
+          "singleton_clusters": 0
+        }
+      },
+      "dependencies": 4039,
+      "edge_retention_fraction": 0.7222084674424363,
+      "excluded_binary_classes": 3,
+      "isolated_classes": 5,
+      "merged_binary_classes": 1354,
+      "omnipresent_classes": 23,
+      "raw_binary_classes": 1949,
+      "retained_classes": 572,
+      "retained_dependencies": 2917,
+      "unique_member_edges": 9679,
+      "version": "33.4.6"
+    },
+    {
+      "classes": 595,
+      "conditions": {
+        "A1": {
+          "max_cluster_size": 76,
+          "mq": 0.37670867520104917,
+          "n_clusters": 93,
+          "n_edges": 4041,
+          "n_nodes": 595,
+          "singleton_clusters": 6
+        },
+        "A2": {
+          "max_cluster_size": 89,
+          "mq": 0.3782428449110127,
+          "n_clusters": 93,
+          "n_edges": 2919,
+          "n_nodes": 572,
+          "singleton_clusters": 6
+        },
+        "A3": {
+          "max_cluster_size": 97,
+          "mq": 0.08835637261949018,
+          "n_clusters": 18,
+          "n_edges": 4041,
+          "n_nodes": 595,
+          "singleton_clusters": 0
+        },
+        "A4": {
+          "max_cluster_size": 101,
+          "mq": 0.1488207814178036,
+          "n_clusters": 18,
+          "n_edges": 2919,
+          "n_nodes": 572,
+          "singleton_clusters": 0
+        }
+      },
+      "dependencies": 4041,
+      "edge_retention_fraction": 0.7223459539717891,
+      "excluded_binary_classes": 3,
+      "isolated_classes": 5,
+      "merged_binary_classes": 1353,
+      "omnipresent_classes": 23,
+      "raw_binary_classes": 1948,
+      "retained_classes": 572,
+      "retained_dependencies": 2919,
+      "unique_member_edges": 9678,
+      "version": "33.4.8"
+    },
+    {
+      "classes": 591,
+      "conditions": {
+        "A1": {
+          "max_cluster_size": 69,
+          "mq": 0.40322176971492424,
+          "n_clusters": 95,
+          "n_edges": 3969,
+          "n_nodes": 591,
+          "singleton_clusters": 4
+        },
+        "A2": {
+          "max_cluster_size": 97,
+          "mq": 0.3880412767814695,
+          "n_clusters": 98,
+          "n_edges": 2886,
+          "n_nodes": 569,
+          "singleton_clusters": 5
+        },
+        "A3": {
+          "max_cluster_size": 96,
+          "mq": 0.10060382441945273,
+          "n_clusters": 18,
+          "n_edges": 3969,
+          "n_nodes": 591,
+          "singleton_clusters": 0
+        },
+        "A4": {
+          "max_cluster_size": 93,
+          "mq": 0.11920375048999031,
+          "n_clusters": 18,
+          "n_edges": 2886,
+          "n_nodes": 569,
+          "singleton_clusters": 0
+        }
+      },
+      "dependencies": 3969,
+      "edge_retention_fraction": 0.72713529856387,
+      "excluded_binary_classes": 4,
+      "isolated_classes": 3,
+      "merged_binary_classes": 1353,
+      "omnipresent_classes": 22,
+      "raw_binary_classes": 1944,
+      "retained_classes": 569,
+      "retained_dependencies": 2886,
+      "unique_member_edges": 9472,
+      "version": "33.7.0"
+    },
+    {
+      "classes": 591,
+      "conditions": {
+        "A1": {
+          "max_cluster_size": 69,
+          "mq": 0.40322176971492424,
+          "n_clusters": 95,
+          "n_edges": 3969,
+          "n_nodes": 591,
+          "singleton_clusters": 4
+        },
+        "A2": {
+          "max_cluster_size": 97,
+          "mq": 0.3880412767814695,
+          "n_clusters": 98,
+          "n_edges": 2886,
+          "n_nodes": 569,
+          "singleton_clusters": 5
+        },
+        "A3": {
+          "max_cluster_size": 96,
+          "mq": 0.10060382441945273,
+          "n_clusters": 18,
+          "n_edges": 3969,
+          "n_nodes": 591,
+          "singleton_clusters": 0
+        },
+        "A4": {
+          "max_cluster_size": 93,
+          "mq": 0.11920375048999031,
+          "n_clusters": 18,
+          "n_edges": 2886,
+          "n_nodes": 569,
+          "singleton_clusters": 0
+        }
+      },
+      "dependencies": 3969,
+      "edge_retention_fraction": 0.72713529856387,
+      "excluded_binary_classes": 4,
+      "isolated_classes": 3,
+      "merged_binary_classes": 1353,
+      "omnipresent_classes": 22,
+      "raw_binary_classes": 1944,
+      "retained_classes": 569,
+      "retained_dependencies": 2886,
+      "unique_member_edges": 9472,
+      "version": "33.7.2"
+    }
+  ],
+  "scope": "30 source-owned Guava graphs,120 finalized A1-A4 partitions,60 retained-graph comparisons,29 temporal transitions; pilot inventory checked separately",
+  "status": "passed",
+  "validated_at_utc": "2026-10-17T15:00:15.777641+00:00",
+  "validator_sha256": "55922dbc1968ecb18bf28295a61b6c51329e6f44e49ff970ec6fdabadeb561a2",
+  "warnings": []
+}
