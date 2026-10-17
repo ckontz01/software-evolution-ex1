@@ -1,4 +1,4 @@
-FILE com/google/common/annotations/package-info.java
+===== com/google/common/annotations/package-info.java =====
 /*
  * Copyright (C) 2010 The Guava Authors
  *
@@ -20,7 +20,7 @@ FILE com/google/common/annotations/package-info.java
 package com.google.common.annotations;
 
 
-FILE com/google/common/base/package-info.java
+===== com/google/common/base/package-info.java =====
 /*
  * Copyright (C) 2007 The Guava Authors
  *
@@ -87,7 +87,7 @@ import com.google.errorprone.annotations.CheckReturnValue;
 import org.jspecify.annotations.NullMarked;
 
 
-FILE com/google/common/cache/package-info.java
+===== com/google/common/cache/package-info.java =====
 /*
  * Copyright (C) 2011 The Guava Authors
  *
@@ -126,7 +126,7 @@ import com.google.errorprone.annotations.CheckReturnValue;
 import org.jspecify.annotations.NullMarked;
 
 
-FILE com/google/common/collect/package-info.java
+===== com/google/common/collect/package-info.java =====
 /*
  * Copyright (C) 2007 The Guava Authors
  *
@@ -256,7 +256,7 @@ import com.google.errorprone.annotations.CheckReturnValue;
 import org.jspecify.annotations.NullMarked;
 
 
-FILE com/google/common/escape/package-info.java
+===== com/google/common/escape/package-info.java =====
 /*
  * Copyright (C) 2012 The Guava Authors
  *
@@ -291,7 +291,7 @@ import com.google.errorprone.annotations.CheckReturnValue;
 import org.jspecify.annotations.NullMarked;
 
 
-FILE com/google/common/eventbus/package-info.java
+===== com/google/common/eventbus/package-info.java =====
 /*
  * Copyright (C) 2007 The Guava Authors
  *
@@ -321,7 +321,7 @@ import com.google.errorprone.annotations.CheckReturnValue;
 import org.jspecify.annotations.NullMarked;
 
 
-FILE com/google/common/graph/package-info.java
+===== com/google/common/graph/package-info.java =====
 /*
  * Copyright (C) 2015 The Guava Authors
  *
@@ -353,7 +353,7 @@ import com.google.errorprone.annotations.CheckReturnValue;
 import org.jspecify.annotations.NullMarked;
 
 
-FILE com/google/common/hash/package-info.java
+===== com/google/common/hash/package-info.java =====
 /*
  * Copyright (C) 2011 The Guava Authors.
  *
@@ -383,7 +383,7 @@ import com.google.errorprone.annotations.CheckReturnValue;
 import org.jspecify.annotations.NullMarked;
 
 
-FILE com/google/common/html/package-info.java
+===== com/google/common/html/package-info.java =====
 /*
  * Copyright (C) 2012 The Guava Authors
  *
@@ -414,7 +414,7 @@ import com.google.errorprone.annotations.CheckReturnValue;
 import org.jspecify.annotations.NullMarked;
 
 
-FILE com/google/common/io/package-info.java
+===== com/google/common/io/package-info.java =====
 /*
  * Copyright (C) 2007 The Guava Authors
  *
@@ -452,7 +452,7 @@ import com.google.errorprone.annotations.CheckReturnValue;
 import org.jspecify.annotations.NullMarked;
 
 
-FILE com/google/common/math/package-info.java
+===== com/google/common/math/package-info.java =====
 /*
  * Copyright (C) 2011 The Guava Authors
  *
@@ -485,7 +485,7 @@ import com.google.errorprone.annotations.CheckReturnValue;
 import org.jspecify.annotations.NullMarked;
 
 
-FILE com/google/common/net/package-info.java
+===== com/google/common/net/package-info.java =====
 /*
  * Copyright (C) 2010 The Guava Authors
  *
@@ -516,7 +516,7 @@ import com.google.errorprone.annotations.CheckReturnValue;
 import org.jspecify.annotations.NullMarked;
 
 
-FILE com/google/common/primitives/package-info.java
+===== com/google/common/primitives/package-info.java =====
 /*
  * Copyright (C) 2010 The Guava Authors
  *
@@ -590,7 +590,7 @@ import com.google.errorprone.annotations.CheckReturnValue;
 import org.jspecify.annotations.NullMarked;
 
 
-FILE com/google/common/reflect/package-info.java
+===== com/google/common/reflect/package-info.java =====
 /*
  * Copyright (C) 2012 The Guava Authors
  *
@@ -617,7 +617,7 @@ import com.google.errorprone.annotations.CheckReturnValue;
 import org.jspecify.annotations.NullMarked;
 
 
-FILE com/google/common/util/concurrent/package-info.java
+===== com/google/common/util/concurrent/package-info.java =====
 /*
  * Copyright (C) 2007 The Guava Authors
  *
@@ -652,7 +652,7 @@ import com.google.errorprone.annotations.CheckReturnValue;
 import org.jspecify.annotations.NullMarked;
 
 
-FILE com/google/common/xml/package-info.java
+===== com/google/common/xml/package-info.java =====
 /*
  * Copyright (C) 2012 The Guava Authors
  *
@@ -681,3 +681,4 @@ package com.google.common.xml;
 
 import com.google.errorprone.annotations.CheckReturnValue;
 import org.jspecify.annotations.NullMarked;
+

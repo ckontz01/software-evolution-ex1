@@ -1,8 +1,9 @@
 {
   "architecture_count": 120,
-  "config_sha256": "c9cdafab5f35e5df2d1b9947a5b3fd0f3b5fca5cc51b60f26de1c64e2a8c6376",
-  "feature_dimensions": 1424,
-  "feature_universe_size": 712,
+  "comparison_count": 178,
+  "config_sha256": "c2d715ba45c0ee9445e8d07bfba238c3a38d1dcf656aab909f828a7617ccb35f",
+  "feature_dimensions": 1430,
+  "feature_universe_size": 715,
   "java_toolchain": {
     "asm": "9.7.1",
     "builds": [
@@ -20,9 +21,20 @@
       }
     ],
     "compiler": "Eclipse ECJ 3.37.0",
-    "java_version": "openjdk version \"17.0.20.1\" 2026-08-18\nOpenJDK Runtime Environment Temurin-17.0.20.1+1 (build 17.0.20.1+1)\nOpenJDK 64-Bit Server VM Temurin-17.0.20.1+1 (build 17.0.20.1+1, mixed mode, sharing)"
+    "instructor_classpath": [
+      "third_party/dependency_extractor/DependencyExtractor.jar",
+      "build/instructor-libs/ant-1.6.5.jar",
+      "build/instructor-libs/javaparser-1.0.8.jar",
+      "build/instructor-libs/ant.jar",
+      "build/instructor-libs/asm-9.7.1.jar"
+    ],
+    "instructor_sha256": "8e4e857222dba569cc48ddf2bc58d3ac206d4ee1c0d5228b7b69517016450e9c",
+    "java_version": "openjdk version \"17.0.20.1\" 2026-08-18\nOpenJDK Runtime Environment Temurin-17.0.20.1+1 (build 17.0.20.1+1)\nOpenJDK 64-Bit Server VM Temurin-17.0.20.1+1 (build 17.0.20.1+1, mixed mode, sharing)",
+    "primary_extractor": "unmodified instructor CompCalc.MainClass",
+    "supplemental_extractor": "java/DependencyExtractor.java (ownership, member evidence and sensitivity graph)"
   },
-  "manifest_sha256": "f0402f039117ca8f29499bcc64b0f848c7bbc0e0810260760ad1a4b6fe672c5d",
+  "k_calibration_sha256": "f773c7f42c78c0aa77cb800306d22f21b8370243d5aada2509a2856816c96be9",
+  "manifest_sha256": "733cfefe8582f23ee0dba1349773ceeaf67e746cf8892f7e21fe014cb3e62410",
   "packages": {
     "matplotlib": "3.10.8",
     "numpy": "2.3.5",
@@ -30,19 +42,24 @@
     "scikit-learn": "1.8.0",
     "scipy": "1.17.0"
   },
+  "pilot_k": 40,
+  "pilot_n": 554,
   "platform": "Linux-6.18.55-x86_64-with-glibc2.39",
   "python": "3.12.14 (main, Aug 25 2026, 14:00:49) [Clang 22.1.3 ]",
   "release_count": 30,
   "source_sha256": {
     "src/evolution/__init__.py": "ee0457bd96805efd0ff9613f5df19db2754f99e50f1582d342fe3003f21ab5e1",
-    "src/evolution/clustering.py": "d0cd49463d42e41fb15906545b5e660b701cd2b4732fb3365f199833ef7ebbfc",
-    "src/evolution/extraction.py": "2cf8542645d3832744e419aa3222ecd46c08c6134ebddfa8bd2597810f8550a3",
+    "src/evolution/clustering.py": "e1718db8ae33c802b795c4f95538d23baba4b8da5fc23f1805ce80790d846da7",
+    "src/evolution/extraction.py": "6f9c82fbff5030be0cba95a40763764f5e2a55e5c34ad2c62fd3adf9b4932923",
     "src/evolution/graph.py": "2c91619bd6309af48ad6a07d17e2e43df3ee365f4a7f90d99fdd6a7b43ac78d4",
+    "src/evolution/k_selection.py": "1b1efe5e6e38d3825de284a4412935f3babc0b1f41979e16c599d83f84bcd9f9",
     "src/evolution/metrics.py": "a5d2c105e70445e9218d7df9f877b731349b03c3d62938562586a6ea8e73164d",
+    "src/evolution/mojofm.py": "d0b519341b632f867d8e8e0fdfc544b14724a3022f2aed9c7f508fee3bc91192",
     "src/evolution/omnipresent.py": "b8dea8f90a2c7c48757e87ac388c43ff97bc228450f99836a12c473dc107ac17",
-    "src/evolution/study.py": "d0b8e5224505a7a4183b66225ca7438e7fb4f4d45b46e95e6a270f5659a4cb2a",
-    "src/evolution/toolchain.py": "7eea98b50184bb6920c54a981a135d03889b602633e76b503031901848a2654d"
+    "src/evolution/study.py": "0fe1f97d9740cc4c3ddfc4aca57e3c4ad1778650810cb27e77b6ad33871743ab",
+    "src/evolution/toolchain.py": "b8d3deb08001980302651b71e51ab668425714a73ed3458865057e5aea1f7af8"
   },
+  "study_revision": "v2_instructor_graph_distinct_families",
   "subject": "google/guava",
   "time_measurement": "perf_counter wall seconds; extraction includes JVM startup and IO; UE excludes member-CSV parsing only when explicitly benchmarked separately"
 }

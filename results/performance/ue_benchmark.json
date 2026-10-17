@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "algorithm": "JNode-UE (Yano and Matsuo, 2020)",
-  "measured_at_utc": "2026-10-17T14:41:43.143325+00:00",
+  "measured_at_utc": "2026-10-17T19:19:56.868731+00:00",
   "environment": {
     "python": "3.12.14",
     "platform": "Linux-6.18.55-x86_64-with-glibc2.39"
@@ -39,11 +39,11 @@
       "distinct_member_references": 20000,
       "class_pairs": 20000,
       "runs_seconds": [
-        0.0898648359998333,
-        0.08752285700029461,
-        0.08699127599993517
+        0.0952026909981214,
+        0.08473121499991976,
+        0.08358956600204692
       ],
-      "median_seconds": 0.08752285700029461,
+      "median_seconds": 0.08473121499991976,
       "process_high_water_rss_mib": 33.98828125,
       "expected_fanin": 20,
       "expected_referenced_members_per_target": 1,
@@ -59,12 +59,12 @@
       "distinct_member_references": 100000,
       "class_pairs": 100000,
       "runs_seconds": [
-        0.5415185630008637,
-        0.5732403299998623,
-        0.5670562240002255
+        0.5456414609980129,
+        0.5662406849987747,
+        0.5833582570012368
       ],
-      "median_seconds": 0.5670562240002255,
-      "process_high_water_rss_mib": 117.6640625,
+      "median_seconds": 0.5662406849987747,
+      "process_high_water_rss_mib": 117.5546875,
       "expected_fanin": 20,
       "expected_referenced_members_per_target": 1,
       "expected_max_dedication": 0.05,
@@ -79,12 +79,12 @@
       "distinct_member_references": 200000,
       "class_pairs": 200000,
       "runs_seconds": [
-        1.2585962829998607,
-        1.2360354370002824,
-        1.218807543999901
+        1.3119170179998036,
+        1.2353028959987569,
+        1.2266173339994566
       ],
-      "median_seconds": 1.2360354370002824,
-      "process_high_water_rss_mib": 221.8671875,
+      "median_seconds": 1.2353028959987569,
+      "process_high_water_rss_mib": 221.77734375,
       "expected_fanin": 20,
       "expected_referenced_members_per_target": 1,
       "expected_max_dedication": 0.05,

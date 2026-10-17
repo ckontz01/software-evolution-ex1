@@ -1,55 +1,55 @@
 {
-  "version": "33.7.2",
-  "model": "ChatGPT GPT-6 Astra Pro (fresh delegated session; no seed control exposed)",
-  "prompt_file": "results/ai/prompt.txt",
-  "prompt_sha256": "73bad8434d1d4e43075eb783f81cf10442342d8fc2b0389fd08ad7fd219c6464",
-  "input_files": [
-    {
-      "path": "results/ai/inputs/classes.csv",
-      "sha256": "9a8bad80015b9b512050d1d77a6612ea009e11bc5e3d180e126f1aacca5e34db",
-      "bytes": 80378
-    },
-    {
-      "path": "results/ai/inputs/dependencies.csv",
-      "sha256": "400a2343e5d0bef191e45bf8e9b4821cbc52edbfcbd16fa9a1a6f2bcf7bfe0c9",
-      "bytes": 347898
-    },
-    {
-      "path": "results/ai/inputs/package_counts.json",
-      "sha256": "ae7261c475015834fd4790c06c62e9b9fd07c3d07a15930bbbb3346b6c8a7ff2",
-      "bytes": 586
-    },
-    {
-      "path": "results/ai/inputs/package_dependencies.csv",
-      "sha256": "319d039818af035fc94b0deebcefe870ec46d8417ac41900c6de732695f63c58",
-      "bytes": 4275
-    },
-    {
-      "path": "results/ai/inputs/package_documentation.txt",
-      "sha256": "66ba51ddb5659017be9d2d7e775a65f1e1479acdfd58d647c4ba8f6bd9714def",
-      "bytes": 23935
-    }
-  ],
-  "assignment_file": "results/ai/assignment.csv",
-  "output_file": "results/ai/response.md",
-  "architecture_file": "results/ai/architecture.json",
-  "protocol": "Initial qualitative names-only hypothesis, followed by one finalized evidence-informed partition. No baseline outcomes supplied; coordinator evaluates afterward.",
-  "notes": [
-    "Source names and package documentation are allowed AI evidence, whereas structural algorithms receive graph features only. This information asymmetry is intentional and prevents treating this as a controlled same-input superiority test.",
-    "Fresh session still has general pretrained knowledge; hidden system instructions and model nondeterminism cannot be fully reproduced."
-  ],
   "additional_prompt_files": [
     {
       "path": "results/ai/launch_message.txt",
-      "sha256": "390b4c25c11f2804ce9698685d3c70ecc97d884729bfa9c0eca4fd9a7d36c9ad",
-      "sequence": 1
-    },
-    {
-      "path": "results/ai/coordinator_followup.txt",
-      "sha256": "04e3586c1dfffbe2595db528103c084117cb64fbc57587b6c1ddfc495c2f5cb9",
-      "sequence": 2
+      "sequence": 1,
+      "sha256": "d5348c0760560ec08afdd8dcf8b974d39d2938aaa62ea24be97c2e908ae120e5"
     }
   ],
-  "additional_prompt_note": "The launcher instructed the fresh session to read prompt.txt; one later status/completion message referenced the18-module proposal already reported by that session. Neither supplied baseline partitions or quality scores.",
-  "architecture_version_field": "Original AI output uses top-level version1.0 for its document and subject.release33.7.2 for the Guava target; preserved without editing the response."
+  "architecture_file": "results/ai/architecture.json",
+  "assignment_file": "results/ai/assignment.csv",
+  "input_files": [
+    {
+      "bytes": 80871,
+      "path": "results/ai/inputs/classes.csv",
+      "sha256": "4351db3d545cd19437f6e15140a74d2c280d697890a183d2fa54c8e2c6ef60d6"
+    },
+    {
+      "bytes": 224223,
+      "path": "results/ai/inputs/dependencies.csv",
+      "sha256": "2ec951b2d59152233aa73d293bd3b971a11d656f964fdad30e3da8624abe2a88"
+    },
+    {
+      "bytes": 629,
+      "path": "results/ai/inputs/package_counts.json",
+      "sha256": "bfa90ac28edd6ca86c96b9fe6c1b4329b6ebe6d96daa1b7b8b684316056d5d1a"
+    },
+    {
+      "bytes": 3465,
+      "path": "results/ai/inputs/package_dependencies.csv",
+      "sha256": "6a4670af58a29fde99d5ad8873203d9a549d028cc5372d8473b29f6705dbcb07"
+    },
+    {
+      "bytes": 24048,
+      "path": "results/ai/inputs/package_documentation.txt",
+      "sha256": "612c261362cb659e4da97878370a75bfe1bcaa97d6ccdec2ef43ea04c6bb10d0"
+    }
+  ],
+  "input_provenance": {
+    "graph_provenance_sha256": "3b7ffb7b4087a0f4fb2bee211ea0b7a97552c76beb1dcd24a570c7bf1e0d9088",
+    "sources_jar_sha256": "ab6a8934d352629e6d87087a79808b827b64ed18cff6c6b551be99cd8e03244c"
+  },
+  "model": "ChatGPT GPT-6 Astra Pro (fresh delegated session; no seed control exposed)",
+  "notes": [
+    "Names and package documentation are allowed AI evidence; structural algorithms receive graph features only. This information asymmetry prevents a controlled same-input superiority claim.",
+    "A fresh session still has general pretrained knowledge. Hidden runtime instructions and model nondeterminism cannot be fully reproduced.",
+    "Original revision AI output is preserved in the original Git commit, not reused as this response."
+  ],
+  "output_file": "results/ai/response.md",
+  "prompt_file": "results/ai/prompt.txt",
+  "prompt_sha256": "f9cb3f65ff158253eb15acb2580e8f2b4adbd7fd337307b1a84c6c79c218810a",
+  "protocol": "Initial qualitative names-only hypothesis, followed by one finalized evidence-informed partition. Fresh session without prior-turn history. Coordinator evaluates after completion.",
+  "schema_version": 2,
+  "study_revision": "v2_instructor_graph_distinct_families",
+  "version": "33.7.2"
 }

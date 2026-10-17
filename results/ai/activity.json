@@ -1,92 +1,82 @@
 {
-  "experiment_role": "Fresh blind AI reviewer for one conceptual Guava architecture-recovery partition",
+  "schema_version": "1.0",
+  "experiment": "Controlled AI conceptual architecture recovery",
+  "subject_release": "33.7.2",
   "model_identity": {
     "available_runtime_identity": "GPT-6 Astra Pro",
-    "identity_source": "Inherited launch/runtime developer identity; also stated by the experiment launcher.",
-    "precise_api_model_or_snapshot_identifier_available": false,
-    "precise_model_version": "Not exposed; no additional model identifier, snapshot date, or sampling parameter was inferred."
+    "identity_source": "Runtime identity and task-launch message",
+    "underlying_api_model_identifier": null,
+    "unavailable_identifiers_invented": false
   },
-  "input_paths_read": [
+  "exact_input_paths_read": [
     "/workspace/scratch/7500a23b5952/software-evolution-ex1/results/ai/prompt.txt",
     "/workspace/scratch/7500a23b5952/software-evolution-ex1/results/ai/inputs/classes.csv",
-    "/workspace/scratch/7500a23b5952/software-evolution-ex1/results/ai/inputs/package_counts.json",
     "/workspace/scratch/7500a23b5952/software-evolution-ex1/results/ai/inputs/dependencies.csv",
+    "/workspace/scratch/7500a23b5952/software-evolution-ex1/results/ai/inputs/package_counts.json",
     "/workspace/scratch/7500a23b5952/software-evolution-ex1/results/ai/inputs/package_dependencies.csv",
     "/workspace/scratch/7500a23b5952/software-evolution-ex1/results/ai/inputs/package_documentation.txt"
   ],
+  "input_read_sequence": [
+    {
+      "phase": 1,
+      "paths": [
+        "/workspace/scratch/7500a23b5952/software-evolution-ex1/results/ai/prompt.txt"
+      ],
+      "purpose": "Read the experiment restrictions and deliverable specification."
+    },
+    {
+      "phase": 2,
+      "paths": [
+        "/workspace/scratch/7500a23b5952/software-evolution-ex1/results/ai/inputs/classes.csv",
+        "/workspace/scratch/7500a23b5952/software-evolution-ex1/results/ai/inputs/package_counts.json"
+      ],
+      "purpose": "Inspect names, declaration kinds, and package inventory only."
+    },
+    {
+      "phase": 3,
+      "action": "Saved results/ai/initial_hypothesis.md before dependency or documentation reads.",
+      "checkpoint_recorded_utc": "2026-10-17T19:18:25.680874+00:00"
+    },
+    {
+      "phase": 4,
+      "paths": [
+        "/workspace/scratch/7500a23b5952/software-evolution-ex1/results/ai/inputs/dependencies.csv",
+        "/workspace/scratch/7500a23b5952/software-evolution-ex1/results/ai/inputs/package_dependencies.csv",
+        "/workspace/scratch/7500a23b5952/software-evolution-ex1/results/ai/inputs/package_documentation.txt"
+      ],
+      "purpose": "Inspect remaining allowed evidence and refine one final partition."
+    },
+    {
+      "phase": 5,
+      "action": "Constructed one partition, validated the serialized CSV in memory against classes.csv, and wrote the final requested outputs."
+    }
+  ],
   "input_sha256": {
-    "/workspace/scratch/7500a23b5952/software-evolution-ex1/results/ai/prompt.txt": "73bad8434d1d4e43075eb783f81cf10442342d8fc2b0389fd08ad7fd219c6464",
-    "/workspace/scratch/7500a23b5952/software-evolution-ex1/results/ai/inputs/classes.csv": "9a8bad80015b9b512050d1d77a6612ea009e11bc5e3d180e126f1aacca5e34db",
-    "/workspace/scratch/7500a23b5952/software-evolution-ex1/results/ai/inputs/package_counts.json": "ae7261c475015834fd4790c06c62e9b9fd07c3d07a15930bbbb3346b6c8a7ff2",
-    "/workspace/scratch/7500a23b5952/software-evolution-ex1/results/ai/inputs/dependencies.csv": "400a2343e5d0bef191e45bf8e9b4821cbc52edbfcbd16fa9a1a6f2bcf7bfe0c9",
-    "/workspace/scratch/7500a23b5952/software-evolution-ex1/results/ai/inputs/package_dependencies.csv": "319d039818af035fc94b0deebcefe870ec46d8417ac41900c6de732695f63c58",
-    "/workspace/scratch/7500a23b5952/software-evolution-ex1/results/ai/inputs/package_documentation.txt": "66ba51ddb5659017be9d2d7e775a65f1e1479acdfd58d647c4ba8f6bd9714def"
+    "/workspace/scratch/7500a23b5952/software-evolution-ex1/results/ai/prompt.txt": "f9cb3f65ff158253eb15acb2580e8f2b4adbd7fd337307b1a84c6c79c218810a",
+    "/workspace/scratch/7500a23b5952/software-evolution-ex1/results/ai/inputs/classes.csv": "4351db3d545cd19437f6e15140a74d2c280d697890a183d2fa54c8e2c6ef60d6",
+    "/workspace/scratch/7500a23b5952/software-evolution-ex1/results/ai/inputs/dependencies.csv": "2ec951b2d59152233aa73d293bd3b971a11d656f964fdad30e3da8624abe2a88",
+    "/workspace/scratch/7500a23b5952/software-evolution-ex1/results/ai/inputs/package_counts.json": "bfa90ac28edd6ca86c96b9fe6c1b4329b6ebe6d96daa1b7b8b684316056d5d1a",
+    "/workspace/scratch/7500a23b5952/software-evolution-ex1/results/ai/inputs/package_dependencies.csv": "6a4670af58a29fde99d5ad8873203d9a549d028cc5372d8473b29f6705dbcb07",
+    "/workspace/scratch/7500a23b5952/software-evolution-ex1/results/ai/inputs/package_documentation.txt": "612c261362cb659e4da97878370a75bfe1bcaa97d6ccdec2ef43ea04c6bb10d0"
   },
-  "read_and_write_order": [
-    "Read results/ai/prompt.txt first.",
-    "Read only results/ai/inputs/classes.csv and results/ai/inputs/package_counts.json for the initial hypothesis; inspect full class-name lists grouped by package.",
-    "Wrote results/ai/initial_hypothesis.md before reading either dependency file or package_documentation.txt.",
-    "Read the remaining three permitted evidence files; inspect package documentation and direct class/package relationship summaries.",
-    "Choose one final responsibility partition by semantic judgment; materialize assignment.csv and architecture.json; write the complete response.md.",
-    "Read only the newly written assignment.csv and architecture.json for artifact coverage/count validation against classes.csv; write activity.json.",
-    "Read the newly generated response.md and activity.json for a final Markdown table-format check. The check found no literal newline separator defect, so no response or partition change was needed; updated this activity record."
-  ],
   "tools_and_methods": [
-    "functions.exec orchestrated tools.exec_command in the specified working directory. The prompt was read with cat; subsequent data reading, summarization, writing, and validation used Python standard-library pathlib, csv, collections, json, and hashlib.",
-    "Names/package counts informed the separately recorded qualitative hypothesis. Package documentation and direct graph adjacency informed refinement.",
-    "Used raw class/package edge counts and named class relationships as descriptive evidence; inspected zero/single-incident-edge types for preservation. Did not calculate normalized graph measures or architecture-quality scores.",
-    "Applied reviewer-selected explicit memberships for the multimap/multiset, table, interval, service, synchronization/control, and URL-escaper families, with declared package defaults for remaining capabilities. No clustering algorithm was run.",
-    "Validated class coverage, unique ownership, known cluster IDs, exact module counts, graph endpoint/duplicate consistency, and correspondence of the supplied package aggregates to the class graph.",
-    "No external browsing, documentation-link following, source-code reading, baseline inspection, or metric-code execution was performed. No subreviewer was spawned for this controlled recovery turn."
+    "functions.exec orchestrated exec_command calls; initial file reads used cat, followed by compact Python csv/json summaries.",
+    "Python standard-library csv, json, collections, pathlib, hashlib, io, and datetime read only the listed prompt/evidence paths, derived raw input counts and selected adjacency observations, constructed explicit semantic class overrides, serialized final outputs, and checked coverage.",
+    "Initial cat output for classes.csv was truncated by the tool display, so a subsequent compact grouped class-name read inspected all 594 names before the hypothesis checkpoint.",
+    "Independent permitted reads were batched; dependency/documentation reads occurred strictly after saving the names-only hypothesis.",
+    "No additional subagent was used. The reviewer sent the coordinator progress messages but received no baseline partitions, UE decisions, or quality outcomes.",
+    "No filesystem listing, project search, class-source inspection, external browsing, repository-history inspection, or reading of other experiment outputs was performed.",
+    "Final assignment validation parsed the generated CSV text in memory and compared class sets, uniqueness, module membership/counts, and isolated/annotation preservation against the permitted inventory."
   ],
-  "baseline_and_quality_blinding": {
-    "baseline_partitions_consulted": false,
-    "ACDC_or_KMeans_partitions_consulted": false,
-    "UE_decisions_consulted": false,
-    "other_experiment_reports_or_results_consulted": false,
-    "numeric_quality_scores_consulted": false,
-    "MQ_computed": false,
-    "cohesion_computed": false,
-    "coupling_computed": false,
-    "other_architecture_quality_metrics_computed": false,
-    "baseline_comparison_performed": false,
-    "launcher_supplied_algorithm_outcomes": false
-  },
-  "access_scope": {
-    "external_sources_used": false,
-    "other_project_input_files_read": false,
-    "Java_sources_read": false,
-    "own_output_paths_read_for_validation": [
-      "/workspace/scratch/7500a23b5952/software-evolution-ex1/results/ai/assignment.csv",
-      "/workspace/scratch/7500a23b5952/software-evolution-ex1/results/ai/architecture.json",
-      "/workspace/scratch/7500a23b5952/software-evolution-ex1/results/ai/response.md",
-      "/workspace/scratch/7500a23b5952/software-evolution-ex1/results/ai/activity.json"
-    ]
-  },
-  "validation": {
-    "manifest_classes": 591,
-    "assignment_rows": 591,
-    "unique_assigned_classes": 591,
-    "missing_classes": [],
-    "invented_classes": [],
-    "duplicate_assignments": [],
-    "module_count": 18,
-    "module_counts_match_assignment": true,
-    "class_counts_sum": 591,
-    "package_counts_match_manifest": true,
-    "binary_internal_edges": 3969,
-    "duplicate_edges": 0,
-    "unknown_graph_endpoints": 0,
-    "self_edges": 0,
-    "package_aggregation_matches_supplied_table": true,
-    "isolated_classes_preserved": [
-      "com.google.common.cache.IgnoreJRERequirement",
-      "com.google.common.math.IgnoreJRERequirement",
-      "com.google.common.reflect.AbstractInvocationHandler"
-    ],
-    "all_zero_or_single_incident_edge_types_preserved": true
-  },
-  "written_paths": [
+  "initial_hypothesis_written_before_dependency_documentation_reads": true,
+  "baseline_partitions_consulted": false,
+  "ue_decisions_consulted": false,
+  "numeric_quality_scores_consulted": false,
+  "baseline_algorithms_compared": false,
+  "mq_cohesion_coupling_computed": false,
+  "external_sources_consulted": false,
+  "other_project_data_consulted": false,
+  "output_paths_written": [
     "/workspace/scratch/7500a23b5952/software-evolution-ex1/results/ai/initial_hypothesis.md",
     "/workspace/scratch/7500a23b5952/software-evolution-ex1/results/ai/assignment.csv",
     "/workspace/scratch/7500a23b5952/software-evolution-ex1/results/ai/architecture.json",
@@ -94,5 +84,18 @@
     "/workspace/scratch/7500a23b5952/software-evolution-ex1/results/ai/activity.json"
   ],
   "unrelated_files_modified": false,
-  "final_partition_count": 1
+  "validation": {
+    "input_classes": 594,
+    "assignment_rows": 594,
+    "unique_assigned_classes": 594,
+    "missing_classes": [],
+    "extra_classes": [],
+    "duplicate_classes": [],
+    "nonempty_modules": 18,
+    "assigned_isolated_vertices": 45,
+    "assigned_annotation_declarations": 31,
+    "class_count_sum": 594,
+    "status": "passed"
+  },
+  "completed_utc": "2026-10-17T19:27:08.277546+00:00"
 }

@@ -1,17 +1,17 @@
 {
-  "classes_assigned_exactly_once": 591,
+  "classes_assigned_exactly_once": 594,
   "external_or_invented_classes": 0,
   "input_hashes_verified": true,
   "metric_scope": "Every comparison uses identical class and edge sets; retained AI assignment is a projection, not a new AI recovery.",
   "modules": 18,
   "output_sha256": {
-    "activity.json": "4a3d17b7a75644f9ffbef6bb0f603d80d65d3bf5245f0b923068a3ce6aa357d3",
-    "architecture.json": "eb52a8ed12cf787842d32ff38a21e7f462beb9558c06c3a3bb06769b7795c4f4",
-    "assignment.csv": "8541e460fc0f268d08d3f01bcfa6e3bd0c35e04860a8f0c4cf6318e13cddc87c",
-    "initial_hypothesis.md": "44c6ad972f5b546223b01f257f130114b621aadc296d6344614d2a0b543f7ada",
-    "response.md": "accf9ad3daaac3ba199676c1f68104562145686c2f51c182d09db32d029c4435"
+    "activity.json": "4c6c355ee90cef227df804f27c7292d610ff801a2f645edcdd051a9f552e2a1d",
+    "architecture.json": "68248c36a462f64ecf31ff070949d2bde8b2957b45868eaf10c39b2d35697c97",
+    "assignment.csv": "40e75509b06306c3af3a17c7dcde6dd70e1d7035e192cbc65299325a507ac004",
+    "initial_hypothesis.md": "19b25208f53ed4083b54695bdb6cc6415d922e94fe5f96d7315a8571137df4ad",
+    "response.md": "673c65bb9209da9c50184d8ea68bec063631202afce6ab5bc1cf47baf1df212d"
   },
-  "quality_claim": "ARI measures agreement, not accuracy; no validated intended-architecture ground truth is available.",
+  "quality_claim": "MoJoFM in both directions measures partition agreement, not accuracy; ARI is supplementary. No validated intended-architecture ground truth is available.",
   "status": "passed",
   "version": "33.7.2"
 }

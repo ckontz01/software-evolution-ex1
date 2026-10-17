@@ -1,26 +1,26 @@
-# Initial architecture hypothesis — names and package counts only
+# Initial names-only architecture hypothesis
 
-## Evidence available at this checkpoint
+Recorded before reading dependencies.csv, package_dependencies.csv, or package_documentation.txt. At this stage the only evidence inspected is classes.csv and package_counts.json; the experiment prompt supplies the release identity and graph-scope description. This is a qualitative hypothesis, not a finalized partition.
 
-I have read `results/ai/prompt.txt`, `results/ai/inputs/classes.csv`, and `results/ai/inputs/package_counts.json` only. I have not yet read dependencies, package dependencies, or package documentation. The manifest contains 591 canonical outer classes in 17 packages. The `collect` package has 215 classes, `util.concurrent` 83, `graph` 53, and `base` 51 plus one `base.internal` class.
+## Provisional responsibility areas
 
-## Qualitative hypothesis
+The inventory suggests the following starting areas, without fixing their number or assigning every class:
 
-Guava appears to be a collection of reusable library capabilities with a shared foundation, rather than one application organized around a single business workflow. My provisional responsibility map is:
+- **Core values and programming contracts:** optional values, preconditions, equivalence, functional adapters, object utilities, timing, reference lifecycle support, and shared API/platform annotations. The base package contains several distinct concerns; names alone do not establish which should become separate modules.
+- **Collections and collection algorithms:** immutable and mutable containers, collection views, forwarding adapters, iteration, ordering, ranges, multimaps, multisets, and tables. This is the largest package (215 of 594 outer types). Range operations, specialized containers, and ordering look like candidate subareas, but splitting them requires evidence about their implementation relationships.
+- **Caching:** cache construction, loading, eviction/removal, statistics, and local cache machinery.
+- **Asynchronous execution and coordination:** futures, executors, services, synchronization, atomics, and rate/time limiting. The 83 names suggest that service lifecycle or synchronization could be separated if the evidence supports useful boundaries.
+- **Graph models and traversal:** graph/network/value-graph interfaces, builders, mutable/immutable representations, connections, and traversal.
+- **Hashing and probabilistic membership:** hash functions, sinks/funnels, hash codes, hashing streams, and Bloom filters.
+- **Streams, files, and binary/text I/O:** sources, sinks, processors, readers, resource closing, file operations, and base encoding.
+- **Primitive values and numerical methods:** primitive adapters, unsigned values, immutable primitive arrays, arithmetic, rounding, and statistics. Primitives and mathematics may be distinct responsibilities despite their common numeric vocabulary.
+- **Network identifiers and protocol values:** addresses, host/port parsing, domains, media types, HTTP constants, and Guava-owned public-suffix support. Public-suffix names suggest an implementation relationship to InternetDomainName, which is only a hypothesis at this stage.
+- **Text escaping:** escape abstractions and HTML/XML/URL escaping policies. PercentEscaper and UrlEscapers are in net but their names suggest a cross-package escaping responsibility; base text helpers may warrant a separate or adjacent concern.
+- **Reflection and generic types:** type tokens, type resolution, invocation, class-path inspection, and type-to-instance maps.
+- **Event dispatch:** event buses, subscription handling, dispatchers, and subscriber exceptions.
 
-- **Foundational contracts and runtime support:** preconditions, optional values, functions/predicates/suppliers, equivalence, exceptions, reference cleanup, and compatibility annotations.
-- **Text processing and escaping:** matching, splitting/joining, character conversion, escape mechanisms, and HTML/XML specializations. Names suggest considering base text helpers and URL escaping here, but their ownership is unresolved.
-- **Collections:** collection implementations, views, iteration, ordering, immutable variants, multimaps/multisets, tables, and ranges. The 215-class package probably deserves a more detailed conceptual map, but names alone do not justify a particular split.
-- **Primitive and mathematical utilities:** primitive wrappers/arrays and numeric algorithms/statistics; whether these form one responsibility or two remains open.
-- **Caching:** cache loading, eviction/removal policies, and local cache implementation support.
-- **Concurrency and execution:** futures, executors, services, locks, atomics, and time/rate controls. The service lifecycle and synchronization families may warrant their own boundaries after dependency inspection.
-- **Graph models and traversal:** graphs, value graphs, networks, builders, connection representations, and traversal.
-- **Hashing and probabilistic structures:** hash functions, hashers, funnels, and Bloom filters.
-- **I/O and encodings:** byte/character sources and sinks, streams, files/resources, and base encodings.
-- **Network value handling:** addresses, hosts/domains, media types, and protocol names, with escaping ownership still open.
-- **Reflection and type information:** generic type modeling, invocation, classpath inspection, and type-indexed values.
-- **Event dispatch:** registration, subscribers, delivery, and subscriber exceptions.
+## Cautions and questions for the evidence phase
 
-## Decisions deliberately deferred
+All 594 supplied canonical outer types, including annotations and isolated types, must remain in the final partition. The 18 package names offer useful vocabulary but are not ground truth for architectural boundaries. Familiar names such as Platform, Internal, and NullnessCasts are especially weak evidence: repeated names do not establish a shared responsibility across packages. Local support types will provisionally follow the implementation they support; this must be checked against the available relationships.
 
-This is a qualitative hypothesis, not a second class partition. I have not fixed a module count or allocated every class. I will test whether collection families and concurrency responsibilities have credible boundaries, whether text helpers can be separated from the base foundation, and whether small escaping packages should be combined. Package names are a strong initial cue and may bias this map. Shared helpers and isolated annotations still require one explicit final owner; low degree will not be grounds for omission. Dependency counts will be descriptive evidence, not an optimization target or an architecture-quality score.
+The next phase will check whether collections deserve a practical responsibility split, whether futures and service lifecycle warrant separate ownership, whether primitive adaptation should be distinct from mathematics, and whether the cross-package escaping and public-suffix hypotheses have concrete support. No module count, numeric quality target, or claimed intended design has been selected.

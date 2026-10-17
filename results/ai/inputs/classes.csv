@@ -590,3 +590,6 @@
 "com.google.common.util.concurrent.WrappingScheduledExecutorService","com.google.common.util.concurrent","com/google/common/util/concurrent/WrappingScheduledExecutorService.java","class","1"
 "com.google.common.xml.ParametricNullness","com.google.common.xml","com/google/common/xml/ParametricNullness.java","annotation","1"
 "com.google.common.xml.XmlEscapers","com.google.common.xml","com/google/common/xml/XmlEscapers.java","class","1"
+"com.google.thirdparty.publicsuffix.PublicSuffixPatterns","com.google.thirdparty.publicsuffix","com/google/thirdparty/publicsuffix/PublicSuffixPatterns.java","class","1"
+"com.google.thirdparty.publicsuffix.PublicSuffixTrie","com.google.thirdparty.publicsuffix","com/google/thirdparty/publicsuffix/PublicSuffixTrie.java","class","2"
+"com.google.thirdparty.publicsuffix.PublicSuffixType","com.google.thirdparty.publicsuffix","com/google/thirdparty/publicsuffix/PublicSuffixType.java","enum","1"

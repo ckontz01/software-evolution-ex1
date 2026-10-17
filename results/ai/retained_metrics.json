@@ -1,162 +1,144 @@
 {
-  "cohesion": 0.09697457936761272,
-  "coupling": 0.0028974998324827386,
-  "graph_density": 0.008929676477140523,
-  "inter_edge_fraction": 0.46534996534996537,
-  "inter_edges": 1343,
-  "internal_edges": 1543,
-  "isolates": 3,
-  "max_cluster_size": 114,
-  "mean_cluster_size": 31.61111111111111,
-  "min_cluster_size": 7,
-  "mq": 0.09407707953512999,
+  "cohesion": 0.09068570023173854,
+  "coupling": 0.0011592907202282142,
+  "graph_density": 0.005278434350238203,
+  "inter_edge_fraction": 0.26218097447795824,
+  "inter_edges": 452,
+  "internal_edges": 1272,
+  "isolates": 58,
+  "max_cluster_size": 116,
+  "mean_cluster_size": 31.77777777777778,
+  "min_cluster_size": 8,
+  "mq": 0.08952640951151032,
   "n_clusters": 18,
-  "n_edges": 2886,
-  "n_nodes": 569,
-  "pair_weighted_cohesion": 0.05211781395663041,
+  "n_edges": 1724,
+  "n_nodes": 572,
+  "pair_weighted_cohesion": 0.04222546806532997,
   "per_cluster": [
     {
       "cluster": "async_execution",
-      "cohesion": 0.05241090146750524,
-      "incoming_inter_edges": 29,
-      "internal_edges": 150,
-      "n_classes": 54,
-      "outgoing_inter_edges": 107,
-      "possible_internal_edges": 2862
+      "cohesion": 0.0367003367003367,
+      "incoming_inter_edges": 27,
+      "internal_edges": 109,
+      "n_classes": 55,
+      "outgoing_inter_edges": 18,
+      "possible_internal_edges": 2970
     },
     {
       "cluster": "caching",
-      "cohesion": 0.09523809523809523,
+      "cohesion": 0.09307359307359307,
       "incoming_inter_edges": 3,
-      "internal_edges": 44,
+      "internal_edges": 43,
       "n_classes": 22,
-      "outgoing_inter_edges": 65,
+      "outgoing_inter_edges": 25,
       "possible_internal_edges": 462
     },
     {
       "cluster": "collections_core",
-      "cohesion": 0.025617140195621797,
-      "incoming_inter_edges": 278,
-      "internal_edges": 330,
-      "n_classes": 114,
-      "outgoing_inter_edges": 275,
-      "possible_internal_edges": 12882
-    },
-    {
-      "cluster": "collections_multi",
-      "cohesion": 0.06867329047340737,
-      "incoming_inter_edges": 33,
-      "internal_edges": 235,
-      "n_classes": 59,
-      "outgoing_inter_edges": 267,
-      "possible_internal_edges": 3422
-    },
-    {
-      "cluster": "collections_ranges",
-      "cohesion": 0.16666666666666666,
-      "incoming_inter_edges": 1,
-      "internal_edges": 26,
-      "n_classes": 13,
-      "outgoing_inter_edges": 66,
-      "possible_internal_edges": 156
-    },
-    {
-      "cluster": "collections_tables",
-      "cohesion": 0.2,
-      "incoming_inter_edges": 1,
-      "internal_edges": 48,
-      "n_classes": 16,
-      "outgoing_inter_edges": 81,
-      "possible_internal_edges": 240
-    },
-    {
-      "cluster": "escaping",
-      "cohesion": 0.0875,
-      "incoming_inter_edges": 0,
-      "internal_edges": 21,
-      "n_classes": 16,
-      "outgoing_inter_edges": 17,
-      "possible_internal_edges": 240
+      "cohesion": 0.020614692653673165,
+      "incoming_inter_edges": 225,
+      "internal_edges": 275,
+      "n_classes": 116,
+      "outgoing_inter_edges": 33,
+      "possible_internal_edges": 13340
     },
     {
       "cluster": "event_dispatch",
-      "cohesion": 0.15454545454545454,
+      "cohesion": 0.13636363636363635,
       "incoming_inter_edges": 0,
-      "internal_edges": 17,
+      "internal_edges": 15,
       "n_classes": 11,
-      "outgoing_inter_edges": 15,
+      "outgoing_inter_edges": 12,
       "possible_internal_edges": 110
     },
     {
       "cluster": "foundation",
-      "cohesion": 0.059869375907111756,
-      "incoming_inter_edges": 941,
-      "internal_edges": 165,
+      "cohesion": 0.022133526850507984,
+      "incoming_inter_edges": 111,
+      "internal_edges": 61,
       "n_classes": 53,
       "outgoing_inter_edges": 0,
       "possible_internal_edges": 2756
     },
     {
-      "cluster": "graph_model",
-      "cohesion": 0.08295625942684766,
+      "cluster": "graphs",
+      "cohesion": 0.07654600301659126,
       "incoming_inter_edges": 4,
-      "internal_edges": 220,
+      "internal_edges": 203,
       "n_classes": 52,
-      "outgoing_inter_edges": 42,
+      "outgoing_inter_edges": 41,
       "possible_internal_edges": 2652
     },
     {
       "cluster": "hashing",
-      "cohesion": 0.11647727272727272,
+      "cohesion": 0.10606060606060606,
       "incoming_inter_edges": 10,
-      "internal_edges": 123,
+      "internal_edges": 112,
       "n_classes": 33,
-      "outgoing_inter_edges": 42,
+      "outgoing_inter_edges": 9,
       "possible_internal_edges": 1056
     },
     {
-      "cluster": "io",
-      "cohesion": 0.05405405405405406,
+      "cluster": "io_resources",
+      "cohesion": 0.04504504504504504,
       "incoming_inter_edges": 5,
-      "internal_edges": 72,
+      "internal_edges": 60,
       "n_classes": 37,
-      "outgoing_inter_edges": 112,
+      "outgoing_inter_edges": 33,
       "possible_internal_edges": 1332
     },
     {
-      "cluster": "network_values",
-      "cohesion": 0.07142857142857142,
-      "incoming_inter_edges": 0,
-      "internal_edges": 3,
-      "n_classes": 7,
-      "outgoing_inter_edges": 31,
-      "possible_internal_edges": 42
-    },
-    {
-      "cluster": "numeric_algorithms",
+      "cluster": "mathematics",
       "cohesion": 0.11666666666666667,
       "incoming_inter_edges": 16,
       "internal_edges": 28,
       "n_classes": 16,
-      "outgoing_inter_edges": 35,
+      "outgoing_inter_edges": 3,
       "possible_internal_edges": 240
     },
     {
+      "cluster": "multimaps_multisets",
+      "cohesion": 0.061367621274108705,
+      "incoming_inter_edges": 31,
+      "internal_edges": 210,
+      "n_classes": 59,
+      "outgoing_inter_edges": 106,
+      "possible_internal_edges": 3422
+    },
+    {
+      "cluster": "network_values",
+      "cohesion": 0.08888888888888889,
+      "incoming_inter_edges": 0,
+      "internal_edges": 8,
+      "n_classes": 10,
+      "outgoing_inter_edges": 19,
+      "possible_internal_edges": 90
+    },
+    {
       "cluster": "primitive_values",
-      "cohesion": 0.02355072463768116,
+      "cohesion": 0.021739130434782608,
       "incoming_inter_edges": 15,
-      "internal_edges": 13,
+      "internal_edges": 12,
       "n_classes": 24,
-      "outgoing_inter_edges": 47,
+      "outgoing_inter_edges": 6,
       "possible_internal_edges": 552
     },
     {
-      "cluster": "reflection",
-      "cohesion": 0.10833333333333334,
+      "cluster": "ranges",
+      "cohesion": 0.16666666666666666,
       "incoming_inter_edges": 1,
       "internal_edges": 26,
+      "n_classes": 13,
+      "outgoing_inter_edges": 38,
+      "possible_internal_edges": 156
+    },
+    {
+      "cluster": "reflection",
+      "cohesion": 0.09583333333333334,
+      "incoming_inter_edges": 1,
+      "internal_edges": 23,
       "n_classes": 16,
-      "outgoing_inter_edges": 33,
+      "outgoing_inter_edges": 27,
       "possible_internal_edges": 240
     },
     {
@@ -165,217 +147,199 @@
       "incoming_inter_edges": 0,
       "internal_edges": 13,
       "n_classes": 8,
-      "outgoing_inter_edges": 44,
+      "outgoing_inter_edges": 27,
       "possible_internal_edges": 56
     },
     {
-      "cluster": "synchronization",
-      "cohesion": 0.029411764705882353,
-      "incoming_inter_edges": 6,
-      "internal_edges": 9,
-      "n_classes": 18,
-      "outgoing_inter_edges": 64,
-      "possible_internal_edges": 306
+      "cluster": "synchronization_limits",
+      "cohesion": 0.03333333333333333,
+      "incoming_inter_edges": 2,
+      "internal_edges": 7,
+      "n_classes": 15,
+      "outgoing_inter_edges": 19,
+      "possible_internal_edges": 210
+    },
+    {
+      "cluster": "tables",
+      "cohesion": 0.19166666666666668,
+      "incoming_inter_edges": 1,
+      "internal_edges": 46,
+      "n_classes": 16,
+      "outgoing_inter_edges": 36,
+      "possible_internal_edges": 240
+    },
+    {
+      "cluster": "text_escaping",
+      "cohesion": 0.0875,
+      "incoming_inter_edges": 0,
+      "internal_edges": 21,
+      "n_classes": 16,
+      "outgoing_inter_edges": 0,
+      "possible_internal_edges": 240
     }
   ],
   "per_pair": [
     {
       "cluster_i": "async_execution",
       "cluster_j": "caching",
-      "coupling": 0.003367003367003367,
-      "inter_edges_both_directions": 8,
-      "n_i": 54,
+      "coupling": 0.00371900826446281,
+      "inter_edges_both_directions": 9,
+      "n_i": 55,
       "n_j": 22,
-      "possible_inter_edges": 2376
+      "possible_inter_edges": 2420
     },
     {
       "cluster_i": "async_execution",
       "cluster_j": "collections_core",
-      "coupling": 0.0007309941520467836,
+      "coupling": 0.0007053291536050156,
       "inter_edges_both_directions": 9,
-      "n_i": 54,
-      "n_j": 114,
-      "possible_inter_edges": 12312
-    },
-    {
-      "cluster_i": "async_execution",
-      "cluster_j": "collections_multi",
-      "coupling": 0.0,
-      "inter_edges_both_directions": 0,
-      "n_i": 54,
-      "n_j": 59,
-      "possible_inter_edges": 6372
-    },
-    {
-      "cluster_i": "async_execution",
-      "cluster_j": "collections_ranges",
-      "coupling": 0.0,
-      "inter_edges_both_directions": 0,
-      "n_i": 54,
-      "n_j": 13,
-      "possible_inter_edges": 1404
-    },
-    {
-      "cluster_i": "async_execution",
-      "cluster_j": "collections_tables",
-      "coupling": 0.0,
-      "inter_edges_both_directions": 0,
-      "n_i": 54,
-      "n_j": 16,
-      "possible_inter_edges": 1728
-    },
-    {
-      "cluster_i": "async_execution",
-      "cluster_j": "escaping",
-      "coupling": 0.0,
-      "inter_edges_both_directions": 0,
-      "n_i": 54,
-      "n_j": 16,
-      "possible_inter_edges": 1728
+      "n_i": 55,
+      "n_j": 116,
+      "possible_inter_edges": 12760
     },
     {
       "cluster_i": "async_execution",
       "cluster_j": "event_dispatch",
-      "coupling": 0.0016835016835016834,
+      "coupling": 0.001652892561983471,
       "inter_edges_both_directions": 2,
-      "n_i": 54,
+      "n_i": 55,
       "n_j": 11,
-      "possible_inter_edges": 1188
+      "possible_inter_edges": 1210
     },
     {
       "cluster_i": "async_execution",
       "cluster_j": "foundation",
-      "coupling": 0.016596785464709992,
-      "inter_edges_both_directions": 95,
-      "n_i": 54,
+      "coupling": 0.0015437392795883361,
+      "inter_edges_both_directions": 9,
+      "n_i": 55,
       "n_j": 53,
-      "possible_inter_edges": 5724
+      "possible_inter_edges": 5830
     },
     {
       "cluster_i": "async_execution",
-      "cluster_j": "graph_model",
+      "cluster_j": "graphs",
       "coupling": 0.0,
       "inter_edges_both_directions": 0,
-      "n_i": 54,
+      "n_i": 55,
       "n_j": 52,
-      "possible_inter_edges": 5616
+      "possible_inter_edges": 5720
     },
     {
       "cluster_i": "async_execution",
       "cluster_j": "hashing",
       "coupling": 0.0,
       "inter_edges_both_directions": 0,
-      "n_i": 54,
+      "n_i": 55,
       "n_j": 33,
-      "possible_inter_edges": 3564
+      "possible_inter_edges": 3630
     },
     {
       "cluster_i": "async_execution",
-      "cluster_j": "io",
+      "cluster_j": "io_resources",
       "coupling": 0.0,
       "inter_edges_both_directions": 0,
-      "n_i": 54,
+      "n_i": 55,
       "n_j": 37,
-      "possible_inter_edges": 3996
+      "possible_inter_edges": 4070
+    },
+    {
+      "cluster_i": "async_execution",
+      "cluster_j": "mathematics",
+      "coupling": 0.0,
+      "inter_edges_both_directions": 0,
+      "n_i": 55,
+      "n_j": 16,
+      "possible_inter_edges": 1760
+    },
+    {
+      "cluster_i": "async_execution",
+      "cluster_j": "multimaps_multisets",
+      "coupling": 0.0,
+      "inter_edges_both_directions": 0,
+      "n_i": 55,
+      "n_j": 59,
+      "possible_inter_edges": 6490
     },
     {
       "cluster_i": "async_execution",
       "cluster_j": "network_values",
       "coupling": 0.0,
       "inter_edges_both_directions": 0,
-      "n_i": 54,
-      "n_j": 7,
-      "possible_inter_edges": 756
-    },
-    {
-      "cluster_i": "async_execution",
-      "cluster_j": "numeric_algorithms",
-      "coupling": 0.0,
-      "inter_edges_both_directions": 0,
-      "n_i": 54,
-      "n_j": 16,
-      "possible_inter_edges": 1728
+      "n_i": 55,
+      "n_j": 10,
+      "possible_inter_edges": 1100
     },
     {
       "cluster_i": "async_execution",
       "cluster_j": "primitive_values",
       "coupling": 0.0,
       "inter_edges_both_directions": 0,
-      "n_i": 54,
+      "n_i": 55,
       "n_j": 24,
-      "possible_inter_edges": 2592
+      "possible_inter_edges": 2640
+    },
+    {
+      "cluster_i": "async_execution",
+      "cluster_j": "ranges",
+      "coupling": 0.0,
+      "inter_edges_both_directions": 0,
+      "n_i": 55,
+      "n_j": 13,
+      "possible_inter_edges": 1430
     },
     {
       "cluster_i": "async_execution",
       "cluster_j": "reflection",
       "coupling": 0.0,
       "inter_edges_both_directions": 0,
-      "n_i": 54,
+      "n_i": 55,
       "n_j": 16,
-      "possible_inter_edges": 1728
+      "possible_inter_edges": 1760
     },
     {
       "cluster_i": "async_execution",
       "cluster_j": "service_lifecycle",
-      "coupling": 0.010416666666666666,
+      "coupling": 0.010227272727272727,
       "inter_edges_both_directions": 9,
-      "n_i": 54,
+      "n_i": 55,
       "n_j": 8,
-      "possible_inter_edges": 864
+      "possible_inter_edges": 880
     },
     {
       "cluster_i": "async_execution",
-      "cluster_j": "synchronization",
-      "coupling": 0.006687242798353909,
-      "inter_edges_both_directions": 13,
-      "n_i": 54,
-      "n_j": 18,
-      "possible_inter_edges": 1944
+      "cluster_j": "synchronization_limits",
+      "coupling": 0.004242424242424243,
+      "inter_edges_both_directions": 7,
+      "n_i": 55,
+      "n_j": 15,
+      "possible_inter_edges": 1650
+    },
+    {
+      "cluster_i": "async_execution",
+      "cluster_j": "tables",
+      "coupling": 0.0,
+      "inter_edges_both_directions": 0,
+      "n_i": 55,
+      "n_j": 16,
+      "possible_inter_edges": 1760
+    },
+    {
+      "cluster_i": "async_execution",
+      "cluster_j": "text_escaping",
+      "coupling": 0.0,
+      "inter_edges_both_directions": 0,
+      "n_i": 55,
+      "n_j": 16,
+      "possible_inter_edges": 1760
     },
     {
       "cluster_i": "caching",
       "cluster_j": "collections_core",
-      "coupling": 0.0005980861244019139,
+      "coupling": 0.0005877742946708464,
       "inter_edges_both_directions": 3,
       "n_i": 22,
-      "n_j": 114,
-      "possible_inter_edges": 5016
-    },
-    {
-      "cluster_i": "caching",
-      "cluster_j": "collections_multi",
-      "coupling": 0.0,
-      "inter_edges_both_directions": 0,
-      "n_i": 22,
-      "n_j": 59,
-      "possible_inter_edges": 2596
-    },
-    {
-      "cluster_i": "caching",
-      "cluster_j": "collections_ranges",
-      "coupling": 0.0,
-      "inter_edges_both_directions": 0,
-      "n_i": 22,
-      "n_j": 13,
-      "possible_inter_edges": 572
-    },
-    {
-      "cluster_i": "caching",
-      "cluster_j": "collections_tables",
-      "coupling": 0.0,
-      "inter_edges_both_directions": 0,
-      "n_i": 22,
-      "n_j": 16,
-      "possible_inter_edges": 704
-    },
-    {
-      "cluster_i": "caching",
-      "cluster_j": "escaping",
-      "coupling": 0.0,
-      "inter_edges_both_directions": 0,
-      "n_i": 22,
-      "n_j": 16,
-      "possible_inter_edges": 704
+      "n_j": 116,
+      "possible_inter_edges": 5104
     },
     {
       "cluster_i": "caching",
@@ -389,15 +353,15 @@
     {
       "cluster_i": "caching",
       "cluster_j": "foundation",
-      "coupling": 0.022298456260720412,
-      "inter_edges_both_directions": 52,
+      "coupling": 0.005145797598627788,
+      "inter_edges_both_directions": 12,
       "n_i": 22,
       "n_j": 53,
       "possible_inter_edges": 2332
     },
     {
       "cluster_i": "caching",
-      "cluster_j": "graph_model",
+      "cluster_j": "graphs",
       "coupling": 0.0,
       "inter_edges_both_directions": 0,
       "n_i": 22,
@@ -415,7 +379,7 @@
     },
     {
       "cluster_i": "caching",
-      "cluster_j": "io",
+      "cluster_j": "io_resources",
       "coupling": 0.0,
       "inter_edges_both_directions": 0,
       "n_i": 22,
@@ -424,16 +388,7 @@
     },
     {
       "cluster_i": "caching",
-      "cluster_j": "network_values",
-      "coupling": 0.0,
-      "inter_edges_both_directions": 0,
-      "n_i": 22,
-      "n_j": 7,
-      "possible_inter_edges": 308
-    },
-    {
-      "cluster_i": "caching",
-      "cluster_j": "numeric_algorithms",
+      "cluster_j": "mathematics",
       "coupling": 0.0014204545454545455,
       "inter_edges_both_directions": 1,
       "n_i": 22,
@@ -442,12 +397,39 @@
     },
     {
       "cluster_i": "caching",
+      "cluster_j": "multimaps_multisets",
+      "coupling": 0.0,
+      "inter_edges_both_directions": 0,
+      "n_i": 22,
+      "n_j": 59,
+      "possible_inter_edges": 2596
+    },
+    {
+      "cluster_i": "caching",
+      "cluster_j": "network_values",
+      "coupling": 0.0,
+      "inter_edges_both_directions": 0,
+      "n_i": 22,
+      "n_j": 10,
+      "possible_inter_edges": 440
+    },
+    {
+      "cluster_i": "caching",
       "cluster_j": "primitive_values",
       "coupling": 0.0,
       "inter_edges_both_directions": 0,
       "n_i": 22,
       "n_j": 24,
       "possible_inter_edges": 1056
+    },
+    {
+      "cluster_i": "caching",
+      "cluster_j": "ranges",
+      "coupling": 0.0,
+      "inter_edges_both_directions": 0,
+      "n_i": 22,
+      "n_j": 13,
+      "possible_inter_edges": 572
     },
     {
       "cluster_i": "caching",
@@ -469,610 +451,178 @@
     },
     {
       "cluster_i": "caching",
-      "cluster_j": "synchronization",
-      "coupling": 0.0012626262626262627,
-      "inter_edges_both_directions": 1,
+      "cluster_j": "synchronization_limits",
+      "coupling": 0.0,
+      "inter_edges_both_directions": 0,
       "n_i": 22,
-      "n_j": 18,
-      "possible_inter_edges": 792
+      "n_j": 15,
+      "possible_inter_edges": 660
     },
     {
-      "cluster_i": "collections_core",
-      "cluster_j": "collections_multi",
-      "coupling": 0.010630389533154922,
-      "inter_edges_both_directions": 143,
-      "n_i": 114,
-      "n_j": 59,
-      "possible_inter_edges": 13452
-    },
-    {
-      "cluster_i": "collections_core",
-      "cluster_j": "collections_ranges",
-      "coupling": 0.01282051282051282,
-      "inter_edges_both_directions": 38,
-      "n_i": 114,
-      "n_j": 13,
-      "possible_inter_edges": 2964
-    },
-    {
-      "cluster_i": "collections_core",
-      "cluster_j": "collections_tables",
-      "coupling": 0.009868421052631578,
-      "inter_edges_both_directions": 36,
-      "n_i": 114,
-      "n_j": 16,
-      "possible_inter_edges": 3648
-    },
-    {
-      "cluster_i": "collections_core",
-      "cluster_j": "escaping",
+      "cluster_i": "caching",
+      "cluster_j": "tables",
       "coupling": 0.0,
       "inter_edges_both_directions": 0,
-      "n_i": 114,
+      "n_i": 22,
       "n_j": 16,
-      "possible_inter_edges": 3648
+      "possible_inter_edges": 704
+    },
+    {
+      "cluster_i": "caching",
+      "cluster_j": "text_escaping",
+      "coupling": 0.0,
+      "inter_edges_both_directions": 0,
+      "n_i": 22,
+      "n_j": 16,
+      "possible_inter_edges": 704
     },
     {
       "cluster_i": "collections_core",
       "cluster_j": "event_dispatch",
-      "coupling": 0.0011961722488038277,
+      "coupling": 0.0011755485893416929,
       "inter_edges_both_directions": 3,
-      "n_i": 114,
+      "n_i": 116,
       "n_j": 11,
-      "possible_inter_edges": 2508
+      "possible_inter_edges": 2552
     },
     {
       "cluster_i": "collections_core",
       "cluster_j": "foundation",
-      "coupling": 0.021019529956967892,
-      "inter_edges_both_directions": 254,
-      "n_i": 114,
+      "coupling": 0.0009759271307742355,
+      "inter_edges_both_directions": 12,
+      "n_i": 116,
       "n_j": 53,
-      "possible_inter_edges": 12084
+      "possible_inter_edges": 12296
     },
     {
       "cluster_i": "collections_core",
-      "cluster_j": "graph_model",
-      "coupling": 0.0024460188933873145,
+      "cluster_j": "graphs",
+      "coupling": 0.002403846153846154,
       "inter_edges_both_directions": 29,
-      "n_i": 114,
+      "n_i": 116,
       "n_j": 52,
-      "possible_inter_edges": 11856
+      "possible_inter_edges": 12064
     },
     {
       "cluster_i": "collections_core",
       "cluster_j": "hashing",
       "coupling": 0.0,
       "inter_edges_both_directions": 0,
-      "n_i": 114,
+      "n_i": 116,
       "n_j": 33,
-      "possible_inter_edges": 7524
+      "possible_inter_edges": 7656
     },
     {
       "cluster_i": "collections_core",
-      "cluster_j": "io",
-      "coupling": 0.000474158368895211,
+      "cluster_j": "io_resources",
+      "coupling": 0.00046598322460391424,
       "inter_edges_both_directions": 4,
-      "n_i": 114,
+      "n_i": 116,
       "n_j": 37,
-      "possible_inter_edges": 8436
+      "possible_inter_edges": 8584
     },
     {
       "cluster_i": "collections_core",
-      "cluster_j": "network_values",
-      "coupling": 0.0006265664160401002,
-      "inter_edges_both_directions": 1,
-      "n_i": 114,
-      "n_j": 7,
-      "possible_inter_edges": 1596
-    },
-    {
-      "cluster_i": "collections_core",
-      "cluster_j": "numeric_algorithms",
-      "coupling": 0.0013706140350877192,
+      "cluster_j": "mathematics",
+      "coupling": 0.0013469827586206897,
       "inter_edges_both_directions": 5,
-      "n_i": 114,
+      "n_i": 116,
       "n_j": 16,
-      "possible_inter_edges": 3648
+      "possible_inter_edges": 3712
+    },
+    {
+      "cluster_i": "collections_core",
+      "cluster_j": "multimaps_multisets",
+      "coupling": 0.007451782583284629,
+      "inter_edges_both_directions": 102,
+      "n_i": 116,
+      "n_j": 59,
+      "possible_inter_edges": 13688
+    },
+    {
+      "cluster_i": "collections_core",
+      "cluster_j": "network_values",
+      "coupling": 0.0004310344827586207,
+      "inter_edges_both_directions": 1,
+      "n_i": 116,
+      "n_j": 10,
+      "possible_inter_edges": 2320
     },
     {
       "cluster_i": "collections_core",
       "cluster_j": "primitive_values",
-      "coupling": 0.0003654970760233918,
+      "coupling": 0.00035919540229885057,
       "inter_edges_both_directions": 2,
-      "n_i": 114,
+      "n_i": 116,
       "n_j": 24,
-      "possible_inter_edges": 5472
+      "possible_inter_edges": 5568
     },
     {
       "cluster_i": "collections_core",
-      "cluster_j": "reflection",
-      "coupling": 0.004111842105263158,
-      "inter_edges_both_directions": 15,
-      "n_i": 114,
-      "n_j": 16,
-      "possible_inter_edges": 3648
-    },
-    {
-      "cluster_i": "collections_core",
-      "cluster_j": "service_lifecycle",
-      "coupling": 0.001644736842105263,
-      "inter_edges_both_directions": 3,
-      "n_i": 114,
-      "n_j": 8,
-      "possible_inter_edges": 1824
-    },
-    {
-      "cluster_i": "collections_core",
-      "cluster_j": "synchronization",
-      "coupling": 0.001949317738791423,
-      "inter_edges_both_directions": 8,
-      "n_i": 114,
-      "n_j": 18,
-      "possible_inter_edges": 4104
-    },
-    {
-      "cluster_i": "collections_multi",
-      "cluster_j": "collections_ranges",
-      "coupling": 0.000651890482398957,
-      "inter_edges_both_directions": 1,
-      "n_i": 59,
+      "cluster_j": "ranges",
+      "coupling": 0.011936339522546418,
+      "inter_edges_both_directions": 36,
+      "n_i": 116,
       "n_j": 13,
-      "possible_inter_edges": 1534
+      "possible_inter_edges": 3016
     },
     {
-      "cluster_i": "collections_multi",
-      "cluster_j": "collections_tables",
-      "coupling": 0.0,
-      "inter_edges_both_directions": 0,
-      "n_i": 59,
+      "cluster_i": "collections_core",
+      "cluster_j": "reflection",
+      "coupling": 0.003502155172413793,
+      "inter_edges_both_directions": 13,
+      "n_i": 116,
       "n_j": 16,
-      "possible_inter_edges": 1888
+      "possible_inter_edges": 3712
     },
     {
-      "cluster_i": "collections_multi",
-      "cluster_j": "escaping",
-      "coupling": 0.0,
-      "inter_edges_both_directions": 0,
-      "n_i": 59,
-      "n_j": 16,
-      "possible_inter_edges": 1888
+      "cluster_i": "collections_core",
+      "cluster_j": "service_lifecycle",
+      "coupling": 0.0016163793103448276,
+      "inter_edges_both_directions": 3,
+      "n_i": 116,
+      "n_j": 8,
+      "possible_inter_edges": 1856
     },
     {
-      "cluster_i": "collections_multi",
-      "cluster_j": "event_dispatch",
-      "coupling": 0.0015408320493066256,
-      "inter_edges_both_directions": 2,
-      "n_i": 59,
-      "n_j": 11,
-      "possible_inter_edges": 1298
-    },
-    {
-      "cluster_i": "collections_multi",
-      "cluster_j": "foundation",
-      "coupling": 0.02158618484170131,
-      "inter_edges_both_directions": 135,
-      "n_i": 59,
-      "n_j": 53,
-      "possible_inter_edges": 6254
-    },
-    {
-      "cluster_i": "collections_multi",
-      "cluster_j": "graph_model",
-      "coupling": 0.000651890482398957,
-      "inter_edges_both_directions": 4,
-      "n_i": 59,
-      "n_j": 52,
-      "possible_inter_edges": 6136
-    },
-    {
-      "cluster_i": "collections_multi",
-      "cluster_j": "hashing",
-      "coupling": 0.0,
-      "inter_edges_both_directions": 0,
-      "n_i": 59,
-      "n_j": 33,
-      "possible_inter_edges": 3894
-    },
-    {
-      "cluster_i": "collections_multi",
-      "cluster_j": "io",
-      "coupling": 0.0,
-      "inter_edges_both_directions": 0,
-      "n_i": 59,
-      "n_j": 37,
-      "possible_inter_edges": 4366
-    },
-    {
-      "cluster_i": "collections_multi",
-      "cluster_j": "network_values",
-      "coupling": 0.007263922518159807,
+      "cluster_i": "collections_core",
+      "cluster_j": "synchronization_limits",
+      "coupling": 0.0017241379310344827,
       "inter_edges_both_directions": 6,
-      "n_i": 59,
-      "n_j": 7,
-      "possible_inter_edges": 826
+      "n_i": 116,
+      "n_j": 15,
+      "possible_inter_edges": 3480
     },
     {
-      "cluster_i": "collections_multi",
-      "cluster_j": "numeric_algorithms",
-      "coupling": 0.0005296610169491525,
-      "inter_edges_both_directions": 1,
-      "n_i": 59,
+      "cluster_i": "collections_core",
+      "cluster_j": "tables",
+      "coupling": 0.008081896551724138,
+      "inter_edges_both_directions": 30,
+      "n_i": 116,
       "n_j": 16,
-      "possible_inter_edges": 1888
+      "possible_inter_edges": 3712
     },
     {
-      "cluster_i": "collections_multi",
-      "cluster_j": "primitive_values",
+      "cluster_i": "collections_core",
+      "cluster_j": "text_escaping",
       "coupling": 0.0,
       "inter_edges_both_directions": 0,
-      "n_i": 59,
-      "n_j": 24,
-      "possible_inter_edges": 2832
-    },
-    {
-      "cluster_i": "collections_multi",
-      "cluster_j": "reflection",
-      "coupling": 0.0,
-      "inter_edges_both_directions": 0,
-      "n_i": 59,
+      "n_i": 116,
       "n_j": 16,
-      "possible_inter_edges": 1888
-    },
-    {
-      "cluster_i": "collections_multi",
-      "cluster_j": "service_lifecycle",
-      "coupling": 0.00847457627118644,
-      "inter_edges_both_directions": 8,
-      "n_i": 59,
-      "n_j": 8,
-      "possible_inter_edges": 944
-    },
-    {
-      "cluster_i": "collections_multi",
-      "cluster_j": "synchronization",
-      "coupling": 0.0,
-      "inter_edges_both_directions": 0,
-      "n_i": 59,
-      "n_j": 18,
-      "possible_inter_edges": 2124
-    },
-    {
-      "cluster_i": "collections_ranges",
-      "cluster_j": "collections_tables",
-      "coupling": 0.0,
-      "inter_edges_both_directions": 0,
-      "n_i": 13,
-      "n_j": 16,
-      "possible_inter_edges": 416
-    },
-    {
-      "cluster_i": "collections_ranges",
-      "cluster_j": "escaping",
-      "coupling": 0.0,
-      "inter_edges_both_directions": 0,
-      "n_i": 13,
-      "n_j": 16,
-      "possible_inter_edges": 416
-    },
-    {
-      "cluster_i": "collections_ranges",
-      "cluster_j": "event_dispatch",
-      "coupling": 0.0,
-      "inter_edges_both_directions": 0,
-      "n_i": 13,
-      "n_j": 11,
-      "possible_inter_edges": 286
-    },
-    {
-      "cluster_i": "collections_ranges",
-      "cluster_j": "foundation",
-      "coupling": 0.020319303338171262,
-      "inter_edges_both_directions": 28,
-      "n_i": 13,
-      "n_j": 53,
-      "possible_inter_edges": 1378
-    },
-    {
-      "cluster_i": "collections_ranges",
-      "cluster_j": "graph_model",
-      "coupling": 0.0,
-      "inter_edges_both_directions": 0,
-      "n_i": 13,
-      "n_j": 52,
-      "possible_inter_edges": 1352
-    },
-    {
-      "cluster_i": "collections_ranges",
-      "cluster_j": "hashing",
-      "coupling": 0.0,
-      "inter_edges_both_directions": 0,
-      "n_i": 13,
-      "n_j": 33,
-      "possible_inter_edges": 858
-    },
-    {
-      "cluster_i": "collections_ranges",
-      "cluster_j": "io",
-      "coupling": 0.0,
-      "inter_edges_both_directions": 0,
-      "n_i": 13,
-      "n_j": 37,
-      "possible_inter_edges": 962
-    },
-    {
-      "cluster_i": "collections_ranges",
-      "cluster_j": "network_values",
-      "coupling": 0.0,
-      "inter_edges_both_directions": 0,
-      "n_i": 13,
-      "n_j": 7,
-      "possible_inter_edges": 182
-    },
-    {
-      "cluster_i": "collections_ranges",
-      "cluster_j": "numeric_algorithms",
-      "coupling": 0.0,
-      "inter_edges_both_directions": 0,
-      "n_i": 13,
-      "n_j": 16,
-      "possible_inter_edges": 416
-    },
-    {
-      "cluster_i": "collections_ranges",
-      "cluster_j": "primitive_values",
-      "coupling": 0.0,
-      "inter_edges_both_directions": 0,
-      "n_i": 13,
-      "n_j": 24,
-      "possible_inter_edges": 624
-    },
-    {
-      "cluster_i": "collections_ranges",
-      "cluster_j": "reflection",
-      "coupling": 0.0,
-      "inter_edges_both_directions": 0,
-      "n_i": 13,
-      "n_j": 16,
-      "possible_inter_edges": 416
-    },
-    {
-      "cluster_i": "collections_ranges",
-      "cluster_j": "service_lifecycle",
-      "coupling": 0.0,
-      "inter_edges_both_directions": 0,
-      "n_i": 13,
-      "n_j": 8,
-      "possible_inter_edges": 208
-    },
-    {
-      "cluster_i": "collections_ranges",
-      "cluster_j": "synchronization",
-      "coupling": 0.0,
-      "inter_edges_both_directions": 0,
-      "n_i": 13,
-      "n_j": 18,
-      "possible_inter_edges": 468
-    },
-    {
-      "cluster_i": "collections_tables",
-      "cluster_j": "escaping",
-      "coupling": 0.0,
-      "inter_edges_both_directions": 0,
-      "n_i": 16,
-      "n_j": 16,
-      "possible_inter_edges": 512
-    },
-    {
-      "cluster_i": "collections_tables",
-      "cluster_j": "event_dispatch",
-      "coupling": 0.0,
-      "inter_edges_both_directions": 0,
-      "n_i": 16,
-      "n_j": 11,
-      "possible_inter_edges": 352
-    },
-    {
-      "cluster_i": "collections_tables",
-      "cluster_j": "foundation",
-      "coupling": 0.027122641509433963,
-      "inter_edges_both_directions": 46,
-      "n_i": 16,
-      "n_j": 53,
-      "possible_inter_edges": 1696
-    },
-    {
-      "cluster_i": "collections_tables",
-      "cluster_j": "graph_model",
-      "coupling": 0.0,
-      "inter_edges_both_directions": 0,
-      "n_i": 16,
-      "n_j": 52,
-      "possible_inter_edges": 1664
-    },
-    {
-      "cluster_i": "collections_tables",
-      "cluster_j": "hashing",
-      "coupling": 0.0,
-      "inter_edges_both_directions": 0,
-      "n_i": 16,
-      "n_j": 33,
-      "possible_inter_edges": 1056
-    },
-    {
-      "cluster_i": "collections_tables",
-      "cluster_j": "io",
-      "coupling": 0.0,
-      "inter_edges_both_directions": 0,
-      "n_i": 16,
-      "n_j": 37,
-      "possible_inter_edges": 1184
-    },
-    {
-      "cluster_i": "collections_tables",
-      "cluster_j": "network_values",
-      "coupling": 0.0,
-      "inter_edges_both_directions": 0,
-      "n_i": 16,
-      "n_j": 7,
-      "possible_inter_edges": 224
-    },
-    {
-      "cluster_i": "collections_tables",
-      "cluster_j": "numeric_algorithms",
-      "coupling": 0.0,
-      "inter_edges_both_directions": 0,
-      "n_i": 16,
-      "n_j": 16,
-      "possible_inter_edges": 512
-    },
-    {
-      "cluster_i": "collections_tables",
-      "cluster_j": "primitive_values",
-      "coupling": 0.0,
-      "inter_edges_both_directions": 0,
-      "n_i": 16,
-      "n_j": 24,
-      "possible_inter_edges": 768
-    },
-    {
-      "cluster_i": "collections_tables",
-      "cluster_j": "reflection",
-      "coupling": 0.0,
-      "inter_edges_both_directions": 0,
-      "n_i": 16,
-      "n_j": 16,
-      "possible_inter_edges": 512
-    },
-    {
-      "cluster_i": "collections_tables",
-      "cluster_j": "service_lifecycle",
-      "coupling": 0.0,
-      "inter_edges_both_directions": 0,
-      "n_i": 16,
-      "n_j": 8,
-      "possible_inter_edges": 256
-    },
-    {
-      "cluster_i": "collections_tables",
-      "cluster_j": "synchronization",
-      "coupling": 0.0,
-      "inter_edges_both_directions": 0,
-      "n_i": 16,
-      "n_j": 18,
-      "possible_inter_edges": 576
-    },
-    {
-      "cluster_i": "escaping",
-      "cluster_j": "event_dispatch",
-      "coupling": 0.0,
-      "inter_edges_both_directions": 0,
-      "n_i": 16,
-      "n_j": 11,
-      "possible_inter_edges": 352
-    },
-    {
-      "cluster_i": "escaping",
-      "cluster_j": "foundation",
-      "coupling": 0.010023584905660377,
-      "inter_edges_both_directions": 17,
-      "n_i": 16,
-      "n_j": 53,
-      "possible_inter_edges": 1696
-    },
-    {
-      "cluster_i": "escaping",
-      "cluster_j": "graph_model",
-      "coupling": 0.0,
-      "inter_edges_both_directions": 0,
-      "n_i": 16,
-      "n_j": 52,
-      "possible_inter_edges": 1664
-    },
-    {
-      "cluster_i": "escaping",
-      "cluster_j": "hashing",
-      "coupling": 0.0,
-      "inter_edges_both_directions": 0,
-      "n_i": 16,
-      "n_j": 33,
-      "possible_inter_edges": 1056
-    },
-    {
-      "cluster_i": "escaping",
-      "cluster_j": "io",
-      "coupling": 0.0,
-      "inter_edges_both_directions": 0,
-      "n_i": 16,
-      "n_j": 37,
-      "possible_inter_edges": 1184
-    },
-    {
-      "cluster_i": "escaping",
-      "cluster_j": "network_values",
-      "coupling": 0.0,
-      "inter_edges_both_directions": 0,
-      "n_i": 16,
-      "n_j": 7,
-      "possible_inter_edges": 224
-    },
-    {
-      "cluster_i": "escaping",
-      "cluster_j": "numeric_algorithms",
-      "coupling": 0.0,
-      "inter_edges_both_directions": 0,
-      "n_i": 16,
-      "n_j": 16,
-      "possible_inter_edges": 512
-    },
-    {
-      "cluster_i": "escaping",
-      "cluster_j": "primitive_values",
-      "coupling": 0.0,
-      "inter_edges_both_directions": 0,
-      "n_i": 16,
-      "n_j": 24,
-      "possible_inter_edges": 768
-    },
-    {
-      "cluster_i": "escaping",
-      "cluster_j": "reflection",
-      "coupling": 0.0,
-      "inter_edges_both_directions": 0,
-      "n_i": 16,
-      "n_j": 16,
-      "possible_inter_edges": 512
-    },
-    {
-      "cluster_i": "escaping",
-      "cluster_j": "service_lifecycle",
-      "coupling": 0.0,
-      "inter_edges_both_directions": 0,
-      "n_i": 16,
-      "n_j": 8,
-      "possible_inter_edges": 256
-    },
-    {
-      "cluster_i": "escaping",
-      "cluster_j": "synchronization",
-      "coupling": 0.0,
-      "inter_edges_both_directions": 0,
-      "n_i": 16,
-      "n_j": 18,
-      "possible_inter_edges": 576
+      "possible_inter_edges": 3712
     },
     {
       "cluster_i": "event_dispatch",
       "cluster_j": "foundation",
-      "coupling": 0.002572898799313894,
-      "inter_edges_both_directions": 3,
+      "coupling": 0.0,
+      "inter_edges_both_directions": 0,
       "n_i": 11,
       "n_j": 53,
       "possible_inter_edges": 1166
     },
     {
       "cluster_i": "event_dispatch",
-      "cluster_j": "graph_model",
+      "cluster_j": "graphs",
       "coupling": 0.0,
       "inter_edges_both_directions": 0,
       "n_i": 11,
@@ -1090,7 +640,7 @@
     },
     {
       "cluster_i": "event_dispatch",
-      "cluster_j": "io",
+      "cluster_j": "io_resources",
       "coupling": 0.0,
       "inter_edges_both_directions": 0,
       "n_i": 11,
@@ -1099,21 +649,30 @@
     },
     {
       "cluster_i": "event_dispatch",
-      "cluster_j": "network_values",
-      "coupling": 0.0,
-      "inter_edges_both_directions": 0,
-      "n_i": 11,
-      "n_j": 7,
-      "possible_inter_edges": 154
-    },
-    {
-      "cluster_i": "event_dispatch",
-      "cluster_j": "numeric_algorithms",
+      "cluster_j": "mathematics",
       "coupling": 0.0,
       "inter_edges_both_directions": 0,
       "n_i": 11,
       "n_j": 16,
       "possible_inter_edges": 352
+    },
+    {
+      "cluster_i": "event_dispatch",
+      "cluster_j": "multimaps_multisets",
+      "coupling": 0.0015408320493066256,
+      "inter_edges_both_directions": 2,
+      "n_i": 11,
+      "n_j": 59,
+      "possible_inter_edges": 1298
+    },
+    {
+      "cluster_i": "event_dispatch",
+      "cluster_j": "network_values",
+      "coupling": 0.0,
+      "inter_edges_both_directions": 0,
+      "n_i": 11,
+      "n_j": 10,
+      "possible_inter_edges": 220
     },
     {
       "cluster_i": "event_dispatch",
@@ -1123,6 +682,15 @@
       "n_i": 11,
       "n_j": 24,
       "possible_inter_edges": 528
+    },
+    {
+      "cluster_i": "event_dispatch",
+      "cluster_j": "ranges",
+      "coupling": 0.0,
+      "inter_edges_both_directions": 0,
+      "n_i": 11,
+      "n_j": 13,
+      "possible_inter_edges": 286
     },
     {
       "cluster_i": "event_dispatch",
@@ -1144,18 +712,36 @@
     },
     {
       "cluster_i": "event_dispatch",
-      "cluster_j": "synchronization",
+      "cluster_j": "synchronization_limits",
       "coupling": 0.0,
       "inter_edges_both_directions": 0,
       "n_i": 11,
-      "n_j": 18,
-      "possible_inter_edges": 396
+      "n_j": 15,
+      "possible_inter_edges": 330
+    },
+    {
+      "cluster_i": "event_dispatch",
+      "cluster_j": "tables",
+      "coupling": 0.0,
+      "inter_edges_both_directions": 0,
+      "n_i": 11,
+      "n_j": 16,
+      "possible_inter_edges": 352
+    },
+    {
+      "cluster_i": "event_dispatch",
+      "cluster_j": "text_escaping",
+      "coupling": 0.0,
+      "inter_edges_both_directions": 0,
+      "n_i": 11,
+      "n_j": 16,
+      "possible_inter_edges": 352
     },
     {
       "cluster_i": "foundation",
-      "cluster_j": "graph_model",
-      "coupling": 0.0010885341074020319,
-      "inter_edges_both_directions": 6,
+      "cluster_j": "graphs",
+      "coupling": 0.00090711175616836,
+      "inter_edges_both_directions": 5,
       "n_i": 53,
       "n_j": 52,
       "possible_inter_edges": 5512
@@ -1163,53 +749,71 @@
     {
       "cluster_i": "foundation",
       "cluster_j": "hashing",
-      "coupling": 0.010005717552887363,
-      "inter_edges_both_directions": 35,
+      "coupling": 0.0005717552887364208,
+      "inter_edges_both_directions": 2,
       "n_i": 53,
       "n_j": 33,
       "possible_inter_edges": 3498
     },
     {
       "cluster_i": "foundation",
-      "cluster_j": "io",
-      "coupling": 0.0239673635900051,
-      "inter_edges_both_directions": 94,
+      "cluster_j": "io_resources",
+      "coupling": 0.0038245792962774095,
+      "inter_edges_both_directions": 15,
       "n_i": 53,
       "n_j": 37,
       "possible_inter_edges": 3922
     },
     {
       "cluster_i": "foundation",
-      "cluster_j": "network_values",
-      "coupling": 0.025606469002695417,
-      "inter_edges_both_directions": 19,
-      "n_i": 53,
-      "n_j": 7,
-      "possible_inter_edges": 742
-    },
-    {
-      "cluster_i": "foundation",
-      "cluster_j": "numeric_algorithms",
-      "coupling": 0.018867924528301886,
-      "inter_edges_both_directions": 32,
+      "cluster_j": "mathematics",
+      "coupling": 0.0,
+      "inter_edges_both_directions": 0,
       "n_i": 53,
       "n_j": 16,
       "possible_inter_edges": 1696
     },
     {
       "cluster_i": "foundation",
+      "cluster_j": "multimaps_multisets",
+      "coupling": 0.002398464982411257,
+      "inter_edges_both_directions": 15,
+      "n_i": 53,
+      "n_j": 59,
+      "possible_inter_edges": 6254
+    },
+    {
+      "cluster_i": "foundation",
+      "cluster_j": "network_values",
+      "coupling": 0.007547169811320755,
+      "inter_edges_both_directions": 8,
+      "n_i": 53,
+      "n_j": 10,
+      "possible_inter_edges": 1060
+    },
+    {
+      "cluster_i": "foundation",
       "cluster_j": "primitive_values",
-      "coupling": 0.018474842767295597,
-      "inter_edges_both_directions": 47,
+      "coupling": 0.0023584905660377358,
+      "inter_edges_both_directions": 6,
       "n_i": 53,
       "n_j": 24,
       "possible_inter_edges": 2544
     },
     {
       "cluster_i": "foundation",
+      "cluster_j": "ranges",
+      "coupling": 0.001451378809869376,
+      "inter_edges_both_directions": 2,
+      "n_i": 53,
+      "n_j": 13,
+      "possible_inter_edges": 1378
+    },
+    {
+      "cluster_i": "foundation",
       "cluster_j": "reflection",
-      "coupling": 0.008254716981132075,
-      "inter_edges_both_directions": 14,
+      "coupling": 0.00589622641509434,
+      "inter_edges_both_directions": 10,
       "n_i": 53,
       "n_j": 16,
       "possible_inter_edges": 1696
@@ -1217,23 +821,41 @@
     {
       "cluster_i": "foundation",
       "cluster_j": "service_lifecycle",
-      "coupling": 0.025943396226415096,
-      "inter_edges_both_directions": 22,
+      "coupling": 0.007075471698113208,
+      "inter_edges_both_directions": 6,
       "n_i": 53,
       "n_j": 8,
       "possible_inter_edges": 848
     },
     {
       "cluster_i": "foundation",
-      "cluster_j": "synchronization",
-      "coupling": 0.0220125786163522,
-      "inter_edges_both_directions": 42,
+      "cluster_j": "synchronization_limits",
+      "coupling": 0.0012578616352201257,
+      "inter_edges_both_directions": 2,
       "n_i": 53,
-      "n_j": 18,
-      "possible_inter_edges": 1908
+      "n_j": 15,
+      "possible_inter_edges": 1590
     },
     {
-      "cluster_i": "graph_model",
+      "cluster_i": "foundation",
+      "cluster_j": "tables",
+      "coupling": 0.004127358490566038,
+      "inter_edges_both_directions": 7,
+      "n_i": 53,
+      "n_j": 16,
+      "possible_inter_edges": 1696
+    },
+    {
+      "cluster_i": "foundation",
+      "cluster_j": "text_escaping",
+      "coupling": 0.0,
+      "inter_edges_both_directions": 0,
+      "n_i": 53,
+      "n_j": 16,
+      "possible_inter_edges": 1696
+    },
+    {
+      "cluster_i": "graphs",
       "cluster_j": "hashing",
       "coupling": 0.0,
       "inter_edges_both_directions": 0,
@@ -1242,8 +864,8 @@
       "possible_inter_edges": 3432
     },
     {
-      "cluster_i": "graph_model",
-      "cluster_j": "io",
+      "cluster_i": "graphs",
+      "cluster_j": "io_resources",
       "coupling": 0.0010395010395010396,
       "inter_edges_both_directions": 4,
       "n_i": 52,
@@ -1251,17 +873,8 @@
       "possible_inter_edges": 3848
     },
     {
-      "cluster_i": "graph_model",
-      "cluster_j": "network_values",
-      "coupling": 0.0,
-      "inter_edges_both_directions": 0,
-      "n_i": 52,
-      "n_j": 7,
-      "possible_inter_edges": 728
-    },
-    {
-      "cluster_i": "graph_model",
-      "cluster_j": "numeric_algorithms",
+      "cluster_i": "graphs",
+      "cluster_j": "mathematics",
       "coupling": 0.0018028846153846155,
       "inter_edges_both_directions": 3,
       "n_i": 52,
@@ -1269,7 +882,25 @@
       "possible_inter_edges": 1664
     },
     {
-      "cluster_i": "graph_model",
+      "cluster_i": "graphs",
+      "cluster_j": "multimaps_multisets",
+      "coupling": 0.000651890482398957,
+      "inter_edges_both_directions": 4,
+      "n_i": 52,
+      "n_j": 59,
+      "possible_inter_edges": 6136
+    },
+    {
+      "cluster_i": "graphs",
+      "cluster_j": "network_values",
+      "coupling": 0.0,
+      "inter_edges_both_directions": 0,
+      "n_i": 52,
+      "n_j": 10,
+      "possible_inter_edges": 1040
+    },
+    {
+      "cluster_i": "graphs",
       "cluster_j": "primitive_values",
       "coupling": 0.0,
       "inter_edges_both_directions": 0,
@@ -1278,7 +909,16 @@
       "possible_inter_edges": 2496
     },
     {
-      "cluster_i": "graph_model",
+      "cluster_i": "graphs",
+      "cluster_j": "ranges",
+      "coupling": 0.0,
+      "inter_edges_both_directions": 0,
+      "n_i": 52,
+      "n_j": 13,
+      "possible_inter_edges": 1352
+    },
+    {
+      "cluster_i": "graphs",
       "cluster_j": "reflection",
       "coupling": 0.0,
       "inter_edges_both_directions": 0,
@@ -1287,7 +927,7 @@
       "possible_inter_edges": 1664
     },
     {
-      "cluster_i": "graph_model",
+      "cluster_i": "graphs",
       "cluster_j": "service_lifecycle",
       "coupling": 0.0,
       "inter_edges_both_directions": 0,
@@ -1296,17 +936,35 @@
       "possible_inter_edges": 832
     },
     {
-      "cluster_i": "graph_model",
-      "cluster_j": "synchronization",
+      "cluster_i": "graphs",
+      "cluster_j": "synchronization_limits",
       "coupling": 0.0,
       "inter_edges_both_directions": 0,
       "n_i": 52,
-      "n_j": 18,
-      "possible_inter_edges": 1872
+      "n_j": 15,
+      "possible_inter_edges": 1560
+    },
+    {
+      "cluster_i": "graphs",
+      "cluster_j": "tables",
+      "coupling": 0.0,
+      "inter_edges_both_directions": 0,
+      "n_i": 52,
+      "n_j": 16,
+      "possible_inter_edges": 1664
+    },
+    {
+      "cluster_i": "graphs",
+      "cluster_j": "text_escaping",
+      "coupling": 0.0,
+      "inter_edges_both_directions": 0,
+      "n_i": 52,
+      "n_j": 16,
+      "possible_inter_edges": 1664
     },
     {
       "cluster_i": "hashing",
-      "cluster_j": "io",
+      "cluster_j": "io_resources",
       "coupling": 0.0028665028665028664,
       "inter_edges_both_directions": 7,
       "n_i": 33,
@@ -1315,21 +973,30 @@
     },
     {
       "cluster_i": "hashing",
-      "cluster_j": "network_values",
-      "coupling": 0.006493506493506494,
-      "inter_edges_both_directions": 3,
-      "n_i": 33,
-      "n_j": 7,
-      "possible_inter_edges": 462
-    },
-    {
-      "cluster_i": "hashing",
-      "cluster_j": "numeric_algorithms",
+      "cluster_j": "mathematics",
       "coupling": 0.001893939393939394,
       "inter_edges_both_directions": 2,
       "n_i": 33,
       "n_j": 16,
       "possible_inter_edges": 1056
+    },
+    {
+      "cluster_i": "hashing",
+      "cluster_j": "multimaps_multisets",
+      "coupling": 0.0,
+      "inter_edges_both_directions": 0,
+      "n_i": 33,
+      "n_j": 59,
+      "possible_inter_edges": 3894
+    },
+    {
+      "cluster_i": "hashing",
+      "cluster_j": "network_values",
+      "coupling": 0.004545454545454545,
+      "inter_edges_both_directions": 3,
+      "n_i": 33,
+      "n_j": 10,
+      "possible_inter_edges": 660
     },
     {
       "cluster_i": "hashing",
@@ -1339,6 +1006,15 @@
       "n_i": 33,
       "n_j": 24,
       "possible_inter_edges": 1584
+    },
+    {
+      "cluster_i": "hashing",
+      "cluster_j": "ranges",
+      "coupling": 0.0,
+      "inter_edges_both_directions": 0,
+      "n_i": 33,
+      "n_j": 13,
+      "possible_inter_edges": 858
     },
     {
       "cluster_i": "hashing",
@@ -1360,25 +1036,34 @@
     },
     {
       "cluster_i": "hashing",
-      "cluster_j": "synchronization",
+      "cluster_j": "synchronization_limits",
       "coupling": 0.0,
       "inter_edges_both_directions": 0,
       "n_i": 33,
-      "n_j": 18,
-      "possible_inter_edges": 1188
+      "n_j": 15,
+      "possible_inter_edges": 990
     },
     {
-      "cluster_i": "io",
-      "cluster_j": "network_values",
-      "coupling": 0.003861003861003861,
-      "inter_edges_both_directions": 2,
-      "n_i": 37,
-      "n_j": 7,
-      "possible_inter_edges": 518
+      "cluster_i": "hashing",
+      "cluster_j": "tables",
+      "coupling": 0.0,
+      "inter_edges_both_directions": 0,
+      "n_i": 33,
+      "n_j": 16,
+      "possible_inter_edges": 1056
     },
     {
-      "cluster_i": "io",
-      "cluster_j": "numeric_algorithms",
+      "cluster_i": "hashing",
+      "cluster_j": "text_escaping",
+      "coupling": 0.0,
+      "inter_edges_both_directions": 0,
+      "n_i": 33,
+      "n_j": 16,
+      "possible_inter_edges": 1056
+    },
+    {
+      "cluster_i": "io_resources",
+      "cluster_j": "mathematics",
       "coupling": 0.0016891891891891893,
       "inter_edges_both_directions": 2,
       "n_i": 37,
@@ -1386,7 +1071,25 @@
       "possible_inter_edges": 1184
     },
     {
-      "cluster_i": "io",
+      "cluster_i": "io_resources",
+      "cluster_j": "multimaps_multisets",
+      "coupling": 0.0,
+      "inter_edges_both_directions": 0,
+      "n_i": 37,
+      "n_j": 59,
+      "possible_inter_edges": 4366
+    },
+    {
+      "cluster_i": "io_resources",
+      "cluster_j": "network_values",
+      "coupling": 0.002702702702702703,
+      "inter_edges_both_directions": 2,
+      "n_i": 37,
+      "n_j": 10,
+      "possible_inter_edges": 740
+    },
+    {
+      "cluster_i": "io_resources",
       "cluster_j": "primitive_values",
       "coupling": 0.0005630630630630631,
       "inter_edges_both_directions": 1,
@@ -1395,7 +1098,16 @@
       "possible_inter_edges": 1776
     },
     {
-      "cluster_i": "io",
+      "cluster_i": "io_resources",
+      "cluster_j": "ranges",
+      "coupling": 0.0,
+      "inter_edges_both_directions": 0,
+      "n_i": 37,
+      "n_j": 13,
+      "possible_inter_edges": 962
+    },
+    {
+      "cluster_i": "io_resources",
       "cluster_j": "reflection",
       "coupling": 0.002533783783783784,
       "inter_edges_both_directions": 3,
@@ -1404,7 +1116,7 @@
       "possible_inter_edges": 1184
     },
     {
-      "cluster_i": "io",
+      "cluster_i": "io_resources",
       "cluster_j": "service_lifecycle",
       "coupling": 0.0,
       "inter_edges_both_directions": 0,
@@ -1413,61 +1125,52 @@
       "possible_inter_edges": 592
     },
     {
-      "cluster_i": "io",
-      "cluster_j": "synchronization",
+      "cluster_i": "io_resources",
+      "cluster_j": "synchronization_limits",
       "coupling": 0.0,
       "inter_edges_both_directions": 0,
       "n_i": 37,
-      "n_j": 18,
-      "possible_inter_edges": 1332
+      "n_j": 15,
+      "possible_inter_edges": 1110
     },
     {
-      "cluster_i": "network_values",
-      "cluster_j": "numeric_algorithms",
+      "cluster_i": "io_resources",
+      "cluster_j": "tables",
       "coupling": 0.0,
       "inter_edges_both_directions": 0,
-      "n_i": 7,
+      "n_i": 37,
       "n_j": 16,
-      "possible_inter_edges": 224
+      "possible_inter_edges": 1184
     },
     {
-      "cluster_i": "network_values",
-      "cluster_j": "primitive_values",
+      "cluster_i": "io_resources",
+      "cluster_j": "text_escaping",
       "coupling": 0.0,
       "inter_edges_both_directions": 0,
-      "n_i": 7,
-      "n_j": 24,
-      "possible_inter_edges": 336
-    },
-    {
-      "cluster_i": "network_values",
-      "cluster_j": "reflection",
-      "coupling": 0.0,
-      "inter_edges_both_directions": 0,
-      "n_i": 7,
+      "n_i": 37,
       "n_j": 16,
-      "possible_inter_edges": 224
+      "possible_inter_edges": 1184
     },
     {
-      "cluster_i": "network_values",
-      "cluster_j": "service_lifecycle",
+      "cluster_i": "mathematics",
+      "cluster_j": "multimaps_multisets",
+      "coupling": 0.0005296610169491525,
+      "inter_edges_both_directions": 1,
+      "n_i": 16,
+      "n_j": 59,
+      "possible_inter_edges": 1888
+    },
+    {
+      "cluster_i": "mathematics",
+      "cluster_j": "network_values",
       "coupling": 0.0,
       "inter_edges_both_directions": 0,
-      "n_i": 7,
-      "n_j": 8,
-      "possible_inter_edges": 112
+      "n_i": 16,
+      "n_j": 10,
+      "possible_inter_edges": 320
     },
     {
-      "cluster_i": "network_values",
-      "cluster_j": "synchronization",
-      "coupling": 0.0,
-      "inter_edges_both_directions": 0,
-      "n_i": 7,
-      "n_j": 18,
-      "possible_inter_edges": 252
-    },
-    {
-      "cluster_i": "numeric_algorithms",
+      "cluster_i": "mathematics",
       "cluster_j": "primitive_values",
       "coupling": 0.00390625,
       "inter_edges_both_directions": 3,
@@ -1476,7 +1179,16 @@
       "possible_inter_edges": 768
     },
     {
-      "cluster_i": "numeric_algorithms",
+      "cluster_i": "mathematics",
+      "cluster_j": "ranges",
+      "coupling": 0.0,
+      "inter_edges_both_directions": 0,
+      "n_i": 16,
+      "n_j": 13,
+      "possible_inter_edges": 416
+    },
+    {
+      "cluster_i": "mathematics",
       "cluster_j": "reflection",
       "coupling": 0.0,
       "inter_edges_both_directions": 0,
@@ -1485,7 +1197,7 @@
       "possible_inter_edges": 512
     },
     {
-      "cluster_i": "numeric_algorithms",
+      "cluster_i": "mathematics",
       "cluster_j": "service_lifecycle",
       "coupling": 0.0,
       "inter_edges_both_directions": 0,
@@ -1494,13 +1206,175 @@
       "possible_inter_edges": 256
     },
     {
-      "cluster_i": "numeric_algorithms",
-      "cluster_j": "synchronization",
-      "coupling": 0.003472222222222222,
+      "cluster_i": "mathematics",
+      "cluster_j": "synchronization_limits",
+      "coupling": 0.004166666666666667,
       "inter_edges_both_directions": 2,
       "n_i": 16,
-      "n_j": 18,
-      "possible_inter_edges": 576
+      "n_j": 15,
+      "possible_inter_edges": 480
+    },
+    {
+      "cluster_i": "mathematics",
+      "cluster_j": "tables",
+      "coupling": 0.0,
+      "inter_edges_both_directions": 0,
+      "n_i": 16,
+      "n_j": 16,
+      "possible_inter_edges": 512
+    },
+    {
+      "cluster_i": "mathematics",
+      "cluster_j": "text_escaping",
+      "coupling": 0.0,
+      "inter_edges_both_directions": 0,
+      "n_i": 16,
+      "n_j": 16,
+      "possible_inter_edges": 512
+    },
+    {
+      "cluster_i": "multimaps_multisets",
+      "cluster_j": "network_values",
+      "coupling": 0.00423728813559322,
+      "inter_edges_both_directions": 5,
+      "n_i": 59,
+      "n_j": 10,
+      "possible_inter_edges": 1180
+    },
+    {
+      "cluster_i": "multimaps_multisets",
+      "cluster_j": "primitive_values",
+      "coupling": 0.0,
+      "inter_edges_both_directions": 0,
+      "n_i": 59,
+      "n_j": 24,
+      "possible_inter_edges": 2832
+    },
+    {
+      "cluster_i": "multimaps_multisets",
+      "cluster_j": "ranges",
+      "coupling": 0.000651890482398957,
+      "inter_edges_both_directions": 1,
+      "n_i": 59,
+      "n_j": 13,
+      "possible_inter_edges": 1534
+    },
+    {
+      "cluster_i": "multimaps_multisets",
+      "cluster_j": "reflection",
+      "coupling": 0.0,
+      "inter_edges_both_directions": 0,
+      "n_i": 59,
+      "n_j": 16,
+      "possible_inter_edges": 1888
+    },
+    {
+      "cluster_i": "multimaps_multisets",
+      "cluster_j": "service_lifecycle",
+      "coupling": 0.007415254237288136,
+      "inter_edges_both_directions": 7,
+      "n_i": 59,
+      "n_j": 8,
+      "possible_inter_edges": 944
+    },
+    {
+      "cluster_i": "multimaps_multisets",
+      "cluster_j": "synchronization_limits",
+      "coupling": 0.0,
+      "inter_edges_both_directions": 0,
+      "n_i": 59,
+      "n_j": 15,
+      "possible_inter_edges": 1770
+    },
+    {
+      "cluster_i": "multimaps_multisets",
+      "cluster_j": "tables",
+      "coupling": 0.0,
+      "inter_edges_both_directions": 0,
+      "n_i": 59,
+      "n_j": 16,
+      "possible_inter_edges": 1888
+    },
+    {
+      "cluster_i": "multimaps_multisets",
+      "cluster_j": "text_escaping",
+      "coupling": 0.0,
+      "inter_edges_both_directions": 0,
+      "n_i": 59,
+      "n_j": 16,
+      "possible_inter_edges": 1888
+    },
+    {
+      "cluster_i": "network_values",
+      "cluster_j": "primitive_values",
+      "coupling": 0.0,
+      "inter_edges_both_directions": 0,
+      "n_i": 10,
+      "n_j": 24,
+      "possible_inter_edges": 480
+    },
+    {
+      "cluster_i": "network_values",
+      "cluster_j": "ranges",
+      "coupling": 0.0,
+      "inter_edges_both_directions": 0,
+      "n_i": 10,
+      "n_j": 13,
+      "possible_inter_edges": 260
+    },
+    {
+      "cluster_i": "network_values",
+      "cluster_j": "reflection",
+      "coupling": 0.0,
+      "inter_edges_both_directions": 0,
+      "n_i": 10,
+      "n_j": 16,
+      "possible_inter_edges": 320
+    },
+    {
+      "cluster_i": "network_values",
+      "cluster_j": "service_lifecycle",
+      "coupling": 0.0,
+      "inter_edges_both_directions": 0,
+      "n_i": 10,
+      "n_j": 8,
+      "possible_inter_edges": 160
+    },
+    {
+      "cluster_i": "network_values",
+      "cluster_j": "synchronization_limits",
+      "coupling": 0.0,
+      "inter_edges_both_directions": 0,
+      "n_i": 10,
+      "n_j": 15,
+      "possible_inter_edges": 300
+    },
+    {
+      "cluster_i": "network_values",
+      "cluster_j": "tables",
+      "coupling": 0.0,
+      "inter_edges_both_directions": 0,
+      "n_i": 10,
+      "n_j": 16,
+      "possible_inter_edges": 320
+    },
+    {
+      "cluster_i": "network_values",
+      "cluster_j": "text_escaping",
+      "coupling": 0.0,
+      "inter_edges_both_directions": 0,
+      "n_i": 10,
+      "n_j": 16,
+      "possible_inter_edges": 320
+    },
+    {
+      "cluster_i": "primitive_values",
+      "cluster_j": "ranges",
+      "coupling": 0.0,
+      "inter_edges_both_directions": 0,
+      "n_i": 24,
+      "n_j": 13,
+      "possible_inter_edges": 624
     },
     {
       "cluster_i": "primitive_values",
@@ -1522,12 +1396,75 @@
     },
     {
       "cluster_i": "primitive_values",
-      "cluster_j": "synchronization",
-      "coupling": 0.0023148148148148147,
+      "cluster_j": "synchronization_limits",
+      "coupling": 0.002777777777777778,
       "inter_edges_both_directions": 2,
       "n_i": 24,
-      "n_j": 18,
-      "possible_inter_edges": 864
+      "n_j": 15,
+      "possible_inter_edges": 720
+    },
+    {
+      "cluster_i": "primitive_values",
+      "cluster_j": "tables",
+      "coupling": 0.0,
+      "inter_edges_both_directions": 0,
+      "n_i": 24,
+      "n_j": 16,
+      "possible_inter_edges": 768
+    },
+    {
+      "cluster_i": "primitive_values",
+      "cluster_j": "text_escaping",
+      "coupling": 0.0,
+      "inter_edges_both_directions": 0,
+      "n_i": 24,
+      "n_j": 16,
+      "possible_inter_edges": 768
+    },
+    {
+      "cluster_i": "ranges",
+      "cluster_j": "reflection",
+      "coupling": 0.0,
+      "inter_edges_both_directions": 0,
+      "n_i": 13,
+      "n_j": 16,
+      "possible_inter_edges": 416
+    },
+    {
+      "cluster_i": "ranges",
+      "cluster_j": "service_lifecycle",
+      "coupling": 0.0,
+      "inter_edges_both_directions": 0,
+      "n_i": 13,
+      "n_j": 8,
+      "possible_inter_edges": 208
+    },
+    {
+      "cluster_i": "ranges",
+      "cluster_j": "synchronization_limits",
+      "coupling": 0.0,
+      "inter_edges_both_directions": 0,
+      "n_i": 13,
+      "n_j": 15,
+      "possible_inter_edges": 390
+    },
+    {
+      "cluster_i": "ranges",
+      "cluster_j": "tables",
+      "coupling": 0.0,
+      "inter_edges_both_directions": 0,
+      "n_i": 13,
+      "n_j": 16,
+      "possible_inter_edges": 416
+    },
+    {
+      "cluster_i": "ranges",
+      "cluster_j": "text_escaping",
+      "coupling": 0.0,
+      "inter_edges_both_directions": 0,
+      "n_i": 13,
+      "n_j": 16,
+      "possible_inter_edges": 416
     },
     {
       "cluster_i": "reflection",
@@ -1540,23 +1477,86 @@
     },
     {
       "cluster_i": "reflection",
-      "cluster_j": "synchronization",
+      "cluster_j": "synchronization_limits",
       "coupling": 0.0,
       "inter_edges_both_directions": 0,
       "n_i": 16,
-      "n_j": 18,
-      "possible_inter_edges": 576
+      "n_j": 15,
+      "possible_inter_edges": 480
+    },
+    {
+      "cluster_i": "reflection",
+      "cluster_j": "tables",
+      "coupling": 0.0,
+      "inter_edges_both_directions": 0,
+      "n_i": 16,
+      "n_j": 16,
+      "possible_inter_edges": 512
+    },
+    {
+      "cluster_i": "reflection",
+      "cluster_j": "text_escaping",
+      "coupling": 0.0,
+      "inter_edges_both_directions": 0,
+      "n_i": 16,
+      "n_j": 16,
+      "possible_inter_edges": 512
     },
     {
       "cluster_i": "service_lifecycle",
-      "cluster_j": "synchronization",
-      "coupling": 0.006944444444444444,
+      "cluster_j": "synchronization_limits",
+      "coupling": 0.008333333333333333,
       "inter_edges_both_directions": 2,
       "n_i": 8,
-      "n_j": 18,
-      "possible_inter_edges": 288
+      "n_j": 15,
+      "possible_inter_edges": 240
+    },
+    {
+      "cluster_i": "service_lifecycle",
+      "cluster_j": "tables",
+      "coupling": 0.0,
+      "inter_edges_both_directions": 0,
+      "n_i": 8,
+      "n_j": 16,
+      "possible_inter_edges": 256
+    },
+    {
+      "cluster_i": "service_lifecycle",
+      "cluster_j": "text_escaping",
+      "coupling": 0.0,
+      "inter_edges_both_directions": 0,
+      "n_i": 8,
+      "n_j": 16,
+      "possible_inter_edges": 256
+    },
+    {
+      "cluster_i": "synchronization_limits",
+      "cluster_j": "tables",
+      "coupling": 0.0,
+      "inter_edges_both_directions": 0,
+      "n_i": 15,
+      "n_j": 16,
+      "possible_inter_edges": 480
+    },
+    {
+      "cluster_i": "synchronization_limits",
+      "cluster_j": "text_escaping",
+      "coupling": 0.0,
+      "inter_edges_both_directions": 0,
+      "n_i": 15,
+      "n_j": 16,
+      "possible_inter_edges": 480
+    },
+    {
+      "cluster_i": "tables",
+      "cluster_j": "text_escaping",
+      "coupling": 0.0,
+      "inter_edges_both_directions": 0,
+      "n_i": 16,
+      "n_j": 16,
+      "possible_inter_edges": 512
     }
   ],
   "singleton_clusters": 0,
-  "size_weighted_cohesion": 0.07161071351108621
+  "size_weighted_cohesion": 0.06241148868101794
 }

@@ -15,5 +15,6 @@
   "com.google.common.primitives": 25,
   "com.google.common.reflect": 16,
   "com.google.common.util.concurrent": 83,
-  "com.google.common.xml": 2
+  "com.google.common.xml": 2,
+  "com.google.thirdparty.publicsuffix": 3
 }

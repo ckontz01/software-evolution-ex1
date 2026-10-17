@@ -1,0 +1,13 @@
+{
+  "source_commit": "d970305d4c5c5302e4692ffc6ea8f0607de9ab82",
+  "version": "33.7.2",
+  "source_archive": {
+    "path": "archives/versions/guava-33.7.2.zip",
+    "sha256": "d08c359f45e79f5e3b974b154f90a0a53e6427c645b884d489a89612027cc826",
+    "bytes": 5163553
+  },
+  "exported_files": {
+    "latest_classes.csv": "9a8bad80015b9b512050d1d77a6612ea009e11bc5e3d180e126f1aacca5e34db",
+    "latest_dependencies.csv": "400a2343e5d0bef191e45bf8e9b4821cbc52edbfcbd16fa9a1a6f2bcf7bfe0c9"
+  }
+}
