@@ -220,7 +220,7 @@ def compare_git_sources(row, repository, offline):
     """Compare every source-JAR Java file with the immutable tag commit ZIP."""
     commit = row["commit_sha"]
     url = f"https://codeload.github.com/{repository}/zip/{commit}"
-    cache = ROOT / ".cache" / "upstream" / f"{commit}.zip"
+    cache = ROOT / "data" / "upstream_git" / f"{commit}.zip"
     if cache.exists():
         data = cache.read_bytes()
     elif offline:

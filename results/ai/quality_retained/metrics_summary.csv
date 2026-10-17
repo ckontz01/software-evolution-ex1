@@ -1,0 +1,2 @@
+n_nodes,n_edges,n_clusters,cohesion,coupling,mq,size_weighted_cohesion,pair_weighted_cohesion,internal_edges,inter_edges,inter_edge_fraction,graph_density,isolates,min_cluster_size,max_cluster_size,mean_cluster_size,singleton_clusters
+569,2886,18,0.09697457936761272,0.0028974998324827386,0.09407707953512999,0.07161071351108621,0.05211781395663041,1543,1343,0.46534996534996537,0.008929676477140523,3,7,114,31.61111111111111,0

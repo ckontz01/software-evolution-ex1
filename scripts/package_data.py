@@ -47,6 +47,10 @@ def main() -> None:
         bundles.append(record)
         print(version, record['member_count'], record['bytes'], flush=True)
     bundles.append(pack('pilot.zip', list((ROOT / 'results/pilot').rglob('*'))))
+    git_archives = sorted((ROOT / 'data/upstream_git').glob('*.zip'))
+    if len(git_archives) != 2:
+        raise ValueError('Expected the first and last immutable Git source archives')
+    bundles.append(pack('upstream_git.zip', git_archives))
     payload = {'format': 'ZIP/deflate; fixed timestamps; complete original file bytes',
                'purpose': 'All 90 acquired artifacts and every per-release computed file, including raw algorithm logs, are preserved. Unpack to restore the documented working hierarchy.',
                'version_manifest_sha256': digest(ROOT / 'config/versions.json'),

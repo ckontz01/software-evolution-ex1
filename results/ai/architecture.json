@@ -1,0 +1,614 @@
+{
+  "version": "1.0",
+  "subject": {
+    "library": "Guava JRE",
+    "release": "33.7.2",
+    "release_basis": "Pinned release identified by the supplied experiment prompt; not independently verified externally."
+  },
+  "architecture_kind": "One conceptual responsibility partition of canonical outer classes",
+  "scope": {
+    "canonical_class_count": 591,
+    "binary_directed_internal_edge_count": 3969,
+    "input_package_count": 17,
+    "module_count": 18,
+    "dependency_direction": "using class -> used class",
+    "external_dependencies": "excluded in supplied evidence",
+    "inner_and_anonymous_classes": "merged in supplied evidence"
+  },
+  "modules": [
+    {
+      "id": "foundation",
+      "name": "Foundation and common contracts",
+      "responsibility": "Basic contracts, validation, optional values, functions and predicates, equivalence, general string utilities, timing, reference cleanup, and shared compatibility annotations.",
+      "class_count": 57,
+      "class_scope": "All 51 base classes, base.internal.Finalizer, and all 5 annotations classes.",
+      "boundary_rationale": "Interpretation: these responsibilities form the common library support area. Keep basic text handling here because the graph intertwines its helpers with validation and generic contracts; a separate text module would divide Platform and its immediate collaborators. Finalizer belongs with the reference-cleanup family. This is a conceptual owner, not a requirement that every caller share one deployable artifact.",
+      "evidence": {
+        "graph_and_manifest_sources": [
+          "results/ai/inputs/classes.csv",
+          "results/ai/inputs/dependencies.csv",
+          "results/ai/inputs/package_dependencies.csv"
+        ],
+        "observations": [
+          "The base package has 117 internal edges, 96 edges to annotations, and one edge to base.internal; it has no other outgoing package pairs in the supplied graph.",
+          "Preconditions -> Platform and Strings; Strings -> Platform and Preconditions; Platform -> Strings, CharMatcher, Enums, Optional, CommonPattern, JdkPattern, and PatternCompiler.",
+          "FinalizableReferenceQueue -> base.internal.Finalizer is the latter class's only incident edge.",
+          "Preconditions has 312 incoming class edges; GwtCompatible has 330. These are raw type-reference counts, including annotation references."
+        ],
+        "documentation_source": "results/ai/inputs/package_documentation.txt",
+        "documentation_sections": [
+          "com/google/common/base/package-info.java",
+          "com/google/common/annotations/package-info.java"
+        ]
+      }
+    },
+    {
+      "id": "primitive_values",
+      "name": "Primitive values and arrays",
+      "responsibility": "Per-primitive utilities, unsigned numeric value representations, primitive type adaptation, and immutable primitive arrays.",
+      "class_count": 25,
+      "class_scope": "All 25 primitives classes.",
+      "boundary_rationale": "Interpretation: represent and manipulate primitive values independently of higher-level arithmetic and statistical algorithms. Keep per-type compatibility helpers with the corresponding primitive capability.",
+      "evidence": {
+        "graph_and_manifest_sources": [
+          "results/ai/inputs/classes.csv",
+          "results/ai/inputs/dependencies.csv",
+          "results/ai/inputs/package_dependencies.csv"
+        ],
+        "observations": [
+          "ImmutableIntArray -> Ints and UnsignedInteger -> UnsignedInts connect representative value types to their per-type utilities.",
+          "There are five math -> primitives edges and no primitives -> math edge in this graph."
+        ],
+        "documentation_source": "results/ai/inputs/package_documentation.txt",
+        "documentation_sections": [
+          "com/google/common/primitives/package-info.java"
+        ]
+      }
+    },
+    {
+      "id": "numeric_algorithms",
+      "name": "Arithmetic and statistics",
+      "responsibility": "Arithmetic, rounding, numerical preconditions, summary statistics, quantiles, and linear statistical relationships.",
+      "class_count": 16,
+      "class_scope": "All 16 math classes.",
+      "boundary_rationale": "Interpretation: numerical algorithms and statistical accumulators are a distinct responsibility from primitive storage and conversion. Statistics are inferred from class names and their relationships as well as the package's arithmetic description.",
+      "evidence": {
+        "graph_and_manifest_sources": [
+          "results/ai/inputs/classes.csv",
+          "results/ai/inputs/dependencies.csv",
+          "results/ai/inputs/package_dependencies.csv"
+        ],
+        "observations": [
+          "The math package has 28 internal edges and five edges to primitives.",
+          "StatsAccumulator -> Stats and DoubleUtils; PairedStatsAccumulator -> StatsAccumulator, Stats, PairedStats, and LinearTransformation.",
+          "BigIntegerMath -> IntMath, LongMath, DoubleMath, DoubleUtils, MathPreconditions, and ToDoubleRounder."
+        ],
+        "documentation_source": "results/ai/inputs/package_documentation.txt",
+        "documentation_sections": [
+          "com/google/common/math/package-info.java"
+        ]
+      }
+    },
+    {
+      "id": "collections_core",
+      "name": "Core collections and shared collection machinery",
+      "responsibility": "Lists, sets, ordinary and bidirectional maps, raw class-to-instance maps, collection views and decorators, immutable implementations of those types, iteration, ordering, interning, and shared collection support.",
+      "class_count": 125,
+      "class_scope": "The 125 collect classes outside the explicit multimap/multiset, table, and interval families.",
+      "boundary_rationale": "Interpretation: keep ordinary collection abstractions with their implementations and commonly shared machinery. Do not create a separate immutable module: immutability spans several documented collection types. CollectCollectors, Synchronized, Serialization, package support markers, and generic ordering/iteration helpers receive one core owner even when specialized modules use them. The 125-class area remains broad; finer ownership would require more evidence about methods and maintenance practice.",
+      "evidence": {
+        "graph_and_manifest_sources": [
+          "results/ai/inputs/classes.csv",
+          "results/ai/inputs/dependencies.csv",
+          "results/ai/inputs/package_dependencies.csv"
+        ],
+        "observations": [
+          "The original collect package contains 215 classes and 1,276 internal class edges.",
+          "ImmutableList -> ImmutableCollection, RegularImmutableList, SingletonImmutableList, and CollectCollectors; ImmutableMap -> ImmutableBiMap, RegularImmutableMap, JdkBackedImmutableMap, and ImmutableSetMultimap.",
+          "CollectCollectors has 15 incoming class edges, Synchronized five, and Serialization 12; their callers span several collection families.",
+          "Interners -> Interner, MapMaker, and MapMakerInternalMap; the collect package has no edges to cache or reflect in the supplied package graph."
+        ],
+        "documentation_source": "results/ai/inputs/package_documentation.txt",
+        "documentation_sections": [
+          "com/google/common/collect/package-info.java"
+        ]
+      }
+    },
+    {
+      "id": "collections_multi",
+      "name": "Multimaps and counted collections",
+      "responsibility": "Mappings with multiple values per key, collections that count repeated elements, and their mutable, immutable, filtered, sorted, forwarding, and builder forms.",
+      "class_count": 59,
+      "class_scope": "35 classes in the multimap family plus 24 in the multiset family, including Count.",
+      "boundary_rationale": "Interpretation: the related multiplicity contracts and the direct use of multisets by multimap APIs justify one responsibility area at this level of detail. Count stays with its sole observed consumer, AbstractMapBasedMultiset. Immutable variants stay with their respective abstraction family.",
+      "evidence": {
+        "graph_and_manifest_sources": [
+          "results/ai/inputs/classes.csv",
+          "results/ai/inputs/dependencies.csv",
+          "results/ai/inputs/package_dependencies.csv"
+        ],
+        "observations": [
+          "There are 19 direct edges from the 35 multimap-family classes to the 24 multiset-family classes and none in the reverse direction.",
+          "Multimap -> Multiset; ImmutableMultimap -> ImmutableMultiset, Multiset, and Multisets; Multimaps -> AbstractMultiset, Multiset, and Multisets.",
+          "Count has one incoming edge, from AbstractMapBasedMultiset."
+        ],
+        "documentation_source": "results/ai/inputs/package_documentation.txt",
+        "documentation_sections": [
+          "com/google/common/collect/package-info.java: Collection types"
+        ]
+      }
+    },
+    {
+      "id": "collections_tables",
+      "name": "Tabular collections",
+      "responsibility": "Values addressed by row and column keys, including table views, mutable and immutable implementations, and table-specific collectors.",
+      "class_count": 16,
+      "class_scope": "All 16 Table-named collect classes, explicitly enumerated in assignment.csv.",
+      "boundary_rationale": "Interpretation: paired-key indexing is a separate documented data model. Its interface, representations, decorators, and dedicated collectors belong together. Shared maps, sets, iterators, and Synchronized remain core services rather than being duplicated here.",
+      "evidence": {
+        "graph_and_manifest_sources": [
+          "results/ai/inputs/classes.csv",
+          "results/ai/inputs/dependencies.csv",
+          "results/ai/inputs/package_dependencies.csv"
+        ],
+        "observations": [
+          "ImmutableTable -> Table, AbstractTable, RegularImmutableTable, SingletonImmutableTable, SparseImmutableTable, TableCollectors, and Tables.",
+          "TableCollectors has exactly two incoming class edges, from ImmutableTable and Tables.",
+          "StandardTable -> Table, Tables, Maps, Sets, Iterators, and shared collection helpers."
+        ],
+        "documentation_source": "results/ai/inputs/package_documentation.txt",
+        "documentation_sections": [
+          "com/google/common/collect/package-info.java: Table"
+        ]
+      }
+    },
+    {
+      "id": "collections_ranges",
+      "name": "Intervals and bounded collections",
+      "responsibility": "Interval endpoints and bounds, discrete domains, contiguous sets, range sets, and range maps.",
+      "class_count": 15,
+      "class_scope": "15 classes: AbstractRangeSet, BoundType, ContiguousSet, Cut, DiscreteDomain, EmptyContiguousSet, GeneralRange, ImmutableRangeMap, ImmutableRangeSet, Range, RangeMap, RangeSet, RegularContiguousSet, TreeRangeMap, and TreeRangeSet.",
+      "boundary_rationale": "Interpretation: the documented interval model provides a useful boundary despite implementation references to core ordered collections and consumers in sorted multisets. GeneralRange is assigned by its bound/range responsibility; its sole incoming edge from TreeMultiset makes that helper placement a lower-confidence ownership decision.",
+      "evidence": {
+        "graph_and_manifest_sources": [
+          "results/ai/inputs/classes.csv",
+          "results/ai/inputs/dependencies.csv",
+          "results/ai/inputs/package_dependencies.csv"
+        ],
+        "observations": [
+          "Range -> BoundType, Cut, and DiscreteDomain, as well as core ordering and iteration helpers.",
+          "GeneralRange -> BoundType and Range; TreeMultiset is its only incoming source.",
+          "TreeRangeSet -> Range, RangeSet, AbstractRangeSet, Cut, BoundType, and ImmutableRangeSet; core Maps and Sets also refer to Range and BoundType."
+        ],
+        "documentation_source": "results/ai/inputs/package_documentation.txt",
+        "documentation_sections": [
+          "com/google/common/collect/package-info.java: Ranges"
+        ]
+      }
+    },
+    {
+      "id": "caching",
+      "name": "Caching and cache policy",
+      "responsibility": "Cache construction, loading, eviction/removal policy, statistics, and local cache implementation support.",
+      "class_count": 22,
+      "class_scope": "All 22 cache classes.",
+      "boundary_rationale": "Interpretation: cache behavior is a responsibility distinct from ordinary maps or asynchronous execution, even though it uses both. Retain the implementation helpers and isolated cache annotation with this capability.",
+      "evidence": {
+        "graph_and_manifest_sources": [
+          "results/ai/inputs/classes.csv",
+          "results/ai/inputs/dependencies.csv",
+          "results/ai/inputs/package_dependencies.csv"
+        ],
+        "observations": [
+          "The cache package has 44 internal edges, 14 edges to collect, and 11 edges to util.concurrent.",
+          "CacheBuilder -> Cache, CacheLoader, LocalCache, CacheStats, LoadingCache, RemovalListener, and Weigher, among other cache types.",
+          "CacheLoader -> Futures, ListenableFuture, and ListenableFutureTask; LocalCache -> ReferenceEntry and several removal/policy types."
+        ],
+        "documentation_source": "results/ai/inputs/package_documentation.txt",
+        "documentation_sections": [
+          "com/google/common/cache/package-info.java"
+        ]
+      }
+    },
+    {
+      "id": "async_execution",
+      "name": "Futures and asynchronous execution",
+      "responsibility": "Future results and composition, callbacks, listening executors, task execution and sequencing, thread creation, asynchronous failure types, and the shared support used by this family.",
+      "class_count": 57,
+      "class_scope": "57 util.concurrent classes after the service-lifecycle and synchronization/control families are assigned.",
+      "boundary_rationale": "Interpretation: keep futures and executor adaptation together because their APIs and implementations refer to each other. Put package-wide Internal, LazyLogger, ParametricNullness, NullnessCasts, Platform, and other shared execution helpers here as a single-owner convention. Their placement is not a claim of exclusive asynchronous use.",
+      "evidence": {
+        "graph_and_manifest_sources": [
+          "results/ai/inputs/classes.csv",
+          "results/ai/inputs/dependencies.csv",
+          "results/ai/inputs/package_dependencies.csv"
+        ],
+        "observations": [
+          "Futures -> MoreExecutors and ListenableFuture; MoreExecutors -> AbstractFuture, ListenableFuture, TrustedListenableFutureTask, and listening-executor interfaces.",
+          "AbstractFutureState -> AbstractFuture and OverflowAvoidingLockSupport; the latter has no other incoming class source.",
+          "LazyLogger has callers in this family and in service lifecycle and lock support; Internal likewise has callers across the three concurrency responsibilities."
+        ],
+        "documentation_source": "results/ai/inputs/package_documentation.txt",
+        "documentation_sections": [
+          "com/google/common/util/concurrent/package-info.java"
+        ]
+      }
+    },
+    {
+      "id": "service_lifecycle",
+      "name": "Service lifecycle management",
+      "responsibility": "Start/stop service lifecycles, execution-thread and scheduled service templates, service grouping, and lifecycle listener delivery.",
+      "class_count": 8,
+      "class_scope": "AbstractExecutionThreadService, AbstractIdleService, AbstractScheduledService, AbstractService, Service, ServiceManager, ServiceManagerBridge, and ListenerCallQueue.",
+      "boundary_rationale": "Interpretation: lifecycle state and orchestration form a recognizable feature that consumes executors and synchronization primitives. ListenerCallQueue stays here because both of its observed callers are lifecycle classes. Absence of other internal consumers does not establish that these public-facing APIs are unused by applications.",
+      "evidence": {
+        "graph_and_manifest_sources": [
+          "results/ai/inputs/classes.csv",
+          "results/ai/inputs/dependencies.csv",
+          "results/ai/inputs/package_dependencies.csv"
+        ],
+        "observations": [
+          "The eight selected service classes have 13 directed edges among themselves, and no class outside the family points to them in the supplied graph.",
+          "AbstractService and ServiceManager both -> ListenerCallQueue and Monitor.",
+          "The execution-thread, idle, and scheduled service templates -> AbstractService, Service, and MoreExecutors."
+        ],
+        "documentation_source": "results/ai/inputs/package_documentation.txt",
+        "documentation_sections": [
+          "com/google/common/util/concurrent/package-info.java: Service"
+        ]
+      }
+    },
+    {
+      "id": "synchronization",
+      "name": "Synchronization and execution limits",
+      "responsibility": "Atomic state, locks and monitors, blocking collection adapters, interruption-tolerant waits, rate limiting, and time limits.",
+      "class_count": 18,
+      "class_scope": "18 explicitly enumerated util.concurrent classes, including the atomic family, Monitor, Striped, lock/condition and blocking-queue adapters, RateLimiter/SmoothRateLimiter, TimeLimiter implementations, UncheckedTimeoutException, and Uninterruptibles.",
+      "boundary_rationale": "Interpretation: these APIs control access, waiting, and execution constraints rather than representing composed future results or service lifecycles. Some are sparsely connected because JDK dependencies and application callers are outside this graph. Uninterruptibles is shared with futures and caching but has one owner here. This broader control grouping is a moderate-confidence conceptual choice.",
+      "evidence": {
+        "graph_and_manifest_sources": [
+          "results/ai/inputs/classes.csv",
+          "results/ai/inputs/dependencies.csv",
+          "results/ai/inputs/package_dependencies.csv"
+        ],
+        "observations": [
+          "RateLimiter -> SmoothRateLimiter and Uninterruptibles; SmoothRateLimiter -> RateLimiter.",
+          "Striped -> ForwardingCondition and ForwardingLock; SimpleTimeLimiter -> TimeLimiter, UncheckedTimeoutException, and Uninterruptibles.",
+          "Uninterruptibles has six incoming class edges: LocalCache, AggregateFuture, Futures, JdkFutureAdapters, RateLimiter, and SimpleTimeLimiter.",
+          "The two util.concurrent blocking-collection forwarding classes refer to collect.ForwardingDeque and collect.ForwardingQueue respectively."
+        ],
+        "documentation_source": "results/ai/inputs/package_documentation.txt",
+        "documentation_sections": [
+          "com/google/common/util/concurrent/package-info.java"
+        ]
+      }
+    },
+    {
+      "id": "graph_model",
+      "name": "Graph models and traversal",
+      "responsibility": "Graph, value-graph, and network APIs, builders, mutable/immutable representations, connection storage, and traversal.",
+      "class_count": 53,
+      "class_scope": "All 53 graph classes.",
+      "boundary_rationale": "Interpretation: keep the graph data models together with their shared connection and traversal infrastructure. Their use of collections does not make graph semantics part of the ordinary collection module.",
+      "evidence": {
+        "graph_and_manifest_sources": [
+          "results/ai/inputs/classes.csv",
+          "results/ai/inputs/dependencies.csv",
+          "results/ai/inputs/package_dependencies.csv"
+        ],
+        "observations": [
+          "The graph package has 244 internal edges and 65 edges to collect.",
+          "GraphBuilder -> Graph, MutableGraph, ImmutableGraph, and StandardMutableGraph; ValueGraphBuilder and NetworkBuilder reference the corresponding value-graph and network forms.",
+          "ImmutableGraph -> StandardValueGraph and GraphConnections; Traverser -> SuccessorsFunction, BaseGraph, and Network."
+        ],
+        "documentation_source": "results/ai/inputs/package_documentation.txt",
+        "documentation_sections": [
+          "com/google/common/graph/package-info.java"
+        ]
+      }
+    },
+    {
+      "id": "hashing",
+      "name": "Hashing and probabilistic structures",
+      "responsibility": "Hash functions, hash values, streaming hashers and funnels, hash-aware stream wrappers, and Bloom filters.",
+      "class_count": 33,
+      "class_scope": "All 33 hash classes.",
+      "boundary_rationale": "Interpretation: retain hash-aware stream wrappers with the hashing operation they expose. Algorithm and platform helpers stay with this capability; Bloom filters remain here because they use the hash/funnel abstraction family.",
+      "evidence": {
+        "graph_and_manifest_sources": [
+          "results/ai/inputs/classes.csv",
+          "results/ai/inputs/dependencies.csv",
+          "results/ai/inputs/package_dependencies.csv"
+        ],
+        "observations": [
+          "The hash package has 123 internal edges and no edge to the io package.",
+          "Hashing refers to named checksum, digest, MAC, Murmur, SipHash, and fingerprint implementations.",
+          "HashingInputStream and HashingOutputStream each -> HashCode, HashFunction, and Hasher; BloomFilter -> BloomFilterStrategies and Funnel."
+        ],
+        "documentation_source": "results/ai/inputs/package_documentation.txt",
+        "documentation_sections": [
+          "com/google/common/hash/package-info.java"
+        ]
+      }
+    },
+    {
+      "id": "io",
+      "name": "I/O, resources, and binary encodings",
+      "responsibility": "Byte and character sources/sinks, stream and file/resource operations, resource closing, and binary/base encodings.",
+      "class_count": 37,
+      "class_scope": "All 37 io classes.",
+      "boundary_rationale": "Interpretation: use the documented source/sink abstractions as the organizing responsibility. BaseEncoding belongs with byte/character representations and their source/sink adapters. Hashing and filesystem traversal are collaborators for convenience operations.",
+      "evidence": {
+        "graph_and_manifest_sources": [
+          "results/ai/inputs/classes.csv",
+          "results/ai/inputs/dependencies.csv",
+          "results/ai/inputs/package_dependencies.csv"
+        ],
+        "observations": [
+          "The io package has 72 internal edges, seven edges to hash, and four to graph.",
+          "ByteSource -> ByteSink, ByteStreams, CharSource, Closer, BaseEncoding, and hash abstractions; CharSource -> ByteSource, CharSink, CharStreams, and reader adapters.",
+          "Files and MoreFiles each -> graph.SuccessorsFunction and graph.Traverser; BaseEncoding -> all four byte/character source/sink types."
+        ],
+        "documentation_source": "results/ai/inputs/package_documentation.txt",
+        "documentation_sections": [
+          "com/google/common/io/package-info.java"
+        ]
+      }
+    },
+    {
+      "id": "escaping",
+      "name": "Escaping and format-specific escapers",
+      "responsibility": "Character/Unicode escaping mechanisms and HTML, XML, and URL specializations.",
+      "class_count": 16,
+      "class_scope": "All 10 escape classes, both html classes, both xml classes, and net.PercentEscaper and net.UrlEscapers: 16 classes total.",
+      "boundary_rationale": "Interpretation: combine the documented escaper family across its packaging locations. Keep each two-class HTML/XML package intact, including its support annotation. The remaining network annotation stays with network values by package ownership because it supplies no specific evidence favoring URL escaping.",
+      "evidence": {
+        "graph_and_manifest_sources": [
+          "results/ai/inputs/classes.csv",
+          "results/ai/inputs/dependencies.csv",
+          "results/ai/inputs/package_dependencies.csv"
+        ],
+        "observations": [
+          "HtmlEscapers and XmlEscapers each -> Escaper and Escapers, producing two edges from each package to escape.",
+          "PercentEscaper -> UnicodeEscaper; UrlEscapers -> Escaper and PercentEscaper.",
+          "No remaining net class points to either moved URL-escaping class in the supplied graph; the escape package documentation explicitly lists the HTML, XML, and URL specializations."
+        ],
+        "documentation_source": "results/ai/inputs/package_documentation.txt",
+        "documentation_sections": [
+          "com/google/common/escape/package-info.java",
+          "com/google/common/html/package-info.java",
+          "com/google/common/xml/package-info.java",
+          "com/google/common/net/package-info.java"
+        ]
+      }
+    },
+    {
+      "id": "network_values",
+      "name": "Network and protocol values",
+      "responsibility": "Host/port, IP address, domain-name and media-type handling, and HTTP header names.",
+      "class_count": 7,
+      "class_scope": "Seven net classes after PercentEscaper and UrlEscapers are assigned to escaping; includes net.ParametricNullness.",
+      "boundary_rationale": "Interpretation: retain the network/protocol meaning of these values while separating the explicit escaper family. MediaType remains here despite using several specialized collection types. HttpHeaders and the package marker remain represented despite sparse graph evidence.",
+      "evidence": {
+        "graph_and_manifest_sources": [
+          "results/ai/inputs/classes.csv",
+          "results/ai/inputs/dependencies.csv",
+          "results/ai/inputs/package_dependencies.csv"
+        ],
+        "observations": [
+          "HostSpecifier -> HostAndPort, InetAddresses, and InternetDomainName.",
+          "MediaType -> ImmutableListMultimap, ImmutableMultimap, ImmutableMultiset, ListMultimap, Multimap, and Multimaps, among other core types.",
+          "InetAddresses -> HashCode, HashFunction, Hashing, ByteArrayDataInput, and ByteStreams."
+        ],
+        "documentation_source": "results/ai/inputs/package_documentation.txt",
+        "documentation_sections": [
+          "com/google/common/net/package-info.java"
+        ]
+      }
+    },
+    {
+      "id": "reflection",
+      "name": "Reflection and generic type modeling",
+      "responsibility": "Generic type capture/resolution, reflective invocation, type-indexed instances, classpath inspection, and reflection helpers.",
+      "class_count": 16,
+      "class_scope": "All 16 reflect classes, including isolated AbstractInvocationHandler.",
+      "boundary_rationale": "Interpretation: classpath inspection and type modeling are related reflection capabilities that consume collections and I/O. Keep raw ClassToInstanceMap variants in core collections: a similar name alone does not require relocation, and no collect -> reflect relationship is present.",
+      "evidence": {
+        "graph_and_manifest_sources": [
+          "results/ai/inputs/classes.csv",
+          "results/ai/inputs/dependencies.csv",
+          "results/ai/inputs/package_dependencies.csv"
+        ],
+        "observations": [
+          "The reflect package has 26 internal edges, 30 edges to collect, and three to io.",
+          "TypeToken -> TypeCapture, TypeParameter, TypeResolver, TypeVisitor, Types, and Invokable.",
+          "ClassPath -> io.ByteSource, io.CharSource, and io.Resources; AbstractInvocationHandler has zero incident edges in the supplied internal graph."
+        ],
+        "documentation_source": "results/ai/inputs/package_documentation.txt",
+        "documentation_sections": [
+          "com/google/common/reflect/package-info.java"
+        ]
+      }
+    },
+    {
+      "id": "event_dispatch",
+      "name": "Event registration and dispatch",
+      "responsibility": "Publish/subscribe event registration, dispatch, subscriber handling, and subscriber failure context.",
+      "class_count": 11,
+      "class_scope": "All 11 eventbus classes.",
+      "boundary_rationale": "Interpretation: keep the event communication mechanism distinct from its cache, type-modeling, collection, and executor collaborators. A package documentation recommendation about alternatives is not a reason to omit this existing capability from recovery.",
+      "evidence": {
+        "graph_and_manifest_sources": [
+          "results/ai/inputs/classes.csv",
+          "results/ai/inputs/dependencies.csv",
+          "results/ai/inputs/package_dependencies.csv"
+        ],
+        "observations": [
+          "The eventbus package has 17 internal edges, three edges to cache, seven to collect, one to reflect, and two to util.concurrent.",
+          "EventBus -> Dispatcher, SubscriberRegistry, DeadEvent, subscriber exception types, and MoreExecutors.",
+          "SubscriberRegistry -> CacheBuilder, CacheLoader, LoadingCache, TypeToken, Subscriber, Subscribe, and collection abstractions."
+        ],
+        "documentation_source": "results/ai/inputs/package_documentation.txt",
+        "documentation_sections": [
+          "com/google/common/eventbus/package-info.java"
+        ]
+      }
+    }
+  ],
+  "cross_module_observations": [
+    {
+      "id": "foundation_support",
+      "observation": "base has outgoing package pairs only to base itself, annotations, and base.internal. Preconditions has 312 incoming class edges, while GwtCompatible has 330.",
+      "sources": [
+        "results/ai/inputs/dependencies.csv",
+        "results/ai/inputs/package_dependencies.csv"
+      ],
+      "interpretation": "This supports a common foundational role. Annotation presence is structural metadata evidence and must not be equated with execution traffic or architectural importance."
+    },
+    {
+      "id": "collection_bridges",
+      "observation": "CollectCollectors is referenced by ordinary immutable collections, multimaps/multisets, and immutable range types. Synchronized is referenced by Maps, Multimaps, Queues, Sets, and Tables. Maps and Sets also refer to Range and BoundType.",
+      "sources": [
+        "results/ai/inputs/dependencies.csv"
+      ],
+      "interpretation": "The four collection responsibilities share implementation machinery and have references in both directions. They are a conceptual reading/ownership map, not a demonstrated acyclic build-module decomposition."
+    },
+    {
+      "id": "interval_consumers",
+      "observation": "TreeMultiset -> GeneralRange, while GeneralRange -> Range and BoundType. Sorted multiset types also refer to BoundType. TreeMultiset is GeneralRange's only incoming source.",
+      "sources": [
+        "results/ai/inputs/dependencies.csv"
+      ],
+      "interpretation": "Bounded-order semantics cross the multivalue/interval boundary. GeneralRange is placed with interval semantics, but maintainer review could reasonably place this helper with its sole observed implementation consumer."
+    },
+    {
+      "id": "concurrency_composition",
+      "observation": "AbstractService and ServiceManager refer to Monitor and ListenerCallQueue. Lifecycle templates refer to MoreExecutors. Futures and AggregateFuture refer to Uninterruptibles; Uninterruptibles refers to Internal. Internal and LazyLogger have consumers across the proposed concurrency boundaries.",
+      "sources": [
+        "results/ai/inputs/dependencies.csv"
+      ],
+      "interpretation": "Lifecycle, execution, and controls collaborate. Shared helper ownership creates reciprocal references and is not evidence of an invalid conceptual division. Helper placement is less certain than the principal API responsibilities."
+    },
+    {
+      "id": "cache_execution",
+      "observation": "The cache package has 11 edges to util.concurrent: CacheLoader uses future types, LocalCache uses future/executor/failure helpers and Uninterruptibles, and AbstractLoadingCache uses UncheckedExecutionException.",
+      "sources": [
+        "results/ai/inputs/dependencies.csv",
+        "results/ai/inputs/package_dependencies.csv"
+      ],
+      "interpretation": "Caching consumes both asynchronous execution and waiting support while retaining its own loading and eviction policy responsibility."
+    },
+    {
+      "id": "eventbus_collaborators",
+      "observation": "SubscriberRegistry refers to three cache types and TypeToken; EventBus refers to MoreExecutors. Package counts show eventbus -> cache = 3, eventbus -> reflect = 1, and eventbus -> util.concurrent = 2.",
+      "sources": [
+        "results/ai/inputs/dependencies.csv",
+        "results/ai/inputs/package_dependencies.csv"
+      ],
+      "interpretation": "These references are consistent with supporting event registration and delivery through reused library capabilities; they do not by themselves reveal runtime event flow."
+    },
+    {
+      "id": "io_hash_graph",
+      "observation": "io -> hash has seven edges and io -> graph four. Files and MoreFiles each refer to SuccessorsFunction and Traverser. HashingInputStream and HashingOutputStream refer to hash abstractions and have no io-package references.",
+      "sources": [
+        "results/ai/inputs/dependencies.csv",
+        "results/ai/inputs/package_dependencies.csv"
+      ],
+      "interpretation": "File traversal and hash calculation are collaborators of I/O operations. The stream wrappers retain hashing ownership because their purpose and observed internal dependencies are specific to hashing."
+    },
+    {
+      "id": "escape_specializations",
+      "observation": "The escape documentation explicitly names HtmlEscapers, XmlEscapers, and UrlEscapers. HTML and XML each supply two edges to escape. PercentEscaper -> UnicodeEscaper; UrlEscapers -> Escaper and PercentEscaper. Other net classes do not refer to these two URL classes.",
+      "sources": [
+        "results/ai/inputs/package_documentation.txt",
+        "results/ai/inputs/dependencies.csv",
+        "results/ai/inputs/package_dependencies.csv"
+      ],
+      "interpretation": "A single escaping capability across four packages is supported by both the documented family and concrete references; network-value parsing remains separate."
+    },
+    {
+      "id": "numeric_direction",
+      "observation": "math -> primitives consists of IntMath -> Ints, LongMath -> UnsignedLongs, PairedStatsAccumulator -> Doubles, and Quantiles -> Doubles and Ints. No primitives -> math edge is present.",
+      "sources": [
+        "results/ai/inputs/dependencies.csv",
+        "results/ai/inputs/package_dependencies.csv"
+      ],
+      "interpretation": "The observed direction and the different documented responsibilities support separate primitive-representation and numerical-algorithm areas. It is not a proof of a universal runtime layer order."
+    },
+    {
+      "id": "reflection_network_reuse",
+      "observation": "ClassPath supplies all three reflect -> io edges. MediaType refers to multimap/multiset types as well as core collections, and InetAddresses refers to three hash classes and two io classes.",
+      "sources": [
+        "results/ai/inputs/dependencies.csv",
+        "results/ai/inputs/package_dependencies.csv"
+      ],
+      "interpretation": "Class and protocol semantics determine responsibility despite these cross-capability dependencies. A frequent utility dependency does not transfer the caller into the utility's module."
+    }
+  ],
+  "changes_from_initial_hypothesis": [
+    {
+      "initial": "One broad collection capability with unresolved internal divisions.",
+      "final": "Four responsibilities: core collections (125), multimaps/counted collections (59), tables (16), and intervals (15).",
+      "reason": "Documentation distinguishes the data models; class edges connect interfaces to their variants and show 19 multimap-to-multiset references. Shared collectors and synchronization utilities explain why the proposal remains a conceptual division."
+    },
+    {
+      "initial": "Concurrency/execution together, with possible lifecycle and control boundaries.",
+      "final": "Futures/asynchronous execution (57), service lifecycle (8), and synchronization/execution limits (18).",
+      "reason": "Service templates share the Service/AbstractService family; ListenerCallQueue has exactly the two lifecycle callers. Futures and executor adapters refer to each other, while lock/rate/time APIs express different controls."
+    },
+    {
+      "initial": "Potential text-processing and escaping area spanning some base types, with URL escaping unresolved.",
+      "final": "Base text helpers remain in foundation; escape, html, xml, PercentEscaper, and UrlEscapers form a 16-class escaping module.",
+      "reason": "The base graph interweaves Platform, validation, strings, and generic helpers. Documentation and graph edges explicitly connect all format-specific escapers to the common escape API."
+    },
+    {
+      "initial": "Primitive and mathematical utilities considered together.",
+      "final": "Primitive values/arrays (25) and arithmetic/statistics (16) remain separate responsibilities.",
+      "reason": "Documentation differentiates value representation from arithmetic; five edges run math -> primitives and none run in the opposite direction."
+    },
+    {
+      "initial": "Caching, graph, hashing, I/O, network values, reflection, and event dispatch inferred chiefly from names.",
+      "final": "These capability names and boundaries are broadly confirmed, subject to moving the two URL escapers.",
+      "reason": "Package descriptions identify their APIs, and concrete references explain their collaborators without requiring merger of the capabilities."
+    },
+    {
+      "initial": "Shared helper and isolated-type ownership deferred.",
+      "final": "One owner per class, including all package markers, shared support classes, and three isolated types.",
+      "reason": "Single ownership is required for a partition. Sparse graph evidence is supplemented by names, documentation, and package context; ambiguous helper placements are declared rather than hidden."
+    }
+  ],
+  "package_bias_assessment": "Package and class names were a deliberate starting prior, and package documentation reinforced it. The final partition modifies that prior through the collect and util.concurrent responsibility splits and the cross-package escaper family. These departures do not demonstrate removal of package bias. Existing language and library familiarity may also influence interpretations; no external Guava information was retrieved.",
+  "confidence": {
+    "stronger": "Broad documented capability responsibilities and direct interface/implementation-family relationships.",
+    "moderate": "The exact four-way collection and three-way concurrency conceptual divisions.",
+    "weaker": "Shared-helper ownership, GeneralRange, breadth of the synchronization group, isolated types, and intended organizational/build boundaries."
+  },
+  "maintainer_validation_required": [
+    "Whether the proposed responsibility areas reflect intended API and maintenance ownership, rather than only a useful reading map.",
+    "Whether GeneralRange should remain with interval semantics or follow its observed TreeMultiset consumer, and whether Monitor/Uninterruptibles belong in a shared control area.",
+    "Whether CollectCollectors, Synchronized, Serialization, Internal, LazyLogger, and support markers have intended owners or require finer member-level treatment.",
+    "Whether immutability is intended to be an independent architectural concern despite spanning multiple collection abstractions.",
+    "Whether service lifecycle and execution controls are intended as separate subsystems or only convenient groupings within concurrency utilities.",
+    "Whether any of these boundaries can become separately compiled/released modules without API, visibility, compatibility, or performance changes.",
+    "Which historical and current maintenance intentions underlie the package documentation statements about caching and event dispatch alternatives."
+  ],
+  "limitations": [
+    "This is a conceptual reconstruction from the supplied release evidence, not a validated statement of Guava maintainers' intended architecture or an accuracy/superiority claim.",
+    "Only the supplied internal binary directed graph was used. A binary edge counts a class pair once; it does not give call frequency, data-flow semantics, member-level responsibility, dependency kind, or evidence of runtime execution.",
+    "External libraries and application consumers are excluded, so absent internal incoming edges do not mean an API is unused. Dynamic/reflection-mediated interactions cannot be established as complete from these two-column edges.",
+    "Inner and anonymous classes are merged into canonical outer classes. Shared outer helpers such as CollectCollectors and Synchronized cannot be divided by nested implementation or method in this partition.",
+    "Package documentation supplies useful descriptions but is not a validated architecture ground truth, and its detail varies across packages. The supplied release label was accepted without external verification as required by the experiment.",
+    "Packages and recognizable Guava names influenced the starting hypothesis and final interpretation. This is not a package-blind or prior-knowledge-free inference procedure; no external sources were consulted.",
+    "Foundation and core collections are intentionally broad. Their single ownership of common support classes, and the async owner for shared concurrency helpers, is a convention for this conceptual view rather than evidence of exclusive responsibility.",
+    "Graph references cross several proposed boundaries in both directions. No build extraction, API visibility changes, dependency inversion, performance improvement, or maintenance-cost improvement has been validated.",
+    "GeneralRange, Monitor, Uninterruptibles, distributed support annotations, and package-wide helper ownership are among the lower-confidence placements. Principal documented capability roles have stronger evidence than these exact ownership decisions.",
+    "No MQ, cohesion, coupling, or other numerical architecture-quality metric was computed, and no baseline partition, UE decision, experiment report, or numerical quality outcome was consulted."
+  ],
+  "evidence_sources": [
+    "results/ai/inputs/classes.csv",
+    "results/ai/inputs/dependencies.csv",
+    "results/ai/inputs/package_counts.json",
+    "results/ai/inputs/package_dependencies.csv",
+    "results/ai/inputs/package_documentation.txt"
+  ]
+}

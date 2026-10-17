@@ -1,0 +1,17 @@
+{
+  "classes_assigned_exactly_once": 591,
+  "external_or_invented_classes": 0,
+  "input_hashes_verified": true,
+  "metric_scope": "Every comparison uses identical class and edge sets; retained AI assignment is a projection, not a new AI recovery.",
+  "modules": 18,
+  "output_sha256": {
+    "activity.json": "4a3d17b7a75644f9ffbef6bb0f603d80d65d3bf5245f0b923068a3ce6aa357d3",
+    "architecture.json": "eb52a8ed12cf787842d32ff38a21e7f462beb9558c06c3a3bb06769b7795c4f4",
+    "assignment.csv": "8541e460fc0f268d08d3f01bcfa6e3bd0c35e04860a8f0c4cf6318e13cddc87c",
+    "initial_hypothesis.md": "44c6ad972f5b546223b01f257f130114b621aadc296d6344614d2a0b543f7ada",
+    "response.md": "accf9ad3daaac3ba199676c1f68104562145686c2f51c182d09db32d029c4435"
+  },
+  "quality_claim": "ARI measures agreement, not accuracy; no validated intended-architecture ground truth is available.",
+  "status": "passed",
+  "version": "33.7.2"
+}

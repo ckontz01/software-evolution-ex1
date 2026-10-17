@@ -7,6 +7,9 @@ results/rerun/
 report/rendered/
 report/qa/
 data/raw/
+data/upstream_git/
+data/recomputed_graphs/
+.cache/
 data/graphs/*/
 results/versions/
 results/pilot/

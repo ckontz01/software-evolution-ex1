@@ -1,0 +1,1562 @@
+{
+  "cohesion": 0.10261461732377236,
+  "coupling": 0.003959627036247771,
+  "graph_density": 0.011382603458659555,
+  "inter_edge_fraction": 0.5172587553539935,
+  "inter_edges": 2053,
+  "internal_edges": 1916,
+  "isolates": 3,
+  "max_cluster_size": 125,
+  "mean_cluster_size": 32.833333333333336,
+  "min_cluster_size": 7,
+  "mq": 0.09865499028752459,
+  "n_clusters": 18,
+  "n_edges": 3969,
+  "n_nodes": 591,
+  "pair_weighted_cohesion": 0.05771779732497891,
+  "per_cluster": [
+    {
+      "cluster": "async_execution",
+      "cohesion": 0.05952380952380952,
+      "incoming_inter_edges": 43,
+      "internal_edges": 190,
+      "n_classes": 57,
+      "outgoing_inter_edges": 151,
+      "possible_internal_edges": 3192
+    },
+    {
+      "cluster": "caching",
+      "cohesion": 0.09523809523809523,
+      "incoming_inter_edges": 3,
+      "internal_edges": 44,
+      "n_classes": 22,
+      "outgoing_inter_edges": 94,
+      "possible_internal_edges": 462
+    },
+    {
+      "cluster": "collections_core",
+      "cohesion": 0.036,
+      "incoming_inter_edges": 506,
+      "internal_edges": 558,
+      "n_classes": 125,
+      "outgoing_inter_edges": 417,
+      "possible_internal_edges": 15500
+    },
+    {
+      "cluster": "collections_multi",
+      "cohesion": 0.06867329047340737,
+      "incoming_inter_edges": 48,
+      "internal_edges": 235,
+      "n_classes": 59,
+      "outgoing_inter_edges": 388,
+      "possible_internal_edges": 3422
+    },
+    {
+      "cluster": "collections_ranges",
+      "cohesion": 0.22857142857142856,
+      "incoming_inter_edges": 18,
+      "internal_edges": 48,
+      "n_classes": 15,
+      "outgoing_inter_edges": 115,
+      "possible_internal_edges": 210
+    },
+    {
+      "cluster": "collections_tables",
+      "cohesion": 0.2,
+      "incoming_inter_edges": 1,
+      "internal_edges": 48,
+      "n_classes": 16,
+      "outgoing_inter_edges": 131,
+      "possible_internal_edges": 240
+    },
+    {
+      "cluster": "escaping",
+      "cohesion": 0.0875,
+      "incoming_inter_edges": 0,
+      "internal_edges": 21,
+      "n_classes": 16,
+      "outgoing_inter_edges": 26,
+      "possible_internal_edges": 240
+    },
+    {
+      "cluster": "event_dispatch",
+      "cohesion": 0.15454545454545454,
+      "incoming_inter_edges": 0,
+      "internal_edges": 17,
+      "n_classes": 11,
+      "outgoing_inter_edges": 27,
+      "possible_internal_edges": 110
+    },
+    {
+      "cluster": "foundation",
+      "cohesion": 0.06829573934837092,
+      "incoming_inter_edges": 1352,
+      "internal_edges": 218,
+      "n_classes": 57,
+      "outgoing_inter_edges": 0,
+      "possible_internal_edges": 3192
+    },
+    {
+      "cluster": "graph_model",
+      "cohesion": 0.08853410740203194,
+      "incoming_inter_edges": 4,
+      "internal_edges": 244,
+      "n_classes": 53,
+      "outgoing_inter_edges": 115,
+      "possible_internal_edges": 2756
+    },
+    {
+      "cluster": "hashing",
+      "cohesion": 0.11647727272727272,
+      "incoming_inter_edges": 10,
+      "internal_edges": 123,
+      "n_classes": 33,
+      "outgoing_inter_edges": 64,
+      "possible_internal_edges": 1056
+    },
+    {
+      "cluster": "io",
+      "cohesion": 0.05405405405405406,
+      "incoming_inter_edges": 5,
+      "internal_edges": 72,
+      "n_classes": 37,
+      "outgoing_inter_edges": 148,
+      "possible_internal_edges": 1332
+    },
+    {
+      "cluster": "network_values",
+      "cohesion": 0.07142857142857142,
+      "incoming_inter_edges": 0,
+      "internal_edges": 3,
+      "n_classes": 7,
+      "outgoing_inter_edges": 48,
+      "possible_internal_edges": 42
+    },
+    {
+      "cluster": "numeric_algorithms",
+      "cohesion": 0.11666666666666667,
+      "incoming_inter_edges": 17,
+      "internal_edges": 28,
+      "n_classes": 16,
+      "outgoing_inter_edges": 52,
+      "possible_internal_edges": 240
+    },
+    {
+      "cluster": "primitive_values",
+      "cohesion": 0.03166666666666667,
+      "incoming_inter_edges": 39,
+      "internal_edges": 19,
+      "n_classes": 25,
+      "outgoing_inter_edges": 69,
+      "possible_internal_edges": 600
+    },
+    {
+      "cluster": "reflection",
+      "cohesion": 0.10833333333333334,
+      "incoming_inter_edges": 1,
+      "internal_edges": 26,
+      "n_classes": 16,
+      "outgoing_inter_edges": 61,
+      "possible_internal_edges": 240
+    },
+    {
+      "cluster": "service_lifecycle",
+      "cohesion": 0.23214285714285715,
+      "incoming_inter_edges": 0,
+      "internal_edges": 13,
+      "n_classes": 8,
+      "outgoing_inter_edges": 63,
+      "possible_internal_edges": 56
+    },
+    {
+      "cluster": "synchronization",
+      "cohesion": 0.029411764705882353,
+      "incoming_inter_edges": 6,
+      "internal_edges": 9,
+      "n_classes": 18,
+      "outgoing_inter_edges": 84,
+      "possible_internal_edges": 306
+    }
+  ],
+  "per_pair": [
+    {
+      "cluster_i": "async_execution",
+      "cluster_j": "caching",
+      "coupling": 0.003987240829346092,
+      "inter_edges_both_directions": 10,
+      "n_i": 57,
+      "n_j": 22,
+      "possible_inter_edges": 2508
+    },
+    {
+      "cluster_i": "async_execution",
+      "cluster_j": "collections_core",
+      "coupling": 0.0012631578947368421,
+      "inter_edges_both_directions": 18,
+      "n_i": 57,
+      "n_j": 125,
+      "possible_inter_edges": 14250
+    },
+    {
+      "cluster_i": "async_execution",
+      "cluster_j": "collections_multi",
+      "coupling": 0.0,
+      "inter_edges_both_directions": 0,
+      "n_i": 57,
+      "n_j": 59,
+      "possible_inter_edges": 6726
+    },
+    {
+      "cluster_i": "async_execution",
+      "cluster_j": "collections_ranges",
+      "coupling": 0.0,
+      "inter_edges_both_directions": 0,
+      "n_i": 57,
+      "n_j": 15,
+      "possible_inter_edges": 1710
+    },
+    {
+      "cluster_i": "async_execution",
+      "cluster_j": "collections_tables",
+      "coupling": 0.0,
+      "inter_edges_both_directions": 0,
+      "n_i": 57,
+      "n_j": 16,
+      "possible_inter_edges": 1824
+    },
+    {
+      "cluster_i": "async_execution",
+      "cluster_j": "escaping",
+      "coupling": 0.0,
+      "inter_edges_both_directions": 0,
+      "n_i": 57,
+      "n_j": 16,
+      "possible_inter_edges": 1824
+    },
+    {
+      "cluster_i": "async_execution",
+      "cluster_j": "event_dispatch",
+      "coupling": 0.001594896331738437,
+      "inter_edges_both_directions": 2,
+      "n_i": 57,
+      "n_j": 11,
+      "possible_inter_edges": 1254
+    },
+    {
+      "cluster_i": "async_execution",
+      "cluster_j": "foundation",
+      "coupling": 0.020006155740227762,
+      "inter_edges_both_directions": 130,
+      "n_i": 57,
+      "n_j": 57,
+      "possible_inter_edges": 6498
+    },
+    {
+      "cluster_i": "async_execution",
+      "cluster_j": "graph_model",
+      "coupling": 0.0,
+      "inter_edges_both_directions": 0,
+      "n_i": 57,
+      "n_j": 53,
+      "possible_inter_edges": 6042
+    },
+    {
+      "cluster_i": "async_execution",
+      "cluster_j": "hashing",
+      "coupling": 0.0,
+      "inter_edges_both_directions": 0,
+      "n_i": 57,
+      "n_j": 33,
+      "possible_inter_edges": 3762
+    },
+    {
+      "cluster_i": "async_execution",
+      "cluster_j": "io",
+      "coupling": 0.0,
+      "inter_edges_both_directions": 0,
+      "n_i": 57,
+      "n_j": 37,
+      "possible_inter_edges": 4218
+    },
+    {
+      "cluster_i": "async_execution",
+      "cluster_j": "network_values",
+      "coupling": 0.0,
+      "inter_edges_both_directions": 0,
+      "n_i": 57,
+      "n_j": 7,
+      "possible_inter_edges": 798
+    },
+    {
+      "cluster_i": "async_execution",
+      "cluster_j": "numeric_algorithms",
+      "coupling": 0.0,
+      "inter_edges_both_directions": 0,
+      "n_i": 57,
+      "n_j": 16,
+      "possible_inter_edges": 1824
+    },
+    {
+      "cluster_i": "async_execution",
+      "cluster_j": "primitive_values",
+      "coupling": 0.0,
+      "inter_edges_both_directions": 0,
+      "n_i": 57,
+      "n_j": 25,
+      "possible_inter_edges": 2850
+    },
+    {
+      "cluster_i": "async_execution",
+      "cluster_j": "reflection",
+      "coupling": 0.0,
+      "inter_edges_both_directions": 0,
+      "n_i": 57,
+      "n_j": 16,
+      "possible_inter_edges": 1824
+    },
+    {
+      "cluster_i": "async_execution",
+      "cluster_j": "service_lifecycle",
+      "coupling": 0.017543859649122806,
+      "inter_edges_both_directions": 16,
+      "n_i": 57,
+      "n_j": 8,
+      "possible_inter_edges": 912
+    },
+    {
+      "cluster_i": "async_execution",
+      "cluster_j": "synchronization",
+      "coupling": 0.008771929824561403,
+      "inter_edges_both_directions": 18,
+      "n_i": 57,
+      "n_j": 18,
+      "possible_inter_edges": 2052
+    },
+    {
+      "cluster_i": "caching",
+      "cluster_j": "collections_core",
+      "coupling": 0.0025454545454545456,
+      "inter_edges_both_directions": 14,
+      "n_i": 22,
+      "n_j": 125,
+      "possible_inter_edges": 5500
+    },
+    {
+      "cluster_i": "caching",
+      "cluster_j": "collections_multi",
+      "coupling": 0.0,
+      "inter_edges_both_directions": 0,
+      "n_i": 22,
+      "n_j": 59,
+      "possible_inter_edges": 2596
+    },
+    {
+      "cluster_i": "caching",
+      "cluster_j": "collections_ranges",
+      "coupling": 0.0,
+      "inter_edges_both_directions": 0,
+      "n_i": 22,
+      "n_j": 15,
+      "possible_inter_edges": 660
+    },
+    {
+      "cluster_i": "caching",
+      "cluster_j": "collections_tables",
+      "coupling": 0.0,
+      "inter_edges_both_directions": 0,
+      "n_i": 22,
+      "n_j": 16,
+      "possible_inter_edges": 704
+    },
+    {
+      "cluster_i": "caching",
+      "cluster_j": "escaping",
+      "coupling": 0.0,
+      "inter_edges_both_directions": 0,
+      "n_i": 22,
+      "n_j": 16,
+      "possible_inter_edges": 704
+    },
+    {
+      "cluster_i": "caching",
+      "cluster_j": "event_dispatch",
+      "coupling": 0.006198347107438017,
+      "inter_edges_both_directions": 3,
+      "n_i": 22,
+      "n_j": 11,
+      "possible_inter_edges": 484
+    },
+    {
+      "cluster_i": "caching",
+      "cluster_j": "foundation",
+      "coupling": 0.02671451355661882,
+      "inter_edges_both_directions": 67,
+      "n_i": 22,
+      "n_j": 57,
+      "possible_inter_edges": 2508
+    },
+    {
+      "cluster_i": "caching",
+      "cluster_j": "graph_model",
+      "coupling": 0.0,
+      "inter_edges_both_directions": 0,
+      "n_i": 22,
+      "n_j": 53,
+      "possible_inter_edges": 2332
+    },
+    {
+      "cluster_i": "caching",
+      "cluster_j": "hashing",
+      "coupling": 0.0,
+      "inter_edges_both_directions": 0,
+      "n_i": 22,
+      "n_j": 33,
+      "possible_inter_edges": 1452
+    },
+    {
+      "cluster_i": "caching",
+      "cluster_j": "io",
+      "coupling": 0.0,
+      "inter_edges_both_directions": 0,
+      "n_i": 22,
+      "n_j": 37,
+      "possible_inter_edges": 1628
+    },
+    {
+      "cluster_i": "caching",
+      "cluster_j": "network_values",
+      "coupling": 0.0,
+      "inter_edges_both_directions": 0,
+      "n_i": 22,
+      "n_j": 7,
+      "possible_inter_edges": 308
+    },
+    {
+      "cluster_i": "caching",
+      "cluster_j": "numeric_algorithms",
+      "coupling": 0.0014204545454545455,
+      "inter_edges_both_directions": 1,
+      "n_i": 22,
+      "n_j": 16,
+      "possible_inter_edges": 704
+    },
+    {
+      "cluster_i": "caching",
+      "cluster_j": "primitive_values",
+      "coupling": 0.0009090909090909091,
+      "inter_edges_both_directions": 1,
+      "n_i": 22,
+      "n_j": 25,
+      "possible_inter_edges": 1100
+    },
+    {
+      "cluster_i": "caching",
+      "cluster_j": "reflection",
+      "coupling": 0.0,
+      "inter_edges_both_directions": 0,
+      "n_i": 22,
+      "n_j": 16,
+      "possible_inter_edges": 704
+    },
+    {
+      "cluster_i": "caching",
+      "cluster_j": "service_lifecycle",
+      "coupling": 0.0,
+      "inter_edges_both_directions": 0,
+      "n_i": 22,
+      "n_j": 8,
+      "possible_inter_edges": 352
+    },
+    {
+      "cluster_i": "caching",
+      "cluster_j": "synchronization",
+      "coupling": 0.0012626262626262627,
+      "inter_edges_both_directions": 1,
+      "n_i": 22,
+      "n_j": 18,
+      "possible_inter_edges": 792
+    },
+    {
+      "cluster_i": "collections_core",
+      "cluster_j": "collections_multi",
+      "coupling": 0.01566101694915254,
+      "inter_edges_both_directions": 231,
+      "n_i": 125,
+      "n_j": 59,
+      "possible_inter_edges": 14750
+    },
+    {
+      "cluster_i": "collections_core",
+      "cluster_j": "collections_ranges",
+      "coupling": 0.0192,
+      "inter_edges_both_directions": 72,
+      "n_i": 125,
+      "n_j": 15,
+      "possible_inter_edges": 3750
+    },
+    {
+      "cluster_i": "collections_core",
+      "cluster_j": "collections_tables",
+      "coupling": 0.01825,
+      "inter_edges_both_directions": 73,
+      "n_i": 125,
+      "n_j": 16,
+      "possible_inter_edges": 4000
+    },
+    {
+      "cluster_i": "collections_core",
+      "cluster_j": "escaping",
+      "coupling": 0.0,
+      "inter_edges_both_directions": 0,
+      "n_i": 125,
+      "n_j": 16,
+      "possible_inter_edges": 4000
+    },
+    {
+      "cluster_i": "collections_core",
+      "cluster_j": "event_dispatch",
+      "coupling": 0.0018181818181818182,
+      "inter_edges_both_directions": 5,
+      "n_i": 125,
+      "n_j": 11,
+      "possible_inter_edges": 2750
+    },
+    {
+      "cluster_i": "collections_core",
+      "cluster_j": "foundation",
+      "coupling": 0.02582456140350877,
+      "inter_edges_both_directions": 368,
+      "n_i": 125,
+      "n_j": 57,
+      "possible_inter_edges": 14250
+    },
+    {
+      "cluster_i": "collections_core",
+      "cluster_j": "graph_model",
+      "coupling": 0.004603773584905661,
+      "inter_edges_both_directions": 61,
+      "n_i": 125,
+      "n_j": 53,
+      "possible_inter_edges": 13250
+    },
+    {
+      "cluster_i": "collections_core",
+      "cluster_j": "hashing",
+      "coupling": 0.0,
+      "inter_edges_both_directions": 0,
+      "n_i": 125,
+      "n_j": 33,
+      "possible_inter_edges": 8250
+    },
+    {
+      "cluster_i": "collections_core",
+      "cluster_j": "io",
+      "coupling": 0.0011891891891891893,
+      "inter_edges_both_directions": 11,
+      "n_i": 125,
+      "n_j": 37,
+      "possible_inter_edges": 9250
+    },
+    {
+      "cluster_i": "collections_core",
+      "cluster_j": "network_values",
+      "coupling": 0.004,
+      "inter_edges_both_directions": 7,
+      "n_i": 125,
+      "n_j": 7,
+      "possible_inter_edges": 1750
+    },
+    {
+      "cluster_i": "collections_core",
+      "cluster_j": "numeric_algorithms",
+      "coupling": 0.0015,
+      "inter_edges_both_directions": 6,
+      "n_i": 125,
+      "n_j": 16,
+      "possible_inter_edges": 4000
+    },
+    {
+      "cluster_i": "collections_core",
+      "cluster_j": "primitive_values",
+      "coupling": 0.00112,
+      "inter_edges_both_directions": 7,
+      "n_i": 125,
+      "n_j": 25,
+      "possible_inter_edges": 6250
+    },
+    {
+      "cluster_i": "collections_core",
+      "cluster_j": "reflection",
+      "coupling": 0.0075,
+      "inter_edges_both_directions": 30,
+      "n_i": 125,
+      "n_j": 16,
+      "possible_inter_edges": 4000
+    },
+    {
+      "cluster_i": "collections_core",
+      "cluster_j": "service_lifecycle",
+      "coupling": 0.0045,
+      "inter_edges_both_directions": 9,
+      "n_i": 125,
+      "n_j": 8,
+      "possible_inter_edges": 2000
+    },
+    {
+      "cluster_i": "collections_core",
+      "cluster_j": "synchronization",
+      "coupling": 0.0024444444444444444,
+      "inter_edges_both_directions": 11,
+      "n_i": 125,
+      "n_j": 18,
+      "possible_inter_edges": 4500
+    },
+    {
+      "cluster_i": "collections_multi",
+      "cluster_j": "collections_ranges",
+      "coupling": 0.0062146892655367235,
+      "inter_edges_both_directions": 11,
+      "n_i": 59,
+      "n_j": 15,
+      "possible_inter_edges": 1770
+    },
+    {
+      "cluster_i": "collections_multi",
+      "cluster_j": "collections_tables",
+      "coupling": 0.0,
+      "inter_edges_both_directions": 0,
+      "n_i": 59,
+      "n_j": 16,
+      "possible_inter_edges": 1888
+    },
+    {
+      "cluster_i": "collections_multi",
+      "cluster_j": "escaping",
+      "coupling": 0.0,
+      "inter_edges_both_directions": 0,
+      "n_i": 59,
+      "n_j": 16,
+      "possible_inter_edges": 1888
+    },
+    {
+      "cluster_i": "collections_multi",
+      "cluster_j": "event_dispatch",
+      "coupling": 0.0015408320493066256,
+      "inter_edges_both_directions": 2,
+      "n_i": 59,
+      "n_j": 11,
+      "possible_inter_edges": 1298
+    },
+    {
+      "cluster_i": "collections_multi",
+      "cluster_j": "foundation",
+      "coupling": 0.024531668153434435,
+      "inter_edges_both_directions": 165,
+      "n_i": 59,
+      "n_j": 57,
+      "possible_inter_edges": 6726
+    },
+    {
+      "cluster_i": "collections_multi",
+      "cluster_j": "graph_model",
+      "coupling": 0.0006395906619763352,
+      "inter_edges_both_directions": 4,
+      "n_i": 59,
+      "n_j": 53,
+      "possible_inter_edges": 6254
+    },
+    {
+      "cluster_i": "collections_multi",
+      "cluster_j": "hashing",
+      "coupling": 0.0,
+      "inter_edges_both_directions": 0,
+      "n_i": 59,
+      "n_j": 33,
+      "possible_inter_edges": 3894
+    },
+    {
+      "cluster_i": "collections_multi",
+      "cluster_j": "io",
+      "coupling": 0.0,
+      "inter_edges_both_directions": 0,
+      "n_i": 59,
+      "n_j": 37,
+      "possible_inter_edges": 4366
+    },
+    {
+      "cluster_i": "collections_multi",
+      "cluster_j": "network_values",
+      "coupling": 0.007263922518159807,
+      "inter_edges_both_directions": 6,
+      "n_i": 59,
+      "n_j": 7,
+      "possible_inter_edges": 826
+    },
+    {
+      "cluster_i": "collections_multi",
+      "cluster_j": "numeric_algorithms",
+      "coupling": 0.0005296610169491525,
+      "inter_edges_both_directions": 1,
+      "n_i": 59,
+      "n_j": 16,
+      "possible_inter_edges": 1888
+    },
+    {
+      "cluster_i": "collections_multi",
+      "cluster_j": "primitive_values",
+      "coupling": 0.002711864406779661,
+      "inter_edges_both_directions": 8,
+      "n_i": 59,
+      "n_j": 25,
+      "possible_inter_edges": 2950
+    },
+    {
+      "cluster_i": "collections_multi",
+      "cluster_j": "reflection",
+      "coupling": 0.0,
+      "inter_edges_both_directions": 0,
+      "n_i": 59,
+      "n_j": 16,
+      "possible_inter_edges": 1888
+    },
+    {
+      "cluster_i": "collections_multi",
+      "cluster_j": "service_lifecycle",
+      "coupling": 0.00847457627118644,
+      "inter_edges_both_directions": 8,
+      "n_i": 59,
+      "n_j": 8,
+      "possible_inter_edges": 944
+    },
+    {
+      "cluster_i": "collections_multi",
+      "cluster_j": "synchronization",
+      "coupling": 0.0,
+      "inter_edges_both_directions": 0,
+      "n_i": 59,
+      "n_j": 18,
+      "possible_inter_edges": 2124
+    },
+    {
+      "cluster_i": "collections_ranges",
+      "cluster_j": "collections_tables",
+      "coupling": 0.0,
+      "inter_edges_both_directions": 0,
+      "n_i": 15,
+      "n_j": 16,
+      "possible_inter_edges": 480
+    },
+    {
+      "cluster_i": "collections_ranges",
+      "cluster_j": "escaping",
+      "coupling": 0.0,
+      "inter_edges_both_directions": 0,
+      "n_i": 15,
+      "n_j": 16,
+      "possible_inter_edges": 480
+    },
+    {
+      "cluster_i": "collections_ranges",
+      "cluster_j": "event_dispatch",
+      "coupling": 0.0,
+      "inter_edges_both_directions": 0,
+      "n_i": 15,
+      "n_j": 11,
+      "possible_inter_edges": 330
+    },
+    {
+      "cluster_i": "collections_ranges",
+      "cluster_j": "foundation",
+      "coupling": 0.028070175438596492,
+      "inter_edges_both_directions": 48,
+      "n_i": 15,
+      "n_j": 57,
+      "possible_inter_edges": 1710
+    },
+    {
+      "cluster_i": "collections_ranges",
+      "cluster_j": "graph_model",
+      "coupling": 0.0,
+      "inter_edges_both_directions": 0,
+      "n_i": 15,
+      "n_j": 53,
+      "possible_inter_edges": 1590
+    },
+    {
+      "cluster_i": "collections_ranges",
+      "cluster_j": "hashing",
+      "coupling": 0.0,
+      "inter_edges_both_directions": 0,
+      "n_i": 15,
+      "n_j": 33,
+      "possible_inter_edges": 990
+    },
+    {
+      "cluster_i": "collections_ranges",
+      "cluster_j": "io",
+      "coupling": 0.0,
+      "inter_edges_both_directions": 0,
+      "n_i": 15,
+      "n_j": 37,
+      "possible_inter_edges": 1110
+    },
+    {
+      "cluster_i": "collections_ranges",
+      "cluster_j": "network_values",
+      "coupling": 0.0,
+      "inter_edges_both_directions": 0,
+      "n_i": 15,
+      "n_j": 7,
+      "possible_inter_edges": 210
+    },
+    {
+      "cluster_i": "collections_ranges",
+      "cluster_j": "numeric_algorithms",
+      "coupling": 0.0,
+      "inter_edges_both_directions": 0,
+      "n_i": 15,
+      "n_j": 16,
+      "possible_inter_edges": 480
+    },
+    {
+      "cluster_i": "collections_ranges",
+      "cluster_j": "primitive_values",
+      "coupling": 0.0026666666666666666,
+      "inter_edges_both_directions": 2,
+      "n_i": 15,
+      "n_j": 25,
+      "possible_inter_edges": 750
+    },
+    {
+      "cluster_i": "collections_ranges",
+      "cluster_j": "reflection",
+      "coupling": 0.0,
+      "inter_edges_both_directions": 0,
+      "n_i": 15,
+      "n_j": 16,
+      "possible_inter_edges": 480
+    },
+    {
+      "cluster_i": "collections_ranges",
+      "cluster_j": "service_lifecycle",
+      "coupling": 0.0,
+      "inter_edges_both_directions": 0,
+      "n_i": 15,
+      "n_j": 8,
+      "possible_inter_edges": 240
+    },
+    {
+      "cluster_i": "collections_ranges",
+      "cluster_j": "synchronization",
+      "coupling": 0.0,
+      "inter_edges_both_directions": 0,
+      "n_i": 15,
+      "n_j": 18,
+      "possible_inter_edges": 540
+    },
+    {
+      "cluster_i": "collections_tables",
+      "cluster_j": "escaping",
+      "coupling": 0.0,
+      "inter_edges_both_directions": 0,
+      "n_i": 16,
+      "n_j": 16,
+      "possible_inter_edges": 512
+    },
+    {
+      "cluster_i": "collections_tables",
+      "cluster_j": "event_dispatch",
+      "coupling": 0.0,
+      "inter_edges_both_directions": 0,
+      "n_i": 16,
+      "n_j": 11,
+      "possible_inter_edges": 352
+    },
+    {
+      "cluster_i": "collections_tables",
+      "cluster_j": "foundation",
+      "coupling": 0.03234649122807018,
+      "inter_edges_both_directions": 59,
+      "n_i": 16,
+      "n_j": 57,
+      "possible_inter_edges": 1824
+    },
+    {
+      "cluster_i": "collections_tables",
+      "cluster_j": "graph_model",
+      "coupling": 0.0,
+      "inter_edges_both_directions": 0,
+      "n_i": 16,
+      "n_j": 53,
+      "possible_inter_edges": 1696
+    },
+    {
+      "cluster_i": "collections_tables",
+      "cluster_j": "hashing",
+      "coupling": 0.0,
+      "inter_edges_both_directions": 0,
+      "n_i": 16,
+      "n_j": 33,
+      "possible_inter_edges": 1056
+    },
+    {
+      "cluster_i": "collections_tables",
+      "cluster_j": "io",
+      "coupling": 0.0,
+      "inter_edges_both_directions": 0,
+      "n_i": 16,
+      "n_j": 37,
+      "possible_inter_edges": 1184
+    },
+    {
+      "cluster_i": "collections_tables",
+      "cluster_j": "network_values",
+      "coupling": 0.0,
+      "inter_edges_both_directions": 0,
+      "n_i": 16,
+      "n_j": 7,
+      "possible_inter_edges": 224
+    },
+    {
+      "cluster_i": "collections_tables",
+      "cluster_j": "numeric_algorithms",
+      "coupling": 0.0,
+      "inter_edges_both_directions": 0,
+      "n_i": 16,
+      "n_j": 16,
+      "possible_inter_edges": 512
+    },
+    {
+      "cluster_i": "collections_tables",
+      "cluster_j": "primitive_values",
+      "coupling": 0.0,
+      "inter_edges_both_directions": 0,
+      "n_i": 16,
+      "n_j": 25,
+      "possible_inter_edges": 800
+    },
+    {
+      "cluster_i": "collections_tables",
+      "cluster_j": "reflection",
+      "coupling": 0.0,
+      "inter_edges_both_directions": 0,
+      "n_i": 16,
+      "n_j": 16,
+      "possible_inter_edges": 512
+    },
+    {
+      "cluster_i": "collections_tables",
+      "cluster_j": "service_lifecycle",
+      "coupling": 0.0,
+      "inter_edges_both_directions": 0,
+      "n_i": 16,
+      "n_j": 8,
+      "possible_inter_edges": 256
+    },
+    {
+      "cluster_i": "collections_tables",
+      "cluster_j": "synchronization",
+      "coupling": 0.0,
+      "inter_edges_both_directions": 0,
+      "n_i": 16,
+      "n_j": 18,
+      "possible_inter_edges": 576
+    },
+    {
+      "cluster_i": "escaping",
+      "cluster_j": "event_dispatch",
+      "coupling": 0.0,
+      "inter_edges_both_directions": 0,
+      "n_i": 16,
+      "n_j": 11,
+      "possible_inter_edges": 352
+    },
+    {
+      "cluster_i": "escaping",
+      "cluster_j": "foundation",
+      "coupling": 0.01425438596491228,
+      "inter_edges_both_directions": 26,
+      "n_i": 16,
+      "n_j": 57,
+      "possible_inter_edges": 1824
+    },
+    {
+      "cluster_i": "escaping",
+      "cluster_j": "graph_model",
+      "coupling": 0.0,
+      "inter_edges_both_directions": 0,
+      "n_i": 16,
+      "n_j": 53,
+      "possible_inter_edges": 1696
+    },
+    {
+      "cluster_i": "escaping",
+      "cluster_j": "hashing",
+      "coupling": 0.0,
+      "inter_edges_both_directions": 0,
+      "n_i": 16,
+      "n_j": 33,
+      "possible_inter_edges": 1056
+    },
+    {
+      "cluster_i": "escaping",
+      "cluster_j": "io",
+      "coupling": 0.0,
+      "inter_edges_both_directions": 0,
+      "n_i": 16,
+      "n_j": 37,
+      "possible_inter_edges": 1184
+    },
+    {
+      "cluster_i": "escaping",
+      "cluster_j": "network_values",
+      "coupling": 0.0,
+      "inter_edges_both_directions": 0,
+      "n_i": 16,
+      "n_j": 7,
+      "possible_inter_edges": 224
+    },
+    {
+      "cluster_i": "escaping",
+      "cluster_j": "numeric_algorithms",
+      "coupling": 0.0,
+      "inter_edges_both_directions": 0,
+      "n_i": 16,
+      "n_j": 16,
+      "possible_inter_edges": 512
+    },
+    {
+      "cluster_i": "escaping",
+      "cluster_j": "primitive_values",
+      "coupling": 0.0,
+      "inter_edges_both_directions": 0,
+      "n_i": 16,
+      "n_j": 25,
+      "possible_inter_edges": 800
+    },
+    {
+      "cluster_i": "escaping",
+      "cluster_j": "reflection",
+      "coupling": 0.0,
+      "inter_edges_both_directions": 0,
+      "n_i": 16,
+      "n_j": 16,
+      "possible_inter_edges": 512
+    },
+    {
+      "cluster_i": "escaping",
+      "cluster_j": "service_lifecycle",
+      "coupling": 0.0,
+      "inter_edges_both_directions": 0,
+      "n_i": 16,
+      "n_j": 8,
+      "possible_inter_edges": 256
+    },
+    {
+      "cluster_i": "escaping",
+      "cluster_j": "synchronization",
+      "coupling": 0.0,
+      "inter_edges_both_directions": 0,
+      "n_i": 16,
+      "n_j": 18,
+      "possible_inter_edges": 576
+    },
+    {
+      "cluster_i": "event_dispatch",
+      "cluster_j": "foundation",
+      "coupling": 0.01036682615629984,
+      "inter_edges_both_directions": 13,
+      "n_i": 11,
+      "n_j": 57,
+      "possible_inter_edges": 1254
+    },
+    {
+      "cluster_i": "event_dispatch",
+      "cluster_j": "graph_model",
+      "coupling": 0.0,
+      "inter_edges_both_directions": 0,
+      "n_i": 11,
+      "n_j": 53,
+      "possible_inter_edges": 1166
+    },
+    {
+      "cluster_i": "event_dispatch",
+      "cluster_j": "hashing",
+      "coupling": 0.0,
+      "inter_edges_both_directions": 0,
+      "n_i": 11,
+      "n_j": 33,
+      "possible_inter_edges": 726
+    },
+    {
+      "cluster_i": "event_dispatch",
+      "cluster_j": "io",
+      "coupling": 0.0,
+      "inter_edges_both_directions": 0,
+      "n_i": 11,
+      "n_j": 37,
+      "possible_inter_edges": 814
+    },
+    {
+      "cluster_i": "event_dispatch",
+      "cluster_j": "network_values",
+      "coupling": 0.0,
+      "inter_edges_both_directions": 0,
+      "n_i": 11,
+      "n_j": 7,
+      "possible_inter_edges": 154
+    },
+    {
+      "cluster_i": "event_dispatch",
+      "cluster_j": "numeric_algorithms",
+      "coupling": 0.0,
+      "inter_edges_both_directions": 0,
+      "n_i": 11,
+      "n_j": 16,
+      "possible_inter_edges": 352
+    },
+    {
+      "cluster_i": "event_dispatch",
+      "cluster_j": "primitive_values",
+      "coupling": 0.0018181818181818182,
+      "inter_edges_both_directions": 1,
+      "n_i": 11,
+      "n_j": 25,
+      "possible_inter_edges": 550
+    },
+    {
+      "cluster_i": "event_dispatch",
+      "cluster_j": "reflection",
+      "coupling": 0.002840909090909091,
+      "inter_edges_both_directions": 1,
+      "n_i": 11,
+      "n_j": 16,
+      "possible_inter_edges": 352
+    },
+    {
+      "cluster_i": "event_dispatch",
+      "cluster_j": "service_lifecycle",
+      "coupling": 0.0,
+      "inter_edges_both_directions": 0,
+      "n_i": 11,
+      "n_j": 8,
+      "possible_inter_edges": 176
+    },
+    {
+      "cluster_i": "event_dispatch",
+      "cluster_j": "synchronization",
+      "coupling": 0.0,
+      "inter_edges_both_directions": 0,
+      "n_i": 11,
+      "n_j": 18,
+      "possible_inter_edges": 396
+    },
+    {
+      "cluster_i": "foundation",
+      "cluster_j": "graph_model",
+      "coupling": 0.007613373055279708,
+      "inter_edges_both_directions": 46,
+      "n_i": 57,
+      "n_j": 53,
+      "possible_inter_edges": 6042
+    },
+    {
+      "cluster_i": "foundation",
+      "cluster_j": "hashing",
+      "coupling": 0.014619883040935672,
+      "inter_edges_both_directions": 55,
+      "n_i": 57,
+      "n_j": 33,
+      "possible_inter_edges": 3762
+    },
+    {
+      "cluster_i": "foundation",
+      "cluster_j": "io",
+      "coupling": 0.028923660502607872,
+      "inter_edges_both_directions": 122,
+      "n_i": 57,
+      "n_j": 37,
+      "possible_inter_edges": 4218
+    },
+    {
+      "cluster_i": "foundation",
+      "cluster_j": "network_values",
+      "coupling": 0.03508771929824561,
+      "inter_edges_both_directions": 28,
+      "n_i": 57,
+      "n_j": 7,
+      "possible_inter_edges": 798
+    },
+    {
+      "cluster_i": "foundation",
+      "cluster_j": "numeric_algorithms",
+      "coupling": 0.025767543859649123,
+      "inter_edges_both_directions": 47,
+      "n_i": 57,
+      "n_j": 16,
+      "possible_inter_edges": 1824
+    },
+    {
+      "cluster_i": "foundation",
+      "cluster_j": "primitive_values",
+      "coupling": 0.024210526315789474,
+      "inter_edges_both_directions": 69,
+      "n_i": 57,
+      "n_j": 25,
+      "possible_inter_edges": 2850
+    },
+    {
+      "cluster_i": "foundation",
+      "cluster_j": "reflection",
+      "coupling": 0.014802631578947368,
+      "inter_edges_both_directions": 27,
+      "n_i": 57,
+      "n_j": 16,
+      "possible_inter_edges": 1824
+    },
+    {
+      "cluster_i": "foundation",
+      "cluster_j": "service_lifecycle",
+      "coupling": 0.03070175438596491,
+      "inter_edges_both_directions": 28,
+      "n_i": 57,
+      "n_j": 8,
+      "possible_inter_edges": 912
+    },
+    {
+      "cluster_i": "foundation",
+      "cluster_j": "synchronization",
+      "coupling": 0.02631578947368421,
+      "inter_edges_both_directions": 54,
+      "n_i": 57,
+      "n_j": 18,
+      "possible_inter_edges": 2052
+    },
+    {
+      "cluster_i": "graph_model",
+      "cluster_j": "hashing",
+      "coupling": 0.0,
+      "inter_edges_both_directions": 0,
+      "n_i": 53,
+      "n_j": 33,
+      "possible_inter_edges": 3498
+    },
+    {
+      "cluster_i": "graph_model",
+      "cluster_j": "io",
+      "coupling": 0.0010198878123406426,
+      "inter_edges_both_directions": 4,
+      "n_i": 53,
+      "n_j": 37,
+      "possible_inter_edges": 3922
+    },
+    {
+      "cluster_i": "graph_model",
+      "cluster_j": "network_values",
+      "coupling": 0.0,
+      "inter_edges_both_directions": 0,
+      "n_i": 53,
+      "n_j": 7,
+      "possible_inter_edges": 742
+    },
+    {
+      "cluster_i": "graph_model",
+      "cluster_j": "numeric_algorithms",
+      "coupling": 0.001768867924528302,
+      "inter_edges_both_directions": 3,
+      "n_i": 53,
+      "n_j": 16,
+      "possible_inter_edges": 1696
+    },
+    {
+      "cluster_i": "graph_model",
+      "cluster_j": "primitive_values",
+      "coupling": 0.0003773584905660377,
+      "inter_edges_both_directions": 1,
+      "n_i": 53,
+      "n_j": 25,
+      "possible_inter_edges": 2650
+    },
+    {
+      "cluster_i": "graph_model",
+      "cluster_j": "reflection",
+      "coupling": 0.0,
+      "inter_edges_both_directions": 0,
+      "n_i": 53,
+      "n_j": 16,
+      "possible_inter_edges": 1696
+    },
+    {
+      "cluster_i": "graph_model",
+      "cluster_j": "service_lifecycle",
+      "coupling": 0.0,
+      "inter_edges_both_directions": 0,
+      "n_i": 53,
+      "n_j": 8,
+      "possible_inter_edges": 848
+    },
+    {
+      "cluster_i": "graph_model",
+      "cluster_j": "synchronization",
+      "coupling": 0.0,
+      "inter_edges_both_directions": 0,
+      "n_i": 53,
+      "n_j": 18,
+      "possible_inter_edges": 1908
+    },
+    {
+      "cluster_i": "hashing",
+      "cluster_j": "io",
+      "coupling": 0.0028665028665028664,
+      "inter_edges_both_directions": 7,
+      "n_i": 33,
+      "n_j": 37,
+      "possible_inter_edges": 2442
+    },
+    {
+      "cluster_i": "hashing",
+      "cluster_j": "network_values",
+      "coupling": 0.006493506493506494,
+      "inter_edges_both_directions": 3,
+      "n_i": 33,
+      "n_j": 7,
+      "possible_inter_edges": 462
+    },
+    {
+      "cluster_i": "hashing",
+      "cluster_j": "numeric_algorithms",
+      "coupling": 0.001893939393939394,
+      "inter_edges_both_directions": 2,
+      "n_i": 33,
+      "n_j": 16,
+      "possible_inter_edges": 1056
+    },
+    {
+      "cluster_i": "hashing",
+      "cluster_j": "primitive_values",
+      "coupling": 0.004242424242424243,
+      "inter_edges_both_directions": 7,
+      "n_i": 33,
+      "n_j": 25,
+      "possible_inter_edges": 1650
+    },
+    {
+      "cluster_i": "hashing",
+      "cluster_j": "reflection",
+      "coupling": 0.0,
+      "inter_edges_both_directions": 0,
+      "n_i": 33,
+      "n_j": 16,
+      "possible_inter_edges": 1056
+    },
+    {
+      "cluster_i": "hashing",
+      "cluster_j": "service_lifecycle",
+      "coupling": 0.0,
+      "inter_edges_both_directions": 0,
+      "n_i": 33,
+      "n_j": 8,
+      "possible_inter_edges": 528
+    },
+    {
+      "cluster_i": "hashing",
+      "cluster_j": "synchronization",
+      "coupling": 0.0,
+      "inter_edges_both_directions": 0,
+      "n_i": 33,
+      "n_j": 18,
+      "possible_inter_edges": 1188
+    },
+    {
+      "cluster_i": "io",
+      "cluster_j": "network_values",
+      "coupling": 0.003861003861003861,
+      "inter_edges_both_directions": 2,
+      "n_i": 37,
+      "n_j": 7,
+      "possible_inter_edges": 518
+    },
+    {
+      "cluster_i": "io",
+      "cluster_j": "numeric_algorithms",
+      "coupling": 0.0016891891891891893,
+      "inter_edges_both_directions": 2,
+      "n_i": 37,
+      "n_j": 16,
+      "possible_inter_edges": 1184
+    },
+    {
+      "cluster_i": "io",
+      "cluster_j": "primitive_values",
+      "coupling": 0.001081081081081081,
+      "inter_edges_both_directions": 2,
+      "n_i": 37,
+      "n_j": 25,
+      "possible_inter_edges": 1850
+    },
+    {
+      "cluster_i": "io",
+      "cluster_j": "reflection",
+      "coupling": 0.002533783783783784,
+      "inter_edges_both_directions": 3,
+      "n_i": 37,
+      "n_j": 16,
+      "possible_inter_edges": 1184
+    },
+    {
+      "cluster_i": "io",
+      "cluster_j": "service_lifecycle",
+      "coupling": 0.0,
+      "inter_edges_both_directions": 0,
+      "n_i": 37,
+      "n_j": 8,
+      "possible_inter_edges": 592
+    },
+    {
+      "cluster_i": "io",
+      "cluster_j": "synchronization",
+      "coupling": 0.0,
+      "inter_edges_both_directions": 0,
+      "n_i": 37,
+      "n_j": 18,
+      "possible_inter_edges": 1332
+    },
+    {
+      "cluster_i": "network_values",
+      "cluster_j": "numeric_algorithms",
+      "coupling": 0.0,
+      "inter_edges_both_directions": 0,
+      "n_i": 7,
+      "n_j": 16,
+      "possible_inter_edges": 224
+    },
+    {
+      "cluster_i": "network_values",
+      "cluster_j": "primitive_values",
+      "coupling": 0.005714285714285714,
+      "inter_edges_both_directions": 2,
+      "n_i": 7,
+      "n_j": 25,
+      "possible_inter_edges": 350
+    },
+    {
+      "cluster_i": "network_values",
+      "cluster_j": "reflection",
+      "coupling": 0.0,
+      "inter_edges_both_directions": 0,
+      "n_i": 7,
+      "n_j": 16,
+      "possible_inter_edges": 224
+    },
+    {
+      "cluster_i": "network_values",
+      "cluster_j": "service_lifecycle",
+      "coupling": 0.0,
+      "inter_edges_both_directions": 0,
+      "n_i": 7,
+      "n_j": 8,
+      "possible_inter_edges": 112
+    },
+    {
+      "cluster_i": "network_values",
+      "cluster_j": "synchronization",
+      "coupling": 0.0,
+      "inter_edges_both_directions": 0,
+      "n_i": 7,
+      "n_j": 18,
+      "possible_inter_edges": 252
+    },
+    {
+      "cluster_i": "numeric_algorithms",
+      "cluster_j": "primitive_values",
+      "coupling": 0.00625,
+      "inter_edges_both_directions": 5,
+      "n_i": 16,
+      "n_j": 25,
+      "possible_inter_edges": 800
+    },
+    {
+      "cluster_i": "numeric_algorithms",
+      "cluster_j": "reflection",
+      "coupling": 0.0,
+      "inter_edges_both_directions": 0,
+      "n_i": 16,
+      "n_j": 16,
+      "possible_inter_edges": 512
+    },
+    {
+      "cluster_i": "numeric_algorithms",
+      "cluster_j": "service_lifecycle",
+      "coupling": 0.0,
+      "inter_edges_both_directions": 0,
+      "n_i": 16,
+      "n_j": 8,
+      "possible_inter_edges": 256
+    },
+    {
+      "cluster_i": "numeric_algorithms",
+      "cluster_j": "synchronization",
+      "coupling": 0.003472222222222222,
+      "inter_edges_both_directions": 2,
+      "n_i": 16,
+      "n_j": 18,
+      "possible_inter_edges": 576
+    },
+    {
+      "cluster_i": "primitive_values",
+      "cluster_j": "reflection",
+      "coupling": 0.00125,
+      "inter_edges_both_directions": 1,
+      "n_i": 25,
+      "n_j": 16,
+      "possible_inter_edges": 800
+    },
+    {
+      "cluster_i": "primitive_values",
+      "cluster_j": "service_lifecycle",
+      "coupling": 0.0,
+      "inter_edges_both_directions": 0,
+      "n_i": 25,
+      "n_j": 8,
+      "possible_inter_edges": 400
+    },
+    {
+      "cluster_i": "primitive_values",
+      "cluster_j": "synchronization",
+      "coupling": 0.0022222222222222222,
+      "inter_edges_both_directions": 2,
+      "n_i": 25,
+      "n_j": 18,
+      "possible_inter_edges": 900
+    },
+    {
+      "cluster_i": "reflection",
+      "cluster_j": "service_lifecycle",
+      "coupling": 0.0,
+      "inter_edges_both_directions": 0,
+      "n_i": 16,
+      "n_j": 8,
+      "possible_inter_edges": 256
+    },
+    {
+      "cluster_i": "reflection",
+      "cluster_j": "synchronization",
+      "coupling": 0.0,
+      "inter_edges_both_directions": 0,
+      "n_i": 16,
+      "n_j": 18,
+      "possible_inter_edges": 576
+    },
+    {
+      "cluster_i": "service_lifecycle",
+      "cluster_j": "synchronization",
+      "coupling": 0.006944444444444444,
+      "inter_edges_both_directions": 2,
+      "n_i": 8,
+      "n_j": 18,
+      "possible_inter_edges": 288
+    }
+  ],
+  "singleton_clusters": 0,
+  "size_weighted_cohesion": 0.07694674607153629
+}
