@@ -1,19 +1,18 @@
 {
   "version": "33.7.2",
   "source_java_files": 611,
-  "source_owned_java_files": 607,
-  "source_owned_java_nonblank_noncomment_lines": 95876,
+  "source_ownership_prefixes": [
+    "com/google/common/",
+    "com/google/thirdparty/publicsuffix/"
+  ],
+  "source_owned_java_files": 610,
+  "source_owned_java_nonblank_noncomment_lines": 96622,
   "java_physical_lines": 181870,
   "java_nonblank_noncomment_lines": 96646,
   "raw_class_entries_including_multi_release": 1965,
   "base_class_entries": 1965,
-  "source_owned_base_class_entries": 1944,
-  "base_classes_without_owned_source": [
-    "com/google/thirdparty/publicsuffix/PublicSuffixPatterns.class",
-    "com/google/thirdparty/publicsuffix/PublicSuffixTrie$ChunksCharSequence.class",
-    "com/google/thirdparty/publicsuffix/PublicSuffixTrie.class",
-    "com/google/thirdparty/publicsuffix/PublicSuffixType.class"
-  ],
+  "source_owned_base_class_entries": 1948,
+  "base_classes_without_owned_source": [],
   "source_files": [
     {
       "path": "com/google/common/annotations/Beta.java",

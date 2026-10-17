@@ -1,18 +1,18 @@
 {
-  "version": "23.0",
-  "source_java_files": 557,
-  "source_owned_java_files": 554,
-  "source_owned_java_nonblank_noncomment_lines": 82603,
-  "java_physical_lines": 156476,
-  "java_nonblank_noncomment_lines": 82705,
-  "raw_class_entries_including_multi_release": 1883,
-  "base_class_entries": 1883,
-  "source_owned_base_class_entries": 1865,
-  "base_classes_without_owned_source": [
-    "com/google/thirdparty/publicsuffix/PublicSuffixPatterns.class",
-    "com/google/thirdparty/publicsuffix/PublicSuffixType.class",
-    "com/google/thirdparty/publicsuffix/TrieParser.class"
+  "version": "23.1",
+  "source_java_files": 558,
+  "source_ownership_prefixes": [
+    "com/google/common/",
+    "com/google/thirdparty/publicsuffix/"
   ],
+  "source_owned_java_files": 558,
+  "source_owned_java_nonblank_noncomment_lines": 83619,
+  "java_physical_lines": 158534,
+  "java_nonblank_noncomment_lines": 83619,
+  "raw_class_entries_including_multi_release": 1895,
+  "base_class_entries": 1895,
+  "source_owned_base_class_entries": 1880,
+  "base_classes_without_owned_source": [],
   "source_files": [
     {
       "path": "com/google/common/annotations/Beta.java",
@@ -46,7 +46,7 @@
     },
     {
       "path": "com/google/common/base/Absent.java",
-      "sha256": "cb789091cf5d73f0700df99c5ced6c499745dbb40be78e91e3a7ab5ac894424b",
+      "sha256": "dc15c0e7fe632c9094104d5dbd4cdd5abb5ccbca02c1e650f8c0fb542e4131ea",
       "physical_lines": 102,
       "nonblank_noncomment_lines": 67
     },
@@ -94,7 +94,7 @@
     },
     {
       "path": "com/google/common/base/Converter.java",
-      "sha256": "8b728ec9eb7dece16527ec0f63a95f2196078243ec1d457bf41d7c95ca06e508",
+      "sha256": "c27d5ca79830359869f8e8468e8f8a476d150e8b2188fa0b3957099c4b9c82fd",
       "physical_lines": 531,
       "nonblank_noncomment_lines": 254
     },
@@ -106,13 +106,13 @@
     },
     {
       "path": "com/google/common/base/Enums.java",
-      "sha256": "55a24328a7e898d4645af54775a352cb8783e4d23625947f3b4132cb383fbc1d",
-      "physical_lines": 155,
-      "nonblank_noncomment_lines": 92
+      "sha256": "f537212388c2bc05b057d4e9c94b41f4d70f9fd028788de4fb68269323c01259",
+      "physical_lines": 152,
+      "nonblank_noncomment_lines": 89
     },
     {
       "path": "com/google/common/base/Equivalence.java",
-      "sha256": "659edee0295f1cd4edcbdada606a0c73654f5ef0b4ee2aca738c539533623b14",
+      "sha256": "5ecd51fcf12e138114f546c92174fb84b5dcbf59c8cc73ecc686bc203c8763d9",
       "physical_lines": 380,
       "nonblank_noncomment_lines": 152
     },
@@ -136,7 +136,7 @@
     },
     {
       "path": "com/google/common/base/FinalizableReferenceQueue.java",
-      "sha256": "b407fd6e94a67e18fa3e6b4afe0a32d3e6417b013b10ecaf2ca19b7285de1333",
+      "sha256": "a04f596a546acb1d3918ec73b45ad8082dd4c31560e11c443039f7b78fc7e3f1",
       "physical_lines": 361,
       "nonblank_noncomment_lines": 157
     },
@@ -166,7 +166,7 @@
     },
     {
       "path": "com/google/common/base/Functions.java",
-      "sha256": "bd52b3aba167bef0c82f25c4b492ba8c92ca1b9fbded54877816dbad637d05c7",
+      "sha256": "d3398f5e8b178e174d619afe963bc5b9f4929b3eeb8f0732aead769d68c53d43",
       "physical_lines": 405,
       "nonblank_noncomment_lines": 229
     },
@@ -184,7 +184,7 @@
     },
     {
       "path": "com/google/common/base/MoreObjects.java",
-      "sha256": "37da1fb6ff4eeafa087c8327e88976d6657d2ccb62f93a6fc5e0131d3335f2a6",
+      "sha256": "af36333ea9382b3e434ac9c7ff74dd7514088e4957c4bd81eb42a7822439643d",
       "physical_lines": 384,
       "nonblank_noncomment_lines": 139
     },
@@ -220,9 +220,9 @@
     },
     {
       "path": "com/google/common/base/Preconditions.java",
-      "sha256": "e65a1ba60afdd864784b2f60af8a5648faf40205e816ff8dd2ae80d1abadd483",
-      "physical_lines": 1328,
-      "nonblank_noncomment_lines": 590
+      "sha256": "9dd7dcd5901e1233cd29ade07cabee3d347962dbe57deb35b18a123e8f8ad572",
+      "physical_lines": 1458,
+      "nonblank_noncomment_lines": 591
     },
     {
       "path": "com/google/common/base/Predicate.java",
@@ -232,9 +232,9 @@
     },
     {
       "path": "com/google/common/base/Predicates.java",
-      "sha256": "75fe811f04e4585270b557e5bf81d0b7ea92ec486a8cc3e0f7b26931f3fce519",
-      "physical_lines": 736,
-      "nonblank_noncomment_lines": 441
+      "sha256": "9e79a085c266b76159e861abd5bdade542ab1b44f434130fc72fe16d6647d5ea",
+      "physical_lines": 734,
+      "nonblank_noncomment_lines": 439
     },
     {
       "path": "com/google/common/base/Present.java",
@@ -250,7 +250,7 @@
     },
     {
       "path": "com/google/common/base/Splitter.java",
-      "sha256": "dcc0f9ec2ffc2b52c8afc0bf1a07f275dcbbced7ab1512c5abfcc76e2d49806e",
+      "sha256": "14212904a51e3c142099da9db3e885d259a245bcb3f886812f4957170c9069c4",
       "physical_lines": 600,
       "nonblank_noncomment_lines": 275
     },
@@ -280,15 +280,15 @@
     },
     {
       "path": "com/google/common/base/Suppliers.java",
-      "sha256": "653f6a92a1543a32aa0ee4c2aacad668eefa0b0bbcf0a3ef0849b02370d25897",
-      "physical_lines": 351,
+      "sha256": "a0876272bbe9f78d904bccc2e2c9e106d36f26ea3cb74318087f9415e1fa9fef",
+      "physical_lines": 359,
       "nonblank_noncomment_lines": 214
     },
     {
       "path": "com/google/common/base/Throwables.java",
-      "sha256": "22dcc05d4867e6cbb5b75305428fdea0eac799a4c9fd9d927f0f6a8f110b1e27",
-      "physical_lines": 531,
-      "nonblank_noncomment_lines": 216
+      "sha256": "906c3789d04aa41f7c40b770e55234b2a4ba8b87730a83d3351841016d520b8e",
+      "physical_lines": 545,
+      "nonblank_noncomment_lines": 225
     },
     {
       "path": "com/google/common/base/Ticker.java",
@@ -304,9 +304,9 @@
     },
     {
       "path": "com/google/common/base/Verify.java",
-      "sha256": "0890971a0631c09ade1765870ade9b9a91a78952ba40c8186758d9f2e56123eb",
-      "physical_lines": 169,
-      "nonblank_noncomment_lines": 36
+      "sha256": "1d0a3817806d6f5f4b3820b087c6a486144ff04ac2bb5a6f1f8d2e12a08730db",
+      "physical_lines": 508,
+      "nonblank_noncomment_lines": 177
     },
     {
       "path": "com/google/common/base/VerifyException.java",
@@ -346,9 +346,9 @@
     },
     {
       "path": "com/google/common/cache/CacheBuilder.java",
-      "sha256": "a2bb1ab976b94dae4b2073e449380c1669a0706a1967298fb304c5446d9ea552",
-      "physical_lines": 901,
-      "nonblank_noncomment_lines": 366
+      "sha256": "196bdea4e5dccac766db2420de33c95b4e0fb037d391ae0f584ebc1c62fb7203",
+      "physical_lines": 904,
+      "nonblank_noncomment_lines": 368
     },
     {
       "path": "com/google/common/cache/CacheBuilderSpec.java",
@@ -358,7 +358,7 @@
     },
     {
       "path": "com/google/common/cache/CacheLoader.java",
-      "sha256": "251b80f898c76679fe08e12f9620371c16a0f0b99c8034f4224205b7d84f179d",
+      "sha256": "929030b8a75f81eff2a75cfa45e2d207e25e580b7cbf98dc506ddc0ac38ad4e6",
       "physical_lines": 253,
       "nonblank_noncomment_lines": 96
     },
@@ -388,7 +388,7 @@
     },
     {
       "path": "com/google/common/cache/LocalCache.java",
-      "sha256": "3d94a0a27b8cd0cc91805b79718b075e8a867b40c330400c87b0c26b398377a0",
+      "sha256": "e00d537042faa0606c734db24f02303a1c1dd80c38f7fa601fbadcb281753b70",
       "physical_lines": 5176,
       "nonblank_noncomment_lines": 3657
     },
@@ -436,8 +436,8 @@
     },
     {
       "path": "com/google/common/cache/Striped64.java",
-      "sha256": "b0ad9cad4df781e17fa3e2f27f72b3aa0a90cbcbdaf48d861704bdbe3d510680",
-      "physical_lines": 340,
+      "sha256": "80650950d3135a467a8dfedd37385e8ffcad7b68cc4ccdc1caa8d14cb387cc94",
+      "physical_lines": 339,
       "nonblank_noncomment_lines": 173
     },
     {
@@ -454,7 +454,7 @@
     },
     {
       "path": "com/google/common/collect/AbstractBiMap.java",
-      "sha256": "da8275a0731bfc3b5934578a48c52ee2ac5b79cf06ef50f4473276a540187037",
+      "sha256": "c250daad1114795cc28db8611a10b4b21a0a44b7ef0a665280d0f7336e0be279",
       "physical_lines": 490,
       "nonblank_noncomment_lines": 345
     },
@@ -496,7 +496,7 @@
     },
     {
       "path": "com/google/common/collect/AbstractMultimap.java",
-      "sha256": "c3e6e42545bbe0e9d4fd9850627f576a3093b29312e53c185564ffab5e4bcc0b",
+      "sha256": "b73eca4d4073f01577f6796b1f2d1755b25065e89b54cb6c68b1ad7e4a201f55",
       "physical_lines": 276,
       "nonblank_noncomment_lines": 194
     },
@@ -508,7 +508,7 @@
     },
     {
       "path": "com/google/common/collect/AbstractNavigableMap.java",
-      "sha256": "7811a9af460538ee1c97a009d2c768ebd83598b40ec26ec9ddb917ab85ee6ebd",
+      "sha256": "7a56e37d9243b13b7ad75cd4b1b268a69e5627ab5615f5a1187da175919b17e2",
       "physical_lines": 178,
       "nonblank_noncomment_lines": 130
     },
@@ -562,7 +562,7 @@
     },
     {
       "path": "com/google/common/collect/ArrayListMultimap.java",
-      "sha256": "787c14d048a900bfcc7f957171bfc48ac1189a5ad79abda41f24233cfddac393",
+      "sha256": "d384a8f12ba338ec44215d1e0ff31b8507f047a17f2d1a5bf439c15635922a55",
       "physical_lines": 179,
       "nonblank_noncomment_lines": 72
     },
@@ -574,7 +574,7 @@
     },
     {
       "path": "com/google/common/collect/ArrayTable.java",
-      "sha256": "232536b22dac9c21d0d796991be1b2544ca77d7b2013d9b68555d9701df19763",
+      "sha256": "862abd23357a5828963edbdbffe54bc5a408c4914499a9480c5f8f8eb18ea53a",
       "physical_lines": 804,
       "nonblank_noncomment_lines": 431
     },
@@ -604,7 +604,7 @@
     },
     {
       "path": "com/google/common/collect/CartesianList.java",
-      "sha256": "0134d82ee6b8f47e2d8ca2b951b6ead64c6a662fbc9bbda671f0f3e538106a88",
+      "sha256": "9482d1d75902ce8a7dae2631193958b0b5b2268fabcf643b7062d7b8c07311e2",
       "physical_lines": 116,
       "nonblank_noncomment_lines": 84
     },
@@ -616,9 +616,9 @@
     },
     {
       "path": "com/google/common/collect/CollectCollectors.java",
-      "sha256": "6697a7966bb96899292fabcd06084f017db2088212c3d716e11a5ab4e803d464",
-      "physical_lines": 107,
-      "nonblank_noncomment_lines": 73
+      "sha256": "3025a76e1c6366c90d34b75713d64894cec79170a48156919abfc6f2d40c49bb",
+      "physical_lines": 137,
+      "nonblank_noncomment_lines": 100
     },
     {
       "path": "com/google/common/collect/CollectPreconditions.java",
@@ -628,15 +628,15 @@
     },
     {
       "path": "com/google/common/collect/CollectSpliterators.java",
-      "sha256": "da1dc4ca01d3cf27af9454b8fe2f9c226e81f0b7447ae538ef27f5406d14890e",
-      "physical_lines": 289,
-      "nonblank_noncomment_lines": 229
+      "sha256": "49985395092a17e38f3d8d589a1881c503d00aaf10ad13f777e3cdbeef682764",
+      "physical_lines": 293,
+      "nonblank_noncomment_lines": 233
     },
     {
       "path": "com/google/common/collect/Collections2.java",
-      "sha256": "7cee57407caead579368b1f5567b31a6a54995c6ce7c551e2aa7d5b3be341431",
-      "physical_lines": 726,
-      "nonblank_noncomment_lines": 425
+      "sha256": "cb75a6c0a14a12b7bba19cb11bd959e76d1af638080cfae19e562bfc8f803172",
+      "physical_lines": 722,
+      "nonblank_noncomment_lines": 421
     },
     {
       "path": "com/google/common/collect/ComparatorOrdering.java",
@@ -646,8 +646,8 @@
     },
     {
       "path": "com/google/common/collect/Comparators.java",
-      "sha256": "46cb88a8ab4b51d4378fd89af89085b0b22fc638f2acb1d39b8168b824d47034",
-      "physical_lines": 191,
+      "sha256": "4d10bc772a935662705d2482734c8b909a043a31825dce38037f36d6bd465139",
+      "physical_lines": 190,
       "nonblank_noncomment_lines": 72
     },
     {
@@ -658,8 +658,8 @@
     },
     {
       "path": "com/google/common/collect/CompoundOrdering.java",
-      "sha256": "603bd6e8d13a010938ac29923a6ab028bdcf2a6519d82388b2bc5836dd0a6e82",
-      "physical_lines": 72,
+      "sha256": "c4e3f554da445939033f29796f8910a2fcb4d5927254da29f9db150b5789dca0",
+      "physical_lines": 71,
       "nonblank_noncomment_lines": 45
     },
     {
@@ -694,7 +694,7 @@
     },
     {
       "path": "com/google/common/collect/Cut.java",
-      "sha256": "9388529759b279c5354c38becea5e06ef51400d6c99698c0121e740496c7850a",
+      "sha256": "1460ca411b128329ec0c2798c1aef1efa1ddbf2e67707ef2665247d7fe76d535",
       "physical_lines": 469,
       "nonblank_noncomment_lines": 345
     },
@@ -748,21 +748,21 @@
     },
     {
       "path": "com/google/common/collect/EnumBiMap.java",
-      "sha256": "10f4ed730c09b009ba24ceadaae6ceada779d50d9813351355ef9c75202f84cc",
+      "sha256": "91582662aafb1e37bddfbd2e73b2d31c2c698c7fc7a3d3db490b7fb590a05dce",
       "physical_lines": 148,
       "nonblank_noncomment_lines": 82
     },
     {
       "path": "com/google/common/collect/EnumHashBiMap.java",
-      "sha256": "dd5ff281a60426679a1a8800e523cc26e52e4a6a1eb57c5647149d093f69bb76",
+      "sha256": "1a3cc39a931503bcfd2b168c805a9b9269c431863f381de19841e3055980e5a2",
       "physical_lines": 129,
       "nonblank_noncomment_lines": 65
     },
     {
       "path": "com/google/common/collect/EnumMultiset.java",
-      "sha256": "3008001f7b4dcb14578643532879449201c1912ab111544ef23b93b9e6464b5d",
-      "physical_lines": 106,
-      "nonblank_noncomment_lines": 49
+      "sha256": "26667e1e110c17bca9a3b4b61fd10ca8758c29511ba662f7937f0fa508e9a0e5",
+      "physical_lines": 309,
+      "nonblank_noncomment_lines": 229
     },
     {
       "path": "com/google/common/collect/EvictingQueue.java",
@@ -778,7 +778,7 @@
     },
     {
       "path": "com/google/common/collect/FilteredEntryMultimap.java",
-      "sha256": "893807b4834eca213fa214b575336a4d82f552273781efbee8f980a87e997d63",
+      "sha256": "9091221611970914665da2a07ef1f37c8f7f93a89d25e685deae031ad5931727",
       "physical_lines": 417,
       "nonblank_noncomment_lines": 343
     },
@@ -796,7 +796,7 @@
     },
     {
       "path": "com/google/common/collect/FilteredKeyMultimap.java",
-      "sha256": "9931619fbb2cd59fd12a0ae4e8c5fc97057f6516e330af5657bc7b96c1dc9c8e",
+      "sha256": "93a5373f09294011c2612dc79877e3d3034b0a6f385e04d8d1b29ccc1b5c7214",
       "physical_lines": 220,
       "nonblank_noncomment_lines": 168
     },
@@ -964,9 +964,9 @@
     },
     {
       "path": "com/google/common/collect/ForwardingSortedMap.java",
-      "sha256": "f74f9293d94208987073a2a2b502b87bdf15e392e56404004c593e0313d321d7",
-      "physical_lines": 163,
-      "nonblank_noncomment_lines": 75
+      "sha256": "796135f6a643eeb2f79d5539a6c585ae9e6ca4f6fd666d5a4f37bc291e2c71d5",
+      "physical_lines": 159,
+      "nonblank_noncomment_lines": 71
     },
     {
       "path": "com/google/common/collect/ForwardingSortedMultiset.java",
@@ -976,9 +976,9 @@
     },
     {
       "path": "com/google/common/collect/ForwardingSortedSet.java",
-      "sha256": "695bfd898c65c9f04572c66fd687ed43cb40e1f269734deb65e8d7278f5bfa7b",
-      "physical_lines": 173,
-      "nonblank_noncomment_lines": 86
+      "sha256": "40b43474d500d1a5b368b57a27da35e2f489d16283f761f4ee440743fb2514be",
+      "physical_lines": 167,
+      "nonblank_noncomment_lines": 80
     },
     {
       "path": "com/google/common/collect/ForwardingSortedSetMultimap.java",
@@ -1006,19 +1006,19 @@
     },
     {
       "path": "com/google/common/collect/HashBasedTable.java",
-      "sha256": "79a35c548652bf8cdf748e98a519b02d7fc1291c83ae26f0b5b8ddf03e1069dd",
+      "sha256": "187e4bac84d7c5fc085027340544372c351e0f39f00f02d2f416b2e3457ef1a5",
       "physical_lines": 153,
       "nonblank_noncomment_lines": 71
     },
     {
       "path": "com/google/common/collect/HashBiMap.java",
-      "sha256": "9740f91d1dac55216889822e951b3712e86ca775f75863d5d888774b2d05f111",
-      "physical_lines": 742,
-      "nonblank_noncomment_lines": 598
+      "sha256": "5ce84d56c83c824c9da3007643c9eb802f58e7574935909a9782f0f43db71fa5",
+      "physical_lines": 741,
+      "nonblank_noncomment_lines": 597
     },
     {
       "path": "com/google/common/collect/HashMultimap.java",
-      "sha256": "796207c8f53e1a319755c2408f6dd08dcda267fc3ce27ac0e7ce446162467bdf",
+      "sha256": "ef30afbbdfe004fa6c2216bd67c846e9699515bd0092cd68da4b9ba30741c0b9",
       "physical_lines": 144,
       "nonblank_noncomment_lines": 58
     },
@@ -1048,9 +1048,9 @@
     },
     {
       "path": "com/google/common/collect/ImmutableBiMap.java",
-      "sha256": "c23579bbdbb085e2bb33a5ac919905c94a0625592667608c31e9ee18ea10e17e",
-      "physical_lines": 406,
-      "nonblank_noncomment_lines": 168
+      "sha256": "187254dd49e6a4283c0d31d15962291938fb22ebd394850597abf186c3b3222d",
+      "physical_lines": 426,
+      "nonblank_noncomment_lines": 174
     },
     {
       "path": "com/google/common/collect/ImmutableBiMapFauxverideShim.java",
@@ -1060,15 +1060,15 @@
     },
     {
       "path": "com/google/common/collect/ImmutableClassToInstanceMap.java",
-      "sha256": "cbe718b043a117376ddee3db193bde2c3d51e06ad677e4f79bdcf51d64997ea8",
+      "sha256": "86de0c477f2243198f0da4ab1f3aa2f240cae0bde5585d69afb86b963855df80",
       "physical_lines": 196,
       "nonblank_noncomment_lines": 85
     },
     {
       "path": "com/google/common/collect/ImmutableCollection.java",
-      "sha256": "0fd8085f0b60b76be7ef2ec5febafa25cdd1b7f42e2427137e77c4675338cb48",
-      "physical_lines": 516,
-      "nonblank_noncomment_lines": 210
+      "sha256": "134fe60e77e7fde6ea447053a065b7f5a67e1d112b5b28042cf7e92a8f7bf173",
+      "physical_lines": 522,
+      "nonblank_noncomment_lines": 215
     },
     {
       "path": "com/google/common/collect/ImmutableEntry.java",
@@ -1078,7 +1078,7 @@
     },
     {
       "path": "com/google/common/collect/ImmutableEnumMap.java",
-      "sha256": "d45d622c94caaced332641823d6b531b2297c73b3153d0117b98a0bf093ef80b",
+      "sha256": "35cec2472427dc1fcfd84da03ec213f8b28bb1790fe7a50ee13733733f37813c",
       "physical_lines": 133,
       "nonblank_noncomment_lines": 88
     },
@@ -1090,21 +1090,21 @@
     },
     {
       "path": "com/google/common/collect/ImmutableList.java",
-      "sha256": "c19961cf540c7a134d46a5caf45958d5e08ee589afd6ab6368b27c5445b80f0d",
-      "physical_lines": 822,
-      "nonblank_noncomment_lines": 418
+      "sha256": "3c95d3481ef9a5e55ba64c838635c4634040f4857ef26a550e5d904d407a31e4",
+      "physical_lines": 841,
+      "nonblank_noncomment_lines": 425
     },
     {
       "path": "com/google/common/collect/ImmutableListMultimap.java",
-      "sha256": "4c40cb377c3cddf0d577cbb4387942cef7429f6c70431248ad3ae23b327459b7",
+      "sha256": "de5fbd4a1de31208248fd211d340c6d662b0d240b95ae873bc6dddb0c94fc49a",
       "physical_lines": 513,
       "nonblank_noncomment_lines": 262
     },
     {
       "path": "com/google/common/collect/ImmutableMap.java",
-      "sha256": "0db4745d7aad0f3f80103c2041691159a7d9189be6c3ede9d2bf229ccb26f53d",
-      "physical_lines": 892,
-      "nonblank_noncomment_lines": 483
+      "sha256": "6c3968bea6263143e6b30c1971a79bebf034927bb207e415249fbfc1865f762b",
+      "physical_lines": 911,
+      "nonblank_noncomment_lines": 489
     },
     {
       "path": "com/google/common/collect/ImmutableMapEntry.java",
@@ -1114,7 +1114,7 @@
     },
     {
       "path": "com/google/common/collect/ImmutableMapEntrySet.java",
-      "sha256": "8d2add21abb76a93a4ffcc9e786fa37fb679b630dbcada0b4a3213443fc8f663",
+      "sha256": "2b2fe81052d87134a152652fcc56eea451ef0289d8e4cc50478c5d156d84ffe2",
       "physical_lines": 132,
       "nonblank_noncomment_lines": 89
     },
@@ -1132,7 +1132,7 @@
     },
     {
       "path": "com/google/common/collect/ImmutableMultimap.java",
-      "sha256": "2e5a79d76913756902620241bdd681cea17c359ff275eb69ab200b222179e949",
+      "sha256": "eeac7d152670201d51e05f8e87676ef5848b7b8ea9787f1b80e3792f7dcf721a",
       "physical_lines": 741,
       "nonblank_noncomment_lines": 408
     },
@@ -1150,25 +1150,25 @@
     },
     {
       "path": "com/google/common/collect/ImmutableRangeMap.java",
-      "sha256": "2ea4d7a55532f76b91dca6a7b8cd225168ac84f920cf7c719d56119659481b4d",
-      "physical_lines": 400,
-      "nonblank_noncomment_lines": 280
+      "sha256": "577bc3b0910a103f919306670a0d9427b4fbb227eb26a343b5be83e73327cbac",
+      "physical_lines": 419,
+      "nonblank_noncomment_lines": 291
     },
     {
       "path": "com/google/common/collect/ImmutableRangeSet.java",
-      "sha256": "ad99eee3c0ee12e9573f7ec6bd8aa400eacd33a9f6f476a50a079d00578e03eb",
-      "physical_lines": 819,
-      "nonblank_noncomment_lines": 556
+      "sha256": "ba3a5fae429188a05f14c847e66fe144af01d997e6f0b396dcc932eea6360597",
+      "physical_lines": 838,
+      "nonblank_noncomment_lines": 566
     },
     {
       "path": "com/google/common/collect/ImmutableSet.java",
-      "sha256": "0baec6bc766386236e12d4529a67cb3df4218e6b8ffeb8a9630a40fdfd11d161",
-      "physical_lines": 562,
-      "nonblank_noncomment_lines": 293
+      "sha256": "fb0c6f1e6f1c1939911c149755f60e605b2eb8c576615b1d1dd7184f492f3e91",
+      "physical_lines": 648,
+      "nonblank_noncomment_lines": 367
     },
     {
       "path": "com/google/common/collect/ImmutableSetMultimap.java",
-      "sha256": "0c3555e8410ecc2738306112153068a3ac7c55c110b999426861f8428d622907",
+      "sha256": "b556afa38e64aa3941aabf72ba103aeb7512d1124473326960342102a8c0528a",
       "physical_lines": 663,
       "nonblank_noncomment_lines": 360
     },
@@ -1180,19 +1180,19 @@
     },
     {
       "path": "com/google/common/collect/ImmutableSortedMap.java",
-      "sha256": "ff01c9a6ee538fb166e91ccd8e0d491aad563955225d0efa7e8ff51afe597605",
-      "physical_lines": 980,
-      "nonblank_noncomment_lines": 520
+      "sha256": "eaa1297d90daca88cbcab3564b3d3d67ec81470e89c0bb879634aed3c026f10c",
+      "physical_lines": 984,
+      "nonblank_noncomment_lines": 524
     },
     {
       "path": "com/google/common/collect/ImmutableSortedMapFauxverideShim.java",
-      "sha256": "fbee85a06609323155fc7f114780d5244f9d8c47ebbd05e2488eca7b3706c1da",
-      "physical_lines": 153,
-      "nonblank_noncomment_lines": 46
+      "sha256": "67a63d16a72d34db162d9630dd510f9d5bc377c22ef15cc1a18f864b1ae23f45",
+      "physical_lines": 164,
+      "nonblank_noncomment_lines": 50
     },
     {
       "path": "com/google/common/collect/ImmutableSortedMultiset.java",
-      "sha256": "b6c17826988f6f0e7d85a3b156d54ad445513bf46c7530a9caef5ee3351db87c",
+      "sha256": "67730245c238f232848e07ccaf8d61a63cb048d1a2381d3cf544d45ae9341fbc",
       "physical_lines": 600,
       "nonblank_noncomment_lines": 277
     },
@@ -1210,13 +1210,13 @@
     },
     {
       "path": "com/google/common/collect/ImmutableSortedSetFauxverideShim.java",
-      "sha256": "0632801e2044a4286188bfd92e8993d38608c2612a76258a0485ac2d6f34b0d1",
-      "physical_lines": 187,
-      "nonblank_noncomment_lines": 42
+      "sha256": "94724d979e8b7a0b919c7faa28bd456f5018510593f4dfa09a99ec71311f4534",
+      "physical_lines": 199,
+      "nonblank_noncomment_lines": 46
     },
     {
       "path": "com/google/common/collect/ImmutableTable.java",
-      "sha256": "08817c9ff1dafae197a3aa32d229c27f54e74401f769a6a2bab294119fc6137b",
+      "sha256": "c9541447a106bc6bed081a5da56e071b16ec0c40856f329e0d8bec88a7d8c3ea",
       "physical_lines": 570,
       "nonblank_noncomment_lines": 323
     },
@@ -1240,9 +1240,9 @@
     },
     {
       "path": "com/google/common/collect/Iterators.java",
-      "sha256": "b87e2ba8cda5240668fee638b249c6727cf03906e33ae7689588bb496338820e",
-      "physical_lines": 1445,
-      "nonblank_noncomment_lines": 752
+      "sha256": "4fb15efc48ccced945ace682b067bf9f472985b93975a1ca6d5002a35d37a8bb",
+      "physical_lines": 1444,
+      "nonblank_noncomment_lines": 751
     },
     {
       "path": "com/google/common/collect/LexicographicalOrdering.java",
@@ -1252,7 +1252,7 @@
     },
     {
       "path": "com/google/common/collect/LinkedHashMultimap.java",
-      "sha256": "72e5d16933d34554b2c64b523428eb193e97a6bfe76f79e78b36f2dd94a5a1cc",
+      "sha256": "88ae039e8b5fe4ae92cfa616f5959712335054111d878da3f8bef7fc59f48c52",
       "physical_lines": 629,
       "nonblank_noncomment_lines": 406
     },
@@ -1270,7 +1270,7 @@
     },
     {
       "path": "com/google/common/collect/LinkedListMultimap.java",
-      "sha256": "93730f1aee0ea73ad06d61e4a919406dbc6f46e51ca83caf23dc8e3958a28a04",
+      "sha256": "840a6a7cc410965df7be73162cf80d21b9c3ac328a8622c1988bc57fa6c34a65",
       "physical_lines": 866,
       "nonblank_noncomment_lines": 578
     },
@@ -1294,21 +1294,21 @@
     },
     {
       "path": "com/google/common/collect/MapMaker.java",
-      "sha256": "27cc076c000a51161261400c045e14f6910212e6974f69e2f9ccc5a7e1f4d880",
+      "sha256": "1ea40b938f46e8e0b7f5d2e2a11e4efda14cbdb7ed7d2f4d91994a3fdc1eb125",
       "physical_lines": 308,
       "nonblank_noncomment_lines": 127
     },
     {
       "path": "com/google/common/collect/MapMakerInternalMap.java",
-      "sha256": "da2a27775f30353823d4809be654e36d6214f7e3b66dbca4c917013403f5cc8a",
-      "physical_lines": 2988,
-      "nonblank_noncomment_lines": 2112
+      "sha256": "f5cec9aa981223560c893094c4a4d3141a2826c45b51cc1b363ce1950e72163c",
+      "physical_lines": 2969,
+      "nonblank_noncomment_lines": 2093
     },
     {
       "path": "com/google/common/collect/Maps.java",
-      "sha256": "b04604eda03539e2611ad352c39f35b969e3e4fe2ba9b54090ed4264311f00b0",
-      "physical_lines": 4425,
-      "nonblank_noncomment_lines": 2501
+      "sha256": "41fb022d7ed06f712abce40eab6f9fa8474e1720b5dff98ab025355686d46c15",
+      "physical_lines": 4418,
+      "nonblank_noncomment_lines": 2494
     },
     {
       "path": "com/google/common/collect/MinMaxPriorityQueue.java",
@@ -1330,13 +1330,13 @@
     },
     {
       "path": "com/google/common/collect/MultimapBuilder.java",
-      "sha256": "d7669d3ba079461b0bc6b7506176575b771462e099677d8713fae4388907b93f",
+      "sha256": "b65f5acf610ad64b6a32aef6bf257baab88af31b62406356ff6f0b24eb614883",
       "physical_lines": 481,
       "nonblank_noncomment_lines": 260
     },
     {
       "path": "com/google/common/collect/Multimaps.java",
-      "sha256": "3634991c3540b7f739475585e667791a473af41ee549457536c2e1792262d7cd",
+      "sha256": "20be9886e6e1c266625e3a9fb7b2d5216311bb6d65231e50bd62afa065cda0a9",
       "physical_lines": 2228,
       "nonblank_noncomment_lines": 1057
     },
@@ -1348,13 +1348,13 @@
     },
     {
       "path": "com/google/common/collect/Multisets.java",
-      "sha256": "830dca132d90b294ab8a2db9e29ce5929ca1c67393ce1ee3df6fa49ef032a2d1",
+      "sha256": "beb58444e1040fef9b7d6906a9e29c9bac2d76559fc446d1da31676057dd1ce9",
       "physical_lines": 1171,
       "nonblank_noncomment_lines": 726
     },
     {
       "path": "com/google/common/collect/MutableClassToInstanceMap.java",
-      "sha256": "13ab0c71c52434c4d33e496651c027708745c7bdbf4d446f16fd5097be52f702",
+      "sha256": "4979c8f5b7c475acb6e84541175e6a372da5bf107fbdf9544360ebf09b2427e4",
       "physical_lines": 183,
       "nonblank_noncomment_lines": 115
     },
@@ -1384,9 +1384,9 @@
     },
     {
       "path": "com/google/common/collect/Ordering.java",
-      "sha256": "54a113e446f348eaee50d7c651072659103f7cb7cf95f7182114bcbf2d7ff65f",
-      "physical_lines": 963,
-      "nonblank_noncomment_lines": 286
+      "sha256": "5de5a5880e99b64238fc5e37d3dbe05bf4210114ee333f623e2459fa99a85bec",
+      "physical_lines": 961,
+      "nonblank_noncomment_lines": 283
     },
     {
       "path": "com/google/common/collect/PeekingIterator.java",
@@ -1408,9 +1408,9 @@
     },
     {
       "path": "com/google/common/collect/Range.java",
-      "sha256": "44c39e3ef7198fff16d3eb8cfdc334d004751faa11617424939a1fad18980b3c",
-      "physical_lines": 704,
-      "nonblank_noncomment_lines": 275
+      "sha256": "97a999cfb719f7485da99013e28853e035c8a1be6e77407a17a70da4de8719fd",
+      "physical_lines": 703,
+      "nonblank_noncomment_lines": 274
     },
     {
       "path": "com/google/common/collect/RangeGwtSerializationDependencies.java",
@@ -1444,50 +1444,50 @@
     },
     {
       "path": "com/google/common/collect/RegularImmutableBiMap.java",
-      "sha256": "c5ea4b9e6c509c6ae1e80de00fba1c35189a703d3e907b79993fff94caddb93e",
+      "sha256": "48dd370be5e8a24983f03cebd4749ef67f3e145ddea5fd721454609cbf17c3e3",
       "physical_lines": 307,
       "nonblank_noncomment_lines": 237
     },
     {
       "path": "com/google/common/collect/RegularImmutableList.java",
-      "sha256": "756fe0f490e3104c395a1064cad9b76af79e295838b0d1a1529d51d714e758c8",
-      "physical_lines": 77,
-      "nonblank_noncomment_lines": 41
+      "sha256": "dfba6fa954b30cace15a4719d2ad71ec3f72e8206103ef303a9c200055e9493a",
+      "physical_lines": 78,
+      "nonblank_noncomment_lines": 42
     },
     {
       "path": "com/google/common/collect/RegularImmutableMap.java",
-      "sha256": "64088fc0d876f7ad502056ce831d264ec741309d84fd05e44f5bd9f10e18bc49",
-      "physical_lines": 280,
-      "nonblank_noncomment_lines": 195
+      "sha256": "d532a9ad0e0804f853a6a59f94f8219aef3471a2f3fa5f54b513e0a5ce10ef1b",
+      "physical_lines": 281,
+      "nonblank_noncomment_lines": 196
     },
     {
       "path": "com/google/common/collect/RegularImmutableMultiset.java",
-      "sha256": "04876c9ec25ceacb9c44d25b1ff23d45469ff90bb641a6545c1d6f28533b93be",
+      "sha256": "91a16855a491f1b5ec12f7fe043e435d26ce1160004c739f297414fb2a2f3835",
       "physical_lines": 177,
       "nonblank_noncomment_lines": 136
     },
     {
       "path": "com/google/common/collect/RegularImmutableSet.java",
-      "sha256": "12b4be4cc3d22497e0a1677e50a1a3857350e65262212d3a228e7a8ad72ad3d7",
+      "sha256": "d8291c963a3a5ba82f5386cde4992f9ae364053a47e02f87cc33cb5ff7011917",
       "physical_lines": 107,
       "nonblank_noncomment_lines": 71
     },
     {
       "path": "com/google/common/collect/RegularImmutableSortedMultiset.java",
-      "sha256": "1367125a08e6c80f00b3e2441ad514b0bb140bbc084e610069f47c71ed62c248",
+      "sha256": "4323580c5d412045cd8ff17cba90341636c4b2e0194f4a21e453a97d9f12b5b6",
       "physical_lines": 134,
       "nonblank_noncomment_lines": 96
     },
     {
       "path": "com/google/common/collect/RegularImmutableSortedSet.java",
-      "sha256": "57c033ee0bf885601d7cfcfe209d9ed482c735fbd65d33542015af2ca19da223",
-      "physical_lines": 313,
-      "nonblank_noncomment_lines": 237
+      "sha256": "488e4963fc110f04f113d7a441c98b5bbd2d1770dc7f0920c78d6e6a184e670a",
+      "physical_lines": 310,
+      "nonblank_noncomment_lines": 235
     },
     {
       "path": "com/google/common/collect/RegularImmutableTable.java",
-      "sha256": "edc92a87d65799dc9cf9ab6cb794b3de41d8b026142d18e45319af45b1f59c1e",
-      "physical_lines": 173,
+      "sha256": "c985ba2da0f9b177f3ca09a70bfb23fb727dd82d53a2c930ab9e2ed9bce2982f",
+      "physical_lines": 171,
       "nonblank_noncomment_lines": 121
     },
     {
@@ -1522,13 +1522,13 @@
     },
     {
       "path": "com/google/common/collect/Sets.java",
-      "sha256": "a23c70d9b78b7d2bd1993a54812b084876770e60e5f1ecbc5ee1e7e91a92c919",
-      "physical_lines": 2178,
-      "nonblank_noncomment_lines": 1125
+      "sha256": "723a0d13080d8857fbce5d1f3de537a55ea66542bc531cc8abd5cdd5bcc7faa5",
+      "physical_lines": 2175,
+      "nonblank_noncomment_lines": 1122
     },
     {
       "path": "com/google/common/collect/SingletonImmutableBiMap.java",
-      "sha256": "5b8ef7867868d6585a9729ed0a6d8be663fa410f0d5864e56aa022f2ee4f0e0b",
+      "sha256": "c12d744dd7cc6d898ef60997a578771ae76bda109ae5cf07a4b3ece87140aba3",
       "physical_lines": 107,
       "nonblank_noncomment_lines": 68
     },
@@ -1564,8 +1564,8 @@
     },
     {
       "path": "com/google/common/collect/SortedLists.java",
-      "sha256": "dd6309bfb97f54de9a106f8b4826463778a3063ff3d70369e4d50d158b47c412",
-      "physical_lines": 287,
+      "sha256": "eb8869d5b84be940e5757e5f0cc569214911579ca2830b52c5f2b0fc392173e9",
+      "physical_lines": 285,
       "nonblank_noncomment_lines": 153
     },
     {
@@ -1600,31 +1600,31 @@
     },
     {
       "path": "com/google/common/collect/SparseImmutableTable.java",
-      "sha256": "e80634302ea834fbf8c31541db0c0bb9ac3673de0ade62ef80c6504972806127",
-      "physical_lines": 138,
-      "nonblank_noncomment_lines": 106
+      "sha256": "68a1173faaddfd6e9e06abd4eec982a395b433a5f4e7e874d125d9ad1d18d096",
+      "physical_lines": 136,
+      "nonblank_noncomment_lines": 104
     },
     {
       "path": "com/google/common/collect/StandardRowSortedTable.java",
-      "sha256": "9b556edd272fff696e93ce203ee4407983e0d67792e6045435485b55949af4d9",
+      "sha256": "e5ca06bc99ff6f3c89534cdb5ca43671d9f9fb6214930744d9f4785cdcdf5596",
       "physical_lines": 144,
       "nonblank_noncomment_lines": 76
     },
     {
       "path": "com/google/common/collect/StandardTable.java",
-      "sha256": "105bd3ccddc3e692ff4a6944e198b1d6e0c8fb138386b5e932fc50fd9a4351c7",
+      "sha256": "6fa003dbdc72e54aaad3d50212edf561e16b35c4c09d56dac9d39608c182a078",
       "physical_lines": 1000,
       "nonblank_noncomment_lines": 775
     },
     {
       "path": "com/google/common/collect/Streams.java",
-      "sha256": "414eff0b9c3c77aa3a6ffee4357f8eeff2af748781dde89a12eaebd1a1e94388",
-      "physical_lines": 856,
-      "nonblank_noncomment_lines": 444
+      "sha256": "4767228fa4a8ab53bf52a9be0200efaee456af53ae5c7b1440edffad97c5ceb9",
+      "physical_lines": 867,
+      "nonblank_noncomment_lines": 455
     },
     {
       "path": "com/google/common/collect/Synchronized.java",
-      "sha256": "4e493406f1bb7ce3ba30cdd41f7d329bbb3f5a7549a403bc806794d7b8ebe928",
+      "sha256": "b45aa68ece06799ca9a96464e4b688910d674c1810943a32391a0f6cb0116c46",
       "physical_lines": 2163,
       "nonblank_noncomment_lines": 1799
     },
@@ -1636,7 +1636,7 @@
     },
     {
       "path": "com/google/common/collect/Tables.java",
-      "sha256": "b734c1372d3a0848987bc5a36d9dbac8dad07b9e369ad20a9c12e194a294b0d5",
+      "sha256": "3c8756d15dac7a4d39f354ff361c7d5c3f5a614b9ce5dc0f0a2e04af75eb7941",
       "physical_lines": 748,
       "nonblank_noncomment_lines": 454
     },
@@ -1660,25 +1660,25 @@
     },
     {
       "path": "com/google/common/collect/TreeBasedTable.java",
-      "sha256": "693a9d6aa5f89260529566f3582ffe2738ad40e10a7e12a1e2e2c0657af32fe8",
+      "sha256": "edb6ced158d9d674a380f9c6727a32533c372fe927e9bafe1a0e6e307ae18e50",
       "physical_lines": 365,
       "nonblank_noncomment_lines": 207
     },
     {
       "path": "com/google/common/collect/TreeMultimap.java",
-      "sha256": "b1aa354069882b0afaf5cac2141cb6ca5e6a05e64ba261a850e8e9257b51f570",
+      "sha256": "11165cb183e10bfbb36588f6ec4f40c51e98ea2cee9b2874e497cb874a7d86ef",
       "physical_lines": 226,
       "nonblank_noncomment_lines": 93
     },
     {
       "path": "com/google/common/collect/TreeMultiset.java",
-      "sha256": "e14596495f2d1d806b01f218647ebae8186abd88810619ad73a1320dc99e2457",
-      "physical_lines": 993,
-      "nonblank_noncomment_lines": 801
+      "sha256": "d866061d964b8ce4425f664feadcefd988d4a90051cfbcf4d1d7c5d67e347d76",
+      "physical_lines": 989,
+      "nonblank_noncomment_lines": 797
     },
     {
       "path": "com/google/common/collect/TreeRangeMap.java",
-      "sha256": "86b5cde49af227a4249b7887233df574dbafc7bc108ee73186597c815b6c553e",
+      "sha256": "e8a02c3c330c10758a4aa343aae3a8094226a700f10bd3571b9c688fe9c92c54",
       "physical_lines": 714,
       "nonblank_noncomment_lines": 576
     },
@@ -1690,7 +1690,7 @@
     },
     {
       "path": "com/google/common/collect/TreeTraverser.java",
-      "sha256": "03bedcc73b73e9a96400220598c87309428172d480ebf967ad1e07475fc50cca",
+      "sha256": "629da09c540959962eb0cb21df459ff4f5652b2563b2da4a082010454d6d6d12",
       "physical_lines": 273,
       "nonblank_noncomment_lines": 158
     },
@@ -1720,7 +1720,7 @@
     },
     {
       "path": "com/google/common/collect/WellBehavedMap.java",
-      "sha256": "e2359bf70ff42e30abde864623816b7c0fe767f6f4f577aa8f10c9390d404d84",
+      "sha256": "b00c5ee0e0d336710d8f851d385fd93e62ddc0a22f3fe102c82182957ab67dd8",
       "physical_lines": 101,
       "nonblank_noncomment_lines": 58
     },
@@ -1756,7 +1756,7 @@
     },
     {
       "path": "com/google/common/escape/CharEscaperBuilder.java",
-      "sha256": "aa5b760a17b390fbdbbb8b4cc0994d8be6e478b062a20bc40a41f2bbc516f061",
+      "sha256": "b6b7530c267c97627299bb48c4c64cdc8843b5d013bc8b844008fc1856c2d792",
       "physical_lines": 133,
       "nonblank_noncomment_lines": 65
     },
@@ -1768,7 +1768,7 @@
     },
     {
       "path": "com/google/common/escape/Escapers.java",
-      "sha256": "1f33160a8f2e65552946d6ff684dffe99dddc945a76a0a500893115180371952",
+      "sha256": "5cb0b0ba502284c0bfe9d9e15ef6a975db6474899c6ed1afcfbfa76e2ccb8079",
       "physical_lines": 271,
       "nonblank_noncomment_lines": 119
     },
@@ -1846,7 +1846,7 @@
     },
     {
       "path": "com/google/common/eventbus/SubscriberRegistry.java",
-      "sha256": "68a4513ccb8ef06431a57331f1e16d77c5644b199dccfb3b72143b5d6de5484e",
+      "sha256": "4d945e354d0a99b64ffdbf8bf6fe0fb30f896854a4155513b3550f3e23e8bd61",
       "physical_lines": 260,
       "nonblank_noncomment_lines": 165
     },
@@ -1882,9 +1882,9 @@
     },
     {
       "path": "com/google/common/graph/AbstractNetwork.java",
-      "sha256": "f0bc8f207e62c20323f5686f4846daf5100074576349f403366e07494a1106c6",
-      "physical_lines": 252,
-      "nonblank_noncomment_lines": 189
+      "sha256": "9196b833819820727a3b307678c857298701a5b6601c820bdb28ac7d9c9b7d74",
+      "physical_lines": 250,
+      "nonblank_noncomment_lines": 187
     },
     {
       "path": "com/google/common/graph/AbstractUndirectedNetworkConnections.java",
@@ -1906,15 +1906,15 @@
     },
     {
       "path": "com/google/common/graph/ConfigurableMutableGraph.java",
-      "sha256": "fa521c0cafd2cc42ffc2879cbebb23f80547a7f084f5992622fe39350a094576",
+      "sha256": "473bc6927d0463074e6bb155a74e61ce9482ddacdec4bdd789ab3ccf42035fbb",
       "physical_lines": 63,
       "nonblank_noncomment_lines": 28
     },
     {
       "path": "com/google/common/graph/ConfigurableMutableNetwork.java",
-      "sha256": "d3f32d58c25a78d9a585d38fc733aa1c4ccda9369ec224cb2b18ffe0d90c9457",
-      "physical_lines": 168,
-      "nonblank_noncomment_lines": 113
+      "sha256": "cc825b9ce25dbccc92e53f038b6962d934de3d06eae865399c32a132decc563c",
+      "physical_lines": 166,
+      "nonblank_noncomment_lines": 111
     },
     {
       "path": "com/google/common/graph/ConfigurableMutableValueGraph.java",
@@ -1924,9 +1924,9 @@
     },
     {
       "path": "com/google/common/graph/ConfigurableNetwork.java",
-      "sha256": "4fdf42d6aa07beb8652915e2a16bab684924e0b7708bf340f38117ac4edbf06b",
-      "physical_lines": 204,
-      "nonblank_noncomment_lines": 134
+      "sha256": "d108fad0aa6f4ab34073f588dddb83d4c8a146a82078c90964fb7b6bf2115fea",
+      "physical_lines": 202,
+      "nonblank_noncomment_lines": 132
     },
     {
       "path": "com/google/common/graph/ConfigurableValueGraph.java",
@@ -1936,19 +1936,19 @@
     },
     {
       "path": "com/google/common/graph/DirectedGraphConnections.java",
-      "sha256": "a16cdf9ba79751a44a8bd2fcc51109eed6b0fc05d65e6a326395c388f7776d2b",
+      "sha256": "cefa073d204d6a34d613c01431968dd14cbeed1b4be6e8270e1da06127c439d6",
       "physical_lines": 251,
       "nonblank_noncomment_lines": 195
     },
     {
       "path": "com/google/common/graph/DirectedMultiNetworkConnections.java",
-      "sha256": "68636aefc86db371a125f8f8d958830c9e24fd4029beb62ebe911c4976246f36",
-      "physical_lines": 150,
-      "nonblank_noncomment_lines": 109
+      "sha256": "95c476ab14445ccc41cefafdb6ae31744c234b379bc472e589af9f9b0d519cb3",
+      "physical_lines": 148,
+      "nonblank_noncomment_lines": 107
     },
     {
       "path": "com/google/common/graph/DirectedNetworkConnections.java",
-      "sha256": "9f332c983fbb19f9f50d81bfc91d0ace5aeaf8396eb4b938393c970a87c92d2c",
+      "sha256": "c063a46024e8817071a49126e1f311b612217b17ab61c1b2c5d29e7abbf0530b",
       "physical_lines": 67,
       "nonblank_noncomment_lines": 35
     },
@@ -1984,9 +1984,9 @@
     },
     {
       "path": "com/google/common/graph/ForwardingNetwork.java",
-      "sha256": "4e9d24e533d23a5dae6ffe624555e735e90e950b4a63f53b0ede8e43eac693d0",
-      "physical_lines": 144,
-      "nonblank_noncomment_lines": 96
+      "sha256": "49ea4be4cacea51c9a09804ae2266ad063d2b9fddbefcf42981bcb7cdacd4efb",
+      "physical_lines": 142,
+      "nonblank_noncomment_lines": 94
     },
     {
       "path": "com/google/common/graph/ForwardingValueGraph.java",
@@ -1996,13 +1996,13 @@
     },
     {
       "path": "com/google/common/graph/Graph.java",
-      "sha256": "4417daf7ecea841d936fc3bf4136e949d075fb6b0b4f676cb5b80467d7a341f9",
-      "physical_lines": 199,
+      "sha256": "6ed0e3766dccfbc18241c388d2e6252c3a635678b29ecc81c9244e1773c4eb88",
+      "physical_lines": 198,
       "nonblank_noncomment_lines": 35
     },
     {
       "path": "com/google/common/graph/GraphBuilder.java",
-      "sha256": "0cb05e24797810bd6854a65fbaba290da14c56ff58fbaf90ffa43ae61c85b975",
+      "sha256": "878d8d3bca97ec24fde18cbfa66fa04d315c035d02c9f956bf87c021335278da",
       "physical_lines": 115,
       "nonblank_noncomment_lines": 42
     },
@@ -2020,9 +2020,9 @@
     },
     {
       "path": "com/google/common/graph/Graphs.java",
-      "sha256": "c9427ddd78770dd85fe6a8217d35f6da37e9cfc3b1dec85fcc7241d30e985ecf",
-      "physical_lines": 614,
-      "nonblank_noncomment_lines": 397
+      "sha256": "168b72aa9e07226fbbd8be1daa4d211af94e2cf44baba81398fd9632d240d366",
+      "physical_lines": 609,
+      "nonblank_noncomment_lines": 392
     },
     {
       "path": "com/google/common/graph/ImmutableGraph.java",
@@ -2032,9 +2032,9 @@
     },
     {
       "path": "com/google/common/graph/ImmutableNetwork.java",
-      "sha256": "77837b7e9bcc3bcc7f41c34d7736b673c01ee74b5a449903c00d4b2c929698a0",
-      "physical_lines": 143,
-      "nonblank_noncomment_lines": 86
+      "sha256": "3ed51e347c96ce67431b6728e81f9cbc2797acf9f36587f773eef1d221030a25",
+      "physical_lines": 141,
+      "nonblank_noncomment_lines": 84
     },
     {
       "path": "com/google/common/graph/ImmutableValueGraph.java",
@@ -2080,15 +2080,15 @@
     },
     {
       "path": "com/google/common/graph/Network.java",
-      "sha256": "66f4ea97d9e9831bf4dc3612ba1c271f699727fb249747ab464f6d3192395958",
-      "physical_lines": 365,
+      "sha256": "93966672efeae2fbdacbe96437ca6e882eef51a5eef34dfd0577d70df339125f",
+      "physical_lines": 364,
       "nonblank_noncomment_lines": 38
     },
     {
       "path": "com/google/common/graph/NetworkBuilder.java",
-      "sha256": "bec2c6de55bc5572321cc444e628b0241bb90f53952f1ef228e97362ae54ecfb",
-      "physical_lines": 152,
-      "nonblank_noncomment_lines": 62
+      "sha256": "c2c8b0bb37133645f9cd8da590174334f4e1455cb24517b46e9aef2054df9d23",
+      "physical_lines": 150,
+      "nonblank_noncomment_lines": 60
     },
     {
       "path": "com/google/common/graph/NetworkConnections.java",
@@ -2098,43 +2098,49 @@
     },
     {
       "path": "com/google/common/graph/PredecessorsFunction.java",
-      "sha256": "7f2d97d6a1576eba8e9a7e2f616eeada70c01b0fa0e307c9cee75f7c13696045",
-      "physical_lines": 95,
+      "sha256": "c763ab315a65fd05012b12cb0b6c38eacade1a8ec0a0e80b65acf36b0d14845f",
+      "physical_lines": 103,
       "nonblank_noncomment_lines": 6
     },
     {
       "path": "com/google/common/graph/SuccessorsFunction.java",
-      "sha256": "0956de8b915970c26bd2e4aee95cf77056fed79a9718f05761257361fae6c4e4",
-      "physical_lines": 98,
+      "sha256": "e5aef449961495e45770bf43ad55621b9a129d9a11d545f232443054a98580e9",
+      "physical_lines": 106,
       "nonblank_noncomment_lines": 6
     },
     {
+      "path": "com/google/common/graph/Traverser.java",
+      "sha256": "6f2dc45ae48da87c1325deb0a6a7ff688e6c55fe617c55cb31c6af4b0460732c",
+      "physical_lines": 276,
+      "nonblank_noncomment_lines": 66
+    },
+    {
       "path": "com/google/common/graph/UndirectedGraphConnections.java",
-      "sha256": "638358ffc07f3f41991449b2b9ecded247e0f33a2c6634650a2a094bf8c2e7a3",
-      "physical_lines": 93,
-      "nonblank_noncomment_lines": 56
+      "sha256": "a499e96f91081ab6760fdd9db72c1130213d21b55c43391145cba56f848721cd",
+      "physical_lines": 92,
+      "nonblank_noncomment_lines": 55
     },
     {
       "path": "com/google/common/graph/UndirectedMultiNetworkConnections.java",
-      "sha256": "8e5548b9c7867cb52a672f0ff716b9df38f33997a4e60325b882d1cc40161b50",
-      "physical_lines": 125,
-      "nonblank_noncomment_lines": 87
+      "sha256": "64aa1b893481b003836fc55652bda3f8e5cd29ec964f22a6c8162798dbd5a5c9",
+      "physical_lines": 123,
+      "nonblank_noncomment_lines": 85
     },
     {
       "path": "com/google/common/graph/UndirectedNetworkConnections.java",
-      "sha256": "d25c8dcb4ee15db9a895d8c88cc204317edd9e56bcf8022adc29a6aaa111145b",
+      "sha256": "202c2a0cd101f9385bf7c0676b1b12769489d32dcce8166d20b2ed04c1155b46",
       "physical_lines": 58,
       "nonblank_noncomment_lines": 27
     },
     {
       "path": "com/google/common/graph/ValueGraph.java",
-      "sha256": "12cb52db5f59e283aeaac1f402717268e8a6e75b15772caddb9d00a428c4e7c2",
-      "physical_lines": 239,
+      "sha256": "b7f5759cf2d13911fb124cbe240a9cc2d81c2815d554dc30e12bb8d3bb591ff3",
+      "physical_lines": 238,
       "nonblank_noncomment_lines": 40
     },
     {
       "path": "com/google/common/graph/ValueGraphBuilder.java",
-      "sha256": "914405f4d4065f1102f7e4b257a02d28f6f51cceb569d0f2dd4a37e6e99494f8",
+      "sha256": "4b1fbb564082010a733a5ef3d733315eb83c096d0f26ca0ac9f8e092d2388bf3",
       "physical_lines": 120,
       "nonblank_noncomment_lines": 42
     },
@@ -2182,7 +2188,7 @@
     },
     {
       "path": "com/google/common/hash/BloomFilter.java",
-      "sha256": "a03793bc2a0375a61ff1c48b0233c05137651bdf9df2017f5aceb74c67809a56",
+      "sha256": "13c5e1d09059a53d41b5558a3cb36ccd0bd68cbdc7ff454763346d15c949791d",
       "physical_lines": 621,
       "nonblank_noncomment_lines": 249
     },
@@ -2242,9 +2248,9 @@
     },
     {
       "path": "com/google/common/hash/Hashing.java",
-      "sha256": "1915183c6379a68b9c88606ac38571a72f845361ad6e630633f06660be6ba0dd",
-      "physical_lines": 680,
-      "nonblank_noncomment_lines": 273
+      "sha256": "26e2a7b6f682ae8499317aecbdcc4b7ccdbf9d7b62b1f133bd7ede039ca5c770",
+      "physical_lines": 678,
+      "nonblank_noncomment_lines": 271
     },
     {
       "path": "com/google/common/hash/HashingInputStream.java",
@@ -2320,8 +2326,8 @@
     },
     {
       "path": "com/google/common/hash/Striped64.java",
-      "sha256": "c15a06a3879001369307c3732a72869d84805dab8a9c748b2cf997a43ab92f43",
-      "physical_lines": 341,
+      "sha256": "bf9e616e7dff2066bf216d109a043b49dbd156dc6435485084b6ae4fdf7599ff",
+      "physical_lines": 340,
       "nonblank_noncomment_lines": 174
     },
     {
@@ -2350,9 +2356,9 @@
     },
     {
       "path": "com/google/common/io/BaseEncoding.java",
-      "sha256": "b68d0229bbbc6f85dcbf8cfcb57f782657b4fe73d0798b558eb894c9793952ab",
-      "physical_lines": 1121,
-      "nonblank_noncomment_lines": 746
+      "sha256": "a883cd5a3852d82f6c84895b2778b69389f2a6d204802778fca636674b644c50",
+      "physical_lines": 1158,
+      "nonblank_noncomment_lines": 783
     },
     {
       "path": "com/google/common/io/ByteArrayDataInput.java",
@@ -2410,7 +2416,7 @@
     },
     {
       "path": "com/google/common/io/CharStreams.java",
-      "sha256": "74c06101321e4db67d7909415aa0e3b6b53f02a6fa8c7478fb875059ca0b079f",
+      "sha256": "5241b70db5a67b835f3358cf68afdc144c113490dd8c9628ba55dc0fd3a703fb",
       "physical_lines": 349,
       "nonblank_noncomment_lines": 178
     },
@@ -2422,7 +2428,7 @@
     },
     {
       "path": "com/google/common/io/Closer.java",
-      "sha256": "673cc38fc250c88120494928ea8dcec07b7b0ed0a236ff321043f5e18372c9bf",
+      "sha256": "e32da5d45120810268ed6a0370f16fe7607d6f64e8fa2bf65f321b488b734162",
       "physical_lines": 298,
       "nonblank_noncomment_lines": 120
     },
@@ -2452,9 +2458,9 @@
     },
     {
       "path": "com/google/common/io/Files.java",
-      "sha256": "f0648855b06274a8c799732552ebeb11c1688e7d2a2cc807d5020500b2aeda6d",
-      "physical_lines": 892,
-      "nonblank_noncomment_lines": 389
+      "sha256": "7973e58b74401d4ef6ab2d48822e5f13cb453288e219961ece7dd9a04b752fca",
+      "physical_lines": 895,
+      "nonblank_noncomment_lines": 392
     },
     {
       "path": "com/google/common/io/Flushables.java",
@@ -2482,7 +2488,7 @@
     },
     {
       "path": "com/google/common/io/LineReader.java",
-      "sha256": "d041818c02cf07cb13cd95abfbd26f33e7e7e4e679fb967c5ab76120d54de4af",
+      "sha256": "b9e9e3b813c23008648d16766f834c7bf5fae42c3eac8d2d0e787931a5fb6f00",
       "physical_lines": 88,
       "nonblank_noncomment_lines": 46
     },
@@ -2500,7 +2506,7 @@
     },
     {
       "path": "com/google/common/io/MoreFiles.java",
-      "sha256": "88436e09066169188e58f1afe19458215d2d6db1de4eee7294d6f6f0b7848729",
+      "sha256": "bc6dce9c2dcffa33e895242ff1db1f013eac8aab30aa86da2a11589b85f3ecf1",
       "physical_lines": 798,
       "nonblank_noncomment_lines": 422
     },
@@ -2548,7 +2554,7 @@
     },
     {
       "path": "com/google/common/math/BigIntegerMath.java",
-      "sha256": "433fde81593e08f4f0d9f5eeea07da4ed10b82e1b96db8c5da1cf598560edd19",
+      "sha256": "199bd8509f111e89010c674fb9118b11ab34655eea8daba29553634968e00354",
       "physical_lines": 476,
       "nonblank_noncomment_lines": 275
     },
@@ -2602,7 +2608,7 @@
     },
     {
       "path": "com/google/common/math/Quantiles.java",
-      "sha256": "6d180bf133a2e8c4defc01747306b73be9c6bf8d03b56aaff16bcf0c28616648",
+      "sha256": "37ba32b886ad732b0c048f6a8a5692ebbcf34e533de0dbf4ebc80af9aa787bdd",
       "physical_lines": 684,
       "nonblank_noncomment_lines": 287
     },
@@ -2680,63 +2686,63 @@
     },
     {
       "path": "com/google/common/primitives/Booleans.java",
-      "sha256": "5e17c00ac4b6a4cad7a2a8a9c3f2b7c305f7bf047b896b900ac3efb0c2c6cf27",
-      "physical_lines": 526,
-      "nonblank_noncomment_lines": 290
+      "sha256": "696b0025a70525ce80890a0bc4b3f4140e400098508f7f451cf781c21a3cfcd3",
+      "physical_lines": 557,
+      "nonblank_noncomment_lines": 303
     },
     {
       "path": "com/google/common/primitives/Bytes.java",
-      "sha256": "24db72161cb6d3cfb4bd3107d924ddacdc3c93d9e0dad09fd2a1c1f4e36e28f7",
-      "physical_lines": 370,
-      "nonblank_noncomment_lines": 213
+      "sha256": "7c476733856d6ae1c01fedb03677e30cbdbabced8f9591767e5d74817b5c0c21",
+      "physical_lines": 401,
+      "nonblank_noncomment_lines": 226
     },
     {
       "path": "com/google/common/primitives/Chars.java",
-      "sha256": "5337d0f623c1c528e963ebb96d5a9b08621f10ca2ac215d13c0c45e1fde674ed",
-      "physical_lines": 586,
-      "nonblank_noncomment_lines": 307
+      "sha256": "ab90d04f681fd7f2efbd254e719de84b6ca803b117ae81c2848b7658225de310",
+      "physical_lines": 640,
+      "nonblank_noncomment_lines": 330
     },
     {
       "path": "com/google/common/primitives/Doubles.java",
-      "sha256": "ba02a1afc8b25539548ef1f5038a2db2cc8720c95828eb95bd2e090aa2943762",
-      "physical_lines": 634,
-      "nonblank_noncomment_lines": 331
+      "sha256": "e50e29512533360e97f9f937157bd6ac1bfb6bb4a3c0583b4cbb7d9904d7f814",
+      "physical_lines": 704,
+      "nonblank_noncomment_lines": 360
     },
     {
       "path": "com/google/common/primitives/Floats.java",
-      "sha256": "9c4defaf9705a253125486e29cf7792b34c3ef7678b88dac2d6eeaaa058b5c78",
-      "physical_lines": 613,
-      "nonblank_noncomment_lines": 318
+      "sha256": "7fb296571c98551d545df1e1ddb0a9035519b2ebb76c3634f5a20173f6521602",
+      "physical_lines": 673,
+      "nonblank_noncomment_lines": 341
     },
     {
       "path": "com/google/common/primitives/ImmutableDoubleArray.java",
-      "sha256": "e6be63d1eae7b287600eb89ff18a73330fac5b847947f8eb692f0d3b471fec9d",
-      "physical_lines": 619,
+      "sha256": "b4868a65a78cd8b82b75dffcbe27c525ec31c83fb5491b1f7d019fd5b2c97fa1",
+      "physical_lines": 623,
       "nonblank_noncomment_lines": 339
     },
     {
       "path": "com/google/common/primitives/ImmutableIntArray.java",
-      "sha256": "6d043e9bd9a75887ee98e524bf15602ea2504b50278beb28c83c1f041d428218",
-      "physical_lines": 609,
+      "sha256": "3b87064eb6302327cf3f2ebfd3370a4c5cacd73309cfaff6ce3b3ea069e77a3b",
+      "physical_lines": 613,
       "nonblank_noncomment_lines": 333
     },
     {
       "path": "com/google/common/primitives/ImmutableLongArray.java",
-      "sha256": "62abf78930215489b66b99f84c8cca399fbcf00003acf44061927ca89ed9a4d1",
-      "physical_lines": 611,
+      "sha256": "2fa5f3d6ecf5c78eb279b386c584fd98c164a4cefcadae4259ffcceaca18708f",
+      "physical_lines": 615,
       "nonblank_noncomment_lines": 335
     },
     {
       "path": "com/google/common/primitives/Ints.java",
-      "sha256": "dc85272e7d3eda9a6cb7f27709c5d8929d5bb8e289736e69a689bb66092259bc",
-      "physical_lines": 686,
-      "nonblank_noncomment_lines": 347
+      "sha256": "67aa4cb22eb370c5116c03579fd69d2f9921c88333b163df98a688afd22cf274",
+      "physical_lines": 750,
+      "nonblank_noncomment_lines": 376
     },
     {
       "path": "com/google/common/primitives/Longs.java",
-      "sha256": "ab3d62feac07b1169186a890842bf9e55ffde1042df9c42d35750787016990f9",
-      "physical_lines": 733,
-      "nonblank_noncomment_lines": 393
+      "sha256": "472cf528b4af11c8d97587c19bc49a3a8790fc7c447eae5802d4f68d52290ba4",
+      "physical_lines": 797,
+      "nonblank_noncomment_lines": 422
     },
     {
       "path": "com/google/common/primitives/ParseRequest.java",
@@ -2746,27 +2752,27 @@
     },
     {
       "path": "com/google/common/primitives/Primitives.java",
-      "sha256": "33d17f07bc89a9e9e36ac569a4d056d70f6a31d01415deac6a4bd372f1e0acdf",
+      "sha256": "ac8edc50923b03baa6f871bfd2d9676b3e0539eaebbfe27aff7e099128b6c5fb",
       "physical_lines": 138,
       "nonblank_noncomment_lines": 57
     },
     {
       "path": "com/google/common/primitives/Shorts.java",
-      "sha256": "de1df7001b179bc41543de77232a4a6a8d6ac4e8a87bf81f0c6953eda3d28dad",
-      "physical_lines": 632,
-      "nonblank_noncomment_lines": 330
+      "sha256": "852c9ddd082b9bef03a43972ac424778e66e79a9297c84f3b1726a8b91a1b9ad",
+      "physical_lines": 686,
+      "nonblank_noncomment_lines": 353
     },
     {
       "path": "com/google/common/primitives/SignedBytes.java",
-      "sha256": "4391bcda2551b8b7069720b19140d209a88befa6fc4cfa7ff82f525d454a57f6",
-      "physical_lines": 194,
-      "nonblank_noncomment_lines": 80
+      "sha256": "360f05e2b56721b9c73731b5e0b55a7f879af2b223825d1b5c59242503388224",
+      "physical_lines": 219,
+      "nonblank_noncomment_lines": 92
     },
     {
       "path": "com/google/common/primitives/UnsignedBytes.java",
-      "sha256": "ad4643b62899a283405fdf9a2555325b3c2343d5dc58fe1e2fb4966499d48087",
-      "physical_lines": 446,
-      "nonblank_noncomment_lines": 207
+      "sha256": "d661fdaa0fbd4a562021476922786f7ea61c1d571cec22e73c4e591850bfd528",
+      "physical_lines": 511,
+      "nonblank_noncomment_lines": 242
     },
     {
       "path": "com/google/common/primitives/UnsignedInteger.java",
@@ -2776,9 +2782,9 @@
     },
     {
       "path": "com/google/common/primitives/UnsignedInts.java",
-      "sha256": "6e36385f762618947c5bf46da561b7576c858d84b9edd133e0707fd4e8870582",
-      "physical_lines": 316,
-      "nonblank_noncomment_lines": 129
+      "sha256": "924dadfae90849917ed7b77f8dd1e6b3f381d9217ceda9593cf26f01a8b9e5f8",
+      "physical_lines": 389,
+      "nonblank_noncomment_lines": 160
     },
     {
       "path": "com/google/common/primitives/UnsignedLong.java",
@@ -2788,9 +2794,9 @@
     },
     {
       "path": "com/google/common/primitives/UnsignedLongs.java",
-      "sha256": "1fefbe78891e244ad7ac98b4213c89574f3f9415bcbf748b49972b4c62657193",
-      "physical_lines": 428,
-      "nonblank_noncomment_lines": 210
+      "sha256": "07f500f7146c83f805295a571ac9a514932fa77f30967f5eb0096a94792847e7",
+      "physical_lines": 499,
+      "nonblank_noncomment_lines": 241
     },
     {
       "path": "com/google/common/primitives/package-info.java",
@@ -2806,9 +2812,9 @@
     },
     {
       "path": "com/google/common/reflect/ClassPath.java",
-      "sha256": "39dcb41486540d5ef58874d027e7e0bca26b97d8de841d80babf2d3538d1fb95",
-      "physical_lines": 548,
-      "nonblank_noncomment_lines": 340
+      "sha256": "c4f2fb24e9047167ed85dcbca2a25972cff2943255c16a1f7321252711c8470c",
+      "physical_lines": 591,
+      "nonblank_noncomment_lines": 366
     },
     {
       "path": "com/google/common/reflect/Element.java",
@@ -2824,13 +2830,13 @@
     },
     {
       "path": "com/google/common/reflect/Invokable.java",
-      "sha256": "ac4a5b48dbf2e2b025e64e9c87d439c0458782dd2534fce8ffba2a48bd0f3650",
+      "sha256": "436019cbf4d43c46c05006b0632c9114563a98a69f3060fec07f62e2c482833f",
       "physical_lines": 352,
       "nonblank_noncomment_lines": 211
     },
     {
       "path": "com/google/common/reflect/MutableTypeToInstanceMap.java",
-      "sha256": "fb28e818ac5059a4a268ae2cb3fd32eecb8f77969cd53f165d230b5134efc06a",
+      "sha256": "196f373bcc6f770c21d27a981e197ba2ceb50ea49f03d115aef0dedc5a9e90ee",
       "physical_lines": 170,
       "nonblank_noncomment_lines": 114
     },
@@ -2872,7 +2878,7 @@
     },
     {
       "path": "com/google/common/reflect/TypeToken.java",
-      "sha256": "af50fa3cc43642f9540ed058db99bd13e57a84f24610a34a6b9ba48d070eb8bc",
+      "sha256": "9bbcfddde4ac5fcd5da98ca5fffd8c056560ce2ecc9655bb4515c8e8d399d073",
       "physical_lines": 1333,
       "nonblank_noncomment_lines": 835
     },
@@ -2884,9 +2890,9 @@
     },
     {
       "path": "com/google/common/reflect/Types.java",
-      "sha256": "2b6498d2c27972f5e1fe4852a50b6148c1c052c4cfd0499148a527d143d74652",
-      "physical_lines": 684,
-      "nonblank_noncomment_lines": 510
+      "sha256": "4d58c37beb6be7d828a9ee8e945f9655d0e6fff2102a7a712db08c5ee4326c8b",
+      "physical_lines": 682,
+      "nonblank_noncomment_lines": 508
     },
     {
       "path": "com/google/common/reflect/package-info.java",
@@ -2896,15 +2902,15 @@
     },
     {
       "path": "com/google/common/util/concurrent/AbstractCatchingFuture.java",
-      "sha256": "04623aa6161d084f53ef6fdb9df86149090762f36afb9a8dde6eaf7f73b99660",
-      "physical_lines": 230,
-      "nonblank_noncomment_lines": 173
+      "sha256": "d7188fd7017124a210e1241343a584f220daacee67acd6aba1db2d5bd09938a1",
+      "physical_lines": 228,
+      "nonblank_noncomment_lines": 171
     },
     {
       "path": "com/google/common/util/concurrent/AbstractCheckedFuture.java",
-      "sha256": "7db9d202a7e4de2bb33c06184096edd65a145907a45b7aa0ca80ae8d4c4d1164",
-      "physical_lines": 123,
-      "nonblank_noncomment_lines": 47
+      "sha256": "3fca159031289b213c91e7c3f0cff088349ac252c38b4c9b9a52a31f1bbc3f96",
+      "physical_lines": 119,
+      "nonblank_noncomment_lines": 43
     },
     {
       "path": "com/google/common/util/concurrent/AbstractExecutionThreadService.java",
@@ -2914,9 +2920,9 @@
     },
     {
       "path": "com/google/common/util/concurrent/AbstractFuture.java",
-      "sha256": "884e319537ba78dce4083e039875a77d14f4114b383ca01638e6a4cf75ade0e7",
-      "physical_lines": 1189,
-      "nonblank_noncomment_lines": 726
+      "sha256": "662787aa1e5a9dc30c3034fc2554c0bd2e81c70117ba23b024c4cb6cd6e63bd9",
+      "physical_lines": 1222,
+      "nonblank_noncomment_lines": 752
     },
     {
       "path": "com/google/common/util/concurrent/AbstractIdleService.java",
@@ -2938,19 +2944,19 @@
     },
     {
       "path": "com/google/common/util/concurrent/AbstractService.java",
-      "sha256": "d3c4d56f2e2bedb6eaf5bbd9eb58175c642dd5798b5885e7d21f15a411fce859",
+      "sha256": "24a2614a6f22b96129404e4c690d5da77b501e37e68fa302a9f0165bb36fce66",
       "physical_lines": 602,
       "nonblank_noncomment_lines": 424
     },
     {
       "path": "com/google/common/util/concurrent/AbstractTransformFuture.java",
-      "sha256": "545544691cbd730dab0f638430eb78d937e78fb1bdf314cc3fc1d6d869e5c3c1",
+      "sha256": "bafa8bc73d8e3446aa7b42f514b1a5f59f80771b8e22fbba3482bbefccdade3f",
       "physical_lines": 258,
       "nonblank_noncomment_lines": 147
     },
     {
       "path": "com/google/common/util/concurrent/AggregateFuture.java",
-      "sha256": "2ebc7e25fbcf276a38098350d41e97ab7c055216f919b171ff39179f232c88b5",
+      "sha256": "d91fb52b9fca3455c0a2b883699ffd9d066190bacc293131562d192d731b2656",
       "physical_lines": 304,
       "nonblank_noncomment_lines": 183
     },
@@ -3016,9 +3022,9 @@
     },
     {
       "path": "com/google/common/util/concurrent/CombinedFuture.java",
-      "sha256": "d44445207ab557faad735e08b09dec18e95ed160d9f45c4de84c8b22bb9c7f7e",
-      "physical_lines": 179,
-      "nonblank_noncomment_lines": 137
+      "sha256": "7ed9974c2603a0337f7be1ff0fa312315e0db0c8d39d0075b56fc65734ab20c7",
+      "physical_lines": 194,
+      "nonblank_noncomment_lines": 151
     },
     {
       "path": "com/google/common/util/concurrent/CycleDetectingLockFactory.java",
@@ -3106,15 +3112,15 @@
     },
     {
       "path": "com/google/common/util/concurrent/Futures.java",
-      "sha256": "d9619e915ab986a5408c720aaef7364c0574f487cf390094271c6e25d5066ab5",
-      "physical_lines": 1606,
-      "nonblank_noncomment_lines": 499
+      "sha256": "9e2a5c2d009bb542e743b8fce68daf4188cdf395b2b0ed5e1501a8513b276593",
+      "physical_lines": 1610,
+      "nonblank_noncomment_lines": 495
     },
     {
       "path": "com/google/common/util/concurrent/FuturesGetChecked.java",
-      "sha256": "91740d8d0f154ab22b07dbe619947804d0a012027d39b4205d0749ef911083a7",
-      "physical_lines": 312,
-      "nonblank_noncomment_lines": 220
+      "sha256": "7828e79ab9d0912be89607cabb9437cf860d6f00311d0b8ced8650de633323e1",
+      "physical_lines": 309,
+      "nonblank_noncomment_lines": 217
     },
     {
       "path": "com/google/common/util/concurrent/GwtFluentFutureCatchingSpecialization.java",
@@ -3130,15 +3136,15 @@
     },
     {
       "path": "com/google/common/util/concurrent/ImmediateFuture.java",
-      "sha256": "f6c51ca638aaf67ac5a46d19a7e23906bc0ab41737fa27e3298d6546d7a68f05",
-      "physical_lines": 153,
-      "nonblank_noncomment_lines": 111
+      "sha256": "f3302f106bce4afc15d21849153ed8f7d83dcf73bc1442aa47e569b59e9a3e4b",
+      "physical_lines": 170,
+      "nonblank_noncomment_lines": 122
     },
     {
       "path": "com/google/common/util/concurrent/InterruptibleTask.java",
-      "sha256": "a771c9cc7e902a58ce1a3e63d4f578ec4ff6e8fc85ad9ff89bfe72690e087c4c",
-      "physical_lines": 71,
-      "nonblank_noncomment_lines": 35
+      "sha256": "320d0a1cde1f0d07194b3ea5e07d531b2ae78af03380f785d868817d42e3739a",
+      "physical_lines": 116,
+      "nonblank_noncomment_lines": 53
     },
     {
       "path": "com/google/common/util/concurrent/JdkFutureAdapters.java",
@@ -3160,7 +3166,7 @@
     },
     {
       "path": "com/google/common/util/concurrent/ListenableScheduledFuture.java",
-      "sha256": "1e0f8f143a0f77b28345b865644e1a0b4841048cbd22aa2c9fe2c03055f16c95",
+      "sha256": "72e0a7c2d18fd77e8c405a7682eb850d518550dbfa79753dc3d28f1588b06256",
       "physical_lines": 30,
       "nonblank_noncomment_lines": 7
     },
@@ -3172,15 +3178,15 @@
     },
     {
       "path": "com/google/common/util/concurrent/ListeningExecutorService.java",
-      "sha256": "916594c47bf448882336825366f1d11e6db670f42d71740b1bca7a0b5e58740c",
-      "physical_lines": 100,
-      "nonblank_noncomment_lines": 27
+      "sha256": "dad9815a682da10730a460ca26381e133dc839a3b35bfc562509bc575e034ff0",
+      "physical_lines": 98,
+      "nonblank_noncomment_lines": 25
     },
     {
       "path": "com/google/common/util/concurrent/ListeningScheduledExecutorService.java",
-      "sha256": "ffe41c03d962998fcdeecc7d021eac13fd2c0316c9ddb7e79429252173779337",
-      "physical_lines": 56,
-      "nonblank_noncomment_lines": 23
+      "sha256": "316271dfec732dde5cc750d36949e721a7a52d1f8ce0070a2adaa03d57401f63",
+      "physical_lines": 54,
+      "nonblank_noncomment_lines": 21
     },
     {
       "path": "com/google/common/util/concurrent/Monitor.java",
@@ -3190,9 +3196,9 @@
     },
     {
       "path": "com/google/common/util/concurrent/MoreExecutors.java",
-      "sha256": "683f671a63fe487f5c7c7c3cb43172cd8448e4d660ecfc9204a3582ecf872f25",
-      "physical_lines": 966,
-      "nonblank_noncomment_lines": 574
+      "sha256": "f750b82eadd2f40555eff09f8adbae020338eee76d6a72c34edb3669a0264369",
+      "physical_lines": 986,
+      "nonblank_noncomment_lines": 575
     },
     {
       "path": "com/google/common/util/concurrent/Partially.java",
@@ -3219,10 +3225,10 @@
       "nonblank_noncomment_lines": 16
     },
     {
-      "path": "com/google/common/util/concurrent/SerializingExecutor.java",
-      "sha256": "e45991764cb02647f77a63a27429b7f0e8b9ff071a00a9c7bbc561e1004817cf",
-      "physical_lines": 206,
-      "nonblank_noncomment_lines": 108
+      "path": "com/google/common/util/concurrent/SequentialExecutor.java",
+      "sha256": "d18a924840523cc8a94554303aae7d4a8a2f27691514594b80b0456b5aa49bab",
+      "physical_lines": 209,
+      "nonblank_noncomment_lines": 110
     },
     {
       "path": "com/google/common/util/concurrent/Service.java",
@@ -3232,9 +3238,9 @@
     },
     {
       "path": "com/google/common/util/concurrent/ServiceManager.java",
-      "sha256": "cb87f9699e57582e9493708f49718f24cddf4d58e81d67d100322b40dcd9b51f",
-      "physical_lines": 843,
-      "nonblank_noncomment_lines": 475
+      "sha256": "9605d5e5a9590a61e3cfe9844c1d98c650bcf4683bfb9837cc27dea5c1bd65b0",
+      "physical_lines": 860,
+      "nonblank_noncomment_lines": 487
     },
     {
       "path": "com/google/common/util/concurrent/SettableFuture.java",
@@ -3256,7 +3262,7 @@
     },
     {
       "path": "com/google/common/util/concurrent/Striped.java",
-      "sha256": "879b774ee6030c82fb09ca1f4e731d7271d0b4d5f439497dccf1c60a3d408955",
+      "sha256": "8ccbf516aeabe6e9803557d9972be9210f3ae59bd331e95ce5378eab67930682",
       "physical_lines": 508,
       "nonblank_noncomment_lines": 261
     },
@@ -3274,15 +3280,15 @@
     },
     {
       "path": "com/google/common/util/concurrent/TimeoutFuture.java",
-      "sha256": "917ff4078b5656d2cb63a3ee07f64ae5e75fc3f5c5ba90d9c7db0029b98f8e64",
+      "sha256": "4680a89e338a66c1f48b87dcec77ef319fcf66c6cfb679ff97e0726b01fc13c9",
       "physical_lines": 152,
       "nonblank_noncomment_lines": 74
     },
     {
       "path": "com/google/common/util/concurrent/TrustedListenableFutureTask.java",
-      "sha256": "9e0382e86a1d8ad195c11d07d5201f49ddb34dcfaab1e6cd8ee7cc76e12c399b",
-      "physical_lines": 170,
-      "nonblank_noncomment_lines": 109
+      "sha256": "011faf09f47d064142752d6bb736fa802cf2048c96e46878a86f48517e614798",
+      "physical_lines": 178,
+      "nonblank_noncomment_lines": 113
     },
     {
       "path": "com/google/common/util/concurrent/UncaughtExceptionHandlers.java",
@@ -3340,7 +3346,7 @@
     },
     {
       "path": "com/google/thirdparty/publicsuffix/PublicSuffixPatterns.java",
-      "sha256": "320c728b58caf34ed07270d351a866ed9080495b6f99c89194d13f65a4295dc6",
+      "sha256": "10e27f3091f6d2323d98244cd45701e384857c2b3b952b5c255335e465c3e588",
       "physical_lines": 63,
       "nonblank_noncomment_lines": 15
     },

@@ -1,18 +1,18 @@
 {
   "version": "21.0",
   "source_java_files": 537,
-  "source_owned_java_files": 534,
-  "source_owned_java_nonblank_noncomment_lines": 78915,
+  "source_ownership_prefixes": [
+    "com/google/common/",
+    "com/google/thirdparty/publicsuffix/"
+  ],
+  "source_owned_java_files": 537,
+  "source_owned_java_nonblank_noncomment_lines": 79017,
   "java_physical_lines": 149489,
   "java_nonblank_noncomment_lines": 79017,
   "raw_class_entries_including_multi_release": 1837,
   "base_class_entries": 1837,
-  "source_owned_base_class_entries": 1819,
-  "base_classes_without_owned_source": [
-    "com/google/thirdparty/publicsuffix/PublicSuffixPatterns.class",
-    "com/google/thirdparty/publicsuffix/PublicSuffixType.class",
-    "com/google/thirdparty/publicsuffix/TrieParser.class"
-  ],
+  "source_owned_base_class_entries": 1822,
+  "base_classes_without_owned_source": [],
   "source_files": [
     {
       "path": "com/google/common/annotations/Beta.java",

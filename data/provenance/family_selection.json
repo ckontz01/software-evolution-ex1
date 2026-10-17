@@ -1,0 +1,605 @@
+{
+  "schema_version": 1,
+  "study_revision": 2,
+  "frozen_cutoff_utc": "2026-10-17",
+  "catalog_path": "data/provenance/tag_inventory.json",
+  "catalog_sha256": "d1ab1c6aa312d9a2c79b08e02f9b9c899ef8e48a58b21e945035a4f8726ff044",
+  "rule": "From the frozen 2026-10-17 tag catalog, retain numeric stable main-project releases 10.0+ and the existing three documented mainline exclusions. Group the 70 eligible releases into 45 distinct MAJOR.MINOR families, ordered by each family's first release date. Select family ranks round(i*(45-1)/(30-1)) for i=0..29. Within each selected family choose its highest eligible stable patch, except that the first family uses the oldest boundary release 10.0 to preserve the historical start. The final family uses its latest eligible release 33.7.2. Exactly 30 distinct families are represented once each. Spacing is uniform in family rank, not calendar time, and adjacent selected families can be consecutive. Patch representatives are not repeated observations of the same family. Use plain artifacts before 23.1 and JRE artifacts thereafter. Selection uses no graphs, clusters, MQ values, or structural-change outcomes.",
+  "eligible_releases": 70,
+  "eligible_families": 45,
+  "selected_count": 30,
+  "selected_family_ranks_zero_based": [
+    0,
+    2,
+    3,
+    5,
+    6,
+    8,
+    9,
+    11,
+    12,
+    14,
+    15,
+    17,
+    18,
+    20,
+    21,
+    23,
+    24,
+    26,
+    27,
+    29,
+    30,
+    32,
+    33,
+    35,
+    36,
+    38,
+    39,
+    41,
+    42,
+    44
+  ],
+  "selected_versions": [
+    "10.0",
+    "12.0.1",
+    "13.0.1",
+    "15.0",
+    "16.0.1",
+    "18.0",
+    "19.0",
+    "21.0",
+    "22.0",
+    "23.1",
+    "23.2",
+    "23.4",
+    "23.5",
+    "24.0",
+    "24.1",
+    "25.1",
+    "26.0",
+    "27.1",
+    "28.0",
+    "28.2",
+    "29.0",
+    "30.1.1",
+    "31.0.1",
+    "32.0.1",
+    "32.1.3",
+    "33.1.0",
+    "33.2.1",
+    "33.4.8",
+    "33.5.0",
+    "33.7.2"
+  ],
+  "selected_unique_families": 30,
+  "unselected_families": 15,
+  "family_catalog": [
+    {
+      "family_rank_zero_based": 0,
+      "family": "10.0",
+      "eligible_versions": [
+        "10.0",
+        "10.0.1"
+      ],
+      "first_release_date": "2011-09-28",
+      "representative": "10.0",
+      "representative_rule": "oldest_history_boundary",
+      "selected": true
+    },
+    {
+      "family_rank_zero_based": 1,
+      "family": "11.0",
+      "eligible_versions": [
+        "11.0",
+        "11.0.1",
+        "11.0.2"
+      ],
+      "first_release_date": "2011-12-18",
+      "representative": "11.0.2",
+      "representative_rule": "highest_eligible_stable_patch",
+      "selected": false
+    },
+    {
+      "family_rank_zero_based": 2,
+      "family": "12.0",
+      "eligible_versions": [
+        "12.0",
+        "12.0.1"
+      ],
+      "first_release_date": "2012-04-30",
+      "representative": "12.0.1",
+      "representative_rule": "highest_eligible_stable_patch",
+      "selected": true
+    },
+    {
+      "family_rank_zero_based": 3,
+      "family": "13.0",
+      "eligible_versions": [
+        "13.0.1"
+      ],
+      "first_release_date": "2012-08-28",
+      "representative": "13.0.1",
+      "representative_rule": "highest_eligible_stable_patch",
+      "selected": true
+    },
+    {
+      "family_rank_zero_based": 4,
+      "family": "14.0",
+      "eligible_versions": [
+        "14.0",
+        "14.0.1"
+      ],
+      "first_release_date": "2013-02-25",
+      "representative": "14.0.1",
+      "representative_rule": "highest_eligible_stable_patch",
+      "selected": false
+    },
+    {
+      "family_rank_zero_based": 5,
+      "family": "15.0",
+      "eligible_versions": [
+        "15.0"
+      ],
+      "first_release_date": "2013-09-06",
+      "representative": "15.0",
+      "representative_rule": "highest_eligible_stable_patch",
+      "selected": true
+    },
+    {
+      "family_rank_zero_based": 6,
+      "family": "16.0",
+      "eligible_versions": [
+        "16.0",
+        "16.0.1"
+      ],
+      "first_release_date": "2014-01-17",
+      "representative": "16.0.1",
+      "representative_rule": "highest_eligible_stable_patch",
+      "selected": true
+    },
+    {
+      "family_rank_zero_based": 7,
+      "family": "17.0",
+      "eligible_versions": [
+        "17.0"
+      ],
+      "first_release_date": "2014-04-22",
+      "representative": "17.0",
+      "representative_rule": "highest_eligible_stable_patch",
+      "selected": false
+    },
+    {
+      "family_rank_zero_based": 8,
+      "family": "18.0",
+      "eligible_versions": [
+        "18.0"
+      ],
+      "first_release_date": "2014-08-25",
+      "representative": "18.0",
+      "representative_rule": "highest_eligible_stable_patch",
+      "selected": true
+    },
+    {
+      "family_rank_zero_based": 9,
+      "family": "19.0",
+      "eligible_versions": [
+        "19.0"
+      ],
+      "first_release_date": "2015-12-09",
+      "representative": "19.0",
+      "representative_rule": "highest_eligible_stable_patch",
+      "selected": true
+    },
+    {
+      "family_rank_zero_based": 10,
+      "family": "20.0",
+      "eligible_versions": [
+        "20.0"
+      ],
+      "first_release_date": "2016-10-28",
+      "representative": "20.0",
+      "representative_rule": "highest_eligible_stable_patch",
+      "selected": false
+    },
+    {
+      "family_rank_zero_based": 11,
+      "family": "21.0",
+      "eligible_versions": [
+        "21.0"
+      ],
+      "first_release_date": "2017-01-12",
+      "representative": "21.0",
+      "representative_rule": "highest_eligible_stable_patch",
+      "selected": true
+    },
+    {
+      "family_rank_zero_based": 12,
+      "family": "22.0",
+      "eligible_versions": [
+        "22.0"
+      ],
+      "first_release_date": "2017-05-22",
+      "representative": "22.0",
+      "representative_rule": "highest_eligible_stable_patch",
+      "selected": true
+    },
+    {
+      "family_rank_zero_based": 13,
+      "family": "23.0",
+      "eligible_versions": [
+        "23.0"
+      ],
+      "first_release_date": "2017-08-04",
+      "representative": "23.0",
+      "representative_rule": "highest_eligible_stable_patch",
+      "selected": false
+    },
+    {
+      "family_rank_zero_based": 14,
+      "family": "23.1",
+      "eligible_versions": [
+        "23.1"
+      ],
+      "first_release_date": "2017-09-27T21:09:10Z",
+      "representative": "23.1",
+      "representative_rule": "highest_eligible_stable_patch",
+      "selected": true
+    },
+    {
+      "family_rank_zero_based": 15,
+      "family": "23.2",
+      "eligible_versions": [
+        "23.2"
+      ],
+      "first_release_date": "2017-10-11T23:30:53Z",
+      "representative": "23.2",
+      "representative_rule": "highest_eligible_stable_patch",
+      "selected": true
+    },
+    {
+      "family_rank_zero_based": 16,
+      "family": "23.3",
+      "eligible_versions": [
+        "23.3"
+      ],
+      "first_release_date": "2017-10-26T20:40:49Z",
+      "representative": "23.3",
+      "representative_rule": "highest_eligible_stable_patch",
+      "selected": false
+    },
+    {
+      "family_rank_zero_based": 17,
+      "family": "23.4",
+      "eligible_versions": [
+        "23.4"
+      ],
+      "first_release_date": "2017-11-09T18:29:33Z",
+      "representative": "23.4",
+      "representative_rule": "highest_eligible_stable_patch",
+      "selected": true
+    },
+    {
+      "family_rank_zero_based": 18,
+      "family": "23.5",
+      "eligible_versions": [
+        "23.5"
+      ],
+      "first_release_date": "2017-11-22T21:05:04Z",
+      "representative": "23.5",
+      "representative_rule": "highest_eligible_stable_patch",
+      "selected": true
+    },
+    {
+      "family_rank_zero_based": 19,
+      "family": "23.6",
+      "eligible_versions": [
+        "23.6"
+      ],
+      "first_release_date": "2017-12-21T17:26:26Z",
+      "representative": "23.6",
+      "representative_rule": "highest_eligible_stable_patch",
+      "selected": false
+    },
+    {
+      "family_rank_zero_based": 20,
+      "family": "24.0",
+      "eligible_versions": [
+        "24.0"
+      ],
+      "first_release_date": "2018-02-01T20:52:13Z",
+      "representative": "24.0",
+      "representative_rule": "highest_eligible_stable_patch",
+      "selected": true
+    },
+    {
+      "family_rank_zero_based": 21,
+      "family": "24.1",
+      "eligible_versions": [
+        "24.1"
+      ],
+      "first_release_date": "2018-03-15T18:44:26Z",
+      "representative": "24.1",
+      "representative_rule": "highest_eligible_stable_patch",
+      "selected": true
+    },
+    {
+      "family_rank_zero_based": 22,
+      "family": "25.0",
+      "eligible_versions": [
+        "25.0"
+      ],
+      "first_release_date": "2018-04-25T22:53:55Z",
+      "representative": "25.0",
+      "representative_rule": "highest_eligible_stable_patch",
+      "selected": false
+    },
+    {
+      "family_rank_zero_based": 23,
+      "family": "25.1",
+      "eligible_versions": [
+        "25.1"
+      ],
+      "first_release_date": "2018-05-31T14:31:07Z",
+      "representative": "25.1",
+      "representative_rule": "highest_eligible_stable_patch",
+      "selected": true
+    },
+    {
+      "family_rank_zero_based": 24,
+      "family": "26.0",
+      "eligible_versions": [
+        "26.0"
+      ],
+      "first_release_date": "2018-08-01T23:02:00Z",
+      "representative": "26.0",
+      "representative_rule": "highest_eligible_stable_patch",
+      "selected": true
+    },
+    {
+      "family_rank_zero_based": 25,
+      "family": "27.0",
+      "eligible_versions": [
+        "27.0",
+        "27.0.1"
+      ],
+      "first_release_date": "2018-10-18T18:51:15Z",
+      "representative": "27.0.1",
+      "representative_rule": "highest_eligible_stable_patch",
+      "selected": false
+    },
+    {
+      "family_rank_zero_based": 26,
+      "family": "27.1",
+      "eligible_versions": [
+        "27.1"
+      ],
+      "first_release_date": "2019-03-08T20:30:50Z",
+      "representative": "27.1",
+      "representative_rule": "highest_eligible_stable_patch",
+      "selected": true
+    },
+    {
+      "family_rank_zero_based": 27,
+      "family": "28.0",
+      "eligible_versions": [
+        "28.0"
+      ],
+      "first_release_date": "2019-06-12T00:16:33Z",
+      "representative": "28.0",
+      "representative_rule": "highest_eligible_stable_patch",
+      "selected": true
+    },
+    {
+      "family_rank_zero_based": 28,
+      "family": "28.1",
+      "eligible_versions": [
+        "28.1"
+      ],
+      "first_release_date": "2019-08-28T23:39:43Z",
+      "representative": "28.1",
+      "representative_rule": "highest_eligible_stable_patch",
+      "selected": false
+    },
+    {
+      "family_rank_zero_based": 29,
+      "family": "28.2",
+      "eligible_versions": [
+        "28.2"
+      ],
+      "first_release_date": "2019-12-27T14:02:35Z",
+      "representative": "28.2",
+      "representative_rule": "highest_eligible_stable_patch",
+      "selected": true
+    },
+    {
+      "family_rank_zero_based": 30,
+      "family": "29.0",
+      "eligible_versions": [
+        "29.0"
+      ],
+      "first_release_date": "2020-04-13T22:03:54Z",
+      "representative": "29.0",
+      "representative_rule": "highest_eligible_stable_patch",
+      "selected": true
+    },
+    {
+      "family_rank_zero_based": 31,
+      "family": "30.0",
+      "eligible_versions": [
+        "30.0"
+      ],
+      "first_release_date": "2020-10-16T21:49:48Z",
+      "representative": "30.0",
+      "representative_rule": "highest_eligible_stable_patch",
+      "selected": false
+    },
+    {
+      "family_rank_zero_based": 32,
+      "family": "30.1",
+      "eligible_versions": [
+        "30.1",
+        "30.1.1"
+      ],
+      "first_release_date": "2020-12-14T17:01:27Z",
+      "representative": "30.1.1",
+      "representative_rule": "highest_eligible_stable_patch",
+      "selected": true
+    },
+    {
+      "family_rank_zero_based": 33,
+      "family": "31.0",
+      "eligible_versions": [
+        "31.0",
+        "31.0.1"
+      ],
+      "first_release_date": "2021-09-24T21:36:10Z",
+      "representative": "31.0.1",
+      "representative_rule": "highest_eligible_stable_patch",
+      "selected": true
+    },
+    {
+      "family_rank_zero_based": 34,
+      "family": "31.1",
+      "eligible_versions": [
+        "31.1"
+      ],
+      "first_release_date": "2022-02-28T22:00:16Z",
+      "representative": "31.1",
+      "representative_rule": "highest_eligible_stable_patch",
+      "selected": false
+    },
+    {
+      "family_rank_zero_based": 35,
+      "family": "32.0",
+      "eligible_versions": [
+        "32.0.0",
+        "32.0.1"
+      ],
+      "first_release_date": "2023-05-29T19:00:25Z",
+      "representative": "32.0.1",
+      "representative_rule": "highest_eligible_stable_patch",
+      "selected": true
+    },
+    {
+      "family_rank_zero_based": 36,
+      "family": "32.1",
+      "eligible_versions": [
+        "32.1.0",
+        "32.1.1",
+        "32.1.2",
+        "32.1.3"
+      ],
+      "first_release_date": "2023-06-29T20:24:12Z",
+      "representative": "32.1.3",
+      "representative_rule": "highest_eligible_stable_patch",
+      "selected": true
+    },
+    {
+      "family_rank_zero_based": 37,
+      "family": "33.0",
+      "eligible_versions": [
+        "33.0.0"
+      ],
+      "first_release_date": "2023-12-18T21:30:36Z",
+      "representative": "33.0.0",
+      "representative_rule": "highest_eligible_stable_patch",
+      "selected": false
+    },
+    {
+      "family_rank_zero_based": 38,
+      "family": "33.1",
+      "eligible_versions": [
+        "33.1.0"
+      ],
+      "first_release_date": "2024-03-13T19:53:35Z",
+      "representative": "33.1.0",
+      "representative_rule": "highest_eligible_stable_patch",
+      "selected": true
+    },
+    {
+      "family_rank_zero_based": 39,
+      "family": "33.2",
+      "eligible_versions": [
+        "33.2.0",
+        "33.2.1"
+      ],
+      "first_release_date": "2024-05-02T14:24:18Z",
+      "representative": "33.2.1",
+      "representative_rule": "highest_eligible_stable_patch",
+      "selected": true
+    },
+    {
+      "family_rank_zero_based": 40,
+      "family": "33.3",
+      "eligible_versions": [
+        "33.3.0",
+        "33.3.1"
+      ],
+      "first_release_date": "2024-08-16T23:38:09Z",
+      "representative": "33.3.1",
+      "representative_rule": "highest_eligible_stable_patch",
+      "selected": false
+    },
+    {
+      "family_rank_zero_based": 41,
+      "family": "33.4",
+      "eligible_versions": [
+        "33.4.0",
+        "33.4.1",
+        "33.4.2",
+        "33.4.3",
+        "33.4.4",
+        "33.4.5",
+        "33.4.6",
+        "33.4.7",
+        "33.4.8"
+      ],
+      "first_release_date": "2024-12-16T22:35:44Z",
+      "representative": "33.4.8",
+      "representative_rule": "highest_eligible_stable_patch",
+      "selected": true
+    },
+    {
+      "family_rank_zero_based": 42,
+      "family": "33.5",
+      "eligible_versions": [
+        "33.5.0"
+      ],
+      "first_release_date": "2025-09-17T21:05:27Z",
+      "representative": "33.5.0",
+      "representative_rule": "highest_eligible_stable_patch",
+      "selected": true
+    },
+    {
+      "family_rank_zero_based": 43,
+      "family": "33.6",
+      "eligible_versions": [
+        "33.6.0"
+      ],
+      "first_release_date": "2026-04-14T19:18:43Z",
+      "representative": "33.6.0",
+      "representative_rule": "highest_eligible_stable_patch",
+      "selected": false
+    },
+    {
+      "family_rank_zero_based": 44,
+      "family": "33.7",
+      "eligible_versions": [
+        "33.7.0",
+        "33.7.1",
+        "33.7.2"
+      ],
+      "first_release_date": "2026-08-17T14:52:11Z",
+      "representative": "33.7.2",
+      "representative_rule": "highest_eligible_stable_patch",
+      "selected": true
+    }
+  ],
+  "selection_inputs_exclude": [
+    "dependency graphs",
+    "clustering outcomes",
+    "quality metrics",
+    "structural identity"
+  ]
+}

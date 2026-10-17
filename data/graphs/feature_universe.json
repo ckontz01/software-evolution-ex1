@@ -488,7 +488,6 @@
   "com.google.common.hash.ParametricNullness",
   "com.google.common.hash.Platform",
   "com.google.common.hash.PrimitiveSink",
-  "com.google.common.hash.Sink",
   "com.google.common.hash.SipHashFunction",
   "com.google.common.hash.SneakyThrows",
   "com.google.common.hash.Striped64",
@@ -710,5 +709,9 @@
   "com.google.common.util.concurrent.WrappingScheduledExecutorService",
   "com.google.common.xml.ElementTypesAreNonnullByDefault",
   "com.google.common.xml.ParametricNullness",
-  "com.google.common.xml.XmlEscapers"
+  "com.google.common.xml.XmlEscapers",
+  "com.google.thirdparty.publicsuffix.PublicSuffixPatterns",
+  "com.google.thirdparty.publicsuffix.PublicSuffixTrie",
+  "com.google.thirdparty.publicsuffix.PublicSuffixType",
+  "com.google.thirdparty.publicsuffix.TrieParser"
 ]

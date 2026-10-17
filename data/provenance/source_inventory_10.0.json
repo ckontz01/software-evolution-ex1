@@ -1,6 +1,10 @@
 {
   "version": "10.0",
   "source_java_files": 326,
+  "source_ownership_prefixes": [
+    "com/google/common/",
+    "com/google/thirdparty/publicsuffix/"
+  ],
   "source_owned_java_files": 326,
   "source_owned_java_nonblank_noncomment_lines": 48843,
   "java_physical_lines": 90644,

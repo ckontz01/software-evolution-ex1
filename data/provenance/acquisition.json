@@ -1,11 +1,46 @@
 {
-  "started_at_utc": "2026-10-17T15:25:28+00:00",
-  "completed_at_utc": "2026-10-17T15:25:34+00:00",
-  "mode": "offline_verify",
+  "started_at_utc": "2026-10-17T19:05:45+00:00",
+  "completed_at_utc": "2026-10-17T19:05:53+00:00",
+  "mode": "download_or_verify",
   "repository": "google/guava",
   "versions": 30,
+  "study_revision": 2,
+  "selected_versions": [
+    "10.0",
+    "12.0.1",
+    "13.0.1",
+    "15.0",
+    "16.0.1",
+    "18.0",
+    "19.0",
+    "21.0",
+    "22.0",
+    "23.1",
+    "23.2",
+    "23.4",
+    "23.5",
+    "24.0",
+    "24.1",
+    "25.1",
+    "26.0",
+    "27.1",
+    "28.0",
+    "28.2",
+    "29.0",
+    "30.1.1",
+    "31.0.1",
+    "32.0.1",
+    "32.1.3",
+    "33.1.0",
+    "33.2.1",
+    "33.4.8",
+    "33.5.0",
+    "33.7.2"
+  ],
+  "selected_unique_families": 30,
+  "selection_manifest_sha256": "733cfefe8582f23ee0dba1349773ceeaf67e746cf8892f7e21fe014cb3e62410",
   "artifact_count": 90,
-  "total_artifact_bytes": 127945020,
+  "total_artifact_bytes": 126255554,
   "all_pinned_sha256_verified": true,
   "artifacts": [
     {
@@ -39,64 +74,34 @@
       "cached": true
     },
     {
-      "version": "11.0",
+      "version": "12.0.1",
       "kind": "jar",
-      "path": "data/raw/11.0/guava-11.0.jar",
-      "url": "https://repo.maven.apache.org/maven2/com/google/guava/guava/11.0/guava-11.0.jar",
-      "bytes": 1649748,
-      "sha256": "50e80aef7b7a58867010d619f38c6c37022038517e9e0d7112d056b2a727a081",
-      "maven_sha1": "f8ebb252d9ce7ff71b68b494551711242b2118d6",
-      "cached": true
+      "path": "data/raw/12.0.1/guava-12.0.1.jar",
+      "url": "https://repo.maven.apache.org/maven2/com/google/guava/guava/12.0.1/guava-12.0.1.jar",
+      "bytes": 1795932,
+      "sha256": "ec7f9928bc0cd5ca36b32bc3965055c49843d69ac1a9ccf380fdcc3f686af7fc",
+      "maven_sha1": "b8e78b9af7bf45900e14c6f958486b6ca682195f",
+      "cached": false
     },
     {
-      "version": "11.0",
+      "version": "12.0.1",
       "kind": "pom",
-      "path": "data/raw/11.0/guava-11.0.pom",
-      "url": "https://repo.maven.apache.org/maven2/com/google/guava/guava/11.0/guava-11.0.pom",
-      "bytes": 5468,
-      "sha256": "74dcf04479274c77265c6eb52b8222cac22c62fe0cddc26d4fc47a1ce3bb02ef",
-      "maven_sha1": "c8513eb04f2d83d813f16ad4836607f977dba789",
-      "cached": true
+      "path": "data/raw/12.0.1/guava-12.0.1.pom",
+      "url": "https://repo.maven.apache.org/maven2/com/google/guava/guava/12.0.1/guava-12.0.1.pom",
+      "bytes": 5316,
+      "sha256": "6c3379ef723321e757ea4bcf0fb3985cc39f24d20fca555841fd5f8809e21c49",
+      "maven_sha1": "dc5edf4a695b89e85c278ee5a7b4a689ff823b43",
+      "cached": false
     },
     {
-      "version": "11.0",
+      "version": "12.0.1",
       "kind": "sources",
-      "path": "data/raw/11.0/guava-11.0-sources.jar",
-      "url": "https://repo.maven.apache.org/maven2/com/google/guava/guava/11.0/guava-11.0-sources.jar",
-      "bytes": 944182,
-      "sha256": "d40d4ad9e750bc3260d7779ae33d861046521d95856421c82a4d85cad1f83115",
-      "maven_sha1": "02caaa613428bc74609bfbd76f00cfef1b7b187d",
-      "cached": true
-    },
-    {
-      "version": "12.0",
-      "kind": "jar",
-      "path": "data/raw/12.0/guava-12.0.jar",
-      "url": "https://repo.maven.apache.org/maven2/com/google/guava/guava/12.0/guava-12.0.jar",
-      "bytes": 1795936,
-      "sha256": "1b5a500b3017a65d6b99fb92dbc9047684d7ffb937c1e53a86c22b6977f7da4e",
-      "maven_sha1": "5bc66dd95b79db1e437eb08adba124a3e4088dc0",
-      "cached": true
-    },
-    {
-      "version": "12.0",
-      "kind": "pom",
-      "path": "data/raw/12.0/guava-12.0.pom",
-      "url": "https://repo.maven.apache.org/maven2/com/google/guava/guava/12.0/guava-12.0.pom",
-      "bytes": 5314,
-      "sha256": "cc59992bdc45dce8758ae19c1411412cc690b226f9c48657546c90b0df8605aa",
-      "maven_sha1": "954f8f38a27acbfdf47280b71e41cedd0d3b9939",
-      "cached": true
-    },
-    {
-      "version": "12.0",
-      "kind": "sources",
-      "path": "data/raw/12.0/guava-12.0-sources.jar",
-      "url": "https://repo.maven.apache.org/maven2/com/google/guava/guava/12.0/guava-12.0-sources.jar",
-      "bytes": 1002181,
-      "sha256": "aaa2396904817f4c9c975d581fbe1c79a44cbdcf5e8aaf76fba01b4d8ff055ab",
-      "maven_sha1": "f8b98e61865bed3c39b978ee3bf5c7fb990c4032",
-      "cached": true
+      "path": "data/raw/12.0.1/guava-12.0.1-sources.jar",
+      "url": "https://repo.maven.apache.org/maven2/com/google/guava/guava/12.0.1/guava-12.0.1-sources.jar",
+      "bytes": 1002184,
+      "sha256": "41b7b282f3e9a93d08c4fbdeebfd748c014470a2f598bf880104deb9b4d0dcce",
+      "maven_sha1": "7c344cc8f5d83f40c7af2c48b2d78cccefecec4e",
+      "cached": false
     },
     {
       "version": "13.0.1",
@@ -219,6 +224,36 @@
       "cached": true
     },
     {
+      "version": "19.0",
+      "kind": "jar",
+      "path": "data/raw/19.0/guava-19.0.jar",
+      "url": "https://repo.maven.apache.org/maven2/com/google/guava/guava/19.0/guava-19.0.jar",
+      "bytes": 2308517,
+      "sha256": "58d4cc2e05ebb012bbac568b032f75623be1cb6fb096f3c60c72a86f7f057de4",
+      "maven_sha1": "6ce200f6b23222af3d8abb6b6459e6c44f4bb0e9",
+      "cached": false
+    },
+    {
+      "version": "19.0",
+      "kind": "pom",
+      "path": "data/raw/19.0/guava-19.0.pom",
+      "url": "https://repo.maven.apache.org/maven2/com/google/guava/guava/19.0/guava-19.0.pom",
+      "bytes": 6792,
+      "sha256": "addc064da7f1077fdf4dc90e5aaa887cd790850d1b74fe2e6e25d5f78551ac63",
+      "maven_sha1": "65a43a21dbddcc19aa3ca50a63a4b33166bfbc77",
+      "cached": false
+    },
+    {
+      "version": "19.0",
+      "kind": "sources",
+      "path": "data/raw/19.0/guava-19.0-sources.jar",
+      "url": "https://repo.maven.apache.org/maven2/com/google/guava/guava/19.0/guava-19.0-sources.jar",
+      "bytes": 1319216,
+      "sha256": "814e1ebf708d38c3b00155fbd484a401a6f771b512862e4bf58863c4f9563c6a",
+      "maven_sha1": "91a4d115400e904f22b03a78deb355e9ea803cd4",
+      "cached": false
+    },
+    {
       "version": "21.0",
       "kind": "jar",
       "path": "data/raw/21.0/guava-21.0.jar",
@@ -249,34 +284,64 @@
       "cached": true
     },
     {
-      "version": "23.0",
+      "version": "22.0",
       "kind": "jar",
-      "path": "data/raw/23.0/guava-23.0.jar",
-      "url": "https://repo.maven.apache.org/maven2/com/google/guava/guava/23.0/guava-23.0.jar",
-      "bytes": 2614708,
-      "sha256": "7baa80df284117e5b945b19b98d367a85ea7b7801bd358ff657946c3bd1b6596",
-      "maven_sha1": "c947004bb13d18182be60077ade044099e4f26f1",
-      "cached": true
+      "path": "data/raw/22.0/guava-22.0.jar",
+      "url": "https://repo.maven.apache.org/maven2/com/google/guava/guava/22.0/guava-22.0.jar",
+      "bytes": 2575022,
+      "sha256": "1158e94c7de4da480873f0b4ab4a1da14c0d23d4b1902cc94a58a6f0f9ab579e",
+      "maven_sha1": "3564ef3803de51fb0530a8377ec6100b33b0d073",
+      "cached": false
     },
     {
-      "version": "23.0",
+      "version": "22.0",
       "kind": "pom",
-      "path": "data/raw/23.0/guava-23.0.pom",
-      "url": "https://repo.maven.apache.org/maven2/com/google/guava/guava/23.0/guava-23.0.pom",
-      "bytes": 5589,
-      "sha256": "ac2ac42a7a6b4ce5097c6c83e2fbbacbbb7f9913f1b4f993eb1723a14476324e",
-      "maven_sha1": "05ce65d93433db6ef45746bcfbcef6656698851f",
-      "cached": true
+      "path": "data/raw/22.0/guava-22.0.pom",
+      "url": "https://repo.maven.apache.org/maven2/com/google/guava/guava/22.0/guava-22.0.pom",
+      "bytes": 5675,
+      "sha256": "bfadb3b40f65dd6de1666d6b29f8bb54031396c76eeef4146cf9f28255f8bf33",
+      "maven_sha1": "b87878db57d5cfc2ca7d3972cc8f7486bf02fbca",
+      "cached": false
     },
     {
-      "version": "23.0",
+      "version": "22.0",
       "kind": "sources",
-      "path": "data/raw/23.0/guava-23.0-sources.jar",
-      "url": "https://repo.maven.apache.org/maven2/com/google/guava/guava/23.0/guava-23.0-sources.jar",
-      "bytes": 1561297,
-      "sha256": "37fe8ba804fb3898c3c8f0cbac319cc9daa58400e5f0226a380ac94fb2c3ca14",
-      "maven_sha1": "ed233607c5c11e1a13a3fd760033ed5d9fe525c2",
-      "cached": true
+      "path": "data/raw/22.0/guava-22.0-sources.jar",
+      "url": "https://repo.maven.apache.org/maven2/com/google/guava/guava/22.0/guava-22.0-sources.jar",
+      "bytes": 1527071,
+      "sha256": "6dc2849225ae048bfd6ea55150355d9b54620d8ad49c0899cfd4c5ec172f9f60",
+      "maven_sha1": "55edc69e4fc937f4e58e577bb144b824c0ec7c55",
+      "cached": false
+    },
+    {
+      "version": "23.1",
+      "kind": "jar",
+      "path": "data/raw/23.1/guava-23.1-jre.jar",
+      "url": "https://repo.maven.apache.org/maven2/com/google/guava/guava/23.1-jre/guava-23.1-jre.jar",
+      "bytes": 2636765,
+      "sha256": "08aaaa2e67346e3a3e1508e7c6b12af77024403d0d6d87a78d8a7bcf3971f381",
+      "maven_sha1": "23ed5a005f9289062224ddbe0d398e732c5efc36",
+      "cached": false
+    },
+    {
+      "version": "23.1",
+      "kind": "pom",
+      "path": "data/raw/23.1/guava-23.1-jre.pom",
+      "url": "https://repo.maven.apache.org/maven2/com/google/guava/guava/23.1-jre/guava-23.1-jre.pom",
+      "bytes": 5593,
+      "sha256": "5bdfc9cba4501ccf7fbe46a4ea194646c033a4774b1fda513b2c3f0bcf6b5315",
+      "maven_sha1": "edeb7f4460e194ed7dcb2fa2cbc4c5a075a3d62d",
+      "cached": false
+    },
+    {
+      "version": "23.1",
+      "kind": "sources",
+      "path": "data/raw/23.1/guava-23.1-jre-sources.jar",
+      "url": "https://repo.maven.apache.org/maven2/com/google/guava/guava/23.1-jre/guava-23.1-jre-sources.jar",
+      "bytes": 1573680,
+      "sha256": "b3b8d8871723ce070c73cc22d3e261bdcd76bba30a731ab7875fafe660fba562",
+      "maven_sha1": "7eb5129b799d1e8b72ab8ed5adee3390c188e01d",
+      "cached": false
     },
     {
       "version": "23.2",
@@ -307,6 +372,36 @@
       "sha256": "824af5f814fac0338762ab4cba8eb2b3c3509b7276a3913809d7cc876e6f37a3",
       "maven_sha1": "b63fe66a4b4ded5f67a77cef7ae2b7ba6563a7b3",
       "cached": true
+    },
+    {
+      "version": "23.4",
+      "kind": "jar",
+      "path": "data/raw/23.4/guava-23.4-jre.jar",
+      "url": "https://repo.maven.apache.org/maven2/com/google/guava/guava/23.4-jre/guava-23.4-jre.jar",
+      "bytes": 2657158,
+      "sha256": "2662a33f09febab5023ddbf52780cb8d2a6e0c49a24db8094adc0e944801a810",
+      "maven_sha1": "dfed5a4d90eb13e47b62ccf735cdce87c9c4e522",
+      "cached": false
+    },
+    {
+      "version": "23.4",
+      "kind": "pom",
+      "path": "data/raw/23.4/guava-23.4-jre.pom",
+      "url": "https://repo.maven.apache.org/maven2/com/google/guava/guava/23.4-jre/guava-23.4-jre.pom",
+      "bytes": 6822,
+      "sha256": "22ebbb83bd95c00a6bea878cb5b9bb8a602ea12a66467b0cfa4f97b414ea5d0e",
+      "maven_sha1": "10aacc158b795c5a5b36698ea9704ac8b34a27fe",
+      "cached": false
+    },
+    {
+      "version": "23.4",
+      "kind": "sources",
+      "path": "data/raw/23.4/guava-23.4-jre-sources.jar",
+      "url": "https://repo.maven.apache.org/maven2/com/google/guava/guava/23.4-jre/guava-23.4-jre-sources.jar",
+      "bytes": 1580514,
+      "sha256": "a204bfe338fc32a1a0d63811ead6a4b2674bf6c3969880df7e4a369d48839142",
+      "maven_sha1": "6e746dfbec5a39bc3a03a6c01d09a9756b4471e2",
+      "cached": false
     },
     {
       "version": "23.5",
@@ -369,6 +464,36 @@
       "cached": true
     },
     {
+      "version": "24.1",
+      "kind": "jar",
+      "path": "data/raw/24.1/guava-24.1-jre.jar",
+      "url": "https://repo.maven.apache.org/maven2/com/google/guava/guava/24.1-jre/guava-24.1-jre.jar",
+      "bytes": 2738386,
+      "sha256": "31bfe27bdf9cba00cb4f3691136d3bc7847dfc87bfe772ca7a9eb68ff31d79f5",
+      "maven_sha1": "96c528475465aeb22cce60605d230a7e67cebd7b",
+      "cached": false
+    },
+    {
+      "version": "24.1",
+      "kind": "pom",
+      "path": "data/raw/24.1/guava-24.1-jre.pom",
+      "url": "https://repo.maven.apache.org/maven2/com/google/guava/guava/24.1-jre/guava-24.1-jre.pom",
+      "bytes": 7781,
+      "sha256": "c37abec22f7e524d7e4f31766a2ff2511b1ff4fc2dd6dc3a8e2d773fcfdb7f45",
+      "maven_sha1": "4496795a9f6483af2f42b3bf21e5e0ac9fa3a454",
+      "cached": false
+    },
+    {
+      "version": "24.1",
+      "kind": "sources",
+      "path": "data/raw/24.1/guava-24.1-jre-sources.jar",
+      "url": "https://repo.maven.apache.org/maven2/com/google/guava/guava/24.1-jre/guava-24.1-jre-sources.jar",
+      "bytes": 1625844,
+      "sha256": "3310420b11e001734f60b855ddbfad5ee615a8b0bb013e58517272a3676960e4",
+      "maven_sha1": "73e800fa7c9eb49747441dc3f65dd316169009b1",
+      "cached": false
+    },
+    {
       "version": "25.1",
       "kind": "jar",
       "path": "data/raw/25.1/guava-25.1-jre.jar",
@@ -399,34 +524,34 @@
       "cached": true
     },
     {
-      "version": "27.0",
+      "version": "26.0",
       "kind": "jar",
-      "path": "data/raw/27.0/guava-27.0-jre.jar",
-      "url": "https://repo.maven.apache.org/maven2/com/google/guava/guava/27.0-jre/guava-27.0-jre.jar",
-      "bytes": 2747878,
-      "sha256": "63b09db6861011e7fb2481be7790c7fd4b03f0bb884b3de2ecba8823ad19bf3f",
-      "maven_sha1": "c6ad87d2575af8ac8ec38e28e75aefa882cc3a1f",
-      "cached": true
+      "path": "data/raw/26.0/guava-26.0-jre.jar",
+      "url": "https://repo.maven.apache.org/maven2/com/google/guava/guava/26.0-jre/guava-26.0-jre.jar",
+      "bytes": 2740721,
+      "sha256": "a0e9cabad665bc20bcd2b01f108e5fc03f756e13aea80abaadb9f407033bea2c",
+      "maven_sha1": "6a806eff209f36f635f943e16d97491f00f6bfab",
+      "cached": false
     },
     {
-      "version": "27.0",
+      "version": "26.0",
       "kind": "pom",
-      "path": "data/raw/27.0/guava-27.0-jre.pom",
-      "url": "https://repo.maven.apache.org/maven2/com/google/guava/guava/27.0-jre/guava-27.0-jre.pom",
-      "bytes": 8118,
-      "sha256": "87a7cae265a762a9819794601e9352702f3c31afab2eeb87b92d3590778e6065",
-      "maven_sha1": "4727c3cd318cdc6782538874aa0ae1bd355055c9",
-      "cached": true
+      "path": "data/raw/26.0/guava-26.0-jre.pom",
+      "url": "https://repo.maven.apache.org/maven2/com/google/guava/guava/26.0-jre/guava-26.0-jre.pom",
+      "bytes": 7775,
+      "sha256": "1c337adc9a4ab4b844da81da85936581b8946c7cb71284c5dcbdaf1eaa7ee109",
+      "maven_sha1": "7883e19f8b0cca8c4498d476743e31b107674155",
+      "cached": false
     },
     {
-      "version": "27.0",
+      "version": "26.0",
       "kind": "sources",
-      "path": "data/raw/27.0/guava-27.0-jre-sources.jar",
-      "url": "https://repo.maven.apache.org/maven2/com/google/guava/guava/27.0-jre/guava-27.0-jre-sources.jar",
-      "bytes": 1633014,
-      "sha256": "170dbf09858d1cffdaaa53d4d6ab15e6253c845318b0cc3bf21f8dffa9d433ab",
-      "maven_sha1": "d6484e2ee11ad928ccf61cf3e4ce9cedc2eead7e",
-      "cached": true
+      "path": "data/raw/26.0/guava-26.0-jre-sources.jar",
+      "url": "https://repo.maven.apache.org/maven2/com/google/guava/guava/26.0-jre/guava-26.0-jre-sources.jar",
+      "bytes": 1628494,
+      "sha256": "a658eba55b72c320c45501045184c71da037cd52cd6056d597458a0c32504421",
+      "maven_sha1": "2e35b51c759ae1a6edbb967b65c525105536d382",
+      "cached": false
     },
     {
       "version": "27.1",
@@ -459,6 +584,36 @@
       "cached": true
     },
     {
+      "version": "28.0",
+      "kind": "jar",
+      "path": "data/raw/28.0/guava-28.0-jre.jar",
+      "url": "https://repo.maven.apache.org/maven2/com/google/guava/guava/28.0-jre/guava-28.0-jre.jar",
+      "bytes": 2746681,
+      "sha256": "73e4d6ae5f0e8f9d292a4db83a2479b5468f83d972ac1ff36d6d0b43943b4f91",
+      "maven_sha1": "54fed371b4b8a8cce1e94a9abd9620982d3aa54b",
+      "cached": false
+    },
+    {
+      "version": "28.0",
+      "kind": "pom",
+      "path": "data/raw/28.0/guava-28.0-jre.pom",
+      "url": "https://repo.maven.apache.org/maven2/com/google/guava/guava/28.0-jre/guava-28.0-jre.pom",
+      "bytes": 8715,
+      "sha256": "76881f0598fd750e9b1ca5d32dc5a2a1b57cf340d68c2cea6b1b62fcc788ba4a",
+      "maven_sha1": "4859de3f25a722048aa0d34ef136ab0ecafd6703",
+      "cached": false
+    },
+    {
+      "version": "28.0",
+      "kind": "sources",
+      "path": "data/raw/28.0/guava-28.0-jre-sources.jar",
+      "url": "https://repo.maven.apache.org/maven2/com/google/guava/guava/28.0-jre/guava-28.0-jre-sources.jar",
+      "bytes": 1637342,
+      "sha256": "fd865e2dbc1f6be12417bff5538e848c584f7297e4e6e4039d7967ffd27d43c2",
+      "maven_sha1": "2d1dca555245ef4bacb35f25299f323d8dd10b27",
+      "cached": false
+    },
+    {
       "version": "28.2",
       "kind": "jar",
       "path": "data/raw/28.2/guava-28.2-jre.jar",
@@ -489,34 +644,34 @@
       "cached": true
     },
     {
-      "version": "30.0",
+      "version": "29.0",
       "kind": "jar",
-      "path": "data/raw/30.0/guava-30.0-jre.jar",
-      "url": "https://repo.maven.apache.org/maven2/com/google/guava/guava/30.0-jre/guava-30.0-jre.jar",
-      "bytes": 2858426,
-      "sha256": "56b292df9ec29d102820c1fd7dd581cd749d5c416c7b3aeac008dbda3b984cc2",
-      "maven_sha1": "8ddbc8769f73309fe09b54c5951163f10b0d89fa",
-      "cached": true
+      "path": "data/raw/29.0/guava-29.0-jre.jar",
+      "url": "https://repo.maven.apache.org/maven2/com/google/guava/guava/29.0-jre/guava-29.0-jre.jar",
+      "bytes": 2792264,
+      "sha256": "b22c5fb66d61e7b9522531d04b2f915b5158e80aa0b40ee7282c8bfb07b0da25",
+      "maven_sha1": "801142b4c3d0f0770dd29abea50906cacfddd447",
+      "cached": false
     },
     {
-      "version": "30.0",
+      "version": "29.0",
       "kind": "pom",
-      "path": "data/raw/30.0/guava-30.0-jre.pom",
-      "url": "https://repo.maven.apache.org/maven2/com/google/guava/guava/30.0-jre/guava-30.0-jre.pom",
+      "path": "data/raw/29.0/guava-29.0-jre.pom",
+      "url": "https://repo.maven.apache.org/maven2/com/google/guava/guava/29.0-jre/guava-29.0-jre.pom",
       "bytes": 10920,
-      "sha256": "3f881774161282f6730d2b8e74a8e1ac753b8a734781a526f880b1b8bdb89451",
-      "maven_sha1": "d7239fe628e6e3fbb6734acbc07195435fdac305",
-      "cached": true
+      "sha256": "9027e934098903d287f1ba61c8b65f01d1d1e1da7a6fbcc04bf3de0544014426",
+      "maven_sha1": "e40cdee0d70244df1e963daac53a16241aea4585",
+      "cached": false
     },
     {
-      "version": "30.0",
+      "version": "29.0",
       "kind": "sources",
-      "path": "data/raw/30.0/guava-30.0-jre-sources.jar",
-      "url": "https://repo.maven.apache.org/maven2/com/google/guava/guava/30.0-jre/guava-30.0-jre-sources.jar",
-      "bytes": 1700915,
-      "sha256": "daa8a245663f9027ae4b84239147d3439221839155a4d93cbab280c3e657a73d",
-      "maven_sha1": "44b1d40ac2743daef983d85b81f4534bc6a17d04",
-      "cached": true
+      "path": "data/raw/29.0/guava-29.0-jre-sources.jar",
+      "url": "https://repo.maven.apache.org/maven2/com/google/guava/guava/29.0-jre/guava-29.0-jre-sources.jar",
+      "bytes": 1669863,
+      "sha256": "cfcbe29dd5125f5b360370b4ecd7f7ef44fba68f4f037e90bce7315682afc0ea",
+      "maven_sha1": "33e6868bc0fcb9b4b493123eeec78d1352934e87",
+      "cached": false
     },
     {
       "version": "30.1.1",
@@ -549,34 +704,34 @@
       "cached": true
     },
     {
-      "version": "31.1",
+      "version": "31.0.1",
       "kind": "jar",
-      "path": "data/raw/31.1/guava-31.1-jre.jar",
-      "url": "https://repo.maven.apache.org/maven2/com/google/guava/guava/31.1-jre/guava-31.1-jre.jar",
-      "bytes": 2959479,
-      "sha256": "a42edc9cab792e39fe39bb94f3fca655ed157ff87a8af78e1d6ba5b07c4a00ab",
-      "maven_sha1": "60458f877d055d0c9114d9e1a2efb737b4bc282c",
-      "cached": true
+      "path": "data/raw/31.0.1/guava-31.0.1-jre.jar",
+      "url": "https://repo.maven.apache.org/maven2/com/google/guava/guava/31.0.1-jre/guava-31.0.1-jre.jar",
+      "bytes": 2974216,
+      "sha256": "d5be94d65e87bd219fb3193ad1517baa55a3b88fc91d21cf735826ab5af087b9",
+      "maven_sha1": "119ea2b2bc205b138974d351777b20f02b92704b",
+      "cached": false
     },
     {
-      "version": "31.1",
+      "version": "31.0.1",
       "kind": "pom",
-      "path": "data/raw/31.1/guava-31.1-jre.pom",
-      "url": "https://repo.maven.apache.org/maven2/com/google/guava/guava/31.1-jre/guava-31.1-jre.pom",
-      "bytes": 10981,
-      "sha256": "9193d07bf4f660108d7358e58b27d21b44e34e80d6734e98e21916376f270de2",
-      "maven_sha1": "03a6ac93765fbbc416179f7c7127b9ddddbf38d9",
-      "cached": true
+      "path": "data/raw/31.0.1/guava-31.0.1-jre.pom",
+      "url": "https://repo.maven.apache.org/maven2/com/google/guava/guava/31.0.1-jre/guava-31.0.1-jre.pom",
+      "bytes": 10963,
+      "sha256": "2be566920c21c60c5ccaf2827867caff766646e2113b7fcc3ee9c24a40b2f396",
+      "maven_sha1": "d0ec1628dcc04e4835721416103672384ea3136f",
+      "cached": false
     },
     {
-      "version": "31.1",
+      "version": "31.0.1",
       "kind": "sources",
-      "path": "data/raw/31.1/guava-31.1-jre-sources.jar",
-      "url": "https://repo.maven.apache.org/maven2/com/google/guava/guava/31.1-jre/guava-31.1-jre-sources.jar",
-      "bytes": 1827642,
-      "sha256": "8ab1853cdaf936ec88be80c17302b7c20abafbd4f54d4fb54d7011c529e3a44a",
-      "maven_sha1": "c388a68bc2b17a314dfa7c769d858ada0fc32dcf",
-      "cached": true
+      "path": "data/raw/31.0.1/guava-31.0.1-jre-sources.jar",
+      "url": "https://repo.maven.apache.org/maven2/com/google/guava/guava/31.0.1-jre/guava-31.0.1-jre-sources.jar",
+      "bytes": 1815313,
+      "sha256": "fc0fb66f315f10b8713fc43354936d3649a8ad63f789d42fd7c3e55ecf72e092",
+      "maven_sha1": "d34772c01bd6637982d1aafe895c4fcd8b42e139",
+      "cached": false
     },
     {
       "version": "32.0.1",
@@ -609,214 +764,94 @@
       "cached": true
     },
     {
-      "version": "32.1.2",
+      "version": "32.1.3",
       "kind": "jar",
-      "path": "data/raw/32.1.2/guava-32.1.2-jre.jar",
-      "url": "https://repo.maven.apache.org/maven2/com/google/guava/guava/32.1.2-jre/guava-32.1.2-jre.jar",
-      "bytes": 3041591,
-      "sha256": "bc65dea7cfd9e4dacf8419d8af0e741655857d27885bb35d943d7187fc3a8fce",
-      "maven_sha1": "5e64ec7e056456bef3a4bc4c6fdaef71e8ab6318",
-      "cached": true
+      "path": "data/raw/32.1.3/guava-32.1.3-jre.jar",
+      "url": "https://repo.maven.apache.org/maven2/com/google/guava/guava/32.1.3-jre/guava-32.1.3-jre.jar",
+      "bytes": 3043932,
+      "sha256": "6d4e2b5a118aab62e6e5e29d185a0224eed82c85c40ac3d33cf04a270c3b3744",
+      "maven_sha1": "0f306708742ce2bf0fb0901216183bc14073feae",
+      "cached": false
     },
     {
-      "version": "32.1.2",
+      "version": "32.1.3",
       "kind": "pom",
-      "path": "data/raw/32.1.2/guava-32.1.2-jre.pom",
-      "url": "https://repo.maven.apache.org/maven2/com/google/guava/guava/32.1.2-jre/guava-32.1.2-jre.pom",
+      "path": "data/raw/32.1.3/guava-32.1.3-jre.pom",
+      "url": "https://repo.maven.apache.org/maven2/com/google/guava/guava/32.1.3-jre/guava-32.1.3-jre.pom",
       "bytes": 12843,
-      "sha256": "3f208596d71e0839b253a490af49a36ef7fdb451be90a42ab1df9e96cfd31660",
-      "maven_sha1": "a72008cdb1474c77bc2876919a5ee5fbf0fb79bc",
-      "cached": true
+      "sha256": "700e6d46e75b5939a22a41c25ec2bb122f3cbef4efed45e3312fddcbe993db33",
+      "maven_sha1": "698deeca13a1dc49e069b8a7e11d8cc2ff6a8cf9",
+      "cached": false
     },
     {
-      "version": "32.1.2",
+      "version": "32.1.3",
       "kind": "sources",
-      "path": "data/raw/32.1.2/guava-32.1.2-jre-sources.jar",
-      "url": "https://repo.maven.apache.org/maven2/com/google/guava/guava/32.1.2-jre/guava-32.1.2-jre-sources.jar",
-      "bytes": 1860158,
-      "sha256": "f80a6cb82625d6e4834f61f131ed51e956541b4e3a029d45d02bc824b722bfcc",
-      "maven_sha1": "e1911d4544f426600132fbd450a7ccab8a3ce8dc",
-      "cached": true
+      "path": "data/raw/32.1.3/guava-32.1.3-jre-sources.jar",
+      "url": "https://repo.maven.apache.org/maven2/com/google/guava/guava/32.1.3-jre/guava-32.1.3-jre-sources.jar",
+      "bytes": 1862386,
+      "sha256": "9f6f333b2deaf36644d14ddeed7e6b31151b0c244bab1e4d58ee443ade9a09f3",
+      "maven_sha1": "9fa794e2f2d4e62ff849327ed06a679ecdcd4187",
+      "cached": false
     },
     {
-      "version": "33.0.0",
+      "version": "33.1.0",
       "kind": "jar",
-      "path": "data/raw/33.0.0/guava-33.0.0-jre.jar",
-      "url": "https://repo.maven.apache.org/maven2/com/google/guava/guava/33.0.0-jre/guava-33.0.0-jre.jar",
-      "bytes": 3047503,
-      "sha256": "f4d85c3e4d411694337cb873abea09b242b664bb013320be6105327c45991537",
-      "maven_sha1": "161ba27964a62f241533807a46b8711b13c1d94b",
-      "cached": true
+      "path": "data/raw/33.1.0/guava-33.1.0-jre.jar",
+      "url": "https://repo.maven.apache.org/maven2/com/google/guava/guava/33.1.0-jre/guava-33.1.0-jre.jar",
+      "bytes": 3053247,
+      "sha256": "346aec0eb8c8987360c8a264e70ff10c2fba760446eb27e8ab07e78e787a75fe",
+      "maven_sha1": "9b7ed39143d59e8eabcc6f91ffe4d23db2efe558",
+      "cached": false
     },
     {
-      "version": "33.0.0",
+      "version": "33.1.0",
       "kind": "pom",
-      "path": "data/raw/33.0.0/guava-33.0.0-jre.pom",
-      "url": "https://repo.maven.apache.org/maven2/com/google/guava/guava/33.0.0-jre/guava-33.0.0-jre.pom",
-      "bytes": 12547,
-      "sha256": "fd70b14c441986c22e6d22ced2576787756be4918b145a8abd223e3a80b6e32d",
-      "maven_sha1": "fe8e10972387557cdb729b11dd0e15349fecba14",
-      "cached": true
-    },
-    {
-      "version": "33.0.0",
-      "kind": "sources",
-      "path": "data/raw/33.0.0/guava-33.0.0-jre-sources.jar",
-      "url": "https://repo.maven.apache.org/maven2/com/google/guava/guava/33.0.0-jre/guava-33.0.0-jre-sources.jar",
-      "bytes": 1863997,
-      "sha256": "0c17d911785e8a606d091aa6740d6d520f307749c2bddf6e35066d52fe0036e5",
-      "maven_sha1": "2cca40652185734d5a89349c471a54367fb98067",
-      "cached": true
-    },
-    {
-      "version": "33.2.0",
-      "kind": "jar",
-      "path": "data/raw/33.2.0/guava-33.2.0-jre.jar",
-      "url": "https://repo.maven.apache.org/maven2/com/google/guava/guava/33.2.0-jre/guava-33.2.0-jre.jar",
-      "bytes": 3054490,
-      "sha256": "99f491e86262ce38d13b3581d40f77acdb4696a9505447c3154474c3192908dd",
-      "maven_sha1": "e264781dadc4967e5292f3c4d05f1d153631f7b4",
-      "cached": true
-    },
-    {
-      "version": "33.2.0",
-      "kind": "pom",
-      "path": "data/raw/33.2.0/guava-33.2.0-jre.pom",
-      "url": "https://repo.maven.apache.org/maven2/com/google/guava/guava/33.2.0-jre/guava-33.2.0-jre.pom",
+      "path": "data/raw/33.1.0/guava-33.1.0-jre.pom",
+      "url": "https://repo.maven.apache.org/maven2/com/google/guava/guava/33.1.0-jre/guava-33.1.0-jre.pom",
       "bytes": 9087,
-      "sha256": "ed8311481b58e504dbfc1b5f4770bf075dc12f6cac855dd7d7f36a50d4c41910",
-      "maven_sha1": "e78e6bc096ac140596ce47c2cd6e90f12a417779",
-      "cached": true
+      "sha256": "55741ad16f98cee6e6dc0adddd438069cc5e3ff29a26e3175d4fea28769254b7",
+      "maven_sha1": "ff9e5899929c5ff0de96f6d9a49359ecc088f756",
+      "cached": false
     },
     {
-      "version": "33.2.0",
+      "version": "33.1.0",
       "kind": "sources",
-      "path": "data/raw/33.2.0/guava-33.2.0-jre-sources.jar",
-      "url": "https://repo.maven.apache.org/maven2/com/google/guava/guava/33.2.0-jre/guava-33.2.0-jre-sources.jar",
-      "bytes": 1873472,
-      "sha256": "eb5b759b6296141cb7dfce6f53105a3b9a64c98e6f9f3704ddea40f159cca466",
-      "maven_sha1": "64d85714a20478b2aa26eec54888f5d11a24c22f",
-      "cached": true
+      "path": "data/raw/33.1.0/guava-33.1.0-jre-sources.jar",
+      "url": "https://repo.maven.apache.org/maven2/com/google/guava/guava/33.1.0-jre/guava-33.1.0-jre-sources.jar",
+      "bytes": 1872569,
+      "sha256": "fe357db754046d94b79a0392c523c44671e71c1ac7b6e289bc0382a06bd5cd51",
+      "maven_sha1": "d387b5accef736533f994567b6d7d000d330bab6",
+      "cached": false
     },
     {
-      "version": "33.3.1",
+      "version": "33.2.1",
       "kind": "jar",
-      "path": "data/raw/33.3.1/guava-33.3.1-jre.jar",
-      "url": "https://repo.maven.apache.org/maven2/com/google/guava/guava/33.3.1-jre/guava-33.3.1-jre.jar",
-      "bytes": 3079289,
-      "sha256": "4bf0e2c5af8e4525c96e8fde17a4f7307f97f8478f11c4c8e35a0e3298ae4e90",
-      "maven_sha1": "852f8b363da0111e819460021ca693cacca3e8db",
-      "cached": true
+      "path": "data/raw/33.2.1/guava-33.2.1-jre.jar",
+      "url": "https://repo.maven.apache.org/maven2/com/google/guava/guava/33.2.1-jre/guava-33.2.1-jre.jar",
+      "bytes": 3051356,
+      "sha256": "452b2d9787b7d366fa8cf5ed9a1c40404542d05effa7a598da03bbbbb76d9f31",
+      "maven_sha1": "818e780da2c66c63bbb6480fef1f3855eeafa3e4",
+      "cached": false
     },
     {
-      "version": "33.3.1",
+      "version": "33.2.1",
       "kind": "pom",
-      "path": "data/raw/33.3.1/guava-33.3.1-jre.pom",
-      "url": "https://repo.maven.apache.org/maven2/com/google/guava/guava/33.3.1-jre/guava-33.3.1-jre.pom",
-      "bytes": 9304,
-      "sha256": "313b67fc13eb3b0634eda715a1229971f5de9b8188bc280762815b83a275f193",
-      "maven_sha1": "5a5628b34628748abcb73144a909ddbea2265ed9",
-      "cached": true
+      "path": "data/raw/33.2.1/guava-33.2.1-jre.pom",
+      "url": "https://repo.maven.apache.org/maven2/com/google/guava/guava/33.2.1-jre/guava-33.2.1-jre.pom",
+      "bytes": 9087,
+      "sha256": "42817bdc1c0c8c737d6b411cfaf4a84769e7d271e879b016fd0850248a06dab5",
+      "maven_sha1": "5f72123f1bb7d99af8b4a67745fb8309b73a6294",
+      "cached": false
     },
     {
-      "version": "33.3.1",
+      "version": "33.2.1",
       "kind": "sources",
-      "path": "data/raw/33.3.1/guava-33.3.1-jre-sources.jar",
-      "url": "https://repo.maven.apache.org/maven2/com/google/guava/guava/33.3.1-jre/guava-33.3.1-jre-sources.jar",
-      "bytes": 1879184,
-      "sha256": "b7cbdad958b791f2a036abff7724570bf9836531c460966f8a3d0df8eaa1c21d",
-      "maven_sha1": "e788c9bc41ef2bcbb89794f793da9b576b5dde38",
-      "cached": true
-    },
-    {
-      "version": "33.4.1",
-      "kind": "jar",
-      "path": "data/raw/33.4.1/guava-33.4.1-jre.jar",
-      "url": "https://repo.maven.apache.org/maven2/com/google/guava/guava/33.4.1-jre/guava-33.4.1-jre.jar",
-      "bytes": 3051133,
-      "sha256": "01a377308fb446b1b6b944d6d6a5bd52e7f22112a5253b26d4bfbe74b71833d0",
-      "maven_sha1": "2a1b52d1b6f780a6b4881f869ccdaac33df1aa11",
-      "cached": true
-    },
-    {
-      "version": "33.4.1",
-      "kind": "pom",
-      "path": "data/raw/33.4.1/guava-33.4.1-jre.pom",
-      "url": "https://repo.maven.apache.org/maven2/com/google/guava/guava/33.4.1-jre/guava-33.4.1-jre.pom",
-      "bytes": 8898,
-      "sha256": "a4adba6df0edafbd2d5b51604d330eca0bb20fde76c788655bcfd2872e146f76",
-      "maven_sha1": "557647e81893f73b69639fc91f8f42e539225a2d",
-      "cached": true
-    },
-    {
-      "version": "33.4.1",
-      "kind": "sources",
-      "path": "data/raw/33.4.1/guava-33.4.1-jre-sources.jar",
-      "url": "https://repo.maven.apache.org/maven2/com/google/guava/guava/33.4.1-jre/guava-33.4.1-jre-sources.jar",
-      "bytes": 1860426,
-      "sha256": "0c86e0fa27de5223ed2f1e5e4bd5a1b6371765fcfd30f3cb09d415a7a1a64cea",
-      "maven_sha1": "f614f1ef5d5f777e633fcc295ed235312327e7f5",
-      "cached": true
-    },
-    {
-      "version": "33.4.3",
-      "kind": "jar",
-      "path": "data/raw/33.4.3/guava-33.4.3-jre.jar",
-      "url": "https://repo.maven.apache.org/maven2/com/google/guava/guava/33.4.3-jre/guava-33.4.3-jre.jar",
-      "bytes": 3053055,
-      "sha256": "74532716f8eaa06d4947ffa6b740bfc671050bc9e0da46ad1dc07c4aa14f8c62",
-      "maven_sha1": "f0952f1344ebda01d7dbaf52f5af0901a348a340",
-      "cached": true
-    },
-    {
-      "version": "33.4.3",
-      "kind": "pom",
-      "path": "data/raw/33.4.3/guava-33.4.3-jre.pom",
-      "url": "https://repo.maven.apache.org/maven2/com/google/guava/guava/33.4.3-jre/guava-33.4.3-jre.pom",
-      "bytes": 8321,
-      "sha256": "daab7b81a674315820e17dc757a6f803391dcc8c08c35a96f96221526fb758b7",
-      "maven_sha1": "8eeaad8c5355494387c54325a94f3f36031c3dee",
-      "cached": true
-    },
-    {
-      "version": "33.4.3",
-      "kind": "sources",
-      "path": "data/raw/33.4.3/guava-33.4.3-jre-sources.jar",
-      "url": "https://repo.maven.apache.org/maven2/com/google/guava/guava/33.4.3-jre/guava-33.4.3-jre-sources.jar",
-      "bytes": 1852744,
-      "sha256": "395a790577ac52ee7defdc20ebb1a42395a9863eb85e45cd385a686c186fab9d",
-      "maven_sha1": "38146602647443078b27ad72957b6100427b95ed",
-      "cached": true
-    },
-    {
-      "version": "33.4.6",
-      "kind": "jar",
-      "path": "data/raw/33.4.6/guava-33.4.6-jre.jar",
-      "url": "https://repo.maven.apache.org/maven2/com/google/guava/guava/33.4.6-jre/guava-33.4.6-jre.jar",
-      "bytes": 3024894,
-      "sha256": "958a035b74ff6c7d0cdff9c384524b645eb618f7117b60e1ee915f9cffd0e716",
-      "maven_sha1": "4437fb72c3cc5d29554b588d9a97bea12d6a42e1",
-      "cached": true
-    },
-    {
-      "version": "33.4.6",
-      "kind": "pom",
-      "path": "data/raw/33.4.6/guava-33.4.6-jre.pom",
-      "url": "https://repo.maven.apache.org/maven2/com/google/guava/guava/33.4.6-jre/guava-33.4.6-jre.pom",
-      "bytes": 9610,
-      "sha256": "9e8922b14ffb34d1ae2b1cd33906455a43e873a4ee9bcb31fa3603e76f6e41f2",
-      "maven_sha1": "261acba26c2ccfe389dfe6b443931cef128b2f4c",
-      "cached": true
-    },
-    {
-      "version": "33.4.6",
-      "kind": "sources",
-      "path": "data/raw/33.4.6/guava-33.4.6-jre-sources.jar",
-      "url": "https://repo.maven.apache.org/maven2/com/google/guava/guava/33.4.6-jre/guava-33.4.6-jre-sources.jar",
-      "bytes": 1846968,
-      "sha256": "4a101ecd088e0fe6d66be0bcc3ae480c5539dc6d59a55e601a36a71dcd91514d",
-      "maven_sha1": "e328f435a7601dbe5c4f40a46ba0e3c8ca6ee92c",
-      "cached": true
+      "path": "data/raw/33.2.1/guava-33.2.1-jre-sources.jar",
+      "url": "https://repo.maven.apache.org/maven2/com/google/guava/guava/33.2.1-jre/guava-33.2.1-jre-sources.jar",
+      "bytes": 1874258,
+      "sha256": "cce2aba265b7e1260c21f37af6d074bc2c322743dcedc27c573bc342b2d99c79",
+      "maven_sha1": "b49b0b2d97a0eae57d70d6871d150f2940b933c8",
+      "cached": false
     },
     {
       "version": "33.4.8",
@@ -849,34 +884,34 @@
       "cached": true
     },
     {
-      "version": "33.7.0",
+      "version": "33.5.0",
       "kind": "jar",
-      "path": "data/raw/33.7.0/guava-33.7.0-jre.jar",
-      "url": "https://repo.maven.apache.org/maven2/com/google/guava/guava/33.7.0-jre/guava-33.7.0-jre.jar",
-      "bytes": 3057621,
-      "sha256": "151bb9b817284d88825a06cf858a3184097e951b064bb48bd52a7889e3960af6",
-      "maven_sha1": "27261ce4d749e855617e68b99b9885d5ee39e8ae",
-      "cached": true
+      "path": "data/raw/33.5.0/guava-33.5.0-jre.jar",
+      "url": "https://repo.maven.apache.org/maven2/com/google/guava/guava/33.5.0-jre/guava-33.5.0-jre.jar",
+      "bytes": 3017283,
+      "sha256": "1e301f0c52ac248b0b14fdc3d12283c77252d4d6f48521d572e7d8c4c2cc4ac7",
+      "maven_sha1": "8699de25f2f979108d6c1b804a7ba38cda1116bc",
+      "cached": false
     },
     {
-      "version": "33.7.0",
+      "version": "33.5.0",
       "kind": "pom",
-      "path": "data/raw/33.7.0/guava-33.7.0-jre.pom",
-      "url": "https://repo.maven.apache.org/maven2/com/google/guava/guava/33.7.0-jre/guava-33.7.0-jre.pom",
-      "bytes": 9732,
-      "sha256": "985e0d30f02aec2b797a6f4bfed3b5825502f6cd0ce6557377cd03c54d9836c1",
-      "maven_sha1": "0e5545a4a4b2f1c0e69a0fa2bf0ebc42c74d8bba",
-      "cached": true
+      "path": "data/raw/33.5.0/guava-33.5.0-jre.pom",
+      "url": "https://repo.maven.apache.org/maven2/com/google/guava/guava/33.5.0-jre/guava-33.5.0-jre.pom",
+      "bytes": 9618,
+      "sha256": "0478fa78a908b3c31fe6d77be9978aaa621e2a181db84007e3d3b37424a2ac61",
+      "maven_sha1": "1bc4fe20066d7788787a2004986afbc6d1afd2ea",
+      "cached": false
     },
     {
-      "version": "33.7.0",
+      "version": "33.5.0",
       "kind": "sources",
-      "path": "data/raw/33.7.0/guava-33.7.0-jre-sources.jar",
-      "url": "https://repo.maven.apache.org/maven2/com/google/guava/guava/33.7.0-jre/guava-33.7.0-jre-sources.jar",
-      "bytes": 1899489,
-      "sha256": "bb13cb09bda466ba7b3e5e3b04e7b61ce216db7adbc0cec82d4582dd8fae4174",
-      "maven_sha1": "f2db7ee8a908411454b6965a29a9fac625389091",
-      "cached": true
+      "path": "data/raw/33.5.0/guava-33.5.0-jre-sources.jar",
+      "url": "https://repo.maven.apache.org/maven2/com/google/guava/guava/33.5.0-jre/guava-33.5.0-jre-sources.jar",
+      "bytes": 1841485,
+      "sha256": "79423ae87a2203950e0e3ce2a00682b3b8d8557e631bbf662dba5494fe3b55cb",
+      "maven_sha1": "d4a99a57361d167bb70cffcc86e3302add771bba",
+      "cached": false
     },
     {
       "version": "33.7.2",
@@ -913,6 +948,10 @@
     {
       "version": "10.0",
       "source_java_files": 326,
+      "source_ownership_prefixes": [
+        "com/google/common/",
+        "com/google/thirdparty/publicsuffix/"
+      ],
       "source_owned_java_files": 326,
       "source_owned_java_nonblank_noncomment_lines": 48843,
       "java_physical_lines": 90644,
@@ -924,25 +963,16 @@
       "sloc_definition": "Physical Java lines with noncomment, nonwhitespace content. A lexical scanner preserves string/character literals and removes line/block comments. Includes source JAR package/module descriptors; not a logical statement count."
     },
     {
-      "version": "11.0",
-      "source_java_files": 366,
-      "source_owned_java_files": 366,
-      "source_owned_java_nonblank_noncomment_lines": 54533,
-      "java_physical_lines": 101442,
-      "java_nonblank_noncomment_lines": 54533,
-      "raw_class_entries_including_multi_release": 1267,
-      "base_class_entries": 1267,
-      "source_owned_base_class_entries": 1258,
-      "base_classes_without_owned_source": [],
-      "sloc_definition": "Physical Java lines with noncomment, nonwhitespace content. A lexical scanner preserves string/character literals and removes line/block comments. Includes source JAR package/module descriptors; not a logical statement count."
-    },
-    {
-      "version": "12.0",
+      "version": "12.0.1",
       "source_java_files": 385,
+      "source_ownership_prefixes": [
+        "com/google/common/",
+        "com/google/thirdparty/publicsuffix/"
+      ],
       "source_owned_java_files": 385,
-      "source_owned_java_nonblank_noncomment_lines": 58147,
-      "java_physical_lines": 107723,
-      "java_nonblank_noncomment_lines": 58147,
+      "source_owned_java_nonblank_noncomment_lines": 58151,
+      "java_physical_lines": 107728,
+      "java_nonblank_noncomment_lines": 58151,
       "raw_class_entries_including_multi_release": 1342,
       "base_class_entries": 1342,
       "source_owned_base_class_entries": 1332,
@@ -952,6 +982,10 @@
     {
       "version": "13.0.1",
       "source_java_files": 394,
+      "source_ownership_prefixes": [
+        "com/google/common/",
+        "com/google/thirdparty/publicsuffix/"
+      ],
       "source_owned_java_files": 394,
       "source_owned_java_nonblank_noncomment_lines": 61263,
       "java_physical_lines": 113792,
@@ -965,6 +999,10 @@
     {
       "version": "15.0",
       "source_java_files": 455,
+      "source_ownership_prefixes": [
+        "com/google/common/",
+        "com/google/thirdparty/publicsuffix/"
+      ],
       "source_owned_java_files": 455,
       "source_owned_java_nonblank_noncomment_lines": 65098,
       "java_physical_lines": 125880,
@@ -978,430 +1016,443 @@
     {
       "version": "16.0.1",
       "source_java_files": 463,
-      "source_owned_java_files": 460,
-      "source_owned_java_nonblank_noncomment_lines": 66170,
+      "source_ownership_prefixes": [
+        "com/google/common/",
+        "com/google/thirdparty/publicsuffix/"
+      ],
+      "source_owned_java_files": 463,
+      "source_owned_java_nonblank_noncomment_lines": 66290,
       "java_physical_lines": 128182,
       "java_nonblank_noncomment_lines": 66290,
       "raw_class_entries_including_multi_release": 1678,
       "base_class_entries": 1678,
-      "source_owned_base_class_entries": 1662,
-      "base_classes_without_owned_source": [
-        "com/google/thirdparty/publicsuffix/PublicSuffixPatterns.class",
-        "com/google/thirdparty/publicsuffix/PublicSuffixType.class",
-        "com/google/thirdparty/publicsuffix/TrieParser.class"
-      ],
+      "source_owned_base_class_entries": 1665,
+      "base_classes_without_owned_source": [],
       "sloc_definition": "Physical Java lines with noncomment, nonwhitespace content. A lexical scanner preserves string/character literals and removes line/block comments. Includes source JAR package/module descriptors; not a logical statement count."
     },
     {
       "version": "18.0",
       "source_java_files": 469,
-      "source_owned_java_files": 466,
-      "source_owned_java_nonblank_noncomment_lines": 66676,
+      "source_ownership_prefixes": [
+        "com/google/common/",
+        "com/google/thirdparty/publicsuffix/"
+      ],
+      "source_owned_java_files": 469,
+      "source_owned_java_nonblank_noncomment_lines": 66796,
       "java_physical_lines": 129251,
       "java_nonblank_noncomment_lines": 66796,
       "raw_class_entries_including_multi_release": 1690,
       "base_class_entries": 1690,
-      "source_owned_base_class_entries": 1674,
-      "base_classes_without_owned_source": [
-        "com/google/thirdparty/publicsuffix/PublicSuffixPatterns.class",
-        "com/google/thirdparty/publicsuffix/PublicSuffixType.class",
-        "com/google/thirdparty/publicsuffix/TrieParser.class"
+      "source_owned_base_class_entries": 1677,
+      "base_classes_without_owned_source": [],
+      "sloc_definition": "Physical Java lines with noncomment, nonwhitespace content. A lexical scanner preserves string/character literals and removes line/block comments. Includes source JAR package/module descriptors; not a logical statement count."
+    },
+    {
+      "version": "19.0",
+      "source_java_files": 469,
+      "source_ownership_prefixes": [
+        "com/google/common/",
+        "com/google/thirdparty/publicsuffix/"
       ],
+      "source_owned_java_files": 469,
+      "source_owned_java_nonblank_noncomment_lines": 70306,
+      "java_physical_lines": 135371,
+      "java_nonblank_noncomment_lines": 70306,
+      "raw_class_entries_including_multi_release": 1717,
+      "base_class_entries": 1717,
+      "source_owned_base_class_entries": 1704,
+      "base_classes_without_owned_source": [],
       "sloc_definition": "Physical Java lines with noncomment, nonwhitespace content. A lexical scanner preserves string/character literals and removes line/block comments. Includes source JAR package/module descriptors; not a logical statement count."
     },
     {
       "version": "21.0",
       "source_java_files": 537,
-      "source_owned_java_files": 534,
-      "source_owned_java_nonblank_noncomment_lines": 78915,
+      "source_ownership_prefixes": [
+        "com/google/common/",
+        "com/google/thirdparty/publicsuffix/"
+      ],
+      "source_owned_java_files": 537,
+      "source_owned_java_nonblank_noncomment_lines": 79017,
       "java_physical_lines": 149489,
       "java_nonblank_noncomment_lines": 79017,
       "raw_class_entries_including_multi_release": 1837,
       "base_class_entries": 1837,
-      "source_owned_base_class_entries": 1819,
-      "base_classes_without_owned_source": [
-        "com/google/thirdparty/publicsuffix/PublicSuffixPatterns.class",
-        "com/google/thirdparty/publicsuffix/PublicSuffixType.class",
-        "com/google/thirdparty/publicsuffix/TrieParser.class"
-      ],
+      "source_owned_base_class_entries": 1822,
+      "base_classes_without_owned_source": [],
       "sloc_definition": "Physical Java lines with noncomment, nonwhitespace content. A lexical scanner preserves string/character literals and removes line/block comments. Includes source JAR package/module descriptors; not a logical statement count."
     },
     {
-      "version": "23.0",
-      "source_java_files": 557,
-      "source_owned_java_files": 554,
-      "source_owned_java_nonblank_noncomment_lines": 82603,
-      "java_physical_lines": 156476,
-      "java_nonblank_noncomment_lines": 82705,
-      "raw_class_entries_including_multi_release": 1883,
-      "base_class_entries": 1883,
-      "source_owned_base_class_entries": 1865,
-      "base_classes_without_owned_source": [
-        "com/google/thirdparty/publicsuffix/PublicSuffixPatterns.class",
-        "com/google/thirdparty/publicsuffix/PublicSuffixType.class",
-        "com/google/thirdparty/publicsuffix/TrieParser.class"
+      "version": "22.0",
+      "source_java_files": 545,
+      "source_ownership_prefixes": [
+        "com/google/common/",
+        "com/google/thirdparty/publicsuffix/"
       ],
+      "source_owned_java_files": 545,
+      "source_owned_java_nonblank_noncomment_lines": 81061,
+      "java_physical_lines": 153439,
+      "java_nonblank_noncomment_lines": 81061,
+      "raw_class_entries_including_multi_release": 1865,
+      "base_class_entries": 1865,
+      "source_owned_base_class_entries": 1850,
+      "base_classes_without_owned_source": [],
+      "sloc_definition": "Physical Java lines with noncomment, nonwhitespace content. A lexical scanner preserves string/character literals and removes line/block comments. Includes source JAR package/module descriptors; not a logical statement count."
+    },
+    {
+      "version": "23.1",
+      "source_java_files": 558,
+      "source_ownership_prefixes": [
+        "com/google/common/",
+        "com/google/thirdparty/publicsuffix/"
+      ],
+      "source_owned_java_files": 558,
+      "source_owned_java_nonblank_noncomment_lines": 83619,
+      "java_physical_lines": 158534,
+      "java_nonblank_noncomment_lines": 83619,
+      "raw_class_entries_including_multi_release": 1895,
+      "base_class_entries": 1895,
+      "source_owned_base_class_entries": 1880,
+      "base_classes_without_owned_source": [],
       "sloc_definition": "Physical Java lines with noncomment, nonwhitespace content. A lexical scanner preserves string/character literals and removes line/block comments. Includes source JAR package/module descriptors; not a logical statement count."
     },
     {
       "version": "23.2",
       "source_java_files": 558,
-      "source_owned_java_files": 555,
-      "source_owned_java_nonblank_noncomment_lines": 83697,
+      "source_ownership_prefixes": [
+        "com/google/common/",
+        "com/google/thirdparty/publicsuffix/"
+      ],
+      "source_owned_java_files": 558,
+      "source_owned_java_nonblank_noncomment_lines": 83799,
       "java_physical_lines": 158754,
       "java_nonblank_noncomment_lines": 83799,
       "raw_class_entries_including_multi_release": 1908,
       "base_class_entries": 1908,
-      "source_owned_base_class_entries": 1890,
-      "base_classes_without_owned_source": [
-        "com/google/thirdparty/publicsuffix/PublicSuffixPatterns.class",
-        "com/google/thirdparty/publicsuffix/PublicSuffixType.class",
-        "com/google/thirdparty/publicsuffix/TrieParser.class"
+      "source_owned_base_class_entries": 1893,
+      "base_classes_without_owned_source": [],
+      "sloc_definition": "Physical Java lines with noncomment, nonwhitespace content. A lexical scanner preserves string/character literals and removes line/block comments. Includes source JAR package/module descriptors; not a logical statement count."
+    },
+    {
+      "version": "23.4",
+      "source_java_files": 560,
+      "source_ownership_prefixes": [
+        "com/google/common/",
+        "com/google/thirdparty/publicsuffix/"
       ],
+      "source_owned_java_files": 560,
+      "source_owned_java_nonblank_noncomment_lines": 84003,
+      "java_physical_lines": 159290,
+      "java_nonblank_noncomment_lines": 84003,
+      "raw_class_entries_including_multi_release": 1916,
+      "base_class_entries": 1916,
+      "source_owned_base_class_entries": 1901,
+      "base_classes_without_owned_source": [],
       "sloc_definition": "Physical Java lines with noncomment, nonwhitespace content. A lexical scanner preserves string/character literals and removes line/block comments. Includes source JAR package/module descriptors; not a logical statement count."
     },
     {
       "version": "23.5",
       "source_java_files": 560,
-      "source_owned_java_files": 557,
-      "source_owned_java_nonblank_noncomment_lines": 83957,
+      "source_ownership_prefixes": [
+        "com/google/common/",
+        "com/google/thirdparty/publicsuffix/"
+      ],
+      "source_owned_java_files": 560,
+      "source_owned_java_nonblank_noncomment_lines": 84061,
       "java_physical_lines": 159419,
       "java_nonblank_noncomment_lines": 84061,
       "raw_class_entries_including_multi_release": 1918,
       "base_class_entries": 1918,
-      "source_owned_base_class_entries": 1900,
-      "base_classes_without_owned_source": [
-        "com/google/thirdparty/publicsuffix/PublicSuffixPatterns.class",
-        "com/google/thirdparty/publicsuffix/PublicSuffixType.class",
-        "com/google/thirdparty/publicsuffix/TrieParser.class"
-      ],
+      "source_owned_base_class_entries": 1903,
+      "base_classes_without_owned_source": [],
       "sloc_definition": "Physical Java lines with noncomment, nonwhitespace content. A lexical scanner preserves string/character literals and removes line/block comments. Includes source JAR package/module descriptors; not a logical statement count."
     },
     {
       "version": "24.0",
       "source_java_files": 565,
-      "source_owned_java_files": 562,
-      "source_owned_java_nonblank_noncomment_lines": 85616,
+      "source_ownership_prefixes": [
+        "com/google/common/",
+        "com/google/thirdparty/publicsuffix/"
+      ],
+      "source_owned_java_files": 565,
+      "source_owned_java_nonblank_noncomment_lines": 85720,
       "java_physical_lines": 159887,
       "java_nonblank_noncomment_lines": 85720,
       "raw_class_entries_including_multi_release": 1937,
       "base_class_entries": 1937,
-      "source_owned_base_class_entries": 1919,
-      "base_classes_without_owned_source": [
-        "com/google/thirdparty/publicsuffix/PublicSuffixPatterns.class",
-        "com/google/thirdparty/publicsuffix/PublicSuffixType.class",
-        "com/google/thirdparty/publicsuffix/TrieParser.class"
+      "source_owned_base_class_entries": 1922,
+      "base_classes_without_owned_source": [],
+      "sloc_definition": "Physical Java lines with noncomment, nonwhitespace content. A lexical scanner preserves string/character literals and removes line/block comments. Includes source JAR package/module descriptors; not a logical statement count."
+    },
+    {
+      "version": "24.1",
+      "source_java_files": 570,
+      "source_ownership_prefixes": [
+        "com/google/common/",
+        "com/google/thirdparty/publicsuffix/"
       ],
+      "source_owned_java_files": 570,
+      "source_owned_java_nonblank_noncomment_lines": 86383,
+      "java_physical_lines": 160963,
+      "java_nonblank_noncomment_lines": 86383,
+      "raw_class_entries_including_multi_release": 1946,
+      "base_class_entries": 1946,
+      "source_owned_base_class_entries": 1931,
+      "base_classes_without_owned_source": [],
       "sloc_definition": "Physical Java lines with noncomment, nonwhitespace content. A lexical scanner preserves string/character literals and removes line/block comments. Includes source JAR package/module descriptors; not a logical statement count."
     },
     {
       "version": "25.1",
       "source_java_files": 570,
-      "source_owned_java_files": 567,
-      "source_owned_java_nonblank_noncomment_lines": 86173,
+      "source_ownership_prefixes": [
+        "com/google/common/",
+        "com/google/thirdparty/publicsuffix/"
+      ],
+      "source_owned_java_files": 570,
+      "source_owned_java_nonblank_noncomment_lines": 86276,
       "java_physical_lines": 160992,
       "java_nonblank_noncomment_lines": 86276,
       "raw_class_entries_including_multi_release": 1944,
       "base_class_entries": 1944,
-      "source_owned_base_class_entries": 1926,
-      "base_classes_without_owned_source": [
-        "com/google/thirdparty/publicsuffix/PublicSuffixPatterns.class",
-        "com/google/thirdparty/publicsuffix/PublicSuffixType.class",
-        "com/google/thirdparty/publicsuffix/TrieParser.class"
-      ],
+      "source_owned_base_class_entries": 1929,
+      "base_classes_without_owned_source": [],
       "sloc_definition": "Physical Java lines with noncomment, nonwhitespace content. A lexical scanner preserves string/character literals and removes line/block comments. Includes source JAR package/module descriptors; not a logical statement count."
     },
     {
-      "version": "27.0",
-      "source_java_files": 573,
-      "source_owned_java_files": 570,
-      "source_owned_java_nonblank_noncomment_lines": 86439,
-      "java_physical_lines": 161159,
-      "java_nonblank_noncomment_lines": 86542,
-      "raw_class_entries_including_multi_release": 1957,
-      "base_class_entries": 1957,
-      "source_owned_base_class_entries": 1937,
-      "base_classes_without_owned_source": [
-        "com/google/common/util/concurrent/internal/InternalFutureFailureAccess.class",
-        "com/google/common/util/concurrent/internal/InternalFutures.class",
-        "com/google/thirdparty/publicsuffix/PublicSuffixPatterns.class",
-        "com/google/thirdparty/publicsuffix/PublicSuffixType.class",
-        "com/google/thirdparty/publicsuffix/TrieParser.class"
+      "version": "26.0",
+      "source_java_files": 572,
+      "source_ownership_prefixes": [
+        "com/google/common/",
+        "com/google/thirdparty/publicsuffix/"
       ],
+      "source_owned_java_files": 572,
+      "source_owned_java_nonblank_noncomment_lines": 86274,
+      "java_physical_lines": 160732,
+      "java_nonblank_noncomment_lines": 86274,
+      "raw_class_entries_including_multi_release": 1951,
+      "base_class_entries": 1951,
+      "source_owned_base_class_entries": 1936,
+      "base_classes_without_owned_source": [],
       "sloc_definition": "Physical Java lines with noncomment, nonwhitespace content. A lexical scanner preserves string/character literals and removes line/block comments. Includes source JAR package/module descriptors; not a logical statement count."
     },
     {
       "version": "27.1",
       "source_java_files": 572,
-      "source_owned_java_files": 569,
-      "source_owned_java_nonblank_noncomment_lines": 86706,
+      "source_ownership_prefixes": [
+        "com/google/common/",
+        "com/google/thirdparty/publicsuffix/"
+      ],
+      "source_owned_java_files": 572,
+      "source_owned_java_nonblank_noncomment_lines": 86809,
       "java_physical_lines": 161846,
       "java_nonblank_noncomment_lines": 86809,
       "raw_class_entries_including_multi_release": 1950,
       "base_class_entries": 1950,
-      "source_owned_base_class_entries": 1932,
-      "base_classes_without_owned_source": [
-        "com/google/thirdparty/publicsuffix/PublicSuffixPatterns.class",
-        "com/google/thirdparty/publicsuffix/PublicSuffixType.class",
-        "com/google/thirdparty/publicsuffix/TrieParser.class"
+      "source_owned_base_class_entries": 1935,
+      "base_classes_without_owned_source": [],
+      "sloc_definition": "Physical Java lines with noncomment, nonwhitespace content. A lexical scanner preserves string/character literals and removes line/block comments. Includes source JAR package/module descriptors; not a logical statement count."
+    },
+    {
+      "version": "28.0",
+      "source_java_files": 570,
+      "source_ownership_prefixes": [
+        "com/google/common/",
+        "com/google/thirdparty/publicsuffix/"
       ],
+      "source_owned_java_files": 570,
+      "source_owned_java_nonblank_noncomment_lines": 86994,
+      "java_physical_lines": 162683,
+      "java_nonblank_noncomment_lines": 86994,
+      "raw_class_entries_including_multi_release": 1947,
+      "base_class_entries": 1947,
+      "source_owned_base_class_entries": 1932,
+      "base_classes_without_owned_source": [],
       "sloc_definition": "Physical Java lines with noncomment, nonwhitespace content. A lexical scanner preserves string/character literals and removes line/block comments. Includes source JAR package/module descriptors; not a logical statement count."
     },
     {
       "version": "28.2",
       "source_java_files": 574,
-      "source_owned_java_files": 571,
-      "source_owned_java_nonblank_noncomment_lines": 88139,
+      "source_ownership_prefixes": [
+        "com/google/common/",
+        "com/google/thirdparty/publicsuffix/"
+      ],
+      "source_owned_java_files": 574,
+      "source_owned_java_nonblank_noncomment_lines": 88242,
       "java_physical_lines": 164813,
       "java_nonblank_noncomment_lines": 88242,
       "raw_class_entries_including_multi_release": 1968,
       "base_class_entries": 1968,
-      "source_owned_base_class_entries": 1950,
-      "base_classes_without_owned_source": [
-        "com/google/thirdparty/publicsuffix/PublicSuffixPatterns.class",
-        "com/google/thirdparty/publicsuffix/PublicSuffixType.class",
-        "com/google/thirdparty/publicsuffix/TrieParser.class"
-      ],
+      "source_owned_base_class_entries": 1953,
+      "base_classes_without_owned_source": [],
       "sloc_definition": "Physical Java lines with noncomment, nonwhitespace content. A lexical scanner preserves string/character literals and removes line/block comments. Includes source JAR package/module descriptors; not a logical statement count."
     },
     {
-      "version": "30.0",
-      "source_java_files": 585,
-      "source_owned_java_files": 582,
-      "source_owned_java_nonblank_noncomment_lines": 89762,
-      "java_physical_lines": 168670,
-      "java_nonblank_noncomment_lines": 89868,
-      "raw_class_entries_including_multi_release": 2025,
-      "base_class_entries": 2025,
-      "source_owned_base_class_entries": 2007,
-      "base_classes_without_owned_source": [
-        "com/google/thirdparty/publicsuffix/PublicSuffixPatterns.class",
-        "com/google/thirdparty/publicsuffix/PublicSuffixType.class",
-        "com/google/thirdparty/publicsuffix/TrieParser.class"
+      "version": "29.0",
+      "source_java_files": 579,
+      "source_ownership_prefixes": [
+        "com/google/common/",
+        "com/google/thirdparty/publicsuffix/"
       ],
+      "source_owned_java_files": 579,
+      "source_owned_java_nonblank_noncomment_lines": 88490,
+      "java_physical_lines": 165338,
+      "java_nonblank_noncomment_lines": 88490,
+      "raw_class_entries_including_multi_release": 1975,
+      "base_class_entries": 1975,
+      "source_owned_base_class_entries": 1960,
+      "base_classes_without_owned_source": [],
       "sloc_definition": "Physical Java lines with noncomment, nonwhitespace content. A lexical scanner preserves string/character literals and removes line/block comments. Includes source JAR package/module descriptors; not a logical statement count."
     },
     {
       "version": "30.1.1",
       "source_java_files": 587,
-      "source_owned_java_files": 584,
-      "source_owned_java_nonblank_noncomment_lines": 90322,
+      "source_ownership_prefixes": [
+        "com/google/common/",
+        "com/google/thirdparty/publicsuffix/"
+      ],
+      "source_owned_java_files": 587,
+      "source_owned_java_nonblank_noncomment_lines": 90425,
       "java_physical_lines": 169431,
       "java_nonblank_noncomment_lines": 90425,
       "raw_class_entries_including_multi_release": 2030,
       "base_class_entries": 2030,
-      "source_owned_base_class_entries": 2012,
-      "base_classes_without_owned_source": [
-        "com/google/thirdparty/publicsuffix/PublicSuffixPatterns.class",
-        "com/google/thirdparty/publicsuffix/PublicSuffixType.class",
-        "com/google/thirdparty/publicsuffix/TrieParser.class"
-      ],
+      "source_owned_base_class_entries": 2015,
+      "base_classes_without_owned_source": [],
       "sloc_definition": "Physical Java lines with noncomment, nonwhitespace content. A lexical scanner preserves string/character literals and removes line/block comments. Includes source JAR package/module descriptors; not a logical statement count."
     },
     {
-      "version": "31.1",
-      "source_java_files": 619,
-      "source_owned_java_files": 616,
-      "source_owned_java_nonblank_noncomment_lines": 94747,
-      "java_physical_lines": 177373,
-      "java_nonblank_noncomment_lines": 94850,
-      "raw_class_entries_including_multi_release": 2023,
-      "base_class_entries": 2023,
-      "source_owned_base_class_entries": 2005,
-      "base_classes_without_owned_source": [
-        "com/google/thirdparty/publicsuffix/PublicSuffixPatterns.class",
-        "com/google/thirdparty/publicsuffix/PublicSuffixType.class",
-        "com/google/thirdparty/publicsuffix/TrieParser.class"
+      "version": "31.0.1",
+      "source_java_files": 618,
+      "source_ownership_prefixes": [
+        "com/google/common/",
+        "com/google/thirdparty/publicsuffix/"
       ],
+      "source_owned_java_files": 618,
+      "source_owned_java_nonblank_noncomment_lines": 94685,
+      "java_physical_lines": 176629,
+      "java_nonblank_noncomment_lines": 94685,
+      "raw_class_entries_including_multi_release": 2060,
+      "base_class_entries": 2060,
+      "source_owned_base_class_entries": 2045,
+      "base_classes_without_owned_source": [],
       "sloc_definition": "Physical Java lines with noncomment, nonwhitespace content. A lexical scanner preserves string/character literals and removes line/block comments. Includes source JAR package/module descriptors; not a logical statement count."
     },
     {
       "version": "32.0.1",
       "source_java_files": 623,
-      "source_owned_java_files": 620,
-      "source_owned_java_nonblank_noncomment_lines": 95800,
+      "source_ownership_prefixes": [
+        "com/google/common/",
+        "com/google/thirdparty/publicsuffix/"
+      ],
+      "source_owned_java_files": 623,
+      "source_owned_java_nonblank_noncomment_lines": 95915,
       "java_physical_lines": 179617,
       "java_nonblank_noncomment_lines": 95915,
       "raw_class_entries_including_multi_release": 2014,
       "base_class_entries": 2014,
-      "source_owned_base_class_entries": 1996,
-      "base_classes_without_owned_source": [
-        "com/google/thirdparty/publicsuffix/PublicSuffixPatterns.class",
-        "com/google/thirdparty/publicsuffix/PublicSuffixType.class",
-        "com/google/thirdparty/publicsuffix/TrieParser.class"
-      ],
+      "source_owned_base_class_entries": 1999,
+      "base_classes_without_owned_source": [],
       "sloc_definition": "Physical Java lines with noncomment, nonwhitespace content. A lexical scanner preserves string/character literals and removes line/block comments. Includes source JAR package/module descriptors; not a logical statement count."
     },
     {
-      "version": "32.1.2",
+      "version": "32.1.3",
       "source_java_files": 624,
-      "source_owned_java_files": 621,
-      "source_owned_java_nonblank_noncomment_lines": 95893,
-      "java_physical_lines": 179522,
-      "java_nonblank_noncomment_lines": 96008,
+      "source_ownership_prefixes": [
+        "com/google/common/",
+        "com/google/thirdparty/publicsuffix/"
+      ],
+      "source_owned_java_files": 624,
+      "source_owned_java_nonblank_noncomment_lines": 96125,
+      "java_physical_lines": 179692,
+      "java_nonblank_noncomment_lines": 96125,
       "raw_class_entries_including_multi_release": 2020,
       "base_class_entries": 2020,
-      "source_owned_base_class_entries": 2002,
-      "base_classes_without_owned_source": [
-        "com/google/thirdparty/publicsuffix/PublicSuffixPatterns.class",
-        "com/google/thirdparty/publicsuffix/PublicSuffixType.class",
-        "com/google/thirdparty/publicsuffix/TrieParser.class"
-      ],
+      "source_owned_base_class_entries": 2005,
+      "base_classes_without_owned_source": [],
       "sloc_definition": "Physical Java lines with noncomment, nonwhitespace content. A lexical scanner preserves string/character literals and removes line/block comments. Includes source JAR package/module descriptors; not a logical statement count."
     },
     {
-      "version": "33.0.0",
-      "source_java_files": 621,
-      "source_owned_java_files": 618,
-      "source_owned_java_nonblank_noncomment_lines": 96544,
-      "java_physical_lines": 180299,
-      "java_nonblank_noncomment_lines": 96659,
-      "raw_class_entries_including_multi_release": 2018,
-      "base_class_entries": 2018,
-      "source_owned_base_class_entries": 2000,
-      "base_classes_without_owned_source": [
-        "com/google/thirdparty/publicsuffix/PublicSuffixPatterns.class",
-        "com/google/thirdparty/publicsuffix/PublicSuffixType.class",
-        "com/google/thirdparty/publicsuffix/TrieParser.class"
-      ],
-      "sloc_definition": "Physical Java lines with noncomment, nonwhitespace content. A lexical scanner preserves string/character literals and removes line/block comments. Includes source JAR package/module descriptors; not a logical statement count."
-    },
-    {
-      "version": "33.2.0",
+      "version": "33.1.0",
       "source_java_files": 625,
-      "source_owned_java_files": 622,
-      "source_owned_java_nonblank_noncomment_lines": 96720,
-      "java_physical_lines": 180955,
-      "java_nonblank_noncomment_lines": 96835,
-      "raw_class_entries_including_multi_release": 2022,
-      "base_class_entries": 2022,
-      "source_owned_base_class_entries": 2004,
-      "base_classes_without_owned_source": [
-        "com/google/thirdparty/publicsuffix/PublicSuffixPatterns.class",
-        "com/google/thirdparty/publicsuffix/PublicSuffixType.class",
-        "com/google/thirdparty/publicsuffix/TrieParser.class"
+      "source_ownership_prefixes": [
+        "com/google/common/",
+        "com/google/thirdparty/publicsuffix/"
       ],
+      "source_owned_java_files": 625,
+      "source_owned_java_nonblank_noncomment_lines": 96816,
+      "java_physical_lines": 180898,
+      "java_nonblank_noncomment_lines": 96816,
+      "raw_class_entries_including_multi_release": 2021,
+      "base_class_entries": 2021,
+      "source_owned_base_class_entries": 2006,
+      "base_classes_without_owned_source": [],
       "sloc_definition": "Physical Java lines with noncomment, nonwhitespace content. A lexical scanner preserves string/character literals and removes line/block comments. Includes source JAR package/module descriptors; not a logical statement count."
     },
     {
-      "version": "33.3.1",
-      "source_java_files": 627,
-      "source_owned_java_files": 624,
-      "source_owned_java_nonblank_noncomment_lines": 96951,
-      "java_physical_lines": 181434,
-      "java_nonblank_noncomment_lines": 97066,
-      "raw_class_entries_including_multi_release": 2017,
-      "base_class_entries": 2017,
-      "source_owned_base_class_entries": 1998,
-      "base_classes_without_owned_source": [
-        "com/google/thirdparty/publicsuffix/PublicSuffixPatterns.class",
-        "com/google/thirdparty/publicsuffix/PublicSuffixType.class",
-        "com/google/thirdparty/publicsuffix/TrieParser.class"
+      "version": "33.2.1",
+      "source_java_files": 626,
+      "source_ownership_prefixes": [
+        "com/google/common/",
+        "com/google/thirdparty/publicsuffix/"
       ],
-      "sloc_definition": "Physical Java lines with noncomment, nonwhitespace content. A lexical scanner preserves string/character literals and removes line/block comments. Includes source JAR package/module descriptors; not a logical statement count."
-    },
-    {
-      "version": "33.4.1",
-      "source_java_files": 615,
-      "source_owned_java_files": 612,
-      "source_owned_java_nonblank_noncomment_lines": 96318,
-      "java_physical_lines": 180758,
-      "java_nonblank_noncomment_lines": 96433,
-      "raw_class_entries_including_multi_release": 2003,
-      "base_class_entries": 2003,
-      "source_owned_base_class_entries": 1984,
-      "base_classes_without_owned_source": [
-        "com/google/thirdparty/publicsuffix/PublicSuffixPatterns.class",
-        "com/google/thirdparty/publicsuffix/PublicSuffixType.class",
-        "com/google/thirdparty/publicsuffix/TrieParser.class"
-      ],
-      "sloc_definition": "Physical Java lines with noncomment, nonwhitespace content. A lexical scanner preserves string/character literals and removes line/block comments. Includes source JAR package/module descriptors; not a logical statement count."
-    },
-    {
-      "version": "33.4.3",
-      "source_java_files": 615,
-      "source_owned_java_files": 612,
-      "source_owned_java_nonblank_noncomment_lines": 95248,
-      "java_physical_lines": 179540,
-      "java_nonblank_noncomment_lines": 95363,
-      "raw_class_entries_including_multi_release": 2003,
-      "base_class_entries": 2003,
-      "source_owned_base_class_entries": 1984,
-      "base_classes_without_owned_source": [
-        "com/google/thirdparty/publicsuffix/PublicSuffixPatterns.class",
-        "com/google/thirdparty/publicsuffix/PublicSuffixType.class",
-        "com/google/thirdparty/publicsuffix/TrieParser.class"
-      ],
-      "sloc_definition": "Physical Java lines with noncomment, nonwhitespace content. A lexical scanner preserves string/character literals and removes line/block comments. Includes source JAR package/module descriptors; not a logical statement count."
-    },
-    {
-      "version": "33.4.6",
-      "source_java_files": 615,
-      "source_owned_java_files": 611,
-      "source_owned_java_nonblank_noncomment_lines": 94930,
-      "java_physical_lines": 179524,
-      "java_nonblank_noncomment_lines": 95069,
-      "raw_class_entries_including_multi_release": 1969,
-      "base_class_entries": 1968,
-      "source_owned_base_class_entries": 1949,
-      "base_classes_without_owned_source": [
-        "com/google/thirdparty/publicsuffix/PublicSuffixPatterns.class",
-        "com/google/thirdparty/publicsuffix/PublicSuffixType.class",
-        "com/google/thirdparty/publicsuffix/TrieParser.class"
-      ],
+      "source_owned_java_files": 626,
+      "source_owned_java_nonblank_noncomment_lines": 96793,
+      "java_physical_lines": 180909,
+      "java_nonblank_noncomment_lines": 96793,
+      "raw_class_entries_including_multi_release": 2020,
+      "base_class_entries": 2020,
+      "source_owned_base_class_entries": 2005,
+      "base_classes_without_owned_source": [],
       "sloc_definition": "Physical Java lines with noncomment, nonwhitespace content. A lexical scanner preserves string/character literals and removes line/block comments. Includes source JAR package/module descriptors; not a logical statement count."
     },
     {
       "version": "33.4.8",
       "source_java_files": 615,
-      "source_owned_java_files": 611,
-      "source_owned_java_nonblank_noncomment_lines": 94942,
+      "source_ownership_prefixes": [
+        "com/google/common/",
+        "com/google/thirdparty/publicsuffix/"
+      ],
+      "source_owned_java_files": 614,
+      "source_owned_java_nonblank_noncomment_lines": 95057,
       "java_physical_lines": 179548,
       "java_nonblank_noncomment_lines": 95081,
       "raw_class_entries_including_multi_release": 1968,
       "base_class_entries": 1967,
-      "source_owned_base_class_entries": 1948,
-      "base_classes_without_owned_source": [
-        "com/google/thirdparty/publicsuffix/PublicSuffixPatterns.class",
-        "com/google/thirdparty/publicsuffix/PublicSuffixType.class",
-        "com/google/thirdparty/publicsuffix/TrieParser.class"
-      ],
+      "source_owned_base_class_entries": 1951,
+      "base_classes_without_owned_source": [],
       "sloc_definition": "Physical Java lines with noncomment, nonwhitespace content. A lexical scanner preserves string/character literals and removes line/block comments. Includes source JAR package/module descriptors; not a logical statement count."
     },
     {
-      "version": "33.7.0",
-      "source_java_files": 611,
-      "source_owned_java_files": 607,
-      "source_owned_java_nonblank_noncomment_lines": 95876,
-      "java_physical_lines": 181870,
-      "java_nonblank_noncomment_lines": 96646,
-      "raw_class_entries_including_multi_release": 1965,
-      "base_class_entries": 1965,
-      "source_owned_base_class_entries": 1944,
-      "base_classes_without_owned_source": [
-        "com/google/thirdparty/publicsuffix/PublicSuffixPatterns.class",
-        "com/google/thirdparty/publicsuffix/PublicSuffixTrie$ChunksCharSequence.class",
-        "com/google/thirdparty/publicsuffix/PublicSuffixTrie.class",
-        "com/google/thirdparty/publicsuffix/PublicSuffixType.class"
+      "version": "33.5.0",
+      "source_java_files": 607,
+      "source_ownership_prefixes": [
+        "com/google/common/",
+        "com/google/thirdparty/publicsuffix/"
       ],
+      "source_owned_java_files": 606,
+      "source_owned_java_nonblank_noncomment_lines": 94997,
+      "java_physical_lines": 179450,
+      "java_nonblank_noncomment_lines": 95021,
+      "raw_class_entries_including_multi_release": 1962,
+      "base_class_entries": 1961,
+      "source_owned_base_class_entries": 1945,
+      "base_classes_without_owned_source": [],
       "sloc_definition": "Physical Java lines with noncomment, nonwhitespace content. A lexical scanner preserves string/character literals and removes line/block comments. Includes source JAR package/module descriptors; not a logical statement count."
     },
     {
       "version": "33.7.2",
       "source_java_files": 611,
-      "source_owned_java_files": 607,
-      "source_owned_java_nonblank_noncomment_lines": 95876,
+      "source_ownership_prefixes": [
+        "com/google/common/",
+        "com/google/thirdparty/publicsuffix/"
+      ],
+      "source_owned_java_files": 610,
+      "source_owned_java_nonblank_noncomment_lines": 96622,
       "java_physical_lines": 181870,
       "java_nonblank_noncomment_lines": 96646,
       "raw_class_entries_including_multi_release": 1965,
       "base_class_entries": 1965,
-      "source_owned_base_class_entries": 1944,
-      "base_classes_without_owned_source": [
-        "com/google/thirdparty/publicsuffix/PublicSuffixPatterns.class",
-        "com/google/thirdparty/publicsuffix/PublicSuffixTrie$ChunksCharSequence.class",
-        "com/google/thirdparty/publicsuffix/PublicSuffixTrie.class",
-        "com/google/thirdparty/publicsuffix/PublicSuffixType.class"
-      ],
+      "source_owned_base_class_entries": 1948,
+      "base_classes_without_owned_source": [],
       "sloc_definition": "Physical Java lines with noncomment, nonwhitespace content. A lexical scanner preserves string/character literals and removes line/block comments. Includes source JAR package/module descriptors; not a logical statement count."
     }
   ],

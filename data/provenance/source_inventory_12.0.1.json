@@ -1,10 +1,14 @@
 {
-  "version": "12.0",
+  "version": "12.0.1",
   "source_java_files": 385,
+  "source_ownership_prefixes": [
+    "com/google/common/",
+    "com/google/thirdparty/publicsuffix/"
+  ],
   "source_owned_java_files": 385,
-  "source_owned_java_nonblank_noncomment_lines": 58147,
-  "java_physical_lines": 107723,
-  "java_nonblank_noncomment_lines": 58147,
+  "source_owned_java_nonblank_noncomment_lines": 58151,
+  "java_physical_lines": 107728,
+  "java_nonblank_noncomment_lines": 58151,
   "raw_class_entries_including_multi_release": 1342,
   "base_class_entries": 1342,
   "source_owned_base_class_entries": 1332,
@@ -318,9 +322,9 @@
     },
     {
       "path": "com/google/common/cache/LocalCache.java",
-      "sha256": "75ef4cf6084363c72c13214083530985d14b469fa29ef9f080dd403c81634904",
-      "physical_lines": 4903,
-      "nonblank_noncomment_lines": 3437
+      "sha256": "b8eadd5feab5bcabd6807d25ab4c7cf2a1caed690db8bc46a4a170b1b3cddf43",
+      "physical_lines": 4908,
+      "nonblank_noncomment_lines": 3441
     },
     {
       "path": "com/google/common/cache/RemovalCause.java",
