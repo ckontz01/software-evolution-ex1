@@ -1,0 +1,171 @@
+
+## Command 18: Packet 03 dry run
+Started UTC: 2026-10-18T11:19:35.095354+00:00
+Directory: /workspace/scratch/7500a23b5952/software-evolution-ex1/handoff/verification-work/run-qh_qltok
+Command: /opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python /workspace/scratch/7500a23b5952/software-evolution-ex1/handoff/verification-work/run-qh_qltok/extracted-03/03-a-extraction/apply_packet.py --packet /workspace/scratch/7500a23b5952/software-evolution-ex1/handoff/verification-work/run-qh_qltok/extracted-03/03-a-extraction --target /workspace/scratch/7500a23b5952/software-evolution-ex1/handoff/verification-work/run-qh_qltok/teacher --subdir guava-study
+Exit code: 0; elapsed seconds: 0.076833
+
+STDOUT
+Packet 03 — Student A: Instructor extraction and complete Java toolchain
+Pinned source commit: f32e6e831f976eed8bf01faa1d66dbdc34bc49c7
+Git repository: /workspace/scratch/7500a23b5952/software-evolution-ex1/handoff/verification-work/run-qh_qltok/teacher
+Study working directory (run the packet's checks here): /workspace/scratch/7500a23b5952/software-evolution-ex1/handoff/verification-work/run-qh_qltok/teacher/guava-study
+Validated 37 packet files and 20 committed prerequisites; 37 files need copying, 0 are already identical.
+Dry run passed. No files or Git state changed. Add --apply to copy; add --stage to stage only this packet.
+
+STDERR
+
+
+## Command 19: Packet 03 copy complete payload
+Started UTC: 2026-10-18T11:19:35.175977+00:00
+Directory: /workspace/scratch/7500a23b5952/software-evolution-ex1/handoff/verification-work/run-qh_qltok
+Command: /opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python /workspace/scratch/7500a23b5952/software-evolution-ex1/handoff/verification-work/run-qh_qltok/extracted-03/03-a-extraction/apply_packet.py --packet /workspace/scratch/7500a23b5952/software-evolution-ex1/handoff/verification-work/run-qh_qltok/extracted-03/03-a-extraction --target /workspace/scratch/7500a23b5952/software-evolution-ex1/handoff/verification-work/run-qh_qltok/teacher --subdir guava-study --apply
+Exit code: 0; elapsed seconds: 0.114814
+
+STDOUT
+Packet 03 — Student A: Instructor extraction and complete Java toolchain
+Pinned source commit: f32e6e831f976eed8bf01faa1d66dbdc34bc49c7
+Git repository: /workspace/scratch/7500a23b5952/software-evolution-ex1/handoff/verification-work/run-qh_qltok/teacher
+Study working directory (run the packet's checks here): /workspace/scratch/7500a23b5952/software-evolution-ex1/handoff/verification-work/run-qh_qltok/teacher/guava-study
+Validated 37 packet files and 20 committed prerequisites; 37 files need copying, 0 are already identical.
+Copied 37 new files; existing identical files were kept.
+Nothing was staged. Review the files and run the packet's checks before staging its explicit paths.
+Suggested commit message: import: add instructor extraction and complete Java toolchain (AI-assisted preparation)
+Use your own Git identity and actual commit date. This helper did not commit or push.
+
+STDERR
+
+
+## Command 20: Packet 03: Verify the bundled instructor JAR and its nested dependencies, ASM and ECJ
+Started UTC: 2026-10-18T11:19:35.294612+00:00
+Directory: /workspace/scratch/7500a23b5952/software-evolution-ex1/handoff/verification-work/run-qh_qltok/teacher/guava-study
+Command: /bin/bash -c 'python scripts/fetch_tools.py'
+Exit code: 0; elapsed seconds: 0.073591
+
+STDOUT
+verified asm-9.7.1.jar
+verified ecj-3.37.0.jar
+verified third_party/dependency_extractor/DependencyExtractor.jar
+verified build/instructor-libs/ant-1.6.5.jar
+verified build/instructor-libs/javaparser-1.0.8.jar
+verified build/instructor-libs/ant.jar
+verified build/instructor-libs/asm-9.7.1.jar
+
+STDERR
+
+
+## Command 21: Packet 03: Compile both supplemental extractor and official ACDC with the bundled compiler
+Started UTC: 2026-10-18T11:19:35.369138+00:00
+Directory: /workspace/scratch/7500a23b5952/software-evolution-ex1/handoff/verification-work/run-qh_qltok/teacher/guava-study
+Command: /bin/bash -c 'python scripts/build_java.py'
+Exit code: 0; elapsed seconds: 1.967599
+
+STDOUT
+{
+  "java_version": "openjdk version \"17.0.20\" 2026-07-21\nOpenJDK Runtime Environment (build 17.0.20+8-1-24.04-Ubuntu)\nOpenJDK 64-Bit Server VM (build 17.0.20+8-1-24.04-Ubuntu, mixed mode, sharing)",
+  "compiler": "Eclipse ECJ 3.37.0",
+  "asm": "9.7.1",
+  "builds": [
+    {
+      "component": "extractor",
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "component": "acdc",
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": ""
+    }
+  ],
+  "primary_extractor": "unmodified instructor CompCalc.MainClass",
+  "instructor_sha256": "8e4e857222dba569cc48ddf2bc58d3ac206d4ee1c0d5228b7b69517016450e9c",
+  "instructor_classpath": [
+    "third_party/dependency_extractor/DependencyExtractor.jar",
+    "build/instructor-libs/ant-1.6.5.jar",
+    "build/instructor-libs/javaparser-1.0.8.jar",
+    "build/instructor-libs/ant.jar",
+    "build/instructor-libs/asm-9.7.1.jar"
+  ],
+  "supplemental_extractor": "java/DependencyExtractor.java (ownership, member evidence and sensitivity graph)"
+}
+
+STDERR
+
+
+## Command 22: Packet 03: Run 11 real-bytecode extraction, ownership and normalization tests
+Started UTC: 2026-10-18T11:19:37.337932+00:00
+Directory: /workspace/scratch/7500a23b5952/software-evolution-ex1/handoff/verification-work/run-qh_qltok/teacher/guava-study
+Command: /bin/bash -c 'PYTHONPATH=src python -m unittest discover -s tests -p '"'"'test_extractor.py'"'"' -v'
+Exit code: 0; elapsed seconds: 2.202033
+
+STDOUT
+
+STDERR
+test_all_outputs_exclude_external_and_unowned_class_endpoints (test_extractor.TestBytecodeExtraction.test_all_outputs_exclude_external_and_unowned_class_endpoints) ... ok
+test_all_seven_lecture_relations_have_real_evidence (test_extractor.TestBytecodeExtraction.test_all_seven_lecture_relations_have_real_evidence) ... ok
+test_annotation_applications_are_only_supplemental_but_nodes_and_code_references_remain (test_extractor.TestBytecodeExtraction.test_annotation_applications_are_only_supplemental_but_nodes_and_code_references_remain) ... ok
+test_generic_arguments_do_not_replace_the_enclosing_owner (test_extractor.TestBytecodeExtraction.test_generic_arguments_do_not_replace_the_enclosing_owner) ... ok
+test_inherited_members_use_declaring_owner_and_jvm_lookup_order (test_extractor.TestBytecodeExtraction.test_inherited_members_use_declaring_owner_and_jvm_lookup_order) ... ok
+test_inner_and_anonymous_merge_but_original_members_stay_distinct (test_extractor.TestBytecodeExtraction.test_inner_and_anonymous_merge_but_original_members_stay_distinct) ... ok
+test_legitimate_top_level_dollar_names_are_not_merged (test_extractor.TestBytecodeExtraction.test_legitimate_top_level_dollar_names_are_not_merged) ... ok
+test_primary_edges_are_exactly_normalized_unmodified_instructor_rows (test_extractor.TestBytecodeExtraction.test_primary_edges_are_exactly_normalized_unmodified_instructor_rows) ... ok
+test_publicsuffix_is_owned_inner_merged_and_instructor_input_is_scoped (test_extractor.TestBytecodeExtraction.test_publicsuffix_is_owned_inner_merged_and_instructor_input_is_scoped) ... ok
+test_real_extracted_rows_feed_ue_without_identity_conflicts (test_extractor.TestBytecodeExtraction.test_real_extracted_rows_feed_ue_without_identity_conflicts) ... ok
+test_repeated_extraction_is_byte_for_byte_reproducible (test_extractor.TestBytecodeExtraction.test_repeated_extraction_is_byte_for_byte_reproducible) ... ok
+
+----------------------------------------------------------------------
+Ran 11 tests in 2.127s
+
+OK
+
+
+## Command 23: Packet 03 stage exact reviewed files
+Started UTC: 2026-10-18T11:19:39.553584+00:00
+Directory: /workspace/scratch/7500a23b5952/software-evolution-ex1/handoff/verification-work/run-qh_qltok
+Command: /opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python /workspace/scratch/7500a23b5952/software-evolution-ex1/handoff/verification-work/run-qh_qltok/extracted-03/03-a-extraction/apply_packet.py --packet /workspace/scratch/7500a23b5952/software-evolution-ex1/handoff/verification-work/run-qh_qltok/extracted-03/03-a-extraction --target /workspace/scratch/7500a23b5952/software-evolution-ex1/handoff/verification-work/run-qh_qltok/teacher --subdir guava-study --apply --stage
+Exit code: 0; elapsed seconds: 0.276636
+
+STDOUT
+Packet 03 — Student A: Instructor extraction and complete Java toolchain
+Pinned source commit: f32e6e831f976eed8bf01faa1d66dbdc34bc49c7
+Git repository: /workspace/scratch/7500a23b5952/software-evolution-ex1/handoff/verification-work/run-qh_qltok/teacher
+Study working directory (run the packet's checks here): /workspace/scratch/7500a23b5952/software-evolution-ex1/handoff/verification-work/run-qh_qltok/teacher/guava-study
+Validated 37 packet files and 20 committed prerequisites; 0 files need copying, 37 are already identical.
+Copied 0 new files; existing identical files were kept.
+Staged and hash-checked 37 changed packet paths. Review git diff --cached before committing.
+Suggested commit message: import: add instructor extraction and complete Java toolchain (AI-assisted preparation)
+Use your own Git identity and actual commit date. This helper did not commit or push.
+
+STDERR
+
+
+## Command 24: Packet 03 read-only staged-blob verification
+Started UTC: 2026-10-18T11:19:39.834393+00:00
+Directory: /workspace/scratch/7500a23b5952/software-evolution-ex1/handoff/verification-work/run-qh_qltok
+Command: /opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python /workspace/scratch/7500a23b5952/software-evolution-ex1/handoff/verification-work/run-qh_qltok/extracted-03/03-a-extraction/apply_packet.py --packet /workspace/scratch/7500a23b5952/software-evolution-ex1/handoff/verification-work/run-qh_qltok/extracted-03/03-a-extraction --target /workspace/scratch/7500a23b5952/software-evolution-ex1/handoff/verification-work/run-qh_qltok/teacher --subdir guava-study --check-staged
+Exit code: 0; elapsed seconds: 0.111157
+
+STDOUT
+Packet 03 — Student A: Instructor extraction and complete Java toolchain
+Pinned source commit: f32e6e831f976eed8bf01faa1d66dbdc34bc49c7
+Git repository: /workspace/scratch/7500a23b5952/software-evolution-ex1/handoff/verification-work/run-qh_qltok/teacher
+Study working directory (run the packet's checks here): /workspace/scratch/7500a23b5952/software-evolution-ex1/handoff/verification-work/run-qh_qltok/teacher/guava-study
+Validated 37 packet files and 20 committed prerequisites; 0 files need copying, 37 are already identical.
+Staged check passed: 37 changed paths, all packet index blobs/modes exact, and no extra staged paths.
+No files or Git state changed. Review the packet's checks before committing with your own identity.
+
+STDERR
+
+
+## Command 25: Commit packet 03 under the explicit automated-test identity
+Started UTC: 2026-10-18T11:19:39.946613+00:00
+Directory: /workspace/scratch/7500a23b5952/software-evolution-ex1/handoff/verification-work/run-qh_qltok
+Command: git -C /workspace/scratch/7500a23b5952/software-evolution-ex1/handoff/verification-work/run-qh_qltok/teacher commit -q -m 'Automated handoff verification: import packet 03 (test fixture only)'
+Exit code: 0; elapsed seconds: 0.007306
+
+STDOUT
+
+STDERR
+

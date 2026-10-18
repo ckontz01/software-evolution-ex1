@@ -1,0 +1,26 @@
+{
+  "packet": "05",
+  "scope": "packet-payload",
+  "unexpected_path": "archives/versions/.guava-33.5.0.zip.b64.ib2FOC",
+  "expected_original_path": "archives/versions/guava-33.5.0.zip.b64",
+  "bytes": 9175040,
+  "sha256": "51cb0de740e70c973d52471fc82c8a88ab9606d7d308358b7b61380e10a0061e",
+  "quarantine": "/workspace/scratch/7500a23b5952/software-evolution-ex1/handoff/verification-work/run-qh_qltok/quarantined-environment-files/packet-payload/packet-05/archives/versions/.guava-33.5.0.zip.b64.ib2FOC",
+  "full_original_sha256": "1f2fbaf34a88268ce64d5c4b92e313d48d6329233557f6d784677e4ba72f6d61",
+  "full_original_unchanged": true,
+  "exact_shorter_prefix": true,
+  "reason": "Unlisted rsync-style partial copy appeared after exact ZIP extraction; preserved outside payload. The strict importer and all manifest/source bytes are unchanged."
+}
+{
+  "packet": "05",
+  "scope": "teacher-fixture",
+  "unexpected_path": "archives/versions/.guava-27.1.zip.b64.4joSwD",
+  "expected_original_path": "archives/versions/guava-27.1.zip.b64",
+  "bytes": 9175040,
+  "sha256": "c7707b41f8ba60baa7ce13a5b47ceace921df19232240757d91b968a91054e80",
+  "quarantine": "/workspace/scratch/7500a23b5952/software-evolution-ex1/handoff/verification-work/run-qh_qltok/quarantined-environment-files/teacher-fixture/packet-05/archives/versions/.guava-27.1.zip.b64.4joSwD",
+  "full_original_sha256": "2c095207b96dd30a81b6354209f9acced13ac244e8932b3148771430561226d4",
+  "full_original_unchanged": true,
+  "exact_shorter_prefix": true,
+  "reason": "Unlisted rsync-style partial copy appeared after exact ZIP extraction; preserved outside payload. The strict importer and all manifest/source bytes are unchanged."
+}

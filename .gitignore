@@ -15,3 +15,5 @@ results/versions/
 results/pilot/
 third_party/acdc/acdc/*.class
 .DS_Store
+handoff/downloads/
+handoff/verification-work/

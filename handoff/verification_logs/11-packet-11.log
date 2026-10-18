@@ -1,0 +1,98 @@
+
+## Command 71: Packet 11 dry run
+Started UTC: 2026-10-18T11:20:48.116686+00:00
+Directory: /workspace/scratch/7500a23b5952/software-evolution-ex1/handoff/verification-work/run-qh_qltok
+Command: /opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python /workspace/scratch/7500a23b5952/software-evolution-ex1/handoff/verification-work/run-qh_qltok/extracted-11/11-a-report/apply_packet.py --packet /workspace/scratch/7500a23b5952/software-evolution-ex1/handoff/verification-work/run-qh_qltok/extracted-11/11-a-report --target /workspace/scratch/7500a23b5952/software-evolution-ex1/handoff/verification-work/run-qh_qltok/teacher --subdir guava-study
+Exit code: 0; elapsed seconds: 0.520104
+
+STDOUT
+Packet 11 — Student A: Report generator, final PDFs and figures
+Pinned source commit: f32e6e831f976eed8bf01faa1d66dbdc34bc49c7
+Git repository: /workspace/scratch/7500a23b5952/software-evolution-ex1/handoff/verification-work/run-qh_qltok/teacher
+Study working directory (run the packet's checks here): /workspace/scratch/7500a23b5952/software-evolution-ex1/handoff/verification-work/run-qh_qltok/teacher/guava-study
+Validated 28 packet files and 207 committed prerequisites; 28 files need copying, 0 are already identical.
+Dry run passed. No files or Git state changed. Add --apply to copy; add --stage to stage only this packet.
+
+STDERR
+
+
+## Command 72: Packet 11 copy complete payload
+Started UTC: 2026-10-18T11:20:48.641422+00:00
+Directory: /workspace/scratch/7500a23b5952/software-evolution-ex1/handoff/verification-work/run-qh_qltok
+Command: /opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python /workspace/scratch/7500a23b5952/software-evolution-ex1/handoff/verification-work/run-qh_qltok/extracted-11/11-a-report/apply_packet.py --packet /workspace/scratch/7500a23b5952/software-evolution-ex1/handoff/verification-work/run-qh_qltok/extracted-11/11-a-report --target /workspace/scratch/7500a23b5952/software-evolution-ex1/handoff/verification-work/run-qh_qltok/teacher --subdir guava-study --apply
+Exit code: 0; elapsed seconds: 0.516182
+
+STDOUT
+Packet 11 — Student A: Report generator, final PDFs and figures
+Pinned source commit: f32e6e831f976eed8bf01faa1d66dbdc34bc49c7
+Git repository: /workspace/scratch/7500a23b5952/software-evolution-ex1/handoff/verification-work/run-qh_qltok/teacher
+Study working directory (run the packet's checks here): /workspace/scratch/7500a23b5952/software-evolution-ex1/handoff/verification-work/run-qh_qltok/teacher/guava-study
+Validated 28 packet files and 207 committed prerequisites; 28 files need copying, 0 are already identical.
+Copied 28 new files; existing identical files were kept.
+Nothing was staged. Review the files and run the packet's checks before staging its explicit paths.
+Suggested commit message: import: add report generator and final study deliverables (AI-assisted preparation)
+Use your own Git identity and actual commit date. This helper did not commit or push.
+
+STDERR
+
+
+## Command 73: Packet 11: Verify all manifest-pinned report inputs, method sources, figures and both PDFs
+Started UTC: 2026-10-18T11:20:49.162347+00:00
+Directory: /workspace/scratch/7500a23b5952/software-evolution-ex1/handoff/verification-work/run-qh_qltok/teacher/guava-study
+Command: /bin/bash -c 'python -c "import hashlib,json; from pathlib import Path; m=json.loads(Path('"'"'report/report_manifest.json'"'"').read_text()); expected={**m['"'"'inputs'"'"'],**m['"'"'method_sources'"'"'],**m['"'"'figures'"'"'],m['"'"'report'"'"']:m['"'"'report_sha256'"'"'],m['"'"'canonical_copy'"'"']:m['"'"'canonical_copy_sha256'"'"']}; bad=[p for p,h in expected.items() if not Path(p).is_file() or hashlib.sha256(Path(p).read_bytes()).hexdigest()!=h]; assert not bad,bad; print('"'"'Report hashes verified:'"'"',len(expected))"'
+Exit code: 0; elapsed seconds: 0.057369
+
+STDOUT
+Report hashes verified: 215
+
+STDERR
+
+
+## Command 74: Packet 11 stage exact reviewed files
+Started UTC: 2026-10-18T11:20:49.552797+00:00
+Directory: /workspace/scratch/7500a23b5952/software-evolution-ex1/handoff/verification-work/run-qh_qltok
+Command: /opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python /workspace/scratch/7500a23b5952/software-evolution-ex1/handoff/verification-work/run-qh_qltok/extracted-11/11-a-report/apply_packet.py --packet /workspace/scratch/7500a23b5952/software-evolution-ex1/handoff/verification-work/run-qh_qltok/extracted-11/11-a-report --target /workspace/scratch/7500a23b5952/software-evolution-ex1/handoff/verification-work/run-qh_qltok/teacher --subdir guava-study --apply --stage
+Exit code: 0; elapsed seconds: 0.566028
+
+STDOUT
+Packet 11 — Student A: Report generator, final PDFs and figures
+Pinned source commit: f32e6e831f976eed8bf01faa1d66dbdc34bc49c7
+Git repository: /workspace/scratch/7500a23b5952/software-evolution-ex1/handoff/verification-work/run-qh_qltok/teacher
+Study working directory (run the packet's checks here): /workspace/scratch/7500a23b5952/software-evolution-ex1/handoff/verification-work/run-qh_qltok/teacher/guava-study
+Validated 28 packet files and 207 committed prerequisites; 0 files need copying, 28 are already identical.
+Copied 0 new files; existing identical files were kept.
+Staged and hash-checked 28 changed packet paths. Review git diff --cached before committing.
+Suggested commit message: import: add report generator and final study deliverables (AI-assisted preparation)
+Use your own Git identity and actual commit date. This helper did not commit or push.
+
+STDERR
+
+
+## Command 75: Packet 11 read-only staged-blob verification
+Started UTC: 2026-10-18T11:20:50.123879+00:00
+Directory: /workspace/scratch/7500a23b5952/software-evolution-ex1/handoff/verification-work/run-qh_qltok
+Command: /opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python /workspace/scratch/7500a23b5952/software-evolution-ex1/handoff/verification-work/run-qh_qltok/extracted-11/11-a-report/apply_packet.py --packet /workspace/scratch/7500a23b5952/software-evolution-ex1/handoff/verification-work/run-qh_qltok/extracted-11/11-a-report --target /workspace/scratch/7500a23b5952/software-evolution-ex1/handoff/verification-work/run-qh_qltok/teacher --subdir guava-study --check-staged
+Exit code: 0; elapsed seconds: 0.547018
+
+STDOUT
+Packet 11 — Student A: Report generator, final PDFs and figures
+Pinned source commit: f32e6e831f976eed8bf01faa1d66dbdc34bc49c7
+Git repository: /workspace/scratch/7500a23b5952/software-evolution-ex1/handoff/verification-work/run-qh_qltok/teacher
+Study working directory (run the packet's checks here): /workspace/scratch/7500a23b5952/software-evolution-ex1/handoff/verification-work/run-qh_qltok/teacher/guava-study
+Validated 28 packet files and 207 committed prerequisites; 0 files need copying, 28 are already identical.
+Staged check passed: 28 changed paths, all packet index blobs/modes exact, and no extra staged paths.
+No files or Git state changed. Review the packet's checks before committing with your own identity.
+
+STDERR
+
+
+## Command 76: Commit packet 11 under the explicit automated-test identity
+Started UTC: 2026-10-18T11:20:50.672854+00:00
+Directory: /workspace/scratch/7500a23b5952/software-evolution-ex1/handoff/verification-work/run-qh_qltok
+Command: git -C /workspace/scratch/7500a23b5952/software-evolution-ex1/handoff/verification-work/run-qh_qltok/teacher commit -q -m 'Automated handoff verification: import packet 11 (test fixture only)'
+Exit code: 0; elapsed seconds: 0.007228
+
+STDOUT
+
+STDERR
+

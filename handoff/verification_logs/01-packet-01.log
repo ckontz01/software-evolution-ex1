@@ -1,0 +1,196 @@
+
+## Command 5: Packet 01 dry run
+Started UTC: 2026-10-18T11:19:34.195180+00:00
+Directory: /workspace/scratch/7500a23b5952/software-evolution-ex1/handoff/verification-work/run-qh_qltok
+Command: /opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python /workspace/scratch/7500a23b5952/software-evolution-ex1/handoff/verification-work/run-qh_qltok/extracted-01/01-a-setup/apply_packet.py --packet /workspace/scratch/7500a23b5952/software-evolution-ex1/handoff/verification-work/run-qh_qltok/extracted-01/01-a-setup --target /workspace/scratch/7500a23b5952/software-evolution-ex1/handoff/verification-work/run-qh_qltok/teacher --subdir guava-study
+Exit code: 0; elapsed seconds: 0.057139
+
+STDOUT
+Packet 01 — Student A: Project setup and reproducible release selection
+Pinned source commit: f32e6e831f976eed8bf01faa1d66dbdc34bc49c7
+Git repository: /workspace/scratch/7500a23b5952/software-evolution-ex1/handoff/verification-work/run-qh_qltok/teacher
+Study working directory (run the packet's checks here): /workspace/scratch/7500a23b5952/software-evolution-ex1/handoff/verification-work/run-qh_qltok/teacher/guava-study
+Validated 14 packet files and 0 committed prerequisites; 14 files need copying, 0 are already identical.
+Dry run passed. No files or Git state changed. Add --apply to copy; add --stage to stage only this packet.
+
+STDERR
+
+
+## Command 6: Packet 01 copy complete payload
+Started UTC: 2026-10-18T11:19:34.255560+00:00
+Directory: /workspace/scratch/7500a23b5952/software-evolution-ex1/handoff/verification-work/run-qh_qltok
+Command: /opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python /workspace/scratch/7500a23b5952/software-evolution-ex1/handoff/verification-work/run-qh_qltok/extracted-01/01-a-setup/apply_packet.py --packet /workspace/scratch/7500a23b5952/software-evolution-ex1/handoff/verification-work/run-qh_qltok/extracted-01/01-a-setup --target /workspace/scratch/7500a23b5952/software-evolution-ex1/handoff/verification-work/run-qh_qltok/teacher --subdir guava-study --apply
+Exit code: 0; elapsed seconds: 0.065828
+
+STDOUT
+Packet 01 — Student A: Project setup and reproducible release selection
+Pinned source commit: f32e6e831f976eed8bf01faa1d66dbdc34bc49c7
+Git repository: /workspace/scratch/7500a23b5952/software-evolution-ex1/handoff/verification-work/run-qh_qltok/teacher
+Study working directory (run the packet's checks here): /workspace/scratch/7500a23b5952/software-evolution-ex1/handoff/verification-work/run-qh_qltok/teacher/guava-study
+Validated 14 packet files and 0 committed prerequisites; 14 files need copying, 0 are already identical.
+Copied 14 new files; existing identical files were kept.
+Nothing was staged. Review the files and run the packet's checks before staging its explicit paths.
+Suggested commit message: import: add project setup and reproducible Guava release selection (AI-assisted preparation)
+Use your own Git identity and actual commit date. This helper did not commit or push.
+
+STDERR
+
+
+## Command 7: Packet 01: Reconstruct and verify the frozen 30-release sample
+Started UTC: 2026-10-18T11:19:34.324967+00:00
+Directory: /workspace/scratch/7500a23b5952/software-evolution-ex1/handoff/verification-work/run-qh_qltok/teacher/guava-study
+Command: /bin/bash -c 'python scripts/select_versions.py --check'
+Exit code: 0; elapsed seconds: 0.047675
+
+STDOUT
+{
+  "selected_count": 30,
+  "unique_families": 30,
+  "major_numbers": [
+    10,
+    11,
+    12,
+    13,
+    14,
+    15,
+    16,
+    17,
+    18,
+    19,
+    20,
+    21,
+    22,
+    23,
+    24,
+    25,
+    26,
+    27,
+    28,
+    29,
+    30,
+    31,
+    32,
+    33
+  ],
+  "calendar_gap_statistics": {
+    "count": 29,
+    "minimum_days": 74,
+    "median_days": 141,
+    "maximum_days": 471,
+    "mean_days": 188.9655172413793,
+    "total_span_days": 5480,
+    "below_declared_minimum_count": 0
+  },
+  "versions": [
+    "10.0",
+    "11.0",
+    "12.0",
+    "13.0.1",
+    "14.0",
+    "15.0",
+    "16.0",
+    "17.0",
+    "18.0",
+    "19.0",
+    "20.0",
+    "21.0",
+    "22.0",
+    "23.0",
+    "24.0",
+    "25.0",
+    "26.0",
+    "27.0",
+    "27.1",
+    "28.0",
+    "28.2",
+    "29.0",
+    "30.0",
+    "31.0",
+    "31.1",
+    "32.0.0",
+    "33.0.0",
+    "33.4.0",
+    "33.5.0",
+    "33.7.2"
+  ],
+  "mode": "check"
+}
+
+STDERR
+
+
+## Command 8: Packet 01: Run the 11 calendar, coverage, provenance and tie-breaking tests
+Started UTC: 2026-10-18T11:19:34.373478+00:00
+Directory: /workspace/scratch/7500a23b5952/software-evolution-ex1/handoff/verification-work/run-qh_qltok/teacher/guava-study
+Command: /bin/bash -c 'PYTHONPATH=src python -m unittest discover -s tests -p '"'"'test_selection.py'"'"' -v'
+Exit code: 0; elapsed seconds: 0.120639
+
+STDOUT
+
+STDERR
+test_dates_are_whole_utc_calendar_days_and_naive_timestamps_fail (test_selection.CalendarSelectorTests.test_dates_are_whole_utc_calendar_days_and_naive_timestamps_fail) ... ok
+test_duplicate_family_cannot_be_used_to_reach_requested_count (test_selection.CalendarSelectorTests.test_duplicate_family_cannot_be_used_to_reach_requested_count) ... ok
+test_equal_gain_uses_earlier_calendar_date_then_numeric_version (test_selection.CalendarSelectorTests.test_equal_gain_uses_earlier_calendar_date_then_numeric_version) ... ok
+test_gap_boundary_is_inclusive_and_infeasible_gap_fails (test_selection.CalendarSelectorTests.test_gap_boundary_is_inclusive_and_infeasible_gap_fails) ... ok
+test_optional_cap_does_not_charge_the_mandatory_endpoint (test_selection.CalendarSelectorTests.test_optional_cap_does_not_charge_the_mandatory_endpoint) ... ok
+test_actual_dates_give_the_declared_spacing_and_ninety_days_is_infeasible (test_selection.FrozenSelectionTests.test_actual_dates_give_the_declared_spacing_and_ninety_days_is_infeasible) ... ok
+test_approved_sample_covers_every_major_and_fixes_both_endpoints (test_selection.FrozenSelectionTests.test_approved_sample_covers_every_major_and_fixes_both_endpoints) ... ok
+test_catalog_order_and_outcome_fields_do_not_change_the_selection (test_selection.FrozenSelectionTests.test_catalog_order_and_outcome_fields_do_not_change_the_selection) ... ok
+test_corrupt_catalog_and_future_endpoint_are_rejected (test_selection.FrozenSelectionTests.test_corrupt_catalog_and_future_endpoint_are_rejected) ... ok
+test_manifest_rejects_changed_identity_dates_roles_and_gap_metadata (test_selection.FrozenSelectionTests.test_manifest_rejects_changed_identity_dates_roles_and_gap_metadata) ... ok
+test_only_matching_artifact_urls_preserve_existing_checksum_pins (test_selection.FrozenSelectionTests.test_only_matching_artifact_urls_preserve_existing_checksum_pins) ... ok
+
+----------------------------------------------------------------------
+Ran 11 tests in 0.058s
+
+OK
+
+
+## Command 9: Packet 01 stage exact reviewed files
+Started UTC: 2026-10-18T11:19:34.497719+00:00
+Directory: /workspace/scratch/7500a23b5952/software-evolution-ex1/handoff/verification-work/run-qh_qltok
+Command: /opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python /workspace/scratch/7500a23b5952/software-evolution-ex1/handoff/verification-work/run-qh_qltok/extracted-01/01-a-setup/apply_packet.py --packet /workspace/scratch/7500a23b5952/software-evolution-ex1/handoff/verification-work/run-qh_qltok/extracted-01/01-a-setup --target /workspace/scratch/7500a23b5952/software-evolution-ex1/handoff/verification-work/run-qh_qltok/teacher --subdir guava-study --apply --stage
+Exit code: 0; elapsed seconds: 0.076124
+
+STDOUT
+Packet 01 — Student A: Project setup and reproducible release selection
+Pinned source commit: f32e6e831f976eed8bf01faa1d66dbdc34bc49c7
+Git repository: /workspace/scratch/7500a23b5952/software-evolution-ex1/handoff/verification-work/run-qh_qltok/teacher
+Study working directory (run the packet's checks here): /workspace/scratch/7500a23b5952/software-evolution-ex1/handoff/verification-work/run-qh_qltok/teacher/guava-study
+Validated 14 packet files and 0 committed prerequisites; 0 files need copying, 14 are already identical.
+Copied 0 new files; existing identical files were kept.
+Staged and hash-checked 14 changed packet paths. Review git diff --cached before committing.
+Suggested commit message: import: add project setup and reproducible Guava release selection (AI-assisted preparation)
+Use your own Git identity and actual commit date. This helper did not commit or push.
+
+STDERR
+
+
+## Command 10: Packet 01 read-only staged-blob verification
+Started UTC: 2026-10-18T11:19:34.578198+00:00
+Directory: /workspace/scratch/7500a23b5952/software-evolution-ex1/handoff/verification-work/run-qh_qltok
+Command: /opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python /workspace/scratch/7500a23b5952/software-evolution-ex1/handoff/verification-work/run-qh_qltok/extracted-01/01-a-setup/apply_packet.py --packet /workspace/scratch/7500a23b5952/software-evolution-ex1/handoff/verification-work/run-qh_qltok/extracted-01/01-a-setup --target /workspace/scratch/7500a23b5952/software-evolution-ex1/handoff/verification-work/run-qh_qltok/teacher --subdir guava-study --check-staged
+Exit code: 0; elapsed seconds: 0.070132
+
+STDOUT
+Packet 01 — Student A: Project setup and reproducible release selection
+Pinned source commit: f32e6e831f976eed8bf01faa1d66dbdc34bc49c7
+Git repository: /workspace/scratch/7500a23b5952/software-evolution-ex1/handoff/verification-work/run-qh_qltok/teacher
+Study working directory (run the packet's checks here): /workspace/scratch/7500a23b5952/software-evolution-ex1/handoff/verification-work/run-qh_qltok/teacher/guava-study
+Validated 14 packet files and 0 committed prerequisites; 0 files need copying, 14 are already identical.
+Staged check passed: 14 changed paths, all packet index blobs/modes exact, and no extra staged paths.
+No files or Git state changed. Review the packet's checks before committing with your own identity.
+
+STDERR
+
+
+## Command 11: Commit packet 01 under the explicit automated-test identity
+Started UTC: 2026-10-18T11:19:34.649405+00:00
+Directory: /workspace/scratch/7500a23b5952/software-evolution-ex1/handoff/verification-work/run-qh_qltok
+Command: git -C /workspace/scratch/7500a23b5952/software-evolution-ex1/handoff/verification-work/run-qh_qltok/teacher commit -q -m 'Automated handoff verification: import packet 01 (test fixture only)'
+Exit code: 0; elapsed seconds: 0.006573
+
+STDOUT
+
+STDERR
+

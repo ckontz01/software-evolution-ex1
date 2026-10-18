@@ -1,0 +1,210 @@
+
+## Command 33: Packet 05 dry run
+Started UTC: 2026-10-18T11:19:41.510603+00:00
+Directory: /workspace/scratch/7500a23b5952/software-evolution-ex1/handoff/verification-work/run-qh_qltok
+Command: /opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python /workspace/scratch/7500a23b5952/software-evolution-ex1/handoff/verification-work/run-qh_qltok/extracted-05/05-a-data/apply_packet.py --packet /workspace/scratch/7500a23b5952/software-evolution-ex1/handoff/verification-work/run-qh_qltok/extracted-05/05-a-data --target /workspace/scratch/7500a23b5952/software-evolution-ex1/handoff/verification-work/run-qh_qltok/teacher --subdir guava-study
+Exit code: 0; elapsed seconds: 0.478118
+
+STDOUT
+Packet 05 — Student A: Acquisition, preserved data and archive restoration
+Pinned source commit: f32e6e831f976eed8bf01faa1d66dbdc34bc49c7
+Git repository: /workspace/scratch/7500a23b5952/software-evolution-ex1/handoff/verification-work/run-qh_qltok/teacher
+Study working directory (run the packet's checks here): /workspace/scratch/7500a23b5952/software-evolution-ex1/handoff/verification-work/run-qh_qltok/teacher/guava-study
+Validated 75 packet files and 62 committed prerequisites; 75 files need copying, 0 are already identical.
+Dry run passed. No files or Git state changed. Add --apply to copy; add --stage to stage only this packet.
+
+STDERR
+
+
+## Command 34: Packet 05 copy complete payload
+Started UTC: 2026-10-18T11:19:41.993021+00:00
+Directory: /workspace/scratch/7500a23b5952/software-evolution-ex1/handoff/verification-work/run-qh_qltok
+Command: /opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python /workspace/scratch/7500a23b5952/software-evolution-ex1/handoff/verification-work/run-qh_qltok/extracted-05/05-a-data/apply_packet.py --packet /workspace/scratch/7500a23b5952/software-evolution-ex1/handoff/verification-work/run-qh_qltok/extracted-05/05-a-data --target /workspace/scratch/7500a23b5952/software-evolution-ex1/handoff/verification-work/run-qh_qltok/teacher --subdir guava-study --apply
+Exit code: 0; elapsed seconds: 0.969629
+
+STDOUT
+Packet 05 — Student A: Acquisition, preserved data and archive restoration
+Pinned source commit: f32e6e831f976eed8bf01faa1d66dbdc34bc49c7
+Git repository: /workspace/scratch/7500a23b5952/software-evolution-ex1/handoff/verification-work/run-qh_qltok/teacher
+Study working directory (run the packet's checks here): /workspace/scratch/7500a23b5952/software-evolution-ex1/handoff/verification-work/run-qh_qltok/teacher/guava-study
+Validated 75 packet files and 62 committed prerequisites; 75 files need copying, 0 are already identical.
+Copied 75 new files; existing identical files were kept.
+Nothing was staged. Review the files and run the packet's checks before staging its explicit paths.
+Suggested commit message: import: add pinned artifacts and verified archive restoration (AI-assisted preparation)
+Use your own Git identity and actual commit date. This helper did not commit or push.
+
+STDERR
+
+
+## Command 35: Packet 05: Run 20 encoded and legacy archive boundary tests
+Started UTC: 2026-10-18T11:19:42.967860+00:00
+Directory: /workspace/scratch/7500a23b5952/software-evolution-ex1/handoff/verification-work/run-qh_qltok/teacher/guava-study
+Command: /bin/bash -c 'PYTHONPATH=src python -m unittest discover -s tests -p '"'"'test_archives.py'"'"' -v'
+Exit code: 0; elapsed seconds: 1.004487
+
+STDOUT
+
+STDERR
+test_base64_cleanup_preserves_new_storage_and_removes_old_parts (test_archives.ArchiveTests.test_base64_cleanup_preserves_new_storage_and_removes_old_parts) ... ok
+test_corrupted_part_does_not_restore_any_file (test_archives.ArchiveTests.test_corrupted_part_does_not_restore_any_file) ... ok
+test_decoded_zip_hash_is_checked_when_encoded_hash_matches (test_archives.ArchiveTests.test_decoded_zip_hash_is_checked_when_encoded_hash_matches) ... ok
+test_default_base64_round_trip_preserves_exact_standard_zip (test_archives.ArchiveTests.test_default_base64_round_trip_preserves_exact_standard_zip) ... ok
+test_deterministic_multipart_round_trip_and_standard_zip_bytes (test_archives.ArchiveTests.test_deterministic_multipart_round_trip_and_standard_zip_bytes) ... ok
+test_differing_local_file_blocks_all_restoration (test_archives.ArchiveTests.test_differing_local_file_blocks_all_restoration) ... ok
+test_encoded_checksum_detects_corrupted_text_before_restoration (test_archives.ArchiveTests.test_encoded_checksum_detects_corrupted_text_before_restoration) ... ok
+test_late_member_corruption_is_detected_before_earlier_member_write (test_archives.ArchiveTests.test_late_member_corruption_is_detected_before_earlier_member_write) ... ok
+test_legacy_whole_zip_and_unchanged_whole_file (test_archives.ArchiveTests.test_legacy_whole_zip_and_unchanged_whole_file) ... ok
+test_missing_encoded_file_does_not_restore_any_member (test_archives.ArchiveTests.test_missing_encoded_file_does_not_restore_any_member) ... ok
+test_missing_part_does_not_restore_any_file (test_archives.ArchiveTests.test_missing_part_does_not_restore_any_file) ... ok
+test_obsolete_detection_includes_numbered_parts (test_archives.ArchiveTests.test_obsolete_detection_includes_numbered_parts) ... ok
+test_old_generation_survives_until_manifest_switch (test_archives.ArchiveTests.test_old_generation_survives_until_manifest_switch) ... ok
+test_reordered_parts_and_incorrect_declared_size_are_rejected (test_archives.ArchiveTests.test_reordered_parts_and_incorrect_declared_size_are_rejected) ... ok
+test_strict_base64_rejects_whitespace_and_noncanonical_padding (test_archives.ArchiveTests.test_strict_base64_rejects_whitespace_and_noncanonical_padding) ... ok
+test_symlink_destination_is_rejected (test_archives.ArchiveTests.test_symlink_destination_is_rejected) ... ok
+test_unsafe_encoded_file_paths_and_symlinks_are_rejected (test_archives.ArchiveTests.test_unsafe_encoded_file_paths_and_symlinks_are_rejected) ... ok
+test_unsafe_logical_part_and_member_paths_are_rejected (test_archives.ArchiveTests.test_unsafe_logical_part_and_member_paths_are_rejected) ... ok
+test_verify_only_writes_nothing (test_archives.ArchiveTests.test_verify_only_writes_nothing) ... ok
+test_whole_zip_hash_is_checked_even_when_part_hashes_match (test_archives.ArchiveTests.test_whole_zip_hash_is_checked_even_when_part_hashes_match) ... ok
+
+----------------------------------------------------------------------
+Ran 20 tests in 0.889s
+
+OK
+
+
+## Command 36: Packet 05: Verify all 2385 files in 32 logical archives without restoration
+Started UTC: 2026-10-18T11:19:43.973539+00:00
+Directory: /workspace/scratch/7500a23b5952/software-evolution-ex1/handoff/verification-work/run-qh_qltok/teacher/guava-study
+Command: /bin/bash -c 'python scripts/unpack_data.py --verify-only'
+Exit code: 0; elapsed seconds: 3.533449
+
+STDOUT
+archives/versions/guava-10.0.zip: verified 77 files
+archives/versions/guava-11.0.zip: verified 77 files
+archives/versions/guava-12.0.zip: verified 77 files
+archives/versions/guava-13.0.1.zip: verified 77 files
+archives/versions/guava-14.0.zip: verified 77 files
+archives/versions/guava-15.0.zip: verified 77 files
+archives/versions/guava-16.0.zip: verified 77 files
+archives/versions/guava-17.0.zip: verified 77 files
+archives/versions/guava-18.0.zip: verified 77 files
+archives/versions/guava-19.0.zip: verified 77 files
+archives/versions/guava-20.0.zip: verified 77 files
+archives/versions/guava-21.0.zip: verified 77 files
+archives/versions/guava-22.0.zip: verified 77 files
+archives/versions/guava-23.0.zip: verified 77 files
+archives/versions/guava-24.0.zip: verified 77 files
+archives/versions/guava-25.0.zip: verified 77 files
+archives/versions/guava-26.0.zip: verified 77 files
+archives/versions/guava-27.0.zip: verified 77 files
+archives/versions/guava-27.1.zip: verified 77 files
+archives/versions/guava-28.0.zip: verified 77 files
+archives/versions/guava-28.2.zip: verified 77 files
+archives/versions/guava-29.0.zip: verified 77 files
+archives/versions/guava-30.0.zip: verified 77 files
+archives/versions/guava-31.0.zip: verified 77 files
+archives/versions/guava-31.1.zip: verified 77 files
+archives/versions/guava-32.0.0.zip: verified 77 files
+archives/versions/guava-33.0.0.zip: verified 77 files
+archives/versions/guava-33.4.0.zip: verified 77 files
+archives/versions/guava-33.5.0.zip: verified 77 files
+archives/versions/guava-33.7.2.zip: verified 77 files
+archives/pilot.zip: verified 73 files
+archives/upstream_git.zip: verified 2 files
+Verified 2385 files in 32 archives; no files written
+
+STDERR
+
+
+## Command 37: Packet 05: Restore original artifacts, graphs, pilot and per-version results for later packet checks
+Started UTC: 2026-10-18T11:19:47.508182+00:00
+Directory: /workspace/scratch/7500a23b5952/software-evolution-ex1/handoff/verification-work/run-qh_qltok/teacher/guava-study
+Command: /bin/bash -c 'python scripts/unpack_data.py'
+Exit code: 0; elapsed seconds: 6.943780
+
+STDOUT
+archives/versions/guava-10.0.zip: verified 77 files
+archives/versions/guava-11.0.zip: verified 77 files
+archives/versions/guava-12.0.zip: verified 77 files
+archives/versions/guava-13.0.1.zip: verified 77 files
+archives/versions/guava-14.0.zip: verified 77 files
+archives/versions/guava-15.0.zip: verified 77 files
+archives/versions/guava-16.0.zip: verified 77 files
+archives/versions/guava-17.0.zip: verified 77 files
+archives/versions/guava-18.0.zip: verified 77 files
+archives/versions/guava-19.0.zip: verified 77 files
+archives/versions/guava-20.0.zip: verified 77 files
+archives/versions/guava-21.0.zip: verified 77 files
+archives/versions/guava-22.0.zip: verified 77 files
+archives/versions/guava-23.0.zip: verified 77 files
+archives/versions/guava-24.0.zip: verified 77 files
+archives/versions/guava-25.0.zip: verified 77 files
+archives/versions/guava-26.0.zip: verified 77 files
+archives/versions/guava-27.0.zip: verified 77 files
+archives/versions/guava-27.1.zip: verified 77 files
+archives/versions/guava-28.0.zip: verified 77 files
+archives/versions/guava-28.2.zip: verified 77 files
+archives/versions/guava-29.0.zip: verified 77 files
+archives/versions/guava-30.0.zip: verified 77 files
+archives/versions/guava-31.0.zip: verified 77 files
+archives/versions/guava-31.1.zip: verified 77 files
+archives/versions/guava-32.0.0.zip: verified 77 files
+archives/versions/guava-33.0.0.zip: verified 77 files
+archives/versions/guava-33.4.0.zip: verified 77 files
+archives/versions/guava-33.5.0.zip: verified 77 files
+archives/versions/guava-33.7.2.zip: verified 77 files
+archives/pilot.zip: verified 73 files
+archives/upstream_git.zip: verified 2 files
+Verified 2385 files in 32 archives; working hierarchy restored
+
+STDERR
+
+
+## Command 38: Packet 05 stage exact reviewed files
+Started UTC: 2026-10-18T11:19:54.827531+00:00
+Directory: /workspace/scratch/7500a23b5952/software-evolution-ex1/handoff/verification-work/run-qh_qltok
+Command: /opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python /workspace/scratch/7500a23b5952/software-evolution-ex1/handoff/verification-work/run-qh_qltok/extracted-05/05-a-data/apply_packet.py --packet /workspace/scratch/7500a23b5952/software-evolution-ex1/handoff/verification-work/run-qh_qltok/extracted-05/05-a-data --target /workspace/scratch/7500a23b5952/software-evolution-ex1/handoff/verification-work/run-qh_qltok/teacher --subdir guava-study --apply --stage
+Exit code: 0; elapsed seconds: 10.258156
+
+STDOUT
+Packet 05 — Student A: Acquisition, preserved data and archive restoration
+Pinned source commit: f32e6e831f976eed8bf01faa1d66dbdc34bc49c7
+Git repository: /workspace/scratch/7500a23b5952/software-evolution-ex1/handoff/verification-work/run-qh_qltok/teacher
+Study working directory (run the packet's checks here): /workspace/scratch/7500a23b5952/software-evolution-ex1/handoff/verification-work/run-qh_qltok/teacher/guava-study
+Validated 75 packet files and 62 committed prerequisites; 0 files need copying, 75 are already identical.
+Copied 0 new files; existing identical files were kept.
+Staged and hash-checked 75 changed packet paths. Review git diff --cached before committing.
+Suggested commit message: import: add pinned artifacts and verified archive restoration (AI-assisted preparation)
+Use your own Git identity and actual commit date. This helper did not commit or push.
+
+STDERR
+
+
+## Command 39: Packet 05 read-only staged-blob verification
+Started UTC: 2026-10-18T11:20:05.090231+00:00
+Directory: /workspace/scratch/7500a23b5952/software-evolution-ex1/handoff/verification-work/run-qh_qltok
+Command: /opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python /workspace/scratch/7500a23b5952/software-evolution-ex1/handoff/verification-work/run-qh_qltok/extracted-05/05-a-data/apply_packet.py --packet /workspace/scratch/7500a23b5952/software-evolution-ex1/handoff/verification-work/run-qh_qltok/extracted-05/05-a-data --target /workspace/scratch/7500a23b5952/software-evolution-ex1/handoff/verification-work/run-qh_qltok/teacher --subdir guava-study --check-staged
+Exit code: 0; elapsed seconds: 0.890623
+
+STDOUT
+Packet 05 — Student A: Acquisition, preserved data and archive restoration
+Pinned source commit: f32e6e831f976eed8bf01faa1d66dbdc34bc49c7
+Git repository: /workspace/scratch/7500a23b5952/software-evolution-ex1/handoff/verification-work/run-qh_qltok/teacher
+Study working directory (run the packet's checks here): /workspace/scratch/7500a23b5952/software-evolution-ex1/handoff/verification-work/run-qh_qltok/teacher/guava-study
+Validated 75 packet files and 62 committed prerequisites; 0 files need copying, 75 are already identical.
+Staged check passed: 75 changed paths, all packet index blobs/modes exact, and no extra staged paths.
+No files or Git state changed. Review the packet's checks before committing with your own identity.
+
+STDERR
+
+
+## Command 40: Commit packet 05 under the explicit automated-test identity
+Started UTC: 2026-10-18T11:20:05.982392+00:00
+Directory: /workspace/scratch/7500a23b5952/software-evolution-ex1/handoff/verification-work/run-qh_qltok
+Command: git -C /workspace/scratch/7500a23b5952/software-evolution-ex1/handoff/verification-work/run-qh_qltok/teacher commit -q -m 'Automated handoff verification: import packet 05 (test fixture only)'
+Exit code: 0; elapsed seconds: 0.011959
+
+STDOUT
+
+STDERR
+

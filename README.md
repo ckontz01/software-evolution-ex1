@@ -2,7 +2,7 @@
 
 A reproducible study of **30 distinct major/minor Guava families**, from **10.0 (2011-09-28) to 33.7.2 JRE (2026-09-29)**. Each family contributes exactly one stable representative. Each version has one finalized protocol and the assignment's four required conditions: A1 ACDC/full, A2 ACDC/UE-filtered, A3 k-means/full and A4 k-means/UE-filtered. The series contains **120 final partitions**.
 
-**Start with the [revised PDF report](report/guava_evolution_report_revised.pdf), [results explanation](docs/results_interpretation.md) and [oral-exam guide](docs/oral_exam_guide.md).** The [two-person roadmap](docs/commit_roadmap.md) assigns balanced review and development work. Preparation and revision are AI-assisted; students' contributions and dates must reflect work they actually perform.
+**Start with the [revised PDF report](report/guava_evolution_report_revised.pdf), [results explanation](docs/results_interpretation.md) and [oral-exam guide](docs/oral_exam_guide.md).** The [two-person commit map](docs/commit_roadmap.md) now includes twelve ordered imports, [all 61 code/configuration files in full](handoff/full_code.html), and complete per-student payload bundles covering every study file. [Handoff instructions and verification](handoff/README.md). Preparation and revision are AI-assisted; students' contributions and dates must reflect work they actually perform.
 
 ## Current study configuration
 

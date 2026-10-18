@@ -1,0 +1,203 @@
+{
+  "schema": 1,
+  "source_commit": "f32e6e831f976eed8bf01faa1d66dbdc34bc49c7",
+  "source_tree": "2aa36c7d56a5b444e3e50a04bf2e329e660833ac",
+  "source_files": 295,
+  "source_bytes": 314086964,
+  "code_listing_files": 61,
+  "code_listing_bytes": 736245,
+  "downloads": [
+    {
+      "file": "01-a-setup.zip",
+      "bytes": 89044,
+      "sha256": "fe0b80c4d683b6b07f767c8c876c9a12099e289bf013b5fd044d8e5c63e391bc",
+      "members": 17,
+      "uncompressed_bytes": 427405,
+      "kind": "complete_packet",
+      "packet": "01",
+      "owner": "A",
+      "payload_files": 14,
+      "relative_path": "packets/01-a-setup.zip"
+    },
+    {
+      "file": "02-b-usage-equality.zip",
+      "bytes": 38377,
+      "sha256": "3de6df2510810d6cfc53468516be3de322e11fef16856714fea76f41ecff746a",
+      "members": 9,
+      "uncompressed_bytes": 114095,
+      "kind": "complete_packet",
+      "packet": "02",
+      "owner": "B",
+      "payload_files": 6,
+      "relative_path": "packets/02-b-usage-equality.zip"
+    },
+    {
+      "file": "03-a-extraction.zip",
+      "bytes": 6036698,
+      "sha256": "eb1a163a2dda3c0dd3881d5963ed80562224ee30618800e56ce9be238e3ebd43",
+      "members": 40,
+      "uncompressed_bytes": 6587998,
+      "kind": "complete_packet",
+      "packet": "03",
+      "owner": "A",
+      "payload_files": 37,
+      "relative_path": "packets/03-a-extraction.zip"
+    },
+    {
+      "file": "04-b-metrics.zip",
+      "bytes": 35191,
+      "sha256": "0d9c27d0bb882333bb485789c051e4e5e605a995733107112a6f9f0bcb9e97e1",
+      "members": 8,
+      "uncompressed_bytes": 106064,
+      "kind": "complete_packet",
+      "packet": "04",
+      "owner": "B",
+      "payload_files": 5,
+      "relative_path": "packets/04-b-metrics.zip"
+    },
+    {
+      "file": "05-a-data.zip",
+      "bytes": 222830732,
+      "sha256": "a3feeb575ca3bd1a842398b38ff5d2edfef190942cfe4666ae13b69ac3573021",
+      "members": 78,
+      "uncompressed_bytes": 294799607,
+      "kind": "complete_packet",
+      "packet": "05",
+      "owner": "A",
+      "payload_files": 75,
+      "relative_path": "packets/05-a-data.zip"
+    },
+    {
+      "file": "06-b-clustering.zip",
+      "bytes": 39693,
+      "sha256": "002ea88fbdcde739c2e2c23d499a848a8a008f36ec628e8037ae89873b0384a9",
+      "members": 8,
+      "uncompressed_bytes": 116675,
+      "kind": "complete_packet",
+      "packet": "06",
+      "owner": "B",
+      "payload_files": 5,
+      "relative_path": "packets/06-b-clustering.zip"
+    },
+    {
+      "file": "07-a-study.zip",
+      "bytes": 69327,
+      "sha256": "379eba3c1b732329d282ebcb3ed5721081d9fcea64face6eefd105b2a4b9f5b2",
+      "members": 13,
+      "uncompressed_bytes": 209381,
+      "kind": "complete_packet",
+      "packet": "07",
+      "owner": "A",
+      "payload_files": 10,
+      "relative_path": "packets/07-a-study.zip"
+    },
+    {
+      "file": "08-b-ai-evaluation.zip",
+      "bytes": 118014,
+      "sha256": "70ccb52d8b0a06241ea3efcf8967aab7cfbf82a95f293aba375f2a2f046fa029",
+      "members": 31,
+      "uncompressed_bytes": 675860,
+      "kind": "complete_packet",
+      "packet": "08",
+      "owner": "B",
+      "payload_files": 28,
+      "relative_path": "packets/08-b-ai-evaluation.zip"
+    },
+    {
+      "file": "09-a-evolution-audits.zip",
+      "bytes": 223984,
+      "sha256": "32dc452262d0d8b2a3eea606c3614d4ef0ef0ff2492508275b8d28d33b32d3db",
+      "members": 18,
+      "uncompressed_bytes": 2241954,
+      "kind": "complete_packet",
+      "packet": "09",
+      "owner": "A",
+      "payload_files": 15,
+      "relative_path": "packets/09-a-evolution-audits.zip"
+    },
+    {
+      "file": "10-b-validation-docs.zip",
+      "bytes": 160095,
+      "sha256": "f65757032e9f903ef393362aaae6a64d61c1c3068eccaa8636bc055c0965f98e",
+      "members": 15,
+      "uncompressed_bytes": 710360,
+      "kind": "complete_packet",
+      "packet": "10",
+      "owner": "B",
+      "payload_files": 12,
+      "relative_path": "packets/10-b-validation-docs.zip"
+    },
+    {
+      "file": "11-a-report.zip",
+      "bytes": 2230957,
+      "sha256": "a5cafef62da2f0fe5e0934de7c742f2f477bea07248363fa8ab84ed43c4450e0",
+      "members": 31,
+      "uncompressed_bytes": 3610891,
+      "kind": "complete_packet",
+      "packet": "11",
+      "owner": "A",
+      "payload_files": 28,
+      "relative_path": "packets/11-a-report.zip"
+    },
+    {
+      "file": "12-b-reproducibility.zip",
+      "bytes": 4659818,
+      "sha256": "2ccc127a2b659a406296d38b55da3efd7d3ca16ce47175e2369e887dbd9ec856",
+      "members": 63,
+      "uncompressed_bytes": 6003542,
+      "kind": "complete_packet",
+      "packet": "12",
+      "owner": "B",
+      "payload_files": 60,
+      "relative_path": "packets/12-b-reproducibility.zip"
+    },
+    {
+      "file": "student_A_complete.zip",
+      "bytes": 231941965,
+      "sha256": "1bfe041a879115300ec7b9fbecac6f361643ddf6e51c56c9ebf8daf8a506127c",
+      "members": 209,
+      "uncompressed_bytes": 309709503,
+      "kind": "complete_student",
+      "owner": "A",
+      "packets": [
+        "01",
+        "03",
+        "05",
+        "07",
+        "09",
+        "11"
+      ],
+      "payload_files": 179,
+      "relative_path": "student_A_complete.zip"
+    },
+    {
+      "file": "student_B_complete.zip",
+      "bytes": 5510088,
+      "sha256": "51243ba58095f95d6193d83a09ae1cdc1652f852cd4628008cf389fc29f228f3",
+      "members": 146,
+      "uncompressed_bytes": 9558863,
+      "kind": "complete_student",
+      "owner": "B",
+      "packets": [
+        "02",
+        "04",
+        "06",
+        "08",
+        "10",
+        "12"
+      ],
+      "payload_files": 116,
+      "relative_path": "student_B_complete.zip"
+    },
+    {
+      "file": "complete_code_guide.zip",
+      "bytes": 714253,
+      "sha256": "bc00e79b55aa032eb0003449cccfd67b27df0c2573084580722d12b184f4ad33",
+      "members": 79,
+      "uncompressed_bytes": 2695136,
+      "kind": "code_and_guides_only",
+      "code_files": 61,
+      "relative_path": "complete_code_guide.zip"
+    }
+  ]
+}

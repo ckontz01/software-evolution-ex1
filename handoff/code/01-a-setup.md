@@ -1,0 +1,2480 @@
+# Commit 01 — Project setup and reproducible release selection
+
+**Student A · 2026-10-18 · 14 complete files · 9 full code/configuration listings**
+
+Source snapshot: `f32e6e831f976eed8bf01faa1d66dbdc34bc49c7`. Dates are planned work sessions; make the commit when you actually import and review this packet.
+
+## What to understand
+
+Explain the major-version anchors, the calendar-gap rule, the 13.0.1 exception and how a selected artifact is tied to a tag and commit.
+
+## Apply this packet
+
+Set `HANDOFF_DIR` to your extracted student bundle and `TEACHER_REPO` to the teacher checkout. Pull the preceding commit first. Commands below use the `guava-study` layout explained in the main map.
+
+```bash
+git -C "$TEACHER_REPO" pull --ff-only origin guava-assignment
+python "$HANDOFF_DIR/apply_packet.py" --packet "$HANDOFF_DIR/packets/01-a-setup" --target "$TEACHER_REPO" --subdir guava-study
+python "$HANDOFF_DIR/apply_packet.py" --packet "$HANDOFF_DIR/packets/01-a-setup" --target "$TEACHER_REPO" --subdir guava-study --apply
+cd "$TEACHER_REPO/guava-study"
+```
+
+For commit 01, create the shared branch as shown in the main map; its remote branch does not exist until the first push, so omit that first pull.
+
+## Checks before the commit
+
+Run these in the cumulative study directory after applying the packet. For packet 01, first create the Python environment and install the locked requirements as shown in the main map:
+
+```bash
+python scripts/select_versions.py --check
+PYTHONPATH=src python -m unittest discover -s tests -p 'test_selection.py' -v
+```
+
+Stage and inspect only this packet, then use your own Git identity:
+
+```bash
+python "$HANDOFF_DIR/apply_packet.py" --packet "$HANDOFF_DIR/packets/01-a-setup" --target "$TEACHER_REPO" --subdir guava-study --apply --stage
+git -C "$TEACHER_REPO" diff --cached --stat
+git -C "$TEACHER_REPO" diff --cached
+python "$HANDOFF_DIR/apply_packet.py" --packet "$HANDOFF_DIR/packets/01-a-setup" --target "$TEACHER_REPO" --subdir guava-study --check-staged
+git -C "$TEACHER_REPO" commit -m 'import: add project setup and reproducible Guava release selection (AI-assisted preparation)'
+git -C "$TEACHER_REPO" push -u origin guava-assignment
+```
+
+Add a commit-message paragraph describing the checks you actually performed and anything you found. The import message identifies the prepared source; it does not claim you originally wrote every line.
+
+## Every file to push
+
+All files below are present under this packet's `payload/` directory in the complete student download. Paths are relative to the study directory.
+
+| File | Bytes | Content |
+|---|---:|---|
+| `.gitignore` | 249 | Full code below |
+| `config/analysis.json` | 2,882 | Full code below |
+| `config/versions.json` | 71,651 | Full code below |
+| `data/provenance/family_selection.json` | 35,648 | recorded evidence |
+| `data/provenance/historical_release_dates.json` | 858 | recorded evidence |
+| `data/provenance/project_eligibility.json` | 28,759 | recorded evidence |
+| `data/provenance/tag_inventory.json` | 105,766 | recorded evidence |
+| `docs/project_selection.md` | 10,573 | documentation or tool provenance |
+| `requirements.lock.txt` | 397 | Full code below |
+| `requirements.txt` | 99 | Full code below |
+| `scripts/select_versions.py` | 20,923 | Full code below |
+| `src/evolution/__init__.py` | 89 | Full code below |
+| `src/evolution/graph.py` | 2,652 | Full code below |
+| `tests/test_selection.py` | 8,228 | Full code below |
+
+The machine-readable `packet.json` pins every file's SHA-256 and Git blob. Binary JAR/PDF/ZIP files and large evidence files are supplied as their exact original bytes in the payload, rather than as text pasted into this guide.
+
+## Whole code
+
+The following are complete files, with no omitted functions. Use the payload for copying so file bytes, line endings and original licences stay intact.
+
+### .gitignore
+
+SHA-256: `06a23061b46e9b76bcb69452f17f305ff10a56412052196c791111eec474c9c5` · 249 bytes
+
+<!-- FULL_SOURCE .gitignore 06a23061b46e9b76bcb69452f17f305ff10a56412052196c791111eec474c9c5 -->
+```text
+__pycache__/
+*.py[cod]
+.venv/
+build/
+config/*.local.json
+results/rerun/
+report/rendered/
+report/qa/
+data/raw/
+data/upstream_git/
+data/recomputed_graphs/
+.cache/
+data/graphs/*/
+results/versions/
+results/pilot/
+third_party/acdc/acdc/*.class
+.DS_Store
+```
+<!-- END_FULL_SOURCE .gitignore -->
+
+### config/analysis.json
+
+SHA-256: `d13a902f38da8e0e921eec0d5ae152ea4a8cac84d8de91546240b865bf07c069` · 2,882 bytes
+
+<!-- FULL_SOURCE config/analysis.json d13a902f38da8e0e921eec0d5ae152ea4a8cac84d8de91546240b865bf07c069 -->
+```json
+{
+  "schema_version": 3,
+  "study_revision": "v3_spaced_releases_no_ari",
+  "subject": "google/guava",
+  "scope": "Published Guava JRE production artifact; source-owned com.google.common and com.google.thirdparty.publicsuffix types, including isolates",
+  "primary_extractor": "Unmodified instructor DependencyExtractor.jar; normalized class relationships only",
+  "supplemental_extractor": "ASM source ownership, class aliases, and resolved field/method member evidence for UE",
+  "annotation_policy": "Keep owned annotation types in the inventory; do not add annotation-application edges absent from the instructor output; report metadata types and isolates separately",
+  "relation_types": [
+    "EXTENDS",
+    "IMPLEMENTS",
+    "METHOD_CALL",
+    "METHOD_PARAMETER",
+    "FIELD_REFERENCE",
+    "TYPE_USAGE",
+    "EXCEPTION_THROWS"
+  ],
+  "relation_weight": 1,
+  "graph": "binary_directed_union_no_self_loops",
+  "merge_inner_and_anonymous": true,
+  "multi_release_policy": "base_class_entries_only",
+  "omnipresent": {
+    "method": "UE",
+    "usage_threshold": 0.85,
+    "cardinality_threshold": 0.9,
+    "passes": 1
+  },
+  "features": "L2_rows([A+I,(A+I)^T])_fixed_union_coordinates",
+  "kmeans": {
+    "k_rule": "ceil(n_full * pilot_k / pilot_n)",
+    "calibration": "single_middle_release_inertia_elbow",
+    "same_k_for_full_and_filtered": true,
+    "random_state": 484,
+    "n_init": 10,
+    "max_iter": 300,
+    "algorithm": "lloyd"
+  },
+  "acdc": {
+    "patterns": "+so",
+    "max_subgraph_size": 20,
+    "output": "default_fine_flat",
+    "isolates": "explicit_singletons",
+    "node_ids": "class_plus_java_suffix"
+  },
+  "metric": "lecture_macro_cohesion_minus_mean_pair_coupling",
+  "singleton_cohesion": 0,
+  "empty_partition_metrics": 0,
+  "comparison_metrics": [
+    "MoJoFM_source_to_reference",
+    "MoJoFM_reverse"
+  ],
+  "pilot": {
+    "selection": "middle_selected_release",
+    "acdc_max_subgraph_sizes": [
+      10,
+      20,
+      40
+    ],
+    "k_sweep": "one_pilot_only",
+    "k_candidates": [
+      2,
+      5,
+      10,
+      15,
+      20,
+      25,
+      30,
+      40,
+      50,
+      60,
+      75,
+      90,
+      110,
+      130
+    ],
+    "elbow_rule": "maximum_positive_vertical_gap_below_normalized_endpoint_chord; ties_choose_smaller_k",
+    "minimum_elbow_gap": 0.02,
+    "fallback_k_if_no_clear_elbow": 30,
+    "matched_acdc_k_diagnostic": true
+  },
+  "notes": "Freeze the pilot selection rule before observing quality scores. The pilot inertia curve determines one class-per-cluster calibration; no per-release k sweep and no MQ optimization. Identity entries are features only. All owned types and true isolates remain in the declared universe. Source-owned public-suffix helpers are internal. Beta/RC/snapshot releases are excluded; annotated production APIs remain. MoJoFM denotes directional partition agreement, not recovery accuracy."
+}
+```
+<!-- END_FULL_SOURCE config/analysis.json -->
+
+### config/versions.json
+
+SHA-256: `4b3328c198aeb11fd03a071231c707e1ab170e587f1d58f7a376ed49fc944854` · 71,651 bytes
+
+<!-- FULL_SOURCE config/versions.json 4b3328c198aeb11fd03a071231c707e1ab170e587f1d58f7a376ed49fc944854 -->
+```json
+{
+  "schema_version": 4,
+  "repository": "google/guava",
+  "repository_url": "https://github.com/google/guava",
+  "selection_date_utc": "2026-10-17",
+  "project_selection_basis": "Explicit user correction selected Guava",
+  "approval_status": "instructor_approval_not_observed",
+  "selection_policy": "From the frozen 2026-10-17 catalog retain the same 70 eligible stable main-project releases in 45 MAJOR.MINOR families and the existing three documented mainline exclusions. Use the first eligible stable release in each family. Require every MAJOR.0 family from 10 through 33 (24 anchors, including 13.0.1 because ambiguous 13.0 is excluded), preserving the fixed oldest 10.0 and latest 33.7.2 endpoints. The latest endpoint is the sole exception to the first-release representative rule and does not count as an optional addition. Fill five remaining slots greedily: splitting a calendar gap into L and R days reduces the sum of squared gaps by 2*L*R. Choose the greatest reduction, then the earlier UTC calendar date, then numeric version. Keep every selected gap at least 60 calendar days and permit at most two optional minor-family additions in any major. Each selected family appears once. This balances major-history coverage and calendar spacing; it does not require an omitted numeric tag between every pair or claim a globally optimal calendar design. Use plain Maven artifacts before 23.1 and JRE artifacts thereafter. Selection reads no graphs, clusters, quality values or structural-change outcomes.",
+  "all_tags_count": 124,
+  "numeric_stable_tags_count": 82,
+  "excluded_non_numeric_tags_count": 42,
+  "eligible_mainline_points": 70,
+  "selected_count": 30,
+  "major_minor_families": [
+    "10.0",
+    "11.0",
+    "12.0",
+    "13.0",
+    "14.0",
+    "15.0",
+    "16.0",
+    "17.0",
+    "18.0",
+    "19.0",
+    "20.0",
+    "21.0",
+    "22.0",
+    "23.0",
+    "24.0",
+    "25.0",
+    "26.0",
+    "27.0",
+    "27.1",
+    "28.0",
+    "28.2",
+    "29.0",
+    "30.0",
+    "31.0",
+    "31.1",
+    "32.0",
+    "33.0",
+    "33.4",
+    "33.5",
+    "33.7"
+  ],
+  "github_verification": {
+    "queried_at_utc": "2026-10-17",
+    "created_at": "2014-05-29T16:23:17Z",
+    "language": "Java",
+    "fork": false,
+    "archived": false,
+    "commits_since_2024_01_01_lower_bound": 100,
+    "source_url": "https://api.github.com/repos/google/guava"
+  },
+  "artifact_source": "Maven Central released Guava artifacts. Published SHA1 sidecars checked and immutable SHA256 pins recorded.",
+  "external_exclusions": [
+    "Project-owned production sources under com.google.common and com.google.thirdparty.publicsuffix define the ownership scope",
+    "The public-suffix Java implementation carries Guava Authors headers and is included; package naming alone does not establish external ownership",
+    "JDK, failureaccess, listenablefuture compatibility artifact, external annotation libraries, and other external endpoints are excluded",
+    "Android, GWT, test, benchmark, and auxiliary-component artifacts are outside the production JRE study",
+    "Prerelease distributions are excluded; a Beta API annotation does not exclude the annotated Guava class"
+  ],
+  "versions": [
+    {
+      "version": "10.0",
+      "tag": "v10.0",
+      "commit_sha": "baf008c5a3de60e8399852f23979bf69f2660023",
+      "tag_date": "2011-09-27T18:22:36Z",
+      "commit_date": "2011-09-27T18:22:36Z",
+      "ref_type": "lightweight_tag",
+      "release_date": "2011-09-28",
+      "date_basis": "Project ReleaseHistory / individual release notes (documented calendar date)",
+      "release_url": "https://github.com/google/guava/tree/baf008c5a3de60e8399852f23979bf69f2660023",
+      "date_precision": "day",
+      "release_date_source_url": "https://github.com/google/guava/wiki/ReleaseHistory",
+      "index": 1,
+      "family": "10.0",
+      "family_rank_zero_based": 0,
+      "representative_rule": "first_eligible_stable_release",
+      "selection_role": "major_anchor",
+      "calendar_gap_days_since_previous": null,
+      "artifact_version": "10.0",
+      "group_id": "com.google.guava",
+      "artifact_id": "guava",
+      "source_prefix": "com/google/common/",
+      "source_prefixes": [
+        "com/google/common/",
+        "com/google/thirdparty/publicsuffix/"
+      ],
+      "source_roots": [
+        "guava/src/",
+        "src/",
+        "guava/src/main/java/",
+        "src/main/java/"
+      ],
+      "skipped_stable_since_previous": [],
+      "skipped_families_since_previous": [],
+      "jar_url": "https://repo.maven.apache.org/maven2/com/google/guava/guava/10.0/guava-10.0.jar",
+      "jar_path": "data/raw/10.0/guava-10.0.jar",
+      "jar_sha256": "a208374defdff010bc92135093d450b86eb78278bcfafcf9dc9f41a21b6a6075",
+      "jar_maven_sha1": "4e65a01f856672857bf8c9ab47de11384d7cc4fa",
+      "sources_url": "https://repo.maven.apache.org/maven2/com/google/guava/guava/10.0/guava-10.0-sources.jar",
+      "sources_path": "data/raw/10.0/guava-10.0-sources.jar",
+      "sources_sha256": "39b5111fa42866be47f376164824213ee06b6ebe410262aa2e36d00a88296226",
+      "sources_maven_sha1": "9319602ebfb2b67b59f00e82fe8da5981663361f",
+      "pom_url": "https://repo.maven.apache.org/maven2/com/google/guava/guava/10.0/guava-10.0.pom",
+      "pom_path": "data/raw/10.0/guava-10.0.pom",
+      "pom_sha256": "aa2ad8fe85d09f4a9830aa0ed1bb451a9091ea5755bde917f2c67a2e0b71592c",
+      "pom_maven_sha1": "e9c4e03d4d9b194900fa1dae1bd4b0816a09852d"
+    },
+    {
+      "version": "11.0",
+      "tag": "v11.0",
+      "commit_sha": "5a6bf80c7403d77df18adb41b5b15ea34d28186d",
+      "tag_date": "2011-12-17T17:18:18Z",
+      "commit_date": "2011-12-17T17:18:18Z",
+      "ref_type": "lightweight_tag",
+      "release_date": "2011-12-18",
+      "date_basis": "Project ReleaseHistory / individual release notes (documented calendar date)",
+      "release_url": "https://github.com/google/guava/tree/5a6bf80c7403d77df18adb41b5b15ea34d28186d",
+      "date_precision": "day",
+      "release_date_source_url": "https://github.com/google/guava/wiki/ReleaseHistory",
+      "index": 2,
+      "family": "11.0",
+      "family_rank_zero_based": 1,
+      "representative_rule": "first_eligible_stable_release",
+      "selection_role": "major_anchor",
+      "calendar_gap_days_since_previous": 81,
+      "artifact_version": "11.0",
+      "group_id": "com.google.guava",
+      "artifact_id": "guava",
+      "source_prefix": "com/google/common/",
+      "source_prefixes": [
+        "com/google/common/",
+        "com/google/thirdparty/publicsuffix/"
+      ],
+      "source_roots": [
+        "guava/src/",
+        "src/",
+        "guava/src/main/java/",
+        "src/main/java/"
+      ],
+      "skipped_stable_since_previous": [
+        "10.0.1"
+      ],
+      "skipped_families_since_previous": [],
+      "jar_url": "https://repo.maven.apache.org/maven2/com/google/guava/guava/11.0/guava-11.0.jar",
+      "jar_path": "data/raw/11.0/guava-11.0.jar",
+      "sources_url": "https://repo.maven.apache.org/maven2/com/google/guava/guava/11.0/guava-11.0-sources.jar",
+      "sources_path": "data/raw/11.0/guava-11.0-sources.jar",
+      "pom_url": "https://repo.maven.apache.org/maven2/com/google/guava/guava/11.0/guava-11.0.pom",
+      "pom_path": "data/raw/11.0/guava-11.0.pom",
+      "sources_sha256": "d40d4ad9e750bc3260d7779ae33d861046521d95856421c82a4d85cad1f83115",
+      "sources_maven_sha1": "02caaa613428bc74609bfbd76f00cfef1b7b187d",
+      "pom_sha256": "74dcf04479274c77265c6eb52b8222cac22c62fe0cddc26d4fc47a1ce3bb02ef",
+      "pom_maven_sha1": "c8513eb04f2d83d813f16ad4836607f977dba789",
+      "jar_sha256": "50e80aef7b7a58867010d619f38c6c37022038517e9e0d7112d056b2a727a081",
+      "jar_maven_sha1": "f8ebb252d9ce7ff71b68b494551711242b2118d6"
+    },
+    {
+      "version": "12.0",
+      "tag": "v12.0",
+      "commit_sha": "72d281266d52f95bc7df228cd37294c9fa6effe3",
+      "tag_date": "2012-04-30T18:04:06Z",
+      "commit_date": "2012-04-30T18:04:06Z",
+      "ref_type": "lightweight_tag",
+      "release_date": "2012-04-30",
+      "date_basis": "Project ReleaseHistory / individual release notes (documented calendar date)",
+      "release_url": "https://github.com/google/guava/tree/72d281266d52f95bc7df228cd37294c9fa6effe3",
+      "date_precision": "day",
+      "release_date_source_url": "https://github.com/google/guava/wiki/ReleaseHistory",
+      "index": 3,
+      "family": "12.0",
+      "family_rank_zero_based": 2,
+      "representative_rule": "first_eligible_stable_release",
+      "selection_role": "major_anchor",
+      "calendar_gap_days_since_previous": 134,
+      "artifact_version": "12.0",
+      "group_id": "com.google.guava",
+      "artifact_id": "guava",
+      "source_prefix": "com/google/common/",
+      "source_prefixes": [
+        "com/google/common/",
+        "com/google/thirdparty/publicsuffix/"
+      ],
+      "source_roots": [
+        "guava/src/",
+        "src/",
+        "guava/src/main/java/",
+        "src/main/java/"
+      ],
+      "skipped_stable_since_previous": [
+        "11.0.1",
+        "11.0.2"
+      ],
+      "skipped_families_since_previous": [],
+      "jar_url": "https://repo.maven.apache.org/maven2/com/google/guava/guava/12.0/guava-12.0.jar",
+      "jar_path": "data/raw/12.0/guava-12.0.jar",
+      "sources_url": "https://repo.maven.apache.org/maven2/com/google/guava/guava/12.0/guava-12.0-sources.jar",
+      "sources_path": "data/raw/12.0/guava-12.0-sources.jar",
+      "pom_url": "https://repo.maven.apache.org/maven2/com/google/guava/guava/12.0/guava-12.0.pom",
+      "pom_path": "data/raw/12.0/guava-12.0.pom",
+      "jar_sha256": "1b5a500b3017a65d6b99fb92dbc9047684d7ffb937c1e53a86c22b6977f7da4e",
+      "jar_maven_sha1": "5bc66dd95b79db1e437eb08adba124a3e4088dc0",
+      "sources_sha256": "aaa2396904817f4c9c975d581fbe1c79a44cbdcf5e8aaf76fba01b4d8ff055ab",
+      "sources_maven_sha1": "f8b98e61865bed3c39b978ee3bf5c7fb990c4032",
+      "pom_sha256": "cc59992bdc45dce8758ae19c1411412cc690b226f9c48657546c90b0df8605aa",
+      "pom_maven_sha1": "954f8f38a27acbfdf47280b71e41cedd0d3b9939"
+    },
+    {
+      "version": "13.0.1",
+      "tag": "v13.0.1",
+      "commit_sha": "c523556ab7d0f05afadebd20e7768d4c16af8771",
+      "tag_date": "2012-08-27T21:27:39Z",
+      "commit_date": "2012-08-27T21:27:39Z",
+      "ref_type": "lightweight_tag",
+      "release_date": "2012-08-28",
+      "date_basis": "Project ReleaseHistory / individual release notes (documented calendar date)",
+      "release_url": "https://github.com/google/guava/tree/c523556ab7d0f05afadebd20e7768d4c16af8771",
+      "date_precision": "day",
+      "release_date_source_url": "https://github.com/google/guava/wiki/ReleaseHistory",
+      "index": 4,
+      "family": "13.0",
+      "family_rank_zero_based": 3,
+      "representative_rule": "first_eligible_stable_release",
+      "selection_role": "major_anchor",
+      "calendar_gap_days_since_previous": 120,
+      "artifact_version": "13.0.1",
+      "group_id": "com.google.guava",
+      "artifact_id": "guava",
+      "source_prefix": "com/google/common/",
+      "source_prefixes": [
+        "com/google/common/",
+        "com/google/thirdparty/publicsuffix/"
+      ],
+      "source_roots": [
+        "guava/src/",
+        "src/",
+        "guava/src/main/java/",
+        "src/main/java/"
+      ],
+      "skipped_stable_since_previous": [
+        "12.0.1",
+        "13.0"
+      ],
+      "skipped_families_since_previous": [],
+      "jar_url": "https://repo.maven.apache.org/maven2/com/google/guava/guava/13.0.1/guava-13.0.1.jar",
+      "jar_path": "data/raw/13.0.1/guava-13.0.1.jar",
+      "jar_sha256": "feb4b5b2e79a63b72ec47a693b1cf35cf1cea1f60a2bb2615bf21f74c7a60bb0",
+      "jar_maven_sha1": "0d6f22b1e60a2f1ef99e22c9f5fde270b2088365",
+      "sources_url": "https://repo.maven.apache.org/maven2/com/google/guava/guava/13.0.1/guava-13.0.1-sources.jar",
+      "sources_path": "data/raw/13.0.1/guava-13.0.1-sources.jar",
+      "sources_sha256": "6968729f41bd225c00ce6c9212674fe5fa64346ca267072860253c87156507d3",
+      "sources_maven_sha1": "ea42e17f75a65e72d12cd311b7d1e7d6356bbb3f",
+      "pom_url": "https://repo.maven.apache.org/maven2/com/google/guava/guava/13.0.1/guava-13.0.1.pom",
+      "pom_path": "data/raw/13.0.1/guava-13.0.1.pom",
+      "pom_sha256": "5007012b96a3c47e0ee1196523529cf8b861ce52412bd1da2796544847696bbc",
+      "pom_maven_sha1": "81701ae27c46df91e3dc8473b5ae9edee72d4a16"
+    },
+    {
+      "version": "14.0",
+      "tag": "v14.0",
+      "commit_sha": "a3c71e0264ee5bf5eebd341c506dda655c3a6356",
+      "tag_date": "2013-02-25T18:43:45Z",
+      "commit_date": "2013-02-25T18:43:45Z",
+      "ref_type": "lightweight_tag",
+      "release_date": "2013-02-25",
+      "date_basis": "Project ReleaseHistory / individual release notes (documented calendar date)",
+      "release_url": "https://github.com/google/guava/tree/a3c71e0264ee5bf5eebd341c506dda655c3a6356",
+      "date_precision": "day",
+      "release_date_source_url": "https://github.com/google/guava/wiki/ReleaseHistory",
+      "index": 5,
+      "family": "14.0",
+      "family_rank_zero_based": 4,
+      "representative_rule": "first_eligible_stable_release",
+      "selection_role": "major_anchor",
+      "calendar_gap_days_since_previous": 181,
+      "artifact_version": "14.0",
+      "group_id": "com.google.guava",
+      "artifact_id": "guava",
+      "source_prefix": "com/google/common/",
+      "source_prefixes": [
+        "com/google/common/",
+        "com/google/thirdparty/publicsuffix/"
+      ],
+      "source_roots": [
+        "guava/src/",
+        "src/",
+        "guava/src/main/java/",
+        "src/main/java/"
+      ],
+      "skipped_stable_since_previous": [],
+      "skipped_families_since_previous": [],
+      "jar_url": "https://repo.maven.apache.org/maven2/com/google/guava/guava/14.0/guava-14.0.jar",
+      "jar_path": "data/raw/14.0/guava-14.0.jar",
+      "sources_url": "https://repo.maven.apache.org/maven2/com/google/guava/guava/14.0/guava-14.0-sources.jar",
+      "sources_path": "data/raw/14.0/guava-14.0-sources.jar",
+      "pom_url": "https://repo.maven.apache.org/maven2/com/google/guava/guava/14.0/guava-14.0.pom",
+      "pom_path": "data/raw/14.0/guava-14.0.pom",
+      "pom_sha256": "049c68e011c8af7757b95bd07c7e805a8f5a5759cb89a173cde1f0478fb3ef2b",
+      "pom_maven_sha1": "976bc6ce489b622e417b3141ece1a92ffd7600a0",
+      "jar_sha256": "c0127b076e3056f58294e4ae6c01a96599b8f58200345eb6f859192a2d9b2962",
+      "jar_maven_sha1": "67b7be4ee7ba48e4828a42d6d5069761186d4a53",
+      "sources_sha256": "3fe6d49b3d2bc7394b58de018b2d3a95fa8972e45a2cc54712254ea375b34b21",
+      "sources_maven_sha1": "c4e65085e00a033348b5417106b13e2ad2987ffc"
+    },
+    {
+      "version": "15.0",
+      "tag": "v15.0",
+      "commit_sha": "7ce15119ae3b8ea71bdfd43bd6a0b96f851187d0",
+      "tag_date": "2013-09-06T19:34:09Z",
+      "commit_date": "2013-09-06T19:34:09Z",
+      "ref_type": "lightweight_tag",
+      "release_date": "2013-09-06",
+      "date_basis": "Project ReleaseHistory / individual release notes (documented calendar date)",
+      "release_url": "https://github.com/google/guava/tree/7ce15119ae3b8ea71bdfd43bd6a0b96f851187d0",
+      "date_precision": "day",
+      "release_date_source_url": "https://github.com/google/guava/wiki/ReleaseHistory",
+      "index": 6,
+      "family": "15.0",
+      "family_rank_zero_based": 5,
+      "representative_rule": "first_eligible_stable_release",
+      "selection_role": "major_anchor",
+      "calendar_gap_days_since_previous": 193,
+      "artifact_version": "15.0",
+      "group_id": "com.google.guava",
+      "artifact_id": "guava",
+      "source_prefix": "com/google/common/",
+      "source_prefixes": [
+        "com/google/common/",
+        "com/google/thirdparty/publicsuffix/"
+      ],
+      "source_roots": [
+        "guava/src/",
+        "src/",
+        "guava/src/main/java/",
+        "src/main/java/"
+      ],
+      "skipped_stable_since_previous": [
+        "14.0.1"
+      ],
+      "skipped_families_since_previous": [],
+      "jar_url": "https://repo.maven.apache.org/maven2/com/google/guava/guava/15.0/guava-15.0.jar",
+      "jar_path": "data/raw/15.0/guava-15.0.jar",
+      "jar_sha256": "7a34575770eebc60a5476616e3676a6cb6f2975c78c415e2a6014ac724ba5783",
+      "jar_maven_sha1": "ed727a8d9f247e2050281cb083f1c77b09dcb5cd",
+      "sources_url": "https://repo.maven.apache.org/maven2/com/google/guava/guava/15.0/guava-15.0-sources.jar",
+      "sources_path": "data/raw/15.0/guava-15.0-sources.jar",
+      "sources_sha256": "1a3f78cfd4a44f63af00afe36f2175d41ed24d25aedf3542f47664f81815a211",
+      "sources_maven_sha1": "36b6a585c0f0c63bd85fb04db0dcb7b217298956",
+      "pom_url": "https://repo.maven.apache.org/maven2/com/google/guava/guava/15.0/guava-15.0.pom",
+      "pom_path": "data/raw/15.0/guava-15.0.pom",
+      "pom_sha256": "9710571bb8b4a992f45ff80a48e2fe5acedc743ebf883d4cfdcb9206022bb85b",
+      "pom_maven_sha1": "9dee47062035280d7f3dcec0f63cb8ff8dcadc3f"
+    },
+    {
+      "version": "16.0",
+      "tag": "v16.0",
+      "commit_sha": "2537d1ed4795f8fad737a7bf6d6f93fbdfa28e54",
+      "tag_date": "2014-01-17T21:23:13Z",
+      "commit_date": "2014-01-17T21:23:13Z",
+      "ref_type": "lightweight_tag",
+      "release_date": "2014-01-17",
+      "date_basis": "Project ReleaseHistory / individual release notes (documented calendar date)",
+      "release_url": "https://github.com/google/guava/tree/2537d1ed4795f8fad737a7bf6d6f93fbdfa28e54",
+      "date_precision": "day",
+      "release_date_source_url": "https://github.com/google/guava/wiki/ReleaseHistory",
+      "index": 7,
+      "family": "16.0",
+      "family_rank_zero_based": 6,
+      "representative_rule": "first_eligible_stable_release",
+      "selection_role": "major_anchor",
+      "calendar_gap_days_since_previous": 133,
+      "artifact_version": "16.0",
+      "group_id": "com.google.guava",
+      "artifact_id": "guava",
+      "source_prefix": "com/google/common/",
+      "source_prefixes": [
+        "com/google/common/",
+        "com/google/thirdparty/publicsuffix/"
+      ],
+      "source_roots": [
+        "guava/src/",
+        "src/",
+        "guava/src/main/java/",
+        "src/main/java/"
+      ],
+      "skipped_stable_since_previous": [],
+      "skipped_families_since_previous": [],
+      "jar_url": "https://repo.maven.apache.org/maven2/com/google/guava/guava/16.0/guava-16.0.jar",
+      "jar_path": "data/raw/16.0/guava-16.0.jar",
+      "sources_url": "https://repo.maven.apache.org/maven2/com/google/guava/guava/16.0/guava-16.0-sources.jar",
+      "sources_path": "data/raw/16.0/guava-16.0-sources.jar",
+      "pom_url": "https://repo.maven.apache.org/maven2/com/google/guava/guava/16.0/guava-16.0.pom",
+      "pom_path": "data/raw/16.0/guava-16.0.pom",
+      "pom_sha256": "32983d91addabcf344004b5f71b7028a110758406664dc7e2eb38508fec658d4",
+      "pom_maven_sha1": "2ed1c0192ffecbfcb3ce7f06b00eb1411b67aa7f",
+      "sources_sha256": "ce615d97c302e1815c8efe098de8c107be629dd95ba9432c701ba17743f6cfd9",
+      "sources_maven_sha1": "74949eedaf5f77499950d50549f2675407e03075",
+      "jar_sha256": "fa917f4f3f6a76375134ba89a40d3a1ce807945a91bbdbe39c31f76e03030868",
+      "jar_maven_sha1": "aca09d2e5e8416bf91550e72281958e35460be52"
+    },
+    {
+      "version": "17.0",
+      "tag": "v17.0",
+      "commit_sha": "904234dc2f365314c636d29385780faf72db2477",
+      "tag_date": "2014-04-22T19:59:22Z",
+      "commit_date": "2014-04-22T19:59:22Z",
+      "ref_type": "lightweight_tag",
+      "release_date": "2014-04-22",
+      "date_basis": "Project ReleaseHistory / individual release notes (documented calendar date)",
+      "release_url": "https://github.com/google/guava/tree/904234dc2f365314c636d29385780faf72db2477",
+      "date_precision": "day",
+      "release_date_source_url": "https://github.com/google/guava/wiki/ReleaseHistory",
+      "index": 8,
+      "family": "17.0",
+      "family_rank_zero_based": 7,
+      "representative_rule": "first_eligible_stable_release",
+      "selection_role": "major_anchor",
+      "calendar_gap_days_since_previous": 95,
+      "artifact_version": "17.0",
+      "group_id": "com.google.guava",
+      "artifact_id": "guava",
+      "source_prefix": "com/google/common/",
+      "source_prefixes": [
+        "com/google/common/",
+        "com/google/thirdparty/publicsuffix/"
+      ],
+      "source_roots": [
+        "guava/src/",
+        "src/",
+        "guava/src/main/java/",
+        "src/main/java/"
+      ],
+      "skipped_stable_since_previous": [
+        "16.0.1"
+      ],
+      "skipped_families_since_previous": [],
+      "jar_url": "https://repo.maven.apache.org/maven2/com/google/guava/guava/17.0/guava-17.0.jar",
+      "jar_path": "data/raw/17.0/guava-17.0.jar",
+      "sources_url": "https://repo.maven.apache.org/maven2/com/google/guava/guava/17.0/guava-17.0-sources.jar",
+      "sources_path": "data/raw/17.0/guava-17.0-sources.jar",
+      "pom_url": "https://repo.maven.apache.org/maven2/com/google/guava/guava/17.0/guava-17.0.pom",
+      "pom_path": "data/raw/17.0/guava-17.0.pom",
+      "pom_sha256": "2a0d16010d3825c732aeab1d25f181074945063d8f76c28004e7d423d66cb75b",
+      "pom_maven_sha1": "0f534dabee0b40b25715869c5e1287e38c7e1e4a",
+      "jar_sha256": "8c36a80ea613d0b6b8040a17cf837c5bbe3677bc1b06a058a6c174fdb787ebbc",
+      "jar_maven_sha1": "9c6ef172e8de35fd8d4d8783e4821e57cdef7445",
+      "sources_sha256": "df275cbcc3ab90c7fd4cc70e8b26b454c16a708b909f357f07115ca54a83f9bd",
+      "sources_maven_sha1": "7ca0efbeb87ca845b5d7a0ac9c21a4b7b95f7b28"
+    },
+    {
+      "version": "18.0",
+      "tag": "v18.0",
+      "commit_sha": "798803f026bb9517bcf4e0e9ab2d2e0345023182",
+      "tag_date": "2014-08-25T18:39:22Z",
+      "commit_date": "2014-08-25T18:39:22Z",
+      "ref_type": "lightweight_tag",
+      "release_date": "2014-08-25",
+      "date_basis": "Project ReleaseHistory / individual release notes (documented calendar date)",
+      "release_url": "https://github.com/google/guava/tree/798803f026bb9517bcf4e0e9ab2d2e0345023182",
+      "date_precision": "day",
+      "release_date_source_url": "https://github.com/google/guava/wiki/ReleaseHistory",
+      "index": 9,
+      "family": "18.0",
+      "family_rank_zero_based": 8,
+      "representative_rule": "first_eligible_stable_release",
+      "selection_role": "major_anchor",
+      "calendar_gap_days_since_previous": 125,
+      "artifact_version": "18.0",
+      "group_id": "com.google.guava",
+      "artifact_id": "guava",
+      "source_prefix": "com/google/common/",
+      "source_prefixes": [
+        "com/google/common/",
+        "com/google/thirdparty/publicsuffix/"
+      ],
+      "source_roots": [
+        "guava/src/",
+        "src/",
+        "guava/src/main/java/",
+        "src/main/java/"
+      ],
+      "skipped_stable_since_previous": [],
+      "skipped_families_since_previous": [],
+      "jar_url": "https://repo.maven.apache.org/maven2/com/google/guava/guava/18.0/guava-18.0.jar",
+      "jar_path": "data/raw/18.0/guava-18.0.jar",
+      "jar_sha256": "d664fbfc03d2e5ce9cab2a44fb01f1d0bf9dfebeccc1a473b1f9ea31f79f6f99",
+      "jar_maven_sha1": "cce0823396aa693798f8882e64213b1772032b09",
+      "sources_url": "https://repo.maven.apache.org/maven2/com/google/guava/guava/18.0/guava-18.0-sources.jar",
+      "sources_path": "data/raw/18.0/guava-18.0-sources.jar",
+      "sources_sha256": "0f3381ce4caa3a01602cdf0d0f4437b9ad8f347ddabbd873ded4d498e19d9590",
+      "sources_maven_sha1": "ad97fe8faaf01a3d3faacecd58e8fa6e78a973ca",
+      "pom_url": "https://repo.maven.apache.org/maven2/com/google/guava/guava/18.0/guava-18.0.pom",
+      "pom_path": "data/raw/18.0/guava-18.0.pom",
+      "pom_sha256": "e743d61d76f76b5dc060d6f7914fdd41c4418b3529062556920116a716719836",
+      "pom_maven_sha1": "2ec12f8d27a64e970b8be0fbd1d52dfec51cd41c"
+    },
+    {
+      "version": "19.0",
+      "tag": "v19.0",
+      "commit_sha": "daa84b68f31898f67a51207e193ee2ddabb088bf",
+      "tag_date": "2015-12-09T20:56:41Z",
+      "commit_date": "2015-12-09T20:56:41Z",
+      "ref_type": "lightweight_tag",
+      "release_date": "2015-12-09",
+      "date_basis": "Project ReleaseHistory / individual release notes (documented calendar date)",
+      "release_url": "https://github.com/google/guava/tree/daa84b68f31898f67a51207e193ee2ddabb088bf",
+      "date_precision": "day",
+      "release_date_source_url": "https://github.com/google/guava/wiki/ReleaseHistory",
+      "index": 10,
+      "family": "19.0",
+      "family_rank_zero_based": 9,
+      "representative_rule": "first_eligible_stable_release",
+      "selection_role": "major_anchor",
+      "calendar_gap_days_since_previous": 471,
+      "artifact_version": "19.0",
+      "group_id": "com.google.guava",
+      "artifact_id": "guava",
+      "source_prefix": "com/google/common/",
+      "source_prefixes": [
+        "com/google/common/",
+        "com/google/thirdparty/publicsuffix/"
+      ],
+      "source_roots": [
+        "guava/src/",
+        "src/",
+        "guava/src/main/java/",
+        "src/main/java/"
+      ],
+      "skipped_stable_since_previous": [],
+      "skipped_families_since_previous": [],
+      "jar_url": "https://repo.maven.apache.org/maven2/com/google/guava/guava/19.0/guava-19.0.jar",
+      "jar_path": "data/raw/19.0/guava-19.0.jar",
+      "jar_sha256": "58d4cc2e05ebb012bbac568b032f75623be1cb6fb096f3c60c72a86f7f057de4",
+      "jar_maven_sha1": "6ce200f6b23222af3d8abb6b6459e6c44f4bb0e9",
+      "sources_url": "https://repo.maven.apache.org/maven2/com/google/guava/guava/19.0/guava-19.0-sources.jar",
+      "sources_path": "data/raw/19.0/guava-19.0-sources.jar",
+      "sources_sha256": "814e1ebf708d38c3b00155fbd484a401a6f771b512862e4bf58863c4f9563c6a",
+      "sources_maven_sha1": "91a4d115400e904f22b03a78deb355e9ea803cd4",
+      "pom_url": "https://repo.maven.apache.org/maven2/com/google/guava/guava/19.0/guava-19.0.pom",
+      "pom_path": "data/raw/19.0/guava-19.0.pom",
+      "pom_sha256": "addc064da7f1077fdf4dc90e5aaa887cd790850d1b74fe2e6e25d5f78551ac63",
+      "pom_maven_sha1": "65a43a21dbddcc19aa3ca50a63a4b33166bfbc77"
+    },
+    {
+      "version": "20.0",
+      "tag": "v20.0",
+      "commit_sha": "65f6b4f4b132a051616403bcf74e4034a19d92a1",
+      "tag_date": "2016-10-28T20:30:44Z",
+      "commit_date": "2016-10-28T20:30:44Z",
+      "ref_type": "lightweight_tag",
+      "release_date": "2016-10-28",
+      "date_basis": "Project ReleaseHistory / individual release notes (documented calendar date)",
+      "release_url": "https://github.com/google/guava/releases/tag/v20.0",
+      "date_precision": "day",
+      "release_date_source_url": "https://github.com/google/guava/wiki/ReleaseHistory",
+      "index": 11,
+      "family": "20.0",
+      "family_rank_zero_based": 10,
+      "representative_rule": "first_eligible_stable_release",
+      "selection_role": "major_anchor",
+      "calendar_gap_days_since_previous": 324,
+      "artifact_version": "20.0",
+      "group_id": "com.google.guava",
+      "artifact_id": "guava",
+      "source_prefix": "com/google/common/",
+      "source_prefixes": [
+        "com/google/common/",
+        "com/google/thirdparty/publicsuffix/"
+      ],
+      "source_roots": [
+        "guava/src/",
+        "src/",
+        "guava/src/main/java/",
+        "src/main/java/"
+      ],
+      "skipped_stable_since_previous": [],
+      "skipped_families_since_previous": [],
+      "jar_url": "https://repo.maven.apache.org/maven2/com/google/guava/guava/20.0/guava-20.0.jar",
+      "jar_path": "data/raw/20.0/guava-20.0.jar",
+      "sources_url": "https://repo.maven.apache.org/maven2/com/google/guava/guava/20.0/guava-20.0-sources.jar",
+      "sources_path": "data/raw/20.0/guava-20.0-sources.jar",
+      "pom_url": "https://repo.maven.apache.org/maven2/com/google/guava/guava/20.0/guava-20.0.pom",
+      "pom_path": "data/raw/20.0/guava-20.0.pom",
+      "pom_sha256": "363cc83767b760d7a564d5301e09467e6d48fc1c1c1664b1e18c50815ce19076",
+      "pom_maven_sha1": "386bd381301224cac5ae8d2c7883b90a12192d79",
+      "jar_sha256": "36a666e3b71ae7f0f0dca23654b67e086e6c93d192f60ba5dfd5519db6c288c8",
+      "jar_maven_sha1": "89507701249388e1ed5ddcf8c41f4ce1be7831ef",
+      "sources_sha256": "994be5933199a98e98bd09584da2bb69ed722275f6bed61d83459af88ace5cbd",
+      "sources_maven_sha1": "9c8493c7991464839b612d7547d6c263adf08f75"
+    },
+    {
+      "version": "21.0",
+      "tag": "v21.0",
+      "commit_sha": "0f025e5d5d39a5d1ab709917f725d48a8464df50",
+      "tag_date": "2017-01-12T19:09:51Z",
+      "commit_date": "2017-01-12T19:09:51Z",
+      "ref_type": "lightweight_tag",
+      "release_date": "2017-01-12",
+      "date_basis": "Project ReleaseHistory / individual release notes (documented calendar date)",
+      "release_url": "https://github.com/google/guava/releases/tag/v21.0",
+      "date_precision": "day",
+      "release_date_source_url": "https://github.com/google/guava/wiki/ReleaseHistory",
+      "index": 12,
+      "family": "21.0",
+      "family_rank_zero_based": 11,
+      "representative_rule": "first_eligible_stable_release",
+      "selection_role": "major_anchor",
+      "calendar_gap_days_since_previous": 76,
+      "artifact_version": "21.0",
+      "group_id": "com.google.guava",
+      "artifact_id": "guava",
+      "source_prefix": "com/google/common/",
+      "source_prefixes": [
+        "com/google/common/",
+        "com/google/thirdparty/publicsuffix/"
+      ],
+      "source_roots": [
+        "guava/src/",
+        "src/",
+        "guava/src/main/java/",
+        "src/main/java/"
+      ],
+      "skipped_stable_since_previous": [],
+      "skipped_families_since_previous": [],
+      "jar_url": "https://repo.maven.apache.org/maven2/com/google/guava/guava/21.0/guava-21.0.jar",
+      "jar_path": "data/raw/21.0/guava-21.0.jar",
+      "jar_sha256": "972139718abc8a4893fa78cba8cf7b2c903f35c97aaf44fa3031b0669948b480",
+      "jar_maven_sha1": "3a3d111be1be1b745edfa7d91678a12d7ed38709",
+      "sources_url": "https://repo.maven.apache.org/maven2/com/google/guava/guava/21.0/guava-21.0-sources.jar",
+      "sources_path": "data/raw/21.0/guava-21.0-sources.jar",
+      "sources_sha256": "b186965c9af0a714632fe49b33378c9670f8f074797ab466f49a67e918e116ea",
+      "sources_maven_sha1": "b9ed26b8c23fe7cd3e6b463b34e54e5c6d9536d5",
+      "pom_url": "https://repo.maven.apache.org/maven2/com/google/guava/guava/21.0/guava-21.0.pom",
+      "pom_path": "data/raw/21.0/guava-21.0.pom",
+      "pom_sha256": "c0b016a85c784e01ca51e9d64bf8fe80ce402b206fea897b03258d5e6d0ff80d",
+      "pom_maven_sha1": "fe4fa08a8c0897f9896c7e278fb397ede4a2feed"
+    },
+    {
+      "version": "22.0",
+      "tag": "v22.0",
+      "commit_sha": "7bbdb221feb446cbd38202c133818bc383c413ae",
+      "tag_date": "2017-05-22T18:46:19Z",
+      "commit_date": "2017-05-22T18:46:19Z",
+      "ref_type": "lightweight_tag",
+      "release_date": "2017-05-22",
+      "date_basis": "Project ReleaseHistory / individual release notes (documented calendar date)",
+      "release_url": "https://github.com/google/guava/releases/tag/v22.0",
+      "date_precision": "day",
+      "release_date_source_url": "https://github.com/google/guava/wiki/ReleaseHistory",
+      "index": 13,
+      "family": "22.0",
+      "family_rank_zero_based": 12,
+      "representative_rule": "first_eligible_stable_release",
+      "selection_role": "major_anchor",
+      "calendar_gap_days_since_previous": 130,
+      "artifact_version": "22.0",
+      "group_id": "com.google.guava",
+      "artifact_id": "guava",
+      "source_prefix": "com/google/common/",
+      "source_prefixes": [
+        "com/google/common/",
+        "com/google/thirdparty/publicsuffix/"
+      ],
+      "source_roots": [
+        "guava/src/",
+        "src/",
+        "guava/src/main/java/",
+        "src/main/java/"
+      ],
+      "skipped_stable_since_previous": [],
+      "skipped_families_since_previous": [],
+      "jar_url": "https://repo.maven.apache.org/maven2/com/google/guava/guava/22.0/guava-22.0.jar",
+      "jar_path": "data/raw/22.0/guava-22.0.jar",
+      "jar_sha256": "1158e94c7de4da480873f0b4ab4a1da14c0d23d4b1902cc94a58a6f0f9ab579e",
+      "jar_maven_sha1": "3564ef3803de51fb0530a8377ec6100b33b0d073",
+      "sources_url": "https://repo.maven.apache.org/maven2/com/google/guava/guava/22.0/guava-22.0-sources.jar",
+      "sources_path": "data/raw/22.0/guava-22.0-sources.jar",
+      "sources_sha256": "6dc2849225ae048bfd6ea55150355d9b54620d8ad49c0899cfd4c5ec172f9f60",
+      "sources_maven_sha1": "55edc69e4fc937f4e58e577bb144b824c0ec7c55",
+      "pom_url": "https://repo.maven.apache.org/maven2/com/google/guava/guava/22.0/guava-22.0.pom",
+      "pom_path": "data/raw/22.0/guava-22.0.pom",
+      "pom_sha256": "bfadb3b40f65dd6de1666d6b29f8bb54031396c76eeef4146cf9f28255f8bf33",
+      "pom_maven_sha1": "b87878db57d5cfc2ca7d3972cc8f7486bf02fbca"
+    },
+    {
+      "version": "23.0",
+      "tag": "v23.0",
+      "commit_sha": "b48cdeb618388a7b1d1c782e1ce2cc60b4f4efca",
+      "tag_date": "2017-08-04T20:30:56Z",
+      "commit_date": "2017-08-04T20:30:56Z",
+      "ref_type": "lightweight_tag",
+      "release_date": "2017-08-04",
+      "date_basis": "Project ReleaseHistory / individual release notes (documented calendar date)",
+      "release_url": "https://github.com/google/guava/releases/tag/v23.0",
+      "date_precision": "day",
+      "release_date_source_url": "https://github.com/google/guava/wiki/ReleaseHistory",
+      "index": 14,
+      "family": "23.0",
+      "family_rank_zero_based": 13,
+      "representative_rule": "first_eligible_stable_release",
+      "selection_role": "major_anchor",
+      "calendar_gap_days_since_previous": 74,
+      "artifact_version": "23.0",
+      "group_id": "com.google.guava",
+      "artifact_id": "guava",
+      "source_prefix": "com/google/common/",
+      "source_prefixes": [
+        "com/google/common/",
+        "com/google/thirdparty/publicsuffix/"
+      ],
+      "source_roots": [
+        "guava/src/",
+        "src/",
+        "guava/src/main/java/",
+        "src/main/java/"
+      ],
+      "skipped_stable_since_previous": [],
+      "skipped_families_since_previous": [],
+      "jar_url": "https://repo.maven.apache.org/maven2/com/google/guava/guava/23.0/guava-23.0.jar",
+      "jar_path": "data/raw/23.0/guava-23.0.jar",
+      "sources_url": "https://repo.maven.apache.org/maven2/com/google/guava/guava/23.0/guava-23.0-sources.jar",
+      "sources_path": "data/raw/23.0/guava-23.0-sources.jar",
+      "pom_url": "https://repo.maven.apache.org/maven2/com/google/guava/guava/23.0/guava-23.0.pom",
+      "pom_path": "data/raw/23.0/guava-23.0.pom",
+      "pom_sha256": "ac2ac42a7a6b4ce5097c6c83e2fbbacbbb7f9913f1b4f993eb1723a14476324e",
+      "pom_maven_sha1": "05ce65d93433db6ef45746bcfbcef6656698851f",
+      "sources_sha256": "37fe8ba804fb3898c3c8f0cbac319cc9daa58400e5f0226a380ac94fb2c3ca14",
+      "sources_maven_sha1": "ed233607c5c11e1a13a3fd760033ed5d9fe525c2",
+      "jar_sha256": "7baa80df284117e5b945b19b98d367a85ea7b7801bd358ff657946c3bd1b6596",
+      "jar_maven_sha1": "c947004bb13d18182be60077ade044099e4f26f1"
+    },
+    {
+      "version": "24.0",
+      "tag": "v24.0",
+      "commit_sha": "cebf66be35cceb2c04990805f127506b2197fe33",
+      "tag_date": "2018-02-01T20:16:14Z",
+      "commit_date": "2018-02-01T20:16:14Z",
+      "ref_type": "lightweight_tag",
+      "release_date": "2018-02-01T20:52:13Z",
+      "date_basis": "GitHub Release.published_at",
+      "release_url": "https://github.com/google/guava/releases/tag/v24.0",
+      "index": 15,
+      "family": "24.0",
+      "family_rank_zero_based": 20,
+      "representative_rule": "first_eligible_stable_release",
+      "selection_role": "major_anchor",
+      "calendar_gap_days_since_previous": 181,
+      "artifact_version": "24.0-jre",
+      "group_id": "com.google.guava",
+      "artifact_id": "guava",
+      "source_prefix": "com/google/common/",
+      "source_prefixes": [
+        "com/google/common/",
+        "com/google/thirdparty/publicsuffix/"
+      ],
+      "source_roots": [
+        "guava/src/",
+        "src/",
+        "guava/src/main/java/",
+        "src/main/java/"
+      ],
+      "skipped_stable_since_previous": [
+        "23.1",
+        "23.2",
+        "23.3",
+        "23.4",
+        "23.5",
+        "23.6"
+      ],
+      "skipped_families_since_previous": [
+        "23.1",
+        "23.2",
+        "23.3",
+        "23.4",
+        "23.5",
+        "23.6"
+      ],
+      "jar_url": "https://repo.maven.apache.org/maven2/com/google/guava/guava/24.0-jre/guava-24.0-jre.jar",
+      "jar_path": "data/raw/24.0/guava-24.0-jre.jar",
+      "jar_sha256": "e0274470b16ba1154e926b5f54ef8ae159197fbc356406bda9b261ba67e3e599",
+      "jar_maven_sha1": "041ac1e74d6b4e1ea1f027139cffeb536c732a81",
+      "sources_url": "https://repo.maven.apache.org/maven2/com/google/guava/guava/24.0-jre/guava-24.0-jre-sources.jar",
+      "sources_path": "data/raw/24.0/guava-24.0-jre-sources.jar",
+      "sources_sha256": "21fbd6a606c140cfd09400b9b0a5524da1e1cdda11544ce733a4795bb9340e85",
+      "sources_maven_sha1": "04530f6a317a2d55e8903874896537dcf39717b7",
+      "pom_url": "https://repo.maven.apache.org/maven2/com/google/guava/guava/24.0-jre/guava-24.0-jre.pom",
+      "pom_path": "data/raw/24.0/guava-24.0-jre.pom",
+      "pom_sha256": "be6cda1a25f8d2ae0b5b2dafd3f2642d87639d128002fc3ef6d3c3dc8357c2cc",
+      "pom_maven_sha1": "0e2fb700b5f3385943feae1a03a6412dcd6787e4"
+    },
+    {
+      "version": "25.0",
+      "tag": "v25.0",
+      "commit_sha": "0819c57c91b3ba2695a792b828ae239258681a3e",
+      "tag_date": "2018-04-25T22:12:31Z",
+      "commit_date": "2018-04-25T22:12:31Z",
+      "ref_type": "lightweight_tag",
+      "release_date": "2018-04-25T22:53:55Z",
+      "date_basis": "GitHub Release.published_at",
+      "release_url": "https://github.com/google/guava/releases/tag/v25.0",
+      "index": 16,
+      "family": "25.0",
+      "family_rank_zero_based": 22,
+      "representative_rule": "first_eligible_stable_release",
+      "selection_role": "major_anchor",
+      "calendar_gap_days_since_previous": 83,
+      "artifact_version": "25.0-jre",
+      "group_id": "com.google.guava",
+      "artifact_id": "guava",
+      "source_prefix": "com/google/common/",
+      "source_prefixes": [
+        "com/google/common/",
+        "com/google/thirdparty/publicsuffix/"
+      ],
+      "source_roots": [
+        "guava/src/",
+        "src/",
+        "guava/src/main/java/",
+        "src/main/java/"
+      ],
+      "skipped_stable_since_previous": [
+        "24.1"
+      ],
+      "skipped_families_since_previous": [
+        "24.1"
+      ],
+      "jar_url": "https://repo.maven.apache.org/maven2/com/google/guava/guava/25.0-jre/guava-25.0-jre.jar",
+      "jar_path": "data/raw/25.0/guava-25.0-jre.jar",
+      "sources_url": "https://repo.maven.apache.org/maven2/com/google/guava/guava/25.0-jre/guava-25.0-jre-sources.jar",
+      "sources_path": "data/raw/25.0/guava-25.0-jre-sources.jar",
+      "pom_url": "https://repo.maven.apache.org/maven2/com/google/guava/guava/25.0-jre/guava-25.0-jre.pom",
+      "pom_path": "data/raw/25.0/guava-25.0-jre.pom",
+      "jar_sha256": "3fd4341776428c7e0e5c18a7c10de129475b69ab9d30aeafbb5c277bb6074fa9",
+      "jar_maven_sha1": "7319c34fa5866a85b6bad445adad69d402323129",
+      "pom_sha256": "68c1ac2817572d6a6eb5c36072c37379f912ec75e99f6bc25aaa7ed2eb2b5ff1",
+      "pom_maven_sha1": "a105e15fc731f2bcf3185cb6e4aadd6e38518ebc",
+      "sources_sha256": "386e429ab4f9e511630038e7b7a331d3dca3931564f592e412ba47995fefd89b",
+      "sources_maven_sha1": "030ade485699e7782cc2369b0e5d3d8e0bfc317c"
+    },
+    {
+      "version": "26.0",
+      "tag": "v26.0",
+      "commit_sha": "bbf9295088d668c06e573cea03f01375985c1814",
+      "tag_date": "2018-08-01T21:39:54Z",
+      "commit_date": "2018-08-01T21:39:54Z",
+      "ref_type": "lightweight_tag",
+      "release_date": "2018-08-01T23:02:00Z",
+      "date_basis": "GitHub Release.published_at",
+      "release_url": "https://github.com/google/guava/releases/tag/v26.0",
+      "index": 17,
+      "family": "26.0",
+      "family_rank_zero_based": 24,
+      "representative_rule": "first_eligible_stable_release",
+      "selection_role": "major_anchor",
+      "calendar_gap_days_since_previous": 98,
+      "artifact_version": "26.0-jre",
+      "group_id": "com.google.guava",
+      "artifact_id": "guava",
+      "source_prefix": "com/google/common/",
+      "source_prefixes": [
+        "com/google/common/",
+        "com/google/thirdparty/publicsuffix/"
+      ],
+      "source_roots": [
+        "guava/src/",
+        "src/",
+        "guava/src/main/java/",
+        "src/main/java/"
+      ],
+      "skipped_stable_since_previous": [
+        "24.1.1",
+        "23.6.1",
+        "25.1"
+      ],
+      "skipped_families_since_previous": [
+        "25.1"
+      ],
+      "jar_url": "https://repo.maven.apache.org/maven2/com/google/guava/guava/26.0-jre/guava-26.0-jre.jar",
+      "jar_path": "data/raw/26.0/guava-26.0-jre.jar",
+      "jar_sha256": "a0e9cabad665bc20bcd2b01f108e5fc03f756e13aea80abaadb9f407033bea2c",
+      "jar_maven_sha1": "6a806eff209f36f635f943e16d97491f00f6bfab",
+      "sources_url": "https://repo.maven.apache.org/maven2/com/google/guava/guava/26.0-jre/guava-26.0-jre-sources.jar",
+      "sources_path": "data/raw/26.0/guava-26.0-jre-sources.jar",
+      "sources_sha256": "a658eba55b72c320c45501045184c71da037cd52cd6056d597458a0c32504421",
+      "sources_maven_sha1": "2e35b51c759ae1a6edbb967b65c525105536d382",
+      "pom_url": "https://repo.maven.apache.org/maven2/com/google/guava/guava/26.0-jre/guava-26.0-jre.pom",
+      "pom_path": "data/raw/26.0/guava-26.0-jre.pom",
+      "pom_sha256": "1c337adc9a4ab4b844da81da85936581b8946c7cb71284c5dcbdaf1eaa7ee109",
+      "pom_maven_sha1": "7883e19f8b0cca8c4498d476743e31b107674155"
+    },
+    {
+      "version": "27.0",
+      "tag": "v27.0",
+      "commit_sha": "a35bfd9ea855539354b783ee74839e384f7af98a",
+      "tag_date": "2018-10-18T18:07:14Z",
+      "commit_date": "2018-10-18T18:07:14Z",
+      "ref_type": "lightweight_tag",
+      "release_date": "2018-10-18T18:51:15Z",
+      "date_basis": "GitHub Release.published_at",
+      "release_url": "https://github.com/google/guava/releases/tag/v27.0",
+      "index": 18,
+      "family": "27.0",
+      "family_rank_zero_based": 25,
+      "representative_rule": "first_eligible_stable_release",
+      "selection_role": "major_anchor",
+      "calendar_gap_days_since_previous": 78,
+      "artifact_version": "27.0-jre",
+      "group_id": "com.google.guava",
+      "artifact_id": "guava",
+      "source_prefix": "com/google/common/",
+      "source_prefixes": [
+        "com/google/common/",
+        "com/google/thirdparty/publicsuffix/"
+      ],
+      "source_roots": [
+        "guava/src/",
+        "src/",
+        "guava/src/main/java/",
+        "src/main/java/"
+      ],
+      "skipped_stable_since_previous": [],
+      "skipped_families_since_previous": [],
+      "jar_url": "https://repo.maven.apache.org/maven2/com/google/guava/guava/27.0-jre/guava-27.0-jre.jar",
+      "jar_path": "data/raw/27.0/guava-27.0-jre.jar",
+      "sources_url": "https://repo.maven.apache.org/maven2/com/google/guava/guava/27.0-jre/guava-27.0-jre-sources.jar",
+      "sources_path": "data/raw/27.0/guava-27.0-jre-sources.jar",
+      "pom_url": "https://repo.maven.apache.org/maven2/com/google/guava/guava/27.0-jre/guava-27.0-jre.pom",
+      "pom_path": "data/raw/27.0/guava-27.0-jre.pom",
+      "pom_sha256": "87a7cae265a762a9819794601e9352702f3c31afab2eeb87b92d3590778e6065",
+      "pom_maven_sha1": "4727c3cd318cdc6782538874aa0ae1bd355055c9",
+      "sources_sha256": "170dbf09858d1cffdaaa53d4d6ab15e6253c845318b0cc3bf21f8dffa9d433ab",
+      "sources_maven_sha1": "d6484e2ee11ad928ccf61cf3e4ce9cedc2eead7e",
+      "jar_sha256": "63b09db6861011e7fb2481be7790c7fd4b03f0bb884b3de2ecba8823ad19bf3f",
+      "jar_maven_sha1": "c6ad87d2575af8ac8ec38e28e75aefa882cc3a1f"
+    },
+    {
+      "version": "27.1",
+      "tag": "v27.1",
+      "commit_sha": "b34c2da9e5bbf8216a31c6794619689053210f16",
+      "tag_date": "2019-03-08T16:10:10Z",
+      "commit_date": "2019-03-08T16:10:10Z",
+      "ref_type": "lightweight_tag",
+      "release_date": "2019-03-08T20:30:50Z",
+      "date_basis": "GitHub Release.published_at",
+      "release_url": "https://github.com/google/guava/releases/tag/v27.1",
+      "index": 19,
+      "family": "27.1",
+      "family_rank_zero_based": 26,
+      "representative_rule": "first_eligible_stable_release",
+      "selection_role": "gap_filling_minor",
+      "calendar_gap_days_since_previous": 141,
+      "artifact_version": "27.1-jre",
+      "group_id": "com.google.guava",
+      "artifact_id": "guava",
+      "source_prefix": "com/google/common/",
+      "source_prefixes": [
+        "com/google/common/",
+        "com/google/thirdparty/publicsuffix/"
+      ],
+      "source_roots": [
+        "guava/src/",
+        "src/",
+        "guava/src/main/java/",
+        "src/main/java/"
+      ],
+      "skipped_stable_since_previous": [
+        "27.0.1"
+      ],
+      "skipped_families_since_previous": [],
+      "jar_url": "https://repo.maven.apache.org/maven2/com/google/guava/guava/27.1-jre/guava-27.1-jre.jar",
+      "jar_path": "data/raw/27.1/guava-27.1-jre.jar",
+      "jar_sha256": "4a5aa70cc968a4d137e599ad37553e5cfeed2265e8c193476d7119036c536fe7",
+      "jar_maven_sha1": "e47b59c893079b87743cdcfb6f17ca95c08c592c",
+      "sources_url": "https://repo.maven.apache.org/maven2/com/google/guava/guava/27.1-jre/guava-27.1-jre-sources.jar",
+      "sources_path": "data/raw/27.1/guava-27.1-jre-sources.jar",
+      "sources_sha256": "9de05c573971cedfcd53fb85fc7a58a5f453053026a9bf18594cffc79a1d6874",
+      "sources_maven_sha1": "5dfa313690a903560bf27478345780a607bf1e9b",
+      "pom_url": "https://repo.maven.apache.org/maven2/com/google/guava/guava/27.1-jre/guava-27.1-jre.pom",
+      "pom_path": "data/raw/27.1/guava-27.1-jre.pom",
+      "pom_sha256": "bd99d75006131ae25c9860a1d63e84e36371f112fdb0c2fe3d5d6ab38e9eb271",
+      "pom_maven_sha1": "db536f4a1c26739eb6ee1cfb707ec3fbe8325c86"
+    },
+    {
+      "version": "28.0",
+      "tag": "v28.0",
+      "commit_sha": "9957203c956016b485696ce9d1a4d60f1019c5fd",
+      "tag_date": "2019-06-11T23:05:47Z",
+      "commit_date": "2019-06-11T23:05:47Z",
+      "ref_type": "lightweight_tag",
+      "release_date": "2019-06-12T00:16:33Z",
+      "date_basis": "GitHub Release.published_at",
+      "release_url": "https://github.com/google/guava/releases/tag/v28.0",
+      "index": 20,
+      "family": "28.0",
+      "family_rank_zero_based": 27,
+      "representative_rule": "first_eligible_stable_release",
+      "selection_role": "major_anchor",
+      "calendar_gap_days_since_previous": 96,
+      "artifact_version": "28.0-jre",
+      "group_id": "com.google.guava",
+      "artifact_id": "guava",
+      "source_prefix": "com/google/common/",
+      "source_prefixes": [
+        "com/google/common/",
+        "com/google/thirdparty/publicsuffix/"
+      ],
+      "source_roots": [
+        "guava/src/",
+        "src/",
+        "guava/src/main/java/",
+        "src/main/java/"
+      ],
+      "skipped_stable_since_previous": [],
+      "skipped_families_since_previous": [],
+      "jar_url": "https://repo.maven.apache.org/maven2/com/google/guava/guava/28.0-jre/guava-28.0-jre.jar",
+      "jar_path": "data/raw/28.0/guava-28.0-jre.jar",
+      "jar_sha256": "73e4d6ae5f0e8f9d292a4db83a2479b5468f83d972ac1ff36d6d0b43943b4f91",
+      "jar_maven_sha1": "54fed371b4b8a8cce1e94a9abd9620982d3aa54b",
+      "sources_url": "https://repo.maven.apache.org/maven2/com/google/guava/guava/28.0-jre/guava-28.0-jre-sources.jar",
+      "sources_path": "data/raw/28.0/guava-28.0-jre-sources.jar",
+      "sources_sha256": "fd865e2dbc1f6be12417bff5538e848c584f7297e4e6e4039d7967ffd27d43c2",
+      "sources_maven_sha1": "2d1dca555245ef4bacb35f25299f323d8dd10b27",
+      "pom_url": "https://repo.maven.apache.org/maven2/com/google/guava/guava/28.0-jre/guava-28.0-jre.pom",
+      "pom_path": "data/raw/28.0/guava-28.0-jre.pom",
+      "pom_sha256": "76881f0598fd750e9b1ca5d32dc5a2a1b57cf340d68c2cea6b1b62fcc788ba4a",
+      "pom_maven_sha1": "4859de3f25a722048aa0d34ef136ab0ecafd6703"
+    },
+    {
+      "version": "28.2",
+      "tag": "v28.2",
+      "commit_sha": "a1b3c06876803a0b0e5d2f16708e1328da1bac09",
+      "tag_date": "2019-12-27T03:06:54Z",
+      "commit_date": "2019-12-27T03:06:54Z",
+      "ref_type": "lightweight_tag",
+      "release_date": "2019-12-27T14:02:35Z",
+      "date_basis": "GitHub Release.published_at",
+      "release_url": "https://github.com/google/guava/releases/tag/v28.2",
+      "index": 21,
+      "family": "28.2",
+      "family_rank_zero_based": 29,
+      "representative_rule": "first_eligible_stable_release",
+      "selection_role": "gap_filling_minor",
+      "calendar_gap_days_since_previous": 198,
+      "artifact_version": "28.2-jre",
+      "group_id": "com.google.guava",
+      "artifact_id": "guava",
+      "source_prefix": "com/google/common/",
+      "source_prefixes": [
+        "com/google/common/",
+        "com/google/thirdparty/publicsuffix/"
+      ],
+      "source_roots": [
+        "guava/src/",
+        "src/",
+        "guava/src/main/java/",
+        "src/main/java/"
+      ],
+      "skipped_stable_since_previous": [
+        "28.1"
+      ],
+      "skipped_families_since_previous": [
+        "28.1"
+      ],
+      "jar_url": "https://repo.maven.apache.org/maven2/com/google/guava/guava/28.2-jre/guava-28.2-jre.jar",
+      "jar_path": "data/raw/28.2/guava-28.2-jre.jar",
+      "jar_sha256": "fc3aa363ad87223d1fbea584eee015a862150f6d34c71f24dc74088a635f08ef",
+      "jar_maven_sha1": "8ec9ed76528425762174f0011ce8f74ad845b756",
+      "sources_url": "https://repo.maven.apache.org/maven2/com/google/guava/guava/28.2-jre/guava-28.2-jre-sources.jar",
+      "sources_path": "data/raw/28.2/guava-28.2-jre-sources.jar",
+      "sources_sha256": "e4a71a9d1f5f5f886a1802c257d3fcb78c6c234e2e183257f3ed1474802d077b",
+      "sources_maven_sha1": "79474f7d08b9a8d03f827161825711d9d62ef09a",
+      "pom_url": "https://repo.maven.apache.org/maven2/com/google/guava/guava/28.2-jre/guava-28.2-jre.pom",
+      "pom_path": "data/raw/28.2/guava-28.2-jre.pom",
+      "pom_sha256": "c0805261548dc61ca4c982b59bfaad6503e43190f5e5e444e90b2cf6ab72db94",
+      "pom_maven_sha1": "360b614be6dda1311de8b0704e0caf0221262cce"
+    },
+    {
+      "version": "29.0",
+      "tag": "v29.0",
+      "commit_sha": "2d655e59ee0af2a0cabf877d5f85ababf813ff8e",
+      "tag_date": "2020-04-13T21:13:10Z",
+      "commit_date": "2020-04-13T21:13:10Z",
+      "ref_type": "lightweight_tag",
+      "release_date": "2020-04-13T22:03:54Z",
+      "date_basis": "GitHub Release.published_at",
+      "release_url": "https://github.com/google/guava/releases/tag/v29.0",
+      "index": 22,
+      "family": "29.0",
+      "family_rank_zero_based": 30,
+      "representative_rule": "first_eligible_stable_release",
+      "selection_role": "major_anchor",
+      "calendar_gap_days_since_previous": 108,
+      "artifact_version": "29.0-jre",
+      "group_id": "com.google.guava",
+      "artifact_id": "guava",
+      "source_prefix": "com/google/common/",
+      "source_prefixes": [
+        "com/google/common/",
+        "com/google/thirdparty/publicsuffix/"
+      ],
+      "source_roots": [
+        "guava/src/",
+        "src/",
+        "guava/src/main/java/",
+        "src/main/java/"
+      ],
+      "skipped_stable_since_previous": [],
+      "skipped_families_since_previous": [],
+      "jar_url": "https://repo.maven.apache.org/maven2/com/google/guava/guava/29.0-jre/guava-29.0-jre.jar",
+      "jar_path": "data/raw/29.0/guava-29.0-jre.jar",
+      "jar_sha256": "b22c5fb66d61e7b9522531d04b2f915b5158e80aa0b40ee7282c8bfb07b0da25",
+      "jar_maven_sha1": "801142b4c3d0f0770dd29abea50906cacfddd447",
+      "sources_url": "https://repo.maven.apache.org/maven2/com/google/guava/guava/29.0-jre/guava-29.0-jre-sources.jar",
+      "sources_path": "data/raw/29.0/guava-29.0-jre-sources.jar",
+      "sources_sha256": "cfcbe29dd5125f5b360370b4ecd7f7ef44fba68f4f037e90bce7315682afc0ea",
+      "sources_maven_sha1": "33e6868bc0fcb9b4b493123eeec78d1352934e87",
+      "pom_url": "https://repo.maven.apache.org/maven2/com/google/guava/guava/29.0-jre/guava-29.0-jre.pom",
+      "pom_path": "data/raw/29.0/guava-29.0-jre.pom",
+      "pom_sha256": "9027e934098903d287f1ba61c8b65f01d1d1e1da7a6fbcc04bf3de0544014426",
+      "pom_maven_sha1": "e40cdee0d70244df1e963daac53a16241aea4585"
+    },
+    {
+      "version": "30.0",
+      "tag": "v30.0",
+      "commit_sha": "f75cd01d3afe83623bb8bd1a8a816ea5245bf285",
+      "tag_date": "2020-10-16T20:27:24Z",
+      "commit_date": "2020-10-16T20:27:24Z",
+      "ref_type": "lightweight_tag",
+      "release_date": "2020-10-16T21:49:48Z",
+      "date_basis": "GitHub Release.published_at",
+      "release_url": "https://github.com/google/guava/releases/tag/v30.0",
+      "index": 23,
+      "family": "30.0",
+      "family_rank_zero_based": 31,
+      "representative_rule": "first_eligible_stable_release",
+      "selection_role": "major_anchor",
+      "calendar_gap_days_since_previous": 186,
+      "artifact_version": "30.0-jre",
+      "group_id": "com.google.guava",
+      "artifact_id": "guava",
+      "source_prefix": "com/google/common/",
+      "source_prefixes": [
+        "com/google/common/",
+        "com/google/thirdparty/publicsuffix/"
+      ],
+      "source_roots": [
+        "guava/src/",
+        "src/",
+        "guava/src/main/java/",
+        "src/main/java/"
+      ],
+      "skipped_stable_since_previous": [],
+      "skipped_families_since_previous": [],
+      "jar_url": "https://repo.maven.apache.org/maven2/com/google/guava/guava/30.0-jre/guava-30.0-jre.jar",
+      "jar_path": "data/raw/30.0/guava-30.0-jre.jar",
+      "sources_url": "https://repo.maven.apache.org/maven2/com/google/guava/guava/30.0-jre/guava-30.0-jre-sources.jar",
+      "sources_path": "data/raw/30.0/guava-30.0-jre-sources.jar",
+      "pom_url": "https://repo.maven.apache.org/maven2/com/google/guava/guava/30.0-jre/guava-30.0-jre.pom",
+      "pom_path": "data/raw/30.0/guava-30.0-jre.pom",
+      "sources_sha256": "daa8a245663f9027ae4b84239147d3439221839155a4d93cbab280c3e657a73d",
+      "sources_maven_sha1": "44b1d40ac2743daef983d85b81f4534bc6a17d04",
+      "pom_sha256": "3f881774161282f6730d2b8e74a8e1ac753b8a734781a526f880b1b8bdb89451",
+      "pom_maven_sha1": "d7239fe628e6e3fbb6734acbc07195435fdac305",
+      "jar_sha256": "56b292df9ec29d102820c1fd7dd581cd749d5c416c7b3aeac008dbda3b984cc2",
+      "jar_maven_sha1": "8ddbc8769f73309fe09b54c5951163f10b0d89fa"
+    },
+    {
+      "version": "31.0",
+      "tag": "v31.0",
+      "commit_sha": "6edcfc0a649e4031f4a48ea7f41aa0cb4801db2b",
+      "tag_date": "2021-09-24T20:15:46Z",
+      "commit_date": "2021-09-24T20:15:46Z",
+      "ref_type": "lightweight_tag",
+      "release_date": "2021-09-24T21:36:10Z",
+      "date_basis": "GitHub Release.published_at",
+      "release_url": "https://github.com/google/guava/releases/tag/v31.0",
+      "index": 24,
+      "family": "31.0",
+      "family_rank_zero_based": 33,
+      "representative_rule": "first_eligible_stable_release",
+      "selection_role": "major_anchor",
+      "calendar_gap_days_since_previous": 343,
+      "artifact_version": "31.0-jre",
+      "group_id": "com.google.guava",
+      "artifact_id": "guava",
+      "source_prefix": "com/google/common/",
+      "source_prefixes": [
+        "com/google/common/",
+        "com/google/thirdparty/publicsuffix/"
+      ],
+      "source_roots": [
+        "guava/src/",
+        "src/",
+        "guava/src/main/java/",
+        "src/main/java/"
+      ],
+      "skipped_stable_since_previous": [
+        "30.1",
+        "30.1.1"
+      ],
+      "skipped_families_since_previous": [
+        "30.1"
+      ],
+      "jar_url": "https://repo.maven.apache.org/maven2/com/google/guava/guava/31.0-jre/guava-31.0-jre.jar",
+      "jar_path": "data/raw/31.0/guava-31.0-jre.jar",
+      "sources_url": "https://repo.maven.apache.org/maven2/com/google/guava/guava/31.0-jre/guava-31.0-jre-sources.jar",
+      "sources_path": "data/raw/31.0/guava-31.0-jre-sources.jar",
+      "pom_url": "https://repo.maven.apache.org/maven2/com/google/guava/guava/31.0-jre/guava-31.0-jre.pom",
+      "pom_path": "data/raw/31.0/guava-31.0-jre.pom",
+      "jar_sha256": "040d17b7a434c3e7908d2b51b3e18b30535029cc3edf1f9e3945faed78ad3eab",
+      "jar_maven_sha1": "5ce63e26483f62c44216ff36ebd0d571347a6c58",
+      "pom_sha256": "269458fe10831f4da460418a30e7c0ef10b49a8478c368ce3436aa16d752939b",
+      "pom_maven_sha1": "43832374b1d76d02e0ba82d3ecf9591fbe30f84b",
+      "sources_sha256": "9a752aa29905f68faf227a79ee91b669ff3bf135b944133c89503fb0c27faa30",
+      "sources_maven_sha1": "b2c88efff1785c35a313afcce95edeceeac9d6ad"
+    },
+    {
+      "version": "31.1",
+      "tag": "v31.1",
+      "commit_sha": "0a17f4a429323589396c38d8ce75ca058faa6c64",
+      "tag_date": "2022-02-28T21:06:35Z",
+      "commit_date": "2022-02-28T21:06:35Z",
+      "ref_type": "lightweight_tag",
+      "release_date": "2022-02-28T22:00:16Z",
+      "date_basis": "GitHub Release.published_at",
+      "release_url": "https://github.com/google/guava/releases/tag/v31.1",
+      "index": 25,
+      "family": "31.1",
+      "family_rank_zero_based": 34,
+      "representative_rule": "first_eligible_stable_release",
+      "selection_role": "gap_filling_minor",
+      "calendar_gap_days_since_previous": 157,
+      "artifact_version": "31.1-jre",
+      "group_id": "com.google.guava",
+      "artifact_id": "guava",
+      "source_prefix": "com/google/common/",
+      "source_prefixes": [
+        "com/google/common/",
+        "com/google/thirdparty/publicsuffix/"
+      ],
+      "source_roots": [
+        "guava/src/",
+        "src/",
+        "guava/src/main/java/",
+        "src/main/java/"
+      ],
+      "skipped_stable_since_previous": [
+        "31.0.1"
+      ],
+      "skipped_families_since_previous": [],
+      "jar_url": "https://repo.maven.apache.org/maven2/com/google/guava/guava/31.1-jre/guava-31.1-jre.jar",
+      "jar_path": "data/raw/31.1/guava-31.1-jre.jar",
+      "sources_url": "https://repo.maven.apache.org/maven2/com/google/guava/guava/31.1-jre/guava-31.1-jre-sources.jar",
+      "sources_path": "data/raw/31.1/guava-31.1-jre-sources.jar",
+      "pom_url": "https://repo.maven.apache.org/maven2/com/google/guava/guava/31.1-jre/guava-31.1-jre.pom",
+      "pom_path": "data/raw/31.1/guava-31.1-jre.pom",
+      "jar_sha256": "a42edc9cab792e39fe39bb94f3fca655ed157ff87a8af78e1d6ba5b07c4a00ab",
+      "jar_maven_sha1": "60458f877d055d0c9114d9e1a2efb737b4bc282c",
+      "sources_sha256": "8ab1853cdaf936ec88be80c17302b7c20abafbd4f54d4fb54d7011c529e3a44a",
+      "sources_maven_sha1": "c388a68bc2b17a314dfa7c769d858ada0fc32dcf",
+      "pom_sha256": "9193d07bf4f660108d7358e58b27d21b44e34e80d6734e98e21916376f270de2",
+      "pom_maven_sha1": "03a6ac93765fbbc416179f7c7127b9ddddbf38d9"
+    },
+    {
+      "version": "32.0.0",
+      "tag": "v32.0.0",
+      "commit_sha": "6b1f97ced922d48f071153ad9e631d06383033a4",
+      "tag_date": "2023-05-26T22:14:55Z",
+      "commit_date": "2023-05-26T22:14:55Z",
+      "ref_type": "lightweight_tag",
+      "release_date": "2023-05-29T19:00:25Z",
+      "date_basis": "GitHub Release.published_at",
+      "release_url": "https://github.com/google/guava/releases/tag/v32.0.0",
+      "index": 26,
+      "family": "32.0",
+      "family_rank_zero_based": 35,
+      "representative_rule": "first_eligible_stable_release",
+      "selection_role": "major_anchor",
+      "calendar_gap_days_since_previous": 455,
+      "artifact_version": "32.0.0-jre",
+      "group_id": "com.google.guava",
+      "artifact_id": "guava",
+      "source_prefix": "com/google/common/",
+      "source_prefixes": [
+        "com/google/common/",
+        "com/google/thirdparty/publicsuffix/"
+      ],
+      "source_roots": [
+        "guava/src/",
+        "src/",
+        "guava/src/main/java/",
+        "src/main/java/"
+      ],
+      "skipped_stable_since_previous": [],
+      "skipped_families_since_previous": [],
+      "jar_url": "https://repo.maven.apache.org/maven2/com/google/guava/guava/32.0.0-jre/guava-32.0.0-jre.jar",
+      "jar_path": "data/raw/32.0.0/guava-32.0.0-jre.jar",
+      "sources_url": "https://repo.maven.apache.org/maven2/com/google/guava/guava/32.0.0-jre/guava-32.0.0-jre-sources.jar",
+      "sources_path": "data/raw/32.0.0/guava-32.0.0-jre-sources.jar",
+      "pom_url": "https://repo.maven.apache.org/maven2/com/google/guava/guava/32.0.0-jre/guava-32.0.0-jre.pom",
+      "pom_path": "data/raw/32.0.0/guava-32.0.0-jre.pom",
+      "pom_sha256": "9eccce508b51d5521e53883b974d2b872f2d268543c2c51b4f866e3fa076f5e7",
+      "pom_maven_sha1": "5fd5b95903dd6a907b4b3bb12ed9924fac139e50",
+      "jar_sha256": "39f3550b0343d8d19dd4e83bd165b58ea3389d2ddb9f2148e63903f79ecdb114",
+      "jar_maven_sha1": "25d6662e20fc04c7b38f8ca3ab5d2f4a19272f80",
+      "sources_sha256": "e8c6bdd4c859768a59dd85b704a25275dd69dee23100b90c78e5e1215fa0336f",
+      "sources_maven_sha1": "cb5b660ff8ce40bac8a50173dd2891c9a0cdeb64"
+    },
+    {
+      "version": "33.0.0",
+      "tag": "v33.0.0",
+      "commit_sha": "2214c63670fc161da170ac6e1a2d6d07e1531a55",
+      "tag_date": "2023-12-18T20:32:56Z",
+      "commit_date": "2023-12-18T20:32:56Z",
+      "ref_type": "lightweight_tag",
+      "release_date": "2023-12-18T21:30:36Z",
+      "date_basis": "GitHub Release.published_at",
+      "release_url": "https://github.com/google/guava/releases/tag/v33.0.0",
+      "index": 27,
+      "family": "33.0",
+      "family_rank_zero_based": 37,
+      "representative_rule": "first_eligible_stable_release",
+      "selection_role": "major_anchor",
+      "calendar_gap_days_since_previous": 203,
+      "artifact_version": "33.0.0-jre",
+      "group_id": "com.google.guava",
+      "artifact_id": "guava",
+      "source_prefix": "com/google/common/",
+      "source_prefixes": [
+        "com/google/common/",
+        "com/google/thirdparty/publicsuffix/"
+      ],
+      "source_roots": [
+        "guava/src/",
+        "src/",
+        "guava/src/main/java/",
+        "src/main/java/"
+      ],
+      "skipped_stable_since_previous": [
+        "32.0.1",
+        "32.1.0",
+        "32.1.1",
+        "32.1.2",
+        "32.1.3"
+      ],
+      "skipped_families_since_previous": [
+        "32.1"
+      ],
+      "jar_url": "https://repo.maven.apache.org/maven2/com/google/guava/guava/33.0.0-jre/guava-33.0.0-jre.jar",
+      "jar_path": "data/raw/33.0.0/guava-33.0.0-jre.jar",
+      "sources_url": "https://repo.maven.apache.org/maven2/com/google/guava/guava/33.0.0-jre/guava-33.0.0-jre-sources.jar",
+      "sources_path": "data/raw/33.0.0/guava-33.0.0-jre-sources.jar",
+      "pom_url": "https://repo.maven.apache.org/maven2/com/google/guava/guava/33.0.0-jre/guava-33.0.0-jre.pom",
+      "pom_path": "data/raw/33.0.0/guava-33.0.0-jre.pom",
+      "jar_sha256": "f4d85c3e4d411694337cb873abea09b242b664bb013320be6105327c45991537",
+      "jar_maven_sha1": "161ba27964a62f241533807a46b8711b13c1d94b",
+      "sources_sha256": "0c17d911785e8a606d091aa6740d6d520f307749c2bddf6e35066d52fe0036e5",
+      "sources_maven_sha1": "2cca40652185734d5a89349c471a54367fb98067",
+      "pom_sha256": "fd70b14c441986c22e6d22ced2576787756be4918b145a8abd223e3a80b6e32d",
+      "pom_maven_sha1": "fe8e10972387557cdb729b11dd0e15349fecba14"
+    },
+    {
+      "version": "33.4.0",
+      "tag": "v33.4.0",
+      "commit_sha": "5c71d2a15435399fa62508d807d5cc83506f7496",
+      "tag_date": "2024-12-16T21:43:59Z",
+      "commit_date": "2024-12-16T21:43:59Z",
+      "ref_type": "lightweight_tag",
+      "release_date": "2024-12-16T22:35:44Z",
+      "date_basis": "GitHub Release.published_at",
+      "release_url": "https://github.com/google/guava/releases/tag/v33.4.0",
+      "index": 28,
+      "family": "33.4",
+      "family_rank_zero_based": 41,
+      "representative_rule": "first_eligible_stable_release",
+      "selection_role": "gap_filling_minor",
+      "calendar_gap_days_since_previous": 364,
+      "artifact_version": "33.4.0-jre",
+      "group_id": "com.google.guava",
+      "artifact_id": "guava",
+      "source_prefix": "com/google/common/",
+      "source_prefixes": [
+        "com/google/common/",
+        "com/google/thirdparty/publicsuffix/"
+      ],
+      "source_roots": [
+        "guava/src/",
+        "src/",
+        "guava/src/main/java/",
+        "src/main/java/"
+      ],
+      "skipped_stable_since_previous": [
+        "33.1.0",
+        "33.2.0",
+        "33.2.1",
+        "33.3.0",
+        "33.3.1"
+      ],
+      "skipped_families_since_previous": [
+        "33.1",
+        "33.2",
+        "33.3"
+      ],
+      "jar_url": "https://repo.maven.apache.org/maven2/com/google/guava/guava/33.4.0-jre/guava-33.4.0-jre.jar",
+      "jar_path": "data/raw/33.4.0/guava-33.4.0-jre.jar",
+      "sources_url": "https://repo.maven.apache.org/maven2/com/google/guava/guava/33.4.0-jre/guava-33.4.0-jre-sources.jar",
+      "sources_path": "data/raw/33.4.0/guava-33.4.0-jre-sources.jar",
+      "pom_url": "https://repo.maven.apache.org/maven2/com/google/guava/guava/33.4.0-jre/guava-33.4.0-jre.pom",
+      "pom_path": "data/raw/33.4.0/guava-33.4.0-jre.pom",
+      "jar_sha256": "b918c98a7e44dbe94ebd9fe3e40cddaadb5a93e6a78eb6008b42df237241e538",
+      "jar_maven_sha1": "03fcc0a259f724c7de54a6a55ea7e26d3d5c0cac",
+      "sources_sha256": "55ef6603b6ab1f6e3ae810b127561650ed682eb5f3fb50a212a658a74087b457",
+      "sources_maven_sha1": "0b6fed8019da2fd5dd373f705720121ae730f35f",
+      "pom_sha256": "fa94db40022ddfc775af9ecfb130cce515b96f740daf82f20af846d95054134b",
+      "pom_maven_sha1": "5c671f0be7aa66b15ed0ec2e1afb4ee99c8c78e8"
+    },
+    {
+      "version": "33.5.0",
+      "tag": "v33.5.0",
+      "commit_sha": "8868c096cfdabbe38170b6e395369c315cfb72a1",
+      "tag_date": "2025-09-17T19:54:47Z",
+      "commit_date": "2025-09-17T19:54:47Z",
+      "ref_type": "lightweight_tag",
+      "release_date": "2025-09-17T21:05:27Z",
+      "date_basis": "GitHub Release.published_at",
+      "release_url": "https://github.com/google/guava/releases/tag/v33.5.0",
+      "index": 29,
+      "family": "33.5",
+      "family_rank_zero_based": 42,
+      "representative_rule": "first_eligible_stable_release",
+      "selection_role": "gap_filling_minor",
+      "calendar_gap_days_since_previous": 275,
+      "artifact_version": "33.5.0-jre",
+      "group_id": "com.google.guava",
+      "artifact_id": "guava",
+      "source_prefix": "com/google/common/",
+      "source_prefixes": [
+        "com/google/common/",
+        "com/google/thirdparty/publicsuffix/"
+      ],
+      "source_roots": [
+        "guava/src/",
+        "src/",
+        "guava/src/main/java/",
+        "src/main/java/"
+      ],
+      "skipped_stable_since_previous": [
+        "33.4.1",
+        "33.4.2",
+        "33.4.3",
+        "33.4.4",
+        "33.4.5",
+        "33.4.6",
+        "33.4.7",
+        "33.4.8"
+      ],
+      "skipped_families_since_previous": [],
+      "jar_url": "https://repo.maven.apache.org/maven2/com/google/guava/guava/33.5.0-jre/guava-33.5.0-jre.jar",
+      "jar_path": "data/raw/33.5.0/guava-33.5.0-jre.jar",
+      "jar_sha256": "1e301f0c52ac248b0b14fdc3d12283c77252d4d6f48521d572e7d8c4c2cc4ac7",
+      "jar_maven_sha1": "8699de25f2f979108d6c1b804a7ba38cda1116bc",
+      "sources_url": "https://repo.maven.apache.org/maven2/com/google/guava/guava/33.5.0-jre/guava-33.5.0-jre-sources.jar",
+      "sources_path": "data/raw/33.5.0/guava-33.5.0-jre-sources.jar",
+      "sources_sha256": "79423ae87a2203950e0e3ce2a00682b3b8d8557e631bbf662dba5494fe3b55cb",
+      "sources_maven_sha1": "d4a99a57361d167bb70cffcc86e3302add771bba",
+      "pom_url": "https://repo.maven.apache.org/maven2/com/google/guava/guava/33.5.0-jre/guava-33.5.0-jre.pom",
+      "pom_path": "data/raw/33.5.0/guava-33.5.0-jre.pom",
+      "pom_sha256": "0478fa78a908b3c31fe6d77be9978aaa621e2a181db84007e3d3b37424a2ac61",
+      "pom_maven_sha1": "1bc4fe20066d7788787a2004986afbc6d1afd2ea"
+    },
+    {
+      "version": "33.7.2",
+      "tag": "v33.7.2",
+      "commit_sha": "666338cc49d5686c07e3e4d17f0aa1cec25a2be6",
+      "tag_date": "2026-09-29T14:10:07Z",
+      "commit_date": "2026-09-29T14:10:07Z",
+      "ref_type": "lightweight_tag",
+      "release_date": "2026-09-29T14:53:52Z",
+      "date_basis": "GitHub Release.published_at",
+      "release_url": "https://github.com/google/guava/releases/tag/v33.7.2",
+      "index": 30,
+      "family": "33.7",
+      "family_rank_zero_based": 44,
+      "representative_rule": "latest_history_endpoint",
+      "selection_role": "latest_endpoint",
+      "calendar_gap_days_since_previous": 377,
+      "artifact_version": "33.7.2-jre",
+      "group_id": "com.google.guava",
+      "artifact_id": "guava",
+      "source_prefix": "com/google/common/",
+      "source_prefixes": [
+        "com/google/common/",
+        "com/google/thirdparty/publicsuffix/"
+      ],
+      "source_roots": [
+        "guava/src/",
+        "src/",
+        "guava/src/main/java/",
+        "src/main/java/"
+      ],
+      "skipped_stable_since_previous": [
+        "33.6.0",
+        "33.7.0",
+        "33.7.1"
+      ],
+      "skipped_families_since_previous": [
+        "33.6"
+      ],
+      "jar_url": "https://repo.maven.apache.org/maven2/com/google/guava/guava/33.7.2-jre/guava-33.7.2-jre.jar",
+      "jar_path": "data/raw/33.7.2/guava-33.7.2-jre.jar",
+      "jar_sha256": "b530942257fb935f8b2cfaa5f8eb5bd59c555fd8e8d01b8ce98912e077ea606c",
+      "jar_maven_sha1": "e70def5b06cfb109ea050de99870e79c8ce80dbc",
+      "sources_url": "https://repo.maven.apache.org/maven2/com/google/guava/guava/33.7.2-jre/guava-33.7.2-jre-sources.jar",
+      "sources_path": "data/raw/33.7.2/guava-33.7.2-jre-sources.jar",
+      "sources_sha256": "ab6a8934d352629e6d87087a79808b827b64ed18cff6c6b551be99cd8e03244c",
+      "sources_maven_sha1": "b47059860aa6f1898ddf5d5a0dcf7d3a5ba761d0",
+      "pom_url": "https://repo.maven.apache.org/maven2/com/google/guava/guava/33.7.2-jre/guava-33.7.2-jre.pom",
+      "pom_path": "data/raw/33.7.2/guava-33.7.2-jre.pom",
+      "pom_sha256": "5d1501a97230f90df54ea33164831a61c6714a8b2a4c6a04e90bb729581bbabc",
+      "pom_maven_sha1": "aa78c19dd6023ef92b554d13ab4f6ed467e9f7bf"
+    }
+  ],
+  "date_policy": "Use documented calendar release dates through23.0; GitHub Release.published_at for23.1+. Git tag commit dates retained separately; never equated to publication dates.",
+  "study_revision": 3,
+  "selection_catalog_sha256": "d1ab1c6aa312d9a2c79b08e02f9b9c899ef8e48a58b21e945035a4f8726ff044",
+  "eligible_major_minor_families": 45,
+  "selected_family_ranks_zero_based": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    20,
+    22,
+    24,
+    25,
+    26,
+    27,
+    29,
+    30,
+    31,
+    33,
+    34,
+    35,
+    37,
+    41,
+    42,
+    44
+  ],
+  "selection_method": "major_anchors_calendar_greedy_v3",
+  "selection_parameters": {
+    "requested_count": 30,
+    "first_major": 10,
+    "last_major": 33,
+    "oldest_endpoint_version": "10.0",
+    "latest_endpoint_version": "33.7.2",
+    "representative_rule": "first_eligible_stable_release_per_family",
+    "optional_count": 5,
+    "minimum_calendar_gap_days": 60,
+    "max_optional_families_per_major": 2,
+    "objective": "greedy_reduction_in_sum_squared_calendar_gaps",
+    "tie_break": [
+      "earlier_utc_calendar_date",
+      "numeric_version"
+    ],
+    "latest_endpoint_counts_as_optional": false
+  },
+  "selected_major_numbers": [
+    10,
+    11,
+    12,
+    13,
+    14,
+    15,
+    16,
+    17,
+    18,
+    19,
+    20,
+    21,
+    22,
+    23,
+    24,
+    25,
+    26,
+    27,
+    28,
+    29,
+    30,
+    31,
+    32,
+    33
+  ],
+  "calendar_gap_statistics": {
+    "count": 29,
+    "minimum_days": 74,
+    "median_days": 141,
+    "maximum_days": 471,
+    "mean_days": 188.9655172413793,
+    "total_span_days": 5480,
+    "below_declared_minimum_count": 0
+  },
+  "calendar_date_basis": "Whole calendar-day differences: documented dates for date-only records, UTC calendar dates for timestamped records; no fractional-day weighting."
+}
+```
+<!-- END_FULL_SOURCE config/versions.json -->
+
+### requirements.lock.txt
+
+SHA-256: `c12cbce0a315d6fc9ed49a6cbc0b1ccbacc78decb63ad4eed2a3eb25c9057459` · 397 bytes
+
+<!-- FULL_SOURCE requirements.lock.txt c12cbce0a315d6fc9ed49a6cbc0b1ccbacc78decb63ad4eed2a3eb25c9057459 -->
+```text
+# Tested Python3.12 environment; runtime dependency closure of requirements.txt
+charset-normalizer==3.5.2
+contourpy==1.3.3
+cycler==0.12.1
+fonttools==4.61.1
+joblib==1.5.3
+kiwisolver==1.4.9
+matplotlib==3.10.8
+numpy==2.3.5
+packaging==26.3
+pillow==12.3.0
+pymupdf==1.26.6
+pyparsing==3.3.2
+python-dateutil==2.9.0.post0
+reportlab==4.4.9
+scikit-learn==1.8.0
+scipy==1.17.0
+six==1.17.0
+threadpoolctl==3.6.0
+```
+<!-- END_FULL_SOURCE requirements.lock.txt -->
+
+### requirements.txt
+
+SHA-256: `1bedc6eb4c8f532f97a752754af6ac39a10a6ec42c376c9e75f5019c3a6a4b6e` · 99 bytes
+
+<!-- FULL_SOURCE requirements.txt 1bedc6eb4c8f532f97a752754af6ac39a10a6ec42c376c9e75f5019c3a6a4b6e -->
+```text
+numpy==2.3.5
+scipy==1.17.0
+scikit-learn==1.8.0
+matplotlib==3.10.8
+reportlab==4.4.9
+PyMuPDF==1.26.6
+```
+<!-- END_FULL_SOURCE requirements.txt -->
+
+### scripts/select_versions.py
+
+SHA-256: `7e3f2beb52a7a85b5aab78a684ed2f75a3e3caf2bdd45522b765ebe6705dac4b` · 20,923 bytes
+
+<!-- FULL_SOURCE scripts/select_versions.py 7e3f2beb52a7a85b5aab78a684ed2f75a3e3caf2bdd45522b765ebe6705dac4b -->
+```python
+#!/usr/bin/env python3
+"""Select 30 Guava releases by major coverage and recorded calendar gaps.
+
+Default/--check validates without writing; --write preserves matching artifact
+pins. Selection reads only the frozen release catalog and declared parameters.
+"""
+from __future__ import annotations
+
+import argparse
+from collections import Counter, defaultdict
+from copy import deepcopy
+from datetime import date, datetime, timezone
+import hashlib
+import json
+from pathlib import Path
+import re
+import statistics
+
+ROOT = Path(__file__).resolve().parents[1]
+COUNT, FIRST_MAJOR, LAST_MAJOR = 30, 10, 33
+CUTOFF = "2026-10-17"
+MINIMUM_GAP_DAYS, MAX_OPTIONAL_PER_MAJOR = 60, 2
+OLDEST_VERSION, LATEST_VERSION = "10.0", "33.7.2"
+METHOD = "major_anchors_calendar_greedy_v3"
+SOURCE_PREFIXES = ["com/google/common/", "com/google/thirdparty/publicsuffix/"]
+SOURCE_ROOTS = ["guava/src/", "src/", "guava/src/main/java/", "src/main/java/"]
+DATE_BASIS = ("Whole calendar-day differences: documented dates for date-only records, "
+              "UTC calendar dates for timestamped records; no fractional-day weighting.")
+PARAMETERS = {
+    "requested_count": COUNT, "first_major": FIRST_MAJOR, "last_major": LAST_MAJOR,
+    "oldest_endpoint_version": OLDEST_VERSION, "latest_endpoint_version": LATEST_VERSION,
+    "representative_rule": "first_eligible_stable_release_per_family", "optional_count": 5,
+    "minimum_calendar_gap_days": MINIMUM_GAP_DAYS,
+    "max_optional_families_per_major": MAX_OPTIONAL_PER_MAJOR,
+    "objective": "greedy_reduction_in_sum_squared_calendar_gaps",
+    "tie_break": ["earlier_utc_calendar_date", "numeric_version"],
+    "latest_endpoint_counts_as_optional": False,
+}
+POLICY = (
+    "From the frozen 2026-10-17 catalog retain the same 70 eligible stable main-project "
+    "releases in 45 MAJOR.MINOR families and the existing three documented mainline "
+    "exclusions. Use the first eligible stable release in each family. Require every "
+    "MAJOR.0 family from 10 through 33 (24 anchors, including 13.0.1 because ambiguous "
+    "13.0 is excluded), preserving the fixed oldest 10.0 and latest 33.7.2 endpoints. "
+    "The latest endpoint is the sole exception to the first-release representative "
+    "rule and does not count as an optional addition. Fill five remaining slots "
+    "greedily: splitting a calendar gap into L and R days reduces the sum of squared "
+    "gaps by 2*L*R. Choose the greatest reduction, then the earlier UTC calendar date, "
+    "then numeric version. Keep every selected gap at least 60 calendar days and "
+    "permit at most two optional minor-family additions in any major. Each selected "
+    "family appears once. This balances major-history coverage and calendar spacing; "
+    "it does not require an omitted numeric tag between every pair or claim a globally "
+    "optimal calendar design. Use plain Maven artifacts before 23.1 and JRE artifacts "
+    "thereafter. Selection reads no graphs, clusters, quality values or structural-change outcomes."
+)
+
+
+def version_key(version):
+    if not re.fullmatch(r"\d+\.\d+(?:\.\d+)?", version):
+        raise ValueError(f"Not a numeric stable version: {version}")
+    parts = tuple(int(p) for p in version.split("."))
+    return parts + (0,) * (3 - len(parts))
+
+
+def family(version):
+    version_key(version)
+    return ".".join(version.split(".")[:2])
+
+
+def release_day(row):
+    value = row["release_date"]
+    if re.fullmatch(r"\d{4}-\d{2}-\d{2}", value):
+        return date.fromisoformat(value)
+    instant = datetime.fromisoformat(value.replace("Z", "+00:00"))
+    if instant.tzinfo is None:
+        raise ValueError("Timestamped release dates must specify their timezone.")
+    return instant.astimezone(timezone.utc).date()
+
+
+def row_key(row):
+    return release_day(row), version_key(row["version"])
+
+
+def greedy_fill_gaps(representatives, mandatory, target_count, minimum_gap_days,
+                     max_optional_per_major):
+    """Pure selector. Score 2LR=(L+R)^2-L^2-R^2; cap counts only new additions."""
+    if minimum_gap_days < 1 or max_optional_per_major < 0:
+        raise ValueError("Gap must be positive and optional-major limit nonnegative.")
+    if target_count < len(mandatory):
+        raise ValueError("Requested count cannot discard mandatory anchors.")
+    candidates, selected = sorted(representatives, key=row_key), sorted(mandatory, key=row_key)
+    for rows in (candidates, selected):
+        if len({family(r["version"]) for r in rows}) != len(rows):
+            raise ValueError("Duplicate representative or mandatory family.")
+    if len(selected) < 2 or any(r not in candidates for r in selected):
+        raise ValueError("Mandatory endpoints must be candidate representatives.")
+    if any((release_day(b) - release_day(a)).days < minimum_gap_days
+           for a, b in zip(selected, selected[1:])):
+        raise ValueError("Mandatory anchors cannot satisfy the requested calendar gap.")
+    counts, steps = Counter(), []
+    while len(selected) < target_count:
+        selected_families = {family(r["version"]) for r in selected}
+        options = []
+        for candidate in candidates:
+            major = version_key(candidate["version"])[0]
+            if family(candidate["version"]) in selected_families or counts[major] >= max_optional_per_major:
+                continue
+            day = release_day(candidate)
+            pos = next((i for i, r in enumerate(selected) if release_day(r) > day), len(selected))
+            if pos == 0 or pos == len(selected):
+                continue
+            left, right = selected[pos - 1:pos + 1]
+            left_days, right_days = (day - release_day(left)).days, (release_day(right) - day).days
+            if min(left_days, right_days) < minimum_gap_days:
+                continue
+            key = (-2 * left_days * right_days, day, version_key(candidate["version"]))
+            options.append((key, candidate, left, right, left_days, right_days))
+        if not options:
+            raise ValueError("Too few families satisfy the calendar gap and optional-major cap.")
+        key, candidate, left, right, left_days, right_days = min(options, key=lambda x: x[0])
+        major = version_key(candidate["version"])[0]
+        counts[major] += 1
+        steps.append({
+            "step": len(steps) + 1, "version": candidate["version"],
+            "family": family(candidate["version"]), "calendar_date": release_day(candidate).isoformat(),
+            "between_versions": [left["version"], right["version"]],
+            "original_gap_days": left_days + right_days,
+            "left_gap_days": left_days, "right_gap_days": right_days,
+            "squared_gap_reduction_days2": -key[0],
+            "optional_count_for_major_after_selection": counts[major],
+            "feasible_candidate_count": len(options),
+        })
+        selected.append(candidate)
+        selected.sort(key=row_key)
+    return deepcopy(selected), steps
+
+
+def selection_details(inventory):
+    stable = inventory["stable_tags_in_date_order"]
+    if len({r["version"] for r in stable}) != len(stable):
+        raise ValueError("Captured catalog contains duplicate versions.")
+    exclusions = {r["version"] for r in inventory["additional_exclusions"]}
+    eligible = sorted((r for r in stable if FIRST_MAJOR <= version_key(r["version"])[0] <= LAST_MAJOR
+                       and r["version"] not in exclusions
+                       and release_day(r) <= date.fromisoformat(CUTOFF)), key=row_key)
+    groups = defaultdict(list)
+    for row in eligible:
+        groups[family(row["version"])].append(row)
+    names = sorted(groups, key=lambda name: row_key(groups[name][0]))
+    if len(eligible) != 70 or len(names) != 45:
+        raise ValueError("Frozen catalog must produce 70 eligible releases and 45 families.")
+    representatives = {name: rows[0] for name, rows in groups.items()}
+    latest = next((r for r in eligible if r["version"] == LATEST_VERSION), None)
+    if latest is None or eligible[-1]["version"] != LATEST_VERSION:
+        raise ValueError("The frozen latest endpoint is missing or inconsistent.")
+    representatives[family(LATEST_VERSION)] = latest
+    anchor_names = [f"{major}.0" for major in range(FIRST_MAJOR, LAST_MAJOR + 1)]
+    if any(name not in representatives for name in anchor_names):
+        raise ValueError("Every major from 10 through 33 must have a MAJOR.0 anchor.")
+    mandatory = [representatives[name] for name in anchor_names] + [latest]
+    chosen, steps = greedy_fill_gaps(list(representatives.values()), mandatory, COUNT,
+                                     MINIMUM_GAP_DAYS, MAX_OPTIONAL_PER_MAJOR)
+    if chosen[0]["version"] != OLDEST_VERSION or chosen[-1]["version"] != LATEST_VERSION:
+        raise ValueError("Unexpected frozen-history endpoints.")
+    selected_names = {family(r["version"]) for r in chosen}
+    audit = []
+    for rank, name in enumerate(names):
+        audit.append({
+            "family_rank_zero_based": rank, "family": name,
+            "eligible_versions": [r["version"] for r in groups[name]],
+            "first_release_date": groups[name][0]["release_date"],
+            "representative": representatives[name]["version"],
+            "representative_calendar_date": release_day(representatives[name]).isoformat(),
+            "representative_rule": ("latest_history_endpoint" if name == family(LATEST_VERSION)
+                                    else "first_eligible_stable_release"),
+            "selected": name in selected_names,
+            "selection_role": ("major_anchor" if name in anchor_names else
+                               "latest_endpoint" if name == family(LATEST_VERSION) else
+                               "gap_filling_minor" if name in selected_names else None),
+        })
+    ranks = [names.index(family(r["version"])) for r in chosen]
+    return chosen, audit, ranks, steps, sorted(mandatory, key=row_key)
+
+
+def selected_rows(inventory):
+    """Preserve the pure three-result interface used by acquisition callers."""
+    chosen, audit, ranks, _, _ = selection_details(inventory)
+    return chosen, audit, ranks
+
+
+def calendar_gaps(rows):
+    return [{"from_version": a["version"], "to_version": b["version"],
+             "from_date": release_day(a).isoformat(), "to_date": release_day(b).isoformat(),
+             "gap_days": (release_day(b) - release_day(a)).days}
+            for a, b in zip(rows, rows[1:])]
+
+
+def gap_statistics(rows):
+    gaps = [g["gap_days"] for g in calendar_gaps(rows)]
+    return {"count": len(gaps), "minimum_days": min(gaps), "median_days": statistics.median(gaps),
+            "maximum_days": max(gaps), "mean_days": statistics.mean(gaps),
+            "total_span_days": sum(gaps),
+            "below_declared_minimum_count": sum(g < MINIMUM_GAP_DAYS for g in gaps)}
+
+
+def validate_manifest(manifest, inventory):
+    chosen, audit, ranks, _, _ = selection_details(inventory)
+    rows = manifest["versions"]
+    if manifest.get("schema_version") != 4 or manifest.get("study_revision") != 3:
+        raise ValueError("Selection requires manifest schema 4 / study revision 3.")
+    if (manifest.get("selection_method") != METHOD or manifest.get("selection_parameters") != PARAMETERS
+            or manifest.get("selection_policy") != POLICY):
+        raise ValueError("Declared selection policy or parameters differ from the frozen rule.")
+    if len(rows) != COUNT or len({family(r["version"]) for r in rows}) != COUNT:
+        raise ValueError("Exactly 30 releases from 30 distinct families are required.")
+    if [r["version"] for r in rows] != [r["version"] for r in chosen]:
+        raise ValueError("Selected releases differ from the major-anchor calendar rule.")
+    stable = sorted(inventory["stable_tags_in_date_order"], key=row_key)
+    positions = {r["version"]: i for i, r in enumerate(stable)}
+    for i, (row, captured) in enumerate(zip(rows, chosen)):
+        for key in ("tag", "commit_sha", "release_date", "date_basis"):
+            if row[key] != captured[key]:
+                raise ValueError(f"Captured {key} differs for {row['version']}")
+        if not re.fullmatch(r"[a-f0-9]{40}", row["commit_sha"]):
+            raise ValueError("Missing immutable commit SHA.")
+        if row["family"] != family(row["version"]) or row["family_rank_zero_based"] != ranks[i]:
+            raise ValueError(f"Incorrect family metadata for {row['version']}")
+        for key in ("representative_rule", "selection_role"):
+            if row.get(key) != audit[ranks[i]][key]:
+                raise ValueError(f"Incorrect {key} for {row['version']}")
+        skipped = [] if i == 0 else [r["version"] for r in stable[
+            positions[rows[i - 1]["version"]] + 1:positions[row["version"]]]]
+        omitted = [] if i == 0 else [r["family"] for r in audit[ranks[i - 1] + 1:ranks[i]]]
+        if row["skipped_stable_since_previous"] != skipped or row["skipped_families_since_previous"] != omitted:
+            raise ValueError(f"Incorrect intervening releases or families for {row['version']}")
+        if row.get("source_prefixes") != SOURCE_PREFIXES:
+            raise ValueError("Guava ownership scope must remain unchanged.")
+        gap = None if i == 0 else (release_day(row) - release_day(rows[i - 1])).days
+        if row.get("calendar_gap_days_since_previous") != gap:
+            raise ValueError(f"Incorrect calendar gap for {row['version']}")
+    expected = {"major_minor_families": [family(r["version"]) for r in rows],
+                "selected_family_ranks_zero_based": ranks, "eligible_major_minor_families": len(audit),
+                "selected_major_numbers": list(range(FIRST_MAJOR, LAST_MAJOR + 1)),
+                "calendar_gap_statistics": gap_statistics(chosen)}
+    for key, value in expected.items():
+        if manifest.get(key) != value:
+            raise ValueError(f"Top-level {key} differs from the audited selection.")
+
+
+def build_manifest(previous, inventory, catalog_sha256):
+    chosen, audit, ranks, steps, mandatory = selection_details(inventory)
+    previous_rows = {r["version"]: r for r in previous["versions"]}
+    stable = sorted(inventory["stable_tags_in_date_order"], key=row_key)
+    positions = {r["version"]: i for i, r in enumerate(stable)}
+    rows = []
+    for i, (captured, rank) in enumerate(zip(chosen, ranks)):
+        version, row = captured["version"], deepcopy(captured)
+        artifact_version = version + ("-jre" if version_key(version) >= (23, 1, 0) else "")
+        row.update({
+            "index": i + 1, "family": family(version), "family_rank_zero_based": rank,
+            "representative_rule": audit[rank]["representative_rule"],
+            "selection_role": audit[rank]["selection_role"],
+            "calendar_gap_days_since_previous": None if i == 0 else
+                (release_day(row) - release_day(rows[-1])).days,
+            "artifact_version": artifact_version, "group_id": "com.google.guava", "artifact_id": "guava",
+            "source_prefix": SOURCE_PREFIXES[0], "source_prefixes": SOURCE_PREFIXES,
+            "source_roots": SOURCE_ROOTS,
+            "skipped_stable_since_previous": [] if i == 0 else [r["version"] for r in stable[
+                positions[rows[-1]["version"]] + 1:positions[version]]],
+            "skipped_families_since_previous": [] if i == 0 else [r["family"] for r in audit[ranks[i - 1] + 1:rank]],
+        })
+        for kind, suffix in (("jar", ".jar"), ("sources", "-sources.jar"), ("pom", ".pom")):
+            filename = f"guava-{artifact_version}{suffix}"
+            row[f"{kind}_url"] = f"https://repo.maven.apache.org/maven2/com/google/guava/guava/{artifact_version}/{filename}"
+            row[f"{kind}_path"] = f"data/raw/{version}/{filename}"
+            old = previous_rows.get(version, {})
+            if old.get(f"{kind}_url") == row[f"{kind}_url"]:
+                for checksum in ("sha256", "maven_sha1"):
+                    key = f"{kind}_{checksum}"
+                    if old.get(key):
+                        row[key] = old[key]
+        rows.append(row)
+    manifest = deepcopy(previous)
+    manifest.update({
+        "schema_version": 4, "study_revision": 3, "selection_date_utc": CUTOFF,
+        "selection_method": METHOD, "selection_parameters": deepcopy(PARAMETERS),
+        "selection_policy": POLICY, "selection_catalog_sha256": catalog_sha256,
+        "eligible_major_minor_families": len(audit), "selected_count": COUNT,
+        "selected_family_ranks_zero_based": ranks,
+        "major_minor_families": [family(r["version"]) for r in rows],
+        "selected_major_numbers": list(range(FIRST_MAJOR, LAST_MAJOR + 1)),
+        "calendar_gap_statistics": gap_statistics(rows), "calendar_date_basis": DATE_BASIS,
+        "versions": rows,
+    })
+    validate_manifest(manifest, inventory)
+    anchor_gaps = calendar_gaps(mandatory)
+    minimum_anchor_gap = min(g["gap_days"] for g in anchor_gaps)
+    evidence = {
+        "schema_version": 2, "study_revision": 3, "frozen_cutoff_utc": CUTOFF,
+        "catalog_path": "data/provenance/tag_inventory.json", "catalog_sha256": catalog_sha256,
+        "selection_method": METHOD, "selection_parameters": deepcopy(PARAMETERS), "rule": POLICY,
+        "eligible_releases": 70, "eligible_families": len(audit), "selected_count": COUNT,
+        "selected_family_ranks_zero_based": ranks, "selected_versions": [r["version"] for r in rows],
+        "selected_unique_families": COUNT, "unselected_families": len(audit) - COUNT,
+        "selected_major_numbers": list(range(FIRST_MAJOR, LAST_MAJOR + 1)),
+        "mandatory_anchors": [{
+            "version": r["version"], "family": family(r["version"]), "release_date": r["release_date"],
+            "calendar_date": release_day(r).isoformat(),
+            "selection_role": "latest_endpoint" if r["version"] == LATEST_VERSION else "major_anchor",
+            "rationale": ("Fixed latest stable endpoint; not charged to the optional-major budget."
+                          if r["version"] == LATEST_VERSION else
+                          "Cover this major's MAJOR.0 milestone with its first eligible stable release."),
+        } for r in mandatory],
+        "optional_selection_steps": steps, "calendar_date_basis": DATE_BASIS,
+        "calendar_gaps": calendar_gaps(rows), "calendar_gap_statistics": gap_statistics(rows),
+        "spacing_feasibility": {
+            "mandatory_anchor_minimum_gap_days": minimum_anchor_gap,
+            "limiting_anchor_pairs": [g for g in anchor_gaps if g["gap_days"] == minimum_anchor_gap],
+            "ninety_day_floor_feasible_with_fixed_anchors": minimum_anchor_gap >= 90,
+            "note": "A floor above the smallest fixed-anchor gap requires changing an anchor. The greedy objective is not claimed globally optimal.",
+        },
+        "family_catalog": audit,
+        "selection_inputs_include": ["captured stable tag identities", "recorded release dates", "numeric version families", "declared parameters"],
+        "selection_inputs_exclude": ["dependency graphs", "clustering outcomes", "quality metrics", "structural identity", "source-code changes"],
+    }
+    return manifest, evidence
+
+
+def write_json(path, data):
+    path.parent.mkdir(parents=True, exist_ok=True)
+    temporary = path.with_suffix(path.suffix + ".tmp")
+    temporary.write_text(json.dumps(data, indent=2) + "\n")
+    temporary.replace(path)
+
+
+def main():
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--manifest", type=Path, default=ROOT / "config/versions.json")
+    parser.add_argument("--catalog", type=Path, default=ROOT / "data/provenance/tag_inventory.json")
+    action = parser.add_mutually_exclusive_group()
+    action.add_argument("--write", action="store_true")
+    action.add_argument("--check", action="store_true")
+    args = parser.parse_args()
+    catalog_bytes = args.catalog.read_bytes()
+    catalog_sha256 = hashlib.sha256(catalog_bytes).hexdigest()
+    inventory, existing = json.loads(catalog_bytes), json.loads(args.manifest.read_text())
+    if args.write:
+        revised, evidence = build_manifest(existing, inventory, catalog_sha256)
+        write_json(args.manifest, revised)
+        write_json(ROOT / "data/provenance/family_selection.json", evidence)
+    else:
+        validate_manifest(existing, inventory)
+        if existing.get("selection_catalog_sha256") != catalog_sha256:
+            raise ValueError("Catalog bytes do not match the recorded SHA-256.")
+        revised = existing
+    print(json.dumps({"selected_count": len(revised["versions"]),
+                      "unique_families": len(revised["major_minor_families"]),
+                      "major_numbers": revised["selected_major_numbers"],
+                      "calendar_gap_statistics": revised["calendar_gap_statistics"],
+                      "versions": [r["version"] for r in revised["versions"]],
+                      "mode": "write" if args.write else "check"}, indent=2))
+
+
+if __name__ == "__main__":
+    main()
+```
+<!-- END_FULL_SOURCE scripts/select_versions.py -->
+
+### src/evolution/__init__.py
+
+SHA-256: `ee0457bd96805efd0ff9613f5df19db2754f99e50f1582d342fe3003f21ab5e1` · 89 bytes
+
+<!-- FULL_SOURCE src/evolution/__init__.py ee0457bd96805efd0ff9613f5df19db2754f99e50f1582d342fe3003f21ab5e1 -->
+```python
+"""Reproducible Guava architecture evolution study for EPL484."""
+
+__version__ = "1.0.0"
+```
+<!-- END_FULL_SOURCE src/evolution/__init__.py -->
+
+### src/evolution/graph.py
+
+SHA-256: `2c91619bd6309af48ad6a07d17e2e43df3ee365f4a7f90d99fdd6a7b43ac78d4` · 2,652 bytes
+
+<!-- FULL_SOURCE src/evolution/graph.py 2c91619bd6309af48ad6a07d17e2e43df3ee365f4a7f90d99fdd6a7b43ac78d4 -->
+```python
+"""Validated, scoped graph inputs and deterministic audit-file helpers."""
+from __future__ import annotations
+
+import csv
+from dataclasses import dataclass
+import hashlib
+import json
+from pathlib import Path
+
+
+def read_csv(path: Path) -> list[dict[str, str]]:
+    with path.open(newline="", encoding="utf-8") as handle:
+        return list(csv.DictReader(handle))
+
+
+def write_csv(path: Path, rows: list[dict], fieldnames: list[str] | None = None) -> None:
+    path.parent.mkdir(parents=True, exist_ok=True)
+    columns = fieldnames or (list(rows[0]) if rows else [])
+    with path.open("w", newline="", encoding="utf-8") as handle:
+        writer = csv.DictWriter(handle, fieldnames=columns, lineterminator="\n", extrasaction="raise")
+        writer.writeheader()
+        writer.writerows(rows)
+
+
+def write_json(path: Path, value) -> None:
+    path.parent.mkdir(parents=True, exist_ok=True)
+    path.write_text(json.dumps(value, indent=2, sort_keys=True, allow_nan=False) + "\n", encoding="utf-8")
+
+
+def sha256(path: Path) -> str:
+    with path.open("rb") as handle:
+        return hashlib.file_digest(handle, "sha256").hexdigest()
+
+
+@dataclass(frozen=True)
+class Graph:
+    nodes: tuple[str, ...]
+    edges: tuple[tuple[str, str], ...]
+
+    def __post_init__(self):
+        if len(self.nodes) != len(set(self.nodes)):
+            raise ValueError("Duplicate graph nodes")
+        if len(self.edges) != len(set(self.edges)):
+            raise ValueError("Duplicate graph edges: expected binary graph")
+        nodes = set(self.nodes)
+        if any(a not in nodes or b not in nodes or a == b for a, b in self.edges):
+            raise ValueError("Out-of-scope endpoint or self loop")
+
+    @property
+    def isolates(self) -> tuple[str, ...]:
+        active = {v for edge in self.edges for v in edge}
+        return tuple(n for n in self.nodes if n not in active)
+
+    def without(self, removed) -> "Graph":
+        removed = set(removed)
+        if not removed <= set(self.nodes):
+            raise ValueError("Attempt to remove nonexistent graph nodes")
+        return Graph(tuple(n for n in self.nodes if n not in removed),
+                     tuple((a, b) for a, b in self.edges if a not in removed and b not in removed))
+
+    def rsf(self, path: Path) -> None:
+        path.parent.mkdir(parents=True, exist_ok=True)
+        path.write_text("".join(f"call {a} {b}\n" for a, b in self.edges))
+
+
+def read_graph(directory: Path) -> Graph:
+    nodes = tuple(row["class"] for row in read_csv(directory / "classes.csv"))
+    edges = tuple((row["source"], row["target"]) for row in read_csv(directory / "dependencies.csv"))
+    return Graph(nodes, edges)
+```
+<!-- END_FULL_SOURCE src/evolution/graph.py -->
+
+### tests/test_selection.py
+
+SHA-256: `f24a4ca241ec5faf866febe066ca6d870c328bc68531c10dd718cf2367811300` · 8,228 bytes
+
+<!-- FULL_SOURCE tests/test_selection.py f24a4ca241ec5faf866febe066ca6d870c328bc68531c10dd718cf2367811300 -->
+```python
+"""Calendar boundaries, major coverage, provenance and deterministic selection."""
+from copy import deepcopy
+from datetime import date, timedelta
+import hashlib
+import importlib.util
+import json
+from pathlib import Path
+import unittest
+
+ROOT = Path(__file__).resolve().parents[1]
+SPEC = importlib.util.spec_from_file_location("guava_release_selector", ROOT / "scripts/select_versions.py")
+selector = importlib.util.module_from_spec(SPEC)
+SPEC.loader.exec_module(selector)
+EXPECTED = (
+    "10.0,11.0,12.0,13.0.1,14.0,15.0,16.0,17.0,18.0,19.0,20.0,21.0,22.0,23.0,"
+    "24.0,25.0,26.0,27.0,27.1,28.0,28.2,29.0,30.0,31.0,31.1,32.0.0,33.0.0,"
+    "33.4.0,33.5.0,33.7.2"
+).split(",")
+
+
+def dated(version, day):
+    return {"version": version, "release_date": (date(2020, 1, 1) + timedelta(days=day)).isoformat()}
+
+
+class CalendarSelectorTests(unittest.TestCase):
+    def test_gap_boundary_is_inclusive_and_infeasible_gap_fails(self):
+        left, middle, right = dated("10.0", 0), dated("11.0", 60), dated("12.0", 120)
+        chosen, steps = selector.greedy_fill_gaps([right, middle, left], [left, right], 3, 60, 2)
+        self.assertEqual([r["version"] for r in chosen], ["10.0", "11.0", "12.0"])
+        self.assertEqual(steps[0]["squared_gap_reduction_days2"], 120**2 - 60**2 - 60**2)
+        with self.assertRaises(ValueError):
+            selector.greedy_fill_gaps([left, middle, right], [left, right], 3, 61, 2)
+
+    def test_equal_gain_uses_earlier_calendar_date_then_numeric_version(self):
+        left, right = dated("10.0", 0), dated("20.0", 180)
+        early, late = dated("15.0", 60), dated("11.0", 120)
+        _, steps = selector.greedy_fill_gaps([right, late, early, left], [left, right], 3, 60, 2)
+        self.assertEqual(steps[0]["version"], "15.0")
+        two, ten = dated("11.2", 90), dated("11.10", 90)
+        for candidates in ([left, ten, two, right], [right, two, ten, left]):
+            _, steps = selector.greedy_fill_gaps(candidates, [left, right], 3, 60, 2)
+            self.assertEqual(steps[0]["version"], "11.2")
+
+    def test_optional_cap_does_not_charge_the_mandatory_endpoint(self):
+        left, right = dated("10.0", 0), dated("15.7", 360)
+        a, b = dated("15.4", 120), dated("15.5", 240)
+        candidates = [left, a, b, right]
+        chosen, steps = selector.greedy_fill_gaps(candidates, [left, right], 4, 60, 2)
+        self.assertEqual(len(chosen), 4)
+        self.assertEqual([s["optional_count_for_major_after_selection"] for s in steps], [1, 2])
+        with self.assertRaises(ValueError):
+            selector.greedy_fill_gaps(candidates, [left, right], 4, 60, 1)
+
+    def test_duplicate_family_cannot_be_used_to_reach_requested_count(self):
+        left, right = dated("10.0", 0), dated("20.0", 360)
+        with self.assertRaises(ValueError):
+            selector.greedy_fill_gaps([left, dated("11.0", 120), dated("11.0.1", 240), right],
+                                      [left, right], 4, 60, 2)
+
+    def test_dates_are_whole_utc_calendar_days_and_naive_timestamps_fail(self):
+        self.assertEqual(selector.release_day({"release_date": "2020-01-02T00:30:00+02:00"}),
+                         date(2020, 1, 1))
+        self.assertEqual(selector.release_day({"release_date": "2020-01-01T23:59:59Z"}),
+                         selector.release_day({"release_date": "2020-01-01"}))
+        with self.assertRaises(ValueError):
+            selector.release_day({"release_date": "2020-01-01T12:00:00"})
+
+
+class FrozenSelectionTests(unittest.TestCase):
+    @classmethod
+    def setUpClass(cls):
+        raw = (ROOT / "data/provenance/tag_inventory.json").read_bytes()
+        cls.catalog, cls.catalog_hash = json.loads(raw), hashlib.sha256(raw).hexdigest()
+        cls.manifest, cls.evidence = selector.build_manifest({"versions": []}, cls.catalog, cls.catalog_hash)
+
+    def test_approved_sample_covers_every_major_and_fixes_both_endpoints(self):
+        rows = self.manifest["versions"]
+        self.assertEqual([r["version"] for r in rows], EXPECTED)
+        self.assertEqual(len({r["family"] for r in rows}), 30)
+        self.assertEqual({int(r["version"].split(".")[0]) for r in rows}, set(range(10, 34)))
+        self.assertTrue({f"{major}.0" for major in range(10, 34)} <= {r["family"] for r in rows})
+        self.assertEqual(sum(r["selection_role"] == "major_anchor" for r in rows), 24)
+        self.assertEqual(sum(r["selection_role"] == "latest_endpoint" for r in rows), 1)
+        self.assertEqual(sum(r["selection_role"] == "gap_filling_minor" for r in rows), 5)
+        self.assertEqual((self.manifest["schema_version"], self.manifest["study_revision"]), (4, 3))
+
+    def test_actual_dates_give_the_declared_spacing_and_ninety_days_is_infeasible(self):
+        dates = [date.fromisoformat(r["release_date"][:10]) for r in self.manifest["versions"]]
+        gaps = [(b - a).days for a, b in zip(dates, dates[1:])]
+        self.assertEqual((min(gaps), sorted(gaps)[14], max(gaps)), (74, 141, 471))
+        self.assertTrue(all(g >= 60 for g in gaps))
+        _, audit, _, _, mandatory = selector.selection_details(self.catalog)
+        representatives = [{"version": r["representative"], "release_date": r["representative_calendar_date"]}
+                           for r in audit]
+        mandatory = [{"version": r["version"], "release_date": r["release_date"][:10]} for r in mandatory]
+        with self.assertRaisesRegex(ValueError, "Mandatory anchors"):
+            selector.greedy_fill_gaps(representatives, mandatory, 30, 90, 2)
+
+    def test_catalog_order_and_outcome_fields_do_not_change_the_selection(self):
+        changed = deepcopy(self.catalog)
+        changed["stable_tags_in_date_order"].reverse()
+        for i, row in enumerate(changed["stable_tags_in_date_order"]):
+            row["quality_score"] = i * -1000
+            row["classes"] = 0
+        rows, _, _ = selector.selected_rows(changed)
+        self.assertEqual([r["version"] for r in rows], EXPECTED)
+        self.assertEqual(selector.selection_details(changed)[3], self.evidence["optional_selection_steps"])
+
+    def test_corrupt_catalog_and_future_endpoint_are_rejected(self):
+        duplicate = deepcopy(self.catalog)
+        duplicate["stable_tags_in_date_order"].append(deepcopy(duplicate["stable_tags_in_date_order"][0]))
+        with self.assertRaises(ValueError):
+            selector.selected_rows(duplicate)
+        future = deepcopy(self.catalog)
+        next(r for r in future["stable_tags_in_date_order"] if r["version"] == "33.7.2")["release_date"] = "2026-10-18"
+        with self.assertRaises(ValueError):
+            selector.selected_rows(future)
+
+    def test_manifest_rejects_changed_identity_dates_roles_and_gap_metadata(self):
+        changes = [
+            (0, "commit_sha", "0" * 40), (0, "release_date", "2011-09-29"),
+            (1, "calendar_gap_days_since_previous", 82),
+            (1, "skipped_stable_since_previous", ["33.7.2"]),
+            (0, "selection_role", "gap_filling_minor"),
+        ]
+        for index, key, value in changes:
+            with self.subTest(key=key):
+                changed = deepcopy(self.manifest)
+                changed["versions"][index][key] = value
+                with self.assertRaises(ValueError):
+                    selector.validate_manifest(changed, self.catalog)
+        changed = deepcopy(self.manifest)
+        changed["versions"][1] = deepcopy(changed["versions"][0])
+        with self.assertRaises(ValueError):
+            selector.validate_manifest(changed, self.catalog)
+
+    def test_only_matching_artifact_urls_preserve_existing_checksum_pins(self):
+        prior = deepcopy(self.manifest)
+        for kind in ("jar", "sources", "pom"):
+            prior["versions"][0][kind + "_sha256"] = "a" * 64
+            prior["versions"][0][kind + "_maven_sha1"] = "b" * 40
+        prior["versions"][0]["pom_url"] += ".wrong"
+        rebuilt, _ = selector.build_manifest(prior, self.catalog, self.catalog_hash)
+        row = rebuilt["versions"][0]
+        self.assertEqual(row["jar_sha256"], "a" * 64)
+        self.assertEqual(row["sources_maven_sha1"], "b" * 40)
+        self.assertNotIn("pom_sha256", row)
+        self.assertNotIn("pom_maven_sha1", row)
+
+
+if __name__ == "__main__":
+    unittest.main()
+```
+<!-- END_FULL_SOURCE tests/test_selection.py -->
