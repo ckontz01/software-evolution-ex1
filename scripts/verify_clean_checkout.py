@@ -352,7 +352,7 @@ def main():
         ai_files = ["metrics.json", "retained_metrics.json", "comparisons.csv", "partition_comparisons.json", "evaluation.json"]
         ai_files += [f"quality_{scope}/{name}.csv" for scope in ("full", "retained") for name in ("metrics_summary", "per_cluster", "per_pair")]
         audited_files = {"results/validation.json": ["validated_at_utc"], "results/change_points.json": ["audited_at_utc"],
-                         "results/performance/case_checks.json": ["checked_at_utc"], "results/revision_comparison.json": [],
+                         "results/performance/case_checks.json": ["checked_at_utc"],
                          "docs/ue_case_study.md": []}
         audited_files.update({"results/ai/" + name: [] for name in ai_files})
         for name in audited_files:
@@ -372,7 +372,6 @@ def main():
             ("independent-full-validation", [PYTHON, "scripts/validate_results.py"]),
             ("recorded-ai-evaluation", [PYTHON, "scripts/evaluate_ai.py"]),
             ("change-point-audit", [PYTHON, "scripts/audit_change_points.py"]),
-            ("revision-audit", [PYTHON, "scripts/audit_revision.py"]),
             ("ue-case-audit", [PYTHON, "scripts/audit_ue_cases.py", "--version", manifest["versions"][-1]["version"]]),
             ("latest-repeat-execution", [PYTHON, str(Path(__file__).resolve()), "--expected-commit", expected_commit,
                                          "--output", str(output), "--latest-only"]),

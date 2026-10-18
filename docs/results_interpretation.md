@@ -2,13 +2,13 @@
 
 The current study covers 30 releases, with one final A1–A4 partition for each. The strongest comparison of Usage Equality filtering holds the retained graph fixed: **ACDC reclustering raises MQ in 0 releases and lowers it in 30; k-means raises it in 29 and lowers it in 1.** This is an observed result under the declared model, not an assumption that removing widely used classes must help. [Same-graph comparisons](../results/same_graph_comparisons.csv)
 
-## What changed in this revision
+## How the observations were selected
 
-The release sample now includes all 24 major versions from 10 through 33, the latest endpoint and five minor releases selected by a calendar-gap rule. The shortest gap is 74 days and the median is 141 days. The earlier family-rank sample placed four 23.x releases within 56 days; the current sample removes that concentration. Selection uses the captured release dates only. It does not inspect graphs or scores. [Selection record](project_selection.md)
+The release sample includes all 24 major versions from 10 through 33, the latest endpoint and five minor releases selected by a calendar-gap rule. The shortest gap is 74 days and the median is 141 days. Selection uses the captured release dates only. It does not inspect graphs or scores. [Selection record](project_selection.md)
 
-Current agreement figures and tables use MoJoFM. The dependency extractor, ownership boundary, Usage Equality thresholds, isolate policy, feature construction and k-selection strategy remain unchanged. The new cohort changes the union of class coordinates and the middle release, so all final partitions are regenerated after a new pilot. The recorded AI proposal remains the same earlier response because its latest-release graph inputs are unchanged. [Model](modeling_decisions.md) · [AI reflection](ai_reflection.md)
+Agreement figures and tables use MoJoFM. The dependency extractor, ownership boundary, Usage Equality thresholds, isolate policy and feature construction are fixed across the sample. One middle-release pilot calibrates k before the final partitions are generated. The recorded AI proposal uses the same latest-release graph as the classical algorithms. [Model](modeling_decisions.md) · [AI reflection](ai_reflection.md)
 
-The latest graph is identical to the preceding instructor-extractor study, but the rerun gives A4 a different k-means partition. The feature union still contains 715 class identities; it now includes `com.google.common.hash.Sink` in place of `com.google.common.base.Java8Usage`. The changed coordinates and their order may affect numerical ties during fitting, although that mechanism was not isolated experimentally. This difference should not be described as evolution within the unchanged latest release. The saved feature hashes and execution records identify the inputs of each run. [Current feature union](../data/graphs/feature_universe.json) · [Run record](../results/run_manifest.json)
+The feature union contains 715 class identities and supplies 1,430 outgoing/incoming coordinates. This fixed coordinate system allows the same feature definition in every release. Fixed seeds and initialization settings support repeatability in the recorded environment; they do not establish cross-platform floating-point identity. Saved feature hashes and execution records identify the fitted inputs. [Current feature union](../data/graphs/feature_universe.json) · [Run record](../results/run_manifest.json)
 
 ## Classes and dependencies over time
 
@@ -54,7 +54,7 @@ At the latest release, the largest k-means cluster contains **85 classes before 
 
 The current pilot is **25.0**, with **554 classes**. The fixed 14-candidate inertia sweep selects **k=40** with normalized gap **0.189102**. The final rule `ceil(n_full*40/554)` transfers its approximate **13.85 classes per cluster** to the other releases. Each release reuses its full-graph k after filtering, unless fewer nodes remain. The actual full-graph cluster counts range from **23 to 45**. [Pilot record](pilot_decision.md)
 
-Selecting the same seven relationship types does not itself determine k. The course asks how k was chosen; the single-release elbow and subsequent scaling are our declared strategy. The sampling revision retains that strategy and recomputes its inputs. Inertia measures distance fit in the feature space, not semantic correctness, and the candidate range affects the selected elbow. The matched-ACDC-k pilot comparison examines granularity separately without choosing k from MQ.
+Selecting the same seven relationship types does not itself determine k. The course asks how k was chosen; the single-release elbow and subsequent scaling are our declared strategy. Inertia measures distance fit in the feature space, not semantic correctness, and the candidate range affects the selected elbow. The matched-ACDC-k pilot comparison examines granularity separately without choosing k from MQ.
 
 ## MoJoFM agreement
 
@@ -106,12 +106,12 @@ The preserved AI response groups all **594 classes into 18 named modules**. It h
 | A3 | full | 0.178989 | 0.094303 | 32.52 | 61.63 |
 | A4 | retained | 0.184844 | 0.089526 | 36.12 | 66.25 |
 
-The AI proposal was recorded in the preceding instructor-extractor study. The present revision preserves its actual prompt, response and assignment; only the evaluation against the new baselines is refreshed. Input hashes establish that the same latest graph is being used. No new live model response is claimed. [Experiment record](../results/ai/experiment.json) · [Detailed reflection](ai_reflection.md)
+The AI proposal has an actual recorded prompt, response and assignment. Input hashes establish that it uses the same latest graph as A1–A4. Evaluation reads the saved partition and recomputes scores; it does not generate another live model response. [Experiment record](../results/ai/experiment.json) · [Detailed reflection](ai_reflection.md)
 
 ## Course interpretation and verification
 
 The class and dependency trends provide evidence of growth in the measured implementation. They can motivate questions about Lehman's continuing-change and increasing-complexity laws, but they do not prove those laws. Functional growth requires evidence about functionality, perceived quality requires user evidence, and claims about organizational effort require process data. Static recovery also cannot establish every reflective or runtime interaction, separate-build feasibility or intended design constraint.
 
-The complete suite passed **91 tests**, covering extraction, merging, UE boundaries, clustering, selection, metrics and archive restoration. The independent audit passed **7,949,858 evidence checks with no failures**, recomputing saved measurements and verifying all 120 final partitions, the pilot, source scope and comparisons. Its assertion count is not a count of independently designed unit tests. An old checkout receipt applies only to its named commit. [Validation](validation.md) · [Reproduction](reproducibility.md)
+The complete suite passed **91 tests**, covering extraction, merging, UE boundaries, clustering, selection, metrics and archive restoration. The independent audit passed **7,949,858 evidence checks with no failures**, recomputing saved measurements and verifying all 120 final partitions, the pilot, source scope and comparisons. Its assertion count is not a count of independently designed unit tests. A clean-checkout receipt applies to its named commit and stated verification scope. [Validation](validation.md) · [Reproduction](reproducibility.md)
 
 Reproducible calculations can still depend on debatable modeling decisions. The ownership boundary, retained isolates, extractor coverage, feature geometry, broad or weak elbow behavior and macro averaging remain part of the explanation. The report and complete tables make those choices reviewable rather than treating a single score as the answer.

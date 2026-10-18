@@ -16,7 +16,7 @@ Guava is itself a collection of libraries. 'Exclude external libraries' means ex
 
 ## 3. How did you choose the versions?
 
-The current sample covers all 24 major versions from 10 to 33, using each major's first eligible .0 release. Version 13.0.1 is the exception because the 13.0 tags are ambiguous. The latest release, 33.7.2, fixes the other endpoint. Five additional minor releases fill the largest gaps in time, using a deterministic rule: choose the candidate that most reduces the sum of squared calendar gaps, require at least 60 days between observations, and allow at most two optional additions per major. Each family appears once. The actual gaps range from 74 to 471 days, with median 141. This replaced the earlier family-rank sample, which still put four 23.x releases within 56 days. The JRE artifact is used after the platform split; Android is not counted as a second historical observation. The selector reads release metadata only, never the results.
+The current sample covers all 24 major versions from 10 to 33, using each major's first eligible .0 release. Version 13.0.1 is the exception because the 13.0 tags are ambiguous. The latest release, 33.7.2, fixes the other endpoint. Five additional minor releases fill the largest gaps in time, using a deterministic rule: choose the candidate that most reduces the sum of squared calendar gaps, require at least 60 days between observations, and allow at most two optional additions per major. Each family appears once. The actual gaps range from 74 to 471 days, with median 141. The JRE artifact is used after the platform split; Android is not counted as a second historical observation. The selector reads release metadata only, never the results.
 
 The release sample was chosen before evaluating clustering quality. We did not search for versions that made a detector or algorithm look better. The sample does not reveal every intermediate change or identify the exact commit responsible for a change between observations.
 
@@ -132,7 +132,7 @@ We ran one preselected middle-release pilot with a declared candidate grid of k 
 
 Let the pilot have `n_p` classes and selected `k_p`. Every version uses `ceil(n_full*k_p/n_p)`, reusing its full-graph value after UE filtering and clamping only if fewer nodes remain. That extrapolation preserves an approximate target number of classes per cluster. The assignment asks us to explain k, but neither it nor the lecture requires this one-pilot strategy or scaling formula. Keeping the same seven dependency types is a separate choice about the input features. These are stated modeling decisions and still need interpretation alongside cluster sizes and MQ.
 
-The sampling revision keeps that strategy. It changes the middle release to 25.0 and the set of class coordinates, so the pilot and final results are recalculated. The old 25.1 calibration is not automatically reused. It would be inaccurate to say that no parameter experiment was performed: there is one pilot sweep, followed by a fixed rule for the final runs.
+The middle release is 25.0, with 554 classes. The pilot chooses k=40, giving the final rule `ceil(n_full*40/554)`. There is one pilot sweep, followed by that fixed rule for the final runs.
 
 The pilot is the only k sweep. Each final A3/A4 condition has one result under the frozen rule. The seed and ten internal initializations are fixed. A reviewer can also supply `--k` to the exploration command; those results belong in a separate directory, not mixed into the final series. Open `docs/pilot_decision.md` to quote the actual chosen pilot numbers.
 
@@ -194,17 +194,17 @@ Start from the README commands. Explain which steps require network access (fetc
 
 If the examiner chooses a CSV cell, trace it back to a formula, partition, graph edge set and release artifact. If they choose a removed class, inspect its strongest caller and member counts. If they choose a graph jump, distinguish the measurement from your explanation and show the supporting source.
 
-## 29. Why did you revise the annotation policy?
+## 29. How are annotations handled?
 
-The original custom graph counted annotation applications as dependencies, making build/nullness marker types large hubs. UE depends on method/field member use, so it could not remove those hubs merely because many declarations carried an annotation. The revised primary graph is the instructor extractor's graph under documented normalization; supplemental annotation-application edges are not added. Every graph CSV identifies that source.
+The primary graph is the instructor extractor's graph under documented normalization; supplemental annotation-application edges are not added. UE depends on method/field member use. Applying an annotation to many declarations does not create those member calls, so annotation use and UE evidence must not be conflated. Every graph CSV identifies its source.
 
 Owned annotation types still appear in the complete class inventory, including isolates. This means class counts, singleton counts and MQ can still be affected by metadata types. We report annotation and isolate breakdowns explicitly. We do not delete Guava classes merely because they have `@Beta`, and we do not assume every annotation is behaviorally irrelevant: Guava's EventBus reads `Subscribe` and `AllowConcurrentEvents` through ordinary class references.
 
-## 30. What changed in the public-suffix decision?
+## 30. Why is the public-suffix package included?
 
-The earlier namespace-only boundary treated `com.google.thirdparty.publicsuffix` as external. Its Java files carry Guava Authors headers and are distributed as part of the main implementation. The revision therefore includes those project-owned types. Names such as “thirdparty” are clues to inspect ownership, not a sufficient exclusion test. JDK and separately supplied libraries remain excluded.
+`com.google.thirdparty.publicsuffix` contains Java files with Guava Authors headers, distributed as part of the main implementation. Those project-owned types are included. Names such as “thirdparty” are clues to inspect ownership, not a sufficient exclusion test. JDK and separately supplied libraries remain excluded.
 
-This also improves interpretation of historical package moves: a type moving from `com.google.common.net` into Guava's public-suffix package remains within the owned scope. Its canonical name still changes, so a name-based churn metric may report removal/addition rather than recognizing a rename automatically.
+This ownership rule also applies to historical package moves: a type moving from `com.google.common.net` into Guava's public-suffix package remains within the owned scope. Its canonical name still changes, so a name-based churn metric may report removal/addition rather than recognizing a rename automatically.
 
 ## 31. What does MoJoFM mean, and why two directions?
 
@@ -212,9 +212,9 @@ MoJo compares partitions through element moves and cluster joins. MoJoFM normali
 
 For filtering comparisons, first project the original partition to the retained classes. For temporal comparisons, use the common class identities. A MoJoFM agreement value between two algorithmic partitions is valid even without ground truth, but it should not be called accuracy. The measure ignores whether a module name is semantically meaningful; inspecting actual responsibilities remains necessary.
 
-## 32. Do the revised results isolate the effect of each change?
+## 32. Which comparison isolates the effect of reclustering after filtering?
 
-No. The revised whole study changes the graph baseline, source scope, release sample and k calibration together. The original run is preserved for transparency, but its aggregate MQ differences cannot be attributed to one factor. Controlled checks on a shared version can isolate individual graph differences; the report labels those separately. Do not claim that a new higher MQ proves any one revision improved the architecture.
+The same-retained-graph comparison projects the full partition onto the classes left after UE removal, then compares it with a new partition of that identical retained graph. This holds the population and edges fixed, so its MQ difference measures the effect of regrouping under the recorded algorithm settings. Comparing full-graph MQ directly with filtered-graph MQ changes both the grouping and the graph. Neither result establishes that removing utilities improves every architectural property.
 
 ## Useful vocabulary
 

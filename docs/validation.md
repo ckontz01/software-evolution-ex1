@@ -1,4 +1,4 @@
-# Independent validation of the revised study
+# Independent validation of the Guava study
 
 `scripts/validate_results.py` audits the saved evidence using only Python's standard library. It imports none of the production extractor, UE detector, clustering, metric, feature, k-selection, or MoJoFM functions. It does not create another architecture or rerun an optimization experiment.
 
@@ -10,7 +10,7 @@ python scripts/validate_results.py
 
 The result is `results/validation.json`. A successful run exits with status zero and records `status: passed`, the evidence-check count, per-category counts, no failures, per-release measurements, and the checked AI population. These are **evidence checks**, not millions of independently designed unit tests.
 
-For the current revision, the independent audit passed **7,949,858 checks with no failures**. The separate complete test suite passed **91 tests**: the existing 60 tests, 11 release-selection tests and 20 archive tests. The test total and the evidence-assertion total measure different kinds of verification.
+For the recorded study, the independent audit passed **7,949,858 checks with no failures**. The separate complete test suite passed **91 tests**: 60 extraction, detector, clustering and metric tests, 11 release-selection tests and 20 archive tests. The test total and the evidence-assertion total measure different kinds of verification.
 
 For a deliberately limited audit during development, before the AI response is available:
 
@@ -75,4 +75,4 @@ Those checks establish that the saved record and arithmetic are consistent. They
 
 The separate archive tests check deterministic packing, lossless base64 decoding, stored and decoded checksums, whole-ZIP and multipart compatibility, member verification, safe paths and the refusal to overwrite differing files. Altered or missing data must be rejected before restoration. These storage checks complement the scientific result audit; changing the storage encoding does not regenerate any architecture.
 
-Passing establishes that the published measurements agree with the retained inputs and the declared revised protocol. It does not prove that a static extractor sees reflection or every dynamic dispatch target, that a high MQ identifies the intended architecture, or that every reasonable graph or sampling policy would produce the same scientific interpretation. The tests, independent audit, source-based interpretation, and explicit modeling choices address different questions and are all needed for a defensible oral explanation.
+Passing establishes that the published measurements agree with the retained inputs and the declared protocol. It does not prove that a static extractor sees reflection or every dynamic dispatch target, that a high MQ identifies the intended architecture, or that every reasonable graph or sampling policy would produce the same scientific interpretation. The tests, independent audit, source-based interpretation, and explicit modeling choices address different questions and are all needed for a defensible oral explanation.

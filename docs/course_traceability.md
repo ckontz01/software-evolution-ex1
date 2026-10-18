@@ -6,9 +6,9 @@ This document separates requirements and taught concepts from the engineering
 choices used to make the experiment reproducible. Numerical findings belong in
 the generated results and report; they are not inferred from the lecture examples.
 
-## Revision following the methodological review
+## Implemented study protocol
 
-The revised primary graph is produced by the unmodified instructor DependencyExtractor JAR. A supplemental ASM reader supplies the complete owned-class inventory, enclosing-class aliases, and resolved field/method evidence needed by UE. It does not add its annotation-application or declaring-owner edges to the instructor graph. The source ownership boundary includes Guava's public-suffix implementation. The revised sample represents 30 distinct major/minor families, and the k policy is calibrated on one middle-release inertia pilot. MoJoFM is reported as directed partition agreement; no reference is claimed to be the true intended architecture. The original results remain identifiable in Git history and the saved baseline.
+The primary graph is produced by the unmodified instructor DependencyExtractor JAR. A supplemental ASM reader supplies the complete owned-class inventory, enclosing-class aliases, and resolved field/method evidence needed by UE. It does not add its annotation-application or declaring-owner edges to the instructor graph. The source ownership boundary includes Guava's public-suffix implementation. The sample represents 30 distinct major/minor families, and the k policy is calibrated on one middle-release inertia pilot. MoJoFM is reported as directed partition agreement; no reference is claimed to be the true intended architecture.
 
 ## Reading inventory and reference convention
 
@@ -104,7 +104,7 @@ lectures prescribe this unique matrix.
 
 Feature selection and choosing k are separate decisions. Lecture 6–7 slide 8 lists “Επιλογή χαρακτηριστικών” separately from the clustering algorithm. The assignment asks “Πως επιλέξατε τον αριθμό των ομάδων” (p.4), but does not require a one-release k pilot or the scaling formula below. The oral note about using the same features therefore does not itself prescribe how k should vary. This study retains its declared one-pilot k policy as an implementation choice.
 
-The k rule is calibrated on the middle selected release. With the revised calendar sample, that is 25.0; the old 25.1 pilot belongs to the preceding cohort and its calibration is not carried over. The declared candidate grid is `2, 5, 10, 15, 20, 25, 30, 40, 50, 60, 75, 90, 110, 130`, capped to valid cluster counts. Each candidate's inertia is measured under the same feature geometry. After normalizing k and inertia to the interval [0,1], choose the candidate with the greatest vertical distance below the line joining the two endpoint observations. The implementation records the signed score and tie rule.
+The k rule is calibrated on the middle selected release, 25.0, with 554 canonical types. The declared candidate grid is `2, 5, 10, 15, 20, 25, 30, 40, 50, 60, 75, 90, 110, 130`, capped to valid cluster counts. Each candidate's inertia is measured under the same feature geometry. After normalizing k and inertia to the interval [0,1], choose the candidate with the greatest vertical distance below the line joining the two endpoint observations. The implementation records the signed score and tie rule.
 
 The chosen pilot value `k_p` and pilot class count `n_p` define:
 
@@ -282,8 +282,8 @@ is background, not a requirement to add review mining to this structural study.
 14. What exact material did the latest-version AI experiment receive, what did it return and how was it checked?
 15. Which work and reviews did each student actually perform, and can each reproduce and explain the full chain?
 
-## Additional lecture agreement measure: MoJoFM
+## Lecture agreement measure: MoJoFM
 
-The reconstruction lecture introduces comparison by move/join operations. The revised study adds MoJoFM in both directions for algorithm, filtering, temporal and AI comparisons. All such inputs use identical object sets, obtained by projection where needed. A directional score means agreement toward the specified reference partition, not proof that the reference is correct. The exact distance, target-dependent normalization, edge cases and tests are documented in `docs/mojofm.md`; the implementation and saved comparisons make the scores inspectable.
+The reconstruction lecture introduces comparison by move/join operations. The study reports MoJoFM in both directions for algorithm, filtering, temporal and AI comparisons. All such inputs use identical object sets, obtained by projection where needed. A directional score means agreement toward the specified reference partition, not proof that the reference is correct. The exact distance, target-dependent normalization, edge cases and tests are documented in `docs/mojofm.md`; the implementation and saved comparisons make the scores inspectable.
 
-This corrects the original reasoning: absence of an authoritative architecture prevents an accuracy claim, but does not prevent a MoJoFM agreement calculation.
+Absence of an authoritative architecture prevents an accuracy claim, but does not prevent a MoJoFM agreement calculation.

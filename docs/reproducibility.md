@@ -1,6 +1,6 @@
-# Reproduce and audit the revised study
+# Reproduce and audit the Guava study
 
-The revised experiment is defined by `config/versions.json`, `config/analysis.json`, the one-pilot calibration and the pinned original artifacts. Reproduction has three distinct levels: verify recorded evidence, recompute algorithmic outputs, and perform a genuinely new live AI recovery. These levels do not make the same reproducibility claim.
+The experiment is defined by `config/versions.json`, `config/analysis.json`, the one-pilot calibration and the pinned original artifacts. Reproduction has three distinct levels: verify recorded evidence, recompute algorithmic outputs, and perform a genuinely new live AI recovery. These levels do not make the same reproducibility claim.
 
 ## 1. Prerequisites
 
@@ -32,11 +32,11 @@ python scripts/evaluate_ai.py
 
 The selector reconstructs the exact 30-release sample from the frozen 45-family catalog: 24 major-version anchors, the latest endpoint and five optional minor releases chosen by the calendar-gap rule. It verifies the minimum spacing and per-major addition cap. It does not query new tags or inspect outcomes. The unpacker verifies archive and member hashes before restoration and refuses to overwrite differing local files. Offline acquisition verifies all 90 Maven artifacts and repeats the two endpoint Git/source checks.
 
-The schema-3 archive manifest stores each version and pilot ZIP as a base64 `.zip.b64` text file, with separate byte counts and SHA-256 checksums for the stored text and decoded ZIP. `upstream_git.zip` remains a whole ZIP. `unpack_data.py` decodes the text automatically, verifies both representations and all member paths and hashes, then restores the normal directory hierarchy. No manual decoding is needed. The reader also accepts the earlier whole-ZIP and multipart formats. [Storage details](../archives/README.md)
+The schema-3 archive manifest stores each version and pilot ZIP as a base64 `.zip.b64` text file, with separate byte counts and SHA-256 checksums for the stored text and decoded ZIP. `upstream_git.zip` remains a whole ZIP. `unpack_data.py` decodes the text automatically, verifies both representations and all member paths and hashes, then restores the normal directory hierarchy. No manual decoding is needed. The reader also supports whole-ZIP and multipart formats. [Storage details](../archives/README.md)
 
 The focused checks exercise real Java extraction/normalization, UE boundaries, ACDC and k-means adapters, pilot elbow rules, release selection, lecture metrics, MoJoFM and archive restoration. The independent result audit checks the saved population, instructor raw-to-normalized edge identity, source ownership, member/UE evidence, final partitions, quality terms, pilot selection, all comparisons and hashes. It is not a set of millions of unit tests: its total counts individual evidence assertions.
 
-`evaluate_ai.py` verifies the recorded prompt/input hashes and complete saved partition, then computes the lecture metrics and both-direction MoJoFM on matching full and retained graphs. The AI response is the preserved experiment from the preceding instructor-extractor study; its latest-version graph inputs are unchanged. Only the derived comparisons against the current A1–A4 results are refreshed. This command does not call an AI model or recover another architecture.
+`evaluate_ai.py` verifies the recorded prompt/input hashes and complete saved partition, then computes the lecture metrics and both-direction MoJoFM on matching full and retained graphs. The actual recorded AI response and its latest-version graph inputs are preserved. The command recalculates derived comparisons against A1–A4. This command does not call an AI model or recover another architecture.
 
 ## 3. Recompute the complete classical study
 
@@ -64,13 +64,12 @@ After restoring or recomputing canonical data:
 python scripts/benchmark_ue.py
 python scripts/audit_ue_cases.py
 python scripts/audit_change_points.py
-python scripts/audit_revision.py
 python scripts/evaluate_ai.py
 python scripts/validate_results.py
 python scripts/build_report.py
 ```
 
-These commands record performance, exact-fraction UE cases, all sampled graph transitions, controlled original/revised edge differences, AI scores and independent verification. They do not create new final A1-A4 architectures. Timed benchmarks naturally vary between executions.
+These commands record performance, exact-fraction UE cases, all sampled graph transitions, AI scores and independent verification. They do not create new final A1-A4 architectures. Timed benchmarks naturally vary between executions.
 
 The report generator reads saved measurements and validates their joins and hashes. It writes `report/guava_evolution_report_revised.pdf` and an identical canonical `report/guava_evolution_report.pdf`, plus PNG/SVG figures and `report/report_manifest.json`. The latter hashes its data inputs, source methods, documents and outputs. Missing required classical or actual AI evidence is an error; no placeholder result is substituted.
 
@@ -110,6 +109,14 @@ Recomputing the saved canonical AI scores is deterministic. Replaying a live mod
 
 ## 7. Read a verification record correctly
 
-`results/validation.json` describes the current canonical independent audit. `results/reproducibility/` records the exact commit and environment tested by an independent checkout. Check its commit and configuration hashes before using it as evidence for a different revision. The original study is preserved at commit `d970305` and under `results/baseline_v1`. Any earlier checkout receipt applies to its recorded commit; a new report does not extend that receipt to the current study.
+`results/validation.json` describes the canonical independent audit. To verify an exact Git checkout, start from a separate clean clone with the pinned Python requirements and Java available. Before expanding its archives, run:
+
+```bash
+python scripts/verify_clean_checkout.py \
+  --expected-commit "$(git rev-parse HEAD)" \
+  --output ../guava-checkout-evidence
+```
+
+The output directory must be new or empty. The runner restores the committed inputs, executes the test suite and independent audit, reevaluates the saved AI partition, repeats the latest-release extraction and A1–A4 runs, and checks deterministic output bytes. It does not clone, install packages, fetch unbundled tools or generate another AI response. The receipt records the exact tested commit and environment, commands and results. Its comparison records declare the timestamps and environment fields omitted from deterministic checks. A receipt applies to its recorded checkout and scope; importing files into another repository does not verify that other checkout.
 
 A byte-identical rerun establishes repeatability of the implemented method under the tested conditions. It does not prove completeness of static extraction, optimal k, correct semantic architecture or universal benefit from removing omnipresent classes.

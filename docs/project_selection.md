@@ -1,6 +1,6 @@
-# Project selection: Guava (revised study)
+# Project selection: Guava
 
-The user explicitly selected [google/guava](https://github.com/google/guava). The revised study analyzes the production Guava JRE library across **30 distinct major/minor version families**, from **10.0 to 33.7.2**. Each family contributes exactly one release. The complete immutable artifact manifest is [config/versions.json](../config/versions.json).
+The user explicitly selected [google/guava](https://github.com/google/guava). The study analyzes the production Guava JRE library across **30 distinct major/minor version families**, from **10.0 to 33.7.2**. Each family contributes exactly one release. The complete immutable artifact manifest is [config/versions.json](../config/versions.json).
 
 Guava supplies collections, concurrency utilities, caching, graph structures, input/output, hashing, primitive helpers, strings, and other Java utilities. Its official [README](https://github.com/google/guava) describes its scope and JRE/Android variants. [Guava Explained](https://github.com/google/guava/wiki) provides functional documentation; it is not a measured architecture ground truth.
 
@@ -9,7 +9,7 @@ Guava supplies collections, concurrency utilities, caching, graph structures, in
 | Requirement | Verified evidence |
 |---|---|
 | Java project hosted on GitHub | Captured repository metadata records Java; preserved sources and artifacts are Java. |
-| At least 10 major/minor versions | The revised sample contains exactly 30 distinct major/minor families, selected from 45 eligible families. |
+| At least 10 major/minor versions | The sample contains exactly 30 distinct major/minor families, selected from 45 eligible families. |
 | At least 10,000 source lines in the latest release | The owned 33.7.2 source prefixes contain 96,622 nonblank, noncomment physical Java lines. The complete source JAR has 96,646, including the module descriptor. |
 | Not archived | GitHub metadata records archived=false at the frozen 2026-10-17 snapshot. |
 | At least 50 commits since 2024-01-01 | A stored API response sample contains 100 distinct commits satisfying that date bound. This is a verified lower bound, not the total number of commits. |
@@ -100,7 +100,7 @@ The input scope is the **production Guava JRE artifact**, not every module in th
 
 Project-owned production sources under both `com.google.common` and `com.google.thirdparty.publicsuffix` are included. The public-suffix Java implementation is distributed as Guava source and carries Guava Authors copyright headers. Its package name is not evidence that it is an external library. The provenance of public-suffix list data is a separate question from ownership of the Java implementation using that data.
 
-The earlier namespace-only study excluded this support package. Including it avoids treating a move from `com.google.common.net.TrieParser` to `com.google.thirdparty.publicsuffix.TrieParser` as loss of functionality from Guava. The study still cannot automatically identify every rename across versions; class identity is based on canonical names.
+Including this owned support package avoids treating a move from `com.google.common.net.TrieParser` to `com.google.thirdparty.publicsuffix.TrieParser` as loss of functionality from Guava. The study still cannot automatically identify every rename across versions; class identity is based on canonical names.
 
 JDK classes, failureaccess, external annotation libraries, and other external endpoints are excluded. A dependency is retained only when both endpoints belong to the retained project class universe. Instructor extraction and the annotation policy are specified separately in [modeling_decisions.md](modeling_decisions.md); this document defines artifact and source ownership, not which relationship kinds a tool can observe.
 

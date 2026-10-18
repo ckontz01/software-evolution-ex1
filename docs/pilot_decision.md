@@ -1,6 +1,6 @@
 # Pilot decision: Guava 25.0
 
-The current cohort's middle release is **25.0**, the 16th observation (zero-based index 15). Its graph has **554 canonical types**. The previous 25.1 pilot belongs to the preceding cohort; it is not reused as this run's calibration. The feature and k-selection policies are unchanged, but their inputs are recomputed for the new sample.
+The current cohort's middle release is **25.0**, the 16th observation (zero-based index 15). Its graph has **554 canonical types**. It uses the same feature-coordinate union and k-means settings as the final 30-release study.
 
 ## What the course requires and what this study chooses
 

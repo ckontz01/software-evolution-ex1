@@ -34,6 +34,30 @@ def git(*args: str) -> bytes:
     return subprocess.check_output(["git", "-C", str(ROOT), *args])
 
 
+def source_tree_sha(tracked: dict[str, tuple[str, str]]) -> str:
+    """Hash the scoped file tree with Git's exact directory ordering and format."""
+    root = {}
+    for path, entry in tracked.items():
+        parts = path.split("/")
+        node = root
+        for part in parts[:-1]:
+            node = node.setdefault(part, {})
+        node[parts[-1]] = entry
+
+    def digest(node):
+        entries = []
+        for name, value in node.items():
+            directory = isinstance(value, dict)
+            mode, object_id = ("40000", digest(value)) if directory else value
+            key = name.encode() + (b"/" if directory else b"")
+            data = mode.encode() + b" " + name.encode() + b"\0" + bytes.fromhex(object_id)
+            entries.append((key, data))
+        content = b"".join(data for _, data in sorted(entries))
+        return hashlib.sha1(f"tree {len(content)}\0".encode() + content).hexdigest()
+
+    return digest(root)
+
+
 def read_source(manifest: dict) -> dict[str, bytes]:
     """Verify coverage and read each original blob, including binary evidence."""
     commit = manifest["source_commit"]
@@ -43,17 +67,23 @@ def read_source(manifest: dict) -> dict[str, bytes]:
             "Pinned source commit is missing. Fetch it explicitly, then retry:\n"
             f"git fetch --depth 1 origin {commit}")
     tree = git("rev-parse", commit + "^{tree}").decode().strip()
-    if tree != manifest["source_tree"]:
-        raise ValueError("Pinned source tree does not match the handoff manifest")
+    if tree != manifest["repository_tree"]:
+        raise ValueError("Pinned repository tree does not match the handoff manifest")
+    if manifest["excluded_source_prefixes"] != ["handoff/"]:
+        raise ValueError("Only the handoff tooling may be excluded from the study payload")
     tracked = {}
     for raw in git("ls-tree", "-rz", "--full-tree", commit).split(b"\0"):
         if not raw:
             continue
         head, name = raw.split(b"\t", 1)
         mode, kind, blob = head.decode().split()
+        if name.startswith(b"handoff/"):
+            continue
         if kind != "blob":
             raise ValueError(f"Unsupported source entry: {name!r}")
         tracked[name.decode()] = (mode, blob)
+    if source_tree_sha(tracked) != manifest["source_tree"]:
+        raise ValueError("Scoped study tree does not match the handoff manifest")
     assigned = [f["path"] for f in manifest["files"]]
     if len(assigned) != len(set(assigned)) or set(assigned) != set(tracked):
         raise ValueError("Every source file must be assigned exactly once")
@@ -222,7 +252,7 @@ pre code{font-size:13px}details{margin:18px 0;border-top:1px solid #ccc;padding-
             "evidence file. They are ready to copy through the provided helper.</p>",
             f"<p class=\"meta\">Source snapshot: {esc(manifest['source_commit'])}. "
             f"All {manifest['source_file_count']} study files are assigned exactly once. "
-            "The new outer guide is separate from the frozen study payload.</p>",
+            "The handoff tooling is separate from the frozen study payload.</p>",
             "<p>Use <strong>COMMIT_MAP.md</strong> for setup, branch commands and the final checklist. "
             "Each packet has its own README and exact payload. The import commits identify "
             "AI-assisted preparation; record your actual review and use your own identity and date.</p>",
@@ -300,6 +330,7 @@ def build(manifest: dict, payload: dict[str, bytes], destination: Path, guides_o
     inventory = inventory_csv(manifest)
     (HANDOFF / "file_inventory.csv").write_bytes(inventory)
     result = {"schema": 1, "source_commit": manifest["source_commit"],
+              "repository_tree": manifest["repository_tree"],
               "source_tree": manifest["source_tree"], "source_files": len(payload),
               "source_bytes": sum(map(len, payload.values())),
               "code_listing_files": manifest["code_listing_files"],
@@ -352,7 +383,7 @@ def build(manifest: dict, payload: dict[str, bytes], destination: Path, guides_o
             slug = packet["slug"]
             entries.update({prefix + "packets/" + slug + "/" + name: data
                             for name, data in packet_entries[slug].items()})
-        row = write_zip(destination / f"student_{owner}_complete.zip", entries)
+        row = write_zip(destination / f"student_{owner}_current.zip", entries)
         row.update({"kind": "complete_student", "owner": owner, "packets": [p["id"] for p in owned],
                     "payload_files": sum(len(p["paths"]) for p in owned), "relative_path": row["file"]})
         result["downloads"].append(row)
@@ -360,14 +391,14 @@ def build(manifest: dict, payload: dict[str, bytes], destination: Path, guides_o
     entries = {"complete_code/" + name: data for name, data in common.items()}
     entries["complete_code/START_HERE.md"] = (
         "# Complete readable code\n\nOpen full_code.html or COMMIT_MAP.md. The source_files/ "
-        "directory also contains all 61 code/configuration files, grouped by commit. "
+        f"directory also contains all {manifest['code_listing_files']} code/configuration files, grouped by commit. "
         "This small download does not contain the large data/report/tool payloads. "
-        "Use student_A_complete.zip and student_B_complete.zip for the full import.\n").encode()
+        "Use student_A_current.zip and student_B_current.zip for the full import.\n").encode()
     for f in manifest["files"]:
         if f["include_in_full_code_listing"]:
             slug = next(p["slug"] for p in manifest["packets"] if p["id"] == f["packet"])
             entries["complete_code/source_files/" + slug + "/" + f["path"]] = payload[f["path"]]
-    row = write_zip(destination / "complete_code_guide.zip", entries)
+    row = write_zip(destination / "complete_code_current.zip", entries)
     row.update({"kind": "code_and_guides_only", "code_files": manifest["code_listing_files"], "relative_path": row["file"]})
     result["downloads"].append(row)
     (HANDOFF / "download_manifest.json").write_bytes(json_bytes(result))

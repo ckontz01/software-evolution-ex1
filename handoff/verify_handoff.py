@@ -43,6 +43,16 @@ ROOT = Path(__file__).resolve().parents[1]
 HANDOFF = ROOT / "handoff"
 SENTINEL = b"Teacher's original starter instructions.\nPreserve this file during the automated handoff verification.\n"
 TEST_IDENTITY = {"name": "Handoff Verification", "email": "handoff-verification@example.invalid"}
+EXCLUDED_STUDY_DIRECTORIES = (
+    "results/baseline_v1",
+    "results/reproducibility",
+    "results/reproducibility_v3",
+)
+EXCLUDED_STUDY_FILES = {
+    "scripts/audit_revision.py",
+    "results/revision_comparison.json",
+    "report/style_revision_validation.json",
+}
 
 
 def now() -> str:
@@ -72,6 +82,32 @@ def write_json(path: Path, value) -> None:
 
 def record(path: Path) -> dict:
     return {"path": path.relative_to(ROOT).as_posix(), "bytes": path.stat().st_size, "sha256": digest(path)}
+
+
+def verify_current_inventory(manifest: dict, payload: dict[str, bytes]) -> dict:
+    """Reject superseded studies and verify the precise Git payload boundary."""
+    inventory = set(payload)
+    require(len(inventory) == manifest["source_file_count"], "Current study payload count does not match the manifest")
+    obsolete = sorted(path for path in inventory if path in EXCLUDED_STUDY_FILES or any(
+        path == directory or path.startswith(directory + "/") for directory in EXCLUDED_STUDY_DIRECTORIES))
+    require(not obsolete, "Superseded files are present in the current handoff payload: " + ", ".join(obsolete))
+    require(not any(path == "handoff" or path.startswith("handoff/") for path in inventory),
+            "Handoff packaging must not be recursively included in the study payload")
+    repository_tree = build_handoff.git("rev-parse", manifest["source_commit"] + "^{tree}").decode().strip()
+    require(repository_tree == manifest["repository_tree"], "Pinned repository tree differs from the manifest")
+    tracked = set()
+    for raw in build_handoff.git("ls-tree", "-rz", "--full-tree", manifest["source_commit"]).split(b"\0"):
+        if raw:
+            _metadata, path = raw.split(b"\t", 1)
+            name = path.decode()
+            if not name.startswith("handoff/"):
+                tracked.add(name)
+    require(inventory == tracked, "Study payload must include every pinned repository file except handoff/**")
+    return {"source_files": len(inventory), "repository_tree": repository_tree,
+            "source_tree": manifest["source_tree"], "repository_exclusions": ["handoff/**"],
+            "superseded_directories_checked": list(EXCLUDED_STUDY_DIRECTORIES),
+            "superseded_files_checked": sorted(EXCLUDED_STUDY_FILES),
+            "superseded_files_found": [], "exact_filtered_repository_inventory": True}
 
 
 class SourceBlocks(HTMLParser):
@@ -106,7 +142,7 @@ class SourceBlocks(HTMLParser):
 
 def verify_listings(manifest: dict, payload: dict[str, bytes]) -> dict:
     listed = {f["path"]: f for f in manifest["files"] if f["include_in_full_code_listing"]}
-    require(len(listed) == manifest["code_listing_files"] == 61, "Expected all 61 complete source/configuration files")
+    require(len(listed) == manifest["code_listing_files"], "Complete source/configuration listing count differs from the manifest")
     parser = SourceBlocks()
     parser.feed((HANDOFF / "full_code.html").read_bytes().decode("utf-8"))
     parser.close()
@@ -203,6 +239,7 @@ def compare_zip_member(z: ZipFile, info, expected: bytes) -> None:
 def verify_downloads(manifest: dict, payload: dict[str, bytes], downloads: Path) -> dict:
     receipt = read_json(HANDOFF / "download_manifest.json")
     require(receipt["source_commit"] == manifest["source_commit"], "Download source commit mismatch")
+    require(receipt["repository_tree"] == manifest["repository_tree"], "Download repository tree mismatch")
     require(receipt["source_tree"] == manifest["source_tree"], "Download source tree mismatch")
     require(receipt["source_files"] == len(payload), "Download source file count mismatch")
     rows = receipt["downloads"]
@@ -228,6 +265,7 @@ def verify_downloads(manifest: dict, payload: dict[str, bytes], downloads: Path)
         elif row["kind"] == "complete_student":
             owner = row["owner"]
             require(owner in ("A", "B"), "Unknown student download owner")
+            require(row["relative_path"] == "student_" + owner + "_current.zip", "Student download must use the current-study filename")
             prefix = "student_" + owner + "/"
             expected = {prefix + name: value for name, value in common.items()}
             starts.add(prefix + "START_HERE.md")
@@ -238,6 +276,7 @@ def verify_downloads(manifest: dict, payload: dict[str, bytes], downloads: Path)
                 expected.update({prefix + "packets/" + packet["slug"] + "/" + name: value
                                  for name, value in packet_entries(manifest, packet, payload).items()})
         else:
+            require(row["relative_path"] == "complete_code_current.zip", "Code download must use the current-study filename")
             prefix = "complete_code/"
             expected = {prefix + name: value for name, value in common.items()}
             starts.add(prefix + "START_HERE.md")
@@ -245,7 +284,7 @@ def verify_downloads(manifest: dict, payload: dict[str, bytes], downloads: Path)
                 if f["include_in_full_code_listing"]:
                     slug = packets[f["packet"]]["slug"]
                     expected[prefix + "source_files/" + slug + "/" + f["path"]] = payload[f["path"]]
-            require(row["code_files"] == 61, "Small code guide is missing complete code files")
+            require(row["code_files"] == manifest["code_listing_files"], "Small code guide is missing complete code files")
         with ZipFile(path) as z:
             names = z.namelist()
             require(len(names) == len(set(names)), f"Duplicate ZIP members: {path.name}")
@@ -403,6 +442,11 @@ def verify_cumulative_import(audit: Audit, manifest: dict, downloads: Path, work
     audit.run(["git", "-C", str(teacher), "commit", "-q", "-m", "Automated handoff verification: teacher starter fixture"],
               cwd=work, log=setup_log, label="Create explicitly automated baseline commit")
     initial_commit = audit.git(teacher, "rev-parse", "HEAD").decode().strip()
+    initial_tracked = {}
+    for raw in audit.git(teacher, "ls-tree", "-rz", "--full-tree", "HEAD").split(b"\0"):
+        if raw:
+            metadata, path = raw.split(b"\t", 1)
+            initial_tracked[path.decode()] = tuple(metadata.decode().split())
     cumulative = []
     packet_results = []
     full_suite_count = None
@@ -457,7 +501,7 @@ def verify_cumulative_import(audit: Audit, manifest: dict, downloads: Path, work
                                "frozen_study_files_unchanged": True, "teacher_readme_preserved": True,
                                "import_checks": checks, "fixture_commit": audit.git(teacher, "rev-parse", "HEAD").decode().strip()})
     require(full_suite_count == 91, "The complete 91-test study suite was not exercised")
-    require(len(cumulative) == 295, "Cumulative import does not contain all 295 source files")
+    require(len(cumulative) == manifest["source_file_count"], "Cumulative import does not contain the complete current study")
     tree = audit.git(teacher, "rev-parse", "HEAD:guava-study").decode().strip()
     require(tree == manifest["source_tree"], "Final nested study tree differs from the pinned Git source tree")
     tracked = {}
@@ -467,7 +511,14 @@ def verify_cumulative_import(audit: Audit, manifest: dict, downloads: Path, work
         meta, name = raw.split(b"\t", 1)
         mode, kind, blob = meta.decode().split()
         tracked[name.decode()] = (mode, kind, blob)
-    require(len(tracked) == 296 and "README.md" in tracked, "Final teacher tree contains unexpected tracked files")
+    study_paths = {"guava-study/" + f["path"] for f in manifest["files"]}
+    require(not study_paths.intersection(initial_tracked), "Study import overlaps the original teacher files")
+    expected_tracked = set(initial_tracked) | study_paths
+    require(set(tracked) == expected_tracked, "Final teacher tree contains missing or unexpected tracked files")
+    require(len(tracked) == manifest["source_file_count"] + len(initial_tracked),
+            "Final teacher file count differs from the study plus original teacher files")
+    for path, original in initial_tracked.items():
+        require(tracked[path] == original, f"Original teacher Git object changed: {path}")
     for f in manifest["files"]:
         require(tracked.get("guava-study/" + f["path"]) == (f["mode"], "blob", f["git_blob_sha1"]),
                 f"Final committed source blob mismatch: {f['path']}")
@@ -493,6 +544,7 @@ def verify_cumulative_import(audit: Audit, manifest: dict, downloads: Path, work
             "fixture_path": str(teacher), "fixture_identity": TEST_IDENTITY, "fixture_initial_commit": initial_commit,
             "fixture_final_commit": before_head.decode().strip(), "fixture_commits": len(history),
             "committed_study_files": len(cumulative), "committed_study_tree": tree,
+            "original_teacher_files": len(initial_tracked), "committed_teacher_files": len(tracked),
             "source_tree_exact": True, "all_working_source_bytes_exact": True, "teacher_readme_preserved": True,
             "all_packets_applied_from_actual_downloads": True, "full_study_tests": full_suite_count,
             "final_packet_idempotent": True, "empty_commit_created": False, "pushes_performed": 0,
@@ -511,7 +563,8 @@ def run_verification(args) -> int:
     started = time.perf_counter()
     try:
         manifest = read_json(HANDOFF / "manifest.json")
-        audit.result.update({"source_commit": manifest["source_commit"], "source_tree": manifest["source_tree"]})
+        audit.result.update({"source_commit": manifest["source_commit"], "repository_tree": manifest["repository_tree"],
+                             "source_tree": manifest["source_tree"]})
         inputs = [Path(__file__), HANDOFF / "build_handoff.py", HANDOFF / "apply_packet.py", HANDOFF / "test_apply_packet.py",
                   HANDOFF / "manifest.json", HANDOFF / "download_manifest.json", HANDOFF / "full_code.html",
                   HANDOFF / "file_inventory.csv", ROOT / "docs/commit_roadmap.md"]
@@ -536,6 +589,7 @@ def run_verification(args) -> int:
                                              "java_library_path": audit.env.get("LD_LIBRARY_PATH", "")})
         print("Reading and verifying the complete pinned source snapshot", flush=True)
         payload = build_handoff.read_source(manifest)
+        audit.result["current_inventory"] = verify_current_inventory(manifest, payload)
         audit.result["source_coverage"] = {"files": len(payload), "bytes": sum(map(len, payload.values())),
                                            "each_assigned_exactly_once": True,
                                            "git_tree_blob_mode_length_and_sha256_verified": True,
@@ -567,7 +621,8 @@ def run_verification(args) -> int:
         audit.result["elapsed_seconds"] = round(time.perf_counter() - started, 6)
         audit.result["logs"] = [record(p) for p in sorted(logs.glob("*.log"))]
         write_json(output, audit.result)
-        print(json.dumps({"status": "passed", "source_files": 295, "full_code_files": 61, "downloads": 15,
+        print(json.dumps({"status": "passed", "source_files": manifest["source_file_count"],
+                          "full_code_files": manifest["code_listing_files"], "downloads": audit.result["bundles"]["zip_files"],
                           "helper_tests": audit.result["helper_fixtures"]["tests"], "study_tests": 91,
                           "imported_tree": manifest["source_tree"], "receipt": str(output)}, indent=2), flush=True)
         return 0

@@ -2,15 +2,13 @@
 
 A reproducible study of **30 distinct major/minor Guava families**, from **10.0 (2011-09-28) to 33.7.2 JRE (2026-09-29)**. Each family contributes exactly one stable representative. Each version has one finalized protocol and the assignment's four required conditions: A1 ACDC/full, A2 ACDC/UE-filtered, A3 k-means/full and A4 k-means/UE-filtered. The series contains **120 final partitions**.
 
-**Start with the [revised PDF report](report/guava_evolution_report_revised.pdf), [results explanation](docs/results_interpretation.md) and [oral-exam guide](docs/oral_exam_guide.md).** The [two-person commit map](docs/commit_roadmap.md) now includes twelve ordered imports, [all 61 code/configuration files in full](handoff/full_code.html), and complete per-student payload bundles covering every study file. [Handoff instructions and verification](handoff/README.md). Preparation and revision are AI-assisted; students' contributions and dates must reflect work they actually perform.
+**Start with the [PDF report](report/guava_evolution_report_revised.pdf), [results explanation](docs/results_interpretation.md) and [oral-exam guide](docs/oral_exam_guide.md).** The [two-person commit map](docs/commit_roadmap.md) now includes twelve ordered imports, [all source and configuration files in full](handoff/full_code.html), and complete per-student payload bundles covering every study file. [Handoff instructions and verification](handoff/README.md). Preparation is AI-assisted; students' contributions and dates must reflect work they actually perform.
 
 ## Current study configuration
 
-The third configuration follows the request to spread the versions through the release history and use the lecture's agreement measure. It covers every major version from 10 through 33, retains the latest endpoint, and adds five minor releases through a fixed calendar-gap rule. The shortest interval is 74 days. No major/minor family is repeated.
+The release sample covers every major version from 10 through 33, retains the latest endpoint, and adds five minor releases through a fixed calendar-gap rule. The shortest interval is 74 days. No major/minor family is repeated.
 
-The unmodified instructor extractor remains the source of primary edges. Guava-owned public-suffix code, isolated owned types and annotation declarations stay in the inventory; external libraries and supplemental annotation-application edges stay outside the graph. Usage Equality, the feature-construction method and the k-selection strategy are unchanged. The new sample receives its own class-coordinate union, middle-release pilot and complete final run. Current partition agreement uses **MoJoFM in both directions**; quality uses **cohesion, coupling and MQ**.
-
-The first study remains at commit [`d970305`](https://github.com/ckontz01/software-evolution-ex1/tree/d970305d4c5c5302e4692ffc6ea8f0607de9ab82), with summaries under [results/baseline_v1](results/baseline_v1). Later configurations remain in Git history. They are different studies, so their overall changes cannot all be attributed to one factor.
+The unmodified instructor extractor supplies the primary edges. Guava-owned public-suffix code, isolated owned types and annotation declarations stay in the inventory; external libraries and supplemental annotation-application edges stay outside the graph. Usage Equality uses fixed thresholds across the study. A common class-coordinate union defines the features, and one middle-release pilot calibrates k for the final runs. Current partition agreement uses **MoJoFM in both directions**; quality uses **cohesion, coupling and MQ**.
 
 ## Main findings
 
@@ -55,7 +53,7 @@ The effect depends on the algorithm and the measured graph. Higher MQ does not e
 
 MoJoFM is on a 0–100 scale. Both directions are reported because reversing the source and reference can change the required moves/joins and the normalizer. For A1→A2 and A3→A4, the full partition is restricted to retained classes first. These are agreement scores, not accuracy against a validated intended architecture. [All 178 classical comparisons](results/partition_comparisons.csv) · [Method](docs/mojofm.md)
 
-The recorded AI proposal assigns **594 classes to 18 modules**. Its MQ is **0.094303** on the full graph and **0.089526** on the retained graph. This is the original response from the preceding instructor-extractor study, now compared against the current baselines; no new AI recovery is claimed. Its original graph inputs, prompt, response and assignment remain unchanged. [AI record](results/ai) · [Reflection](docs/ai_reflection.md)
+The recorded AI proposal assigns **594 classes to 18 modules**. Its MQ is **0.094303** on the full graph and **0.089526** on the retained graph. The actual recorded response is evaluated against A1–A4. Its graph inputs, prompt, response and assignment are preserved, and score regeneration does not call the model again. [AI record](results/ai) · [Reflection](docs/ai_reflection.md)
 
 ## Reproduce the data and results
 
@@ -81,7 +79,7 @@ Version and pilot ZIPs are stored as `.zip.b64` text files; the endpoint Git-sou
 
 The complete test run passed **91 tests**. The independent result audit passed **7,949,858 evidence checks with no failures**, covering all 120 final partitions. Those totals describe different checks: the audit count includes repeated assertions over saved classes, members, edges and metric terms. [Validation scope and limits](docs/validation.md)
 
-A fresh clone of [the published revision `ed18113`](https://github.com/ckontz01/software-evolution-ex1/commit/ed18113b1641481585ca9695312842d05d903a70) also passed the complete verification sequence. It restored all 2,385 archived files and reproduced all 62 checked deterministic files for the latest release byte for byte. The [verification receipt and command logs](results/reproducibility_v3/README.md) record the exact tested commit, environment and scope.
+The [independent audit](results/validation.json) records the checked study evidence. The clean-checkout runner can also restore all archives and repeat extraction, UE and A1–A4 for the latest release. Its receipt names the exact tested commit, environment, commands and byte comparisons; see [reproduction instructions](docs/reproducibility.md).
 
 To repeat the study into separate output directories:
 
@@ -114,7 +112,7 @@ $$
 
 The pilot represents about **13.85 classes per cluster**; the final full graphs have **23–45 clusters**. The candidate with the largest interior normalized gap is selected if the gap is at least 0.02, with smaller k resolving exact ties. Otherwise the method uses the tested candidate nearest to 30. The recorded decision is `maximum_normalized_chord_gap`. MQ does not enter the choice. [Complete pilot curve and decisions](docs/pilot_decision.md)
 
-The course asks for the number of groups to be explained. It does not prescribe a one-release elbow or size scaling. Keeping the same seven relationship types is a separate feature-selection decision. This study keeps its earlier k-selection strategy, but reruns the pilot because the new release cohort changes the middle release and feature-coordinate union. There is one pilot sweep, followed by one final A3/A4 partition per release and condition. The resulting k is a defensible study choice, not a known count of true modules.
+The course asks for the number of groups to be explained. It does not prescribe a one-release elbow or size scaling. Keeping the same seven relationship types is a separate feature-selection decision. The pilot uses the selected cohort's middle release and the same feature-coordinate union as every final run. There is one pilot sweep, followed by one final A3/A4 partition per release and condition. The resulting k is a defensible study choice, not a known count of true modules.
 
 To choose k yourself in a separate exploratory run:
 
@@ -155,7 +153,7 @@ $$
 
 `epsilon` counts both directions. Singleton cohesion, the single-cluster coupling term and empty-graph metrics use explicit zero conventions. All unordered pairs, including zero-edge pairs, enter the coupling average. Per-cluster/pair CSVs preserve every term. Supplementary weighted cohesion and inter-edge fraction expose different aspects of granularity.
 
-Static partitions describe implemented structure. They do not establish intended design, requirements satisfaction, user-perceived quality or architectural erosion. Lehman's laws are discussed within the evidence available. MoJoFM are agreement measures here, and the AI experiment has a different information setting because it also sees names and documentation.
+Static partitions describe implemented structure. They do not establish intended design, requirements satisfaction, user-perceived quality or architectural erosion. Lehman's laws are discussed within the evidence available. MoJoFM is an agreement measure here, and the AI experiment has a different information setting because it also sees names and documentation.
 
 ## Selected releases
 
@@ -182,9 +180,8 @@ The selector uses the first eligible .0 release of each of the 24 major versions
 | `results/*.csv` | Complete size, quality, runtime, temporal and agreement tables |
 | `results/validation.json` | Independent audit of the current recorded study |
 | `results/ai/` | Preserved AI prompt/response/partition and current baseline evaluation |
-| `results/baseline_v1/` | Original configuration and summary results for transparent comparison |
 | `results/figures/` | PNG and SVG figures generated from saved measurements |
 | `docs/` | Methods, course references, worked examples and oral/contribution guides |
-| `report/` | Revised PDF, generator-input hashes and render verification |
+| `report/` | PDF, generator-input hashes and render verification |
 
 The requested temporary repository is the preparation destination. The teacher-owned repository URL and teammate identity were not supplied; teacher import and Blackboard submission are separate administrative actions. The roadmap describes genuine future review/development commits by both students, without fabricated authors or backdated activity.

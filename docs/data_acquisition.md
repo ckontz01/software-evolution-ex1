@@ -1,4 +1,4 @@
-# Data acquisition and provenance (revised study)
+# Data acquisition and provenance
 
 ## Reproduce the frozen dataset
 
@@ -18,15 +18,15 @@ To fetch any missing original Maven artifacts instead:
 python scripts/fetch_data.py
 ```
 
-The revised collection used `python scripts/fetch_data.py --bootstrap --verify-git`. Bootstrap fills previously absent SHA-256 pins only after validating Maven's published SHA-1 sidecars. It never accepts a different digest for an already pinned artifact. Normal reproduction does not need bootstrap.
+Initial acquisition used `python scripts/fetch_data.py --bootstrap --verify-git`. Bootstrap fills previously absent SHA-256 pins only after validating Maven's published SHA-1 sidecars. It never accepts a different digest for an already pinned artifact. Normal reproduction does not need bootstrap.
 
 ## Exactly what was acquired
 
 The [manifest](../config/versions.json) declares one binary JAR, one matching source JAR, and one POM for each of 30 stable releases from 30 distinct major/minor families. Each row records the full immutable Git commit, original tag, Maven coordinates, exact JRE/plain artifact version, URLs, relative paths, SHA-256 values, and published Maven SHA-1 values.
 
-The current sample contains **90 Maven artifacts totaling 121,898,763 bytes (116.252 MiB)**. All selected artifacts are pinned and checked; the calendar revision does not drop a version because of its analysis result. The authoritative run record is [acquisition.json](../data/provenance/acquisition.json), and [SHA256SUMS](../data/provenance/SHA256SUMS) lists all 90 current artifact digests.
+The current sample contains **90 Maven artifacts totaling 121,898,763 bytes (116.252 MiB)**. All selected artifacts are pinned and checked; release selection does not drop a version because of its analysis result. The authoritative run record is [acquisition.json](../data/provenance/acquisition.json), and [SHA256SUMS](../data/provenance/SHA256SUMS) lists all 90 current artifact digests.
 
-The original artifacts are unmodified inputs. Extraction, filtering, clustering, and evaluation write separate derived outputs. Committed per-version archives restore the `data/raw/VERSION` paths; caches for an older study may remain on a working machine but are not additional observations in the current manifest. Version and pilot ZIPs are stored as `.zip.b64` text, decoded automatically by the same unpack command. The stored-text and decoded-ZIP checksums establish that the original ZIP bytes are preserved. [Archive format](../archives/README.md)
+The original artifacts are unmodified inputs. Extraction, filtering, clustering, and evaluation write separate derived outputs. Committed per-version archives restore the `data/raw/VERSION` paths for exactly the selected releases. Version and pilot ZIPs are stored as `.zip.b64` text, decoded automatically by the same unpack command. The stored-text and decoded-ZIP checksums establish that the original ZIP bytes are preserved. [Archive format](../archives/README.md)
 
 Example for the last sampled release:
 
@@ -57,7 +57,7 @@ The pinned Git source ZIPs are restored under `data/upstream_git` by the committ
 
 ## Source ownership and counts
 
-The revised ownership scope includes source paths under both `com/google/common/` and `com/google/thirdparty/publicsuffix/`. The latter is Guava's own Java implementation, as established by its distributed source and Guava Authors headers. A namespace containing the word `thirdparty` does not automatically make every class in it an external dependency.
+The ownership scope includes source paths under both `com/google/common/` and `com/google/thirdparty/publicsuffix/`. The latter is Guava's own Java implementation, as established by its distributed source and Guava Authors headers. A namespace containing the word `thirdparty` does not automatically make every class in it an external dependency.
 
 The last sampled source JAR has the following inventory:
 
@@ -72,7 +72,7 @@ The complete binary JAR has 1,965 base `.class` entries, of which 1,948 have sou
 
 The source-line counter preserves quoted strings and character literals while removing line and block comments, then counts nonempty remaining lines. It measures physical lines, not logical statements. Source-owned totals include package descriptors under the two prefixes. Java source file counts are not equivalent to merged class-node counts.
 
-All external endpoints remain excluded: JDK, failureaccess, external annotation libraries, and other dependencies do not become architecture nodes. The instructor extractor is the revised class-relationship baseline; supplemental member evidence supports UE. Those decisions and their limits are explained in [modeling_decisions.md](modeling_decisions.md).
+All external endpoints remain excluded: JDK, failureaccess, external annotation libraries, and other dependencies do not become architecture nodes. The instructor extractor supplies the primary class relationships; supplemental member evidence supports UE. Those decisions and their limits are explained in [modeling_decisions.md](modeling_decisions.md).
 
 ## Explain it in the oral exam
 

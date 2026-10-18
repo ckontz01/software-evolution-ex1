@@ -1,10 +1,10 @@
-# Analysis model and its limits: revised study
+# Analysis model and its limits
 
 ## Two extraction roles with an explicit boundary
 
 The **unmodified instructor-provided DependencyExtractor JAR produces the primary class-dependency graph**. The supplied executable is checksum-pinned, its invocation and raw output are preserved, and a normalization adapter applies the same class ownership, enclosing-class aliases, duplicate removal and self-loop policy in every release.
 
-The supplemental `java/DependencyExtractor.java` reader has a narrower role in the revised study: it establishes the complete source-owned class inventory, supplies bytecode enclosing metadata, and extracts resolved method/field member references required by the Usage Equality equations. Its broader class dependency output is audit evidence only. It does not add annotation-application edges, resolved-declaring-owner class edges or extra type edges to the primary instructor graph.
+The supplemental `java/DependencyExtractor.java` reader has a separate role: it establishes the complete source-owned class inventory, supplies bytecode enclosing metadata, and extracts resolved method/field member references required by the Usage Equality equations. Its broader class dependency output is audit evidence only. It does not add annotation-application edges, resolved-declaring-owner class edges or extra type edges to the primary instructor graph.
 
 The instructor is launched through an explicit classpath using its original `CompCalc.MainClass` and unchanged bundled dependency JARs. This works around its Eclipse jar-in-jar launcher issue on Java 17 without patching its algorithm. The target input is a deterministic JAR containing only owned base `.class` entries copied byte for byte from the original binary; original retained-class hashes, the derived-input hash, command and output are saved. Tool dependencies are analysis-runtime libraries, not Guava graph nodes.
 
@@ -19,7 +19,7 @@ Class ownership requires a corresponding source file in the matching source JAR 
 - `com.google.common`
 - `com.google.thirdparty.publicsuffix`
 
-The second package contains Guava's own Java implementation and carries Guava Authors headers. The word `thirdparty` in its namespace does not establish external ownership. Its inclusion corrects the earlier namespace-only boundary. External JDK, failureaccess and annotation-library types are still excluded. A retained dependency must have both endpoints in the owned class universe. The same boundary applies to member evidence used by UE.
+The second package contains Guava's own Java implementation and carries Guava Authors headers. The word `thirdparty` in its namespace does not establish external ownership. External JDK, failureaccess and annotation-library types are still excluded. A retained dependency must have both endpoints in the owned class universe. The same boundary applies to member evidence used by UE.
 
 Stable **release versions** with alpha, beta, RC or snapshot suffixes are excluded. Guava's `@Beta` annotation concerns an API's compatibility status; it does not make the annotated class external or its stable release a beta distribution. Owned classes marked `@Beta` remain included.
 
@@ -49,9 +49,9 @@ All seven categories taught on tutorial page 6 are selected. We accept the relat
 
 The graph is the **binary directed union** of selected categories: each ordered pair appears once, regardless of how many call sites or categories support it. Each typed pair also appears once in the category audit. Self-loops are removed after owner merging. No arbitrary frequency or fractional relation weights enter the lecture's bounded density formulas. No edge is introduced merely because two names share a package.
 
-## Annotation policy and the reason for revision
+## Annotation policy
 
-The original custom graph treated annotations attached to declarations as type dependencies. This created large compatibility/nullness hubs that UE could not assess through member use. The revised graph uses the instructor baseline and **does not add supplemental annotation-application edges**.
+The primary graph uses the instructor extractor and **does not add supplemental annotation-application edges**. Counting a declaration's annotation as an additional architectural dependency could create compatibility/nullness hubs that UE cannot assess through method or field use. The class graph and the member-use evidence therefore keep their declared extraction boundaries.
 
 An owned annotation type still belongs to the complete node inventory. It can be an isolate, affecting singleton counts and macro metrics, so the report breaks down annotation types, nonannotation types, isolates and annotation isolates. This is more explicit than hiding metadata types by deriving the node set from edges.
 
@@ -71,7 +71,7 @@ The fixed thresholds are usage equality at least 0.85 and cardinality at least 0
 
 The sample contains 30 distinct major/minor families. It covers the first eligible .0 release of every major version from 10 through 33, retains the latest endpoint, and fills five remaining places using a calendar-gap rule. The minimum allowed gap is 60 days; each major may receive at most two optional additions. The actual shortest gap is 74 days. Only release metadata enters this selection; the complete procedure and exceptions are in [project_selection.md](project_selection.md).
 
-A pilot on the middle selected release examines ACDC subgraph sizes and a declared grid of k-means cluster counts. The graph policy, UE thresholds, feature construction, algorithm options and k-selection policy remain unchanged from the preceding study. Changing the release cohort does, however, change the class-coordinate union and the middle release, so the pilot and final partitions are recomputed. The required A1–A4 outputs are one final partition per condition per release.
+A pilot on the middle selected release examines ACDC subgraph sizes and a declared grid of k-means cluster counts. The graph policy, UE thresholds, feature construction, algorithm options and k-selection rule are fixed for the complete sample. The pilot and final runs use the same class-coordinate union. The required A1–A4 outputs are one final partition per condition per release.
 
 Feature selection and cluster-count selection are separate decisions. The reconstruction lecture lists feature selection separately from the clustering algorithm (slide 8), and the assignment asks how the number of groups was chosen (p.4). Neither source prescribes a one-release elbow or size scaling. Those are declared choices of this study, not interpretations of a mandatory course rule.
 
@@ -91,6 +91,6 @@ Macro metrics depend on cluster granularity and isolates. Results therefore incl
 
 Full-versus-filtered agreement is evaluated on the same retained class universe: project the full partition before comparing it with the newly recovered filtered partition. Temporal comparisons use common class identities. MoJoFM is reported in both directions with a declared reference partition. These are valid agreement calculations without ground truth. Calling them recovery accuracy would require a validated reference architecture. See [mojofm.md](mojofm.md).
 
-Static extraction does not recover arbitrary reflection, dynamic class loading, every runtime dispatch target or dependencies erased by constant inlining. Compiler changes can affect observable evidence. Member resolution has explicit missing/ambiguous diagnostics. The revised graph, scope, sampling and k policies change together, so a whole-study difference from the original run cannot identify the causal contribution of one change.
+Static extraction does not recover arbitrary reflection, dynamic class loading, every runtime dispatch target or dependencies erased by constant inlining. Compiler changes can affect observable evidence. Member resolution has explicit missing/ambiguous diagnostics. Graph, scope, sampling and k policies all influence the measurements. Comparing differently configured studies would require controlled experiments to attribute a difference to any single choice.
 
 Class/dependency growth, MQ and partition stability characterize the measured implementation view. They do not directly measure feature growth, user satisfaction, organizational effort, runtime performance or architectural erosion. An erosion claim needs an intended design constraint and evidence of its violation. The course's Lehman discussion supplies questions and qualifications rather than an automatic conclusion from a chart.

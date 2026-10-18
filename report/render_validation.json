@@ -1,7 +1,7 @@
 {
   "pdf": "report/guava_evolution_report_revised.pdf",
-  "pdf_sha256": "2650d7f75ab47e9135e98eb6ea38898129adbc13df8bef0d279063cd6fce3190",
-  "page_count": 39,
+  "pdf_sha256": "1abb39064b596583e935d102084d220a1531a9f1d172008dd7e69374b6cf6397",
+  "page_count": 38,
   "pages": [
     {
       "page": 1,
@@ -12,7 +12,7 @@
     },
     {
       "page": 2,
-      "text_characters": 2192,
+      "text_characters": 2037,
       "render": "report/qa/page_02.png",
       "out_of_page_text_blocks": [],
       "non_grayscale_text_spans": 0
@@ -33,14 +33,14 @@
     },
     {
       "page": 5,
-      "text_characters": 3371,
+      "text_characters": 3169,
       "render": "report/qa/page_05.png",
       "out_of_page_text_blocks": [],
       "non_grayscale_text_spans": 0
     },
     {
       "page": 6,
-      "text_characters": 3013,
+      "text_characters": 3199,
       "render": "report/qa/page_06.png",
       "out_of_page_text_blocks": [],
       "non_grayscale_text_spans": 0
@@ -61,7 +61,7 @@
     },
     {
       "page": 9,
-      "text_characters": 3280,
+      "text_characters": 3233,
       "render": "report/qa/page_09.png",
       "out_of_page_text_blocks": [],
       "non_grayscale_text_spans": 0
@@ -159,21 +159,21 @@
     },
     {
       "page": 23,
-      "text_characters": 2839,
+      "text_characters": 2786,
       "render": "report/qa/page_23.png",
       "out_of_page_text_blocks": [],
       "non_grayscale_text_spans": 0
     },
     {
       "page": 24,
-      "text_characters": 4635,
+      "text_characters": 4909,
       "render": "report/qa/page_24.png",
       "out_of_page_text_blocks": [],
       "non_grayscale_text_spans": 0
     },
     {
       "page": 25,
-      "text_characters": 3828,
+      "text_characters": 3546,
       "render": "report/qa/page_25.png",
       "out_of_page_text_blocks": [],
       "non_grayscale_text_spans": 0
@@ -208,14 +208,14 @@
     },
     {
       "page": 30,
-      "text_characters": 2129,
+      "text_characters": 2308,
       "render": "report/qa/page_30.png",
       "out_of_page_text_blocks": [],
       "non_grayscale_text_spans": 0
     },
     {
       "page": 31,
-      "text_characters": 2284,
+      "text_characters": 2061,
       "render": "report/qa/page_31.png",
       "out_of_page_text_blocks": [],
       "non_grayscale_text_spans": 0
@@ -257,22 +257,15 @@
     },
     {
       "page": 37,
-      "text_characters": 2923,
+      "text_characters": 2261,
       "render": "report/qa/page_37.png",
       "out_of_page_text_blocks": [],
       "non_grayscale_text_spans": 0
     },
     {
       "page": 38,
-      "text_characters": 2261,
+      "text_characters": 1516,
       "render": "report/qa/page_38.png",
-      "out_of_page_text_blocks": [],
-      "non_grayscale_text_spans": 0
-    },
-    {
-      "page": 39,
-      "text_characters": 1634,
-      "render": "report/qa/page_39.png",
       "out_of_page_text_blocks": [],
       "non_grayscale_text_spans": 0
     }
