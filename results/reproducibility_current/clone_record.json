@@ -1,0 +1,84 @@
+{
+  "checkout_path": "/workspace/scratch/7500a23b5952/cleanup_clean_checkout",
+  "clone_log_sha256": "f99a73c5471f320acc8f53d4274a19a9c0280c8362d0e61ae04b87f357060e7a",
+  "clone_transport": "Fresh local Git clone with --no-hardlinks, followed by a direct fetch of the exact cleaned commit from the public GitHub origin; no source working-tree files or caches copied",
+  "commands": [
+    {
+      "argv": [
+        "git",
+        "clone",
+        "--no-hardlinks",
+        "/workspace/scratch/7500a23b5952/software-evolution-ex1",
+        "/workspace/scratch/7500a23b5952/cleanup_clean_checkout"
+      ],
+      "completed_at_utc": "2026-10-18T14:51:15.132561+00:00",
+      "cwd": "/workspace/scratch/7500a23b5952",
+      "exit_code": 0,
+      "started_at_utc": "2026-10-18T14:51:05.681410+00:00"
+    },
+    {
+      "argv": [
+        "git",
+        "checkout",
+        "--detach",
+        "7774d4e57033e519698749de8ecca514bcb57040"
+      ],
+      "completed_at_utc": "2026-10-18T14:51:15.136579+00:00",
+      "cwd": "/workspace/scratch/7500a23b5952/cleanup_clean_checkout",
+      "exit_code": 128,
+      "started_at_utc": "2026-10-18T14:51:15.133405+00:00"
+    },
+    {
+      "argv": [
+        "git",
+        "remote",
+        "set-url",
+        "origin",
+        "https://github.com/ckontz01/software-evolution-ex1.git"
+      ],
+      "completed_at_utc": "2026-10-18T14:52:14.387032+00:00",
+      "cwd": "/workspace/scratch/7500a23b5952/cleanup_clean_checkout",
+      "exit_code": 0,
+      "started_at_utc": "2026-10-18T14:52:14.383711+00:00"
+    },
+    {
+      "argv": [
+        "git",
+        "fetch",
+        "--no-tags",
+        "origin",
+        "7774d4e57033e519698749de8ecca514bcb57040"
+      ],
+      "completed_at_utc": "2026-10-18T14:52:15.366763+00:00",
+      "cwd": "/workspace/scratch/7500a23b5952/cleanup_clean_checkout",
+      "exit_code": 0,
+      "started_at_utc": "2026-10-18T14:52:14.387175+00:00"
+    },
+    {
+      "argv": [
+        "git",
+        "checkout",
+        "--detach",
+        "7774d4e57033e519698749de8ecca514bcb57040"
+      ],
+      "completed_at_utc": "2026-10-18T14:52:15.423898+00:00",
+      "cwd": "/workspace/scratch/7500a23b5952/cleanup_clean_checkout",
+      "exit_code": 0,
+      "started_at_utc": "2026-10-18T14:52:15.367346+00:00"
+    }
+  ],
+  "completed_at_utc": "2026-10-18T14:52:15.441374+00:00",
+  "environment_residue_interventions": [],
+  "expected_commit": "7774d4e57033e519698749de8ecca514bcb57040",
+  "expected_tree": "6f7f04aa21cce3e6e32a205ca57e42f8e658e836",
+  "initial_git_status": "",
+  "local_source_repository": "/workspace/scratch/7500a23b5952/software-evolution-ex1",
+  "observed_commit": "7774d4e57033e519698749de8ecca514bcb57040",
+  "observed_remote_url": "https://github.com/ckontz01/software-evolution-ex1.git",
+  "observed_tree": "6f7f04aa21cce3e6e32a205ca57e42f8e658e836",
+  "preflight_note": "A fresh local clone was followed by a direct fetch of the exact cleaned commit from GitHub because the newly created tree was unavailable in the initial local-clone transfer. No source working-tree files or expanded caches were copied. The verifier independently checks every committed working file against its Git object.",
+  "preparation_retry": "The initial local clone did not contain a readable tree for the unreferenced newly created commit. Its failed detached checkout is retained in the log. The exact commit was then fetched directly from the public source repository before checkout and pristine verification.",
+  "schema_version": 1,
+  "source_url": "https://github.com/ckontz01/software-evolution-ex1.git",
+  "started_at_utc": "2026-10-18T14:51:05.681189+00:00"
+}

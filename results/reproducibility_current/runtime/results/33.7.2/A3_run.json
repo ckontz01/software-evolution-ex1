@@ -1,0 +1,23 @@
+{
+  "actual_k": 43,
+  "algorithm": "lloyd",
+  "clamped_k": 43,
+  "elapsed_seconds": 0.13154397499965853,
+  "feature_columns": 1430,
+  "feature_nonzeros": 6688,
+  "feature_rows": 594,
+  "feature_universe_sha256": "4cfa97dbb9961ac9df570c789e5b0c8fb7a3256a0509a8b8f8a0ec09451f1480",
+  "features": "[A+I,(A+I).T] in fixed union coordinates; row L2 normalized",
+  "inertia": 430.1933606184624,
+  "iterations": 5,
+  "max_cluster_size": 85,
+  "max_iter": 300,
+  "method": "KMeans",
+  "min_cluster_size": 2,
+  "n_init": 10,
+  "random_state": 484,
+  "requested_k": 43,
+  "singleton_clusters": 0,
+  "tol": 0.0001,
+  "warnings": []
+}

@@ -1,0 +1,16 @@
+{
+  "argv": [
+    "/usr/lib/jvm/java-17-openjdk-amd64/bin/java",
+    "-Xmx1g",
+    "-cp",
+    "/workspace/scratch/7500a23b5952/cleanup_clean_checkout/third_party/dependency_extractor/DependencyExtractor.jar:/workspace/scratch/7500a23b5952/cleanup_clean_checkout/build/instructor-libs/ant-1.6.5.jar:/workspace/scratch/7500a23b5952/cleanup_clean_checkout/build/instructor-libs/javaparser-1.0.8.jar:/workspace/scratch/7500a23b5952/cleanup_clean_checkout/build/instructor-libs/ant.jar:/workspace/scratch/7500a23b5952/cleanup_clean_checkout/build/instructor-libs/asm-9.7.1.jar",
+    "CompCalc.MainClass",
+    "/workspace/scratch/7500a23b5952/cleanup_clean_evidence/work/graphs/33.7.2/instructor_input.jar",
+    "/workspace/scratch/7500a23b5952/cleanup_clean_evidence/work/graphs/33.7.2/instructor_raw.csv"
+  ],
+  "exit_code": 0,
+  "input_sha256": "6e35a4b190ba1a5d1e321f2d0d0c47635c9a6ab6ceaefbac6814688b9cbbc2e1",
+  "instructor_sha256": "8e4e857222dba569cc48ddf2bc58d3ac206d4ee1c0d5228b7b69517016450e9c",
+  "main_class": "CompCalc.MainClass",
+  "role": "sole relationship source for the primary class graph"
+}

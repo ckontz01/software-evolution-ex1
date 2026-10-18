@@ -1,0 +1,15 @@
+{
+  "argv": [
+    "/usr/lib/jvm/java-17-openjdk-amd64/bin/java",
+    "-Xmx1g",
+    "-cp",
+    "/workspace/scratch/7500a23b5952/cleanup_clean_checkout/build/extractor:/workspace/scratch/7500a23b5952/cleanup_clean_checkout/tools/asm-9.7.1.jar",
+    "DependencyExtractor",
+    "/workspace/scratch/7500a23b5952/cleanup_clean_checkout/data/raw/33.7.2/guava-33.7.2-jre.jar",
+    "/workspace/scratch/7500a23b5952/cleanup_clean_checkout/data/raw/33.7.2/guava-33.7.2-jre-sources.jar",
+    "/workspace/scratch/7500a23b5952/cleanup_clean_evidence/work/graphs/33.7.2",
+    "com.google.common,com.google.thirdparty.publicsuffix"
+  ],
+  "exit_code": 0,
+  "role": "ownership, enclosing identities, member evidence and sensitivity graph only"
+}
