@@ -1,0 +1,2299 @@
+{
+  "bundles": {
+    "complete_packet_zips": 12,
+    "complete_student_zips": 2,
+    "downloads": [
+      {
+        "all_expected_contents_verified": true,
+        "bytes": 89069,
+        "file": "01-a-setup.zip",
+        "kind": "complete_packet",
+        "members": 17,
+        "membership_verified": true,
+        "owner": "A",
+        "packet": "01",
+        "payload_files": 14,
+        "relative_path": "packets/01-a-setup.zip",
+        "sha256": "f67efe74bba2acbf353b0fa8ace4ea0175e1126e16b92df62b85c5dd75ca1c3f",
+        "sha256_verified": true,
+        "uncompressed_bytes": 427425
+      },
+      {
+        "all_expected_contents_verified": true,
+        "bytes": 38373,
+        "file": "02-b-usage-equality.zip",
+        "kind": "complete_packet",
+        "members": 9,
+        "membership_verified": true,
+        "owner": "B",
+        "packet": "02",
+        "payload_files": 6,
+        "relative_path": "packets/02-b-usage-equality.zip",
+        "sha256": "afba00b0314f43a7f4eaa315df90a0acc72c8de22a51256807c1cbe7ee89072c",
+        "sha256_verified": true,
+        "uncompressed_bytes": 114095
+      },
+      {
+        "all_expected_contents_verified": true,
+        "bytes": 6036645,
+        "file": "03-a-extraction.zip",
+        "kind": "complete_packet",
+        "members": 40,
+        "membership_verified": true,
+        "owner": "A",
+        "packet": "03",
+        "payload_files": 37,
+        "relative_path": "packets/03-a-extraction.zip",
+        "sha256": "3a5a886adaf14c4ccb39c43b190e99f33386510253a27f0bf37d599f9b443e63",
+        "sha256_verified": true,
+        "uncompressed_bytes": 6587882
+      },
+      {
+        "all_expected_contents_verified": true,
+        "bytes": 35190,
+        "file": "04-b-metrics.zip",
+        "kind": "complete_packet",
+        "members": 8,
+        "membership_verified": true,
+        "owner": "B",
+        "packet": "04",
+        "payload_files": 5,
+        "relative_path": "packets/04-b-metrics.zip",
+        "sha256": "12de5cc85bf39d958ef9f67eb5a67c5ce9214ca8fce79a282ec555288c291eec",
+        "sha256_verified": true,
+        "uncompressed_bytes": 106064
+      },
+      {
+        "all_expected_contents_verified": true,
+        "bytes": 222830692,
+        "file": "05-a-data.zip",
+        "kind": "complete_packet",
+        "members": 78,
+        "membership_verified": true,
+        "owner": "A",
+        "packet": "05",
+        "payload_files": 75,
+        "relative_path": "packets/05-a-data.zip",
+        "sha256": "9a1b262883f1bc148c974e6a952e9209c65955ab6fed30915267520b358d1968",
+        "sha256_verified": true,
+        "uncompressed_bytes": 294799489
+      },
+      {
+        "all_expected_contents_verified": true,
+        "bytes": 39641,
+        "file": "06-b-clustering.zip",
+        "kind": "complete_packet",
+        "members": 8,
+        "membership_verified": true,
+        "owner": "B",
+        "packet": "06",
+        "payload_files": 5,
+        "relative_path": "packets/06-b-clustering.zip",
+        "sha256": "3a7614d636baa48d79a22fb9e2d1b9af028c14a7446bfc0b42dcdeed655f759b",
+        "sha256_verified": true,
+        "uncompressed_bytes": 116564
+      },
+      {
+        "all_expected_contents_verified": true,
+        "bytes": 69329,
+        "file": "07-a-study.zip",
+        "kind": "complete_packet",
+        "members": 13,
+        "membership_verified": true,
+        "owner": "A",
+        "packet": "07",
+        "payload_files": 10,
+        "relative_path": "packets/07-a-study.zip",
+        "sha256": "ff76c81f9ea9eb02728d53d5a5686212321fb543d6097af2c53d85f2535ed2f2",
+        "sha256_verified": true,
+        "uncompressed_bytes": 209381
+      },
+      {
+        "all_expected_contents_verified": true,
+        "bytes": 117939,
+        "file": "08-b-ai-evaluation.zip",
+        "kind": "complete_packet",
+        "members": 31,
+        "membership_verified": true,
+        "owner": "B",
+        "packet": "08",
+        "payload_files": 28,
+        "relative_path": "packets/08-b-ai-evaluation.zip",
+        "sha256": "03b7a0b8d0504fd37cd550810c4265301cb74482f98d21df77f707a85b666dfa",
+        "sha256_verified": true,
+        "uncompressed_bytes": 675722
+      },
+      {
+        "all_expected_contents_verified": true,
+        "bytes": 158898,
+        "file": "09-a-evolution-audits.zip",
+        "kind": "complete_packet",
+        "members": 6,
+        "membership_verified": true,
+        "owner": "A",
+        "packet": "09",
+        "payload_files": 3,
+        "relative_path": "packets/09-a-evolution-audits.zip",
+        "sha256": "6ea33e67d1f78aa09816bad2e5b79513ceddad85b639dc9fce99aac9a011d4ee",
+        "sha256_verified": true,
+        "uncompressed_bytes": 1690817
+      },
+      {
+        "all_expected_contents_verified": true,
+        "bytes": 161644,
+        "file": "10-b-validation-docs.zip",
+        "kind": "complete_packet",
+        "members": 15,
+        "membership_verified": true,
+        "owner": "B",
+        "packet": "10",
+        "payload_files": 12,
+        "relative_path": "packets/10-b-validation-docs.zip",
+        "sha256": "7c893ecc0cbb4d6400215c9830b42144ef71dc2781050409c74345dee5cf4df6",
+        "sha256_verified": true,
+        "uncompressed_bytes": 714921
+      },
+      {
+        "all_expected_contents_verified": true,
+        "bytes": 2220841,
+        "file": "11-a-report.zip",
+        "kind": "complete_packet",
+        "members": 30,
+        "membership_verified": true,
+        "owner": "A",
+        "packet": "11",
+        "payload_files": 27,
+        "relative_path": "packets/11-a-report.zip",
+        "sha256": "fb60cf96dd2a6cf06dd03070959619a101b31780ec8c34d1f854c3495cc9552d",
+        "sha256_verified": true,
+        "uncompressed_bytes": 3586744
+      },
+      {
+        "all_expected_contents_verified": true,
+        "bytes": 251581,
+        "file": "12-b-reproducibility.zip",
+        "kind": "complete_packet",
+        "members": 40,
+        "membership_verified": true,
+        "owner": "B",
+        "packet": "12",
+        "payload_files": 37,
+        "relative_path": "packets/12-b-reproducibility.zip",
+        "sha256": "a9f71ba061ec4b71174be50e3dd2de210e5140d391d7f68a1bf97e5547ec894d",
+        "sha256_verified": true,
+        "uncompressed_bytes": 1093960
+      },
+      {
+        "all_expected_contents_verified": true,
+        "bytes": 231854564,
+        "file": "student_A_current.zip",
+        "kind": "complete_student",
+        "members": 196,
+        "membership_verified": true,
+        "owner": "A",
+        "packets": [
+          "01",
+          "03",
+          "05",
+          "07",
+          "09",
+          "11"
+        ],
+        "payload_files": 166,
+        "relative_path": "student_A_current.zip",
+        "sha256": "85f7657edcde54075468fd778f34577d2ab7b46273df46a6765d41efc30f62b6",
+        "sha256_verified": true,
+        "uncompressed_bytes": 309083939
+      },
+      {
+        "all_expected_contents_verified": true,
+        "bytes": 1090773,
+        "file": "student_B_current.zip",
+        "kind": "complete_student",
+        "members": 123,
+        "membership_verified": true,
+        "owner": "B",
+        "packets": [
+          "02",
+          "04",
+          "06",
+          "08",
+          "10",
+          "12"
+        ],
+        "payload_files": 93,
+        "relative_path": "student_B_current.zip",
+        "sha256": "1453b05af4480c22358cf2969acb3bd0b4ff06e6fb849ced1ef5e9a731f542ae",
+        "sha256_verified": true,
+        "uncompressed_bytes": 4603527
+      },
+      {
+        "all_expected_contents_verified": true,
+        "bytes": 698941,
+        "code_files": 60,
+        "file": "complete_code_current.zip",
+        "kind": "code_and_guides_only",
+        "members": 78,
+        "membership_verified": true,
+        "relative_path": "complete_code_current.zip",
+        "sha256": "3075dc5bbdb46134b7ef02fc90830900291f56ab84e5d751398214a6827db7d9",
+        "sha256_verified": true,
+        "uncompressed_bytes": 2633995
+      }
+    ],
+    "entries_checked": 692,
+    "small_code_guides": 1,
+    "zip_files": 15
+  },
+  "commands": [
+    {
+      "command": [
+        "/usr/lib/jvm/java-17-openjdk-amd64/bin/java",
+        "-version"
+      ],
+      "cwd": "/workspace/scratch/7500a23b5952/software-evolution-ex1",
+      "elapsed_seconds": 0.033561,
+      "exit_code": 0,
+      "label": "Record usable Java runtime",
+      "log": "handoff/verification_logs/00-environment-and-helper-tests.log",
+      "number": 1,
+      "started_at_utc": "2026-10-18T14:57:02.242675+00:00"
+    },
+    {
+      "command": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "handoff",
+        "-p",
+        "test_apply_packet.py",
+        "-v"
+      ],
+      "cwd": "/workspace/scratch/7500a23b5952/software-evolution-ex1",
+      "elapsed_seconds": 2.787854,
+      "exit_code": 0,
+      "label": "Run independent importer boundary fixtures",
+      "log": "handoff/verification_logs/00-environment-and-helper-tests.log",
+      "number": 2,
+      "started_at_utc": "2026-10-18T14:57:06.299642+00:00",
+      "unittest_count": 20
+    },
+    {
+      "command": [
+        "git",
+        "init",
+        "-q",
+        "/workspace/scratch/7500a23b5952/software-evolution-ex1/handoff/verification-work/run-uwffy8cy/teacher"
+      ],
+      "cwd": "/workspace/scratch/7500a23b5952/software-evolution-ex1/handoff/verification-work/run-uwffy8cy",
+      "elapsed_seconds": 0.003839,
+      "exit_code": 0,
+      "label": "Initialize disposable teacher fixture",
+      "log": "handoff/verification_logs/00-environment-and-helper-tests.log",
+      "number": 3,
+      "started_at_utc": "2026-10-18T14:57:09.090477+00:00"
+    },
+    {
+      "command": [
+        "git",
+        "-C",
+        "/workspace/scratch/7500a23b5952/software-evolution-ex1/handoff/verification-work/run-uwffy8cy/teacher",
+        "commit",
+        "-q",
+        "-m",
+        "Automated handoff verification: teacher starter fixture"
+      ],
+      "cwd": "/workspace/scratch/7500a23b5952/software-evolution-ex1/handoff/verification-work/run-uwffy8cy",
+      "elapsed_seconds": 0.004931,
+      "exit_code": 0,
+      "label": "Create explicitly automated baseline commit",
+      "log": "handoff/verification_logs/00-environment-and-helper-tests.log",
+      "number": 4,
+      "started_at_utc": "2026-10-18T14:57:09.112452+00:00"
+    },
+    {
+      "command": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+        "/workspace/scratch/7500a23b5952/software-evolution-ex1/handoff/verification-work/run-uwffy8cy/extracted-01/01-a-setup/apply_packet.py",
+        "--packet",
+        "/workspace/scratch/7500a23b5952/software-evolution-ex1/handoff/verification-work/run-uwffy8cy/extracted-01/01-a-setup",
+        "--target",
+        "/workspace/scratch/7500a23b5952/software-evolution-ex1/handoff/verification-work/run-uwffy8cy/teacher",
+        "--subdir",
+        "guava-study"
+      ],
+      "cwd": "/workspace/scratch/7500a23b5952/software-evolution-ex1/handoff/verification-work/run-uwffy8cy",
+      "elapsed_seconds": 0.068972,
+      "exit_code": 0,
+      "label": "Packet 01 dry run",
+      "log": "handoff/verification_logs/01-packet-01.log",
+      "number": 5,
+      "started_at_utc": "2026-10-18T14:57:09.130576+00:00"
+    },
+    {
+      "command": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+        "/workspace/scratch/7500a23b5952/software-evolution-ex1/handoff/verification-work/run-uwffy8cy/extracted-01/01-a-setup/apply_packet.py",
+        "--packet",
+        "/workspace/scratch/7500a23b5952/software-evolution-ex1/handoff/verification-work/run-uwffy8cy/extracted-01/01-a-setup",
+        "--target",
+        "/workspace/scratch/7500a23b5952/software-evolution-ex1/handoff/verification-work/run-uwffy8cy/teacher",
+        "--subdir",
+        "guava-study",
+        "--apply"
+      ],
+      "cwd": "/workspace/scratch/7500a23b5952/software-evolution-ex1/handoff/verification-work/run-uwffy8cy",
+      "elapsed_seconds": 0.080263,
+      "exit_code": 0,
+      "label": "Packet 01 copy complete payload",
+      "log": "handoff/verification_logs/01-packet-01.log",
+      "number": 6,
+      "started_at_utc": "2026-10-18T14:57:09.203944+00:00"
+    },
+    {
+      "command": [
+        "/bin/bash",
+        "-c",
+        "python scripts/select_versions.py --check"
+      ],
+      "cwd": "/workspace/scratch/7500a23b5952/software-evolution-ex1/handoff/verification-work/run-uwffy8cy/teacher/guava-study",
+      "elapsed_seconds": 0.058198,
+      "exit_code": 0,
+      "label": "Packet 01: Reconstruct and verify the frozen 30-release sample",
+      "log": "handoff/verification_logs/01-packet-01.log",
+      "number": 7,
+      "started_at_utc": "2026-10-18T14:57:09.290476+00:00"
+    },
+    {
+      "command": [
+        "/bin/bash",
+        "-c",
+        "PYTHONPATH=src python -m unittest discover -s tests -p 'test_selection.py' -v"
+      ],
+      "cwd": "/workspace/scratch/7500a23b5952/software-evolution-ex1/handoff/verification-work/run-uwffy8cy/teacher/guava-study",
+      "elapsed_seconds": 0.136035,
+      "exit_code": 0,
+      "label": "Packet 01: Run the 11 calendar, coverage, provenance and tie-breaking tests",
+      "log": "handoff/verification_logs/01-packet-01.log",
+      "number": 8,
+      "started_at_utc": "2026-10-18T14:57:09.350409+00:00",
+      "unittest_count": 11
+    },
+    {
+      "command": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+        "/workspace/scratch/7500a23b5952/software-evolution-ex1/handoff/verification-work/run-uwffy8cy/extracted-01/01-a-setup/apply_packet.py",
+        "--packet",
+        "/workspace/scratch/7500a23b5952/software-evolution-ex1/handoff/verification-work/run-uwffy8cy/extracted-01/01-a-setup",
+        "--target",
+        "/workspace/scratch/7500a23b5952/software-evolution-ex1/handoff/verification-work/run-uwffy8cy/teacher",
+        "--subdir",
+        "guava-study",
+        "--apply",
+        "--stage"
+      ],
+      "cwd": "/workspace/scratch/7500a23b5952/software-evolution-ex1/handoff/verification-work/run-uwffy8cy",
+      "elapsed_seconds": 0.115697,
+      "exit_code": 0,
+      "label": "Packet 01 stage exact reviewed files",
+      "log": "handoff/verification_logs/01-packet-01.log",
+      "number": 9,
+      "started_at_utc": "2026-10-18T14:57:09.490219+00:00"
+    },
+    {
+      "command": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+        "/workspace/scratch/7500a23b5952/software-evolution-ex1/handoff/verification-work/run-uwffy8cy/extracted-01/01-a-setup/apply_packet.py",
+        "--packet",
+        "/workspace/scratch/7500a23b5952/software-evolution-ex1/handoff/verification-work/run-uwffy8cy/extracted-01/01-a-setup",
+        "--target",
+        "/workspace/scratch/7500a23b5952/software-evolution-ex1/handoff/verification-work/run-uwffy8cy/teacher",
+        "--subdir",
+        "guava-study",
+        "--check-staged"
+      ],
+      "cwd": "/workspace/scratch/7500a23b5952/software-evolution-ex1/handoff/verification-work/run-uwffy8cy",
+      "elapsed_seconds": 0.08049,
+      "exit_code": 0,
+      "label": "Packet 01 read-only staged-blob verification",
+      "log": "handoff/verification_logs/01-packet-01.log",
+      "number": 10,
+      "started_at_utc": "2026-10-18T14:57:09.610172+00:00"
+    },
+    {
+      "command": [
+        "git",
+        "-C",
+        "/workspace/scratch/7500a23b5952/software-evolution-ex1/handoff/verification-work/run-uwffy8cy/teacher",
+        "commit",
+        "-q",
+        "-m",
+        "Automated handoff verification: import packet 01 (test fixture only)"
+      ],
+      "cwd": "/workspace/scratch/7500a23b5952/software-evolution-ex1/handoff/verification-work/run-uwffy8cy",
+      "elapsed_seconds": 0.008506,
+      "exit_code": 0,
+      "label": "Commit packet 01 under the explicit automated-test identity",
+      "log": "handoff/verification_logs/01-packet-01.log",
+      "number": 11,
+      "started_at_utc": "2026-10-18T14:57:09.691723+00:00"
+    },
+    {
+      "command": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+        "/workspace/scratch/7500a23b5952/software-evolution-ex1/handoff/verification-work/run-uwffy8cy/extracted-02/02-b-usage-equality/apply_packet.py",
+        "--packet",
+        "/workspace/scratch/7500a23b5952/software-evolution-ex1/handoff/verification-work/run-uwffy8cy/extracted-02/02-b-usage-equality",
+        "--target",
+        "/workspace/scratch/7500a23b5952/software-evolution-ex1/handoff/verification-work/run-uwffy8cy/teacher",
+        "--subdir",
+        "guava-study"
+      ],
+      "cwd": "/workspace/scratch/7500a23b5952/software-evolution-ex1/handoff/verification-work/run-uwffy8cy",
+      "elapsed_seconds": 0.068204,
+      "exit_code": 0,
+      "label": "Packet 02 dry run",
+      "log": "handoff/verification_logs/02-packet-02.log",
+      "number": 12,
+      "started_at_utc": "2026-10-18T14:57:09.720614+00:00"
+    },
+    {
+      "command": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+        "/workspace/scratch/7500a23b5952/software-evolution-ex1/handoff/verification-work/run-uwffy8cy/extracted-02/02-b-usage-equality/apply_packet.py",
+        "--packet",
+        "/workspace/scratch/7500a23b5952/software-evolution-ex1/handoff/verification-work/run-uwffy8cy/extracted-02/02-b-usage-equality",
+        "--target",
+        "/workspace/scratch/7500a23b5952/software-evolution-ex1/handoff/verification-work/run-uwffy8cy/teacher",
+        "--subdir",
+        "guava-study",
+        "--apply"
+      ],
+      "cwd": "/workspace/scratch/7500a23b5952/software-evolution-ex1/handoff/verification-work/run-uwffy8cy",
+      "elapsed_seconds": 0.080711,
+      "exit_code": 0,
+      "label": "Packet 02 copy complete payload",
+      "log": "handoff/verification_logs/02-packet-02.log",
+      "number": 13,
+      "started_at_utc": "2026-10-18T14:57:09.792808+00:00"
+    },
+    {
+      "command": [
+        "/bin/bash",
+        "-c",
+        "PYTHONPATH=src python -m unittest discover -s tests -p 'test_omnipresent.py' -v"
+      ],
+      "cwd": "/workspace/scratch/7500a23b5952/software-evolution-ex1/handoff/verification-work/run-uwffy8cy/teacher/guava-study",
+      "elapsed_seconds": 0.095231,
+      "exit_code": 0,
+      "label": "Packet 02: Run the 13 Usage Equality boundary/oracle tests",
+      "log": "handoff/verification_logs/02-packet-02.log",
+      "number": 14,
+      "started_at_utc": "2026-10-18T14:57:09.877145+00:00",
+      "unittest_count": 13
+    },
+    {
+      "command": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+        "/workspace/scratch/7500a23b5952/software-evolution-ex1/handoff/verification-work/run-uwffy8cy/extracted-02/02-b-usage-equality/apply_packet.py",
+        "--packet",
+        "/workspace/scratch/7500a23b5952/software-evolution-ex1/handoff/verification-work/run-uwffy8cy/extracted-02/02-b-usage-equality",
+        "--target",
+        "/workspace/scratch/7500a23b5952/software-evolution-ex1/handoff/verification-work/run-uwffy8cy/teacher",
+        "--subdir",
+        "guava-study",
+        "--apply",
+        "--stage"
+      ],
+      "cwd": "/workspace/scratch/7500a23b5952/software-evolution-ex1/handoff/verification-work/run-uwffy8cy",
+      "elapsed_seconds": 0.084925,
+      "exit_code": 0,
+      "label": "Packet 02 stage exact reviewed files",
+      "log": "handoff/verification_logs/02-packet-02.log",
+      "number": 15,
+      "started_at_utc": "2026-10-18T14:57:09.976378+00:00"
+    },
+    {
+      "command": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+        "/workspace/scratch/7500a23b5952/software-evolution-ex1/handoff/verification-work/run-uwffy8cy/extracted-02/02-b-usage-equality/apply_packet.py",
+        "--packet",
+        "/workspace/scratch/7500a23b5952/software-evolution-ex1/handoff/verification-work/run-uwffy8cy/extracted-02/02-b-usage-equality",
+        "--target",
+        "/workspace/scratch/7500a23b5952/software-evolution-ex1/handoff/verification-work/run-uwffy8cy/teacher",
+        "--subdir",
+        "guava-study",
+        "--check-staged"
+      ],
+      "cwd": "/workspace/scratch/7500a23b5952/software-evolution-ex1/handoff/verification-work/run-uwffy8cy",
+      "elapsed_seconds": 0.064608,
+      "exit_code": 0,
+      "label": "Packet 02 read-only staged-blob verification",
+      "log": "handoff/verification_logs/02-packet-02.log",
+      "number": 16,
+      "started_at_utc": "2026-10-18T14:57:10.065762+00:00"
+    },
+    {
+      "command": [
+        "git",
+        "-C",
+        "/workspace/scratch/7500a23b5952/software-evolution-ex1/handoff/verification-work/run-uwffy8cy/teacher",
+        "commit",
+        "-q",
+        "-m",
+        "Automated handoff verification: import packet 02 (test fixture only)"
+      ],
+      "cwd": "/workspace/scratch/7500a23b5952/software-evolution-ex1/handoff/verification-work/run-uwffy8cy",
+      "elapsed_seconds": 0.006709,
+      "exit_code": 0,
+      "label": "Commit packet 02 under the explicit automated-test identity",
+      "log": "handoff/verification_logs/02-packet-02.log",
+      "number": 17,
+      "started_at_utc": "2026-10-18T14:57:10.131641+00:00"
+    },
+    {
+      "command": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+        "/workspace/scratch/7500a23b5952/software-evolution-ex1/handoff/verification-work/run-uwffy8cy/extracted-03/03-a-extraction/apply_packet.py",
+        "--packet",
+        "/workspace/scratch/7500a23b5952/software-evolution-ex1/handoff/verification-work/run-uwffy8cy/extracted-03/03-a-extraction",
+        "--target",
+        "/workspace/scratch/7500a23b5952/software-evolution-ex1/handoff/verification-work/run-uwffy8cy/teacher",
+        "--subdir",
+        "guava-study"
+      ],
+      "cwd": "/workspace/scratch/7500a23b5952/software-evolution-ex1/handoff/verification-work/run-uwffy8cy",
+      "elapsed_seconds": 0.090495,
+      "exit_code": 0,
+      "label": "Packet 03 dry run",
+      "log": "handoff/verification_logs/03-packet-03.log",
+      "number": 18,
+      "started_at_utc": "2026-10-18T14:57:10.168092+00:00"
+    },
+    {
+      "command": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+        "/workspace/scratch/7500a23b5952/software-evolution-ex1/handoff/verification-work/run-uwffy8cy/extracted-03/03-a-extraction/apply_packet.py",
+        "--packet",
+        "/workspace/scratch/7500a23b5952/software-evolution-ex1/handoff/verification-work/run-uwffy8cy/extracted-03/03-a-extraction",
+        "--target",
+        "/workspace/scratch/7500a23b5952/software-evolution-ex1/handoff/verification-work/run-uwffy8cy/teacher",
+        "--subdir",
+        "guava-study",
+        "--apply"
+      ],
+      "cwd": "/workspace/scratch/7500a23b5952/software-evolution-ex1/handoff/verification-work/run-uwffy8cy",
+      "elapsed_seconds": 0.115493,
+      "exit_code": 0,
+      "label": "Packet 03 copy complete payload",
+      "log": "handoff/verification_logs/03-packet-03.log",
+      "number": 19,
+      "started_at_utc": "2026-10-18T14:57:10.262774+00:00"
+    },
+    {
+      "command": [
+        "/bin/bash",
+        "-c",
+        "python scripts/fetch_tools.py"
+      ],
+      "cwd": "/workspace/scratch/7500a23b5952/software-evolution-ex1/handoff/verification-work/run-uwffy8cy/teacher/guava-study",
+      "elapsed_seconds": 0.071876,
+      "exit_code": 0,
+      "label": "Packet 03: Verify the bundled instructor JAR and its nested dependencies, ASM and ECJ",
+      "log": "handoff/verification_logs/03-packet-03.log",
+      "number": 20,
+      "started_at_utc": "2026-10-18T14:57:10.382386+00:00"
+    },
+    {
+      "command": [
+        "/bin/bash",
+        "-c",
+        "python scripts/build_java.py"
+      ],
+      "cwd": "/workspace/scratch/7500a23b5952/software-evolution-ex1/handoff/verification-work/run-uwffy8cy/teacher/guava-study",
+      "elapsed_seconds": 2.12232,
+      "exit_code": 0,
+      "label": "Packet 03: Compile both supplemental extractor and official ACDC with the bundled compiler",
+      "log": "handoff/verification_logs/03-packet-03.log",
+      "number": 21,
+      "started_at_utc": "2026-10-18T14:57:10.455532+00:00"
+    },
+    {
+      "command": [
+        "/bin/bash",
+        "-c",
+        "PYTHONPATH=src python -m unittest discover -s tests -p 'test_extractor.py' -v"
+      ],
+      "cwd": "/workspace/scratch/7500a23b5952/software-evolution-ex1/handoff/verification-work/run-uwffy8cy/teacher/guava-study",
+      "elapsed_seconds": 2.364992,
+      "exit_code": 0,
+      "label": "Packet 03: Run 11 real-bytecode extraction, ownership and normalization tests",
+      "log": "handoff/verification_logs/03-packet-03.log",
+      "number": 22,
+      "started_at_utc": "2026-10-18T14:57:12.579208+00:00",
+      "unittest_count": 11
+    },
+    {
+      "command": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+        "/workspace/scratch/7500a23b5952/software-evolution-ex1/handoff/verification-work/run-uwffy8cy/extracted-03/03-a-extraction/apply_packet.py",
+        "--packet",
+        "/workspace/scratch/7500a23b5952/software-evolution-ex1/handoff/verification-work/run-uwffy8cy/extracted-03/03-a-extraction",
+        "--target",
+        "/workspace/scratch/7500a23b5952/software-evolution-ex1/handoff/verification-work/run-uwffy8cy/teacher",
+        "--subdir",
+        "guava-study",
+        "--apply",
+        "--stage"
+      ],
+      "cwd": "/workspace/scratch/7500a23b5952/software-evolution-ex1/handoff/verification-work/run-uwffy8cy",
+      "elapsed_seconds": 0.298796,
+      "exit_code": 0,
+      "label": "Packet 03 stage exact reviewed files",
+      "log": "handoff/verification_logs/03-packet-03.log",
+      "number": 23,
+      "started_at_utc": "2026-10-18T14:57:14.962196+00:00"
+    },
+    {
+      "command": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+        "/workspace/scratch/7500a23b5952/software-evolution-ex1/handoff/verification-work/run-uwffy8cy/extracted-03/03-a-extraction/apply_packet.py",
+        "--packet",
+        "/workspace/scratch/7500a23b5952/software-evolution-ex1/handoff/verification-work/run-uwffy8cy/extracted-03/03-a-extraction",
+        "--target",
+        "/workspace/scratch/7500a23b5952/software-evolution-ex1/handoff/verification-work/run-uwffy8cy/teacher",
+        "--subdir",
+        "guava-study",
+        "--check-staged"
+      ],
+      "cwd": "/workspace/scratch/7500a23b5952/software-evolution-ex1/handoff/verification-work/run-uwffy8cy",
+      "elapsed_seconds": 0.101801,
+      "exit_code": 0,
+      "label": "Packet 03 read-only staged-blob verification",
+      "log": "handoff/verification_logs/03-packet-03.log",
+      "number": 24,
+      "started_at_utc": "2026-10-18T14:57:15.265935+00:00"
+    },
+    {
+      "command": [
+        "git",
+        "-C",
+        "/workspace/scratch/7500a23b5952/software-evolution-ex1/handoff/verification-work/run-uwffy8cy/teacher",
+        "commit",
+        "-q",
+        "-m",
+        "Automated handoff verification: import packet 03 (test fixture only)"
+      ],
+      "cwd": "/workspace/scratch/7500a23b5952/software-evolution-ex1/handoff/verification-work/run-uwffy8cy",
+      "elapsed_seconds": 0.007193,
+      "exit_code": 0,
+      "label": "Commit packet 03 under the explicit automated-test identity",
+      "log": "handoff/verification_logs/03-packet-03.log",
+      "number": 25,
+      "started_at_utc": "2026-10-18T14:57:15.368826+00:00"
+    },
+    {
+      "command": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+        "/workspace/scratch/7500a23b5952/software-evolution-ex1/handoff/verification-work/run-uwffy8cy/extracted-04/04-b-metrics/apply_packet.py",
+        "--packet",
+        "/workspace/scratch/7500a23b5952/software-evolution-ex1/handoff/verification-work/run-uwffy8cy/extracted-04/04-b-metrics",
+        "--target",
+        "/workspace/scratch/7500a23b5952/software-evolution-ex1/handoff/verification-work/run-uwffy8cy/teacher",
+        "--subdir",
+        "guava-study"
+      ],
+      "cwd": "/workspace/scratch/7500a23b5952/software-evolution-ex1/handoff/verification-work/run-uwffy8cy",
+      "elapsed_seconds": 0.078067,
+      "exit_code": 0,
+      "label": "Packet 04 dry run",
+      "log": "handoff/verification_logs/04-packet-04.log",
+      "number": 26,
+      "started_at_utc": "2026-10-18T14:57:15.391986+00:00"
+    },
+    {
+      "command": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+        "/workspace/scratch/7500a23b5952/software-evolution-ex1/handoff/verification-work/run-uwffy8cy/extracted-04/04-b-metrics/apply_packet.py",
+        "--packet",
+        "/workspace/scratch/7500a23b5952/software-evolution-ex1/handoff/verification-work/run-uwffy8cy/extracted-04/04-b-metrics",
+        "--target",
+        "/workspace/scratch/7500a23b5952/software-evolution-ex1/handoff/verification-work/run-uwffy8cy/teacher",
+        "--subdir",
+        "guava-study",
+        "--apply"
+      ],
+      "cwd": "/workspace/scratch/7500a23b5952/software-evolution-ex1/handoff/verification-work/run-uwffy8cy",
+      "elapsed_seconds": 0.08459,
+      "exit_code": 0,
+      "label": "Packet 04 copy complete payload",
+      "log": "handoff/verification_logs/04-packet-04.log",
+      "number": 27,
+      "started_at_utc": "2026-10-18T14:57:15.473988+00:00"
+    },
+    {
+      "command": [
+        "/bin/bash",
+        "-c",
+        "PYTHONPATH=src python -m unittest discover -s tests -p 'test_metrics.py' -v"
+      ],
+      "cwd": "/workspace/scratch/7500a23b5952/software-evolution-ex1/handoff/verification-work/run-uwffy8cy/teacher/guava-study",
+      "elapsed_seconds": 0.053477,
+      "exit_code": 0,
+      "label": "Packet 04: Run 9 lecture-metric boundary and hand-example tests",
+      "log": "handoff/verification_logs/04-packet-04.log",
+      "number": 28,
+      "started_at_utc": "2026-10-18T14:57:15.562957+00:00",
+      "unittest_count": 9
+    },
+    {
+      "command": [
+        "/bin/bash",
+        "-c",
+        "PYTHONPATH=src python -m unittest discover -s tests -p 'test_mojofm.py' -v"
+      ],
+      "cwd": "/workspace/scratch/7500a23b5952/software-evolution-ex1/handoff/verification-work/run-uwffy8cy/teacher/guava-study",
+      "elapsed_seconds": 0.091884,
+      "exit_code": 0,
+      "label": "Packet 04: Run 11 directional MoJoFM and exhaustive toy-oracle tests",
+      "log": "handoff/verification_logs/04-packet-04.log",
+      "number": 29,
+      "started_at_utc": "2026-10-18T14:57:15.617553+00:00",
+      "unittest_count": 11
+    },
+    {
+      "command": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+        "/workspace/scratch/7500a23b5952/software-evolution-ex1/handoff/verification-work/run-uwffy8cy/extracted-04/04-b-metrics/apply_packet.py",
+        "--packet",
+        "/workspace/scratch/7500a23b5952/software-evolution-ex1/handoff/verification-work/run-uwffy8cy/extracted-04/04-b-metrics",
+        "--target",
+        "/workspace/scratch/7500a23b5952/software-evolution-ex1/handoff/verification-work/run-uwffy8cy/teacher",
+        "--subdir",
+        "guava-study",
+        "--apply",
+        "--stage"
+      ],
+      "cwd": "/workspace/scratch/7500a23b5952/software-evolution-ex1/handoff/verification-work/run-uwffy8cy",
+      "elapsed_seconds": 0.104908,
+      "exit_code": 0,
+      "label": "Packet 04 stage exact reviewed files",
+      "log": "handoff/verification_logs/04-packet-04.log",
+      "number": 30,
+      "started_at_utc": "2026-10-18T14:57:15.722012+00:00"
+    },
+    {
+      "command": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+        "/workspace/scratch/7500a23b5952/software-evolution-ex1/handoff/verification-work/run-uwffy8cy/extracted-04/04-b-metrics/apply_packet.py",
+        "--packet",
+        "/workspace/scratch/7500a23b5952/software-evolution-ex1/handoff/verification-work/run-uwffy8cy/extracted-04/04-b-metrics",
+        "--target",
+        "/workspace/scratch/7500a23b5952/software-evolution-ex1/handoff/verification-work/run-uwffy8cy/teacher",
+        "--subdir",
+        "guava-study",
+        "--check-staged"
+      ],
+      "cwd": "/workspace/scratch/7500a23b5952/software-evolution-ex1/handoff/verification-work/run-uwffy8cy",
+      "elapsed_seconds": 0.092262,
+      "exit_code": 0,
+      "label": "Packet 04 read-only staged-blob verification",
+      "log": "handoff/verification_logs/04-packet-04.log",
+      "number": 31,
+      "started_at_utc": "2026-10-18T14:57:15.831137+00:00"
+    },
+    {
+      "command": [
+        "git",
+        "-C",
+        "/workspace/scratch/7500a23b5952/software-evolution-ex1/handoff/verification-work/run-uwffy8cy/teacher",
+        "commit",
+        "-q",
+        "-m",
+        "Automated handoff verification: import packet 04 (test fixture only)"
+      ],
+      "cwd": "/workspace/scratch/7500a23b5952/software-evolution-ex1/handoff/verification-work/run-uwffy8cy",
+      "elapsed_seconds": 0.006983,
+      "exit_code": 0,
+      "label": "Commit packet 04 under the explicit automated-test identity",
+      "log": "handoff/verification_logs/04-packet-04.log",
+      "number": 32,
+      "started_at_utc": "2026-10-18T14:57:15.924959+00:00"
+    },
+    {
+      "command": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+        "/workspace/scratch/7500a23b5952/software-evolution-ex1/handoff/verification-work/run-uwffy8cy/extracted-05/05-a-data/apply_packet.py",
+        "--packet",
+        "/workspace/scratch/7500a23b5952/software-evolution-ex1/handoff/verification-work/run-uwffy8cy/extracted-05/05-a-data",
+        "--target",
+        "/workspace/scratch/7500a23b5952/software-evolution-ex1/handoff/verification-work/run-uwffy8cy/teacher",
+        "--subdir",
+        "guava-study"
+      ],
+      "cwd": "/workspace/scratch/7500a23b5952/software-evolution-ex1/handoff/verification-work/run-uwffy8cy",
+      "elapsed_seconds": 0.527856,
+      "exit_code": 0,
+      "label": "Packet 05 dry run",
+      "log": "handoff/verification_logs/05-packet-05.log",
+      "number": 33,
+      "started_at_utc": "2026-10-18T14:57:17.083816+00:00"
+    },
+    {
+      "command": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+        "/workspace/scratch/7500a23b5952/software-evolution-ex1/handoff/verification-work/run-uwffy8cy/extracted-05/05-a-data/apply_packet.py",
+        "--packet",
+        "/workspace/scratch/7500a23b5952/software-evolution-ex1/handoff/verification-work/run-uwffy8cy/extracted-05/05-a-data",
+        "--target",
+        "/workspace/scratch/7500a23b5952/software-evolution-ex1/handoff/verification-work/run-uwffy8cy/teacher",
+        "--subdir",
+        "guava-study",
+        "--apply"
+      ],
+      "cwd": "/workspace/scratch/7500a23b5952/software-evolution-ex1/handoff/verification-work/run-uwffy8cy",
+      "elapsed_seconds": 0.982398,
+      "exit_code": 0,
+      "label": "Packet 05 copy complete payload",
+      "log": "handoff/verification_logs/05-packet-05.log",
+      "number": 34,
+      "started_at_utc": "2026-10-18T14:57:17.616771+00:00"
+    },
+    {
+      "command": [
+        "/bin/bash",
+        "-c",
+        "PYTHONPATH=src python -m unittest discover -s tests -p 'test_archives.py' -v"
+      ],
+      "cwd": "/workspace/scratch/7500a23b5952/software-evolution-ex1/handoff/verification-work/run-uwffy8cy/teacher/guava-study",
+      "elapsed_seconds": 0.977356,
+      "exit_code": 0,
+      "label": "Packet 05: Run 20 encoded and legacy archive boundary tests",
+      "log": "handoff/verification_logs/05-packet-05.log",
+      "number": 35,
+      "started_at_utc": "2026-10-18T14:57:18.603534+00:00",
+      "unittest_count": 20
+    },
+    {
+      "command": [
+        "/bin/bash",
+        "-c",
+        "python scripts/unpack_data.py --verify-only"
+      ],
+      "cwd": "/workspace/scratch/7500a23b5952/software-evolution-ex1/handoff/verification-work/run-uwffy8cy/teacher/guava-study",
+      "elapsed_seconds": 3.475835,
+      "exit_code": 0,
+      "label": "Packet 05: Verify all 2385 files in 32 logical archives without restoration",
+      "log": "handoff/verification_logs/05-packet-05.log",
+      "number": 36,
+      "started_at_utc": "2026-10-18T14:57:19.582218+00:00"
+    },
+    {
+      "command": [
+        "/bin/bash",
+        "-c",
+        "python scripts/unpack_data.py"
+      ],
+      "cwd": "/workspace/scratch/7500a23b5952/software-evolution-ex1/handoff/verification-work/run-uwffy8cy/teacher/guava-study",
+      "elapsed_seconds": 9.395542,
+      "exit_code": 0,
+      "label": "Packet 05: Restore original artifacts, graphs, pilot and per-version results for later packet checks",
+      "log": "handoff/verification_logs/05-packet-05.log",
+      "number": 37,
+      "started_at_utc": "2026-10-18T14:57:23.059419+00:00"
+    },
+    {
+      "command": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+        "/workspace/scratch/7500a23b5952/software-evolution-ex1/handoff/verification-work/run-uwffy8cy/extracted-05/05-a-data/apply_packet.py",
+        "--packet",
+        "/workspace/scratch/7500a23b5952/software-evolution-ex1/handoff/verification-work/run-uwffy8cy/extracted-05/05-a-data",
+        "--target",
+        "/workspace/scratch/7500a23b5952/software-evolution-ex1/handoff/verification-work/run-uwffy8cy/teacher",
+        "--subdir",
+        "guava-study",
+        "--apply",
+        "--stage"
+      ],
+      "cwd": "/workspace/scratch/7500a23b5952/software-evolution-ex1/handoff/verification-work/run-uwffy8cy",
+      "elapsed_seconds": 10.337766,
+      "exit_code": 0,
+      "label": "Packet 05 stage exact reviewed files",
+      "log": "handoff/verification_logs/05-packet-05.log",
+      "number": 38,
+      "started_at_utc": "2026-10-18T14:57:32.839845+00:00"
+    },
+    {
+      "command": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+        "/workspace/scratch/7500a23b5952/software-evolution-ex1/handoff/verification-work/run-uwffy8cy/extracted-05/05-a-data/apply_packet.py",
+        "--packet",
+        "/workspace/scratch/7500a23b5952/software-evolution-ex1/handoff/verification-work/run-uwffy8cy/extracted-05/05-a-data",
+        "--target",
+        "/workspace/scratch/7500a23b5952/software-evolution-ex1/handoff/verification-work/run-uwffy8cy/teacher",
+        "--subdir",
+        "guava-study",
+        "--check-staged"
+      ],
+      "cwd": "/workspace/scratch/7500a23b5952/software-evolution-ex1/handoff/verification-work/run-uwffy8cy",
+      "elapsed_seconds": 0.844782,
+      "exit_code": 0,
+      "label": "Packet 05 read-only staged-blob verification",
+      "log": "handoff/verification_logs/05-packet-05.log",
+      "number": 39,
+      "started_at_utc": "2026-10-18T14:57:43.182234+00:00"
+    },
+    {
+      "command": [
+        "git",
+        "-C",
+        "/workspace/scratch/7500a23b5952/software-evolution-ex1/handoff/verification-work/run-uwffy8cy/teacher",
+        "commit",
+        "-q",
+        "-m",
+        "Automated handoff verification: import packet 05 (test fixture only)"
+      ],
+      "cwd": "/workspace/scratch/7500a23b5952/software-evolution-ex1/handoff/verification-work/run-uwffy8cy",
+      "elapsed_seconds": 0.008683,
+      "exit_code": 0,
+      "label": "Commit packet 05 under the explicit automated-test identity",
+      "log": "handoff/verification_logs/05-packet-05.log",
+      "number": 40,
+      "started_at_utc": "2026-10-18T14:57:44.028404+00:00"
+    },
+    {
+      "command": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+        "/workspace/scratch/7500a23b5952/software-evolution-ex1/handoff/verification-work/run-uwffy8cy/extracted-06/06-b-clustering/apply_packet.py",
+        "--packet",
+        "/workspace/scratch/7500a23b5952/software-evolution-ex1/handoff/verification-work/run-uwffy8cy/extracted-06/06-b-clustering",
+        "--target",
+        "/workspace/scratch/7500a23b5952/software-evolution-ex1/handoff/verification-work/run-uwffy8cy/teacher",
+        "--subdir",
+        "guava-study"
+      ],
+      "cwd": "/workspace/scratch/7500a23b5952/software-evolution-ex1/handoff/verification-work/run-uwffy8cy",
+      "elapsed_seconds": 0.464391,
+      "exit_code": 0,
+      "label": "Packet 06 dry run",
+      "log": "handoff/verification_logs/06-packet-06.log",
+      "number": 41,
+      "started_at_utc": "2026-10-18T14:57:44.175087+00:00"
+    },
+    {
+      "command": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+        "/workspace/scratch/7500a23b5952/software-evolution-ex1/handoff/verification-work/run-uwffy8cy/extracted-06/06-b-clustering/apply_packet.py",
+        "--packet",
+        "/workspace/scratch/7500a23b5952/software-evolution-ex1/handoff/verification-work/run-uwffy8cy/extracted-06/06-b-clustering",
+        "--target",
+        "/workspace/scratch/7500a23b5952/software-evolution-ex1/handoff/verification-work/run-uwffy8cy/teacher",
+        "--subdir",
+        "guava-study",
+        "--apply"
+      ],
+      "cwd": "/workspace/scratch/7500a23b5952/software-evolution-ex1/handoff/verification-work/run-uwffy8cy",
+      "elapsed_seconds": 0.470663,
+      "exit_code": 0,
+      "label": "Packet 06 copy complete payload",
+      "log": "handoff/verification_logs/06-packet-06.log",
+      "number": 42,
+      "started_at_utc": "2026-10-18T14:57:44.644335+00:00"
+    },
+    {
+      "command": [
+        "/bin/bash",
+        "-c",
+        "python scripts/run_checks.py"
+      ],
+      "cwd": "/workspace/scratch/7500a23b5952/software-evolution-ex1/handoff/verification-work/run-uwffy8cy/teacher/guava-study",
+      "elapsed_seconds": 8.65671,
+      "exit_code": 0,
+      "label": "Packet 06: Build both Java tools, then run all 91 tests now present, including ACDC integrations",
+      "log": "handoff/verification_logs/06-packet-06.log",
+      "number": 43,
+      "started_at_utc": "2026-10-18T14:57:45.119221+00:00",
+      "unittest_count": 91
+    },
+    {
+      "command": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+        "/workspace/scratch/7500a23b5952/software-evolution-ex1/handoff/verification-work/run-uwffy8cy/extracted-06/06-b-clustering/apply_packet.py",
+        "--packet",
+        "/workspace/scratch/7500a23b5952/software-evolution-ex1/handoff/verification-work/run-uwffy8cy/extracted-06/06-b-clustering",
+        "--target",
+        "/workspace/scratch/7500a23b5952/software-evolution-ex1/handoff/verification-work/run-uwffy8cy/teacher",
+        "--subdir",
+        "guava-study",
+        "--apply",
+        "--stage"
+      ],
+      "cwd": "/workspace/scratch/7500a23b5952/software-evolution-ex1/handoff/verification-work/run-uwffy8cy",
+      "elapsed_seconds": 0.525421,
+      "exit_code": 0,
+      "label": "Packet 06 stage exact reviewed files",
+      "log": "handoff/verification_logs/06-packet-06.log",
+      "number": 44,
+      "started_at_utc": "2026-10-18T14:57:54.106558+00:00"
+    },
+    {
+      "command": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+        "/workspace/scratch/7500a23b5952/software-evolution-ex1/handoff/verification-work/run-uwffy8cy/extracted-06/06-b-clustering/apply_packet.py",
+        "--packet",
+        "/workspace/scratch/7500a23b5952/software-evolution-ex1/handoff/verification-work/run-uwffy8cy/extracted-06/06-b-clustering",
+        "--target",
+        "/workspace/scratch/7500a23b5952/software-evolution-ex1/handoff/verification-work/run-uwffy8cy/teacher",
+        "--subdir",
+        "guava-study",
+        "--check-staged"
+      ],
+      "cwd": "/workspace/scratch/7500a23b5952/software-evolution-ex1/handoff/verification-work/run-uwffy8cy",
+      "elapsed_seconds": 0.542827,
+      "exit_code": 0,
+      "label": "Packet 06 read-only staged-blob verification",
+      "log": "handoff/verification_logs/06-packet-06.log",
+      "number": 45,
+      "started_at_utc": "2026-10-18T14:57:54.636140+00:00"
+    },
+    {
+      "command": [
+        "git",
+        "-C",
+        "/workspace/scratch/7500a23b5952/software-evolution-ex1/handoff/verification-work/run-uwffy8cy/teacher",
+        "commit",
+        "-q",
+        "-m",
+        "Automated handoff verification: import packet 06 (test fixture only)"
+      ],
+      "cwd": "/workspace/scratch/7500a23b5952/software-evolution-ex1/handoff/verification-work/run-uwffy8cy",
+      "elapsed_seconds": 0.007118,
+      "exit_code": 0,
+      "label": "Commit packet 06 under the explicit automated-test identity",
+      "log": "handoff/verification_logs/06-packet-06.log",
+      "number": 46,
+      "started_at_utc": "2026-10-18T14:57:55.180333+00:00"
+    },
+    {
+      "command": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+        "/workspace/scratch/7500a23b5952/software-evolution-ex1/handoff/verification-work/run-uwffy8cy/extracted-07/07-a-study/apply_packet.py",
+        "--packet",
+        "/workspace/scratch/7500a23b5952/software-evolution-ex1/handoff/verification-work/run-uwffy8cy/extracted-07/07-a-study",
+        "--target",
+        "/workspace/scratch/7500a23b5952/software-evolution-ex1/handoff/verification-work/run-uwffy8cy/teacher",
+        "--subdir",
+        "guava-study"
+      ],
+      "cwd": "/workspace/scratch/7500a23b5952/software-evolution-ex1/handoff/verification-work/run-uwffy8cy",
+      "elapsed_seconds": 0.510691,
+      "exit_code": 0,
+      "label": "Packet 07 dry run",
+      "log": "handoff/verification_logs/07-packet-07.log",
+      "number": 47,
+      "started_at_utc": "2026-10-18T14:57:55.363507+00:00"
+    },
+    {
+      "command": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+        "/workspace/scratch/7500a23b5952/software-evolution-ex1/handoff/verification-work/run-uwffy8cy/extracted-07/07-a-study/apply_packet.py",
+        "--packet",
+        "/workspace/scratch/7500a23b5952/software-evolution-ex1/handoff/verification-work/run-uwffy8cy/extracted-07/07-a-study",
+        "--target",
+        "/workspace/scratch/7500a23b5952/software-evolution-ex1/handoff/verification-work/run-uwffy8cy/teacher",
+        "--subdir",
+        "guava-study",
+        "--apply"
+      ],
+      "cwd": "/workspace/scratch/7500a23b5952/software-evolution-ex1/handoff/verification-work/run-uwffy8cy",
+      "elapsed_seconds": 0.505935,
+      "exit_code": 0,
+      "label": "Packet 07 copy complete payload",
+      "log": "handoff/verification_logs/07-packet-07.log",
+      "number": 48,
+      "started_at_utc": "2026-10-18T14:57:55.879232+00:00"
+    },
+    {
+      "command": [
+        "/bin/bash",
+        "-c",
+        "python scripts/run_study.py --help"
+      ],
+      "cwd": "/workspace/scratch/7500a23b5952/software-evolution-ex1/handoff/verification-work/run-uwffy8cy/teacher/guava-study",
+      "elapsed_seconds": 0.074474,
+      "exit_code": 0,
+      "label": "Packet 07: Verify pipeline import closure and CLI argument loading; this does not run the study",
+      "log": "handoff/verification_logs/07-packet-07.log",
+      "number": 49,
+      "started_at_utc": "2026-10-18T14:57:56.390192+00:00"
+    },
+    {
+      "command": [
+        "/bin/bash",
+        "-c",
+        "PYTHONPATH=src python -c \"from evolution.study import manifest, settings; assert len(manifest()['versions']) == 30; print(settings()['study_revision'])\""
+      ],
+      "cwd": "/workspace/scratch/7500a23b5952/software-evolution-ex1/handoff/verification-work/run-uwffy8cy/teacher/guava-study",
+      "elapsed_seconds": 0.07736,
+      "exit_code": 0,
+      "label": "Packet 07: Validate the frozen 30-version identity and load method settings",
+      "log": "handoff/verification_logs/07-packet-07.log",
+      "number": 50,
+      "started_at_utc": "2026-10-18T14:57:56.466515+00:00"
+    },
+    {
+      "command": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+        "/workspace/scratch/7500a23b5952/software-evolution-ex1/handoff/verification-work/run-uwffy8cy/extracted-07/07-a-study/apply_packet.py",
+        "--packet",
+        "/workspace/scratch/7500a23b5952/software-evolution-ex1/handoff/verification-work/run-uwffy8cy/extracted-07/07-a-study",
+        "--target",
+        "/workspace/scratch/7500a23b5952/software-evolution-ex1/handoff/verification-work/run-uwffy8cy/teacher",
+        "--subdir",
+        "guava-study",
+        "--apply",
+        "--stage"
+      ],
+      "cwd": "/workspace/scratch/7500a23b5952/software-evolution-ex1/handoff/verification-work/run-uwffy8cy",
+      "elapsed_seconds": 0.488322,
+      "exit_code": 0,
+      "label": "Packet 07 stage exact reviewed files",
+      "log": "handoff/verification_logs/07-packet-07.log",
+      "number": 51,
+      "started_at_utc": "2026-10-18T14:57:56.907303+00:00"
+    },
+    {
+      "command": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+        "/workspace/scratch/7500a23b5952/software-evolution-ex1/handoff/verification-work/run-uwffy8cy/extracted-07/07-a-study/apply_packet.py",
+        "--packet",
+        "/workspace/scratch/7500a23b5952/software-evolution-ex1/handoff/verification-work/run-uwffy8cy/extracted-07/07-a-study",
+        "--target",
+        "/workspace/scratch/7500a23b5952/software-evolution-ex1/handoff/verification-work/run-uwffy8cy/teacher",
+        "--subdir",
+        "guava-study",
+        "--check-staged"
+      ],
+      "cwd": "/workspace/scratch/7500a23b5952/software-evolution-ex1/handoff/verification-work/run-uwffy8cy",
+      "elapsed_seconds": 0.477715,
+      "exit_code": 0,
+      "label": "Packet 07 read-only staged-blob verification",
+      "log": "handoff/verification_logs/07-packet-07.log",
+      "number": 52,
+      "started_at_utc": "2026-10-18T14:57:57.399840+00:00"
+    },
+    {
+      "command": [
+        "git",
+        "-C",
+        "/workspace/scratch/7500a23b5952/software-evolution-ex1/handoff/verification-work/run-uwffy8cy/teacher",
+        "commit",
+        "-q",
+        "-m",
+        "Automated handoff verification: import packet 07 (test fixture only)"
+      ],
+      "cwd": "/workspace/scratch/7500a23b5952/software-evolution-ex1/handoff/verification-work/run-uwffy8cy",
+      "elapsed_seconds": 0.008123,
+      "exit_code": 0,
+      "label": "Commit packet 07 under the explicit automated-test identity",
+      "log": "handoff/verification_logs/07-packet-07.log",
+      "number": 53,
+      "started_at_utc": "2026-10-18T14:57:57.879318+00:00"
+    },
+    {
+      "command": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+        "/workspace/scratch/7500a23b5952/software-evolution-ex1/handoff/verification-work/run-uwffy8cy/extracted-08/08-b-ai-evaluation/apply_packet.py",
+        "--packet",
+        "/workspace/scratch/7500a23b5952/software-evolution-ex1/handoff/verification-work/run-uwffy8cy/extracted-08/08-b-ai-evaluation",
+        "--target",
+        "/workspace/scratch/7500a23b5952/software-evolution-ex1/handoff/verification-work/run-uwffy8cy/teacher",
+        "--subdir",
+        "guava-study"
+      ],
+      "cwd": "/workspace/scratch/7500a23b5952/software-evolution-ex1/handoff/verification-work/run-uwffy8cy",
+      "elapsed_seconds": 0.534931,
+      "exit_code": 0,
+      "label": "Packet 08 dry run",
+      "log": "handoff/verification_logs/08-packet-08.log",
+      "number": 54,
+      "started_at_utc": "2026-10-18T14:57:58.058220+00:00"
+    },
+    {
+      "command": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+        "/workspace/scratch/7500a23b5952/software-evolution-ex1/handoff/verification-work/run-uwffy8cy/extracted-08/08-b-ai-evaluation/apply_packet.py",
+        "--packet",
+        "/workspace/scratch/7500a23b5952/software-evolution-ex1/handoff/verification-work/run-uwffy8cy/extracted-08/08-b-ai-evaluation",
+        "--target",
+        "/workspace/scratch/7500a23b5952/software-evolution-ex1/handoff/verification-work/run-uwffy8cy/teacher",
+        "--subdir",
+        "guava-study",
+        "--apply"
+      ],
+      "cwd": "/workspace/scratch/7500a23b5952/software-evolution-ex1/handoff/verification-work/run-uwffy8cy",
+      "elapsed_seconds": 0.52113,
+      "exit_code": 0,
+      "label": "Packet 08 copy complete payload",
+      "log": "handoff/verification_logs/08-packet-08.log",
+      "number": 55,
+      "started_at_utc": "2026-10-18T14:57:58.598597+00:00"
+    },
+    {
+      "command": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+        "/workspace/scratch/7500a23b5952/software-evolution-ex1/handoff/verification-work/run-uwffy8cy/extracted-08/08-b-ai-evaluation/apply_packet.py",
+        "--packet",
+        "/workspace/scratch/7500a23b5952/software-evolution-ex1/handoff/verification-work/run-uwffy8cy/extracted-08/08-b-ai-evaluation",
+        "--target",
+        "/workspace/scratch/7500a23b5952/software-evolution-ex1/handoff/verification-work/run-uwffy8cy/teacher",
+        "--subdir",
+        "guava-study",
+        "--apply",
+        "--stage"
+      ],
+      "cwd": "/workspace/scratch/7500a23b5952/software-evolution-ex1/handoff/verification-work/run-uwffy8cy",
+      "elapsed_seconds": 0.552285,
+      "exit_code": 0,
+      "label": "Packet 08 stage exact reviewed files",
+      "log": "handoff/verification_logs/08-packet-08.log",
+      "number": 56,
+      "started_at_utc": "2026-10-18T14:57:59.463694+00:00"
+    },
+    {
+      "command": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+        "/workspace/scratch/7500a23b5952/software-evolution-ex1/handoff/verification-work/run-uwffy8cy/extracted-08/08-b-ai-evaluation/apply_packet.py",
+        "--packet",
+        "/workspace/scratch/7500a23b5952/software-evolution-ex1/handoff/verification-work/run-uwffy8cy/extracted-08/08-b-ai-evaluation",
+        "--target",
+        "/workspace/scratch/7500a23b5952/software-evolution-ex1/handoff/verification-work/run-uwffy8cy/teacher",
+        "--subdir",
+        "guava-study",
+        "--check-staged"
+      ],
+      "cwd": "/workspace/scratch/7500a23b5952/software-evolution-ex1/handoff/verification-work/run-uwffy8cy",
+      "elapsed_seconds": 0.559793,
+      "exit_code": 0,
+      "label": "Packet 08 read-only staged-blob verification",
+      "log": "handoff/verification_logs/08-packet-08.log",
+      "number": 57,
+      "started_at_utc": "2026-10-18T14:58:00.021193+00:00"
+    },
+    {
+      "command": [
+        "git",
+        "-C",
+        "/workspace/scratch/7500a23b5952/software-evolution-ex1/handoff/verification-work/run-uwffy8cy/teacher",
+        "commit",
+        "-q",
+        "-m",
+        "Automated handoff verification: import packet 08 (test fixture only)"
+      ],
+      "cwd": "/workspace/scratch/7500a23b5952/software-evolution-ex1/handoff/verification-work/run-uwffy8cy",
+      "elapsed_seconds": 0.009355,
+      "exit_code": 0,
+      "label": "Commit packet 08 under the explicit automated-test identity",
+      "log": "handoff/verification_logs/08-packet-08.log",
+      "number": 58,
+      "started_at_utc": "2026-10-18T14:58:00.582615+00:00"
+    },
+    {
+      "command": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+        "/workspace/scratch/7500a23b5952/software-evolution-ex1/handoff/verification-work/run-uwffy8cy/extracted-09/09-a-evolution-audits/apply_packet.py",
+        "--packet",
+        "/workspace/scratch/7500a23b5952/software-evolution-ex1/handoff/verification-work/run-uwffy8cy/extracted-09/09-a-evolution-audits",
+        "--target",
+        "/workspace/scratch/7500a23b5952/software-evolution-ex1/handoff/verification-work/run-uwffy8cy/teacher",
+        "--subdir",
+        "guava-study"
+      ],
+      "cwd": "/workspace/scratch/7500a23b5952/software-evolution-ex1/handoff/verification-work/run-uwffy8cy",
+      "elapsed_seconds": 0.513057,
+      "exit_code": 0,
+      "label": "Packet 09 dry run",
+      "log": "handoff/verification_logs/09-packet-09.log",
+      "number": 59,
+      "started_at_utc": "2026-10-18T14:58:00.777128+00:00"
+    },
+    {
+      "command": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+        "/workspace/scratch/7500a23b5952/software-evolution-ex1/handoff/verification-work/run-uwffy8cy/extracted-09/09-a-evolution-audits/apply_packet.py",
+        "--packet",
+        "/workspace/scratch/7500a23b5952/software-evolution-ex1/handoff/verification-work/run-uwffy8cy/extracted-09/09-a-evolution-audits",
+        "--target",
+        "/workspace/scratch/7500a23b5952/software-evolution-ex1/handoff/verification-work/run-uwffy8cy/teacher",
+        "--subdir",
+        "guava-study",
+        "--apply"
+      ],
+      "cwd": "/workspace/scratch/7500a23b5952/software-evolution-ex1/handoff/verification-work/run-uwffy8cy",
+      "elapsed_seconds": 0.507694,
+      "exit_code": 0,
+      "label": "Packet 09 copy complete payload",
+      "log": "handoff/verification_logs/09-packet-09.log",
+      "number": 60,
+      "started_at_utc": "2026-10-18T14:58:01.296461+00:00"
+    },
+    {
+      "command": [
+        "/bin/bash",
+        "-c",
+        "python scripts/audit_change_points.py --output results/rerun/handoff-p09-change-points.json"
+      ],
+      "cwd": "/workspace/scratch/7500a23b5952/software-evolution-ex1/handoff/verification-work/run-uwffy8cy/teacher/guava-study",
+      "elapsed_seconds": 0.811451,
+      "exit_code": 0,
+      "label": "Packet 09: Audit all 29 sampled graph transitions into a separate output",
+      "log": "handoff/verification_logs/09-packet-09.log",
+      "number": 61,
+      "started_at_utc": "2026-10-18T14:58:01.809326+00:00"
+    },
+    {
+      "command": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+        "/workspace/scratch/7500a23b5952/software-evolution-ex1/handoff/verification-work/run-uwffy8cy/extracted-09/09-a-evolution-audits/apply_packet.py",
+        "--packet",
+        "/workspace/scratch/7500a23b5952/software-evolution-ex1/handoff/verification-work/run-uwffy8cy/extracted-09/09-a-evolution-audits",
+        "--target",
+        "/workspace/scratch/7500a23b5952/software-evolution-ex1/handoff/verification-work/run-uwffy8cy/teacher",
+        "--subdir",
+        "guava-study",
+        "--apply",
+        "--stage"
+      ],
+      "cwd": "/workspace/scratch/7500a23b5952/software-evolution-ex1/handoff/verification-work/run-uwffy8cy",
+      "elapsed_seconds": 0.521347,
+      "exit_code": 0,
+      "label": "Packet 09 stage exact reviewed files",
+      "log": "handoff/verification_logs/09-packet-09.log",
+      "number": 62,
+      "started_at_utc": "2026-10-18T14:58:02.974462+00:00"
+    },
+    {
+      "command": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+        "/workspace/scratch/7500a23b5952/software-evolution-ex1/handoff/verification-work/run-uwffy8cy/extracted-09/09-a-evolution-audits/apply_packet.py",
+        "--packet",
+        "/workspace/scratch/7500a23b5952/software-evolution-ex1/handoff/verification-work/run-uwffy8cy/extracted-09/09-a-evolution-audits",
+        "--target",
+        "/workspace/scratch/7500a23b5952/software-evolution-ex1/handoff/verification-work/run-uwffy8cy/teacher",
+        "--subdir",
+        "guava-study",
+        "--check-staged"
+      ],
+      "cwd": "/workspace/scratch/7500a23b5952/software-evolution-ex1/handoff/verification-work/run-uwffy8cy",
+      "elapsed_seconds": 0.502675,
+      "exit_code": 0,
+      "label": "Packet 09 read-only staged-blob verification",
+      "log": "handoff/verification_logs/09-packet-09.log",
+      "number": 63,
+      "started_at_utc": "2026-10-18T14:58:03.501125+00:00"
+    },
+    {
+      "command": [
+        "git",
+        "-C",
+        "/workspace/scratch/7500a23b5952/software-evolution-ex1/handoff/verification-work/run-uwffy8cy/teacher",
+        "commit",
+        "-q",
+        "-m",
+        "Automated handoff verification: import packet 09 (test fixture only)"
+      ],
+      "cwd": "/workspace/scratch/7500a23b5952/software-evolution-ex1/handoff/verification-work/run-uwffy8cy",
+      "elapsed_seconds": 0.008224,
+      "exit_code": 0,
+      "label": "Commit packet 09 under the explicit automated-test identity",
+      "log": "handoff/verification_logs/09-packet-09.log",
+      "number": 64,
+      "started_at_utc": "2026-10-18T14:58:04.005476+00:00"
+    },
+    {
+      "command": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+        "/workspace/scratch/7500a23b5952/software-evolution-ex1/handoff/verification-work/run-uwffy8cy/extracted-10/10-b-validation-docs/apply_packet.py",
+        "--packet",
+        "/workspace/scratch/7500a23b5952/software-evolution-ex1/handoff/verification-work/run-uwffy8cy/extracted-10/10-b-validation-docs",
+        "--target",
+        "/workspace/scratch/7500a23b5952/software-evolution-ex1/handoff/verification-work/run-uwffy8cy/teacher",
+        "--subdir",
+        "guava-study"
+      ],
+      "cwd": "/workspace/scratch/7500a23b5952/software-evolution-ex1/handoff/verification-work/run-uwffy8cy",
+      "elapsed_seconds": 0.510294,
+      "exit_code": 0,
+      "label": "Packet 10 dry run",
+      "log": "handoff/verification_logs/10-packet-10.log",
+      "number": 65,
+      "started_at_utc": "2026-10-18T14:58:04.158534+00:00"
+    },
+    {
+      "command": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+        "/workspace/scratch/7500a23b5952/software-evolution-ex1/handoff/verification-work/run-uwffy8cy/extracted-10/10-b-validation-docs/apply_packet.py",
+        "--packet",
+        "/workspace/scratch/7500a23b5952/software-evolution-ex1/handoff/verification-work/run-uwffy8cy/extracted-10/10-b-validation-docs",
+        "--target",
+        "/workspace/scratch/7500a23b5952/software-evolution-ex1/handoff/verification-work/run-uwffy8cy/teacher",
+        "--subdir",
+        "guava-study",
+        "--apply"
+      ],
+      "cwd": "/workspace/scratch/7500a23b5952/software-evolution-ex1/handoff/verification-work/run-uwffy8cy",
+      "elapsed_seconds": 0.49918,
+      "exit_code": 0,
+      "label": "Packet 10 copy complete payload",
+      "log": "handoff/verification_logs/10-packet-10.log",
+      "number": 66,
+      "started_at_utc": "2026-10-18T14:58:04.673600+00:00"
+    },
+    {
+      "command": [
+        "/bin/bash",
+        "-c",
+        "python scripts/validate_results.py --output results/rerun/handoff-p10-validation.json"
+      ],
+      "cwd": "/workspace/scratch/7500a23b5952/software-evolution-ex1/handoff/verification-work/run-uwffy8cy/teacher/guava-study",
+      "elapsed_seconds": 20.927297,
+      "exit_code": 0,
+      "label": "Packet 10: Audit the complete canonical 30-release evidence, 120 partitions, AI and comparisons",
+      "log": "handoff/verification_logs/10-packet-10.log",
+      "number": 67,
+      "started_at_utc": "2026-10-18T14:58:05.177896+00:00"
+    },
+    {
+      "command": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+        "/workspace/scratch/7500a23b5952/software-evolution-ex1/handoff/verification-work/run-uwffy8cy/extracted-10/10-b-validation-docs/apply_packet.py",
+        "--packet",
+        "/workspace/scratch/7500a23b5952/software-evolution-ex1/handoff/verification-work/run-uwffy8cy/extracted-10/10-b-validation-docs",
+        "--target",
+        "/workspace/scratch/7500a23b5952/software-evolution-ex1/handoff/verification-work/run-uwffy8cy/teacher",
+        "--subdir",
+        "guava-study",
+        "--apply",
+        "--stage"
+      ],
+      "cwd": "/workspace/scratch/7500a23b5952/software-evolution-ex1/handoff/verification-work/run-uwffy8cy",
+      "elapsed_seconds": 0.513684,
+      "exit_code": 0,
+      "label": "Packet 10 stage exact reviewed files",
+      "log": "handoff/verification_logs/10-packet-10.log",
+      "number": 68,
+      "started_at_utc": "2026-10-18T14:58:26.486794+00:00"
+    },
+    {
+      "command": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+        "/workspace/scratch/7500a23b5952/software-evolution-ex1/handoff/verification-work/run-uwffy8cy/extracted-10/10-b-validation-docs/apply_packet.py",
+        "--packet",
+        "/workspace/scratch/7500a23b5952/software-evolution-ex1/handoff/verification-work/run-uwffy8cy/extracted-10/10-b-validation-docs",
+        "--target",
+        "/workspace/scratch/7500a23b5952/software-evolution-ex1/handoff/verification-work/run-uwffy8cy/teacher",
+        "--subdir",
+        "guava-study",
+        "--check-staged"
+      ],
+      "cwd": "/workspace/scratch/7500a23b5952/software-evolution-ex1/handoff/verification-work/run-uwffy8cy",
+      "elapsed_seconds": 0.483617,
+      "exit_code": 0,
+      "label": "Packet 10 read-only staged-blob verification",
+      "log": "handoff/verification_logs/10-packet-10.log",
+      "number": 69,
+      "started_at_utc": "2026-10-18T14:58:27.004935+00:00"
+    },
+    {
+      "command": [
+        "git",
+        "-C",
+        "/workspace/scratch/7500a23b5952/software-evolution-ex1/handoff/verification-work/run-uwffy8cy/teacher",
+        "commit",
+        "-q",
+        "-m",
+        "Automated handoff verification: import packet 10 (test fixture only)"
+      ],
+      "cwd": "/workspace/scratch/7500a23b5952/software-evolution-ex1/handoff/verification-work/run-uwffy8cy",
+      "elapsed_seconds": 0.006437,
+      "exit_code": 0,
+      "label": "Commit packet 10 under the explicit automated-test identity",
+      "log": "handoff/verification_logs/10-packet-10.log",
+      "number": 70,
+      "started_at_utc": "2026-10-18T14:58:27.490693+00:00"
+    },
+    {
+      "command": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+        "/workspace/scratch/7500a23b5952/software-evolution-ex1/handoff/verification-work/run-uwffy8cy/extracted-11/11-a-report/apply_packet.py",
+        "--packet",
+        "/workspace/scratch/7500a23b5952/software-evolution-ex1/handoff/verification-work/run-uwffy8cy/extracted-11/11-a-report",
+        "--target",
+        "/workspace/scratch/7500a23b5952/software-evolution-ex1/handoff/verification-work/run-uwffy8cy/teacher",
+        "--subdir",
+        "guava-study"
+      ],
+      "cwd": "/workspace/scratch/7500a23b5952/software-evolution-ex1/handoff/verification-work/run-uwffy8cy",
+      "elapsed_seconds": 0.536052,
+      "exit_code": 0,
+      "label": "Packet 11 dry run",
+      "log": "handoff/verification_logs/11-packet-11.log",
+      "number": 71,
+      "started_at_utc": "2026-10-18T14:58:27.672024+00:00"
+    },
+    {
+      "command": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+        "/workspace/scratch/7500a23b5952/software-evolution-ex1/handoff/verification-work/run-uwffy8cy/extracted-11/11-a-report/apply_packet.py",
+        "--packet",
+        "/workspace/scratch/7500a23b5952/software-evolution-ex1/handoff/verification-work/run-uwffy8cy/extracted-11/11-a-report",
+        "--target",
+        "/workspace/scratch/7500a23b5952/software-evolution-ex1/handoff/verification-work/run-uwffy8cy/teacher",
+        "--subdir",
+        "guava-study",
+        "--apply"
+      ],
+      "cwd": "/workspace/scratch/7500a23b5952/software-evolution-ex1/handoff/verification-work/run-uwffy8cy",
+      "elapsed_seconds": 0.523571,
+      "exit_code": 0,
+      "label": "Packet 11 copy complete payload",
+      "log": "handoff/verification_logs/11-packet-11.log",
+      "number": 72,
+      "started_at_utc": "2026-10-18T14:58:28.214623+00:00"
+    },
+    {
+      "command": [
+        "/bin/bash",
+        "-c",
+        "python -c \"import hashlib,json; from pathlib import Path; m=json.loads(Path('report/report_manifest.json').read_text()); expected={**m['inputs'],**m['method_sources'],**m['figures'],m['report']:m['report_sha256'],m['canonical_copy']:m['canonical_copy_sha256']}; bad=[p for p,h in expected.items() if not Path(p).is_file() or hashlib.sha256(Path(p).read_bytes()).hexdigest()!=h]; assert not bad,bad; print('Report hashes verified:',len(expected))\""
+      ],
+      "cwd": "/workspace/scratch/7500a23b5952/software-evolution-ex1/handoff/verification-work/run-uwffy8cy/teacher/guava-study",
+      "elapsed_seconds": 0.06263,
+      "exit_code": 0,
+      "label": "Packet 11: Verify all manifest-pinned report inputs, method sources, figures and both PDFs",
+      "log": "handoff/verification_logs/11-packet-11.log",
+      "number": 73,
+      "started_at_utc": "2026-10-18T14:58:28.745694+00:00"
+    },
+    {
+      "command": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+        "/workspace/scratch/7500a23b5952/software-evolution-ex1/handoff/verification-work/run-uwffy8cy/extracted-11/11-a-report/apply_packet.py",
+        "--packet",
+        "/workspace/scratch/7500a23b5952/software-evolution-ex1/handoff/verification-work/run-uwffy8cy/extracted-11/11-a-report",
+        "--target",
+        "/workspace/scratch/7500a23b5952/software-evolution-ex1/handoff/verification-work/run-uwffy8cy/teacher",
+        "--subdir",
+        "guava-study",
+        "--apply",
+        "--stage"
+      ],
+      "cwd": "/workspace/scratch/7500a23b5952/software-evolution-ex1/handoff/verification-work/run-uwffy8cy",
+      "elapsed_seconds": 0.591319,
+      "exit_code": 0,
+      "label": "Packet 11 stage exact reviewed files",
+      "log": "handoff/verification_logs/11-packet-11.log",
+      "number": 74,
+      "started_at_utc": "2026-10-18T14:58:29.145769+00:00"
+    },
+    {
+      "command": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+        "/workspace/scratch/7500a23b5952/software-evolution-ex1/handoff/verification-work/run-uwffy8cy/extracted-11/11-a-report/apply_packet.py",
+        "--packet",
+        "/workspace/scratch/7500a23b5952/software-evolution-ex1/handoff/verification-work/run-uwffy8cy/extracted-11/11-a-report",
+        "--target",
+        "/workspace/scratch/7500a23b5952/software-evolution-ex1/handoff/verification-work/run-uwffy8cy/teacher",
+        "--subdir",
+        "guava-study",
+        "--check-staged"
+      ],
+      "cwd": "/workspace/scratch/7500a23b5952/software-evolution-ex1/handoff/verification-work/run-uwffy8cy",
+      "elapsed_seconds": 0.508708,
+      "exit_code": 0,
+      "label": "Packet 11 read-only staged-blob verification",
+      "log": "handoff/verification_logs/11-packet-11.log",
+      "number": 75,
+      "started_at_utc": "2026-10-18T14:58:29.743201+00:00"
+    },
+    {
+      "command": [
+        "git",
+        "-C",
+        "/workspace/scratch/7500a23b5952/software-evolution-ex1/handoff/verification-work/run-uwffy8cy/teacher",
+        "commit",
+        "-q",
+        "-m",
+        "Automated handoff verification: import packet 11 (test fixture only)"
+      ],
+      "cwd": "/workspace/scratch/7500a23b5952/software-evolution-ex1/handoff/verification-work/run-uwffy8cy",
+      "elapsed_seconds": 0.008427,
+      "exit_code": 0,
+      "label": "Commit packet 11 under the explicit automated-test identity",
+      "log": "handoff/verification_logs/11-packet-11.log",
+      "number": 76,
+      "started_at_utc": "2026-10-18T14:58:30.253728+00:00"
+    },
+    {
+      "command": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+        "/workspace/scratch/7500a23b5952/software-evolution-ex1/handoff/verification-work/run-uwffy8cy/extracted-12/12-b-reproducibility/apply_packet.py",
+        "--packet",
+        "/workspace/scratch/7500a23b5952/software-evolution-ex1/handoff/verification-work/run-uwffy8cy/extracted-12/12-b-reproducibility",
+        "--target",
+        "/workspace/scratch/7500a23b5952/software-evolution-ex1/handoff/verification-work/run-uwffy8cy/teacher",
+        "--subdir",
+        "guava-study"
+      ],
+      "cwd": "/workspace/scratch/7500a23b5952/software-evolution-ex1/handoff/verification-work/run-uwffy8cy",
+      "elapsed_seconds": 0.522646,
+      "exit_code": 0,
+      "label": "Packet 12 dry run",
+      "log": "handoff/verification_logs/12-packet-12.log",
+      "number": 77,
+      "started_at_utc": "2026-10-18T14:58:30.435546+00:00"
+    },
+    {
+      "command": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+        "/workspace/scratch/7500a23b5952/software-evolution-ex1/handoff/verification-work/run-uwffy8cy/extracted-12/12-b-reproducibility/apply_packet.py",
+        "--packet",
+        "/workspace/scratch/7500a23b5952/software-evolution-ex1/handoff/verification-work/run-uwffy8cy/extracted-12/12-b-reproducibility",
+        "--target",
+        "/workspace/scratch/7500a23b5952/software-evolution-ex1/handoff/verification-work/run-uwffy8cy/teacher",
+        "--subdir",
+        "guava-study",
+        "--apply"
+      ],
+      "cwd": "/workspace/scratch/7500a23b5952/software-evolution-ex1/handoff/verification-work/run-uwffy8cy",
+      "elapsed_seconds": 0.580471,
+      "exit_code": 0,
+      "label": "Packet 12 copy complete payload",
+      "log": "handoff/verification_logs/12-packet-12.log",
+      "number": 78,
+      "started_at_utc": "2026-10-18T14:58:30.963261+00:00"
+    },
+    {
+      "command": [
+        "/bin/bash",
+        "-c",
+        "python scripts/verify_clean_checkout.py --help"
+      ],
+      "cwd": "/workspace/scratch/7500a23b5952/software-evolution-ex1/handoff/verification-work/run-uwffy8cy/teacher/guava-study",
+      "elapsed_seconds": 0.067884,
+      "exit_code": 0,
+      "label": "Packet 12: Confirm the exact-commit verifier CLI is available",
+      "log": "handoff/verification_logs/12-packet-12.log",
+      "number": 79,
+      "started_at_utc": "2026-10-18T14:58:31.548544+00:00"
+    },
+    {
+      "command": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+        "/workspace/scratch/7500a23b5952/software-evolution-ex1/handoff/verification-work/run-uwffy8cy/extracted-12/12-b-reproducibility/apply_packet.py",
+        "--packet",
+        "/workspace/scratch/7500a23b5952/software-evolution-ex1/handoff/verification-work/run-uwffy8cy/extracted-12/12-b-reproducibility",
+        "--target",
+        "/workspace/scratch/7500a23b5952/software-evolution-ex1/handoff/verification-work/run-uwffy8cy/teacher",
+        "--subdir",
+        "guava-study",
+        "--apply",
+        "--stage"
+      ],
+      "cwd": "/workspace/scratch/7500a23b5952/software-evolution-ex1/handoff/verification-work/run-uwffy8cy",
+      "elapsed_seconds": 0.545128,
+      "exit_code": 0,
+      "label": "Packet 12 stage exact reviewed files",
+      "log": "handoff/verification_logs/12-packet-12.log",
+      "number": 80,
+      "started_at_utc": "2026-10-18T14:58:32.004396+00:00"
+    },
+    {
+      "command": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+        "/workspace/scratch/7500a23b5952/software-evolution-ex1/handoff/verification-work/run-uwffy8cy/extracted-12/12-b-reproducibility/apply_packet.py",
+        "--packet",
+        "/workspace/scratch/7500a23b5952/software-evolution-ex1/handoff/verification-work/run-uwffy8cy/extracted-12/12-b-reproducibility",
+        "--target",
+        "/workspace/scratch/7500a23b5952/software-evolution-ex1/handoff/verification-work/run-uwffy8cy/teacher",
+        "--subdir",
+        "guava-study",
+        "--check-staged"
+      ],
+      "cwd": "/workspace/scratch/7500a23b5952/software-evolution-ex1/handoff/verification-work/run-uwffy8cy",
+      "elapsed_seconds": 0.513767,
+      "exit_code": 0,
+      "label": "Packet 12 read-only staged-blob verification",
+      "log": "handoff/verification_logs/12-packet-12.log",
+      "number": 81,
+      "started_at_utc": "2026-10-18T14:58:32.555784+00:00"
+    },
+    {
+      "command": [
+        "git",
+        "-C",
+        "/workspace/scratch/7500a23b5952/software-evolution-ex1/handoff/verification-work/run-uwffy8cy/teacher",
+        "commit",
+        "-q",
+        "-m",
+        "Automated handoff verification: import packet 12 (test fixture only)"
+      ],
+      "cwd": "/workspace/scratch/7500a23b5952/software-evolution-ex1/handoff/verification-work/run-uwffy8cy",
+      "elapsed_seconds": 0.007574,
+      "exit_code": 0,
+      "label": "Commit packet 12 under the explicit automated-test identity",
+      "log": "handoff/verification_logs/12-packet-12.log",
+      "number": 82,
+      "started_at_utc": "2026-10-18T14:58:33.071415+00:00"
+    },
+    {
+      "command": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+        "/workspace/scratch/7500a23b5952/software-evolution-ex1/handoff/verification-work/run-uwffy8cy/extracted-12/12-b-reproducibility/apply_packet.py",
+        "--packet",
+        "/workspace/scratch/7500a23b5952/software-evolution-ex1/handoff/verification-work/run-uwffy8cy/extracted-12/12-b-reproducibility",
+        "--target",
+        "/workspace/scratch/7500a23b5952/software-evolution-ex1/handoff/verification-work/run-uwffy8cy/teacher",
+        "--subdir",
+        "guava-study"
+      ],
+      "cwd": "/workspace/scratch/7500a23b5952/software-evolution-ex1/handoff/verification-work/run-uwffy8cy",
+      "elapsed_seconds": 0.540683,
+      "exit_code": 0,
+      "label": "Repeat final packet as an idempotent dry run",
+      "log": "handoff/verification_logs/13-final-tree-and-idempotence.log",
+      "number": 83,
+      "started_at_utc": "2026-10-18T14:58:33.473629+00:00"
+    }
+  ],
+  "cumulative_import": {
+    "all_packets_applied_from_actual_downloads": true,
+    "all_working_source_bytes_exact": true,
+    "committed_study_files": 259,
+    "committed_study_tree": "c24b063a2faee2323e2f7160be80e2e6dbc2b2ce",
+    "committed_teacher_files": 260,
+    "empty_commit_created": false,
+    "final_packet_idempotent": true,
+    "fixture_commits": 13,
+    "fixture_final_commit": "ab22efa9dd13a8505203826f410357a9324a38a4",
+    "fixture_identity": {
+      "email": "handoff-verification@example.invalid",
+      "name": "Handoff Verification"
+    },
+    "fixture_initial_commit": "ddb30fb32422d18759d02e51561ee8a2e312328f",
+    "fixture_path": "/workspace/scratch/7500a23b5952/software-evolution-ex1/handoff/verification-work/run-uwffy8cy/teacher",
+    "full_study_tests": 91,
+    "independent_validation_output": {
+      "checks_performed": 7949858,
+      "failure_count": 0,
+      "sha256": "cc57247f652a7c5421ead2591c5002ca12f5bf02ded9be6da093c5464f9f291b",
+      "source": "Actual cumulative packet10 command output; original results/validation.json remains byte-identical.",
+      "status": "passed"
+    },
+    "layout": "Existing teacher Git repository, untouched root README, nested guava-study directory",
+    "original_teacher_files": 1,
+    "packet_results": [
+      {
+        "assigned_student": "A",
+        "cumulative_files": 14,
+        "dry_run_unchanged": true,
+        "files": 14,
+        "fixture_commit": "5afd263a409a3dae78b137111e77d14bca108867",
+        "frozen_study_files_unchanged": true,
+        "import_checks": [
+          {
+            "command": "python scripts/select_versions.py --check",
+            "exit_code": 0,
+            "purpose": "Reconstruct and verify the frozen 30-release sample"
+          },
+          {
+            "command": "PYTHONPATH=src python -m unittest discover -s tests -p 'test_selection.py' -v",
+            "exit_code": 0,
+            "purpose": "Run the 11 calendar, coverage, provenance and tie-breaking tests"
+          }
+        ],
+        "packet": "01",
+        "staged_paths_exact": true,
+        "teacher_readme_preserved": true
+      },
+      {
+        "assigned_student": "B",
+        "cumulative_files": 20,
+        "dry_run_unchanged": true,
+        "files": 6,
+        "fixture_commit": "bc55686081aeb103707fb4aa7cad67161dce9d00",
+        "frozen_study_files_unchanged": true,
+        "import_checks": [
+          {
+            "command": "PYTHONPATH=src python -m unittest discover -s tests -p 'test_omnipresent.py' -v",
+            "exit_code": 0,
+            "purpose": "Run the 13 Usage Equality boundary/oracle tests"
+          }
+        ],
+        "packet": "02",
+        "staged_paths_exact": true,
+        "teacher_readme_preserved": true
+      },
+      {
+        "assigned_student": "A",
+        "cumulative_files": 57,
+        "dry_run_unchanged": true,
+        "files": 37,
+        "fixture_commit": "cf92a97e8671ff62c0407e3534b2a846b19a04df",
+        "frozen_study_files_unchanged": true,
+        "import_checks": [
+          {
+            "command": "python scripts/fetch_tools.py",
+            "exit_code": 0,
+            "purpose": "Verify the bundled instructor JAR and its nested dependencies, ASM and ECJ"
+          },
+          {
+            "command": "python scripts/build_java.py",
+            "exit_code": 0,
+            "purpose": "Compile both supplemental extractor and official ACDC with the bundled compiler"
+          },
+          {
+            "command": "PYTHONPATH=src python -m unittest discover -s tests -p 'test_extractor.py' -v",
+            "exit_code": 0,
+            "purpose": "Run 11 real-bytecode extraction, ownership and normalization tests"
+          }
+        ],
+        "packet": "03",
+        "staged_paths_exact": true,
+        "teacher_readme_preserved": true
+      },
+      {
+        "assigned_student": "B",
+        "cumulative_files": 62,
+        "dry_run_unchanged": true,
+        "files": 5,
+        "fixture_commit": "2ee907fca05038cfe8713b149a9644bb0b1acac6",
+        "frozen_study_files_unchanged": true,
+        "import_checks": [
+          {
+            "command": "PYTHONPATH=src python -m unittest discover -s tests -p 'test_metrics.py' -v",
+            "exit_code": 0,
+            "purpose": "Run 9 lecture-metric boundary and hand-example tests"
+          },
+          {
+            "command": "PYTHONPATH=src python -m unittest discover -s tests -p 'test_mojofm.py' -v",
+            "exit_code": 0,
+            "purpose": "Run 11 directional MoJoFM and exhaustive toy-oracle tests"
+          }
+        ],
+        "packet": "04",
+        "staged_paths_exact": true,
+        "teacher_readme_preserved": true
+      },
+      {
+        "assigned_student": "A",
+        "cumulative_files": 137,
+        "dry_run_unchanged": true,
+        "files": 75,
+        "fixture_commit": "a72ae0be4836e65a445ddf33bd4654a13ef3d7cf",
+        "frozen_study_files_unchanged": true,
+        "import_checks": [
+          {
+            "command": "PYTHONPATH=src python -m unittest discover -s tests -p 'test_archives.py' -v",
+            "exit_code": 0,
+            "purpose": "Run 20 encoded and legacy archive boundary tests"
+          },
+          {
+            "command": "python scripts/unpack_data.py --verify-only",
+            "exit_code": 0,
+            "purpose": "Verify all 2385 files in 32 logical archives without restoration"
+          },
+          {
+            "command": "python scripts/unpack_data.py",
+            "exit_code": 0,
+            "purpose": "Restore original artifacts, graphs, pilot and per-version results for later packet checks"
+          }
+        ],
+        "packet": "05",
+        "staged_paths_exact": true,
+        "teacher_readme_preserved": true
+      },
+      {
+        "assigned_student": "B",
+        "cumulative_files": 142,
+        "dry_run_unchanged": true,
+        "files": 5,
+        "fixture_commit": "a29e383708e42c684481fd8d6b84bc44357d59d1",
+        "frozen_study_files_unchanged": true,
+        "import_checks": [
+          {
+            "command": "python scripts/run_checks.py",
+            "exit_code": 0,
+            "purpose": "Build both Java tools, then run all 91 tests now present, including ACDC integrations"
+          }
+        ],
+        "packet": "06",
+        "staged_paths_exact": true,
+        "teacher_readme_preserved": true
+      },
+      {
+        "assigned_student": "A",
+        "cumulative_files": 152,
+        "dry_run_unchanged": true,
+        "files": 10,
+        "fixture_commit": "ce0253eee9aec23a73fb86cbcffac164de28938b",
+        "frozen_study_files_unchanged": true,
+        "import_checks": [
+          {
+            "command": "python scripts/run_study.py --help",
+            "exit_code": 0,
+            "purpose": "Verify pipeline import closure and CLI argument loading; this does not run the study"
+          },
+          {
+            "command": "PYTHONPATH=src python -c \"from evolution.study import manifest, settings; assert len(manifest()['versions']) == 30; print(settings()['study_revision'])\"",
+            "exit_code": 0,
+            "purpose": "Validate the frozen 30-version identity and load method settings"
+          }
+        ],
+        "packet": "07",
+        "staged_paths_exact": true,
+        "teacher_readme_preserved": true
+      },
+      {
+        "assigned_student": "B",
+        "cumulative_files": 180,
+        "dry_run_unchanged": true,
+        "files": 28,
+        "fixture_commit": "0c560857d81142ad5ec733ed0162a7d0f8dfefbf",
+        "frozen_study_files_unchanged": true,
+        "import_checks": [],
+        "packet": "08",
+        "staged_paths_exact": true,
+        "teacher_readme_preserved": true
+      },
+      {
+        "assigned_student": "A",
+        "cumulative_files": 183,
+        "dry_run_unchanged": true,
+        "files": 3,
+        "fixture_commit": "0b159a8f6e1957e738879a3ca8b29833cae50a2d",
+        "frozen_study_files_unchanged": true,
+        "import_checks": [
+          {
+            "command": "python scripts/audit_change_points.py --output results/rerun/handoff-p09-change-points.json",
+            "exit_code": 0,
+            "purpose": "Audit all 29 sampled graph transitions into a separate output"
+          }
+        ],
+        "packet": "09",
+        "staged_paths_exact": true,
+        "teacher_readme_preserved": true
+      },
+      {
+        "assigned_student": "B",
+        "cumulative_files": 195,
+        "dry_run_unchanged": true,
+        "files": 12,
+        "fixture_commit": "755b41f9cd16c13658ae7861562c5bde14af8096",
+        "frozen_study_files_unchanged": true,
+        "import_checks": [
+          {
+            "command": "python scripts/validate_results.py --output results/rerun/handoff-p10-validation.json",
+            "exit_code": 0,
+            "purpose": "Audit the complete canonical 30-release evidence, 120 partitions, AI and comparisons"
+          }
+        ],
+        "packet": "10",
+        "staged_paths_exact": true,
+        "teacher_readme_preserved": true
+      },
+      {
+        "assigned_student": "A",
+        "cumulative_files": 222,
+        "dry_run_unchanged": true,
+        "files": 27,
+        "fixture_commit": "776185943eb7c9419e38745931a4f44bc751b3cd",
+        "frozen_study_files_unchanged": true,
+        "import_checks": [
+          {
+            "command": "python -c \"import hashlib,json; from pathlib import Path; m=json.loads(Path('report/report_manifest.json').read_text()); expected={**m['inputs'],**m['method_sources'],**m['figures'],m['report']:m['report_sha256'],m['canonical_copy']:m['canonical_copy_sha256']}; bad=[p for p,h in expected.items() if not Path(p).is_file() or hashlib.sha256(Path(p).read_bytes()).hexdigest()!=h]; assert not bad,bad; print('Report hashes verified:',len(expected))\"",
+            "exit_code": 0,
+            "purpose": "Verify all manifest-pinned report inputs, method sources, figures and both PDFs"
+          }
+        ],
+        "packet": "11",
+        "staged_paths_exact": true,
+        "teacher_readme_preserved": true
+      },
+      {
+        "assigned_student": "B",
+        "cumulative_files": 259,
+        "dry_run_unchanged": true,
+        "files": 37,
+        "fixture_commit": "ab22efa9dd13a8505203826f410357a9324a38a4",
+        "frozen_study_files_unchanged": true,
+        "import_checks": [
+          {
+            "command": "python scripts/verify_clean_checkout.py --help",
+            "exit_code": 0,
+            "purpose": "Confirm the exact-commit verifier CLI is available"
+          }
+        ],
+        "packet": "12",
+        "staged_paths_exact": true,
+        "teacher_readme_preserved": true
+      }
+    ],
+    "pushes_performed": 0,
+    "source_tree_exact": true,
+    "teacher_readme_preserved": true
+  },
+  "current_inventory": {
+    "exact_filtered_repository_inventory": true,
+    "repository_exclusions": [
+      "handoff/**"
+    ],
+    "repository_tree": "b283c3811a6a448c9414663b76e341b44dc26ead",
+    "source_files": 259,
+    "source_tree": "c24b063a2faee2323e2f7160be80e2e6dbc2b2ce",
+    "superseded_directories_checked": [
+      "results/baseline_v1",
+      "results/reproducibility",
+      "results/reproducibility_v3"
+    ],
+    "superseded_files_checked": [
+      "report/style_revision_validation.json",
+      "results/revision_comparison.json",
+      "scripts/audit_revision.py"
+    ],
+    "superseded_files_found": []
+  },
+  "elapsed_seconds": 91.955824,
+  "environment": {
+    "disk_free_at_start": 20874125312,
+    "java_executable": "/usr/lib/jvm/java-17-openjdk-amd64/bin/java",
+    "java_library_path": "/usr/lib/jvm/java-17-openjdk-amd64/lib:/usr/lib/jvm/java-17-openjdk-amd64/lib/server",
+    "java_version": "openjdk version \"17.0.20\" 2026-07-21\nOpenJDK Runtime Environment (build 17.0.20+8-1-24.04-Ubuntu)\nOpenJDK 64-Bit Server VM (build 17.0.20+8-1-24.04-Ubuntu, mixed mode, sharing)",
+    "packages": {
+      "numpy": "2.3.5",
+      "scikit-learn": "1.8.0",
+      "scipy": "1.17.0"
+    },
+    "platform": "Linux-6.18.55-x86_64-with-glibc2.39",
+    "python": "3.12.14 (main, Aug 25 2026, 14:00:49) [Clang 22.1.3 ]",
+    "python_executable": "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python"
+  },
+  "failed_checks": 0,
+  "finished_at_utc": "2026-10-18T14:58:34.179426+00:00",
+  "helper_fixtures": {
+    "failures": 0,
+    "scope": "Independent real-Git helper boundary fixtures; distinct from the 91 scientific tests.",
+    "tests": 20
+  },
+  "listings": {
+    "exact_original_contents": true,
+    "html_source_blocks": 60,
+    "markdown_only_adjustment": "A final newline is added solely to separate a source file without one from its closing code fence.",
+    "markdown_source_blocks": 60,
+    "source_bytes": 725172
+  },
+  "logs": [
+    {
+      "bytes": 4675,
+      "path": "handoff/verification_logs/00-environment-and-helper-tests.log",
+      "sha256": "a1b96575d028a6bc60baaa634a9c920b21b6fd33f2226c0d65266fc4de51db7e"
+    },
+    {
+      "bytes": 10296,
+      "path": "handoff/verification_logs/01-packet-01.log",
+      "sha256": "0a1219d269e76161e55bbac597677316984945362aef04974c46c9e0e8cccdc0"
+    },
+    {
+      "bytes": 9125,
+      "path": "handoff/verification_logs/02-packet-02.log",
+      "sha256": "b10651b1f793c639bc4646180427e7fae2935ae78bcee8ddc5d2109c02aee46d"
+    },
+    {
+      "bytes": 11171,
+      "path": "handoff/verification_logs/03-packet-03.log",
+      "sha256": "f1d6ad845f37395db6b710fc8885108e23e2de344c79fcb2e44b49ac13fb354e"
+    },
+    {
+      "bytes": 10274,
+      "path": "handoff/verification_logs/04-packet-04.log",
+      "sha256": "eb5d76a3a1a2ad6e89170ccf1bfc6e7cd5450cee036649defd3103fc900e7408"
+    },
+    {
+      "bytes": 14204,
+      "path": "handoff/verification_logs/05-packet-05.log",
+      "sha256": "57cc5b4e5127d8a07860a3ded2244d335738a6b9d78a42174df2d04841b534af"
+    },
+    {
+      "bytes": 20953,
+      "path": "handoff/verification_logs/06-packet-06.log",
+      "sha256": "6f78a0bec64ef9296caa7ff5a1508fec9528f144b0290674f8b2178b0b346b87"
+    },
+    {
+      "bytes": 7924,
+      "path": "handoff/verification_logs/07-packet-07.log",
+      "sha256": "0e4e745a5aa6f4b28004010b88e068bc75f9faa5b21cead7377bfe586bb4921a"
+    },
+    {
+      "bytes": 6642,
+      "path": "handoff/verification_logs/08-packet-08.log",
+      "sha256": "73704327a085171a42065668e42d42db941ea54ad994c784061a6dfef9e6a535"
+    },
+    {
+      "bytes": 7250,
+      "path": "handoff/verification_logs/09-packet-09.log",
+      "sha256": "9bc992ab56fa7ff9b5ae92e4a808c5ee92f73fc78a175fbdd8d31a1c261929df"
+    },
+    {
+      "bytes": 7231,
+      "path": "handoff/verification_logs/10-packet-10.log",
+      "sha256": "b951d9d8e87501c17b6498b15cc524799ff50778aea07559bfb65ed931d8cfb5"
+    },
+    {
+      "bytes": 7470,
+      "path": "handoff/verification_logs/11-packet-11.log",
+      "sha256": "acb74a2bacbf7092427f5def410fdf74a486b8c4cf81c8c33abd1986edcb61ce"
+    },
+    {
+      "bytes": 8782,
+      "path": "handoff/verification_logs/12-packet-12.log",
+      "sha256": "2b9d0c5db56512ebf0edbd6ac9694ff826c3f5294e9e95558e1f4a1a7f9fdba1"
+    },
+    {
+      "bytes": 1378,
+      "path": "handoff/verification_logs/13-final-tree-and-idempotence.log",
+      "sha256": "e8cd28e65cefab908f8e0a3b7b6ced3f73f1053ccdbda7291619232e4dbd1a20"
+    }
+  ],
+  "repository_tree": "b283c3811a6a448c9414663b76e341b44dc26ead",
+  "schema": 1,
+  "scope": "Packaging, complete source listings, helper boundary fixtures and a real cumulative nested import; no new canonical scientific experiments.",
+  "source_commit": "a8186f58fb22ffd7ebbe68964ded49006f12aef4",
+  "source_coverage": {
+    "bytes": 308639556,
+    "each_assigned_exactly_once": true,
+    "files": 259,
+    "git_tree_blob_mode_length_and_sha256_verified": true,
+    "owners": {
+      "A": {
+        "files": 166,
+        "packets": 6
+      },
+      "B": {
+        "files": 93,
+        "packets": 6
+      }
+    }
+  },
+  "source_tree": "c24b063a2faee2323e2f7160be80e2e6dbc2b2ce",
+  "started_at_utc": "2026-10-18T14:57:02.223527+00:00",
+  "status": "passed",
+  "verified_input_files": [
+    {
+      "bytes": 41137,
+      "path": "handoff/verify_handoff.py",
+      "sha256": "c3517fb6035b36733a5f7fff419460b5b184e09e33266817d2a7bd93fff84d49"
+    },
+    {
+      "bytes": 25459,
+      "path": "handoff/build_handoff.py",
+      "sha256": "8cdbe5a96923b89dddc4c5b15d1f5ef548d705a802ecbdbcd4a334a92e03a4b1"
+    },
+    {
+      "bytes": 21176,
+      "path": "handoff/apply_packet.py",
+      "sha256": "e21590017ce3896322a962872f00607d0fd42639d2996b92e6cb3c7003869956"
+    },
+    {
+      "bytes": 15161,
+      "path": "handoff/test_apply_packet.py",
+      "sha256": "5c314425295fc37ffc2358673c869a1f4efd180ed4d6c3fe38f8df94a5e201a4"
+    },
+    {
+      "bytes": 147676,
+      "path": "handoff/manifest.json",
+      "sha256": "68a95852b8fecba5c9f1819ab77690d8edf4c33a70a72ea4ef033d435bc415da"
+    },
+    {
+      "bytes": 6022,
+      "path": "handoff/download_manifest.json",
+      "sha256": "f291b18dc398647f7e9360c45d74db75359eab463fb86c4df0656553f89e46df"
+    },
+    {
+      "bytes": 871243,
+      "path": "handoff/full_code.html",
+      "sha256": "7a9850c67c20f9a3ba8e55618efb54d7491cd307be1b6ca715e528b4cd98107b"
+    },
+    {
+      "bytes": 48917,
+      "path": "handoff/file_inventory.csv",
+      "sha256": "b7b5beb40b5e5a2ebe8f9a16c49a47ea67c44897d1123837036d6e0f5f85a5a9"
+    },
+    {
+      "bytes": 15729,
+      "path": "docs/commit_roadmap.md",
+      "sha256": "ab6a95568c3df33d441f5d3471b7c8c54142f95b5a7eaa5055475c8d21ca84b9"
+    },
+    {
+      "bytes": 113628,
+      "path": "handoff/code/01-a-setup.md",
+      "sha256": "df87b69ad652ad7ded4b9dc9b5a8100b90ea514e79cc0a3601f113e776e5ea55"
+    },
+    {
+      "bytes": 36421,
+      "path": "handoff/code/02-b-usage-equality.md",
+      "sha256": "4dc38bec9f364b844d053c8f84d2c1782aeaaf0eaddb3d8f1474bd0f4f943238"
+    },
+    {
+      "bytes": 161882,
+      "path": "handoff/code/03-a-extraction.md",
+      "sha256": "ba4b5156d94d984e10dcf67d2f4a94033eb50947a22d12f27af62380d3458ea4"
+    },
+    {
+      "bytes": 32568,
+      "path": "handoff/code/04-b-metrics.md",
+      "sha256": "f9ca34931590384be45cf608fe2a262cb136fa4f2775d3557f7bed00963cc548"
+    },
+    {
+      "bytes": 56551,
+      "path": "handoff/code/05-a-data.md",
+      "sha256": "278617ff5899d3d256ff90dee14c5c644d98b14977d42c150a1f64f976a0a6f1"
+    },
+    {
+      "bytes": 28810,
+      "path": "handoff/code/06-b-clustering.md",
+      "sha256": "40cf5b037e5930807ee3b44b5140c37cabb03d4853130ca99467a749d5739705"
+    },
+    {
+      "bytes": 30061,
+      "path": "handoff/code/07-a-study.md",
+      "sha256": "5363fd8f4a3bca564ccd138e239f2827bc8562bf82b7733ed9cc9a778df7bb0c"
+    },
+    {
+      "bytes": 21233,
+      "path": "handoff/code/08-b-ai-evaluation.md",
+      "sha256": "53fbe3bb54b34ebe3604ac09f98961110cca650e604fa700943439210c84d6ad"
+    },
+    {
+      "bytes": 18427,
+      "path": "handoff/code/09-a-evolution-audits.md",
+      "sha256": "ab3ec5a447027a69eb4cc007e39a67ae546a25ad3891b1811ac57e5aec946962"
+    },
+    {
+      "bytes": 117093,
+      "path": "handoff/code/10-b-validation-docs.md",
+      "sha256": "cb2d0314b483f40a9e385f0208340567365c68b19bb2406952be9073c9815e62"
+    },
+    {
+      "bytes": 148730,
+      "path": "handoff/code/11-a-report.md",
+      "sha256": "12a643ebd949a84e5cc4c03d10c72f6c66ed639df2c094037e70907a0e6d429c"
+    },
+    {
+      "bytes": 38502,
+      "path": "handoff/code/12-b-reproducibility.md",
+      "sha256": "8ea14d28e6a93a7fc1903651cfbf39ee4965c68dcd04a556aab31b6e7516d2d1"
+    }
+  ]
+}

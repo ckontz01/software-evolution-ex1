@@ -1,0 +1,72 @@
+
+## Command 1: Record usable Java runtime
+Started UTC: 2026-10-18T14:57:02.242675+00:00
+Directory: /workspace/scratch/7500a23b5952/software-evolution-ex1
+Command: /usr/lib/jvm/java-17-openjdk-amd64/bin/java -version
+Exit code: 0; elapsed seconds: 0.033561
+
+STDOUT
+
+STDERR
+openjdk version "17.0.20" 2026-07-21
+OpenJDK Runtime Environment (build 17.0.20+8-1-24.04-Ubuntu)
+OpenJDK 64-Bit Server VM (build 17.0.20+8-1-24.04-Ubuntu, mixed mode, sharing)
+
+
+## Command 2: Run independent importer boundary fixtures
+Started UTC: 2026-10-18T14:57:06.299642+00:00
+Directory: /workspace/scratch/7500a23b5952/software-evolution-ex1
+Command: /opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python -m unittest discover -s handoff -p test_apply_packet.py -v
+Exit code: 0; elapsed seconds: 2.787854
+
+STDOUT
+
+STDERR
+test_already_committed_packet_is_idempotent (test_apply_packet.ApplyPacketTest.test_already_committed_packet_is_idempotent) ... ok
+test_apply_stages_only_packet_preserving_unrelated_files (test_apply_packet.ApplyPacketTest.test_apply_stages_only_packet_preserving_unrelated_files) ... ok
+test_check_staged_accepts_exact_packet_and_rejects_extra_paths (test_apply_packet.ApplyPacketTest.test_check_staged_accepts_exact_packet_and_rejects_extra_paths) ... ok
+test_check_staged_rejects_unstaged_and_incomplete_packets (test_apply_packet.ApplyPacketTest.test_check_staged_rejects_unstaged_and_incomplete_packets) ... ok
+test_collision_preflight_makes_no_partial_copy (test_apply_packet.ApplyPacketTest.test_collision_preflight_makes_no_partial_copy) ... ok
+test_dirty_worktree_and_index_are_blocked (test_apply_packet.ApplyPacketTest.test_dirty_worktree_and_index_are_blocked) ... ok
+test_dry_run_does_not_copy_or_stage (test_apply_packet.ApplyPacketTest.test_dry_run_does_not_copy_or_stage) ... ok
+test_extra_and_missing_payload_files_are_rejected (test_apply_packet.ApplyPacketTest.test_extra_and_missing_payload_files_are_rejected) ... ok
+test_identical_untracked_files_can_be_staged_without_rewriting (test_apply_packet.ApplyPacketTest.test_identical_untracked_files_can_be_staged_without_rewriting) ... ok
+test_manifest_traversal_and_git_paths_are_rejected (test_apply_packet.ApplyPacketTest.test_manifest_traversal_and_git_paths_are_rejected) ... ok
+test_missing_skip_worktree_prerequisite_is_rejected_without_changes (test_apply_packet.ApplyPacketTest.test_missing_skip_worktree_prerequisite_is_rejected_without_changes) ... ok
+test_non_repository_and_nested_target_are_rejected (test_apply_packet.ApplyPacketTest.test_non_repository_and_nested_target_are_rejected) ... ok
+test_source_and_destination_symlinks_are_rejected (test_apply_packet.ApplyPacketTest.test_source_and_destination_symlinks_are_rejected) ... ok
+test_stage_requires_apply (test_apply_packet.ApplyPacketTest.test_stage_requires_apply) ... ok
+test_staging_filter_changes_are_detected_and_left_reviewable (test_apply_packet.ApplyPacketTest.test_staging_filter_changes_are_detected_and_left_reviewable) ... ok
+test_subdir_preserves_teacher_readme_and_enforces_prefixed_prerequisite (test_apply_packet.ApplyPacketTest.test_subdir_preserves_teacher_readme_and_enforces_prefixed_prerequisite) ... ok
+test_subdir_traversal_and_symlink_are_rejected (test_apply_packet.ApplyPacketTest.test_subdir_traversal_and_symlink_are_rejected) ... ok
+test_tampered_payload_is_rejected_before_copy (test_apply_packet.ApplyPacketTest.test_tampered_payload_is_rejected_before_copy) ... ok
+test_untracked_prerequisite_is_not_sufficient (test_apply_packet.ApplyPacketTest.test_untracked_prerequisite_is_not_sufficient) ... ok
+test_wrong_committed_prerequisite_mode_is_rejected (test_apply_packet.ApplyPacketTest.test_wrong_committed_prerequisite_mode_is_rejected) ... ok
+
+----------------------------------------------------------------------
+Ran 20 tests in 2.720s
+
+OK
+
+
+## Command 3: Initialize disposable teacher fixture
+Started UTC: 2026-10-18T14:57:09.090477+00:00
+Directory: /workspace/scratch/7500a23b5952/software-evolution-ex1/handoff/verification-work/run-uwffy8cy
+Command: git init -q /workspace/scratch/7500a23b5952/software-evolution-ex1/handoff/verification-work/run-uwffy8cy/teacher
+Exit code: 0; elapsed seconds: 0.003839
+
+STDOUT
+
+STDERR
+
+
+## Command 4: Create explicitly automated baseline commit
+Started UTC: 2026-10-18T14:57:09.112452+00:00
+Directory: /workspace/scratch/7500a23b5952/software-evolution-ex1/handoff/verification-work/run-uwffy8cy
+Command: git -C /workspace/scratch/7500a23b5952/software-evolution-ex1/handoff/verification-work/run-uwffy8cy/teacher commit -q -m 'Automated handoff verification: teacher starter fixture'
+Exit code: 0; elapsed seconds: 0.004931
+
+STDOUT
+
+STDERR
+

@@ -1,0 +1,86 @@
+
+## Command 54: Packet 08 dry run
+Started UTC: 2026-10-18T14:57:58.058220+00:00
+Directory: /workspace/scratch/7500a23b5952/software-evolution-ex1/handoff/verification-work/run-uwffy8cy
+Command: /opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python /workspace/scratch/7500a23b5952/software-evolution-ex1/handoff/verification-work/run-uwffy8cy/extracted-08/08-b-ai-evaluation/apply_packet.py --packet /workspace/scratch/7500a23b5952/software-evolution-ex1/handoff/verification-work/run-uwffy8cy/extracted-08/08-b-ai-evaluation --target /workspace/scratch/7500a23b5952/software-evolution-ex1/handoff/verification-work/run-uwffy8cy/teacher --subdir guava-study
+Exit code: 0; elapsed seconds: 0.534931
+
+STDOUT
+Packet 08 — Student B: Recorded AI architecture and its evaluation
+Pinned source commit: a8186f58fb22ffd7ebbe68964ded49006f12aef4
+Git repository: /workspace/scratch/7500a23b5952/software-evolution-ex1/handoff/verification-work/run-uwffy8cy/teacher
+Study working directory (run the packet's checks here): /workspace/scratch/7500a23b5952/software-evolution-ex1/handoff/verification-work/run-uwffy8cy/teacher/guava-study
+Validated 28 packet files and 152 committed prerequisites; 28 files need copying, 0 are already identical.
+Dry run passed. No files or Git state changed. Add --apply to copy; add --stage to stage only this packet.
+
+STDERR
+
+
+## Command 55: Packet 08 copy complete payload
+Started UTC: 2026-10-18T14:57:58.598597+00:00
+Directory: /workspace/scratch/7500a23b5952/software-evolution-ex1/handoff/verification-work/run-uwffy8cy
+Command: /opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python /workspace/scratch/7500a23b5952/software-evolution-ex1/handoff/verification-work/run-uwffy8cy/extracted-08/08-b-ai-evaluation/apply_packet.py --packet /workspace/scratch/7500a23b5952/software-evolution-ex1/handoff/verification-work/run-uwffy8cy/extracted-08/08-b-ai-evaluation --target /workspace/scratch/7500a23b5952/software-evolution-ex1/handoff/verification-work/run-uwffy8cy/teacher --subdir guava-study --apply
+Exit code: 0; elapsed seconds: 0.521130
+
+STDOUT
+Packet 08 — Student B: Recorded AI architecture and its evaluation
+Pinned source commit: a8186f58fb22ffd7ebbe68964ded49006f12aef4
+Git repository: /workspace/scratch/7500a23b5952/software-evolution-ex1/handoff/verification-work/run-uwffy8cy/teacher
+Study working directory (run the packet's checks here): /workspace/scratch/7500a23b5952/software-evolution-ex1/handoff/verification-work/run-uwffy8cy/teacher/guava-study
+Validated 28 packet files and 152 committed prerequisites; 28 files need copying, 0 are already identical.
+Copied 28 new files; existing identical files were kept.
+Nothing was staged. Review the files and run the packet's checks before staging its explicit paths.
+Suggested commit message: import: add recorded AI recovery and matching-graph evaluation (AI-assisted preparation)
+Use your own Git identity and actual commit date. This helper did not commit or push.
+
+STDERR
+
+
+## Command 56: Packet 08 stage exact reviewed files
+Started UTC: 2026-10-18T14:57:59.463694+00:00
+Directory: /workspace/scratch/7500a23b5952/software-evolution-ex1/handoff/verification-work/run-uwffy8cy
+Command: /opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python /workspace/scratch/7500a23b5952/software-evolution-ex1/handoff/verification-work/run-uwffy8cy/extracted-08/08-b-ai-evaluation/apply_packet.py --packet /workspace/scratch/7500a23b5952/software-evolution-ex1/handoff/verification-work/run-uwffy8cy/extracted-08/08-b-ai-evaluation --target /workspace/scratch/7500a23b5952/software-evolution-ex1/handoff/verification-work/run-uwffy8cy/teacher --subdir guava-study --apply --stage
+Exit code: 0; elapsed seconds: 0.552285
+
+STDOUT
+Packet 08 — Student B: Recorded AI architecture and its evaluation
+Pinned source commit: a8186f58fb22ffd7ebbe68964ded49006f12aef4
+Git repository: /workspace/scratch/7500a23b5952/software-evolution-ex1/handoff/verification-work/run-uwffy8cy/teacher
+Study working directory (run the packet's checks here): /workspace/scratch/7500a23b5952/software-evolution-ex1/handoff/verification-work/run-uwffy8cy/teacher/guava-study
+Validated 28 packet files and 152 committed prerequisites; 0 files need copying, 28 are already identical.
+Copied 0 new files; existing identical files were kept.
+Staged and hash-checked 28 changed packet paths. Review git diff --cached before committing.
+Suggested commit message: import: add recorded AI recovery and matching-graph evaluation (AI-assisted preparation)
+Use your own Git identity and actual commit date. This helper did not commit or push.
+
+STDERR
+
+
+## Command 57: Packet 08 read-only staged-blob verification
+Started UTC: 2026-10-18T14:58:00.021193+00:00
+Directory: /workspace/scratch/7500a23b5952/software-evolution-ex1/handoff/verification-work/run-uwffy8cy
+Command: /opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python /workspace/scratch/7500a23b5952/software-evolution-ex1/handoff/verification-work/run-uwffy8cy/extracted-08/08-b-ai-evaluation/apply_packet.py --packet /workspace/scratch/7500a23b5952/software-evolution-ex1/handoff/verification-work/run-uwffy8cy/extracted-08/08-b-ai-evaluation --target /workspace/scratch/7500a23b5952/software-evolution-ex1/handoff/verification-work/run-uwffy8cy/teacher --subdir guava-study --check-staged
+Exit code: 0; elapsed seconds: 0.559793
+
+STDOUT
+Packet 08 — Student B: Recorded AI architecture and its evaluation
+Pinned source commit: a8186f58fb22ffd7ebbe68964ded49006f12aef4
+Git repository: /workspace/scratch/7500a23b5952/software-evolution-ex1/handoff/verification-work/run-uwffy8cy/teacher
+Study working directory (run the packet's checks here): /workspace/scratch/7500a23b5952/software-evolution-ex1/handoff/verification-work/run-uwffy8cy/teacher/guava-study
+Validated 28 packet files and 152 committed prerequisites; 0 files need copying, 28 are already identical.
+Staged check passed: 28 changed paths, all packet index blobs/modes exact, and no extra staged paths.
+No files or Git state changed. Review the packet's checks before committing with your own identity.
+
+STDERR
+
+
+## Command 58: Commit packet 08 under the explicit automated-test identity
+Started UTC: 2026-10-18T14:58:00.582615+00:00
+Directory: /workspace/scratch/7500a23b5952/software-evolution-ex1/handoff/verification-work/run-uwffy8cy
+Command: git -C /workspace/scratch/7500a23b5952/software-evolution-ex1/handoff/verification-work/run-uwffy8cy/teacher commit -q -m 'Automated handoff verification: import packet 08 (test fixture only)'
+Exit code: 0; elapsed seconds: 0.009355
+
+STDOUT
+
+STDERR
+

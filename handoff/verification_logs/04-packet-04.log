@@ -1,0 +1,138 @@
+
+## Command 26: Packet 04 dry run
+Started UTC: 2026-10-18T14:57:15.391986+00:00
+Directory: /workspace/scratch/7500a23b5952/software-evolution-ex1/handoff/verification-work/run-uwffy8cy
+Command: /opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python /workspace/scratch/7500a23b5952/software-evolution-ex1/handoff/verification-work/run-uwffy8cy/extracted-04/04-b-metrics/apply_packet.py --packet /workspace/scratch/7500a23b5952/software-evolution-ex1/handoff/verification-work/run-uwffy8cy/extracted-04/04-b-metrics --target /workspace/scratch/7500a23b5952/software-evolution-ex1/handoff/verification-work/run-uwffy8cy/teacher --subdir guava-study
+Exit code: 0; elapsed seconds: 0.078067
+
+STDOUT
+Packet 04 — Student B: Lecture quality metrics and MoJoFM
+Pinned source commit: a8186f58fb22ffd7ebbe68964ded49006f12aef4
+Git repository: /workspace/scratch/7500a23b5952/software-evolution-ex1/handoff/verification-work/run-uwffy8cy/teacher
+Study working directory (run the packet's checks here): /workspace/scratch/7500a23b5952/software-evolution-ex1/handoff/verification-work/run-uwffy8cy/teacher/guava-study
+Validated 5 packet files and 57 committed prerequisites; 5 files need copying, 0 are already identical.
+Dry run passed. No files or Git state changed. Add --apply to copy; add --stage to stage only this packet.
+
+STDERR
+
+
+## Command 27: Packet 04 copy complete payload
+Started UTC: 2026-10-18T14:57:15.473988+00:00
+Directory: /workspace/scratch/7500a23b5952/software-evolution-ex1/handoff/verification-work/run-uwffy8cy
+Command: /opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python /workspace/scratch/7500a23b5952/software-evolution-ex1/handoff/verification-work/run-uwffy8cy/extracted-04/04-b-metrics/apply_packet.py --packet /workspace/scratch/7500a23b5952/software-evolution-ex1/handoff/verification-work/run-uwffy8cy/extracted-04/04-b-metrics --target /workspace/scratch/7500a23b5952/software-evolution-ex1/handoff/verification-work/run-uwffy8cy/teacher --subdir guava-study --apply
+Exit code: 0; elapsed seconds: 0.084590
+
+STDOUT
+Packet 04 — Student B: Lecture quality metrics and MoJoFM
+Pinned source commit: a8186f58fb22ffd7ebbe68964ded49006f12aef4
+Git repository: /workspace/scratch/7500a23b5952/software-evolution-ex1/handoff/verification-work/run-uwffy8cy/teacher
+Study working directory (run the packet's checks here): /workspace/scratch/7500a23b5952/software-evolution-ex1/handoff/verification-work/run-uwffy8cy/teacher/guava-study
+Validated 5 packet files and 57 committed prerequisites; 5 files need copying, 0 are already identical.
+Copied 5 new files; existing identical files were kept.
+Nothing was staged. Review the files and run the packet's checks before staging its explicit paths.
+Suggested commit message: import: add lecture MQ metrics and directional MoJoFM (AI-assisted preparation)
+Use your own Git identity and actual commit date. This helper did not commit or push.
+
+STDERR
+
+
+## Command 28: Packet 04: Run 9 lecture-metric boundary and hand-example tests
+Started UTC: 2026-10-18T14:57:15.562957+00:00
+Directory: /workspace/scratch/7500a23b5952/software-evolution-ex1/handoff/verification-work/run-uwffy8cy/teacher/guava-study
+Command: /bin/bash -c 'PYTHONPATH=src python -m unittest discover -s tests -p '"'"'test_metrics.py'"'"' -v'
+Exit code: 0; elapsed seconds: 0.053477
+
+STDOUT
+
+STDERR
+test_complete_singleton_partition_counts_both_directions (test_metrics.LectureMetricTests.test_complete_singleton_partition_counts_both_directions) ... ok
+test_coupling_average_includes_pairs_with_no_edges (test_metrics.LectureMetricTests.test_coupling_average_includes_pairs_with_no_edges) ... ok
+test_csvs_preserve_terms_and_headers_when_empty (test_metrics.LectureMetricTests.test_csvs_preserve_terms_and_headers_when_empty) ... ok
+test_empty_and_all_isolated_graphs (test_metrics.LectureMetricTests.test_empty_and_all_isolated_graphs) ... ok
+test_every_class_requires_exactly_one_membership (test_metrics.LectureMetricTests.test_every_class_requires_exactly_one_membership) ... ok
+test_graph_requires_explicit_scope_and_binary_cleaning (test_metrics.LectureMetricTests.test_graph_requires_explicit_scope_and_binary_cleaning) ... ok
+test_macro_cohesion_differs_from_weighted_supplements (test_metrics.LectureMetricTests.test_macro_cohesion_differs_from_weighted_supplements) ... ok
+test_single_cluster_has_zero_coupling (test_metrics.LectureMetricTests.test_single_cluster_has_zero_coupling) ... ok
+test_two_complete_pairs_and_one_crossing_edge (test_metrics.LectureMetricTests.test_two_complete_pairs_and_one_crossing_edge) ... ok
+
+----------------------------------------------------------------------
+Ran 9 tests in 0.002s
+
+OK
+
+
+## Command 29: Packet 04: Run 11 directional MoJoFM and exhaustive toy-oracle tests
+Started UTC: 2026-10-18T14:57:15.617553+00:00
+Directory: /workspace/scratch/7500a23b5952/software-evolution-ex1/handoff/verification-work/run-uwffy8cy/teacher/guava-study
+Command: /bin/bash -c 'PYTHONPATH=src python -m unittest discover -s tests -p '"'"'test_mojofm.py'"'"' -v'
+Exit code: 0; elapsed seconds: 0.091884
+
+STDOUT
+
+STDERR
+test_all_lecture_examples_on_pages_30_to_32 (test_mojofm.MoJoFMTests.test_all_lecture_examples_on_pages_30_to_32) ... ok
+test_direction_and_target_normalization_are_not_symmetric (test_mojofm.MoJoFMTests.test_direction_and_target_normalization_are_not_symmetric) ... ok
+test_every_partition_pair_through_five_nodes_against_operation_bfs (test_mojofm.MoJoFMTests.test_every_partition_pair_through_five_nodes_against_operation_bfs) ... ok
+test_invalid_memberships_are_rejected (test_mojofm.MoJoFMTests.test_invalid_memberships_are_rejected) ... ok
+test_labels_and_mapping_order_do_not_affect_the_score (test_mojofm.MoJoFMTests.test_labels_and_mapping_order_do_not_affect_the_score) ... ok
+test_mismatched_universes_are_rejected_without_projection (test_mojofm.MoJoFMTests.test_mismatched_universes_are_rejected_without_projection) ... ok
+test_normalizer_is_not_always_n_minus_number_of_clusters (test_mojofm.MoJoFMTests.test_normalizer_is_not_always_n_minus_number_of_clusters) ... ok
+test_primary_paper_sixteen_object_example (test_mojofm.MoJoFMTests.test_primary_paper_sixteen_object_example) ... ok
+test_singletons_one_cluster_and_unobserved_empty_clusters (test_mojofm.MoJoFMTests.test_singletons_one_cluster_and_unobserved_empty_clusters) ... ok
+test_tied_overlap_requires_rematching (test_mojofm.MoJoFMTests.test_tied_overlap_requires_rematching) ... ok
+test_zero_normalizer_is_explicitly_undefined (test_mojofm.MoJoFMTests.test_zero_normalizer_is_explicitly_undefined) ... ok
+
+----------------------------------------------------------------------
+Ran 11 tests in 0.040s
+
+OK
+
+
+## Command 30: Packet 04 stage exact reviewed files
+Started UTC: 2026-10-18T14:57:15.722012+00:00
+Directory: /workspace/scratch/7500a23b5952/software-evolution-ex1/handoff/verification-work/run-uwffy8cy
+Command: /opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python /workspace/scratch/7500a23b5952/software-evolution-ex1/handoff/verification-work/run-uwffy8cy/extracted-04/04-b-metrics/apply_packet.py --packet /workspace/scratch/7500a23b5952/software-evolution-ex1/handoff/verification-work/run-uwffy8cy/extracted-04/04-b-metrics --target /workspace/scratch/7500a23b5952/software-evolution-ex1/handoff/verification-work/run-uwffy8cy/teacher --subdir guava-study --apply --stage
+Exit code: 0; elapsed seconds: 0.104908
+
+STDOUT
+Packet 04 — Student B: Lecture quality metrics and MoJoFM
+Pinned source commit: a8186f58fb22ffd7ebbe68964ded49006f12aef4
+Git repository: /workspace/scratch/7500a23b5952/software-evolution-ex1/handoff/verification-work/run-uwffy8cy/teacher
+Study working directory (run the packet's checks here): /workspace/scratch/7500a23b5952/software-evolution-ex1/handoff/verification-work/run-uwffy8cy/teacher/guava-study
+Validated 5 packet files and 57 committed prerequisites; 0 files need copying, 5 are already identical.
+Copied 0 new files; existing identical files were kept.
+Staged and hash-checked 5 changed packet paths. Review git diff --cached before committing.
+Suggested commit message: import: add lecture MQ metrics and directional MoJoFM (AI-assisted preparation)
+Use your own Git identity and actual commit date. This helper did not commit or push.
+
+STDERR
+
+
+## Command 31: Packet 04 read-only staged-blob verification
+Started UTC: 2026-10-18T14:57:15.831137+00:00
+Directory: /workspace/scratch/7500a23b5952/software-evolution-ex1/handoff/verification-work/run-uwffy8cy
+Command: /opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python /workspace/scratch/7500a23b5952/software-evolution-ex1/handoff/verification-work/run-uwffy8cy/extracted-04/04-b-metrics/apply_packet.py --packet /workspace/scratch/7500a23b5952/software-evolution-ex1/handoff/verification-work/run-uwffy8cy/extracted-04/04-b-metrics --target /workspace/scratch/7500a23b5952/software-evolution-ex1/handoff/verification-work/run-uwffy8cy/teacher --subdir guava-study --check-staged
+Exit code: 0; elapsed seconds: 0.092262
+
+STDOUT
+Packet 04 — Student B: Lecture quality metrics and MoJoFM
+Pinned source commit: a8186f58fb22ffd7ebbe68964ded49006f12aef4
+Git repository: /workspace/scratch/7500a23b5952/software-evolution-ex1/handoff/verification-work/run-uwffy8cy/teacher
+Study working directory (run the packet's checks here): /workspace/scratch/7500a23b5952/software-evolution-ex1/handoff/verification-work/run-uwffy8cy/teacher/guava-study
+Validated 5 packet files and 57 committed prerequisites; 0 files need copying, 5 are already identical.
+Staged check passed: 5 changed paths, all packet index blobs/modes exact, and no extra staged paths.
+No files or Git state changed. Review the packet's checks before committing with your own identity.
+
+STDERR
+
+
+## Command 32: Commit packet 04 under the explicit automated-test identity
+Started UTC: 2026-10-18T14:57:15.924959+00:00
+Directory: /workspace/scratch/7500a23b5952/software-evolution-ex1/handoff/verification-work/run-uwffy8cy
+Command: git -C /workspace/scratch/7500a23b5952/software-evolution-ex1/handoff/verification-work/run-uwffy8cy/teacher commit -q -m 'Automated handoff verification: import packet 04 (test fixture only)'
+Exit code: 0; elapsed seconds: 0.006983
+
+STDOUT
+
+STDERR
+
