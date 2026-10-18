@@ -81,6 +81,8 @@ Version and pilot ZIPs are stored as `.zip.b64` text files; the endpoint Git-sou
 
 The complete test run passed **91 tests**. The independent result audit passed **7,949,858 evidence checks with no failures**, covering all 120 final partitions. Those totals describe different checks: the audit count includes repeated assertions over saved classes, members, edges and metric terms. [Validation scope and limits](docs/validation.md)
 
+A fresh clone of [the published revision `ed18113`](https://github.com/ckontz01/software-evolution-ex1/commit/ed18113b1641481585ca9695312842d05d903a70) also passed the complete verification sequence. It restored all 2,385 archived files and reproduced all 62 checked deterministic files for the latest release byte for byte. The [verification receipt and command logs](results/reproducibility_v3/README.md) record the exact tested commit, environment and scope.
+
 To repeat the study into separate output directories:
 
 ```bash
